@@ -1,0 +1,113 @@
+<mvc:View xmlns:core="sap.ui.core" 
+  xmlns="sap.m" 
+  xmlns:f="sap.f" 
+  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+  xmlns:smartTable="sap.ui.comp.smarttable"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button"
+  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table"
+  controllerName="com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessageListReport">
+  <f:DynamicPage headerExpanded="true" toggleHeaderOnTitleClick="true">
+    <f:header >
+      <f:DynamicPageHeader pinnable="true">
+        <f:content >
+          <smartFilterBar:SmartFilterBar id="idMessageSmartFilterBar"
+                                         enableBasicSearch="true"
+                                         liveMode="true"
+                                         useDateRangeType="true"
+                                         useToolbar="true"
+                                         initialized="onFilterBarInitialized"
+                                         showFilterConfiguration="false"
+                                         persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.filterbar"
+                                         entitySet="{this>/entitySet}">
+          </smartFilterBar:SmartFilterBar>
+        </f:content>
+      </f:DynamicPageHeader>
+    </f:header>
+    <f:content>
+      <smartTable:SmartTable
+        id="idMessageSmartTable"
+        entitySet="{this>/entitySet}"
+        tableType="ResponsiveTable"
+        smartFilterId="idMessageSmartFilterBar"
+        enableAutoBinding="true" 
+        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ExternalPayload"
+        ignoredFields="ExtBusinessMessageID"
+        header="{i18n>messageTitlePlural}"
+        useTablePersonalisation="false"
+        showRowCount="true"
+        demandPopin="true"
+        useExportToExcel="false"
+        useVariantManagement="false"
+        placeToolbarInTable="true" 
+        beforeRebindTable="onBeforeRebindTable"
+        persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.table">
+        <smartTable:customToolbar>
+          <OverflowToolbar design="Transparent">
+            <ToolbarSpacer/>
+            <Button icon="sap-icon://refresh" press="onRefresh"/>
+          </OverflowToolbar>
+        </smartTable:customToolbar>
+        <Table
+          id="table"
+          growing="true"
+          growingScrollToLoad="true" 
+          growingThreshold="100" 
+          mode="None"
+          sticky="ColumnHeaders,HeaderToolbar" >
+          <columns>
+            <Column>
+              <Text text="{/xMP4GxC_TransferDoc_UI/ExternalUUID/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"0", "columnKey":"ExternalUUID", "leadingProperty":["ExternalUUID"]}'/>
+              </customData>
+            </Column>
+            <Column>
+              <Text text="{i18n>FORMAT_OR_AMID_TITLE}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"Format-AMID", "leadingProperty":["TechnicalMsgID", "ExtBusinessMessageID"] }'/>
+              </customData>
+            </Column>
+            <Column>
+              <Text text="{/xMP4GxC_TransferDoc_UI/Direction/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"Direction", "leadingProperty":["Direction", "SenderId", "SenderCodeList", "ReceiverId", "ReceiverCodeList"] }'/>
+              </customData>
+            </Column>
+            <Column>
+              <Text text="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"ProcessDocumentNumber", "leadingProperty":["ProcessDocumentNumber"] }'/>
+              </customData>
+            </Column>
+          </columns>
+          <items>
+            <ColumnListItem type="Navigation" press="onMessageRowSelect">
+              <cells>
+              	<reuseTable:ObjectIdentifier title="{ExternalUUID}" />
+                <Text text="{parts: [{path: 'TechnicalMsgID'},
+                  {path: 'ExtBusinessMessageID'}],
+                  formatter: '.formatTechnicalBusinessMsgId'}"/>
+                <HBox>
+                  <Text text="{
+                      parts: [ 'Direction', 'SenderId', 'ReceiverId' ],
+                      formatter: '.formatter.partnerStart'
+                    }"/>
+                  <core:Icon src="{
+                      parts: [ 'Direction' ],
+                      formatter: '.formatter.partnerIcon'
+                    }" class="sapUiTinyMarginBegin sapUiTinyMarginEnd" />
+                  <Text text="{
+                      parts: [ 'Direction', 'SenderId', 'ReceiverId' ],
+                      formatter: '.formatter.partnerEnd'
+                    }"/>
+                </HBox>
+                <Link text="{ProcessDocumentNumber}" press="onNavToProcess"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </smartTable:SmartTable>
+    </f:content>
+  </f:DynamicPage>
+</mvc:View>

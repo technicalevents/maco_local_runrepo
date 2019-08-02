@@ -1,0 +1,57 @@
+<mvc:View controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessPage"
+  xmlns="sap.m" 
+  xmlns:mvc="sap.ui.core.mvc" 
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+  xmlns:core="sap.ui.core" 
+  xmlns:uxap="sap.uxap"
+  xmlns:button="com.sap.cd.maco.monitor.ui.reuse.button"
+  xmlns:layout="sap.ui.layout">
+  <uxap:ObjectPageLayout
+    id="idProcessObjectPage"
+    useIconTabBar="true"
+    upperCaseAnchorBar="false">
+    <uxap:headerTitle>
+      <uxap:ObjectPageDynamicHeaderTitle>
+        <uxap:expandedHeading>
+          <Title text="{ProcessDocumentNumber}" wrapping="true" class="sapUiTinyMarginEnd"/>
+        </uxap:expandedHeading>
+        <uxap:snappedHeading>
+          <Title text="{ProcessDocumentNumber}" wrapping="true"/>
+        </uxap:snappedHeading>
+        <uxap:expandedContent>
+          <Text text="{ProcessIDDescription}" />
+        </uxap:expandedContent>
+        <uxap:snappedContent>
+          <Text text="{ProcessIDDescription}"/>
+        </uxap:snappedContent>
+        <uxap:actions>
+        </uxap:actions>
+        <uxap:breadcrumbs>
+        </uxap:breadcrumbs>
+      </uxap:ObjectPageDynamicHeaderTitle>
+    </uxap:headerTitle>
+    <uxap:headerContent>
+      <core:Fragment type="XML" fragmentName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessHeader"/>
+    </uxap:headerContent>
+    <uxap:sections>
+      <uxap:ObjectPageSection title="{i18n>PROCESS_FLOW_SECTION_LBL}" titleUppercase="false">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+              <mvc:XMLView id="idProcessStepView" viewName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.flow.ProcessSteps"/>
+            </uxap:blocks>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+      <uxap:ObjectPageSection title="{i18n>ADDITIONAL_DATA_SECTION_LBL}" titleUppercase="false">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+              <mvc:XMLView id="idProcessDataView" viewName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.ProcessData"/>
+            </uxap:blocks>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+    </uxap:sections>
+  </uxap:ObjectPageLayout>
+</mvc:View>

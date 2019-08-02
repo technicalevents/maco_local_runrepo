@@ -1,0 +1,106 @@
+sap.ui.define(
+  [
+    "com/sap/cd/maco/mmt/ui/reuse/base/BaseViewController",
+    "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/model/Filter",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
+     "sap/ui/model/Sorter"
+  ],
+  function(BaseViewController, formatter, JSONModel, Filter, Constants, Utility, Sorter) {
+    "use strict";
+
+    return BaseViewController.extend(
+      "com.sap.cd.maco.monitor.ui.app.displayprocesses.view.flow.ProcessSteps",
+      {
+        formatter: formatter,
+
+        /**
+         * Lifecycle method - triggered on initialization of Process Step Controller
+         */
+        onInit: function() {
+          BaseViewController.prototype.onInit.apply(this, arguments);
+          
+          // Attach parent context change
+          this.attachParentContextChange(this.onParentContextChange.bind(this));
+
+          // Create a JSON Model
+          var oThisModel = new JSONModel({});
+          oThisModel.setDefaultBindingMode("OneWay");
+
+          // Setting model to view
+          this.getView().setModel(oThisModel, "this");
+        },
+        
+        /**
+         * Event Handler - Triggered when Binding is completed on parent view (Process Page)
+         * @public
+         * @param {object} oContext Binding Context of Process Page
+         */
+        onParentContextChange: function(oContext){
+          var oProcess = oContext.getObject();
+          this._whenProcessStepDataRead(oProcess.ProcessDocumentKey)
+            .then(this._onSucessProcessStepDataRead.bind(this));
+        },
+
+        /**
+         * Event Handler - Function is triggered on click of (Message / Processes) link in Timeline item
+         * @param {sap.ui.base.Event} oEvent Link Click event object
+         */
+        navigateToBusinessObject: function(oEvent) {
+          var oObject = oEvent.getSource().getBindingContext("this").getObject();
+          var sBusinessObjectType = oObject.BusinessObjectType;
+          var sLinkedDocumentKey = Utility.convertToGuidFormat(oObject.BusinessObjectUUID);
+
+          var oParam = {
+          	semanticObject: Utility.getSemanticObject(sBusinessObjectType),
+          	action: Constants.SEMANTIC_ACTION.DISPLAY,
+          	params: Utility.getNavigationParameters(sBusinessObjectType, sLinkedDocumentKey)                    
+          };
+		          
+		      this.oNav.navExternal(oParam);
+        },
+
+        /**
+         * Function is used to trigger call to fetch Process Steps data for the selected Process
+         * @private
+         * @param {string} sProcessDocumentKey Selected Process Id
+         * @returns {Promise} Promise object of data read call
+         */
+        _whenProcessStepDataRead: function(sProcessDocumentKey) {
+          var sKey = this.getView().getModel().createKey("/xMP4GxC_Process_Activities_UI", 
+                                                    {ProcessDocumentKey: sProcessDocumentKey});
+
+          return this.oTransaction.whenRead({
+                path: sKey + "/Set",
+                busyControl: this.getView(),
+                sorters: [new Sorter("ActivityTimestamp", true),new Sorter("ProcessEventKey", true)]
+          });
+        },
+
+        /**
+         * Function is called when data read call is succesfull
+         * @private
+         * @param {object} oResult Process Step Data object
+         */
+        _onSucessProcessStepDataRead: function(oResult){
+          if(!oResult && !oResult.data){
+            return;
+          }
+
+          var aProcessSteps;
+
+          if (!oResult.data.results){
+            aProcessSteps = [oResult.data];
+          } else if (oResult && oResult.data){
+            aProcessSteps = oResult.data.results;
+          }
+
+          var oModel = this.getThisModel();
+          oModel.setProperty("/ProcessStepData", aProcessSteps);
+        }
+      }
+    );
+  }
+);

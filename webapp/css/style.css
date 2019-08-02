@@ -1,0 +1,12 @@
+.comSapCdMacoMmtUiDispProcessReference {
+    padding: 0.375rem 0 0 0;
+}
+
+.comSapCdMacoMmtUiDispProcessMessageLink.sapMObjectAttributeActive .sapMObjectAttributeTitle, 
+.comSapCdMacoMmtUiDispProcessMessageLink.sapMObjectAttributeActive .sapMObjectAttributeText {
+	white-space: normal;
+}
+
+.comSapCdMacoMmtUiDispProcessTypeForm .sapUiFormResGrid>div {
+    padding: 0rem;
+}

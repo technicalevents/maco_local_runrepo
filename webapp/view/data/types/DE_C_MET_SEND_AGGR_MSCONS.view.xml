@@ -1,0 +1,80 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:form="sap.ui.layout.form"
+	xmlns:smartTable="sap.ui.comp.smarttable" xmlns:smartfield="sap.ui.comp.smartfield"
+	controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.types.DataTable"
+	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	
+	<smartTable:SmartTable id="idTable"
+					        entitySet="xMP4GxC_MET_SEND_AGGR_MSCONS"
+					        tableType="ResponsiveTable"
+					        demandPopin="true"
+					        useExportToExcel="false"
+					        useTablePersonalisation="false"
+					        enableAutoBinding="true" 
+					        requestAtLeastFields="path,ProcessDocumentKey,ProcessDocumentType"
+					        beforeRebindTable="onBeforeRebindTable"
+					        custom:entityName="xMP4GxC_MET_SEND_AGGR_MSCONS">
+		
+	  <smartTable:customToolbar>
+	  	<Toolbar height="0rem"/>
+	  </smartTable:customToolbar>
+	  
+	  <Table id="idProcessTypeTable"
+	          growing="true"
+	          growingScrollToLoad="true" 
+	          growingThreshold="10" 
+	          mode="None"
+	          sticky="ColumnHeaders,HeaderToolbar" >
+          <columns>
+            <Column>
+              <Text text="{/xMP4GxC_MET_SEND_AGGR_MSCONS/PODID/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" 
+                				 value='\{"columnIndex":"0", 
+                						  "columnKey":"PODID", 
+                						  "leadingProperty":["PODID"] }'/>
+              </customData>
+            </Column>
+            <Column>
+              <Text text="{/xMP4GxC_MET_SEND_AGGR_MSCONS/DateFrom/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" 
+                				 value='\{"columnIndex":"1", 
+                						  "columnKey":"DateFrom", 
+                						  "leadingProperty":["DateFrom"] }'/>
+              </customData>
+            </Column>
+            <Column>
+              <Text text="{/xMP4GxC_MET_SEND_AGGR_MSCONS/DateTo/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" 
+                				 value='\{"columnIndex":"2", 
+                						  "columnKey":"DateTo", 
+                						  "leadingProperty":["DateTo"] }'/>
+              </customData>
+            </Column>
+            <Column>
+              <Text text="{/xMP4GxC_MET_SEND_AGGR_MSCONS/Division/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" 
+                				 value='\{"columnIndex":"3", 
+                						  "columnKey":"Division", 
+                						  "leadingProperty":["Division"] }'/>
+              </customData>
+            </Column>
+            
+          </columns>
+          <items>
+            <ColumnListItem type="Inactive">
+              <cells>
+                  <smartfield:SmartField value="{PODID}"/>
+                  <smartfield:SmartField value="{DateFrom}"/>
+                  <smartfield:SmartField value="{DateTo}"/>
+                  <smartfield:SmartField value="{Division}"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+	</smartTable:SmartTable>
+	
+</mvc:View>

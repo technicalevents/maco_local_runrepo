@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<edmx:Edmx Version="1.0"
+           xmlns:sap="http://www.sap.com/Protocols/SAPData"
+           xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:DataServices
+            xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+        <Schema Namespace="Main"
+                xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+                xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+                xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+
+            <EntityContainer Name="Main" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="AMIDVHSet" EntityType="Main.AMIDVH" />
+                <EntitySet Name="MessageSet" EntityType="Main.Message" />
+                <EntitySet Name="DirectionVHSet" EntityType="Main.DirectionVH" />
+                <EntitySet Name="StatusVHSet" EntityType="Main.StatusVH" />
+                <EntitySet Name="FormatVHSet" EntityType="Main.FormatVH" />
+            </EntityContainer>
+
+            <EntityType Name="Message">
+                <Key>
+                    <PropertyRef Name="Id" />
+                </Key>
+                <Property Name="Id" Type="Edm.String" sap:label="Id" />
+                <Property Name="Format" Type="Edm.String" sap:label="Format" />
+                <Property Name="AMID" Type="Edm.String" sap:label="AMID" />
+                <Property Name="Direction" Type="Edm.String" sap:label="Direction" sap:text="DirectionText" />
+                <Property Name="DirectionText" Type="Edm.String" sap:label="Direction"  />
+                <Property Name="Status" Type="Edm.String" sap:label="Status" sap:text="StatusText" />
+                <Property Name="StatusText" Type="Edm.String" sap:label="Status" />
+                <Property Name="Date" Type="Edm.DateTime" sap:label="Date" sap:display-format="Date" sap:filter-restriction="interval" />
+                <Property Name="ProcessId" Type="Edm.String" sap:label="Process" />
+                <Property Name="FromId" Type="Edm.String" sap:label="From Partner" />
+                <Property Name="FromName" Type="Edm.String" sap:label="From Partner" />
+                <Property Name="ToId" Type="Edm.String" sap:label="To Partner" />
+                <Property Name="ToName" Type="Edm.String" sap:label="To Partner" />
+                <Property Name="CONTRL" Type="Edm.String" sap:label="CONTRL Message" />
+                <Property Name="APERAK" Type="Edm.String" sap:label="APERAK Message" />
+            </EntityType>
+
+            <EntityType Name="AMIDVH">
+                <Key>
+                    <PropertyRef Name="Id" />
+                </Key>
+                <Property Name="Id" Type="Edm.String" sap:label="Id" />
+                <Property Name="Format" Type="Edm.String" sap:label="Format" />
+            </EntityType>
+
+            <EntityType Name="DirectionVH">
+                <Key>
+                    <PropertyRef Name="Value" />
+                </Key>
+                <Property Name="Value" Type="Edm.String" sap:label="Status" sap:text="Description" />
+                <Property Name="Description" Type="Edm.String" sap:label="Description" />
+            </EntityType>
+
+            <EntityType Name="StatusVH">
+                <Key>
+                    <PropertyRef Name="Value" />
+                </Key>
+                <Property Name="Value" Type="Edm.String" sap:label="Status" sap:text="Description" />
+                <Property Name="Description" Type="Edm.String" sap:label="Description" />
+            </EntityType>
+
+            <EntityType Name="FormatVH">
+                <Key>
+                    <PropertyRef Name="Id" />
+                </Key>
+                <Property Name="Id" Type="Edm.String" sap:label="Id" />
+            </EntityType>
+
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
