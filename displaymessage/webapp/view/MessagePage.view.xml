@@ -1,0 +1,134 @@
+<mvc:View controllerName="com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessagePage"
+  xmlns="sap.m" 
+  xmlns:mvc="sap.ui.core.mvc" 
+  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+  xmlns:core="sap.ui.core" 
+  xmlns:uxap="sap.uxap"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button"
+  xmlns:layout="sap.ui.layout"
+  xmlns:f="sap.ui.layout.form">
+  <uxap:ObjectPageLayout
+    id="objectPage"
+    upperCaseAnchorBar="false">
+    <uxap:headerTitle>
+      <uxap:ObjectPageDynamicHeaderTitle>
+        <uxap:expandedHeading>
+          <Title text="{ExternalUUID}" wrapping="true"/>
+        </uxap:expandedHeading>
+        <uxap:snappedHeading>
+          <Title text="{ExternalUUID}" wrapping="true"/>
+        </uxap:snappedHeading>
+        <uxap:expandedContent>
+          <Text text="{parts: [{path: 'i18n>FORMAT_AMID_TXT_LBL'},
+                                      {path: 'TechnicalMsgID'},
+                                      {path: 'ExtBusinessMessageID'}],
+                                      formatter: '.formatter.formatMessage'}" />
+        </uxap:expandedContent>
+        <uxap:snappedContent>
+          <Text text="{parts: [{path: 'i18n>FORMAT_AMID_TXT_LBL'},
+                                      {path: 'TechnicalMsgID'},
+                                      {path: 'ExtBusinessMessageID'}],
+                                      formatter: '.formatter.formatMessage'}" />
+        </uxap:snappedContent>
+        <uxap:actions>
+        </uxap:actions>
+        <uxap:breadcrumbs>
+        </uxap:breadcrumbs>
+      </uxap:ObjectPageDynamicHeaderTitle>
+    </uxap:headerTitle>
+    <uxap:headerContent>
+      <core:Fragment type="XML" fragmentName="com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessageHeader"/>
+    </uxap:headerContent>
+    <uxap:sections>
+    	<uxap:ObjectPageSection title="{i18n>MSG_PROPERTIES_TITLE}" titleUppercase="false">
+        	<uxap:subSections>
+            	<uxap:ObjectPageSubSection>
+            		<uxap:blocks>
+            			<f:Form maxContainerCols="4" editable="true">
+							<f:layout>
+								<f:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12"
+								 emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="6" columnsL="6"
+								 columnsM="6" singleContainerFullSize="false" />
+							</f:layout>
+							<f:formContainers>
+								<f:FormContainer>
+									<f:title>
+										<core:Title text="{i18n>MSG_PROPERTIES_GEN_SUBSECTION_TITLE}"/>
+									</f:title>
+									<f:formElements>
+										<f:FormElement label="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}">
+											<f:fields>
+												<Link text="{this>/linkedDocumentIds/processDocument}" 
+													press="onNavigateToProcessDocument" wrapping="true"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{/xMP4GxC_TransferDoc_UI/ExternalCommunicationType/#@sap:label}">
+											<f:fields>
+												<Text text="{ExternalCommunicationType_Text}" wrapping="true"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+								<f:FormContainer>
+									<f:title>
+										<core:Title text="{i18n>CONTRL_MSG_TEXT}"/>
+									</f:title>
+									<f:formElements>
+										<f:FormElement label="{i18n>MSG_REF_TEXT}">
+											<f:fields>
+												<Link text="{this>/linkedDocumentIds/controlMessage}"
+													 press="onNavigateToMessageDocument" wrapping="true"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>Date_LBL}" visible="{=!!${this>/linkedDocumentIds/controlMessage}}">
+											<f:fields>
+												<Text text="{ path: 'this>/linkedDocumentIds/controlMessageTimeStamp',
+									                          type: 'sap.ui.model.type.DateTime',
+    														  formatOptions: { style: 'medium' }}"
+												      wrapping="true"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+								<f:FormContainer>
+									<f:title>
+										<core:Title text="{i18n>APERAK_MSG_TEXT}"/>
+									</f:title>
+									<f:formElements>
+										<f:FormElement label="{i18n>MSG_REF_TEXT}">
+											<f:fields>
+												<Link text="{this>/linkedDocumentIds/aperakMessage}"
+													press="onNavigateToMessageDocument" wrapping="true"/>
+											</f:fields>
+										</f:FormElement>
+										<f:FormElement label="{i18n>Date_LBL}" visible="{=!!${this>/linkedDocumentIds/aperakMessage}}">
+											<f:fields>
+												<Text text="{ path: 'this>/linkedDocumentIds/aperakMessageTimeStamp',
+									                          type: 'sap.ui.model.type.DateTime',
+    														  formatOptions: { style: 'medium' }}"
+    												  wrapping="true"/>
+											</f:fields>
+										</f:FormElement>
+									</f:formElements>
+								</f:FormContainer>
+							</f:formContainers>
+						</f:Form>
+            		</uxap:blocks>
+            	</uxap:ObjectPageSubSection>
+        	</uxap:subSections>
+    	</uxap:ObjectPageSection>
+    	<uxap:ObjectPageSection title="{i18n>MSG_DATA_TITLE}" titleUppercase="false" class="comSapCdMacoMmtUiDispMessagePayloadSection">
+    		<uxap:subSections>
+    			<uxap:ObjectPageSubSection>
+    				<uxap:blocks>
+            			<TextArea value="{path: 'ExternalPayload', formatter: '.formatter.externalPayload'}" 
+							editable="false" width="100%" growing="true">
+        				</TextArea>
+    			    </uxap:blocks>
+        		</uxap:ObjectPageSubSection>
+			</uxap:subSections>
+		</uxap:ObjectPageSection>
+    </uxap:sections>
+  </uxap:ObjectPageLayout>
+</mvc:View>

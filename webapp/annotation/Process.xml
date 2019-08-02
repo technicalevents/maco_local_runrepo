@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+   <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value">
+      <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+   </edmx:Reference>
+   <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value">
+      <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+   </edmx:Reference>
+   <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value">
+      <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication" />
+   </edmx:Reference>
+   <edmx:Reference Uri="../../../mp4g/processheader_sb/$metadata">
+      <edmx:Include Namespace="PROCESSHEADER_SB" Alias="SAP" />
+   </edmx:Reference>
+   <edmx:DataServices>
+      <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="com.sap.mp4g.processheader_sb_van.v1">
+         <Annotations Target="cds_xmp4gxprocessheader_sd.xAPExC_ProcessID_VHType/ProcessIDDescriptionISL">
+            <Annotation Term="UI.HiddenFilter" />
+         </Annotations>
+         <Annotations Target="cds_xmp4gxprocessheader_sd.xAPExC_ProcessID_VHType/ProcessIDKey">
+            <Annotation Term="UI.Hidden" />
+         </Annotations>
+         <Annotations Target="cds_xmp4gxprocessheader_sd.xAPExC_ProcessID_VHType/ProcessID_fc">
+            <Annotation Term="UI.Hidden" />
+         </Annotations>
+         <Annotations Target="cds_xmp4gxprocessheader_sd.xMP4GxC_PROCESSHEADER_UIType/ProcessDocumentKey">
+            <Annotation Term="UI.Hidden" />
+         </Annotations>
+         <Annotations Target="cds_xmp4gxprocessheader_sd.xMP4GxC_PROCESSHEADER_UIType/ProcessDescription">
+            <Annotation Term="UI.Hidden" />
+         </Annotations>
+         <Annotations Target="cds_xmp4gxprocessheader_sd.xMP4GxC_PROCESSHEADER_UIType/StatusCriticality">
+            <Annotation Term="UI.Hidden" />
+         </Annotations>
+         <Annotations Target="cds_xmp4gxprocessheader_sd.xMP4GxC_PROCESSHEADER_UIType/ProcessID_fc">
+            <Annotation Term="UI.Hidden" />
+         </Annotations>
+         <Annotations Target="cds_xmp4gxprocessheader_sd.xMP4GxC_PROCESSHEADER_UIType/ProcessDocumentNumber">
+            <Annotation Term="Common.Text" Path="ProcessDescription">
+               <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst" />
+            </Annotation>
+         </Annotations>
+         <Annotations Target="cds_xmp4gxprocessheader_sd.xMP4GxC_PROCESSHEADER_UIType">
+            <Annotation Term="UI.DataPoint" Qualifier="ProcessStatus">
+               <Record>
+                  <PropertyValue Property="Value" Path="ProcessStatus" />
+                  <PropertyValue Property="Title" String="Process Status" />
+                  <PropertyValue Property="TargetValue" Path="ProcessStatus" />
+                  <PropertyValue Property="Criticality" Path="StatusCriticality" />
+               </Record>
+            </Annotation>
+            <Annotation Term="UI.HeaderFacets">
+               <Collection>
+                  <Record Type="UI.ReferenceFacet">
+                     <PropertyValue Property="ID" String="HFDateTime" />
+                     <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#HFDateTime" />
+                     <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                  </Record>
+                  <Record Type="UI.ReferenceFacet">
+                     <PropertyValue Property="ID" String="HFStatus" />
+                     <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#ProcessStatus" />
+                     <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                  </Record>
+               </Collection>
+            </Annotation>
+            <Annotation Term="UI.FieldGroup" Qualifier="HFDateTime">
+               <Record>
+                  <PropertyValue Property="Data">
+                     <Collection>
+                        <Record Type="UI.DataField">
+                           <PropertyValue Property="Value" Path="ProcessDate" />
+                        </Record>
+                     </Collection>
+                  </PropertyValue>
+               </Record>
+            </Annotation>
+            <Annotation Term="UI.LineItem">
+               <Collection>
+                  <Record Type="UI.DataField">
+                     <PropertyValue Property="Label" String="Process" />
+                     <PropertyValue Property="Value" Path="ProcessDocumentNumber" />
+                  </Record>
+                  <Record Type="UI.DataField">
+                     <PropertyValue Property="Criticality" Path="StatusCriticality" />
+                     <PropertyValue Property="Value" Path="ProcessStatus" />
+                     <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/High" />
+                  </Record>
+                  <Record Type="UI.DataField">
+                     <PropertyValue Property="Value" Path="ProcessDate" />
+                  </Record>
+               </Collection>
+            </Annotation>
+            <Annotation Term="UI.SelectionFields">
+               <Collection>
+                  <PropertyPath>ProcessID</PropertyPath>
+                  <PropertyPath>ProcessDate</PropertyPath>
+                  <PropertyPath>ProcessStatus</PropertyPath>
+               </Collection>
+            </Annotation>
+         </Annotations>
+      </Schema>
+   </edmx:DataServices>
+</edmx:Edmx>

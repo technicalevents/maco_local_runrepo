@@ -1,0 +1,78 @@
+<mvc:View xmlns:core="sap.ui.core" 
+		  xmlns="sap.m" 
+		  xmlns:f="sap.f" 
+		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+		  xmlns:smartfield="sap.ui.comp.smartfield"
+		  xmlns:smartTable="sap.ui.comp.smarttable"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button"
+		  controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessListReport"
+      xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table">
+  <f:DynamicPage headerExpanded="true" toggleHeaderOnTitleClick="true">
+    <f:header >
+      <f:DynamicPageHeader pinnable="true">
+        <f:content >
+          <smartFilterBar:SmartFilterBar id="idProcessSmartFilterBar"
+                                         enableBasicSearch="true"
+                                         liveMode="true"
+                                         useDateRangeType="true"
+                                         useToolbar="true"
+                                         initialized="onFilterBarInitialized"
+                                         showFilterConfiguration="false"
+                                         persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displayprocesses.filterbar"
+                                         entitySet="{this>/entitySet}">
+          </smartFilterBar:SmartFilterBar>
+        </f:content>
+      </f:DynamicPageHeader>
+    </f:header>
+    <f:content>
+      <smartTable:SmartTable id="idProcessSmartTable"
+					        entitySet="{this>/entitySet}"
+					        tableType="ResponsiveTable"
+					        smartFilterId="idProcessSmartFilterBar"
+					        enableAutoBinding="true" 
+					        ignoredFields="" 
+					        useTablePersonalisation="false"
+					        showRowCount="true"
+					        demandPopin="true"
+					        useExportToExcel="false"
+					        header="{i18n>PROCESS_PLURAL_LBL}"
+					        useVariantManagement="false" 
+					        beforeRebindTable="onBeforeRebindTable"
+					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displayprocesses.table"
+					        requestAtLeastFields="ProcessDocumentKey,StatusCriticality,ProcessID">
+        <smartTable:customToolbar>
+          <OverflowToolbar design="Transparent">
+            <ToolbarSpacer/>
+            <Button icon="sap-icon://refresh" press="onRefresh"/>
+          </OverflowToolbar>
+        </smartTable:customToolbar>
+        <Table id="idProcessTable"
+	          growing="true"
+	          growingScrollToLoad="true" 
+	          growingThreshold="100" 
+	          mode="None"
+	          sticky="ColumnHeaders,HeaderToolbar" >
+          <columns>
+            <Column width="40%">
+              <Text text="{/xMP4GxC_ProcessHeader_UI/ProcessDocumentNumber/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" 
+                				 value='\{"columnIndex":"0", 
+                						  "columnKey":"ProcessDocumentNumber", 
+                						  "leadingProperty":["ProcessDocumentNumber", "ProcessIDDescription"] }'/>
+              </customData>
+            </Column>
+          </columns>
+          <items>
+            <ColumnListItem type="Navigation" press="onProcessRowSelect">
+              <cells>
+                  <reuseTable:ObjectIdentifier title="{ProcessDocumentNumber}" text="{ProcessIDDescription}"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </smartTable:SmartTable>
+    </f:content>
+  </f:DynamicPage>
+</mvc:View>

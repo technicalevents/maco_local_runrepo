@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core"
+        xmlns:reuseFacet="com.sap.cd.maco.mmt.ui.reuse.objectPage.facet"
+        xmlns:layout="sap.ui.layout">
+    <reuseFacet:FormFacet>
+        <reuseFacet:FormFacetField
+            label="{i18n>FROM_SENDER_TEXT}"
+            text="{SenderId}" />
+        <reuseFacet:FormFacetField
+            label="{i18n>TO_RECEIVER_TEXT}"
+            text="{ReceiverId}" />
+        <reuseFacet:FormFacetField
+            label="{/xMP4GxC_TransferDoc_UI/TransferDate/#@sap:label}"
+            text="{path: 'Timestamp', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' }}" />
+    </reuseFacet:FormFacet>
+	<reuseFacet:StatusFacet label="{/xMP4GxC_TransferDoc_UI/TDStatus/#@sap:label}" 
+				       text="{TDStatus}" 
+				       state="{
+						  	path:'TDStatusCriticality',
+						  	formatter: '.formatter.criticality'
+						  }" />
+</core:FragmentDefinition>

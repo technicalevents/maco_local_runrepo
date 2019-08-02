@@ -1,0 +1,22 @@
+[
+  {
+    "Value": "failed_process",
+    "Description": "Processing Error"
+  },
+  {
+    "Value": "failed_control",
+    "Description": "Negative CONTRL"
+  },
+  {
+    "Value": "failed_aperak",
+    "Description": "APERAK"
+  },
+  {
+    "Value": "open",
+    "Description": "Open"
+  },
+  {
+    "Value": "processed",
+    "Description": "Completed"
+  }
+]
