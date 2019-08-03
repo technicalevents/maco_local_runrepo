@@ -72,15 +72,27 @@
       },
       "description": "SAPUI5 Test Resources"
     },
+    
     {
-      "path": "/MUSCLNT380",
+      "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "MUSCLNT380"
+        "name": "MUS_380",
+        "entryPath": "/sap/opu/odata"
       },
-      "description": "MUSCLNT380"
+      "description": "SAPUI5 Test Resources"
+    },
+    
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "MUS_380",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "SAPUI5 Test Resources"
     }
   ],
-  "welcomeFile": "/webapp/test/flpSandbox.html",
+  "welcomeFile": "/webapp/flp/FLPSandbox.html",
   "sendWelcomeFileRedirect": true
 }

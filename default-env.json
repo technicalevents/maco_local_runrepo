@@ -1,0 +1,21 @@
+{
+  "xsappname": "com.sap.cd.maco.monitor.ui.app.displayprocesses",
+  "destinations": [
+    {
+      "name": "sapui5",
+      "url": "https://sapui5.hana.ondemand.com"
+    },
+    {
+      "name": "nodejs",
+      "url": "http://localhost:5009",
+      "forwardAuthToken": true
+    },
+    {
+      "name": "backendservice",
+      "url": "https://com-sap-cd-maco-mmt-srv-masterdataservice-dev.cfapps.sap.hana.ondemand.com/odata/v2/masterdataservice/",
+      "forwardAuthToken": true
+    }
+  ],
+  "PORT": "5009",
+  "NODE_TLS_REJECT_UNAUTHORIZED": "0"
+}

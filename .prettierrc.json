@@ -1,0 +1,10 @@
+{
+  "___docu___": "https://prettier.io/docs/en/options.html",
+
+  "printWidth": 100,
+  "parser": "flow",
+  "useTabs": false,
+  "tabWidth": 2,
+  "singleQuote": true,
+  "bracketSpacing": true
+}

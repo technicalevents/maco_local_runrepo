@@ -1,0 +1,11 @@
+{
+  "uaa": {
+    "clientid": "sb-MaCo!t3026",
+    "xsappname": "MaCo!t3026",
+    "identityzone": "stage-dev",
+    "identityzoneid": "77f4d8f3-6df9-44fe-a4a0-9c45c2a36637",
+    "clientsecret": "47ltjLVfxJIqS0HifStilPRxdmY=",
+    "tenantid": "77f4d8f3-6df9-44fe-a4a0-9c45c2a36637",
+    "url": "https://stage-dev.authentication.sap.hana.ondemand.com"
+  }
+}

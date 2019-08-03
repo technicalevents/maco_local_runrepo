@@ -1,0 +1,7 @@
+{
+    "projectName": "maco-monitor-ui-app",
+    "productVer": "1.0.0",
+    "checkPolicies": true,
+    "forceUpdate": true,
+    "devDep": true
+}

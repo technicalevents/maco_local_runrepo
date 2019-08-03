@@ -22,7 +22,6 @@
       "target": "$1",
       "localDir": "webapp"
     },
-    
     {
       "source": "^/odata/v2/masterdataservice/(.*)$",
       "target": "$1",

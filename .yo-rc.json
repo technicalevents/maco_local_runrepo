@@ -1,0 +1,6 @@
+{
+  "*": {
+    "projectType": "app-only",
+    "realm": "sap"
+  }
+}

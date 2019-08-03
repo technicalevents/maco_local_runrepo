@@ -1,7 +1,42 @@
 {
-  "name": "displayprocess",
-  "description": "",
+  "name": "com-sap-cd-maco-monitor-ui-app-displayprocesses",
+  "version": "1.1.0",
+  "license": "SAP",
+  "dependencies": {
+    "@sap/approuter": "^5.10.1"
+  },
   "devDependencies": {
-    "@sap/grunt-sapui5-bestpractice-build": "1.4.1"
+    "com-sap-cd-maco-mmt-ui-reuse": "git://github.wdf.sap.corp/MaCo-MMT/mmt-ui-lib.git#dev",
+    "custdev-sapui5-infra-util": "*",
+    "eslint": "^5.0.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.1",
+    "grunt": "^0.4.5",
+    "grunt-cli": "^1.2.0",
+    "prettier": "^1.14.3"
+  },
+  "sapui5": {
+    "version": "1.56.6",
+    "resources": "https://sapui5.hana.ondemand.com/1.56.6/resources",
+    "testResources": "https://sapui5.hana.ondemand.com/1.56.6/test-resources",
+    "libs": {},
+    "apps": {},
+    "browsers": [
+      "Chrome"
+    ],
+    "xmake": {
+      "browsers": [
+        "PhantomJS"
+      ],
+      "resources": "sdk/sapui5-sdk-dist-1.56.6-static/resources",
+      "testResources": "sdk/sapui5-sdk-dist-1.56.6-static/test-resources"
+    }
+  },
+  "scripts": {
+    "start": "node node_modules/@sap/approuter/approuter.js",
+    "lint": "grunt lint:ci",
+    "test": "grunt test:ci",
+    "opa": "grunt test:ci",
+    "watch": "grunt watch"
   }
 }

@@ -1,0 +1,66 @@
+{ 
+  "projectType": [
+    "sap.watt.uitools.ide.fiori",
+    "com.watt.common.builder.sapui5clientbuild"
+  ],
+  "build": {
+    "targetFolder": "dist",
+    "sourceFolder": "webapp",
+    "excludedFolders": [
+      "test"
+    ],
+    "excludedFiles": [
+      "test.html"
+    ],
+    "buildRequired": true
+  },
+  "dataBinding": {
+    "/webapp/view/App.view.xml": {
+      "entitySet": "UNBINDKEY"
+    }
+  },
+  "generation": [
+    {
+      "templateId": "sap.ui.ui5-template-plugin.1worklist",
+      "templateVersion": "1.42.0",
+      "dateTimeStamp": "Thu, 14 Sep 2017 09:04:19 GMT"
+    },
+    {
+      "templateId": "servicecatalog.connectivityComponent",
+      "templateVersion": "0.0.0",
+      "dateTimeStamp": "Wed, 11 Oct 2017 14:56:52 GMT"
+    },
+    {
+      "templateId": "ui5template.basicSAPUI5ApplicationComponent",
+      "templateVersion": "1.4.0",
+      "dateTimeStamp": "Mon, 05 Mar 2018 12:48:40 GMT"
+    }
+  ],
+  "codeCheckingTriggers": {
+    "notifyBeforePush": true,
+    "notifyBeforePushLevel": "Error",
+    "blockPush": false,
+    "blockPushLevel": "Error"
+  },
+  "translation": {
+    "translationDomain": "",
+    "supportedLanguages": "en,fr,de",
+    "defaultLanguage": "en",
+    "defaultI18NPropertyFile": "i18n.properties",
+    "resourceModelName": "i18n"
+  },
+  "mockpreview": {
+    "mockUri": "/odata/v2/masterdataservice/",
+    "metadataFilePath": "",
+    "loadJSONFiles": false,
+    "loadCustomRequests": false,
+    "mockRequestsFilePath": ""
+  },
+  "basevalidator": {
+    "services": {
+      "xml": "fioriXmlAnalysis",
+      "js": "fioriJsValidator"
+    }
+  }
+}
+
