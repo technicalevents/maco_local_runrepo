@@ -22,9 +22,9 @@
 					        userNameClickable="false"
 					        text="{this>ActivityDescription}"
 					        filterValue="{this>JobTitle}"
-					        icon="{
-					            path: 'this>BusinessObjectType',
-					            formatter: '.formatter.processStepIcon'
+					        icon="{parts: [{path: 'this>BusinessObjectType'}, 
+					                       {path: 'this>Direction'}],
+					               formatter: '.formatter.processStepIcon'
 					          }">
         <commons:embeddedControl>
           <VBox>
@@ -49,6 +49,7 @@
                       {path: 'this>ExternalUUID'}, 
                       {path: 'this>TechnicalMessage'}], 
                       formatter: '.formatter.formatMessage'}"
+                active="true"
                 />
             
             <ObjectStatus visible="{= ${this>BusinessObjectType} === 'TransDoc' &amp;&amp; ${this>isExternalMessage}}"
