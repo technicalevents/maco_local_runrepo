@@ -1,0 +1,29 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core">
+    <HBox>
+        <Label
+            text="{$this>label}"
+            wrapping="false" />
+        <Text
+            text="{$this>text}"
+            visible="{
+                path: '$this>type',
+                formatter: '._showText'
+            }" />
+        <Link
+            text="{$this>text}"
+            visible="{
+                path: '$this>type',
+                formatter: '._showLink'
+            }"
+            press="_onPress"/>
+        <ObjectStatus
+            text="{$this>text}"
+            state="{$this>state}"
+            visible="{
+                path: '$this>type',
+                formatter: '._showStatus'
+            }"/>
+    </HBox>
+</core:FragmentDefinition>

@@ -1,0 +1,26 @@
+{
+  "welcomeFile": "/test/Example.html",
+  "authenticationMethod": "none",
+  "routes": [
+    {
+      "source": "^/resources",
+      "target": "/resources",
+      "destination": "sapui5"
+    },
+    {
+      "source": "^/test-resources",
+      "target": "/test-resources",
+      "destination": "sapui5"
+    },
+    {
+      "source": "^/src/(.*)$",
+      "target": "$1",
+      "localDir": "src"
+    },
+    {
+      "source": "^/test/(.*)$",
+      "target": "$1",
+      "localDir": "test"
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+{
+  "extends": "sap-abel-ui/test-config"
+}

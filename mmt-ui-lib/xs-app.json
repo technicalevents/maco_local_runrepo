@@ -1,0 +1,20 @@
+{
+  "welcomeFile": "/webapp/test/flpSandbox.html",
+  "routes": [
+    {
+      "source": "^/odata/v2/(.*)$",
+      "target": "$1",
+      "destination": "mmt_backend_srv",
+      "csrfProtection": false
+    },
+    {
+      "source": "^(/.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ],
+  "websockets": {
+    "enabled": true
+  }
+}

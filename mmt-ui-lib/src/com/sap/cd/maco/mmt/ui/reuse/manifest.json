@@ -1,0 +1,56 @@
+{
+  "_version": "1.8.0",
+  "sap.app": {
+    "id": "com.sap.cd.maco.mmt.ui.reuse",
+    "type": "library",
+    "embeds": [],
+    "i18n": "messagebundle.properties",
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+    "title": "{{title}}",
+    "description": "{{description}}",
+    "ach": "",
+    "resources": "resources.json",
+    "offline": false
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": false
+    },
+    "supportedThemes": [
+      "sap_hcb",
+      "sap_belize"
+    ]
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.56.1",
+      "libs": {
+        "sap.ui.core": {},
+        "sap.m": {},
+        "sap.ui.layout": {},
+        "sap.f": {},
+        "sap.ushell": {},
+        "sap.ui.comp": {},
+        "sap.uxap": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    }
+  },
+  "sap.platform.hcp": {
+    "uri": ""
+  },
+  "sap.fiori": {
+    "registrationIds": [
+      ""
+    ],
+    "archeType": "reusecomponent"
+  }
+}
