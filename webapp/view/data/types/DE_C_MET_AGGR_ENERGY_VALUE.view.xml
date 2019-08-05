@@ -5,7 +5,7 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	
 	<smartTable:SmartTable id="idTable"
-					        entitySet="xMP4GxC_MET_AGGR_ENERGY_VALUE"
+					        entitySet="xMP4GxC_Met_Aggr_Energy_Value"
 					        tableType="ResponsiveTable"
 					        demandPopin="true"
 					        useExportToExcel="false"
@@ -13,7 +13,7 @@
 					        enableAutoBinding="true" 
 					        requestAtLeastFields="path,ProcessDocumentKey,ProcessDocumentType"
 					        beforeRebindTable="onBeforeRebindTable"
-					        custom:entityName="xMP4GxC_MET_AGGR_ENERGY_VALUE">
+					        custom:entityName="xMP4GxC_Met_Aggr_Energy_Value">
 	 
 	  <smartTable:customToolbar>
 	  	<Toolbar height="0rem"/>
@@ -27,7 +27,7 @@
 	          sticky="ColumnHeaders,HeaderToolbar" >
           <columns>
             <Column>
-              <Text text="{/xMP4GxC_MET_AGGR_ENERGY_VALUE/PODID/#@sap:label}"/>
+              <Text text="{/xMP4GxC_Met_Aggr_Energy_Value/PODID/#@sap:label}"/>
               <customData>
                 <core:CustomData key="p13nData" 
                 				 value='\{"columnIndex":"0", 
@@ -36,7 +36,7 @@
               </customData>
             </Column>
             <Column>
-              <Text text="{/xMP4GxC_MET_AGGR_ENERGY_VALUE/DateTo/#@sap:label}"/>
+              <Text text="{/xMP4GxC_Met_Aggr_Energy_Value/DateTo/#@sap:label}"/>
               <customData>
                 <core:CustomData key="p13nData" 
                 				 value='\{"columnIndex":"2", 
@@ -45,7 +45,7 @@
               </customData>
             </Column>
             <Column>
-              <Text text="{/xMP4GxC_MET_AGGR_ENERGY_VALUE/Division/#@sap:label}"/>
+              <Text text="{/xMP4GxC_Met_Aggr_Energy_Value/Division/#@sap:label}"/>
               <customData>
                 <core:CustomData key="p13nData" 
                 				 value='\{"columnIndex":"3", 

@@ -5,7 +5,7 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	
 	<smartTable:SmartTable id="idTable"
-					        entitySet="xMP4GxC_MOSB_AGGR_INVC_MOS"
+					        entitySet="xMP4GxC_Mosb_Aggr_Invc_Mos"
 					        tableType="ResponsiveTable"
 					        demandPopin="true"
 					        useExportToExcel="false"
@@ -13,7 +13,7 @@
 					        enableAutoBinding="true" 
 					        requestAtLeastFields="path,ProcessDocumentKey,ProcessDocumentType"
 					        beforeRebindTable="onBeforeRebindTable"
-					        custom:entityName="xMP4GxC_MOSB_AGGR_INVC_MOS">
+					        custom:entityName="xMP4GxC_Mosb_Aggr_Invc_Mos">
 		
 	  <smartTable:customToolbar>
 	  	<Toolbar height="0rem"/>
@@ -27,7 +27,7 @@
 	          sticky="ColumnHeaders,HeaderToolbar" >
           <columns>
             <Column>
-              <Text text="{/xMP4GxC_MOSB_AGGR_INVC_MOS/InvoiceDoc/#@sap:label}"/>
+              <Text text="{/xMP4GxC_Mosb_Aggr_Invc_Mos/InvoiceDoc/#@sap:label}"/>
               <customData>
                 <core:CustomData key="p13nData" 
                 				 value='\{"columnIndex":"0", 
