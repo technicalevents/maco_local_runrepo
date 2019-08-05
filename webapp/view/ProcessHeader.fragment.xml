@@ -3,7 +3,7 @@
         xmlns:core="sap.ui.core"
         xmlns:reuseObjectPageFacet="com.sap.cd.maco.mmt.ui.reuse.objectPage.facet"
         xmlns:layout="sap.ui.layout">
-	<reuseObjectPageFacet:FormFacet width="50%">
+	<reuseObjectPageFacet:FormFacet>
         <reuseObjectPageFacet:FormFacetField
             label="{/xMP4GxC_ProcActivityHeader_UI/ProcessDate/#@sap:label}"
             text="{
@@ -12,8 +12,24 @@
 				formatOptions: { style: 'medium' }
 			}" />
 		<reuseObjectPageFacet:FormFacetField
+            label="{/xMP4GxC_ProcActivityHeader_UI/ProcessTimestamp/#@sap:label}"
+            text="{
+				path: 'ProcessTimestamp',
+				type: 'sap.ui.model.type.Date',
+				formatOptions: { style: 'medium' }
+			}" />
+        <reuseObjectPageFacet:FormFacetField
+            label="{/xMP4GxC_ProcActivityHeader_UI/BusinessObjectUUID/#@sap:label}"
+            text="{BusinessObjectUUID}"/>
+    </reuseObjectPageFacet:FormFacet>
+	<reuseObjectPageFacet:FormFacet>
+		<reuseObjectPageFacet:FormFacetField
+            label="{/xMP4GxC_ProcActivityHeader_UI/OwnerUUID/#@sap:label}"
+            text="{OwnerUUID}"/>
+		<reuseObjectPageFacet:FormFacetField
             label="{/xMP4GxC_ProcessHeader_UI/MarketPartner/#@sap:label}"
-            text="{this>/MarketPartner}"/>
+            text="{this>/MarketPartner}"
+            width="50%"/>
     </reuseObjectPageFacet:FormFacet>
     <reuseObjectPageFacet:StatusFacet label="{/xMP4GxC_ProcActivityHeader_UI/ProcessStatus/#@sap:label}" text="{ProcessStatusDescription}" state="{
 						  	path:'StatusCriticality',
