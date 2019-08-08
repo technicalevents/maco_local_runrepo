@@ -33,10 +33,10 @@
         }
       },
       applications: { // test
-        "Process-monitor": {
-          additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.mtrprocesses",
+        "ProcessMonitor-display": {
+          additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.monitorprocesses",
           applicationType: "URL",
-          url: "../../mtrprocesses/",
+          url: "../../monitorprocess/webapp/",
           title: "Monitor Processes"
         },
         // "Message-monitor": {
@@ -54,7 +54,7 @@
         "Message-display": {
           additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.displaymessages",
           applicationType: "URL",
-          url: "../../displaymessages/webapp/",
+          url: "../../displaymessage/webapp/",
           title: "Display Messages"
         }
         // "MonitorProcess-display": {
@@ -77,8 +77,8 @@
     data-sap-ui-preload="async"
     data-sap-ui-resourceroots='{
       "com.sap.cd.maco.monitor.ui.app.displayprocesses": "../",
-      "com.sap.cd.maco.monitor.ui.app.displaymessages": "../../displaymessages/webapp",
-      "com.sap.cd.maco.monitor.ui.app.mtrprocesses": "../../mtrprocesses",
+      "com.sap.cd.maco.monitor.ui.app.displaymessages": "../../displaymessage/webapp",
+      "com.sap.cd.maco.monitor.ui.app.monitorprocesses": "../../monitorprocess/webapp",
       "com.sap.cd.maco.mmt.ui.reuse": "../../mmt-ui-lib/src/com/sap/cd/maco/mmt/ui/reuse"
     }'
 	  data-sap-ui-frameOptions='allow'> 	// NON-SECURE setting for testing environment

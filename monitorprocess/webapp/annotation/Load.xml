@@ -1,0 +1,83 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <edmx:Reference>
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1" />
+  </edmx:Reference>
+  <edmx:Reference>
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="Main">
+
+      <Annotations Target="Main.Load">
+
+        <!-- navigation -->
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataFieldForIntentBasedNavigation">
+              <PropertyValue Property="SemanticObject" String="Process"/>
+              <PropertyValue Property="Action" String="display"/>
+            </Record>
+          </Collection>
+        </Annotation>
+
+        <Annotation Term="UI.DataPoint" Qualifier="kpi">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="CountTotal" />
+            <PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral" />
+            <PropertyValue Property="ValueFormat">
+              <Record Type="UI.NumberFormat">
+                <PropertyValue Property="ScaleFactor" Decimal="1" />
+                <PropertyValue Property="NumberOfFractionalDigits" Int="0" />
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <Annotation Term="UI.Chart">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String=""/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/StackedColumn"/>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>CountFailed</PropertyPath>
+                <PropertyPath>CountPending</PropertyPath>
+                <PropertyPath>CountSuccess</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Date</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="CountFailed"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="CountPending"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="CountSuccess"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Date" />
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category" />
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
+

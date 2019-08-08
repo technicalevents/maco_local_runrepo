@@ -1,0 +1,262 @@
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx" Version="4.0">
+  <edmx:Reference>
+    <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1" />
+  </edmx:Reference>
+  <edmx:Reference>
+    <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+  </edmx:Reference>
+  <edmx:DataServices>
+    <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="Main">
+
+      <Annotations Target="Main.ToDo">
+
+        <!-- navigation -->
+        <Annotation Term="UI.Identification">
+          <Collection>
+            <Record Type="UI.DataFieldForIntentBasedNavigation">
+              <PropertyValue Property="SemanticObject" String="Process"/>
+              <PropertyValue Property="Action" String="display"/>
+            </Record>
+          </Collection>
+        </Annotation>
+
+        <Annotation Term="UI.DataPoint" Qualifier="kpi">
+          <Record Type="UI.DataPointType">
+            <PropertyValue Property="Value" Path="CountTotal" />
+            <PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Negative" />
+            <PropertyValue Property="ValueFormat">
+              <Record Type="UI.NumberFormat">
+                <PropertyValue Property="ScaleFactor" Decimal="1" />
+                <PropertyValue Property="NumberOfFractionalDigits" Int="0" />
+              </Record>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <Annotation Term="UI.Chart" Qualifier="ByType">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String=" "/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/StackedColumn"/>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>CountProcess</PropertyPath>
+                <PropertyPath>CountControl</PropertyPath>
+                <PropertyPath>CountAperak</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Type</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="CountProcess"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="CountControl"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis2"/>
+                </Record>
+              </Collection>
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="CountAperak"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis3"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Type" />
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category" />
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <Annotation Term="UI.Chart" Qualifier="ByOwnPartner">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String=" "/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/StackedColumn"/>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>CountProcess</PropertyPath>
+                <PropertyPath>CountControl</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="CountProcess"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="CountControl"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis2"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>OwnPartner</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="OwnPartner"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <Annotation Term="UI.Chart" Qualifier="ByPartner">
+          <Record Type="UI.ChartDefinitionType">
+            <PropertyValue Property="Title" String=" "/>
+            <PropertyValue Property="ChartType" EnumMember="UI.ChartType/StackedColumn"/>
+            <PropertyValue Property="Measures">
+              <Collection>
+                <PropertyPath>CountProcess</PropertyPath>
+                <PropertyPath>CountControl</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="MeasureAttributes">
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="CountProcess"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                </Record>
+              </Collection>
+              <Collection>
+                <Record Type="UI.ChartMeasureAttributeType">
+                  <PropertyValue Property="Measure" PropertyPath="CountControl"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis2"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="Dimensions">
+              <Collection>
+                <PropertyPath>Partner</PropertyPath>
+              </Collection>
+            </PropertyValue>
+            <PropertyValue Property="DimensionAttributes">
+              <Collection>
+                <Record Type="UI.ChartDimensionAttributeType">
+                  <PropertyValue Property="Dimension" PropertyPath="Partner"/>
+                  <PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <Annotation Term="UI.SelectionVariant" Qualifier="ByType">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Parameters">
+              <Collection/>
+            </PropertyValue>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="By"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="Type"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <Annotation Term="UI.SelectionVariant" Qualifier="ByOwnPartner">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Parameters">
+              <Collection/>
+            </PropertyValue>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="By"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="OwnPartner"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <Annotation Term="UI.SelectionVariant" Qualifier="ByPartnerAll">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Parameters">
+              <Collection/>
+            </PropertyValue>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="By"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="PartnerAll"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+        <Annotation Term="UI.SelectionVariant" Qualifier="ByPartnerTop">
+          <Record Type="UI.SelectionVariantType">
+            <PropertyValue Property="Parameters">
+              <Collection/>
+            </PropertyValue>
+            <PropertyValue Property="SelectOptions">
+              <Collection>
+                <Record Type="UI.SelectOptionType">
+                  <PropertyValue Property="PropertyName" PropertyPath="By"/>
+                  <PropertyValue Property="Ranges">
+                    <Collection>
+                      <Record Type="UI.SelectionRangeType">
+                        <PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+                        <PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+                        <PropertyValue Property="Low" String="PartnerTop"/>
+                      </Record>
+                    </Collection>
+                  </PropertyValue>
+                </Record>
+              </Collection>
+            </PropertyValue>
+          </Record>
+        </Annotation>
+
+      </Annotations>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
