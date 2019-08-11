@@ -1,0 +1,8 @@
+#!/usr/bin/env groovy
+@Library(['piper-lib', 'NAAS-pipeline-lib']) _
+import com.sap.icd.jenkins.Utils
+
+CommonJenkinsPipelineTempleteUI {
+  configFilePath = "https://github.wdf.sap.corp/raw/MaCo-MMT/NAAS-pipeline-library/master/.pipeline/mmt-ui-app-mtrprocess_config.yml"
+  disableUIVeri5Scan = true
+}

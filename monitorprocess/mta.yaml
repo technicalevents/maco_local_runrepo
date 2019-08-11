@@ -1,0 +1,28 @@
+ID: mmt-ui-app-mtrprocess
+_schema-version: '2.1'
+parameters:
+  deploy_mode: html5-repo
+version: 0.0.1
+modules:
+  - name: mmt-ui-app-mtrprocess_ui_deployer
+    type: com.sap.html5.application-content
+    path: mmt-ui-app-mtrprocess_ui_deployer
+    requires:
+      - name: mmt-ui-app-mtrprocess_html5_repo_host
+    build-parameters:
+      requires:
+        - name: monitorprocess
+          artifacts:
+            - './*'
+          target-path: resources/monitorprocess
+  - name: monitorprocess
+    type: html5
+    path: monitorprocess
+    build-parameters:
+      builder: grunt
+resources:
+  - name: mmt-ui-app-mtrprocess_html5_repo_host
+    parameters:
+      service-plan: app-host
+      service: html5-apps-repo
+    type: org.cloudfoundry.managed-service

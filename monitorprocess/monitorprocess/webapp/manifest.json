@@ -1,0 +1,146 @@
+{
+	"_version": "1.4.0",
+	"sap.app": {
+		"id": "com.sap.cd.maco.monitor.ui.app.monitorprocesses",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "Filter",
+		"applicationVersion": {
+			"version": "1.0.2"
+		},
+		"ach": "MACO-MMT",
+		"dataSources": {
+			"Main": {
+				"uri": "/sap/opu/odata/MP4G/PROCESSMONITOR_SB",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml",
+					"annotations": [
+						"_MP4G_PROCESSMONITOR_SB_VAN",
+						"Status"
+					]
+				}
+			},
+
+			"_MP4G_PROCESSMONITOR_SB_VAN": {
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FPROCESSMONITOR_SB_VAN',Version='0001')/$value/",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "localService/PROCESSMONITOR_SB/_MP4G_PROCESSMONITOR_SB_VAN.xml"
+				}
+			},
+			"Status": {
+				"type": "ODataAnnotation",
+				"uri": "annotation/Status.xml",
+				"settings": {
+					"localUri": "annotation/Status.xml"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"fullWidth": true,
+		"icons": {
+			"icon": "sap-icon://task",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": false,
+			"phone": false
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "1.56.1",
+			"libs": {
+				"sap.m": {},
+				"sap.f": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.uxap": {},
+				"sap.ui.comp": {},
+				"sap.ui.table": {},
+				"sap.ovp": {},
+				"sap.ui.suite": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.sap.cd.maco.monitor.ui.app.monitorprocesses.i18n.i18n"
+				}
+			},
+			"PROCESSMONITOR_SB": {
+				"dataSource": "Main",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "None"
+				}
+			}
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.controllerExtensions": {
+					"sap.ovp.app.Main": {
+						"controllerName": "com.sap.cd.maco.monitor.ui.app.monitorprocesses.ext.ExtController"
+					}
+				}
+			}
+		}
+	},
+	"sap.ovp": {
+		"globalFilterModel": "PROCESSMONITOR_SB",
+		"globalFilterEntityType": "xMP4GxC_ProcessHeader_UIType",
+		"enableLiveFilter": true,
+		"smartVariantRequired": true,
+		"useDateRangeType": true,
+		"containerLayout": "resizable",
+		"cards": {
+			"a_status": {
+				"model": "PROCESSMONITOR_SB",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xMP4GxC_ProcStatusMonitoing_UI",
+					"title": "{{statusCardTitle}}",
+					"valueSelectionInfo": "{{statusSelectionInfo}}",
+					"showFilterInHeader": true,
+					"defaultSpan": {
+						"cols": 1
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart",
+					"identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification",
+					"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#kpi"
+				}
+			}
+		},
+		"services": {
+			"ShellUIService": {
+				"factoryName": "sap.ushell.ui5service.ShellUIService",
+				"lazy": false,
+				"settings": {
+					"setHierarchy": "auto",
+					"setTitle": "auto"
+				}
+			}
+		}
+	}
+}
