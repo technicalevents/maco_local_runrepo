@@ -19,7 +19,7 @@
 					"localUri": "localService/metadata.xml",
 					"annotations": [
 						"_MP4G_PROCESSMONITOR_SB_VAN",
-						"_MP4G_PROCESSMONITOR_SB_VAN_L"
+						"Status"
 					]
 				}
 			},
@@ -36,13 +36,6 @@
 				"uri": "annotation/Status.xml",
 				"settings": {
 					"localUri": "annotation/Status.xml"
-				}
-			},
-			"_MP4G_PROCESSMONITOR_SB_VAN_L": {
-				"type": "ODataAnnotation",
-				"uri": "annotation/_MP4G_PROCESSMONITOR_SB_VAN_L.xml",
-				"settings": {
-					"localUri": "annotation/_MP4G_PROCESSMONITOR_SB_VAN_L.xml"
 				}
 			}
 		}
@@ -126,128 +119,16 @@
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_ProcStatusMonitoing_UI",
-					"title": "Status",
-					"subTitle": "",
-					"valueSelectionInfo": "Success Rate",
+					"title": "{{statusCardTitle}}",
+					"valueSelectionInfo": "{{statusSelectionInfo}}",
 					"showFilterInHeader": true,
 					"defaultSpan": {
 						"cols": 1
 					},
-					"colorPalette": {
-						"0": {
-							"color": "sapUiChartPaletteSemanticNeutral",
-							"legendText": "{{TERM_STATUS_LBL}}"
-						},
-						"1": {
-							"color": "sapUiChartPaletteSemanticBad",
-							"legendText": "{{ERR_STATUS_LBL}}"
-						},
-						"2": {
-							"color": "sapUiChartPaletteSemanticCritical",
-							"legendText": "{{ACTV_STATUS_LBL}}"
-						},
-						"3": {
-							"color": "sapUiChartPaletteSemanticGood",
-							"legendText": "{{CMPL_STATUS_LBL}}"
-						}
-					},
-
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart",
+					"identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification",
+					"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant",
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#kpi"
-				}
-			},
-			"b_load": {
-				"model": "PROCESSMONITOR_SB",
-				"template": "sap.ovp.cards.charts.analytical",
-				"settings": {
-					"entitySet": "xMP4GxProcessLoadMonitoring_UI",
-					"title": "Load",
-					"subTitle": "",
-					"customParams": "CardLoad",
-					"valueSelectionInfo": "Processed Processes",
-					"showFilterInHeader": false,
-					"defaultSpan": {
-						"cols": 2
-					},
-					"colorPalette": {
-						"0": {
-							"color": "sapUiChartPaletteSemanticNeutral",
-							"legendText": "{{TERM_STATUS_LBL}}"
-						},
-						"1": {
-							"color": "sapUiChartPaletteSemanticBad",
-							"legendText": "{{ERR_STATUS_LBL}}"
-						},
-						"2": {
-							"color": "sapUiChartPaletteSemanticCritical",
-							"legendText": "{{ACTV_STATUS_LBL}}"
-						},
-						"3": {
-							"color": "sapUiChartPaletteSemanticGood",
-							"legendText": "{{CMPL_STATUS_LBL}}"
-						}
-					},
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StackedColumnChart",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#StackedColumnChart"
-				}
-			},
-			"c_todo": {
-				"model": "PROCESSMONITOR_SB",
-				"template": "sap.ovp.cards.charts.analytical",
-				"settings": {
-					"title": "Open",
-					"valueSelectionInfo": "Erreoneuos or Action Required or Overdue Processes",
-					"showFilterInHeader": false,
-					"defaultSpan": {
-						"cols": 3
-					},
-					"tabs": [{
-						"entitySet": "xMP4GxProcOpenMonitor_PType_UI",
-						"value": "By Process Type",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PType",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#kpi",
-						"colorPalette": {
-							"0": {
-								"color": "sapUiChartPaletteSemanticNeutral",
-								"legendText": "{{TERM_STATUS_LBL}}"
-							},
-							"1": {
-								"color": "sapUiChartPaletteSemanticBad",
-								"legendText": "{{ERR_STATUS_LBL}}"
-							},
-							"2": {
-								"color": "sapUiChartPaletteSemanticCritical",
-								"legendText": "{{ACTV_STATUS_LBL}}"
-							},
-							"3": {
-								"color": "sapUiChartPaletteSemanticGood",
-								"legendText": "{{CMPL_STATUS_LBL}}"
-							}
-						}
-					}, {
-						"entitySet": "xMP4GxProcOpenMoni_PCluster_UI",
-						"value": "By Process Cluster",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PType",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#kpi",
-						"colorPalette": {
-							"0": {
-								"color": "sapUiChartPaletteSemanticNeutral",
-								"legendText": "{{TERM_STATUS_LBL}}"
-							},
-							"1": {
-								"color": "sapUiChartPaletteSemanticBad",
-								"legendText": "{{ERR_STATUS_LBL}}"
-							},
-							"2": {
-								"color": "sapUiChartPaletteSemanticCritical",
-								"legendText": "{{ACTV_STATUS_LBL}}"
-							},
-							"3": {
-								"color": "sapUiChartPaletteSemanticGood",
-								"legendText": "{{CMPL_STATUS_LBL}}"
-							}
-						}
-					}]
 				}
 			}
 		},

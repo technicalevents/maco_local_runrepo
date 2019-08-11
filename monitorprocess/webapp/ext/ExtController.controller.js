@@ -16,10 +16,6 @@
         throw new Error("unknown custom param " + sCustomParam);
       }
     },
-    
-    onAfterRendering: function(oEvent){
-    	debugger;
-    },
 
     getParamCardToDo: function(oNavigateParams) {
       return {
