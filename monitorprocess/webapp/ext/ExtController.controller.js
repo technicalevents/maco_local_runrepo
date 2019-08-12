@@ -6,54 +6,24 @@
      * Determines which function should be called for the custom parameter
      */
     onCustomParams: function(sCustomParam) {
-      if (sCustomParam === "CardToDo") {
-        return this.getParamCardToDo;
-      } else if (sCustomParam === "CardStatus") {
-        return this.getParamCardStatus;
-      } else if (sCustomParam === "CardLoad") {
-        return this.getParamCardLoad;
+      if (sCustomParam === "getParameters") {
+        return this.getParameters;
       } else {
         throw new Error("unknown custom param " + sCustomParam);
       }
     },
 
-    getParamCardToDo: function(oNavigateParams) {
+    getParameters: function(oNavigateParams, oSelectionVariantParams) {
+     debugger;
+      // to get the select option property names, make use of this to check what values are available to modify
+      var aSelectOptionNames = oSelectionVariantParams.getSelectOptionsPropertyNames();
+      
       return {
         selectionVariant: [
           {
-            path: "Card",
+            path: aSelectOptionNames[0],
             operator: "EQ",
-            value1: "ToDo",
-            value2: null,
-            sign: "I"
-          }
-        ],
-        ignoreEmptyString: true
-      };
-    },
-
-    getParamCardStatus: function(oNavigateParams) {
-      return {
-        selectionVariant: [
-          {
-            path: "Card",
-            operator: "EQ",
-            value1: "Status",
-            value2: null,
-            sign: "I"
-          }
-        ],
-        ignoreEmptyString: true
-      };
-    },
-
-    getParamCardLoad: function(oNavigateParams) {
-      return {
-        selectionVariant: [
-          {
-            path: "Card",
-            operator: "EQ",
-            value1: "Load",
+            value1: oNavigateParams[aSelectOptionNames[0]],
             value2: null,
             sign: "I"
           }
