@@ -1,0 +1,88 @@
+[
+  {
+    "Status": "Completed",
+    "StatusC": 0,
+    "Direction": "",
+    "Format": "",
+    "AMID": "",
+    "OwnPartner": "",
+    "Count": 180000,
+    "SuccessRatio": 97.2
+  }, {
+    "Status": "Open",
+    "StatusC": 1,
+    "Direction": "",
+    "Format": "",
+    "AMID": "",
+    "OwnPartner": "",
+    "Count": 19000,
+    "SuccessRatio": 97.2
+  }, {
+    "Status": "Failed",
+    "StatusC": 2,
+    "Direction": "",
+    "Format": "",
+    "AMID": "",
+    "OwnPartner": "",
+    "Count": 1000,
+    "SuccessRatio": 97.2
+  },
+
+  {
+    "Status": "Completed",
+    "StatusC": 1,
+    "Direction": "",
+    "Format": "INVOIC",
+    "AMID": "",
+    "OwnPartner": "",
+    "Count": 555,
+    "SuccessRatio": 99.9
+  }, {
+    "Status": "Open",
+    "StatusC": 1,
+    "Direction": "",
+    "Format": "INVOIC",
+    "AMID": "",
+    "OwnPartner": "",
+    "Count": 666,
+    "SuccessRatio": 99.9
+  }, {
+    "Status": "Failed",
+    "StatusC": 1,
+    "Direction": "",
+    "Format": "INVOIC",
+    "AMID": "",
+    "OwnPartner": "",
+    "Count": 777,
+    "SuccessRatio": 99.9
+  },
+
+  {
+    "Status": "Completed",
+    "StatusC": 1,
+    "Direction": "s",
+    "Format": "INVOIC",
+    "AMID": "",
+    "OwnPartner": "",
+    "Count": 111,
+    "SuccessRatio": 77.9
+  }, {
+    "Status": "Open",
+    "StatusC": 2,
+    "Direction": "s",
+    "Format": "INVOIC",
+    "AMID": "",
+    "OwnPartner": "",
+    "Count": 222,
+    "SuccessRatio": 77.9
+  }, {
+    "Status": "Failed",
+    "StatusC": 1,
+    "Direction": "s",
+    "Format": "INVOIC",
+    "AMID": "",
+    "OwnPartner": "",
+    "Count": 333,
+    "SuccessRatio": 77.9
+  }
+]

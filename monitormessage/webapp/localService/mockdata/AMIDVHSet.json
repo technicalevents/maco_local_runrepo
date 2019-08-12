@@ -1,0 +1,19 @@
+[
+  {
+    "Format": "INVOIC",
+    "Id": "31001"
+  },
+  {
+    "Format": "INVOIC",
+    "Id": "31002"
+  }, {
+    "Format": "UTILMD",
+    "Id": "41001"
+  }, {
+    "Format": "APERAK",
+    "Id": "51001"
+  }, {
+    "Format": "QUOTES",
+    "Id": "61001"
+  }
+]

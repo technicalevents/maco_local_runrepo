@@ -1,0 +1,10 @@
+[
+  {
+    "Value": "s",
+    "Description": "Sent"
+  },
+  {
+    "Value": "r",
+    "Description": "Received"
+  }
+]

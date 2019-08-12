@@ -1,0 +1,172 @@
+{
+  "_version": "1.4.0",
+  "sap.app": {
+    "id": "com.sap.cd.maco.monitor.ui.app.overviewmessages",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "title": "{{appTitle}}",
+    "description": "Filter",
+    "applicationVersion": {
+        "version": "1.0.2"
+    },
+    "ach": "MACO-MMT",
+    "dataSources": {
+        "Main": {
+            "uri": "/sap/opu/odata/MP4G/MESSAGEMONITOR_SB",
+    	    "type": "OData",
+            "settings": {
+                "odataVersion": "2.0",
+                "localUri": "localService/metadata.xml",
+                "annotations": [
+                    "_MP4G_PROCESSMONITOR_SB_VAN",
+                    "Status"
+          	    ]
+            }
+        },
+      
+        "_MP4G_PROCESSMONITOR_SB_VAN": {
+			"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FMESSAGEMONITOR_SB_VAN',Version='0001')/$value/",
+			"type": "ODataAnnotation",
+			"settings": {
+				"localUri": "localService/MESSAGEMONITOR_SB/_MP4G_MESSAGEMONITOR_SB_VAN.xml"
+			}
+		},
+			
+        "ToDo": {
+            "type": "ODataAnnotation",
+            "uri": "annotation/ToDo.xml",
+            "settings": {
+                "localUri": "annotation/ToDo.xml"
+            }
+        },
+        
+        "FilterObject": {
+            "type": "ODataAnnotation",
+            "uri": "annotation/FilterObject.xml",
+            "settings": {
+                "localUri": "annotation/FilterObject.xml"
+            }
+        },
+        
+        "Load": {
+            "type": "ODataAnnotation",
+            "uri": "annotation/Load.xml",
+            "settings": {
+                "localUri": "annotation/Load.xml"
+            }
+        },
+        
+        "Status": {
+            "type": "ODataAnnotation",
+            "uri": "annotation/Status.xml",
+            "settings": {
+                "localUri": "annotation/Status.xml"
+            }
+        }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "fullWidth": true,
+    "icons": {
+      "icon": "sap-icon://task",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": false,
+      "phone": false
+    },
+    "supportedThemes": [
+      "sap_hcb",
+      "sap_belize"
+    ]
+  },
+  "sap.ui5": {
+    "dependencies": {
+      "minUI5Version": "1.56.1",
+      "libs": {
+        "sap.m": {},
+        "sap.f": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.uxap": {},
+        "sap.ui.comp": {},
+        "sap.ui.table": {},
+        "sap.ovp": {},
+        "sap.ui.suite": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.sap.cd.maco.monitor.ui.app.overviewmessages.i18n.i18n"
+        }
+      },
+      "MessageMonitor": {
+        "dataSource": "Main",
+        "preload": true,
+        "settings": {
+          "defaultBindingMode": "OneWay",
+          "defaultCountMode": "None"
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.ovp.app.Main": {
+            "controllerName": "com.sap.cd.maco.monitor.ui.app.overviewmessages.ext.ExtController"
+          }
+        }
+      }
+    }
+  },
+  "sap.ovp": {
+    "globalFilterModel": "MessageMonitor",
+    "globalFilterEntityType": "xMP4GxC_TransferDoc_UIType",
+    "enableLiveFilter": true,
+    "smartVariantRequired": true,
+    "useDateRangeType": true,
+    "containerLayout": "resizable",
+    "cards": {
+      "a_status": {
+        "model": "MessageMonitor",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "entitySet": "xMP4GxMessageStatusMonitoring",
+          "title": "Status",
+          "customParams": "CardStatus",
+          "valueSelectionInfo": "Success Rate",
+          "showFilterInHeader": true,
+          "defaultSpan": {
+            "cols": 1
+          },
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart",
+          "identificationAnnotationPath": "com.sap.vocabularies.UI.v1.Identification",
+          "selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#kpi"
+        }
+      }
+    },
+    "services": {
+      "ShellUIService": {
+        "factoryName": "sap.ushell.ui5service.ShellUIService",
+        "lazy": false,
+        "settings": {
+          "setHierarchy": "auto",
+          "setTitle": "auto"
+        }
+      }
+    }
+  }
+}

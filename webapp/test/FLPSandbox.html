@@ -39,12 +39,12 @@
           url: "../../monitorprocess/webapp/",
           title: "Monitor Processes"
         },
-        // "Message-monitor": {
-        //   additionalInformation: "SAPUI5.Component=com.sap.cd.maco.mmt.ui.app.mtrmessages",
-        //   applicationType: "URL",
-        //   url: "../webapps/mtrmessages/",
-        //   title: "Monitor Messages"
-        // },
+        "Message-monitor": {
+          additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.overviewmessages",
+          applicationType: "URL",
+          url: "../../monitormessage/webapp",
+          title: "Monitor Messages"
+        },
         "Process-display": {
           additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.displayprocesses",
           applicationType: "URL",
@@ -79,6 +79,7 @@
       "com.sap.cd.maco.monitor.ui.app.displayprocesses": "../",
       "com.sap.cd.maco.monitor.ui.app.displaymessages": "../../displaymessage/webapp",
       "com.sap.cd.maco.monitor.ui.app.monitorprocesses": "../../monitorprocess/webapp",
+      "com.sap.cd.maco.monitor.ui.app.overviewmessages": "../../monitormessage/webapp",
       "com.sap.cd.maco.mmt.ui.reuse": "../../mmt-ui-lib/src/com/sap/cd/maco/mmt/ui/reuse"
     }'
 	  data-sap-ui-frameOptions='allow'> 	// NON-SECURE setting for testing environment
@@ -87,12 +88,12 @@
   <script>
     sap.ui.getCore().attachInit(function () {
       sap.ui.require([
-          // "com/sap/cd/maco/monitor/ui/app/mtrmessages/localService/mockserver",
+           "com/sap/cd/maco/monitor/ui/app/overviewmessages/localService/mockserver",
           // "com/sap/cd/maco/monitor/ui/app/mtrprocesses/localService/mockserver",
 		  //"com/sap/cd/maco/monitor/ui/app/displayprocesses/localService/mockserver"
 		 //  "com/sap/cd/maco/monitor/ui/app/displaymessages/localService/mockserver"
-      ], function () {
-      //     mtrmessagesMock.init();
+      ], function (monitormessagesMock) {
+           //monitormessagesMock.init();
       //     mtrprocessesMock.init();
 		  // displayprocessesMock.init();
 		  //displayprocessesMock.init();
