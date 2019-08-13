@@ -18,18 +18,18 @@
       // to get the select option property names, make use of this to check what values are available to modify
       var aSelectOptionNames = oSelectionVariantParams.getSelectOptionsPropertyNames();
       
-      return {
-        selectionVariant: [
-          {
-            path: aSelectOptionNames[0],
-            operator: "EQ",
-            value1: oNavigateParams[aSelectOptionNames[0]],
-            value2: null,
-            sign: "I"
-          }
-        ],
-        ignoreEmptyString: true
-      };
+      //return {
+      //  selectionVariant: [
+      //    {
+      //      path: aSelectOptionNames[0],
+      //      operator: "EQ",
+      //      value1: oNavigateParams[aSelectOptionNames[0]],
+      //      value2: null,
+      //      sign: "I"
+      //    }
+      //  ],
+      //  ignoreEmptyString: true
+      //};
     }
   });
 })();

@@ -72,7 +72,6 @@
       },
       "description": "SAPUI5 Test Resources"
     },
-    
     {
       "path": "/sap/opu/odata",
       "target": {
@@ -80,9 +79,8 @@
         "name": "MUS_380",
         "entryPath": "/sap/opu/odata"
       },
-      "description": "SAPUI5 Test Resources"
+      "description": "MUS_380"
     },
-    
     {
       "path": "/sap/opu/odata",
       "target": {
