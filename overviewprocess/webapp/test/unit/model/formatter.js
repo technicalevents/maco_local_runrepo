@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"com/sap/cd/maco/monitor/ui/app/monitorprocesses/model/formatter"
+	"com/sap/cd/maco/monitor/ui/app/overviewprocesses/model/formatter"
 ], function (formatter) {
 	"use strict";
 

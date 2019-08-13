@@ -5,7 +5,7 @@ sap.ui.getCore().attachInit(function () {
 	"use strict";
 
 	sap.ui.require([
-		"com/sap/cd/maco/monitor/ui/app/monitorprocesses/test/unit/AllTests"
+		"com/sap/cd/maco/monitor/ui/app/overviewprocesses/test/unit/AllTests"
 	], function () {
 		QUnit.start();
 	});

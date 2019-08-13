@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"com/sap/cd/maco/monitor/ui/app/monitorprocesses/model/models",
+	"com/sap/cd/maco/monitor/ui/app/overviewprocesses/model/models",
 	"sap/ui/Device"
 ], function (models, Device) {
 	"use strict";

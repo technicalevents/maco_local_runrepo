@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Model) {
 	"use strict";
 
-	return Model.extend("com.sap.cd.maco.monitor.ui.app.monitorprocesses.test.unit.helper.FakeI18nModel", {
+	return Model.extend("com.sap.cd.maco.monitor.ui.app.overviewprocesses.test.unit.helper.FakeI18nModel", {
 
 		constructor : function (mTexts) {
 			Model.call(this);

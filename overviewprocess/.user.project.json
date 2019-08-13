@@ -1,7 +1,7 @@
 {
 	"run": [
 		{
-			"filePath": "/monitorprocess/webapp/test/flpSandbox.html",
+			"filePath": "/overviewprocess/webapp/test/flpSandbox.html",
 			"previewMode": 1,
 			"dataMode": 1,
 			"workspace": "withoutWorkspace",
@@ -17,7 +17,7 @@
 					"paramActive": false
 				}
 			],
-			"hashParameter": "monitorprocess-display",
+			"hashParameter": "overviewprocess-display",
 			"ui5ActiveVersion": "snapshot",
 			"ui5VerSource": null,
 			"isDefaultVersion": 1,
@@ -28,7 +28,7 @@
 			}
 		},
 		{
-			"filePath": "/monitorprocess/webapp/test/flpSandboxMockServer.html",
+			"filePath": "/overviewprocess/webapp/test/flpSandboxMockServer.html",
 			"previewMode": 1,
 			"dataMode": 1,
 			"workspace": "withoutWorkspace",
@@ -44,7 +44,7 @@
 					"paramActive": false
 				}
 			],
-			"hashParameter": "monitorprocess-display",
+			"hashParameter": "overviewprocess-display",
 			"ui5ActiveVersion": "snapshot",
 			"ui5VerSource": null,
 			"isDefaultVersion": 1,
@@ -55,7 +55,7 @@
 			}
 		},
 		{
-			"filePath": "/monitorprocess/webapp/test/unit/unitTests.qunit.html",
+			"filePath": "/overviewprocess/webapp/test/unit/unitTests.qunit.html",
 			"previewMode": 1,
 			"dataMode": 1,
 			"workspace": "withoutWorkspace",
@@ -81,7 +81,7 @@
 			}
 		},
 		{
-			"filePath": "/monitorprocess/webapp/test/integration/opaTests.qunit.html",
+			"filePath": "/overviewprocess/webapp/test/integration/opaTests.qunit.html",
 			"previewMode": 1,
 			"dataMode": 1,
 			"workspace": "withoutWorkspace",
@@ -108,7 +108,7 @@
 			}
 		},
 		{
-			"filePath": "/monitorprocess/webapp/test/testsuite.qunit.html",
+			"filePath": "/overviewprocess/webapp/test/testsuite.qunit.html",
 			"previewMode": 1,
 			"dataMode": 1,
 			"workspace": "withoutWorkspace",
@@ -135,7 +135,7 @@
 			}
 		},
 		{
-			"filePath": "/monitorprocess/webapp/Component.js",
+			"filePath": "/overviewprocess/webapp/Component.js",
 			"previewMode": 1,
 			"dataMode": 1,
 			"workspace": "withoutWorkspace",

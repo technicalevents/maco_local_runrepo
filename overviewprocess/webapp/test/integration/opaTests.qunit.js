@@ -6,7 +6,7 @@ sap.ui.getCore().attachInit(function() {
 	"use strict";
 
 	sap.ui.require([
-		"com/sap/cd/maco/monitor/ui/app/monitorprocesses/test/integration/AllJourneys"
+		"com/sap/cd/maco/monitor/ui/app/overviewprocesses/test/integration/AllJourneys"
 	], function() {
 		QUnit.start();
 	});
