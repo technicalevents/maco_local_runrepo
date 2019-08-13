@@ -38,6 +38,21 @@
 					"localUri": "annotation/MP4G_PROCESSMONITOR_SB_VAN_L.xml"
 				}
 			}
+		},
+		"resources": "resources.json",
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "OverviewProcess",
+					"action": "display",
+					"title": "{{APP_TITLE}}",
+					"icon": "sap-icon://area-chart"
+				}
+			}
 		}
 	},
 	"sap.ui": {
