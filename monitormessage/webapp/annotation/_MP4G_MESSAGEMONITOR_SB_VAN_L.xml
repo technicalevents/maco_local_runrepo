@@ -81,15 +81,15 @@
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MessLoadMonitoring_UIType">
-				<Annotation Term="UI.KPI" Qualifier="StackedColumnChart">
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MesOpenMon_FromPartnerType">
+				<Annotation Term="UI.KPI" Qualifier="FromPartnerType">
 					<Record Type="UI.KPIType">
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
 									<Collection>
 										<Record Type="UI.SelectOptionType">
-											<PropertyValue Property="PropertyName" PropertyPath="MessagetatusCount"/>
+											<PropertyValue Property="PropertyName" PropertyPath="MessageStatusCount"/>
 											<PropertyValue Property="Ranges">
 												<Collection>
 													<Record Type="UI.SelectionRangeType">
@@ -106,7 +106,14 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="TotalCount"/>
+								<PropertyValue Property="Value" Path="OpenCount"/>
+								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
 							</Record>
 						</PropertyValue>
 						<PropertyValue Property="Detail">
@@ -115,15 +122,15 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#StackedColumnChart</AnnotationPath>
+												<AnnotationPath>@UI.Chart#FromPartnerType</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<PropertyValue Property="MaxItems" Int="50"/>
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
-													<PropertyValue Property="Property" PropertyPath="TransferDate"/>
-													<PropertyValue Property="Descending" Bool="true"/>
+													<PropertyValue Property="Property" PropertyPath="ReceiverId"/>
+													<PropertyValue Property="Descending" Bool="false"/>
 												</Record>
 											</Collection>
 										</PropertyValue>

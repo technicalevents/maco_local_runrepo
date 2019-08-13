@@ -2,7 +2,13 @@
   'use strict';
 
   sap.ui.controller('com.sap.cd.maco.monitor.ui.app.overviewmessages.ext.ExtController', {
-    onInit: function() {},
+    onInit: function() {
+    	
+    },
+    
+    onAfterRendering: function(oEvent) {
+    	this.getView().byId("mainView--ovpMain").addStyleClass("comSapCdMacoMmtUiMonitorMsgGraphTitle");
+    },
 
     /**
      * Determines which function should be called for the custom parameter
