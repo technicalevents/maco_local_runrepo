@@ -147,7 +147,25 @@
 			"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StackedColumnChart",
 			"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#StackedColumnChart"
 		}
-	  }
+	  },
+	  "c_todo": {
+			"model": "MessageMonitor",
+			"template": "sap.ovp.cards.charts.analytical",
+			"settings": {
+				"title": "Failed",
+				"valueSelectionInfo": "Failed Messages",
+				"showFilterInHeader": false,
+				"defaultSpan": {
+					"cols": 2
+				},
+				"tabs": [{
+					"entitySet": "xMP4GxC_MesOpenMon_FromPartner",
+					"value": "From Partner Type",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#FromPartnerType",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#kpi"
+				}]
+			}
+		}
     },
     "services": {
       "ShellUIService": {
