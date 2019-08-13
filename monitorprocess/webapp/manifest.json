@@ -126,9 +126,10 @@
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_ProcStatusMonitoing_UI",
-					"title": "Status",
+					"title": "{{statusCardTitle}}",
 					"subTitle": "",
-					"valueSelectionInfo": "Success Rate",
+					"valueSelectionInfo": "{{statusSelectionInfo}}",
+					"customParams": "getParameters",
 					"showFilterInHeader": true,
 					"defaultSpan": {
 						"cols": 1
@@ -136,24 +137,24 @@
 					"colorPalette": {
 						"0": {
 							"color": "sapUiChartPaletteSemanticNeutral",
-							"legendText": "{{TERM_STATUS_LBL}}"
+							"legendText": "{{TERM_STATUS_TXT}}"
 						},
 						"1": {
 							"color": "sapUiChartPaletteSemanticBad",
-							"legendText": "{{ERR_STATUS_LBL}}"
+							"legendText": "{{ERR_STATUS_TXT}}"
 						},
 						"2": {
 							"color": "sapUiChartPaletteSemanticCritical",
-							"legendText": "{{ACTV_STATUS_LBL}}"
+							"legendText": "{{ACTV_STATUS_TXT}}"
 						},
 						"3": {
 							"color": "sapUiChartPaletteSemanticGood",
-							"legendText": "{{CMPL_STATUS_LBL}}"
+							"legendText": "{{CMPL_STATUS_TXT}}"
 						}
 					},
 
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart",
-					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#kpi"
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#StatusSuccessRatio"
 				}
 			},
 			"b_load": {
@@ -172,19 +173,19 @@
 					"colorPalette": {
 						"0": {
 							"color": "sapUiChartPaletteSemanticNeutral",
-							"legendText": "{{TERM_STATUS_LBL}}"
+							"legendText": "{{TERM_STATUS_TXT}}"
 						},
 						"1": {
 							"color": "sapUiChartPaletteSemanticBad",
-							"legendText": "{{ERR_STATUS_LBL}}"
+							"legendText": "{{ERR_STATUS_TXT}}"
 						},
 						"2": {
 							"color": "sapUiChartPaletteSemanticCritical",
-							"legendText": "{{ACTV_STATUS_LBL}}"
+							"legendText": "{{ACTV_STATUS_TXT}}"
 						},
 						"3": {
 							"color": "sapUiChartPaletteSemanticGood",
-							"legendText": "{{CMPL_STATUS_LBL}}"
+							"legendText": "{{CMPL_STATUS_TXT}}"
 						}
 					},
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StackedColumnChart",
@@ -203,48 +204,141 @@
 					},
 					"tabs": [{
 						"entitySet": "xMP4GxProcOpenMonitor_PType_UI",
-						"value": "By Process Type",
+						"value": "{{BY_PROCESS_TYPE_LBL}}",
 						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PType",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#kpi",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PType",
+						"bEnableStableColors": false,
 						"colorPalette": {
 							"0": {
 								"color": "sapUiChartPaletteSemanticNeutral",
-								"legendText": "{{TERM_STATUS_LBL}}"
+								"legendText": "{{TERM_STATUS_TXT}}"
 							},
 							"1": {
 								"color": "sapUiChartPaletteSemanticBad",
-								"legendText": "{{ERR_STATUS_LBL}}"
+								"legendText": "{{ERR_STATUS_TXT}}"
 							},
 							"2": {
 								"color": "sapUiChartPaletteSemanticCritical",
-								"legendText": "{{ACTV_STATUS_LBL}}"
+								"legendText": "{{ACTV_STATUS_TXT}}"
 							},
 							"3": {
 								"color": "sapUiChartPaletteSemanticGood",
-								"legendText": "{{CMPL_STATUS_LBL}}"
+								"legendText": "{{CMPL_STATUS_TXT}}"
 							}
 						}
 					}, {
 						"entitySet": "xMP4GxProcOpenMoni_PCluster_UI",
-						"value": "By Process Cluster",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PType",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#kpi",
+						"value": "{{BY_PROCESS_CLUSTER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PCluster",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PCluster",
 						"colorPalette": {
 							"0": {
 								"color": "sapUiChartPaletteSemanticNeutral",
-								"legendText": "{{TERM_STATUS_LBL}}"
+								"legendText": "{{TERM_STATUS_TXT}}"
 							},
 							"1": {
 								"color": "sapUiChartPaletteSemanticBad",
-								"legendText": "{{ERR_STATUS_LBL}}"
+								"legendText": "{{ERR_STATUS_TXT}}"
 							},
 							"2": {
 								"color": "sapUiChartPaletteSemanticCritical",
-								"legendText": "{{ACTV_STATUS_LBL}}"
+								"legendText": "{{ACTV_STATUS_TXT}}"
 							},
 							"3": {
 								"color": "sapUiChartPaletteSemanticGood",
-								"legendText": "{{CMPL_STATUS_LBL}}"
+								"legendText": "{{CMPL_STATUS_TXT}}"
+							}
+						}
+					}, {
+						"entitySet": "xMP4GxC_ProcOpenMoni_MPart_UI",
+						"value": "{{BY_MARKET_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#MP",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#MP",
+						"colorPalette": {
+							"0": {
+								"color": "sapUiChartPaletteSemanticNeutral",
+								"legendText": "{{TERM_STATUS_TXT}}"
+							},
+							"1": {
+								"color": "sapUiChartPaletteSemanticBad",
+								"legendText": "{{ERR_STATUS_TXT}}"
+							},
+							"2": {
+								"color": "sapUiChartPaletteSemanticCritical",
+								"legendText": "{{ACTV_STATUS_TXT}}"
+							},
+							"3": {
+								"color": "sapUiChartPaletteSemanticGood",
+								"legendText": "{{CMPL_STATUS_TXT}}"
+							}
+						}
+					}, {
+						"entitySet": "xMP4GxC_ProcOpenMonitor_POD_UI",
+						"value": "{{BY_POD_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#POD",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#POD",
+						"colorPalette": {
+							"0": {
+								"color": "sapUiChartPaletteSemanticNeutral",
+								"legendText": "{{TERM_STATUS_TXT}}"
+							},
+							"1": {
+								"color": "sapUiChartPaletteSemanticBad",
+								"legendText": "{{ERR_STATUS_TXT}}"
+							},
+							"2": {
+								"color": "sapUiChartPaletteSemanticCritical",
+								"legendText": "{{ACTV_STATUS_TXT}}"
+							},
+							"3": {
+								"color": "sapUiChartPaletteSemanticGood",
+								"legendText": "{{CMPL_STATUS_TXT}}"
+							}
+						}
+					}, {
+						"entitySet": "xMP4GxC_ProcOpenMonitor_OMP_UI",
+						"value": "{{BY_OMP_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OMP",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OMP",
+						"colorPalette": {
+							"0": {
+								"color": "sapUiChartPaletteSemanticNeutral",
+								"legendText": "{{TERM_STATUS_TXT}}"
+							},
+							"1": {
+								"color": "sapUiChartPaletteSemanticBad",
+								"legendText": "{{ERR_STATUS_TXT}}"
+							},
+							"2": {
+								"color": "sapUiChartPaletteSemanticCritical",
+								"legendText": "{{ACTV_STATUS_TXT}}"
+							},
+							"3": {
+								"color": "sapUiChartPaletteSemanticGood",
+								"legendText": "{{CMPL_STATUS_TXT}}"
+							}
+						}
+					}, {
+						"entitySet": "xMP4GxC_ProcOpenMonitor_UPR_UI",
+						"value": "{{BY_UPR_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#UPR",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#UPR",
+						"colorPalette": {
+							"0": {
+								"color": "sapUiChartPaletteSemanticNeutral",
+								"legendText": "{{TERM_STATUS_TXT}}"
+							},
+							"1": {
+								"color": "sapUiChartPaletteSemanticBad",
+								"legendText": "{{ERR_STATUS_TXT}}"
+							},
+							"2": {
+								"color": "sapUiChartPaletteSemanticCritical",
+								"legendText": "{{ACTV_STATUS_TXT}}"
+							},
+							"3": {
+								"color": "sapUiChartPaletteSemanticGood",
+								"legendText": "{{CMPL_STATUS_TXT}}"
 							}
 						}
 					}]
