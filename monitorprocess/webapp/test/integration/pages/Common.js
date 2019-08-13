@@ -3,7 +3,7 @@ sap.ui.define([
 ], function(Opa5) {
 	"use strict";
 
-	return Opa5.extend("com.sap.cd.maco.monitor.ui.app.monitorprocesses.test.integration.pages.Common", {
+	return Opa5.extend("com.sap.cd.maco.monitor.ui.app.overviewprocesses.test.integration.pages.Common", {
 
 		createAWaitForAnEntitySet : function  (oOptions) {
 			return {
@@ -26,7 +26,7 @@ sap.ui.define([
 
 		getMockServer : function () {
 			return new Promise(function (success) {
-				Opa5.getWindow().sap.ui.require(["com/sap/cd/maco/monitor/ui/app/monitorprocesses/localService/mockserver"], function (mockserver) {
+				Opa5.getWindow().sap.ui.require(["com/sap/cd/maco/monitor/ui/app/overviewprocesses/localService/mockserver"], function (mockserver) {
 					success(mockserver.getMockServer());
 				});
 			});

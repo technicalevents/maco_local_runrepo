@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Component) {
 	"use strict";
 
-	return Component.extend("com.sap.cd.maco.monitor.ui.app.monitorprocesses.Component", {
+	return Component.extend("com.sap.cd.maco.monitor.ui.app.overviewprocesses.Component", {
 		metadata: {
 			manifest: "json"
 		},

@@ -1,7 +1,7 @@
 {
 	"_version": "1.4.0",
 	"sap.app": {
-		"id": "com.sap.cd.maco.monitor.ui.app.monitorprocesses",
+		"id": "com.sap.cd.maco.monitor.ui.app.overviewprocesses",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
@@ -18,31 +18,24 @@
 					"odataVersion": "2.0",
 					"localUri": "localService/metadata.xml",
 					"annotations": [
-						"_MP4G_PROCESSMONITOR_SB_VAN",
-						"_MP4G_PROCESSMONITOR_SB_VAN_L"
+						"MP4G_PROCESSMONITOR_SB_VAN",
+						"MP4G_PROCESSMONITOR_SB_VAN_L"
 					]
 				}
 			},
 
-			"_MP4G_PROCESSMONITOR_SB_VAN": {
+			"MP4G_PROCESSMONITOR_SB_VAN": {
 				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FPROCESSMONITOR_SB_VAN',Version='0001')/$value/",
 				"type": "ODataAnnotation",
 				"settings": {
-					"localUri": "localService/PROCESSMONITOR_SB/_MP4G_PROCESSMONITOR_SB_VAN.xml"
+					"localUri": "localService/PROCESSMONITOR_SB/MP4G_PROCESSMONITOR_SB_VAN.xml"
 				}
 			},
-			"Status": {
+			"MP4G_PROCESSMONITOR_SB_VAN_L": {
 				"type": "ODataAnnotation",
-				"uri": "annotation/Status.xml",
+				"uri": "annotation/MP4G_PROCESSMONITOR_SB_VAN_L.xml",
 				"settings": {
-					"localUri": "annotation/Status.xml"
-				}
-			},
-			"_MP4G_PROCESSMONITOR_SB_VAN_L": {
-				"type": "ODataAnnotation",
-				"uri": "annotation/_MP4G_PROCESSMONITOR_SB_VAN_L.xml",
-				"settings": {
-					"localUri": "annotation/_MP4G_PROCESSMONITOR_SB_VAN_L.xml"
+					"localUri": "annotation/MP4G_PROCESSMONITOR_SB_VAN_L.xml"
 				}
 			}
 		}
@@ -70,7 +63,7 @@
 	},
 	"sap.ui5": {
 		"dependencies": {
-			"minUI5Version": "1.56.1",
+			"minUI5Version": "1.65",
 			"libs": {
 				"sap.m": {},
 				"sap.f": {},
@@ -91,7 +84,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.sap.cd.maco.monitor.ui.app.monitorprocesses.i18n.i18n"
+					"bundleName": "com.sap.cd.maco.monitor.ui.app.overviewprocesses.i18n.i18n"
 				}
 			},
 			"PROCESSMONITOR_SB": {
@@ -107,7 +100,7 @@
 			"extensions": {
 				"sap.ui.controllerExtensions": {
 					"sap.ovp.app.Main": {
-						"controllerName": "com.sap.cd.maco.monitor.ui.app.monitorprocesses.ext.ExtController"
+						"controllerName": "com.sap.cd.maco.monitor.ui.app.overviewprocesses.ext.ExtController"
 					}
 				}
 			}

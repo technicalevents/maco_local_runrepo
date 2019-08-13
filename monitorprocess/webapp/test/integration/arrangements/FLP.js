@@ -40,7 +40,7 @@ sap.ui.define([
 	// eslint-disable-next-line no-unused-expressions
 	document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", fnSetupFLPStyles) : fnSetupFLPStyles();
 
-	return Opa5.extend("com.sap.cd.maco.monitor.ui.app.monitorprocesses.test.integration.arrangements.FLP", {
+	return Opa5.extend("com.sap.cd.maco.monitor.ui.app.overviewprocesses.test.integration.arrangements.FLP", {
 		/**
 		 * Navigating to home screen to unload the app component
 		 * @returns {sap.ui.test.Opa5.waitFor} Assertion that is always executed

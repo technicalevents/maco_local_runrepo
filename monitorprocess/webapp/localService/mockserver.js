@@ -4,7 +4,7 @@ sap.ui.define(['sap/ui/core/util/MockServer'], function(MockServer) {
   return {
     init: function() {
       var oMockServer,
-        _sAppModulePath = 'com/sap/cd/maco/monitor/ui/app/mtrprocesses/',
+        _sAppModulePath = 'com/sap/cd/maco/monitor/ui/app/overviewprocesses/',
         _sJsonFilesModulePath = _sAppModulePath + 'localService/mockdata';
 
       var oUriParameters = jQuery.sap.getUriParameters(),

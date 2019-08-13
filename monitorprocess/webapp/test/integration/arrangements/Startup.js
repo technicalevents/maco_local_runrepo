@@ -1,14 +1,14 @@
 sap.ui.define([
 	"sap/ui/test/Opa5",
-	"com/sap/cd/maco/monitor/ui/app/monitorprocesses/localService/mockserver",
+	"com/sap/cd/maco/monitor/ui/app/overviewprocesses/localService/mockserver",
 	"sap/ui/model/odata/v2/ODataModel",
 	"sap/ui/core/routing/HashChanger",
-	"com/sap/cd/maco/monitor/ui/app/monitorprocesses/test/flpSandbox",
+	"com/sap/cd/maco/monitor/ui/app/overviewprocesses/test/flpSandbox",
 	"sap/ui/fl/FakeLrepConnectorLocalStorage"
 ], function(Opa5, mockserver, ODataModel, HashChanger, flpSandbox, FakeLrepConnectorLocalStorage) {
 	"use strict";
 
-	return Opa5.extend("com.sap.cd.maco.monitor.ui.app.monitorprocesses.test.integration.arrangements.Startup", {
+	return Opa5.extend("com.sap.cd.maco.monitor.ui.app.overviewprocesses.test.integration.arrangements.Startup", {
 
 		/**
 		 * Initializes mock server and flp sandbox, then sets the hash intent to simulate pressing on the app tile

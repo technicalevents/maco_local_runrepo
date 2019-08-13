@@ -51,18 +51,18 @@ sap.ui.define([
 				"adapter": {
 					"config": {
 						"inbounds": {
-							"DisplayProcesses-display": {
-								"semanticObject": "DisplayProcesses",
+							"OverviewProcesses-display": {
+								"semanticObject": "OverviewProcesses",
 								"action": "display",
-								"description": "Display Processes",
-								"title": "Display Processes",
+								"description": "Overview Processes",
+								"title": "Overview Processes",
 								"signature": {
 									"parameters": {}
 								},
 								"resolutionResult": {
 									"applicationType": "SAPUI5",
-									"additionalInformation": "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.monitorprocesses",
-									"url": sap.ui.require.toUrl("com/sap/cd/maco/monitor/ui/app/monitorprocesses")
+									"additionalInformation": "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.overviewprocesses",
+									"url": sap.ui.require.toUrl("com/sap/cd/maco/monitor/ui/app/overviewprocesses")
 								}
 							}
 						}

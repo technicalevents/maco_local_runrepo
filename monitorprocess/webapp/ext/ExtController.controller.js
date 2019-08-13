@@ -1,7 +1,7 @@
 (function() {
   "use strict";
 
-  sap.ui.controller("com.sap.cd.maco.monitor.ui.app.monitorprocesses.ext.ExtController", {
+  sap.ui.controller("com.sap.cd.maco.monitor.ui.app.overviewprocesses.ext.ExtController", {
     /**
      * Determines which function should be called for the custom parameter
      */

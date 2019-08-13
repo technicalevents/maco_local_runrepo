@@ -13,7 +13,7 @@ sap.ui.define([
 	Opa5.extendConfig({
 		arrangements: new Startup(),
 		assertions: new FLP(),
-		viewNamespace: "com.sap.cd.maco.monitor.ui.app.monitorprocesses.view.",
+		viewNamespace: "com.sap.cd.maco.monitor.ui.app.overviewprocesses.view.",
 		autoWait: true
 	});
 
