@@ -76,7 +76,7 @@
 												<AnnotationPath>@UI.Chart#StackedColumnChart</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="MaxItems" Int="10"/>
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -130,7 +130,6 @@
 						</PropertyValue>
 						<PropertyValue Property="Detail">
 							<Record Type="UI.KPIDetailType">
-								Hi I 
 								<PropertyValue Property="DefaultPresentationVariant">
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
