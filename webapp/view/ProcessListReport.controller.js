@@ -18,6 +18,15 @@ sap.ui.define(
 		 * @public
 		 */
         formatter: Formatter,
+        /*aFilterParameters: ["ProcessStatus", 
+        					"ProcessDate", 
+        					"ProcessIDDescription", 
+        					"ProcessClusterDescriptionISL",
+        					"MarketPartner",
+        					"OwnerUUID",
+        					"BusinessObjectUUID",
+        					"CommonAccessUUID"],*/
+        aFilterParameters: [],
         
     /******************************************************************* */
 		/* LIFECYCLE METHODS */
@@ -85,8 +94,10 @@ sap.ui.define(
 	       * @public
 	       */
         onFilterBarInitialized: function() {
-          var oFilterData = jQuery.extend(true, {}, 
-        					sap.ui.getCore().getModel("DisplayProcessApp").getProperty("/FilterData"));
+          var oParams = this.getOwnerComponent().getComponentData().startupParameters;
+          
+          
+          var oFilterData = this._getFilterData(oParams); 
           this.getView().byId("idProcessSmartFilterBar").setFilterData(oFilterData);
         },
 
@@ -105,12 +116,77 @@ sap.ui.define(
         
         /**
          * Method will retrieve filter data from filterbar and set in JSON Model
-         * @public
+         * @private
          */
         _setFilterDataProperty: function() {
         	var oFilterData = jQuery.extend(true, {}, 
                             this.getView().byId("idProcessSmartFilterBar").getFilterData());
             sap.ui.getCore().getModel("DisplayProcessApp").setProperty("/FilterData", oFilterData);
+        },
+        
+        /**
+         * Method to fetch filter information that will be applied on Filter Bar
+         * @private
+         * @param {sap.ui.base.Object} oParams Startup Parameters
+         * @returns {sap.ui.base.Object} Filter Data 
+         */
+        _getFilterData: function(oParams){
+        	var oStartupFilterData = this._getStartupParametersBasedFilterData(oParams);
+        	var oFilterData = jQuery.extend(true, {}, 
+        					sap.ui.getCore().getModel("DisplayProcessApp").getProperty("/FilterData"));
+        	
+        	
+        	return jQuery.extend(true, oFilterData, oStartupFilterData);
+        },
+        
+        /**
+         * Method to fetch filter information from startup parameters
+         * @private
+         * @param {sap.ui.base.Object} oParams Startup Parameters
+         * @returns {sap.ui.base.Object} Filter Data 
+         */
+        _getStartupParametersBasedFilterData: function(oParams){
+        	var oStartupFilterData = {};
+        	var oParams = this.getOwnerComponent().getComponentData().startupParameters;
+        	
+        	Object.keys(oParams).forEach(function(sKey){
+        		if(this._isFilterPrameterExists(sKey)){
+	        		oStartupFilterData[sKey] = {
+		        		items: [{
+		        				key: oParams[sKey][0]
+		        			}]	
+		        	};
+        		}
+        	}.bind(this));
+        	
+        	return oStartupFilterData;
+        },
+        
+        /**
+         * Method to check whether property exist in filter bar
+         * @private
+         * @param {string} sProperty Property to be checked
+         * @returns {boolean} true if property is present filter bar
+         */
+        _isFilterPrameterExists: function(sProperty){
+        	return this._getFilterParameters().indexOf(sProperty) >= 0;
+        },
+        
+        /**
+         * Method to get Filter parameter array from Filter Bar
+         * @private
+         * @returns {array} Filter Bar Parameters
+         */
+        _getFilterParameters: function(){
+        	if(this.aFilterParameters,length === 0){
+        		var aFilterItemsObjects = this.getView().byId("idProcessSmartFilterBar").getAllFilterItems();
+        		
+        		this.aFilterParameters = aFilterItemsObjects.map(function(oFilterItemsObject){
+        			return 	oFilterItemsObject.getName();
+        		});
+        	}
+        	
+        	return this.aFilterParameters;
         }
       }
     );

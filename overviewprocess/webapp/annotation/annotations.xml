@@ -34,6 +34,7 @@
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxProcessLoadMonitoring_UIType">
 				<Annotation Term="UI.KPI" Qualifier="StackedColumnChart">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="StackedColumnChart" />
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -94,6 +95,7 @@
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxProcOpenMonitor_PType_UIType">
 				<Annotation Term="UI.KPI" Qualifier="PType">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="PType" />
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -128,6 +130,7 @@
 						</PropertyValue>
 						<PropertyValue Property="Detail">
 							<Record Type="UI.KPIDetailType">
+								Hi I 
 								<PropertyValue Property="DefaultPresentationVariant">
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
@@ -154,6 +157,7 @@
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxProcOpenMoni_PCluster_UIType">
 				<Annotation Term="UI.KPI" Qualifier="PCluster">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="PCluster" />
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -214,6 +218,7 @@
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_MPart_UIType">
 				<Annotation Term="UI.KPI" Qualifier="MP">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="MP" />
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -274,6 +279,7 @@
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMonitor_UPR_UIType">
 				<Annotation Term="UI.KPI" Qualifier="UPR">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="UPR" />
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -334,6 +340,7 @@
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMonitor_POD_UIType">
 				<Annotation Term="UI.KPI" Qualifier="POD">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="POD" />
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -394,6 +401,7 @@
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMonitor_OMP_UIType">
 				<Annotation Term="UI.KPI" Qualifier="OMP">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="OMP" />
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
