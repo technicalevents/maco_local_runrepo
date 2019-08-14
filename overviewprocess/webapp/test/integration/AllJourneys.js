@@ -1,12 +1,7 @@
 sap.ui.define([
 	"sap/ui/test/Opa5",
 	"./arrangements/Startup",
-	"./arrangements/FLP",
-	"./WorklistJourney",
-	"./NavigationJourney",
-	"./NotFoundJourney",
-	"./ObjectJourney",
-	"./FLPIntegrationJourney"
+	"./arrangements/FLP"
 ], function (Opa5, Startup, FLP) {
 	"use strict";
 
