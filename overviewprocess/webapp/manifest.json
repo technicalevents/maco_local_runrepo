@@ -19,7 +19,7 @@
 					"localUri": "localService/metadata.xml",
 					"annotations": [
 						"MP4G_PROCESSMONITOR_SB_VAN",
-						"MP4G_PROCESSMONITOR_SB_VAN_L"
+						"annotations"
 					]
 				}
 			},
@@ -31,11 +31,11 @@
 					"localUri": "localService/PROCESSMONITOR_SB/MP4G_PROCESSMONITOR_SB_VAN.xml"
 				}
 			},
-			"MP4G_PROCESSMONITOR_SB_VAN_L": {
+			"annotations": {
 				"type": "ODataAnnotation",
-				"uri": "annotation/MP4G_PROCESSMONITOR_SB_VAN_L.xml",
+				"uri": "annotation/annotations.xml",
 				"settings": {
-					"localUri": "annotation/MP4G_PROCESSMONITOR_SB_VAN_L.xml"
+					"localUri": "annotation/annotations.xml"
 				}
 			}
 		},

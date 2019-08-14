@@ -4,8 +4,8 @@
     "id": "com.sap.cd.maco.monitor.ui.app.overviewmessages",
     "type": "application",
     "i18n": "i18n/i18n.properties",
-    "title": "{{appTitle}}",
-    "description": "Filter",
+    "title": "{{APP_TITLE}}",
+    "description": "{{FILTER_TITLE}}",
     "applicationVersion": {
         "version": "1.0.2"
     },
@@ -64,7 +64,7 @@
   },
   "sap.ui5": {
     "dependencies": {
-      "minUI5Version": "1.56.1",
+      "minUI5Version": "1.65.0",
       "libs": {
         "sap.m": {},
         "sap.f": {},
@@ -125,9 +125,9 @@
         "template": "sap.ovp.cards.charts.analytical",
         "settings": {
           "entitySet": "xMP4GxMessageStatusMonitoring",
-          "title": "Status",
+          "title": "{{STATUS_CARD_TITLE}}",
           "customParams": "CardStatus",
-          "valueSelectionInfo": "Success Rate",
+          "valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
           "showFilterInHeader": false,
           "defaultSpan": {
             "cols": 1
@@ -141,10 +141,9 @@
 		"template": "sap.ovp.cards.charts.analytical",
 		"settings": {
 			"entitySet": "xMP4GxC_MessLoadMonitoring_UI",
-			"title": "Load",
-			"subTitle": "",
+			"title": "{{LOAD_CARD_INFO}}",
 			"customParams": "CardLoad",
-			"valueSelectionInfo": "Processed Messages",
+			"valueSelectionInfo": "{{PROCESSED_SELECTION_INFO}}",
 			"showFilterInHeader": false,
 			"defaultSpan": {
 				"cols": 2
@@ -157,17 +156,42 @@
 			"model": "MessageMonitor",
 			"template": "sap.ovp.cards.charts.analytical",
 			"settings": {
-				"title": "Failed",
-				"valueSelectionInfo": "Failed Messages",
+				"title": "{{FAILED_CARD_INFO}}",
+				"valueSelectionInfo": "{{FAILED_SELECTION_INFO}}",
 				"showFilterInHeader": false,
 				"defaultSpan": {
 					"cols": 3
 				},
 				"tabs": [{
 					"entitySet": "xMP4GxC_MesOpenMon_FromPartner",
-					"value": "From Partner Type",
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#FromPartnerType",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#FromPartnerType"
+					"value": "{{BY_FROM_PARTNER_LBL}}",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ReceiverId",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ReceiverId"
+				},{
+					"entitySet": "xMP4GxC_MessOpenMon_ToPartner",
+					"value": "{{BY_TO_PARTNER_LBL}}",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#SenderId",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#SenderId"
+				},{
+					"entitySet": "xMP4GxC_MessOpenMonitor_Format",
+					"value": "{{BY_FORMAT_LBL}}",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TechMsgID",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TechMsgID"
+				},{
+					"entitySet": "xMP4GxC_MessOpenMonitor_AMID",
+					"value": "{{BY_AMID_LBL}}",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExtBuissMsgID",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExtBuissMsgID"
+				},{
+					"entitySet": "xMP4GxC_MessOpenMon_Direction",
+					"value": "{{BY_DIRECTION_LBL}}",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Direction",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#Direction"
+				},{
+					"entitySet": "xMP4GxC_MessOpenMon_ProcDocNo",
+					"value": "{{BY_PDOC_NUMBER_LBL}}",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ProcDocNumber",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ProcDocNumber"
 				}]
 			}
 		}

@@ -5,9 +5,10 @@ sap.ui.define(
     "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
     "sap/ui/model/Sorter",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/routing/HashChanger"
   ],
-  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Sorter, JSONModel) {
+  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Sorter, JSONModel, HashChanger) {
     'use strict';
 
     return ActionSmartTableController.extend(
@@ -88,6 +89,70 @@ sap.ui.define(
           var oFilterData = jQuery.extend(true, {}, 
                   sap.ui.getCore().getModel("DisplayMessageApp").getProperty("/FilterData"));
           this.getView().byId("idMessageSmartFilterBar").setFilterData(oFilterData);
+          
+          // abort if the hash is already set
+          // (this is considered stronger than startup parameter)
+          var oHashChanger = HashChanger.getInstance();
+          var sCurrentHash = oHashChanger.getHash();
+          if (sCurrentHash) {
+            return;
+          }
+
+          //// check startup params
+          //var oParams = this.getOwnerComponent().getComponentData().startupParameters;
+          //var bToDoCard =
+          //  oParams.Card &&
+          //  oParams.Card.length === 1 &&
+          //  oParams.Card[0] === 'ToDo' &&
+          //  oParams.Format &&
+          //  oParams.Format.length === 1;
+          //var bLoadCard =
+          //  oParams.Card &&
+          //  oParams.Card.length === 1 &&
+          //  oParams.Card[0] === 'Load' &&
+          //  oParams.Date &&
+          //  oParams.Date.length === 1;
+
+          //// set filters
+          //if (bToDoCard) {
+          //  this._setFilterCardToDo(oParams.Format[0]);
+          //} else if (bLoadCard) {
+          //  this._setFilterCardLoad(oParams.Date[0]);
+          //}
+        },
+
+        _setFilterCardToDo: function(sFormat) {
+          var oBar = this.byId('idMessageSmartFilterBar');
+          oBar.setFilterData({
+            Format: {
+              items: [
+                {
+                  key: sFormat
+                }
+              ]
+            },
+            Status: {
+              items: [
+                {
+                  key: 'failed_process'
+                },
+                {
+                  key: 'failed_control'
+                },
+                {
+                  key: 'failed_aperak'
+                }
+              ]
+            }
+          });
+        },
+
+        _setFilterCardLoad: function(sDate) {
+          var oBar = this.byId('idMessageSmartFilterBar');
+          var oConditionType = oBar.getConditionTypeByKey('Date');
+          var oDate = new Date(sDate);
+          oConditionType.setOperation('DATERANGE');
+          oConditionType.setDefaultValues(oDate, oDate);
         },
         
         /**
