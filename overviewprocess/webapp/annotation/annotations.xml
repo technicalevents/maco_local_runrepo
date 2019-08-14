@@ -75,7 +75,7 @@
 												<AnnotationPath>@UI.Chart#StackedColumnChart</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="MaxItems" Int="10"/>
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
