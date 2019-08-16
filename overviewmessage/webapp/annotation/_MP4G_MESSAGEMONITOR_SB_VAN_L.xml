@@ -31,6 +31,7 @@
 			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MessLoadMonitoring_UIType">
 				<Annotation Term="UI.KPI" Qualifier="StackedColumnChart">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="StackedColumnChart"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -84,6 +85,7 @@
 			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MesOpenMon_FromPartnerType">
 				<Annotation Term="UI.KPI" Qualifier="ReceiverId">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="ReceiverId"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -144,6 +146,7 @@
 			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MessOpenMon_ToPartnerType">
 				<Annotation Term="UI.KPI" Qualifier="SenderId">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="SenderId"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -204,6 +207,7 @@
 			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MessOpenMonitor_FormatType">
 				<Annotation Term="UI.KPI" Qualifier="TechMsgID">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="TechMsgID"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -264,6 +268,7 @@
 			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MessOpenMonitor_AMIDType">
 				<Annotation Term="UI.KPI" Qualifier="ExtBuissMsgID">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="ExtBuissMsgID"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -321,9 +326,71 @@
 					</Record>
 				</Annotation>
 			</Annotations>
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MessOpenMon_DirectionType">
+				<Annotation Term="UI.KPI" Qualifier="Direction">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="Direction"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="MessageStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="OpenCount"/>
+								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#Direction</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="Direction"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
 			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MessOpenMon_ProcDocNoType">
 				<Annotation Term="UI.KPI" Qualifier="ProcDocNumber">
 					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="ProcDocNumber"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
