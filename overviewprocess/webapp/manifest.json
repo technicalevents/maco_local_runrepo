@@ -4,8 +4,8 @@
 		"id": "com.sap.cd.maco.monitor.ui.app.overviewprocesses",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
-		"title": "{{appTitle}}",
-		"description": "Filter",
+		"title": "{{APP_TITLE}}",
+		"description": "{{APP_TITLE}}",
 		"applicationVersion": {
 			"version": "1.0.2"
 		},
@@ -78,7 +78,7 @@
 	},
 	"sap.ui5": {
 		"dependencies": {
-			"minUI5Version": "1.65",
+			"minUI5Version": "1.65.0",
 			"libs": {
 				"sap.m": {},
 				"sap.f": {},
@@ -134,10 +134,8 @@
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_ProcStatusMonitoing_UI",
-					"title": "{{statusCardTitle}}",
-					"subTitle": "",
-					"valueSelectionInfo": "{{statusSelectionInfo}}",
-					"customParams": "getParameters",
+					"title": "{{STATUS_CARD_TITLE}}",
+					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
 					"showFilterInHeader": true,
 					"defaultSpan": {
 						"cols": 1
@@ -170,10 +168,8 @@
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxProcessLoadMonitoring_UI",
-					"title": "Load",
-					"subTitle": "",
-					"customParams": "CardLoad",
-					"valueSelectionInfo": "Processed Processes",
+					"title": "{{LOAD_CARD_TITLE}}",
+					"valueSelectionInfo": "{{LOAD_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
 						"cols": 2
@@ -204,8 +200,8 @@
 				"model": "PROCESSMONITOR_SB",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"title": "Open",
-					"valueSelectionInfo": "Erreoneuos or Action Required or Overdue Processes",
+					"title": "{{OPEN_CARD_TITLE}}",
+					"valueSelectionInfo": "{{OPEN_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
 						"cols": 3
