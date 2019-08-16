@@ -72,6 +72,24 @@ sap.ui.define(
         // call nav handler
         this._oNavHandler.navigate(params.semanticObject, params.action, params.params, params.appState, fnError);
       },
+      
+      /**
+       * Function parse navigation and returns promise object
+       * @public
+       * @returns {jQuery.Deferred.Promise()} Promise Object
+       */
+      parseNavigation: function() {
+        return this._oNavHandler.parseNavigation();
+      },
+      
+      /**
+       * Function store data in InnerAppState of Navigation handler
+       * @returns {object} mInnerAppData Inner App State Data
+       * @public
+       */
+      storeInnerAppState: function(mInnerAppData) {
+        return this._oNavHandler.storeInnerAppState(mInnerAppData);
+      },
 
       /**
        *
