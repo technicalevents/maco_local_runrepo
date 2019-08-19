@@ -14,6 +14,21 @@
 	</edmx:Reference>
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="cds_xmp4gxprocessmonitor_sd">
+			
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType">
+				<Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>ProcessIDDescription</PropertyPath>
+                        <PropertyPath>ProcessDate</PropertyPath>
+                        <PropertyPath>ProcessStatus</PropertyPath>
+                        <PropertyPath>ProcessClusterDescriptionISL</PropertyPath>
+                        <PropertyPath>MarketPartner</PropertyPath>
+                        <PropertyPath>BusinessObjectUUID</PropertyPath>
+                        <PropertyPath>OwnerUUID</PropertyPath>
+                        <PropertyPath>CommonAccessUUID</PropertyPath>
+                    </Collection>
+                </Annotation>
+		    </Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcStatusMonitoing_UIType/SuccessRatio">
 				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
 			</Annotations>
