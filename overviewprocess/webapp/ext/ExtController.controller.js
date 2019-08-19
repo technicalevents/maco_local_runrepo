@@ -1,7 +1,5 @@
-sap.ui.define([
-    "com/sap/cd/maco/mmt/ui/reuse/nav/Navigation"
-  ],
-  function(Navigation) {
+sap.ui.define([],
+  function() {
     'use strict';
 
     sap.ui.controller(
@@ -17,8 +15,6 @@ sap.ui.define([
 		 * @public
 		 */
         onInit: function() {
-        	// Navigation Object
-            this.oNav = new Navigation(this.getOwnerComponent());
         },
         
 		/**
