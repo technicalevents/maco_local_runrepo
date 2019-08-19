@@ -27,17 +27,6 @@ sap.ui.define([
 		 */
 		onAfterRendering: function(oEvent) {
 			this.getView().byId("mainView--ovpMain").addStyleClass("comSapCdMacoMmtUiMonitorMsgGraphTitle");
-		},
-		
-		/**
-	     * Determines which function should be called for the custom parameter
-	     */
-		onCustomParams: function() {
-			var oFilterData = this.byId("ovpGlobalFilter").getDataSuiteFormat();
-			var mInnerAppData = {
-				selectionVariant: oFilterData
-			};
-			this.oNav.storeInnerAppState(mInnerAppData);
 		}
       }
     );
