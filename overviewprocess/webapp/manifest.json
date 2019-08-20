@@ -47,8 +47,8 @@
 						"parameters": {},
 						"additionalParameters": "allowed"
 					},
-					"semanticObject": "OverviewProcess",
-					"action": "display",
+					"semanticObject": "Process",
+					"action": "overview",
 					"title": "{{APP_TITLE}}",
 					"icon": "sap-icon://area-chart"
 				}

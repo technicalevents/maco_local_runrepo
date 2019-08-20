@@ -5,10 +5,9 @@ sap.ui.define(
     "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
     "sap/ui/model/Sorter",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/core/routing/HashChanger"
+    "sap/ui/model/json/JSONModel"
   ],
-  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Sorter, JSONModel, HashChanger) {
+  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Sorter, JSONModel) {
     'use strict';
 
     return ActionSmartTableController.extend(
@@ -86,18 +85,17 @@ sap.ui.define(
          * @public
          */
         onFilterBarInitialized: function() {
-          var oFilterData = jQuery.extend(true, {}, 
-                  sap.ui.getCore().getModel("DisplayMessageApp").getProperty("/FilterData"));
+          var oFilterData = jQuery.extend(true, {}, sap.ui.getCore().getModel("DisplayMessageApp").getProperty("/FilterData"));
           var oSmartFilterBar = this.getView().byId("idMessageSmartFilterBar");
           var oSmartTable = this.getView().byId("idMessageSmartTable");
           
           oSmartFilterBar.setFilterData(oFilterData);
 
           this.oNav.parseNavigation().done(function(oAppState) {
-          	if(!jQuery.isEmptyObject(oAppState)) {
-          		oSmartFilterBar.setDataSuiteFormat(oAppState.selectionVariant, true);
-	          	oSmartTable.rebindTable(true);
-          	}
+            if(!jQuery.isEmptyObject(oAppState)) {
+              oSmartFilterBar.setDataSuiteFormat(oAppState.selectionVariant, true);
+              oSmartTable.rebindTable(true);
+            }
           }.bind(this));
         },
         

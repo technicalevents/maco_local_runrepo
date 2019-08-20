@@ -18,15 +18,6 @@ sap.ui.define(
 		 * @public
 		 */
         formatter: Formatter,
-        /*aFilterParameters: ["ProcessStatus", 
-        					"ProcessDate", 
-        					"ProcessIDDescription", 
-        					"ProcessClusterDescriptionISL",
-        					"MarketPartner",
-        					"OwnerUUID",
-        					"BusinessObjectUUID",
-        					"CommonAccessUUID"],*/
-        aFilterParameters: [],
         
     /******************************************************************* */
 		/* LIFECYCLE METHODS */
@@ -89,23 +80,23 @@ sap.ui.define(
         },
         
         /**
-		 * Event is triggered when FilterBar is initialized. 
-		 * This method will set Recently used FilterData in FilterBar
-		 * @public
-		 */
+	       * Event is triggered when FilterBar is initialized. 
+	       * This method will set Recently used FilterData in FilterBar
+	       * @public
+	       */
         onFilterBarInitialized: function() {
           var oFilterData = jQuery.extend(true, {}, 
-                  sap.ui.getCore().getModel("DisplayProcessApp").getProperty("/FilterData"));
+            sap.ui.getCore().getModel("DisplayProcessApp").getProperty("/FilterData"));
           var oSmartFilterBar = this.getView().byId("idProcessSmartFilterBar");
           var oSmartTable = this.getView().byId("idProcessSmartTable");
           
           oSmartFilterBar.setFilterData(oFilterData);
 
           this.oNav.parseNavigation().done(function(oAppState) {
-          	if(!jQuery.isEmptyObject(oAppState)) {
-          		oSmartFilterBar.setDataSuiteFormat(oAppState.selectionVariant, true);
-	          	oSmartTable.rebindTable(true);
-          	}
+            if(!jQuery.isEmptyObject(oAppState)) {
+              oSmartFilterBar.setDataSuiteFormat(oAppState.selectionVariant, true);
+              oSmartTable.rebindTable(true);
+            }
           }.bind(this));
         },
 
@@ -124,7 +115,7 @@ sap.ui.define(
         
         /**
          * Method will retrieve filter data from filterbar and set in JSON Model
-         * @private
+         * @public
          */
         _setFilterDataProperty: function() {
         	var oFilterData = jQuery.extend(true, {}, 

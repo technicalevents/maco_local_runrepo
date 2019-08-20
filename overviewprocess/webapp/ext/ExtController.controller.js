@@ -1,29 +1,21 @@
 sap.ui.define([],
-  function() {
-    'use strict';
+function() {
+  'use strict';
 
-    sap.ui.controller(
-      "com.sap.cd.maco.monitor.ui.app.overviewprocesses.ext.ExtController",
-      {
+  sap.ui.controller(
+    "com.sap.cd.maco.monitor.ui.app.overviewprocesses.ext.ExtController",
+    {
 
-        /******************************************************************* */
-		/* LIFECYCLE METHODS */
-		/******************************************************************* */
+    /******************************************************************* */
+    /* LIFECYCLE METHODS */
+    /******************************************************************* */
+      
+    /**
+     * LifeCycle Method
+     */
+    onAfterRendering: function() {
+      this.getView().byId("mainView--ovpMain").addStyleClass("comSapCdMacoMmtUiMonitorMsgGraphTitle");
+    }
 
-		/**
-		 * LifeCycle method Called when MessageListReport controller is instantiated.
-		 * @public
-		 */
-        onInit: function() {
-        },
-        
-		/**
-		 * LifeCycle Method
-		 */
-		onAfterRendering: function(oEvent) {
-			this.getView().byId("mainView--ovpMain").addStyleClass("comSapCdMacoMmtUiMonitorMsgGraphTitle");
-		}
-      }
-    );
-  }
-);
+  });
+});
