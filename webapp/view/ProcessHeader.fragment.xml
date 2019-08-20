@@ -21,6 +21,9 @@
         <reuseObjectPageFacet:FormFacetField
             label="{/xMP4GxC_ProcActivityHeader_UI/BusinessObjectUUID/#@sap:label}"
             text="{BusinessObjectUUID}"/>
+        <reuseObjectPageFacet:FormFacetField
+            label="{/xMP4GxC_ProcActivityHeader_UI/CommonAccessUUID/#@sap:label}"
+            text="{CommonAccessUUID}"/>
     </reuseObjectPageFacet:FormFacet>
 	<reuseObjectPageFacet:FormFacet>
 		<reuseObjectPageFacet:FormFacetField
