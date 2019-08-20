@@ -112,7 +112,8 @@ sap.ui.define(
           	semanticObject: Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT,
           	action: Constants.SEMANTIC_ACTION.DISPLAY,
           	params: {
-          		ProcessDocumentKey: oObject.ProcessDocumentKey
+          		ProcessDocumentKey: oObject.ProcessDocumentKey,
+          		ProcessID: oObject.ProcessID
           	}
           };
           

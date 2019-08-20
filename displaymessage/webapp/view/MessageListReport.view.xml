@@ -31,7 +31,7 @@
         tableType="ResponsiveTable"
         smartFilterId="idMessageSmartFilterBar"
         enableAutoBinding="true" 
-        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ExternalPayload"
+        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ExternalPayload,ProcessID"
         ignoredFields="ExtBusinessMessageID"
         header="{i18n>messageTitlePlural}"
         useTablePersonalisation="false"
