@@ -90,6 +90,9 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="Message" />
+                				<PropertyValue Property="Action" String="display" />
+                    			<PropertyValue Property="RequiresContext" Bool="false" />
 							</Record>
 						</PropertyValue>
 					</Record>
@@ -151,6 +154,9 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="Message" />
+                				<PropertyValue Property="Action" String="display" />
+                    			<PropertyValue Property="RequiresContext" Bool="false" />
 							</Record>
 						</PropertyValue>
 					</Record>
@@ -212,6 +218,9 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="Message" />
+                				<PropertyValue Property="Action" String="display" />
+                    			<PropertyValue Property="RequiresContext" Bool="false" />
 							</Record>
 						</PropertyValue>
 					</Record>
@@ -273,6 +282,9 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="Message" />
+                				<PropertyValue Property="Action" String="display" />
+                    			<PropertyValue Property="RequiresContext" Bool="false" />
 							</Record>
 						</PropertyValue>
 					</Record>
@@ -334,6 +346,9 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="Message" />
+                				<PropertyValue Property="Action" String="display" />
+                    			<PropertyValue Property="RequiresContext" Bool="false" />
 							</Record>
 						</PropertyValue>
 					</Record>
@@ -395,6 +410,9 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="Message" />
+                				<PropertyValue Property="Action" String="display" />
+                    			<PropertyValue Property="RequiresContext" Bool="false" />
 							</Record>
 						</PropertyValue>
 					</Record>
