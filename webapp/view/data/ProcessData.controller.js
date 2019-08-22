@@ -37,6 +37,7 @@ sap.ui.define([
 					if (jQuery.isEmptyObject(oProcessTypeViewDet)) {
 
 							oProcessTypeView = sap.ui.view({
+								id: jQuery.sap.uid(),
 								viewName: sViewName,
 								type: ViewType.XML
 							});

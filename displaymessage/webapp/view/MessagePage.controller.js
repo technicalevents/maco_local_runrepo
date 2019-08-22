@@ -96,7 +96,7 @@ sap.ui.define(
 				if(oLinkedTransferDocument && !jQuery.isEmptyObject(oLinkedTransferDocument)) {
 					var sBusinessObjectType = oLinkedTransferDocument.TecBusinessObjectType;
 					var sLinkedDocumentKey = oLinkedTransferDocument.LinkDocumentKey; 
-					var sProcessID = oLinkedTransferDocument.ProcessID; 
+					var sProcessID = oLinkedTransferDocument.ProcessID;
 					var oParam = {
 						semanticObject: Utility.getSemanticObject(sBusinessObjectType),
 						action: Constants.SEMANTIC_ACTION.DISPLAY,

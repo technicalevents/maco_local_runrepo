@@ -9,9 +9,6 @@
 	<edmx:Reference Uri="../../../mp4g/processmonitor_sb/$metadata">
 		<edmx:Include Alias="cds_xmp4gxprocessmonitor_sd" Namespace="cds_xmp4gxprocessmonitor_sd"/>
 	</edmx:Reference>
-	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Measures.V1.xml">
-		<edmx:Include Alias="Measures" Namespace="Org.OData.Measures.V1"/>
-	</edmx:Reference>
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="cds_xmp4gxprocessmonitor_sd">
 			
