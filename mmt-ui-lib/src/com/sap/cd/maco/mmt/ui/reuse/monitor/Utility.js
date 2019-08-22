@@ -67,12 +67,13 @@ sap.ui.define([
 		 * @public
 		 * @returns {object} Object having KeyField (GUID) for cross App Navigation
 	   	 */
-		   getNavigationParameters: function(sBusinessObjectType, sDocumentKey){
+		   getNavigationParameters: function(sBusinessObjectType, sDocumentKey, sProcessID){
 			var sSemanticObject = this.getSemanticObject(sBusinessObjectType);
 			var oParam = {};
 			
           if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT){
 			oParam.ProcessDocumentKey = sDocumentKey;
+			oParam.ProcessID = sProcessID;
           } else {
             oParam.TransferDocumentKey = sDocumentKey;
           }

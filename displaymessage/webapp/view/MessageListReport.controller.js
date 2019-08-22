@@ -106,18 +106,23 @@ sap.ui.define(
          */
         onNavToProcess: function(oEvent) {
           this._setFilterDataProperty();
-
-          var oObject = oEvent.getSource().getBindingContext().getObject();
-          var oParam = {
-          	semanticObject: Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT,
-          	action: Constants.SEMANTIC_ACTION.DISPLAY,
-          	params: {
-          		ProcessDocumentKey: oObject.ProcessDocumentKey,
-          		ProcessID: oObject.ProcessID
-          	}
-          };
           
-          this.oNav.navExternal(oParam);
+          //var oAppStatePromise = this.oNav.storeInnerAppState(this._getCurrentAppState());
+          
+          //oAppStatePromise.done(function(sAppStateKey) {
+              var oObject = oEvent.getSource().getBindingContext().getObject();
+	          var oParam = {
+	          	semanticObject: Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT,
+	          	action: Constants.SEMANTIC_ACTION.DISPLAY,
+	          	params: {
+	          		ProcessDocumentKey: oObject.ProcessDocumentKey,
+	          		ProcessID: oObject.ProcessID
+	          	}
+	          	// appState: sAppStateKey
+	          };
+	          
+	          this.oNav.navExternal(oParam);
+          //}.bind(this));
         },
 
         /**
@@ -161,7 +166,23 @@ sap.ui.define(
         	var oFilterData = jQuery.extend(true, {}, 
                             this.getView().byId("idMessageSmartFilterBar").getFilterData());
             sap.ui.getCore().getModel("DisplayMessageApp").setProperty("/FilterData", oFilterData);
-        }
+        },
+
+        /**
+         * Method will retrieve Current application state
+         * @public
+         * @returns {object}      Current application state in terms of selection variant and table variant
+         */
+		_getCurrentAppState: function() {
+			var oSmartFilterBar = this.getView().byId("idMessageSmartFilterBar");
+			var oSmartTable = this.getView().byId("idMessageSmartTable");
+			var oSelectionVariant = new sap.ui.generic.app.navigation.service.SelectionVariant(
+				JSON.stringify(oSmartFilterBar.getUiState().getSelectionVariant()));
+			return {
+				selectionVariant: oSelectionVariant.toJSONString(),
+				tableVariantId: oSmartTable.getCurrentVariantId()
+			};
+		}
       }
     );
   }
