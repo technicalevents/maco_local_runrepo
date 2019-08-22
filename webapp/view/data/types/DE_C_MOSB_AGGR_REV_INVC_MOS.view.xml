@@ -11,7 +11,7 @@
 					        useExportToExcel="false"
 					        useTablePersonalisation="false"
 					        enableAutoBinding="true" 
-					        requestAtLeastFields="path,ProcessDocumentKey,ProcessDocumentType"
+					        requestAtLeastFields="Path,ProcessDocumentKey,ProcessDocumentType"
 					        beforeRebindTable="onBeforeRebindTable"
 					        custom:entityName="xMP4GxC_Mosb_Aggr_Rev_Invc_Mos"s>
 		
