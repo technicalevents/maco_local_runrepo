@@ -17,6 +17,9 @@
 			<smartform:GroupElement >
 				<smartfield:SmartField value="{SupplierExtId}"/>
 			</smartform:GroupElement>
+			<smartform:GroupElement >
+				<smartfield:SmartField value="{QuotesID}"/>
+			</smartform:GroupElement>
 		</smartform:Group>
 	</smartform:SmartForm>
 </mvc:View>
