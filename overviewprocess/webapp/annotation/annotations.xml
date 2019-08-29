@@ -43,7 +43,7 @@
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcLoadMonitoring_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxProcessLoadMonitoring_UIType">
 				<Annotation Term="UI.KPI" Qualifier="StackedColumnChart">
 					<Record Type="UI.KPIType">
 						<PropertyValue Property="ID" String="StackedColumnChart" />
@@ -107,7 +107,7 @@
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMon_PType_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxProcOpenMonitor_PType_UIType">
 				<Annotation Term="UI.KPI" Qualifier="PType">
 					<Record Type="UI.KPIType">
 						<PropertyValue Property="ID" String="PType" />
@@ -171,7 +171,7 @@
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoniPClust_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxProcOpenMoni_PCluster_UIType">
 				<Annotation Term="UI.KPI" Qualifier="PCluster">
 					<Record Type="UI.KPIType">
 						<PropertyValue Property="ID" String="PCluster" />
