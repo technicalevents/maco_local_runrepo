@@ -1,9 +1,11 @@
 sap.ui.define(
   [
     "com/sap/cd/maco/mmt/ui/reuse/objectPage/ObjectPageNoDraftController",
-    "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter"
+    "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
   ],
-  function(ObjectPageNoDraftController, Formatter) {
+  function(ObjectPageNoDraftController, Formatter, Filter, FilterOperator) {
     "use strict";
 
     return ObjectPageNoDraftController.extend(
@@ -29,11 +31,11 @@ sap.ui.define(
         },
 
         /**
-         * Event Handler - Triggered before Binding is started on parent view (Process Page)
+         * Event Handler - Triggered when Binding is completed on parent view (Process Page)
          * @public
          * @param {object} oRouteParams Route parameters of Process Page
          */
-        onBeforeBind: function(oRouteParams){
+        onAfterBind: function(oRouteParams){
           this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
             .then(this._onSucessProcessDataRead.bind(this));
         },
@@ -54,11 +56,9 @@ sap.ui.define(
          * @returns {Promise} Promise object of data read call
          */
         _whenProcessDataRead: function(sProcessDocumentKey) {
-          var sKey = this.getView().getModel().createKey("/xMP4GxC_ProcActivityHeader_UI", 
-                                                    {ProcessDocumentKey: sProcessDocumentKey});
-                                                    
           return this.oTransaction.whenRead({
-                path: sKey + "/to_PrMkPartner",
+                path: "/xMP4GxC_ProcessHeader_UI",
+                filters: [new Filter("ProcessDocumentKey", FilterOperator.EQ, sProcessDocumentKey)],
                 busyControl: this.getView()
           });
         },

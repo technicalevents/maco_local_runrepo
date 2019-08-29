@@ -17,7 +17,6 @@ sap.ui.define([
 		 */
 		onInit: function () {
 			BaseViewController.prototype.onInit.apply(this, arguments);
-			this.aProcessViews = [];
 		},
 
 		/**
@@ -38,6 +37,7 @@ sap.ui.define([
 					if (jQuery.isEmptyObject(oProcessTypeViewDet)) {
 
 							oProcessTypeView = sap.ui.view({
+								id: jQuery.sap.uid(),
 								viewName: sViewName,
 								type: ViewType.XML
 							});
