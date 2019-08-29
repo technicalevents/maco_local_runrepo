@@ -11,10 +11,10 @@
 	</edmx:Reference>
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="cds_xmp4gxmessagemonitor_sd">
-			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxMessageStatusMonitoringType/SuccessRatio">
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MesStatusMonitoring_UIType/SuccessRatio">
 				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxMessageStatusMonitoringType">
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_MesStatusMonitoring_UIType">
 				<Annotation Term="UI.DataPoint" Qualifier="kpi">
 					<Record Type="UI.DataPointType">
 						<PropertyValue Property="Value" Path="SuccessRatio"/>

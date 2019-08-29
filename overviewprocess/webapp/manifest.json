@@ -172,7 +172,7 @@
 				"model": "PROCESSMONITOR_SB",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"entitySet": "xMP4GxProcessLoadMonitoring_UI",
+					"entitySet": "xMP4GxC_ProcLoadMonitoring_UI",
 					"title": "{{LOAD_CARD_TITLE}}",
 					"valueSelectionInfo": "{{LOAD_SELECTION_INFO}}",
 					"showFilterInHeader": false,
@@ -212,7 +212,7 @@
 						"cols": 3
 					},
 					"tabs": [{
-						"entitySet": "xMP4GxProcOpenMonitor_PType_UI",
+						"entitySet": "xMP4GxC_ProcOpenMon_PType_UI",
 						"value": "{{BY_PROCESS_TYPE_LBL}}",
 						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PType",
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PType",
@@ -236,7 +236,7 @@
 							}
 						}
 					}, {
-						"entitySet": "xMP4GxProcOpenMoni_PCluster_UI",
+						"entitySet": "xMP4GxC_ProcOpenMoniPClust_UI",
 						"value": "{{BY_PROCESS_CLUSTER_LBL}}",
 						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PCluster",
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PCluster",
