@@ -140,7 +140,7 @@
         "model": "MessageMonitor",
         "template": "sap.ovp.cards.charts.analytical",
         "settings": {
-          "entitySet": "xMP4GxMessageStatusMonitoring",
+          "entitySet": "xMP4GxC_MesStatusMonitoring_UI",
           "title": "{{STATUS_CARD_TITLE}}",
           "customParams": "CardStatus",
           "valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
