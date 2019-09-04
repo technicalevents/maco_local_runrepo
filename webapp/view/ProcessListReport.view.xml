@@ -48,7 +48,7 @@
 					        useTablePersonalisation="false"
 					        showRowCount="true"
 					        demandPopin="true"
-					        useExportToExcel="false"
+					        useExportToExcel="true"
 					        header="{i18n>PROCESS_PLURAL_LBL}"
 					        useVariantManagement="false" 
 					        beforeRebindTable="onBeforeRebindTable"
