@@ -44,6 +44,8 @@ sap.ui.define(
             oDisplayProcessAppModel.setDefaultBindingMode("OneWay");
             sap.ui.getCore().setModel(oDisplayProcessAppModel, "DisplayProcessApp");
           }
+          
+          this.getThisModel().setProperty("/tileCustomUrl", this.getSaveTileCustomUrl);
         },
         
         /******************************************************************* */

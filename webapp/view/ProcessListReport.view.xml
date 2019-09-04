@@ -17,7 +17,7 @@
 					<footerbar:AddBookmarkButton id="BookmarkButton" 
                                       title="{i18n>APP_TITLE}"
                                       tileIcon="sap-icon://bookmark" 
-                                      customUrl=".getSaveTileCustomUrl"
+                                      customUrl="{this>/tileCustomUrl}"
                                       type="Transparent"/>
 				</f:actions>
 			</f:DynamicPageTitle>
