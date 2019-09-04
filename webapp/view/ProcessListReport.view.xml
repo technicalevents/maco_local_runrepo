@@ -7,8 +7,21 @@
 		  xmlns:mvc="sap.ui.core.mvc"
 		  xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button"
 		  controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessListReport"
-      xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table">
+    	  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table"
+    	  xmlns:footerbar="sap.ushell.ui.footerbar">
   <f:DynamicPage headerExpanded="true" toggleHeaderOnTitleClick="true">
+  	<f:title>
+			<f:DynamicPageTitle>
+				<f:actions>
+					<ToolbarSpacer/>
+					<footerbar:AddBookmarkButton id="BookmarkButton" 
+                                      title="{i18n>APP_TITLE}"
+                                      tileIcon="sap-icon://bookmark" 
+                                      customUrl=".getSaveTileCustomUrl"
+                                      type="Transparent"/>
+				</f:actions>
+			</f:DynamicPageTitle>
+		</f:title>
     <f:header >
       <f:DynamicPageHeader pinnable="true">
         <f:content >

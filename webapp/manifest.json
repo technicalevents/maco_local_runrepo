@@ -4,8 +4,8 @@
     "id": "com.sap.cd.maco.monitor.ui.app.displayprocesses",
     "type": "application",
     "i18n": "i18n/i18n.properties",
-    "title": "{{appTitle}}",
-    "description": "{{appTitle}}",
+    "title": "{{APP_TITLEE}}",
+    "description": "{{APP_TITLE}}",
     "applicationVersion": {
       "version": "1.0.0"
     },
@@ -47,7 +47,7 @@
 					},
 					"semanticObject": "Process",
 					"action": "display",
-					"title": "{{appTitle}}",
+					"title": "{{APP_TITLE}}",
 					"icon": "sap-icon://process"
 				}
 			}
@@ -183,7 +183,7 @@
           "viewName": "ProcessListReport",
           "viewId": "listReport",
           "viewLevel": 1,
-          "title": "{i18n>appTitle}"
+          "title": "{i18n>APP_TITLE}"
         },
         "processPage": {
           "viewPath": "com.sap.cd.maco.monitor.ui.app.displayprocesses.view",

@@ -4,9 +4,10 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
     "sap/ui/model/Sorter",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/thirdparty/hasher"
   ],
-  function(ActionSmartTableController, SmartTableBindingUpdate, Formatter, Sorter, JSONModel) {
+  function(ActionSmartTableController, SmartTableBindingUpdate, Formatter, Sorter, JSONModel, Hasher) {
     "use strict";
 
     return ActionSmartTableController.extend(
@@ -99,6 +100,16 @@ sap.ui.define(
             }
           }.bind(this));
         },
+        
+       /**
+		* Event is triggered when FilterBar is initialized.
+		* This method will set Recently used FilterData in FilterBar
+    	* @public
+    	*/
+        getSaveTileCustomUrl: function () {  //Set the URL that the tile should point to
+            var sHash = Hasher.getHash();
+            return sHash ? ("#" + sHash) : window.location.href;
+         },
 
         /**
          * Event is triggered when SmartTable refresh button is pressed 
