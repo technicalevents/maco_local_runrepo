@@ -4,7 +4,7 @@
     "id": "com.sap.cd.maco.monitor.ui.app.displayprocesses",
     "type": "application",
     "i18n": "i18n/i18n.properties",
-    "title": "{{APP_TITLEE}}",
+    "title": "{{APP_TITLE}}",
     "description": "{{APP_TITLE}}",
     "applicationVersion": {
       "version": "1.0.0"

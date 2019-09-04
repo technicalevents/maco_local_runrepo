@@ -1,6 +1,7 @@
 <mvc:View xmlns:core="sap.ui.core" 
 		  xmlns="sap.m" 
 		  xmlns:f="sap.f" 
+		  xmlns:semantic="sap.f.semantic" 
 		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 		  xmlns:smartfield="sap.ui.comp.smartfield"
 		  xmlns:smartTable="sap.ui.comp.smarttable"
@@ -8,24 +9,16 @@
 		  xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button"
 		  controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessListReport"
     	  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table"
+    	  xmlns:variants="sap.ui.comp.smartvariants"
     	  xmlns:footerbar="sap.ushell.ui.footerbar">
-  <f:DynamicPage headerExpanded="true" toggleHeaderOnTitleClick="true">
-  	<f:title>
-			<f:DynamicPageTitle>
-				<f:actions>
-					<ToolbarSpacer/>
-					<footerbar:AddBookmarkButton id="BookmarkButton" 
-                                      title="{i18n>APP_TITLE}"
-                                      tileIcon="sap-icon://bookmark" 
-                                      customUrl="{this>/tileCustomUrl}"
-                                      type="Transparent"/>
-				</f:actions>
-			</f:DynamicPageTitle>
-		</f:title>
-    <f:header >
-      <f:DynamicPageHeader pinnable="true">
-        <f:content >
+  <semantic:SemanticPage headerExpanded="true" toggleHeaderOnTitleClick="true">
+  	<semantic:titleHeading>
+			 <variants:SmartVariantManagement id="idProcessVariantManagement" 
+											persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displayprocesses.filterbar" />
+		</semantic:titleHeading>
+    <semantic:headerContent>
           <smartFilterBar:SmartFilterBar id="idProcessSmartFilterBar"
+        								 smartVariant="idProcessVariantManagement"
                                          enableBasicSearch="true"
                                          liveMode="true"
                                          useDateRangeType="true"
@@ -35,10 +28,8 @@
                                          persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displayprocesses.filterbar"
                                          entitySet="{this>/entitySet}">
           </smartFilterBar:SmartFilterBar>
-        </f:content>
-      </f:DynamicPageHeader>
-    </f:header>
-    <f:content>
+     </semantic:headerContent>
+    <semantic:content>
       <smartTable:SmartTable id="idProcessSmartTable"
 					        entitySet="{this>/entitySet}"
 					        tableType="ResponsiveTable"
@@ -86,6 +77,15 @@
           </items>
         </Table>
       </smartTable:SmartTable>
-    </f:content>
-  </f:DynamicPage>
+     </semantic:content>
+    <semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="BookmarkButton" 
+                                      title="{i18n>APP_TITLE}"
+                                      tileIcon="sap-icon://bookmark" 
+                                      customUrl="{this>/tileCustomUrl}"
+                                      type="Transparent" />
+		</semantic:saveAsTileAction>
+  </semantic:SemanticPage>
+  
+  
 </mvc:View>
