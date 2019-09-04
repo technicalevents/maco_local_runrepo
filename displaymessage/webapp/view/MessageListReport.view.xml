@@ -37,7 +37,7 @@
         useTablePersonalisation="false"
         showRowCount="true"
         demandPopin="true"
-        useExportToExcel="false"
+        useExportToExcel="true"
         useVariantManagement="false"
         placeToolbarInTable="true" 
         beforeRebindTable="onBeforeRebindTable"
