@@ -5,9 +5,10 @@ sap.ui.define(
     "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
     "sap/ui/model/Sorter",
-    "sap/ui/model/json/JSONModel"
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/thirdparty/hasher"
   ],
-  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Sorter, JSONModel) {
+  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Sorter, JSONModel, Hasher) {
     'use strict';
 
     return ActionSmartTableController.extend(
@@ -45,6 +46,8 @@ sap.ui.define(
             oDisplayMsgAppModel.setDefaultBindingMode("OneWay");
             sap.ui.getCore().setModel(oDisplayMsgAppModel, "DisplayMessageApp");
           }
+          
+          this.getThisModel().setProperty("/tileCustomUrl", this.getSaveTileCustomUrl);
         },
 
       /******************************************************************* */
@@ -148,6 +151,16 @@ sap.ui.define(
           
             return oResourceBundle.getText(sI18nFormat, aI18nData);
           },
+          
+       /**
+		* Event is triggered when FilterBar is initialized.
+		* This method will set Recently used FilterData in FilterBar
+    	* @public
+    	*/
+        getSaveTileCustomUrl: function () {  //Set the URL that the tile should point to
+            var sHash = Hasher.getHash();
+            return sHash ? ("#" + sHash) : window.location.href;
+        },
 
         /******************************************************************* */
         /* PRIVATE METHODS */
