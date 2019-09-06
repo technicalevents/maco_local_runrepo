@@ -153,13 +153,12 @@ sap.ui.define(
           },
           
        /**
-		* Event is triggered when FilterBar is initialized.
-		* This method will set Recently used FilterData in FilterBar
+		* Function to Get the URL that the tile should point to
     	* @public
+        * @returns {string} Url of Application for save as tile action
     	*/
-        getSaveTileCustomUrl: function () {  //Set the URL that the tile should point to
-            var sHash = Hasher.getHash();
-            return sHash ? ("#" + sHash) : window.location.href;
+        getSaveTileCustomUrl: function () {
+            return document.URL;
         },
 
         /******************************************************************* */

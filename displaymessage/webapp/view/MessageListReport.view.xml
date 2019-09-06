@@ -33,6 +33,7 @@
 					        entitySet="{this>/entitySet}"
 					        tableType="ResponsiveTable"
 					        smartFilterId="idMessageSmartFilterBar"
+					        smartVariant="idMessageVariantManagement"
 					        enableAutoBinding="true" 
 					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ExternalPayload,ProcessID"
 					        ignoredFields="ExtBusinessMessageID"

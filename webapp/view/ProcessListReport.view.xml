@@ -34,6 +34,7 @@
 					        entitySet="{this>/entitySet}"
 					        tableType="ResponsiveTable"
 					        smartFilterId="idProcessSmartFilterBar"
+					        smartVariant="idProcessVariantManagement"
 					        enableAutoBinding="true" 
 					        ignoredFields="" 
 					        useTablePersonalisation="false"
