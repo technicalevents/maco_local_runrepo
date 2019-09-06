@@ -3,9 +3,10 @@ sap.ui.define(
 	  "com/sap/cd/maco/mmt/ui/reuse/objectPage/ObjectPageNoDraftController",
 	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
 	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
-	  "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter"
+	  "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
+	  "sap/ui/core/util/File"
 	],
-	function(ObjectPageNoDraftController, Constants, Utility, messageFormatter) {
+	function(ObjectPageNoDraftController, Constants, Utility, messageFormatter, File) {
 	  'use strict';
   
 	  return ObjectPageNoDraftController.extend(
@@ -49,15 +50,23 @@ sap.ui.define(
 			 * @public
 			 */
 			notFoundMsg: function() {
-			  return this.oBundle.getText('MSG_NOT_FOUND_TITLE');
+			  return this.oBundle.getText("MSG_NOT_FOUND_TITLE");
 			},
 			
 			/**
 			 * Method will e triggered once object page binding is done with entitySet
 			 * @param {object} oRouteParams    Route Parameters
+			 * @param {object} oMessageData    Message Data
 			 * @public
 			 */
-			onAfterBind: function(oRouteParams) {
+			onAfterBind: function(oRouteParams, oMessageData) {
+				var oMessageData = {
+					ExternalUUID: oMessageData.ExternalUUID,
+					ExternalPayload: oMessageData.ExternalPayload
+				};
+				
+				this.getThisModel().setProperty("/MessageData", oMessageData);
+				
 				this._whenLinkTransferDocumentsRead(oRouteParams)
 				.then(this._onSucessLinkTransferDocumentsRead.bind(this));
 			},
@@ -105,6 +114,30 @@ sap.ui.define(
 					
 					this.oNav.navExternal(oParam);
 				}
+			},
+			
+			/**
+			 * Function is triggered on click of Download button in Master Page
+			 * @public
+			 */
+			onPressDownload: function() {
+				var oMessageData = this.getThisModel().getProperty("/MessageData");
+				var sExternalPayload = oMessageData.ExternalPayload.replace(/\n/g, "");
+			
+				/* eslint-disable no-undef */
+				var oArrayBuffer = new ArrayBuffer(sExternalPayload.length);
+				var oArrayView = new Uint8Array(oArrayBuffer);
+				/* eslint-enable no-undef */
+	
+				for (var iCharIdx = 0; iCharIdx !== sExternalPayload.length; iCharIdx++) {
+					oArrayView[iCharIdx] = sExternalPayload.charCodeAt(iCharIdx) & 0xFF;
+				}
+	
+				var oData =  new Blob([oArrayBuffer]);
+				var sFileName = oMessageData.ExternalUUID;
+				var sFileExtension = "txt";
+	
+				File.save(oData, sFileName, sFileExtension);
 			},
 			
 			/******************************************************************* */
