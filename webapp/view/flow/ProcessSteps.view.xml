@@ -12,54 +12,46 @@
 				    enableScroll="false"
 				    groupBy="ActivityTimestamp"
 				    groupByType="Day"
-				    enableDoubleSided="true"
+				    enableDoubleSided="false"
 				    growingThreshold="1000"
 				    sortOldestFirst="false"
 				    content="{this>/ProcessStepData}">
     <commons:content>
       <commons:TimelineItem dateTime="{this>ActivityTimestamp}"
-					        userName=""
-					        userNameClickable="false"
+					        userName="{
+					        		 parts: [
+	                							{path: 'this>ExternalUUID'}, 
+	                							{path: 'this>TechnicalMessage'},
+	                							{path: 'this>BusinessObjectType'},
+	                							{path: 'this>UserDescision'},
+	                							{path: 'this>isExternalMessage'}
+	                							
+                    						], 
+                    						formatter: '.formatProcessActivityTitle'
+                    				}"
+					        userNameClickable="{= (${this>BusinessObjectType} === 'PDoc' || (${this>BusinessObjectType} === 'TransDoc' &amp;&amp; ${this>isExternalMessage}))}"
 					        text="{this>ActivityDescription}"
 					        filterValue="{this>JobTitle}"
 					        icon="{parts: [{path: 'this>BusinessObjectType'}, 
 					                       {path: 'this>Direction'}],
 					               formatter: '.formatter.processStepIcon'
-					          }">
+					         }"
+					         class="comSapCdMacoMmtUiActivityTitle">
         <commons:embeddedControl>
-          <VBox>
+          <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+          	<items>
             <Label text="{this>ActivityDescription}" 
                     wrapping="true"/>
-
-            <Text visible="{= ${this>BusinessObjectType} === 'ExceptionDoc'}"
-                   text="{
-                    		parts: [
-                            	{path: 'i18n>DECISION_LBL'}, 
-								{path: 'this>UserDescision'}
-                            ], 
-					        formatter: '.formatter.formatMessage'}"
-            		class="comSapCdMacoMmtUiDispProcessReference"/>
-
-            <ObjectAttribute class="comSapCdMacoMmtUiDispProcessMessageLink"
-                press="navigateToBusinessObject"
-                title="{= ${this>BusinessObjectType} === 'PDoc' ? ${i18n>PROCESS_DOCUMENT_LBL} : ${i18n>MARKET_MSG_DOCUMENT_LBL}}"
-                visible="{= (${this>BusinessObjectType} === 'PDoc' || (${this>BusinessObjectType} === 'TransDoc' &amp;&amp; ${this>isExternalMessage}))}" 
-                text="{parts: [
-                      {path: 'i18n>MARKET_MESSAGE_REFERENCE_LINK_LBL'},
-                      {path: 'this>ExternalUUID'}, 
-                      {path: 'this>TechnicalMessage'}], 
-                      formatter: '.formatter.formatMessage'}"
-                active="true"
-                />
             
             <ObjectStatus visible="{= ${this>BusinessObjectType} === 'TransDoc' &amp;&amp; ${this>isExternalMessage}}"
-                title="{i18n>LINKED_DOCUMENT_STATUS_LBL}"
                 text="{this>TransDocStatus}"
                 state="{
                     path:'this>TDStatusCriticality',
                     formatter: '.formatter.criticality'
         	      	}" />
-          </VBox>
+        	    </items>
+          </FlexBox>
+          
         </commons:embeddedControl>
       </commons:TimelineItem>
     </commons:content>
