@@ -1,3 +1,7 @@
+.comSapCdMacoMmtUiActivityTitle .sapSuiteUiCommonsTimelineItemWrapperV .sapSuiteUiCommonsTimelineItemBubble .sapSuiteUiCommonsTimelineItemOutline .sapSuiteUiCommonsTimelineItemBox .sapSuiteUiCommonsTimelineItemShell .sapSuiteUiCommonsTimelineItemHeaderWrapper .sapSuiteUiCommonsTimelineItemHeader .sapSuiteUiCommonsTimelineItemShellUser{
+	font-weight: normal;
+}
+
 .comSapCdMacoMmtUiDispProcessReference {
     padding: 0.375rem 0 0 0;
 }
@@ -6,6 +10,8 @@
 .comSapCdMacoMmtUiDispProcessMessageLink.sapMObjectAttributeActive .sapMObjectAttributeText {
 	white-space: normal;
 }
+
+
 
 .comSapCdMacoMmtUiDispProcessTypeForm .sapUiFormResGrid>div {
     padding: 0rem;

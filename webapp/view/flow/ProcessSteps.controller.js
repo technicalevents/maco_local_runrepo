@@ -61,6 +61,42 @@ sap.ui.define(
 		          
 		      this.oNav.navExternal(oParam);
         },
+        
+        /**
+         * Formatter method returns formatted Process Activity Title
+         * @param   {string} 	sLinkedDocNumber	 Linked Documber
+         * @param   {string} 	sTechnicalMessageId	 Technical Message Id
+         * @param   {string} 	sBusinessObjectType	 Business Object Type
+         * @param   {string} 	sUserDecision		 User Decision text
+         * @param   {boolean} 	bExternalMessage	 Message is External or not
+         * @public
+         * @returns {string} 	    	             Formatted title
+         */
+        formatProcessActivityTitle: function(sLinkedDocNumber, sTechnicalMessageId, sBusinessObjectType, sUserDecision, bExternalMessage){
+	    	var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+	    	var sI18nFormat;
+            var aI18nData = [];
+            var sProcessActivityTitle;
+            
+	    	if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.TRANSFER_DOCUMENT && bExternalMessage) {
+		    	sI18nFormat = "MARKET_MESSAGE_REFERENCE_LINK_LBL";
+		    	aI18nData = [sTechnicalMessageId, sLinkedDocNumber];
+	    		sProcessActivityTitle = oResourceBundle.getText(sI18nFormat, aI18nData);
+	    	} else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT) {
+	    		sI18nFormat = "MARKET_PROCESS_REFERENCE_LINK_LBL";
+	    		aI18nData = [sLinkedDocNumber];
+	    		sProcessActivityTitle = oResourceBundle.getText(sI18nFormat, aI18nData);
+	    	} else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.EXCEPTION_DOCUMENT){
+	    		sI18nFormat = "DECISION_LBL";
+	    		aI18nData = [sUserDecision];
+	    		sProcessActivityTitle = oResourceBundle.getText(sI18nFormat, aI18nData);
+	    	} else {
+	    		sProcessActivityTitle = "";
+	    	}
+	    	
+	    	return sProcessActivityTitle;
+    	},
+        
 
         /**
          * Function is used to trigger call to fetch Process Steps data for the selected Process
