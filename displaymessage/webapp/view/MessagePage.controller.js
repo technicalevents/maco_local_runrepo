@@ -122,19 +122,9 @@ sap.ui.define(
 			 */
 			onPressDownload: function() {
 				var oMessageData = this.getThisModel().getProperty("/MessageData");
-				var sExternalPayload = oMessageData.ExternalPayload.replace(/\n/g, "");
-			
-				/* eslint-disable no-undef */
-				var oArrayBuffer = new ArrayBuffer(sExternalPayload.length);
-				var oArrayView = new Uint8Array(oArrayBuffer);
-				/* eslint-enable no-undef */
-	
-				for (var iCharIdx = 0; iCharIdx !== sExternalPayload.length; iCharIdx++) {
-					oArrayView[iCharIdx] = sExternalPayload.charCodeAt(iCharIdx) & 0xFF;
-				}
-	
-				var oData =  new Blob([oArrayBuffer]);
+				var sExternalPayload = oMessageData.ExternalPayload.replace(/\n/g, "");	
 				var sFileName = oMessageData.ExternalUUID;
+				var oData =  new Blob([sExternalPayload]);
 				var sFileExtension = "txt";
 	
 				File.save(oData, sFileName, sFileExtension);
