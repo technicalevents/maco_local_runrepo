@@ -69,7 +69,7 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="TotalCount"/>
+								<PropertyValue Property="Value" Path="ProcessStatusCount"/>
 								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
