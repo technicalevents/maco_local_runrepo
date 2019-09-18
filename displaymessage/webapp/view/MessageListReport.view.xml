@@ -41,7 +41,7 @@
 					        useTablePersonalisation="false"
 					        showRowCount="true"
 					        demandPopin="true"
-					        useExportToExcel="true"
+					        useExportToExcel="false"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
 					        beforeRebindTable="onBeforeRebindTable"
@@ -49,14 +49,22 @@
         <smartTable:customToolbar>
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>
-            <Button icon="sap-icon://refresh" press="onRefresh"/>
+            <Button icon="sap-icon://refresh" 
+            	press="onRefresh"/>
+            <Button icon="sap-icon://download"
+				tooltip="{i18n>DOWNLOAD_BTN_TXT}"
+				visible="{this>/DownloadBtnVisible}"
+				type="Transparent"
+				press="onPressDownload"/>
           </OverflowToolbar>
         </smartTable:customToolbar>
-        <Table id="table"
+        <Table id="idMessageTable"
 	          growing="true"
 	          growingScrollToLoad="true" 
 	          growingThreshold="100" 
-	          mode="None"
+	          mode="MultiSelect"
+	          selectionChange="onMessageTableSelChange"
+	          updateFinished="onMessageTableUpdateFinish"
 	          sticky="ColumnHeaders,HeaderToolbar" >
           <columns>
             <Column>

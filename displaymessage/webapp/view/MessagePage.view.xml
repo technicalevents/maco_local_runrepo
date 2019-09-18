@@ -33,7 +33,7 @@
         </uxap:snappedContent>
         <uxap:actions>
         	<Button icon="sap-icon://download"
-				tooltip="{{i18n>DOWNLOAD_BTN_TXT}}"
+				tooltip="{i18n>DOWNLOAD_BTN_TXT}"
 				type="Transparent"
 				press="onPressDownload" />
         </uxap:actions>
