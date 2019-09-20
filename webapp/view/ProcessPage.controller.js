@@ -34,6 +34,8 @@ sap.ui.define(
          * @param {object} oRouteParams Route parameters of Process Page
          */
         onBeforeBind: function(oRouteParams){
+          this.getThisModel().setProperty("/RouteParams", jQuery.extend(true, {}, oRouteParams));
+          
           this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
             .then(this._onSucessProcessDataRead.bind(this));
         },
@@ -41,8 +43,10 @@ sap.ui.define(
         /**
          * Event Handler on press of Deadline button
          * @public
+         * @param {object} oRouteParams Route parameters of Process Page
          */
-        onPressDeadline: function() {
+        onPressDeadline: function(oEvent) {
+        	var oRouteParams = this.getThisModel().getProperty("/RouteParams");
         	var oDeadlineData = {
         		ProcessDocumentKey: oRouteParams.ProcessDocumentKey,
         		ProcessDocumentNumber: "",
