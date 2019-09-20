@@ -4,6 +4,7 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
     "sap/ui/model/Sorter",
     "sap/ui/model/json/JSONModel",
     "sap/ui/thirdparty/hasher",
@@ -11,7 +12,7 @@ sap.ui.define(
 	"sap/ui/core/util/File",
 	"sap/m/MessageBox"
   ],
-  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Sorter, JSONModel, Hasher, JSZip, File, MessageBox) {
+  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Utility, Sorter, JSONModel, Hasher, JSZip, File, MessageBox) {
     'use strict';
 
     return ActionSmartTableController.extend(
@@ -52,6 +53,7 @@ sap.ui.define(
           
           this.getThisModel().setProperty("/DownloadBtnVisible", false);
           this.getThisModel().setProperty("/tileCustomUrl", this.getSaveTileCustomUrl);
+          this.getThisModel().setProperty("/tileServiceUrl", this.getSaveTileServiceUrl.bind(this));
         },
 
       /******************************************************************* */
@@ -237,6 +239,48 @@ sap.ui.define(
     	*/
         getSaveTileCustomUrl: function () {
             return document.URL;
+        },
+        
+        /**
+		* Function to Get the Service URL to show count in Tile
+    	* @public
+        * @returns {string} sQueryUri   Url of Application for count
+    	*/
+        getSaveTileServiceUrl: function () {
+        	var sServiceUrl = this.getOwnerComponent().getManifestEntry("/sap.app/dataSources/Main/uri");
+        	
+        	// ensure trailing '/'
+			sServiceUrl = /\/$/.test(sServiceUrl) ? sServiceUrl : sServiceUrl + "/";
+			// ensure leading '/'
+			sServiceUrl = /^\//.test(sServiceUrl) ? sServiceUrl : "/" + sServiceUrl;
+        	
+        	var oDataModel = this.getView().getModel();
+        	var sEntitySet = this.getThisModel().getProperty("/entitySet");
+        	var aSmartTableQueryUrlParam = [];
+        	var sQueryUri = sServiceUrl + sEntitySet;
+        	
+        	aSmartTableQueryUrlParam.push("$top=0");
+        	
+        	var oSmartFilterBar = this.getView().byId("idMessageSmartFilterBar");
+        	var aFilters = oSmartFilterBar.getFilters();
+        	
+        	if (aFilters && aFilters.length > 0) {
+				aSmartTableQueryUrlParam.push(Utility.createODataFilterString(oDataModel, sEntitySet, aFilters));
+			}
+			
+			var sSearchQuery = oSmartFilterBar.getBasicSearchValue();
+			
+			if(sSearchQuery){
+				aSmartTableQueryUrlParam.push("$search=" + encodeURI(sSearchQuery));
+			}
+			
+			aSmartTableQueryUrlParam.push("$inlinecount=allpages");
+			
+			if (aSmartTableQueryUrlParam.length > 0) {
+				sQueryUri += "?" + aSmartTableQueryUrlParam.join("&");
+			}
+        	
+            return sQueryUri;
         },
 
         /******************************************************************* */

@@ -1,6 +1,7 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/Constants"
-], function(Constants) {
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
+	"sap/ui/model/odata/ODataUtils"
+], function(Constants, ODataUtils) {
 	"use strict";
 	
 	return {
@@ -67,18 +68,47 @@ sap.ui.define([
 		 * @public
 		 * @returns {object} Object having KeyField (GUID) for cross App Navigation
 	   	 */
-		   getNavigationParameters: function(sBusinessObjectType, sDocumentKey, sProcessID){
+		getNavigationParameters: function(sBusinessObjectType, sDocumentKey, sProcessID){
 			var sSemanticObject = this.getSemanticObject(sBusinessObjectType);
 			var oParam = {};
 			
-          if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT){
-			oParam.ProcessDocumentKey = sDocumentKey;
-			oParam.ProcessID = sProcessID;
-          } else {
-            oParam.TransferDocumentKey = sDocumentKey;
-          }
-          
-          return oParam;
+			if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT){
+				oParam.ProcessDocumentKey = sDocumentKey;
+				oParam.ProcessID = sProcessID;
+			} else {
+				oParam.TransferDocumentKey = sDocumentKey;
+			}
+			
+			return oParam;
+		},
+		
+		/**
+		 * Get filter string from array of sap.ui.model.Filter objects
+		 * @public
+		 * @param {sap.ui.model.odata.ODataModel} oODataModel ODATA model reference
+		 * @param {string}                 sEntityName   Name of EntitySet
+		 * @param {sap.ui.model.Filter[]}  aFilter       Array of Filters
+         * @returns {string}                             Filter String
+		 */
+		createODataFilterString: function (oODataModel, sEntitySet, aFilter) {
+			var oMetadata = oODataModel.oMetadata;
+			var oEntityType = this.getEntityTypeBySetName(oODataModel, sEntitySet);
+			
+			return ODataUtils.createFilterParams(aFilter, oMetadata, oEntityType);
+		},
+		
+		/**
+		 * Get detailed info about entity type based on corresponding entity set
+		 * @param {sap.ui.model.odata.v2.ODataModel} oOdataModel - ODATA model reference
+		 * @param {string} sEntitySet - Name of the corresponding entity set
+		 * @returns {Object} Detailed info about entity type
+		 * @private
+		 */
+		getEntityTypeBySetName: function(oOdataModel, sEntitySet) {
+			var oMetaModel = oOdataModel.getMetaModel();
+			var oEntitySet = oMetaModel.getODataEntitySet(sEntitySet);
+			
+			return oEntitySet ? oMetaModel.getODataEntityType(oEntitySet.entityType) : {};
 		}
 	};
 
