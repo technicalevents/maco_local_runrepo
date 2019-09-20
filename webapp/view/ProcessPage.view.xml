@@ -25,6 +25,10 @@
           <Text text="{ProcessIDDescription}"/>
         </uxap:snappedContent>
         <uxap:actions>
+        	<Button icon="sap-icon://date-time"
+				tooltip="{i18n>DEADLINE_BTN_TXT}"
+				type="Transparent"
+				press="onPressDeadline" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>

@@ -37,6 +37,28 @@ sap.ui.define(
           this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
             .then(this._onSucessProcessDataRead.bind(this));
         },
+        
+        /**
+         * Event Handler on press of Deadline button
+         * @public
+         */
+        onPressDeadline: function() {
+        	var oDeadlineData = {
+        		ProcessDocumentKey: oRouteParams.ProcessDocumentKey,
+        		ProcessDocumentNumber: "",
+        		Action: "Deadline",
+        		ReturnMessage: ""
+        	};
+        	
+        	this.getView().getModel().create("/xMP4GxC_Proc_Detail_Action_UI", oDeadlineData, 
+	        	{success: function(oData) {
+	        		
+	        	}.bind(this),
+	        	error: function(oError) {
+	        		
+	        	}.bind(this)
+        	});
+        },
 
         /**
          * Function returns no found message in case of some errors
