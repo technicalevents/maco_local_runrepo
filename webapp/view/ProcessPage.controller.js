@@ -49,12 +49,15 @@ sap.ui.define(
         	var oRouteParams = this.getThisModel().getProperty("/RouteParams");
         	var oDeadlineData = {
         		ProcessDocumentKey: oRouteParams.ProcessDocumentKey,
-        		ProcessDocumentNumber: "",
+        		// ProcessDocumentNumber: "",
         		Action: "Deadline",
         		ReturnMessage: ""
         	};
         	
-        	this.getView().getModel().create("/xMP4GxC_Proc_Detail_Action_UI", oDeadlineData, 
+        	var sKey = this.getView().getModel().createKey("/xMP4GxC_Proc_Detail_Action_UI", 
+                                                    {ProcessDocumentKey: oRouteParams.ProcessDocumentKey});
+                                                    
+            this.getView().getModel().update(sKey, oDeadlineData, 
 	        	{success: function(oData) {
 	        		
 	        	}.bind(this),
@@ -62,6 +65,15 @@ sap.ui.define(
 	        		
 	        	}.bind(this)
         	});
+        	
+        	// this.getView().getModel().create("/xMP4GxC_Proc_Detail_Action_UI", oDeadlineData, 
+	        // 	{success: function(oData) {
+	        		
+	        // 	}.bind(this),
+	        // 	error: function(oError) {
+	        		
+	        // 	}.bind(this)
+        	// });
         },
 
         /**
