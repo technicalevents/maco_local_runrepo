@@ -30,6 +30,7 @@
                     						formatter: '.formatProcessActivityTitle'
                     				}"
 					        userNameClickable="{= (${this>BusinessObjectType} === 'PDoc' || (${this>BusinessObjectType} === 'TransDoc' &amp;&amp; ${this>isExternalMessage}))}"
+					        userNameClicked="navigateToBusinessObject"
 					        text="{this>ActivityDescription}"
 					        filterValue="{this>JobTitle}"
 					        icon="{parts: [{path: 'this>BusinessObjectType'}, 
