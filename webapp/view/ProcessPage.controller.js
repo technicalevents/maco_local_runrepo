@@ -68,12 +68,11 @@ sap.ui.define(
         headerActionButtonPressed: function(sAction) {
         	var oRouteParams = this.getThisModel().getProperty("/RouteParams");
         	var oData = {
-        		ProcessDocumentKey: oRouteParams.ProcessDocumentKey,
+        		// ProcessDocumentKey: oRouteParams.ProcessDocumentKey,
+        		ProcessDocumentKey: this.generateGuid(),
         		Action: sAction,
         		Action_Item: ""
         	};
-        	
-        	this.generateGuid();
         	
         	var sKey = this.getView().getModel().createKey("/xMP4GxC_Proc_Detail_Action_UI", 
                                                     {ProcessDocumentKey: oRouteParams.ProcessDocumentKey});
