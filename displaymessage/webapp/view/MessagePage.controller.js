@@ -109,7 +109,8 @@ sap.ui.define(
 					var oParam = {
 						semanticObject: Utility.getSemanticObject(sBusinessObjectType),
 						action: Constants.SEMANTIC_ACTION.DISPLAY,
-						params: Utility.getNavigationParameters(sBusinessObjectType, sLinkedDocumentKey, sProcessID)                    
+						params: Utility.getNavigationParameters(sBusinessObjectType, sLinkedDocumentKey, sProcessID),
+						appState: null
 					};
 					
 					this.oNav.navExternal(oParam);
