@@ -158,6 +158,13 @@
           ]
         },
         {
+          "name": "localstate-new",
+          "pattern": "{?query}",
+          "target": [
+            "listReport"
+          ]
+        },
+        {
           "name": "messagePage",
           "pattern": "messagePage/{TransferDocumentKey}",
           "target": [
