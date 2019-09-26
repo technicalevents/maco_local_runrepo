@@ -6,13 +6,14 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
     "sap/ui/model/Sorter",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/thirdparty/hasher",
     "sap/ui/thirdparty/jszip",
 	"sap/ui/core/util/File",
-	"sap/m/MessageBox"
+	"sap/ui/generic/app/navigation/service/SelectionVariant",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
   ],
-  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Utility, Sorter, JSONModel, Hasher, JSZip, File, MessageBox) {
+  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Utility, Sorter, 
+			JSZip, File, SelectionVariant, Filter, FilterOperator) {
     'use strict';
 
     return ActionSmartTableController.extend(
@@ -25,7 +26,7 @@ sap.ui.define(
 		 */
     formatter: messageFormatter,
 
-    /******************************************************************* */
+        /******************************************************************* */
 		/* LIFECYCLE METHODS */
 		/******************************************************************* */
 
@@ -41,33 +42,22 @@ sap.ui.define(
               table: 'idMessageSmartTable'
             }
           });
-
-          if(!sap.ui.getCore().getModel("DisplayMessageApp")) {
-            // Create a JSON Model
-            var oDisplayMsgAppModel = new JSONModel({
-                FilterData: {}
-            });
-            oDisplayMsgAppModel.setDefaultBindingMode("OneWay");
-            sap.ui.getCore().setModel(oDisplayMsgAppModel, "DisplayMessageApp");
-          }
           
-          this.getThisModel().setProperty("/DownloadBtnVisible", false);
+          this.getThisModel().setProperty("/DownloadBtnEnable", false);
           this.getThisModel().setProperty("/tileCustomUrl", this.getSaveTileCustomUrl);
           this.getThisModel().setProperty("/tileServiceUrl", this.getSaveTileServiceUrl.bind(this));
         },
-
+        
       /******************************************************************* */
       /* PUBLIC METHODS */
       /******************************************************************* */
 
       /**
-	  	 * Event is triggered when Back button is triggered
+	   * Event is triggered when Back button is triggered
        * @param {object} oEvent BackButton Event
        * @public
        */
       onMessageRowSelect: function(oEvent) {
-          this._setFilterDataProperty();
-
           var oObject = oEvent.getSource().getBindingContext().getObject();
 
           this.oRouter.navTo('messagePage', {
@@ -81,7 +71,7 @@ sap.ui.define(
 	   * @public
 	   */
         onMessageTableSelChange: function(oEvent) {
-        	this.handleDownloadBtnVisible(oEvent.getSource());
+        	this.handleDownloadBtnEnable(oEvent.getSource());
         },
         
       /**
@@ -95,6 +85,8 @@ sap.ui.define(
           aSorters.push(new Sorter("Timestamp", true));
           aSorters.push(new Sorter("TransferDocumentNumber", true));
           oUpdate.addSorters(aSorters);
+          
+          this.storeCurrentAppState();
         },
         
         /**
@@ -103,23 +95,23 @@ sap.ui.define(
 		 * @public
 		 */
         onMessageTableUpdateFinish: function(oEvent) {
-        	this.handleDownloadBtnVisible(oEvent.getSource());
+        	this.handleDownloadBtnEnable(oEvent.getSource());
         },
         
         /**
-		 * Function handle visibility of download button on table selection change and table updation
+		 * Function handle enablity of download button on table selection change and table updation
 		 * @param {object} oEvent     Message Table Control
 		 * @public
 		 */
-        handleDownloadBtnVisible: function(oTableCntrl) {
+        handleDownloadBtnEnable: function(oTableCntrl) {
         	var aSelectedContexts = oTableCntrl.getSelectedContexts();
-        	var bDownloadBtnVisible = false;
+        	var bDownloadBtnEnable = false;
         	
         	if(aSelectedContexts.length > 0) {
-        		bDownloadBtnVisible = true;
+        		bDownloadBtnEnable = true;
         	}
         	
-        	this.getThisModel().setProperty("/DownloadBtnVisible", bDownloadBtnVisible);
+        	this.getThisModel().setProperty("/DownloadBtnEnable", bDownloadBtnEnable);
         },
         
         /**
@@ -128,38 +120,23 @@ sap.ui.define(
 		 */
 		onPressDownload: function() {
 			var aSelectedContexts = this.getView().byId("idMessageTable").getSelectedContexts();
-			var oSelectedObject = {};
-			var oJSZip = new JSZip();
-			var bRecordExceedLimit = false;
-			var sFolderName = "Market Message " + new Date().toLocaleDateString();
+			var aExternalUUIDFilter = [];
+			var oFinalFilter;
 			
-			for(var intI = 0; intI < aSelectedContexts.length && !bRecordExceedLimit; intI++) {
-				oSelectedObject = aSelectedContexts[intI].getObject();
-				oJSZip.file(oSelectedObject.ExternalUUID + ".txt", oSelectedObject.ExternalPayload);
-				
-				if(Object.keys(oJSZip.files).length > 50) {
-					bRecordExceedLimit = true;
-					delete oJSZip.files[oSelectedObject.ExternalUUID + ".txt"];
+			for(var intI = 0; intI < aSelectedContexts.length; intI++) {
+				aExternalUUIDFilter.push(new Filter("ExternalUUID", FilterOperator.EQ, aSelectedContexts[intI].getObject().ExternalUUID));
+			}
+			
+			oFinalFilter = new Filter(aExternalUUIDFilter, false);
+			
+			this.oTransaction.whenRead({
+				path: "/xMP4GxC_TransferDoc_UI",
+				busyControl: this.getView(),
+				filters: [oFinalFilter],
+				urlParameters : {
+					$select: "ExternalUUID,ExternalPayload"
 				}
-			}
-			
-			if(bRecordExceedLimit) {
-				// Download confirmation popup
-				var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
-				
-				MessageBox.confirm(oResourceBundle.getText("MESSAGE_LIST_DOWNLOAD_TEXT"), {
-					title: oResourceBundle.getText("MESSAGE_LIST_DOWNLOAD_TITLE"),
-					onClose: function(oAction) {
-						if (oAction === MessageBox.Action.OK) {
-							var oContent = oJSZip.generate({type:'blob'});
-							File.save(oContent, sFolderName,"zip","application/zip");
-						}
-					}.bind(this)
-				});
-			} else {
-				var oContent = oJSZip.generate({type:'blob'});
-				File.save(oContent, sFolderName,"zip","application/zip");
-			}
+			}).then(this._onSucessLoadMessageListData.bind(this));
 		},
 
         /**
@@ -168,11 +145,8 @@ sap.ui.define(
          * @public
          */
         onFilterBarInitialized: function() {
-          var oFilterData = jQuery.extend(true, {}, sap.ui.getCore().getModel("DisplayMessageApp").getProperty("/FilterData"));
           var oSmartFilterBar = this.getView().byId("idMessageSmartFilterBar");
           var oSmartTable = this.getView().byId("idMessageSmartTable");
-          
-          oSmartFilterBar.setFilterData(oFilterData);
 
           this.oNav.parseNavigation().done(function(oAppState) {
             if(!jQuery.isEmptyObject(oAppState)) {
@@ -188,8 +162,6 @@ sap.ui.define(
          * @public
          */
         onNavToProcess: function(oEvent) {
-          this._setFilterDataProperty();
-
           var oObject = oEvent.getSource().getBindingContext().getObject();
           var oParam = {
           	semanticObject: Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT,
@@ -247,9 +219,17 @@ sap.ui.define(
         * @returns {string} sQueryUri   Url of Application for count
     	*/
         getSaveTileServiceUrl: function () {
+        	var sAppId = this.getOwnerComponent().getManifestEntry("/sap.app/id").split(".").join("");
         	var sServiceUrl = this.getOwnerComponent().getManifestEntry("/sap.app/dataSources/Main/uri");
         	
         	// ensure trailing '/'
+			sServiceUrl = /\/$/.test(sServiceUrl) ? sServiceUrl : sServiceUrl + "/";
+			// ensure leading '/'
+			sServiceUrl = /^\//.test(sServiceUrl) ? sServiceUrl : "/" + sServiceUrl;
+			
+			sServiceUrl = sAppId + sServiceUrl;
+			
+			// ensure trailing '/'
 			sServiceUrl = /\/$/.test(sServiceUrl) ? sServiceUrl : sServiceUrl + "/";
 			// ensure leading '/'
 			sServiceUrl = /^\//.test(sServiceUrl) ? sServiceUrl : "/" + sServiceUrl;
@@ -282,19 +262,44 @@ sap.ui.define(
         	
             return sQueryUri;
         },
-
-        /******************************************************************* */
-        /* PRIVATE METHODS */
-        /******************************************************************* */
         
         /**
-         * Method will retrieve filter data from filterbar and set in JSON Model
-         * @public
-         */
-        _setFilterDataProperty: function() {
-        	var oFilterData = jQuery.extend(true, {}, 
-                            this.getView().byId("idMessageSmartFilterBar").getFilterData());
-            sap.ui.getCore().getModel("DisplayMessageApp").setProperty("/FilterData", oFilterData);
+		 * Function will store application's current state on change in message list
+		 * @public
+		 */
+        storeCurrentAppState: function() {
+            var oSmartFilterBar = this.getView().byId("idMessageSmartFilterBar");
+			var oSmartFilterUiState = oSmartFilterBar.getUiState();
+			var oSmartTable = this.getView().byId("idMessageSmartTable");
+			var oSelectionVariant = new SelectionVariant(JSON.stringify(oSmartFilterUiState.getSelectionVariant()));
+			var oCurrentAppState = {
+				selectionVariant: oSelectionVariant.toJSONString(),
+				tableVariantId: oSmartTable.getCurrentVariantId(),
+				valueTexts: oSmartFilterUiState.getValueTexts()
+			};
+            this.oNav.storeInnerAppState(oCurrentAppState);
+        },
+        
+        /******************************************************************* */
+		/* PRIVATE METHODS */
+		/******************************************************************* */
+        
+        /**
+		 * Function is called when data read call is succesfull
+		 * @param {object} oResult   Message List Data
+		 * @private
+		 */
+        _onSucessLoadMessageListData: function(oResult) {
+        	var aMessageListData = oResult.data.results;
+			var oJSZip = new JSZip();
+			var sFolderName = "Market Message " + new Date().toLocaleDateString();
+			
+			for(var intI = 0; intI < aMessageListData.length; intI++) {
+				oJSZip.file(aMessageListData[intI].ExternalUUID + ".txt", aMessageListData[intI].ExternalPayload);
+			}
+			
+			var oContent = oJSZip.generate({type:"blob"});
+			File.save(oContent, sFolderName,"zip","application/zip");
         }
       }
     );

@@ -35,7 +35,7 @@
 					        smartFilterId="idMessageSmartFilterBar"
 					        smartVariant="idMessageVariantManagement"
 					        enableAutoBinding="true" 
-					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ExternalPayload,ProcessID"
+					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID"
 					        ignoredFields="ExtBusinessMessageID"
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="false"
@@ -53,7 +53,7 @@
             	press="onRefresh"/>
             <Button icon="sap-icon://download"
 				tooltip="{i18n>DOWNLOAD_BTN_TXT}"
-				visible="{this>/DownloadBtnVisible}"
+				enabled="{this>/DownloadBtnEnable}"
 				type="Transparent"
 				press="onPressDownload"/>
           </OverflowToolbar>
