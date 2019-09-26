@@ -170,6 +170,13 @@
           ]
         },
         {
+          "name": "localstate-new",
+          "pattern": "{?query}",
+          "target": [
+            "listReport"
+          ]
+        },
+        {
           "name": "processPage",
           "pattern": "processPage/{ProcessDocumentKey},{ProcessID}",
           "target": [
