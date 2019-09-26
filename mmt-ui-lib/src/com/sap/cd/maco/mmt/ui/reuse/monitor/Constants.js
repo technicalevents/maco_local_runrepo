@@ -21,6 +21,12 @@ sap.ui.define([], function () {
         FLOW_TYPE: {
             OUTBOUND: "O",
             INBOUND: "I"
+        },
+        
+        PROCESS_LIST_HEADER_ACTION: {
+            CLOSE_LATEST_DEADLINE: "Deadline",
+            EXECUTE_TRANSFER_DOCUMENT: "TriggerDoc",
+            EXECUTE_MESSAGE_AGGREGATION: "DispatchAggr"
         }
      });
 });
