@@ -73,6 +73,8 @@ sap.ui.define(
         		Action_Item: ""
         	};
         	
+        	this.generateGuid();
+        	
         	var sKey = this.getView().getModel().createKey("/xMP4GxC_Proc_Detail_Action_UI", 
                                                     {ProcessDocumentKey: oRouteParams.ProcessDocumentKey});
                                                     
@@ -84,6 +86,15 @@ sap.ui.define(
 	        	}.bind(this)
         	});
         },
+        
+        generateGuid: function() {
+			function r() {
+				return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(
+					1);
+			}
+			return r() + r() + "-" + r() + "-" + r() + "-" + r() + "-" + r() + r() +
+				r();
+		},
 
         /**
          * Function returns no found message in case of some errors
