@@ -70,7 +70,7 @@ sap.ui.define(
         	var oData = {
         		ProcessDocumentKey: oRouteParams.ProcessDocumentKey,
         		Action: sAction,
-        		ReturnMessage: ""
+        		Action_Item: ""
         	};
         	
         	var sKey = this.getView().getModel().createKey("/xMP4GxC_Proc_Detail_Action_UI", 
