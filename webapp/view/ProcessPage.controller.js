@@ -1,9 +1,12 @@
 sap.ui.define(
   [
     "com/sap/cd/maco/mmt/ui/reuse/objectPage/ObjectPageNoDraftController",
-    "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter"
+    "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
+    "sap/m/MessageBox",
+    "sap/ui/core/MessageType",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants"
   ],
-  function(ObjectPageNoDraftController, Formatter) {
+  function(ObjectPageNoDraftController, Formatter, MessageBox, MessageType, Constants) {
     "use strict";
 
     return ObjectPageNoDraftController.extend(
@@ -41,39 +44,45 @@ sap.ui.define(
         },
         
         /**
-         * Event Handler on press of Deadline button
+         * Event Handler on press of Close Latest Deadline button
          * @public
          * @param {object} oRouteParams Route parameters of Process Page
          */
-        onPressDeadline: function(oEvent) {
+        onPressCloseLatestDeadline: function() {
+        	this.headerActionButtonPressed(Constants.PROCESS_LIST_HEADER_ACTION.CLOSE_LATEST_DEADLINE);
+        },
+        
+        /**
+         * Event Handler on press of Execute Transfer Document button
+         * @public
+         */
+        onPressExecuteTransferDocument: function() {
+        	this.headerActionButtonPressed(Constants.PROCESS_LIST_HEADER_ACTION.EXECUTE_TRANSFER_DOCUMENT);
+        },
+        
+        /**
+         * Function is triggered when process page header action buttons are pressed
+         * @public
+         * @param {object} oRouteParams Route parameters of Process Page
+         */
+        headerActionButtonPressed: function(sAction) {
         	var oRouteParams = this.getThisModel().getProperty("/RouteParams");
-        	var oDeadlineData = {
+        	var oData = {
         		ProcessDocumentKey: oRouteParams.ProcessDocumentKey,
-        		// ProcessDocumentNumber: "",
-        		Action: "Deadline",
+        		Action: sAction,
         		ReturnMessage: ""
         	};
         	
         	var sKey = this.getView().getModel().createKey("/xMP4GxC_Proc_Detail_Action_UI", 
                                                     {ProcessDocumentKey: oRouteParams.ProcessDocumentKey});
                                                     
-            this.getView().getModel().update(sKey, oDeadlineData, 
-	        	{success: function(oData) {
-	        		
-	        	}.bind(this),
-	        	error: function(oError) {
-	        		
+            this._getMessageModel().setData([]);
+                                                    
+            this.getView().getModel().update(sKey, oData, 
+	        	{success: function() {
+	        		this._successRelativeReportExecution();
 	        	}.bind(this)
         	});
-        	
-        	// this.getView().getModel().create("/xMP4GxC_Proc_Detail_Action_UI", oDeadlineData, 
-	        // 	{success: function(oData) {
-	        		
-	        // 	}.bind(this),
-	        // 	error: function(oError) {
-	        		
-	        // 	}.bind(this)
-        	// });
         },
 
         /**
@@ -128,6 +137,32 @@ sap.ui.define(
           var sMarketPartner = aMarketPartner.join(", ");
           var oModel = this.getThisModel();
           oModel.setProperty("/MarketPartner", sMarketPartner);
+        },
+        
+        /**
+         * Function is used to get Message Model from Message Managewr
+         * @private
+         * @returns {object}     Message Model
+         */
+        _getMessageModel: function() {
+        	if(!this._oMessageManager) {
+        		this._oMessageManager = sap.ui.getCore().getMessageManager();
+        	}
+        	return this._oMessageManager.getMessageModel();
+        },
+        
+        /**
+         * Function is called when relative report is executed
+         * @private
+         */
+        _successRelativeReportExecution: function() {
+        	var aMessageData = this._getMessageModel().getData();
+    		var oMessage = aMessageData[0];
+    		if(oMessage.type === MessageType.Success) {
+    			MessageBox.success(aMessageData[0].message);
+    		} else if(oMessage.type === MessageType.Error) {
+    			MessageBox.error(aMessageData[0].message);
+    		}
         }
       }
     );

@@ -103,6 +103,13 @@ sap.ui.define(
           }.bind(this));
         },
         
+        /**
+         * Event Handler on press of Execute Transfer Document button
+         * @public
+         */
+        onPressExecuteMessageAggregation: function() {
+        },
+        
        /**
 		* Function to Get the URL that the tile should point to
     	* @public

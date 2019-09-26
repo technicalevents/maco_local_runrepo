@@ -25,10 +25,14 @@
           <Text text="{ProcessIDDescription}"/>
         </uxap:snappedContent>
         <uxap:actions>
-        	<Button icon="sap-icon://date-time"
-				tooltip="{i18n>DEADLINE_BTN_TXT}"
-				type="Transparent"
-				press="onPressDeadline" />
+        	<Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
+				tooltip="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
+				type="Emphasized"
+				press="onPressCloseLatestDeadline" />
+			<Button text="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
+				tooltip="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
+				type="Emphasized"
+				press="onPressExecuteTransferDocument" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>

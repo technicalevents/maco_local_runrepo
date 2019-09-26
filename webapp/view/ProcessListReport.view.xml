@@ -50,6 +50,10 @@
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>
             <Button icon="sap-icon://refresh" press="onRefresh"/>
+            <Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
+				tooltip="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
+				type="Emphasized"
+				press="onPressExecuteMessageAggregation" />
           </OverflowToolbar>
         </smartTable:customToolbar>
         <Table id="idProcessTable"
