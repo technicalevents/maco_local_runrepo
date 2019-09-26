@@ -81,6 +81,16 @@ sap.ui.define(
       parseNavigation: function() {
         return this._oNavHandler.parseNavigation();
       },
+      
+      /**
+       * Function store current app state and returns promise object
+       * @param {Object} oCurrentAppState Current application state
+       * @public
+       * @returns {jQuery.Deferred.Promise()} Promise Object
+       */
+      storeInnerAppState: function(oCurrentAppState) {
+        return this._oNavHandler.storeInnerAppState(oCurrentAppState);
+      },
 
       /**
        *
