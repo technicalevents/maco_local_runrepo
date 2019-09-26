@@ -3,24 +3,24 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/table/ActionSmartTableController",
     "com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
-    "sap/ui/model/Sorter",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/thirdparty/hasher"
+    "sap/ui/generic/app/navigation/service/SelectionVariant",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
+    "sap/ui/model/Sorter"
   ],
-  function(ActionSmartTableController, SmartTableBindingUpdate, Formatter, Sorter, JSONModel, Hasher) {
+  function(ActionSmartTableController, SmartTableBindingUpdate, Formatter, SelectionVariant, Utility, Sorter) {
     "use strict";
 
     return ActionSmartTableController.extend(
       "com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessListReport",
       {
       	
-    /**
+        /**
 		 * Formatter Attribute.
 		 * @public
 		 */
         formatter: Formatter,
         
-    /******************************************************************* */
+    	/******************************************************************* */
 		/* LIFECYCLE METHODS */
 		/******************************************************************* */
 
@@ -35,17 +35,9 @@ sap.ui.define(
               table: "idProcessSmartTable"
             }
           });
-
-          if(!sap.ui.getCore().getModel("DisplayProcessApp")) {
-            // Create a JSON Model
-            var oDisplayProcessAppModel = new JSONModel({
-                FilterData: {}
-            });
-            oDisplayProcessAppModel.setDefaultBindingMode("OneWay");
-            sap.ui.getCore().setModel(oDisplayProcessAppModel, "DisplayProcessApp");
-          }
           
           this.getThisModel().setProperty("/tileCustomUrl", this.getSaveTileCustomUrl);
+          this.getThisModel().setProperty("/tileServiceUrl", this.getSaveTileServiceUrl.bind(this));
         },
         
         /******************************************************************* */
@@ -57,8 +49,6 @@ sap.ui.define(
          * @param {sap.ui.base.Event} oEvent Row selection event object
          */
         onProcessRowSelect: function(oEvent) {
-          this._setFilterDataProperty();
-
           var oObject = oEvent
             .getSource()
             .getBindingContext()
@@ -80,6 +70,9 @@ sap.ui.define(
           aSorters.push(new Sorter("ProcessTimestamp", true));
           aSorters.push(new Sorter("ProcessDocumentKey", true));
           oUpdate.addSorters(aSorters);
+          
+          // This method will add Current application state in URL
+          this.storeCurrentAppState();
         },
         
         /**
@@ -88,12 +81,8 @@ sap.ui.define(
 	       * @public
 	       */
         onFilterBarInitialized: function() {
-          var oFilterData = jQuery.extend(true, {}, 
-            sap.ui.getCore().getModel("DisplayProcessApp").getProperty("/FilterData"));
           var oSmartFilterBar = this.getView().byId("idProcessSmartFilterBar");
           var oSmartTable = this.getView().byId("idProcessSmartTable");
-          
-          oSmartFilterBar.setFilterData(oFilterData);
 
           this.oNav.parseNavigation().done(function(oAppState) {
             if(!jQuery.isEmptyObject(oAppState)) {
@@ -128,18 +117,73 @@ sap.ui.define(
           this.getView().byId("idProcessSmartTable").rebindTable(true);
         },
         
-        /******************************************************************* */
-        /* PRIVATE METHODS */
-        /******************************************************************* */
+        /**
+         * Function to Get the Service URL to show count in Tile
+        * @public
+        * @returns {string} sQueryUri   Url of Application for count
+        */
+        getSaveTileServiceUrl: function () {
+          var sServiceUrl = this.getOwnerComponent().getManifestEntry("/sap.app/dataSources/Main/uri");
+        	
+        	// ensure trailing '/'
+          sServiceUrl = /\/$/.test(sServiceUrl) ? sServiceUrl : sServiceUrl + "/";
+          // ensure leading '/'
+          sServiceUrl = /^\//.test(sServiceUrl) ? sServiceUrl : "/" + sServiceUrl;
+
+          var sAppId = this.getOwnerComponent().getManifestEntry("/sap.app/id").split(".").join("");
+          
+          sServiceUrl = sAppId + sServiceUrl;
+          
+          // ensure trailing '/'
+          sServiceUrl = /\/$/.test(sServiceUrl) ? sServiceUrl : sServiceUrl + "/";
+          // ensure leading '/'
+          sServiceUrl = /^\//.test(sServiceUrl) ? sServiceUrl : "/" + sServiceUrl;
+              
+          var oDataModel = this.getView().getModel();
+          var sEntitySet = this.getThisModel().getProperty("/entitySet");
+          var aSmartTableQueryUrlParam = [];
+          var sQueryUri = sServiceUrl + sEntitySet;
+          
+          aSmartTableQueryUrlParam.push("$top=0");
+          
+          var oSmartFilterBar = this.getView().byId("idProcessSmartFilterBar");
+          var aFilters = oSmartFilterBar.getFilters();
+              
+          if (aFilters && aFilters.length > 0) {
+            aSmartTableQueryUrlParam.push(Utility.createODataFilterString(oDataModel, sEntitySet, aFilters));
+          }
+          
+          var sSearchQuery = oSmartFilterBar.getBasicSearchValue();
+          
+          if(sSearchQuery){
+            aSmartTableQueryUrlParam.push("$search=" + encodeURI(sSearchQuery));
+          }
+          
+          aSmartTableQueryUrlParam.push("$inlinecount=allpages");
+          
+          if (aSmartTableQueryUrlParam.length > 0) {
+            sQueryUri += "?" + aSmartTableQueryUrlParam.join("&");
+          }
+        
+          return sQueryUri;
+        },
         
         /**
-         * Method will retrieve filter data from filterbar and set in JSON Model
+         * Function will store application's current state on change in message list
          * @public
          */
-        _setFilterDataProperty: function() {
-        	var oFilterData = jQuery.extend(true, {}, 
-                            this.getView().byId("idProcessSmartFilterBar").getFilterData());
-            sap.ui.getCore().getModel("DisplayProcessApp").setProperty("/FilterData", oFilterData);
+        storeCurrentAppState: function() {
+          var oSmartFilterBar = this.getView().byId("idProcessSmartFilterBar");
+          var oSmartFilterUiState = oSmartFilterBar.getUiState();
+          var oSmartTable = this.getView().byId("idProcessSmartTable");
+          var oSelectionVariant = new SelectionVariant(JSON.stringify(oSmartFilterUiState.getSelectionVariant()));
+          var oCurrentAppState = {
+            selectionVariant: oSelectionVariant.toJSONString(),
+            tableVariantId: oSmartTable.getCurrentVariantId(),
+            valueTexts: oSmartFilterUiState.getValueTexts()
+          };
+
+          this.oNav.storeInnerAppState(oCurrentAppState);
         }
       }
     );
