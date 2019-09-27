@@ -109,6 +109,20 @@ sap.ui.define([
 			var oEntitySet = oMetaModel.getODataEntitySet(sEntitySet);
 			
 			return oEntitySet ? oMetaModel.getODataEntityType(oEntitySet.entityType) : {};
+		},
+		
+		/**
+		 * Function generates a random GUID
+		 * @public
+		 * @returns {String} guid
+		 */
+		generateGuid: function() {
+			function r() {
+				return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(
+					1);
+			}
+			return r() + r() + "-" + r() + "-" + r() + "-" + r() + "-" + r() + r() +
+				r();
 		}
 	};
 
