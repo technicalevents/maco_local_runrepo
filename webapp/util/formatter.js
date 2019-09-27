@@ -25,10 +25,10 @@ sap.ui.define([
       } else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.EXCEPTION_DOCUMENT) {
         sIcon = "sap-icon://user-edit";
       } else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.TRANSFER_DOCUMENT && 
-        sDirection === Constants.FLOW_TYPE.INBOUND) {
+        sDirection === Constants.FLOW_TYPE.OUTBOUND) {
         sIcon = "sap-icon://close-command-field";
       } else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.TRANSFER_DOCUMENT && 
-        sDirection === Constants.FLOW_TYPE.OUTBOUND) {
+        sDirection === Constants.FLOW_TYPE.INBOUND) {
         sIcon = "sap-icon://open-command-field";
       }
 

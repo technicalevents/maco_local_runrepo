@@ -50,10 +50,6 @@
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>
             <Button icon="sap-icon://refresh" press="onRefresh"/>
-            <Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
-				tooltip="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
-				type="Emphasized"
-				press="onPressExecuteMessageAggregation" />
           </OverflowToolbar>
         </smartTable:customToolbar>
         <Table id="idProcessTable"
@@ -83,6 +79,12 @@
         </Table>
       </smartTable:SmartTable>
      </semantic:content>
+     <semantic:titleCustomTextActions>
+     	<Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
+				tooltip="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
+				type="Emphasized"
+				press="onPressExecuteMessageAggregation" />
+     </semantic:titleCustomTextActions>
     <semantic:saveAsTileAction>
 			<footerbar:AddBookmarkButton id="BookmarkButton" 
                                       title="{i18n>APP_TITLE}"

@@ -5,9 +5,11 @@ sap.ui.define(
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
     "sap/ui/generic/app/navigation/service/SelectionVariant",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
-    "sap/ui/model/Sorter"
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
+    "sap/ui/model/Sorter",
+    "sap/m/MessageToast"
   ],
-  function(ActionSmartTableController, SmartTableBindingUpdate, Formatter, SelectionVariant, Utility, Sorter) {
+  function(ActionSmartTableController, SmartTableBindingUpdate, Formatter, SelectionVariant, Utility, Constants, Sorter, MessageToast) {
     "use strict";
 
     return ActionSmartTableController.extend(
@@ -93,10 +95,46 @@ sap.ui.define(
         },
         
         /**
-         * Event Handler on press of Execute Transfer Document button
+         * Event Handler on press of Execute Message Aggragation button
+         * @param {sap.ui.base.Event} oEvent   Buttion press event
          * @public
          */
-        onPressExecuteMessageAggregation: function() {
+        onPressExecuteMessageAggregation: function(oEvent) {
+			// create send aggregation action sheet only once
+			if (!this._oSendAggregationActionSheet) {
+				this._oSendAggregationActionSheet = sap.ui.xmlfragment(
+					"com.sap.cd.maco.monitor.ui.app.displayprocesses.view.SendAggregationActionSheet",
+					this
+				);
+				this.getView().addDependent(this._oSendAggregationActionSheet);
+			}
+
+			this._oSendAggregationActionSheet.openBy(oEvent.getSource());
+        },
+        
+        /**
+         * Event Handler on selection item from Action Sheet
+         * @param {sap.ui.base.Event} oEvent   Buttion press event
+         * @public
+         */
+        onSendAggregationItemPressed: function(oEvent) {
+			var oProcessDocumentKey = Utility.generateGuid();
+        	var oData = {
+        		ProcessDocumentKey: oProcessDocumentKey,
+        		Action: Constants.PROCESS_LIST_HEADER_ACTION.EXECUTE_MESSAGE_AGGREGATION,
+        		Action_Item: oEvent.getSource().data("processId")
+        	};
+        	
+        	var sKey = this.getView().getModel().createKey("/xMP4GxC_Proc_Detail_Action_UI", 
+                                                    {ProcessDocumentKey: oProcessDocumentKey});
+                                                    
+            this.getOwnerComponent().getMessageManager().removeAllMessages();
+                                                    
+            this.getView().getModel().update(sKey, oData, 
+	        	{success: function() {
+	        		this._successRelativeReportExecution();
+	        	}.bind(this)
+        	});
         },
         
        /**
@@ -184,6 +222,17 @@ sap.ui.define(
           };
 
           this.oNav.storeInnerAppState(oCurrentAppState);
+        },
+        
+        /**
+         * Function is called when relative report is executed
+         * @private
+         */
+        _successRelativeReportExecution: function() {
+        	var aMessageData = this.getOwnerComponent().getMessageManager().getMessageModel().getData();
+        	if(jQuery.isArray(aMessageData)) {
+    			MessageToast.show(aMessageData[0].message);
+        	}
         }
       }
     );

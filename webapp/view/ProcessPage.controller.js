@@ -2,11 +2,10 @@ sap.ui.define(
   [
     "com/sap/cd/maco/mmt/ui/reuse/objectPage/ObjectPageNoDraftController",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
-    "sap/m/MessageBox",
-    "sap/ui/core/MessageType",
-    "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants"
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
+    "sap/m/MessageToast"
   ],
-  function(ObjectPageNoDraftController, Formatter, MessageBox, MessageType, Constants) {
+  function(ObjectPageNoDraftController, Formatter, Constants, MessageToast) {
     "use strict";
 
     return ObjectPageNoDraftController.extend(
@@ -67,10 +66,8 @@ sap.ui.define(
          */
         headerActionButtonPressed: function(sAction) {
         	var oRouteParams = this.getThisModel().getProperty("/RouteParams");
-        	// var oProcessDocumentKey = this.generateGuid();
         	var oData = {
         		ProcessDocumentKey: oRouteParams.ProcessDocumentKey,
-        		// ProcessDocumentKey: oProcessDocumentKey,
         		Action: sAction,
         		Action_Item: ""
         	};
@@ -78,7 +75,7 @@ sap.ui.define(
         	var sKey = this.getView().getModel().createKey("/xMP4GxC_Proc_Detail_Action_UI", 
                                                     {ProcessDocumentKey: oRouteParams.ProcessDocumentKey});
                                                     
-            this._getMessageModel().setData([]);
+            this.getOwnerComponent().getMessageManager().removeAllMessages();
                                                     
             this.getView().getModel().update(sKey, oData, 
 	        	{success: function() {
@@ -86,15 +83,6 @@ sap.ui.define(
 	        	}.bind(this)
         	});
         },
-        
-        generateGuid: function() {
-			function r() {
-				return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(
-					1);
-			}
-			return r() + r() + "-" + r() + "-" + r() + "-" + r() + "-" + r() + r() +
-				r();
-		},
 
         /**
          * Function returns no found message in case of some errors
@@ -151,29 +139,14 @@ sap.ui.define(
         },
         
         /**
-         * Function is used to get Message Model from Message Managewr
-         * @private
-         * @returns {object}     Message Model
-         */
-        _getMessageModel: function() {
-        	if(!this._oMessageManager) {
-        		this._oMessageManager = sap.ui.getCore().getMessageManager();
-        	}
-        	return this._oMessageManager.getMessageModel();
-        },
-        
-        /**
          * Function is called when relative report is executed
          * @private
          */
         _successRelativeReportExecution: function() {
-        	var aMessageData = this._getMessageModel().getData();
-    		var oMessage = aMessageData[0];
-    		if(oMessage.type === MessageType.Success) {
-    			MessageBox.success(aMessageData[0].message);
-    		} else if(oMessage.type === MessageType.Error) {
-    			MessageBox.error(aMessageData[0].message);
-    		}
+        	var aMessageData = this.getOwnerComponent().getMessageManager().getMessageModel().getData();
+        	if(jQuery.isArray(aMessageData)) {
+    			MessageToast.show(aMessageData[0].message);
+        	}
         }
       }
     );

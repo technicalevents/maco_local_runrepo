@@ -54,7 +54,19 @@ sap.ui.define(
 
         // call the base component's destroy function
         UIComponent.prototype.destroy.apply(this, arguments);
-      }
+      },
+      
+      /**
+		 * Function is used to get Message Model from Message Managewr
+		 * @pubic
+		 * @returns {object}     Message Model
+		 */
+		getMessageManager: function() {
+			if(!this._oMessageManager) {
+				this._oMessageManager = sap.ui.getCore().getMessageManager();
+			}
+			return this._oMessageManager;
+		}
     });
   }
 );
