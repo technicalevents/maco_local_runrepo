@@ -20,12 +20,11 @@ sap.ui.define(
         return aContexts.length > 0;
       },
 
-      execute: function(oParams, oEvent, oController) {
+      execute: function(oParams) {
         // check oParams
         this.assertContextParam(oParams);
 
         // keep stuff
-        this._oController = oController;
         this._oParams = oParams;
         this._oContext = oParams.contexts[0];
         this._oObject = this._oContext.getObject();
@@ -37,7 +36,7 @@ sap.ui.define(
 
         // check controller
         this.oAssert.subclass(
-          oController,
+          oParams.controller,
           'com.sap.cd.maco.mmt.ui.reuse.objectPage.ObjectPageDraftController',
           'cancel action must be executed on a subclass of com.sap.cd.maco.mmt.ui.reuse.draft.ObjectPageDraftController'
         );
@@ -51,7 +50,7 @@ sap.ui.define(
                 msg: bundle.get().getText('transactionDraftConfirmCancel'),
                 buttonText: bundle.get().getText('buttonDiscard'),
                 popover: true,
-                byControl: oEvent.getSource()
+                byControl: oParams.event.getSource()
               })
               .then(this._onConfirmed.bind(this), reject);
           }.bind(this)
@@ -69,9 +68,10 @@ sap.ui.define(
 
       _onDeleted: function(oResult) {
         if (this._oParams.nav) {
+          var oConConfig = this._oParams.controller.oConfig;
           if (this._oObject.HasActiveEntity) {
             // determine guid
-            var sEntitySet = this.oConfig.entitySet ? this.oConfig.entitySet : this._oController.oConfig.entitySet;
+            var sEntitySet = this.oConfig.entitySet ? this.oConfig.entitySet : oConConfig.entitySet;
             this.oAssert.ok(
               sEntitySet,
               'cannot execute cancel action. no entitySet. configure the entitySet on the action or on the executing controller'
@@ -87,7 +87,7 @@ sap.ui.define(
             oActiveObject.ActiveUUID = null;
 
             // compute route args
-            var sRoute = this._oController.oConfig.routes.this;
+            var sRoute = oConConfig.routes.this;
             this.oAssert.ok(sRoute, 'cannot execute cancel action. no route. configure the route on the executing controller');
             var oArgs = this._oRouteArgsFactory.fromObject(sRoute, oActiveObject);
 
@@ -95,7 +95,7 @@ sap.ui.define(
             this.oRouter.navTo(sRoute, oArgs, true);
           } else {
             // navigate back (or to list report if history is empty)
-            var sParentRoute = this._oController.oConfig.routes.parent;
+            var sParentRoute = oConConfig.routes.parent;
             this.oAssert.ok(sParentRoute, 'cannot execute cancel action. no parentRoute. configure the parent route on the executing controller');
             this.oNav.navHistoryBackAppTarget(sParentRoute, {}); // TODO empty route params
           }

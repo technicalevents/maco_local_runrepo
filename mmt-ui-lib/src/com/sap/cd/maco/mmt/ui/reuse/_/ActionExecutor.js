@@ -1,4 +1,4 @@
-sap.ui.define(['sap/ui/base/Object', 'com/sap/cd/maco/mmt/ui/reuse/_/UI5MetadataTool'], function(Object, UI5MetadataTool) {
+sap.ui.define(['sap/ui/base/Object', 'com/sap/cd/maco/mmt/ui/reuse/base/UI5MetadataTool'], function(Object, UI5MetadataTool) {
   'use strict';
 
   return Object.extend('com.sap.cd.maco.mmt.ui.reuse._.ActionExecutor', {
@@ -16,7 +16,10 @@ sap.ui.define(['sap/ui/base/Object', 'com/sap/cd/maco/mmt/ui/reuse/_/UI5Metadata
       this._oAssert.ok(sActionName, 'cannot execute action. missing custom data with key "action"');
       this._oAssert.ok(this._oController.oConfig, 'cannot execute action. missing a config on controller');
       this._oAssert.ok(this._oController.oConfig.actions, 'cannot execute action. no actions on controller config');
-      this._oAssert.ok(this._oController.oConfig.actions[sActionName], 'cannot execute action. no action in config with name: ' + sActionName);
+      this._oAssert.ok(
+        this._oController.oConfig.actions[sActionName],
+        'cannot execute action. no action in controller config with name: ' + sActionName
+      );
 
       // get action
       var oAction = this._oController.oConfig.actions[sActionName];
@@ -24,15 +27,17 @@ sap.ui.define(['sap/ui/base/Object', 'com/sap/cd/maco/mmt/ui/reuse/_/UI5Metadata
       // add standard params
       var oSource = oEvent.getSource();
       var oParams = this._getParams(oSource);
+      oParams.event = oEvent;
+      oParams.controller = this._oController;
 
       // execute before
       var sBeforeFunc = 'onBeforeAction' + this._capitalize(sActionName);
       if (this._oController[sBeforeFunc]) {
-        this._oController[sBeforeFunc](oParams, oEvent);
+        this._oController[sBeforeFunc](oParams);
       }
 
       // execute
-      oAction.execute(oParams, oEvent, this._oController).then(
+      oAction.execute(oParams).then(
         // resolve
         function(oResult) {
           // execute after

@@ -23,7 +23,7 @@ sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/base/BaseAction', 'com/sap/cd/maco/
       return aContexts.length > 0;
     },
 
-    execute: function(oParams, oEvent, oController) {
+    execute: function(oParams) {
       this.assertContextParam(oParams);
 
       if (!oParams.params) {

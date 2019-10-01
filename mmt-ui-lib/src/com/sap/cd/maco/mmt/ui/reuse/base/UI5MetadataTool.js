@@ -1,7 +1,7 @@
 sap.ui.define(['sap/ui/base/Object'], function(Object) {
   'use strict';
 
-  return Object.extend('com.sap.cd.maco.mmt.ui.reuse._.UI5MetadataTool', {
+  return Object.extend('com.sap.cd.maco.mmt.ui.reuse.base.UI5MetadataTool', {
     constructor: function() {},
 
     isInstance: function(oObject, sClassName) {

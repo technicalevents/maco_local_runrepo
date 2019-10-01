@@ -2,7 +2,7 @@
 sap.ui.define(
   [
     'sap/ui/base/Object',
-    'com/sap/cd/maco/mmt/ui/reuse/_/UI5MetadataTool',
+    'com/sap/cd/maco/mmt/ui/reuse/base/UI5MetadataTool',
     'sap/m/Dialog',
     'sap/m/Text',
     'sap/m/Button',

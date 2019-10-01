@@ -24,9 +24,9 @@ sap.ui.define(
         return aContexts.length > 0;
       },
 
-      execute: function(oParams, oEvent, oController) {
+      execute: function(oParams) {
         this.oAssert.subclass(
-          oController,
+          oParams.controller,
           'com.sap.cd.maco.mmt.ui.reuse.objectPage.ObjectPageNoDraftController',
           'cannot execute save action. controller must be a subclass of ObjectPageNoDraftController'
         );
@@ -41,12 +41,12 @@ sap.ui.define(
               return;
             }
 
-            var oCallWith = new CallWithMessageHandling(oController);
+            var oCallWith = new CallWithMessageHandling(oParams.controller);
             var fnCall = this.oTransaction.whenSubmitted.bind(this.oTransaction, oParams);
             var oWhen = oCallWith.whenCalled(fnCall, this.oConfig.manageMessagesClient, this.oConfig.manageMessagesServer);
             oWhen.then(
               function(oResult) {
-                var sMode = oController.getMode();
+                var sMode = oParams.controller.getMode();
                 if ('Create' === sMode) {
                   // show message
                   var sMsg = this.getConfigText('createSuccessMsg', 'transactionSubmitCreateSuccess', null);
@@ -64,7 +64,7 @@ sap.ui.define(
                     msg: sMsg
                   });
                   // change mode
-                  oController.setMode('Display');
+                  oParams.controller.setMode('Display');
                 } else {
                   // error
                   this.oAssert.ok(false, 'cannot execute save action. unhandled object page mode on cancel: ' + sMode);

@@ -14,7 +14,7 @@ sap.ui.define(
         BaseViewController.prototype.onInit.apply(this, arguments);
 
         // attach table events
-        var oTable = this._getSmartTable();
+        var oTable = this.getSmartTable();
         oTable.attachEvent('dataReceived', this._enableActions, this); // after deleting contexts updates might be necessary
         oTable.getTable().attachEvent('selectionChange', this._enableActions, this);
 
@@ -22,7 +22,7 @@ sap.ui.define(
         this.getView().setModel(new JSONModel({}), 'this');
       },
 
-      _getSmartTable: function() {
+      getSmartTable: function() {
         return getConfigControl(this, 'table', 'sap.ui.comp.smarttable.SmartTable', true);
       },
 
@@ -47,7 +47,7 @@ sap.ui.define(
 
           // determine enabled
           var bEnabled;
-          var oTable = this._getSmartTable().getTable();
+          var oTable = this.getSmartTable().getTable();
           var aContexts = oTable.getSelectedContexts();
           if (sCardinality === '0') {
             bEnabled = true;

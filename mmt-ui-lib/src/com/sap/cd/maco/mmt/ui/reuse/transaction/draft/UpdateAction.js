@@ -23,7 +23,7 @@ sap.ui.define(
         return aContexts.length > 0;
       },
 
-      execute: function(oParams, oEvent, oController) {
+      execute: function(oParams) {
         // check params
         this.assertContextParam(oParams);
         var oContext = oParams.contexts[0];
@@ -46,11 +46,11 @@ sap.ui.define(
                 if (oParams.nav) {
                   // get route from controller config
                   this.oAssert.subclass(
-                    oController,
+                    oParams.controller,
                     'com.sap.cd.maco.mmt.ui.reuse.objectPage.ObjectPageDraftController',
                     'action must be executed on a subclass of com.sap.cd.maco.mmt.ui.reuse.draft.ObjectPageController'
                   );
-                  var sRoute = oController.oConfig.routes.this;
+                  var sRoute = oParams.controller.oConfig.routes.this;
                   // compute route args
                   var oArgs = this._oRouteArgsFactory.fromObject(sRoute, oResult.data);
                   // nav

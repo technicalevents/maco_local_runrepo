@@ -3,7 +3,7 @@ sap.ui.define(
   [
     'com/sap/cd/maco/mmt/ui/reuse/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/_/bundle',
-    'com/sap/cd/maco/mmt/ui/reuse/_/UI5MetadataTool',
+    'com/sap/cd/maco/mmt/ui/reuse/base/UI5MetadataTool',
     'com/sap/cd/maco/mmt/ui/reuse/message/CallWithMessageHandling'
   ],
   function(BaseAction, bundle, UI5MetadataTool, CallWithMessageHandling) {
@@ -19,9 +19,9 @@ sap.ui.define(
         return aContexts.length > 0;
       },
 
-      execute: function(oParams, oEvent, oController) {
+      execute: function(oParams) {
         this.oAssert.subclass(
-          oController,
+          oParams.controller,
           'com.sap.cd.maco.mmt.ui.reuse.objectPage.ObjectPageNoDraftController',
           'cannot execute submit action. controller must be a subclass of ObjectPageNoDraftController'
         );
@@ -29,7 +29,7 @@ sap.ui.define(
         return new Promise(
           function(resolve, reject) {
             // change mode
-            oController.setMode('Update');
+            oParams.controller.setMode('Update');
 
             // reset all model changes
             if (this.oModel.hasPendingChanges()) {
@@ -37,7 +37,7 @@ sap.ui.define(
             }
 
             // reset message handling
-            var oCallWith = new CallWithMessageHandling(oController);
+            var oCallWith = new CallWithMessageHandling(oParams.controller);
             oCallWith.reset();
 
             // done

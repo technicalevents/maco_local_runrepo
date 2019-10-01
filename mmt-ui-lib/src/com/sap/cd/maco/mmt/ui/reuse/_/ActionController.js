@@ -83,20 +83,10 @@ sap.ui.define(
         // add standard params
         var oParams = {
           busyControl: this._getActionBusyControl(),
-          contexts: aContexts
+          contexts: aContexts,
+          event: oEvent,
+          controller: this
         };
-
-        // add event parameters
-        // (but not id, not documented)
-        /*
-               var oEventParams = oEvent.getParameters();
-               for (var sKey in oEventParams) {
-               if (sKey !== 'id') {
-               var oEventParam = oEvent.getParameter(sKey);
-               oParams[sKey] = oEventParam;
-               }
-               }
-               */
 
         // execute before
         var sBeforeName = 'onBeforeExecute_' + sActionId;
@@ -105,7 +95,7 @@ sap.ui.define(
         }
 
         // execute
-        oAction.execute(oParams, oEvent, this).then(
+        oAction.execute(oParams).then(
           // resolve
           function(oResult) {
             // execute after
@@ -119,7 +109,7 @@ sap.ui.define(
         );
       },
 
-      onBeforeExecuteAction: function(sId, oParams, oEvent) {
+      onBeforeExecuteAction: function(sId, oParams) {
         // to be overriden by subclassers
       },
 

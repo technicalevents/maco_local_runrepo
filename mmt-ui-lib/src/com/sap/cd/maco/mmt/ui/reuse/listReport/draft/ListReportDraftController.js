@@ -2,53 +2,40 @@ sap.ui.define(
   [
     'sap/ui/model/json/JSONModel',
     'com/sap/cd/maco/mmt/ui/reuse/_/bundle',
-    'com/sap/cd/maco/mmt/ui/reuse/table/SmartTableController',
+    'com/sap/cd/maco/mmt/ui/reuse/listReport/ListReportController',
     'com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate',
     'com/sap/cd/maco/mmt/ui/reuse/_/getConfigControl'
   ],
-  function(JSONModel, bundle, SmartTableController, SmartTableBindingUpdate, getConfigControl) {
+  function(JSONModel, bundle, ListReportController, SmartTableBindingUpdate, getConfigControl) {
     'use strict';
 
-    return SmartTableController.extend('com.sap.cd.maco.mmt.ui.reuse.listReport.draft.ListReportDraftController', {
+    return ListReportController.extend('com.sap.cd.maco.mmt.ui.reuse.listReport.draft.ListReportDraftController', {
       //~~~~ init ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
       onInit: function(oConfig) {
-        SmartTableController.prototype.onInit.apply(this, arguments);
-
-        this.oConfig = oConfig;
-
-        // check config
-        this.oAssert.ok(oConfig, 'ListReportDraftController cannot init. config missing');
-        this.oAssert.ok(oConfig.controls, 'ListReportDraftController cannot init. controls missing');
+        // super
+        ListReportController.prototype.onInit.apply(this, arguments);
 
         // attach filter bar events
-        var oFilterBar = this._getFilterBar();
+        var oFilterBar = this.getFilterBar();
         oFilterBar.attachEvent('afterVariantLoad', this._onAfterVariantLoad, this);
         oFilterBar.attachEvent('beforeVariantFetch', this._onBeforeVariantFetch, this);
 
         // attach draft status filter events
-        var oStatusFilter = this._getDraftStatusFilter();
+        var oStatusFilter = this.getDraftStatusFilter();
         if (oStatusFilter) {
           oStatusFilter.attachEvent('change', this._onDraftStatusFilterChange, this);
         }
       },
 
-      _getVariantManagement: function() {
-        return getConfigControl(this, 'variantManagement', 'sap.ui.comp.smartvariants.SmartVariantManagement', false);
-      },
-
-      _getFilterBar: function() {
-        return getConfigControl(this, 'filterBar', 'sap.ui.comp.smartfilterbar.SmartFilterBar', true);
-      },
-
-      _getDraftStatusFilter: function() {
+      getDraftStatusFilter: function() {
         return getConfigControl(this, 'draftStatusFilter', 'com.sap.cd.maco.mmt.ui.reuse.listReport.draft.DraftStatusFilter', false);
       },
 
       //~~~~ filter bar ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
       _onAfterVariantLoad: function(oEvent) {
-        var oFilter = this._getDraftStatusFilter();
+        var oFilter = this.getDraftStatusFilter();
         if (!oFilter) {
           return;
         }
@@ -60,7 +47,7 @@ sap.ui.define(
       },
 
       _onBeforeVariantFetch: function(oEvent) {
-        var oFilter = this._getDraftStatusFilter();
+        var oFilter = this.getDraftStatusFilter();
         if (!oFilter) {
           return;
         }
@@ -74,11 +61,11 @@ sap.ui.define(
 
       _onDraftStatusFilterChange: function(oEvent) {
         // rebind table
-        var oTable = this._getSmartTable();
+        var oTable = this.getSmartTable();
         oTable.rebindTable();
 
         // set variant modified
-        var oVariantMgmt = this._getVariantManagement();
+        var oVariantMgmt = this.getVariantManagement();
         if (oVariantMgmt) {
           oVariantMgmt.currentVariantSetModified();
         }
@@ -94,7 +81,7 @@ sap.ui.define(
         oUpdate.addSelects(['IsActiveEntity', 'HasDraftEntity', 'HasActiveEntity', 'DraftAdministrativeData']);
 
         // filter
-        var oSelect = this._getDraftStatusFilter();
+        var oSelect = this.getDraftStatusFilter();
         var sFilter = oSelect ? oSelect.getSelectedKey() : 'all';
         if (sFilter === 'all') {
           oUpdate.addFilter('IsActiveEntity', 'EQ', false);

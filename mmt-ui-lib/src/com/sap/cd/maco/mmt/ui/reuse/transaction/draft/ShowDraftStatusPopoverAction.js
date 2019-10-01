@@ -16,7 +16,7 @@ sap.ui.define(
         return aContexts.length > 0;
       },
 
-      execute: function(oParams, oEvent) {
+      execute: function(oParams) {
         return new Promise(
           function(resolve, reject) {
             if (!this._oDraftPopover) {
@@ -24,8 +24,8 @@ sap.ui.define(
             }
 
             // determine by
-            var sDomRef = oEvent.getParameter('domRef');
-            var oBy = sDomRef ? sDomRef : oEvent.getSource();
+            var sDomRef = oParams.event.getParameter('domRef');
+            var oBy = sDomRef ? sDomRef : oParams.event.getSource();
 
             // open
             this._oDraftPopover.open(oBy, oParams.contexts[0]);

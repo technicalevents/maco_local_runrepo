@@ -4,7 +4,7 @@ sap.ui.define(
     'com/sap/cd/maco/mmt/ui/reuse/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/_/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/nav/RouteArgsFactory',
-    'com/sap/cd/maco/mmt/ui/reuse/_/UI5MetadataTool'
+    'com/sap/cd/maco/mmt/ui/reuse/base/UI5MetadataTool'
   ],
   function(BaseAction, bundle, RouteArgsFactory, UI5MetadataTool) {
     'use strict';
@@ -16,14 +16,13 @@ sap.ui.define(
         this._oUI5MetadataTool = new UI5MetadataTool();
       },
 
-      execute: function(oParams, oEvent, oController) {
+      execute: function(oParams) {
         // check oParams
         this.assertContextParam(oParams);
 
         return new Promise(
           function(resolve, reject) {
             // keep stuff
-            this._oController = oController;
             this._oParams = oParams;
             this._oContext = oParams.contexts[0];
             this._fnResolve = resolve;
@@ -31,8 +30,8 @@ sap.ui.define(
 
             // do we need to check data loss?
             var bConfirmDataLoss =
-              this._oUI5MetadataTool.isSubclass(oController, 'com.sap.cd.maco.mmt.ui.reuse.objectPage.ObjectPageNoDraftController') &&
-              (oController.getMode() === 'Create' || oController.getMode() === 'Update') &&
+              this._oUI5MetadataTool.isSubclass(oParams.controller, 'com.sap.cd.maco.mmt.ui.reuse.objectPage.ObjectPageNoDraftController') &&
+              (oParams.controller.getMode() === 'Create' || oParams.controller.getMode() === 'Update') &&
               this.oModel.hasPendingChanges();
 
             if (bConfirmDataLoss) {
@@ -72,7 +71,8 @@ sap.ui.define(
         }
 
         // compute route
-        var sRoute = this._oController.oConfig.routes.child ? this._oController.oConfig.routes.child : this.oConfig.route;
+        var oConConfig = this._oParams.controller.oConfig;
+        var sRoute = oConConfig.routes.child ? oConConfig.routes.child : this.oConfig.route;
         this.oAssert.ok(
           sRoute,
           'cannot execute create action. no route. configure the childRoute on the executing controller or the route on this action'

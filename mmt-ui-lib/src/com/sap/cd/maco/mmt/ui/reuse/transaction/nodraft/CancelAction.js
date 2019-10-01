@@ -1,6 +1,6 @@
 /*global location*/
 sap.ui.define(
-  ['com/sap/cd/maco/mmt/ui/reuse/base/BaseAction', 'com/sap/cd/maco/mmt/ui/reuse/_/bundle', 'com/sap/cd/maco/mmt/ui/reuse/_/UI5MetadataTool'],
+  ['com/sap/cd/maco/mmt/ui/reuse/base/BaseAction', 'com/sap/cd/maco/mmt/ui/reuse/_/bundle', 'com/sap/cd/maco/mmt/ui/reuse/base/UI5MetadataTool'],
   function(BaseAction, bundle, UI5MetadataTool) {
     'use strict';
 
@@ -14,16 +14,15 @@ sap.ui.define(
         return aContexts.length > 0;
       },
 
-      execute: function(oParams, oEvent, oController) {
+      execute: function(oParams) {
         // keep stuff
         this._oParams = oParams;
         this._oContext = oParams.contexts[0];
         this._oObject = this._oContext.getObject();
-        this._oController = oController;
 
         // check controller
         this.oAssert.subclass(
-          oController,
+          oParams.controller,
           'com.sap.cd.maco.mmt.ui.reuse.objectPage.ObjectPageNoDraftController',
           'action must be executed on a subclass of com.sap.cd.maco.mmt.ui.reuse.draft.ObjectPageNoDraftController'
         );
@@ -39,7 +38,7 @@ sap.ui.define(
                   msg: bundle.get().getText('transactionCancelConfirm'),
                   buttonText: bundle.get().getText('buttonDiscard'),
                   popover: true,
-                  byControl: oEvent.getSource()
+                  byControl: oParams.event.getSource()
                 })
                 .then(this._onConfirmed.bind(this), reject);
             } else {
@@ -56,14 +55,14 @@ sap.ui.define(
         }
 
         // set object page mode
-        var sMode = this._oController.getMode();
+        var sMode = this._oParams.controller.getMode();
         if ('Create' === sMode) {
           // navigate back
           var sParentRoute = null; // would be only necessary in deep link scenario ... but there is no deep link for create :-)
           this.oNav.navHistoryBackAppTarget(sParentRoute);
         } else if ('Update' === sMode) {
           // just change the mode
-          this._oController.setMode('Display');
+          this._oParams.controller.setMode('Display');
         } else {
           // error
           this.oAssert.ok(false, 'cannot execute cancel action. unhandled object page mode on cancel: ' + sMode);

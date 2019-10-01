@@ -59,8 +59,8 @@ sap.ui.define(
         }
       },
 
-      execute: function(oParams, oEvent, oController) {
-        var oDialog = this._getDialog(oController);
+      execute: function(oParams) {
+        var oDialog = this._getDialog(oParams.controller);
         return oDialog.openForCreate(oParams.properties);
       }
     });

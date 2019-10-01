@@ -59,11 +59,11 @@ sap.ui.define(
         }
       },
 
-      execute: function(oParams, oEvent, oController) {
+      execute: function(oParams) {
         this.assertContextParam(oParams);
         return new Promise(
           function(resolve, reject) {
-            var oDialog = this._getDialog(oController);
+            var oDialog = this._getDialog(oParams.controller);
             var oWhen = oDialog.openForUpdate(oParams.contexts[0].getPath());
             oWhen.then(
               function() {
