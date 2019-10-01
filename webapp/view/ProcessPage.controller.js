@@ -36,8 +36,6 @@ sap.ui.define(
          * @param {object} oRouteParams Route parameters of Process Page
          */
         onBeforeBind: function(oRouteParams){
-          this.getThisModel().setProperty("/RouteParams", jQuery.extend(true, {}, oRouteParams));
-          
           this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
             .then(this._onSucessProcessDataRead.bind(this));
         },
@@ -45,7 +43,6 @@ sap.ui.define(
         /**
          * Event Handler on press of Close Latest Deadline button
          * @public
-         * @param {object} oRouteParams Route parameters of Process Page
          */
         onPressCloseLatestDeadline: function() {
         	this.headerActionButtonPressed(Constants.PROCESS_LIST_HEADER_ACTION.CLOSE_LATEST_DEADLINE);
@@ -62,18 +59,19 @@ sap.ui.define(
         /**
          * Function is triggered when process page header action buttons are pressed
          * @public
-         * @param {object} oRouteParams Route parameters of Process Page
+         * @param {string} sAction                Action
          */
         headerActionButtonPressed: function(sAction) {
-        	var oRouteParams = this.getThisModel().getProperty("/RouteParams");
+        	var oProcess = this.getView().getBindingContext().getObject();
+        	var sAction_Item = (sAction === Constants.PROCESS_LIST_HEADER_ACTION.EXECUTE_TRANSFER_DOCUMENT) ? oProcess.CommonAccessUUID : "";
         	var oData = {
-        		ProcessDocumentKey: oRouteParams.ProcessDocumentKey,
+        		ProcessDocumentKey: oProcess.ProcessDocumentKey,
         		Action: sAction,
-        		Action_Item: ""
+        		Action_Item: sAction_Item
         	};
         	
         	var sKey = this.getView().getModel().createKey("/xMP4GxC_Proc_Detail_Action_UI", 
-                                                    {ProcessDocumentKey: oRouteParams.ProcessDocumentKey});
+                                                    {ProcessDocumentKey: oProcess.ProcessDocumentKey});
                                                     
             this.getOwnerComponent().getMessageManager().removeAllMessages();
                                                     

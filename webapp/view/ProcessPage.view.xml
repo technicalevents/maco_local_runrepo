@@ -27,11 +27,11 @@
         <uxap:actions>
         	<Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
 				tooltip="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
-				type="Emphasized"
+				type="Transparent"
 				press="onPressCloseLatestDeadline" />
 			<Button text="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
 				tooltip="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
-				type="Emphasized"
+				type="Transparent"
 				press="onPressExecuteTransferDocument" />
         </uxap:actions>
         <uxap:breadcrumbs>
