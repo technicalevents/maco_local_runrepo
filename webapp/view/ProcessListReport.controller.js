@@ -38,7 +38,6 @@ sap.ui.define(
             }
           });
           
-          this.getThisModel().setProperty("/tileCustomUrl", this.getSaveTileCustomUrl);
           this.getThisModel().setProperty("/tileServiceUrl", this.getSaveTileServiceUrl.bind(this));
         },
         
@@ -136,22 +135,13 @@ sap.ui.define(
 	        	}.bind(this)
         	});
         },
-        
-       /**
-		* Function to Get the URL that the tile should point to
-    	* @public
-        * @returns {string} Url of Application for save as tile action
-    	*/
-        getSaveTileCustomUrl: function () {
-            return document.URL;
-        },
 
         /**
          * Event is triggered when SmartTable refresh button is pressed 
          * This method will refresh SmartTable DAa
          * @public
          */
-        onRefresh: function() {
+        onRefresh: function(oEvent) {
           this.getView().byId("idProcessSmartTable").rebindTable(true);
         },
         
