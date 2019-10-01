@@ -20,9 +20,6 @@ sap.ui.define(
 
         // init this model
         this.getView().setModel(new JSONModel({}), 'this');
-        
-        // set entitySet
-        this.getThisModel().setProperty('/entitySet', oConfig.entitySet);
       },
 
       _getSmartTable: function() {
