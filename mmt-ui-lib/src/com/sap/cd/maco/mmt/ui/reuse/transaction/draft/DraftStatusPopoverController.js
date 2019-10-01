@@ -6,7 +6,7 @@ sap.ui.define(
     return BaseFragmentController.extend('com.sap.cd.maco.mmt.ui.reuse.transaction.draft.DraftStatus', {
       constructor: function(oComponent) {
         BaseFragmentController.call(this, {
-          id: 'draftPopoverover',
+          id: 'draftStatusPopover',
           fragmentName: 'com.sap.cd.maco.mmt.ui.reuse.transaction.draft.DraftStatusPopover',
           component: oComponent
         });

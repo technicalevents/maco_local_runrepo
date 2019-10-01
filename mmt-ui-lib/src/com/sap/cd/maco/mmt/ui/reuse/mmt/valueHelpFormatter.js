@@ -1,5 +1,5 @@
-sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/mmt/valueHelpValues'], function(valueHelpValues) {
-  'use strict';
+sap.ui.define(["com/sap/cd/maco/mmt/ui/reuse/mmt/valueHelpValues"], function(valueHelpValues) {
+  "use strict";
 
   var fnGetText = function(sKey, sId) {
     for (var i = 0; i < valueHelpValues[sKey].length; i++) {
@@ -7,7 +7,7 @@ sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/mmt/valueHelpValues'], function(val
         return valueHelpValues[sKey][i].text;
       }
     }
-    return '? (' + sId + ')';
+    return "? (" + sId + ")";
   };
 
   /**
@@ -16,31 +16,43 @@ sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/mmt/valueHelpValues'], function(val
    */
   return {
     division: function(sId) {
-      return fnGetText('divisions', sId);
+      return fnGetText("divisions", sId);
     },
     marketRole: function(sId) {
-      return fnGetText('marketRoles', sId);
+      return fnGetText("marketRoles", sId);
     },
     fileContentType: function(sId) {
-      return fnGetText('fileContentTypes', sId);
+      return fnGetText("fileContentTypes", sId);
     },
     beConnectionType: function(sId) {
-      return fnGetText('beConnectionTypes', sId);
+      return fnGetText("beConnectionTypes", sId);
     },
     extConnectionType: function(sId) {
-      return fnGetText('extConnectionTypes', sId);
+      return fnGetText("extConnectionTypes", sId);
     },
     emailProtocol: function(sId) {
-      return fnGetText('emailProtocols', sId);
+      return fnGetText("emailProtocols", sId);
     },
     emailConnStatus: function(sId) {
-      return fnGetText('emailConnStatus', sId);
+      return fnGetText("emailConnStatus", sId);
     },
     keyPairStatus: function(sId) {
-      return fnGetText('keyPairStatus', sId);
+      return fnGetText("keyPairStatus", sId);
     },
     beConnectionStatus: function(sId) {
-      return fnGetText('beConnectionStatus', sId);
+      return fnGetText("beConnectionStatus", sId);
+    },
+    ProtectforRevEmail: function(sId) {
+      return fnGetText("ProtectforRevEmail", sId);
+    },
+    ProtectforSendEmail: function(sId) {
+      return fnGetText("ProtectforSendEmail", sId);
+    },
+    AuthforRevEmail: function(sId) {
+      return fnGetText("AuthforRevEmail", sId);
+    },
+    AuthforSendEmail: function(sId) {
+      return fnGetText("AuthforRevEmail", sId);
     }
   };
 });

@@ -72,7 +72,7 @@ sap.ui.define(
         // call nav handler
         this._oNavHandler.navigate(params.semanticObject, params.action, params.params, params.appState, fnError);
       },
-      
+
       /**
        * Function parse navigation and returns promise object
        * @public
@@ -81,7 +81,7 @@ sap.ui.define(
       parseNavigation: function() {
         return this._oNavHandler.parseNavigation();
       },
-      
+
       /**
        * Function store current app state and returns promise object
        * @param {Object} oCurrentAppState Current application state

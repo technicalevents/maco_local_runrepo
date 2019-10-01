@@ -1,12 +1,19 @@
 sap.ui.define(
-  ['sap/ui/core/mvc/Controller', 'com/sap/cd/maco/mmt/ui/reuse/mmt/valueHelpFormatter', 'com/sap/cd/maco/mmt/ui/reuse/base/_/copy'],
-  function(Controller, valueHelpFormatter, copy) {
+  [
+    'sap/ui/core/mvc/Controller',
+    'com/sap/cd/maco/mmt/ui/reuse/mmt/valueHelpFormatter',
+    'com/sap/cd/maco/mmt/ui/reuse/base/_/copy',
+    'com/sap/cd/maco/mmt/ui/reuse/_/ActionExecutor'
+  ],
+  function(Controller, valueHelpFormatter, copy, ActionExecutor) {
     'use strict';
 
     return Controller.extend('com.sap.cd.maco.mmt.ui.reuse.base.BaseViewController', {
       valueHelpFormatter: valueHelpFormatter,
 
-      onInit: function() {
+      onInit: function(oConfig) {
+        this.oConfig = oConfig;
+
         this.oComponent = this.getOwnerComponent();
 
         // some strange effects with cross app nav
@@ -18,6 +25,11 @@ sap.ui.define(
 
         // copy properties from component
         copy(this.oComponent, this);
+
+        // register
+        if (this.oComponent.oControllerRegistry) {
+          this.oComponent.oControllerRegistry.register(this);
+        }
       },
 
       getThisModel: function() {
@@ -56,6 +68,13 @@ sap.ui.define(
           this._fnParentContextChange(oContext);
           this._sParentPath = sParentPath;
         }
+      },
+
+      onAction: function(oEvent) {
+        if (!this._oActionExecutor) {
+          this._oActionExecutor = new ActionExecutor(this, this.oAssert);
+        }
+        this._oActionExecutor.onAction(oEvent);
       }
     });
   }

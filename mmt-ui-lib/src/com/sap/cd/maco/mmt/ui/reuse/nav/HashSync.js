@@ -1,26 +1,21 @@
 /* eslint-disable sap-no-absolute-component-path */
-sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object', 'sap/ui/core/routing/HashChanger'], function(jQuery, Object, HashChanger) {
+sap.ui.define(['jquery.sap.global', 'com/sap/cd/maco/mmt/ui/reuse/base/BaseObject', 'sap/ui/core/routing/HashChanger'], function(
+  jQuery,
+  BaseObject,
+  HashChanger
+) {
   'use strict';
 
-  return Object.extend('com.sap.cd.maco.mmt.ui.reuse.nav.HashSync', {
+  return BaseObject.extend('com.sap.cd.maco.mmt.ui.reuse.nav.HashSync', {
     constructor: function(params) {
-      // check params
-      if (!params) {
-        throw new Error('missing params');
-      }
-      if (!params.component) {
-        throw new Error('missing param: component');
-      }
-      if (!params.message) {
-        throw new Error('missing param: message');
-      }
-      if (!params.getRouteName) {
-        // ok, optional
-      }
+      BaseObject.call(this, params.component);
 
-      this._component = params.component;
-      this._message = params.message;
-      this._getRouteName = params.getRouteName;
+      // check params
+      this.oAssert.ok(params.routeName || params.getRouteName, 'Cannot init HashSync. routeName or getRouteName must be set');
+      this.oAssert.ok(!(params.routeName && params.getRouteName), 'Cannot init HashSync. you cannot use both routeName and getRouteName');
+
+      this._sRouteName = params.routeName;
+      this._fnGetRouteName = params.getRouteName;
     },
 
     synch: function() {
@@ -33,7 +28,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object', 'sap/ui/core/routing/H
       }
 
       // get component data
-      var oComponentData = this._component.getComponentData();
+      var oComponentData = this.oComponent.getComponentData();
       if (!oComponentData) {
         jQuery.sap.log.error('failed to sync hash. missing component data');
         return;
@@ -45,22 +40,20 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object', 'sap/ui/core/routing/H
       }
 
       // get route name
-      var sRouteName;
-      var fnGetRoute = this._getRouteName ? this._getRouteName : this._getRouteNameDefault;
-      try {
-        sRouteName = fnGetRoute(startupParams);
-      } catch (e) {
-        sRouteName = null;
-      }
-      if (!sRouteName) {
-        jQuery.sap.log.error('failed to sync hash. route name has not been determined');
-        return;
+      if (!this._sRouteName) {
+        try {
+          this._sRouteName = this._fnGetRouteName(startupParams);
+        } catch (e) {}
+        if (!this._sRouteName) {
+          jQuery.sap.log.error('failed to sync hash. route name has not been determined');
+          return;
+        }
       }
 
       // get route
-      var oRoute = this._component.getRouter().getRoute(sRouteName);
+      var oRoute = this.oComponent.getRouter().getRoute(this._sRouteName);
       if (!oRoute) {
-        jQuery.sap.log.error('failed to sync hash. no route for routeName ' + sRouteName);
+        jQuery.sap.log.error('failed to sync hash. no route with name ' + this._sRouteName);
         return;
       }
 
@@ -88,14 +81,6 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object', 'sap/ui/core/routing/H
 
       // finally replace hash
       oHashChanger.replaceHash(sPattern);
-    },
-
-    _getRouteNameDefault: function(oStartupParams) {
-      if (!oStartupParams.route || !Array.isArray(oStartupParams.route) || oStartupParams.route.length === 0) {
-        return null;
-      } else {
-        return oStartupParams.route[0];
-      }
     }
   });
 });

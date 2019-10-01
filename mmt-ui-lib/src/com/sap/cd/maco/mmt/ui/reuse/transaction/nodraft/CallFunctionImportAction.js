@@ -3,7 +3,11 @@ sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/base/BaseAction', 'com/sap/cd/maco/
 
   return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.transaction.nodraft.CallFunctionImportAction', {
     constructor: function(oComponent, oConfig) {
-      BaseAction.apply(this, arguments);
+      // if not specified by consumer the cardinality is 1..N
+      var sCardinality = oConfig && oConfig.cardinality && oConfig.cardinality === '1' ? '1' : '1..N';
+
+      // super
+      BaseAction.call(this, oComponent, oConfig, sCardinality);
 
       // default config
       if (!oConfig.method) {
@@ -45,8 +49,8 @@ sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/base/BaseAction', 'com/sap/cd/maco/
         function(resolve, reject) {
           this.oModel.metadataLoaded().then(
             function() {
-              if (Array.isArray(oParams.contexts) && oParams.context.length > 0) {
-                var oContext = oParams.context[0];
+              if (Array.isArray(oParams.contexts) && oParams.contexts.length > 0) {
+                var oContext = oParams.contexts[0];
                 var oObject = oContext.getObject();
                 var oMeta = this.oModel.getMetaModel();
                 var oFI = oMeta.getODataFunctionImport(this.oConfig.path);

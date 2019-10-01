@@ -5,9 +5,17 @@ sap.ui.define(
     'use strict';
 
     return BaseObject.extend('com.sap.cd.maco.mmt.ui.reuse.base.BaseAction', {
-      constructor: function(oComponent, oConfig) {
+      constructor: function(oComponent, oConfig, sCardinality) {
         BaseObject.call(this, oComponent);
         this.oConfig = oConfig ? oConfig : {};
+        /*
+        TODO next
+        this.oAssert.ok(
+          sCardinality === '0' || sCardinality === '1' || sCardinality === 'N',
+          'cannot instantiate base action. cardinality must be 0, 1 or N'
+        );
+        */
+        this._sCardinality = sCardinality;
       },
 
       enabled: function(context) {
@@ -16,6 +24,10 @@ sap.ui.define(
 
       visible: function(context) {
         return true;
+      },
+
+      cardinality: function() {
+        return this._sCardinality;
       },
 
       execute: function(params) {

@@ -65,10 +65,11 @@ sap.ui.define([
 		 * Utility Function used to get navigation parameters
 		 * @param {string} sBusinessObjectType - Business Object Type
 		 * @param {string} sDocumentKey - Document key
+		 * @param {string} sProcessID   - Process ID
 		 * @public
 		 * @returns {object} Object having KeyField (GUID) for cross App Navigation
 	   	 */
-		getNavigationParameters: function(sBusinessObjectType, sDocumentKey, sProcessID){
+		   getNavigationParameters: function(sBusinessObjectType, sDocumentKey, sProcessID){
 			var sSemanticObject = this.getSemanticObject(sBusinessObjectType);
 			var oParam = {};
 			
@@ -81,7 +82,7 @@ sap.ui.define([
 			
 			return oParam;
 		},
-		
+
 		/**
 		 * Get filter string from array of sap.ui.model.Filter objects
 		 * @public
@@ -110,7 +111,7 @@ sap.ui.define([
 			
 			return oEntitySet ? oMetaModel.getODataEntityType(oEntitySet.entityType) : {};
 		},
-		
+
 		/**
 		 * Function generates a random GUID
 		 * @public

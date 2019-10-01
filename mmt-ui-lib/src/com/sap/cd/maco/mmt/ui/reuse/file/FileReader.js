@@ -1,19 +1,19 @@
 /*global location*/
 /* eslint no-undef: "off"  */
 
-sap.ui.define(['sap/ui/base/Object'], function (Object) {
+sap.ui.define(['sap/ui/base/Object'], function(Object) {
   'use strict';
 
   return Object.extend('com.sap.cd.maco.mmt.ui.reuse.file.FileReader', {
-    constructor: function () {
+    constructor: function() {
       this._oReader = new FileReader();
       this._oReader.onload = this._onLoad.bind(this);
       this._oReader.onerror = this._onError.bind(this);
     },
 
-    readBase64: function (params) {
+    readBase64: function(params) {
       return new Promise(
-        function (resolve, reject) {
+        function(resolve, reject) {
           // keep references
           this._oFile = params.file;
           this._oBusyControl = params.busyControl;
@@ -39,7 +39,7 @@ sap.ui.define(['sap/ui/base/Object'], function (Object) {
       );
     },
 
-    _onError: function (e) {
+    _onError: function(e) {
       if (this._oBusyControl) {
         this._oBusyControl.setBusy(false);
       }
@@ -47,7 +47,7 @@ sap.ui.define(['sap/ui/base/Object'], function (Object) {
       this._fnReject();
     },
 
-    _onLoad: function (oEvent) {
+    _onLoad: function(oEvent) {
       if (this._oBusyControl) {
         this._oBusyControl.setBusy(false);
       }

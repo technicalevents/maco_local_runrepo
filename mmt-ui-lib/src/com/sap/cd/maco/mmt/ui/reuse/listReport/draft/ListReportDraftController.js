@@ -2,27 +2,24 @@ sap.ui.define(
   [
     'sap/ui/model/json/JSONModel',
     'com/sap/cd/maco/mmt/ui/reuse/_/bundle',
-    'com/sap/cd/maco/mmt/ui/reuse/table/ActionSmartTableController',
+    'com/sap/cd/maco/mmt/ui/reuse/table/SmartTableController',
     'com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate',
     'com/sap/cd/maco/mmt/ui/reuse/_/getConfigControl'
   ],
-  function(JSONModel, bundle, ActionSmartTableController, SmartTableBindingUpdate, getConfigControl) {
+  function(JSONModel, bundle, SmartTableController, SmartTableBindingUpdate, getConfigControl) {
     'use strict';
 
-    return ActionSmartTableController.extend('com.sap.cd.maco.mmt.ui.reuse.listReport.draft.ListReportDraftController', {
+    return SmartTableController.extend('com.sap.cd.maco.mmt.ui.reuse.listReport.draft.ListReportDraftController', {
       //~~~~ init ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
       onInit: function(oConfig) {
-        ActionSmartTableController.prototype.onInit.apply(this, arguments);
+        SmartTableController.prototype.onInit.apply(this, arguments);
 
         this.oConfig = oConfig;
 
         // check config
         this.oAssert.ok(oConfig, 'ListReportDraftController cannot init. config missing');
         this.oAssert.ok(oConfig.controls, 'ListReportDraftController cannot init. controls missing');
-
-        // init the buttons
-        this.getView().setModel(new JSONModel({}), 'this');
 
         // attach filter bar events
         var oFilterBar = this._getFilterBar();

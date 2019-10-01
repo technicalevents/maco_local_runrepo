@@ -183,6 +183,8 @@ sap.ui.define(
                   var oContext = aInvalidationContexts[i];
                   this._fireDraftInvalidated(oContext);
                 }
+                // resolve
+                resolve();
               }.bind(this),
               reject
             );

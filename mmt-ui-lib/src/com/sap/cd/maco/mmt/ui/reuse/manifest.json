@@ -1,12 +1,12 @@
 {
-  "_version": "1.8.0",
+  "_version": "1.12.0",
   "sap.app": {
     "id": "com.sap.cd.maco.mmt.ui.reuse",
     "type": "library",
     "embeds": [],
     "i18n": "messagebundle.properties",
     "applicationVersion": {
-      "version": "1.0.0"
+      "version": "2.0.0"
     },
     "title": "{{title}}",
     "description": "{{description}}",
@@ -37,6 +37,15 @@
         "sap.ushell": {},
         "sap.ui.comp": {},
         "sap.uxap": {}
+      }
+    },
+    "library": {
+      "css": true,
+      "content": {
+        "controls": [],
+        "elements": [],
+        "types": [],
+        "interfaces": []
       }
     },
     "contentDensities": {

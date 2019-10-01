@@ -11,7 +11,7 @@ sap.ui.define(
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.nav.NavToRouteAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.apply(this, arguments);
+        BaseAction.call(this, oComponent, oConfig, '1');
         this._oRouteArgsFactory = new RouteArgsFactory(this.oComponent);
         this._oUI5MetadataTool = new UI5MetadataTool();
       },

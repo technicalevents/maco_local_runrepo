@@ -15,10 +15,12 @@ sap.ui.define(
         this.oConfig = oConfig;
 
         // check controls
+        /*
         for (var sId in oConfig.actions) {
           var oAction = this.byId(sId);
           this.oAssert.ok(oAction, 'ActionController cannot init. no control in view for action id: ' + sId);
         }
+        */
 
         // set initial show actions
         this._bShowActions = oConfig.hasOwnProperty('showActions') ? !!oConfig.showActions : true;
@@ -141,11 +143,14 @@ sap.ui.define(
           var aContexts = this._getActionContexts();
           var bEnabled = oAction.enabled(aContexts);
 
-          // inplace?
+          // get control
           var oControl = this.byId(sId);
-          var bInplace = !!oControl.data('actionInplace');
+          if (!oControl) {
+            continue;
+          }
 
-          // enabled control
+          // enable control
+          var bInplace = !!oControl.data('actionInplace');
           if (!bInplace && oControl.setEnabled) {
             oControl.setEnabled(bEnabled);
           }

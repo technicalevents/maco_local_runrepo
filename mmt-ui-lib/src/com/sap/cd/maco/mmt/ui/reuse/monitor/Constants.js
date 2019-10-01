@@ -22,7 +22,7 @@ sap.ui.define([], function () {
             OUTBOUND: "O",
             INBOUND: "I"
         },
-        
+
         PROCESS_LIST_HEADER_ACTION: {
             CLOSE_LATEST_DEADLINE: "Deadline",
             EXECUTE_TRANSFER_DOCUMENT: "TriggerDoc",

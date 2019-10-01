@@ -14,7 +14,7 @@ sap.ui.define(
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.transaction.draft.UpdateAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.apply(this, arguments);
+        BaseAction.call(this, oComponent, oConfig, '1');
         // TODO check config
         this._oRouteArgsFactory = new RouteArgsFactory(oComponent);
       },

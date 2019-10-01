@@ -72,9 +72,9 @@ sap.ui.define(
 
       //~~~~ public subclassers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-      onBeforeBind: function() {},
+      onBeforeBind: function(oRouteArgs) {},
 
-      onAfterBind: function(oResult) {},
+      onAfterBind: function(oRouteArgs, oResult) {},
 
       getBindingSelects: function() {
         return [];

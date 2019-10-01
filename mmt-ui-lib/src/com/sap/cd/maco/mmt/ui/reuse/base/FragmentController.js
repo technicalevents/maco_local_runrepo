@@ -5,9 +5,9 @@ sap.ui.define(
     'use strict';
 
     return Object.extend('com.sap.cd.maco.mmt.ui.reuse.base.FragmentController', {
-      // !!! public contract to subclasses !!!
-      // !!! do not change this property name !!!
-      sFragmentId: undefined,
+      _oOwnerComponent: undefined,
+      _sFragmentId: undefined,
+      _oFragment: undefined,
 
       /**
        * @param {object} [params] The parameters as object with:
@@ -31,16 +31,16 @@ sap.ui.define(
 
         // create id
         if (params.view) {
-          this.sFragmentId = params.view.createId(params.id);
+          this._sFragmentId = params.view.createId(params.id);
         } else {
-          this.sFragmentId = this._oOwnerComponent.createId(params.id);
+          this._sFragmentId = this._oOwnerComponent.createId(params.id);
         }
 
         // running the xml fragment instantiation as owner of the component
         // allows us to later on access the owner component from nested view controller
         this._oOwnerComponent.runAsOwner(
           function() {
-            this._oFragment = sap.ui.xmlfragment(this.sFragmentId, params.fragmentName, this);
+            this._oFragment = sap.ui.xmlfragment(this._sFragmentId, params.fragmentName, this);
           }.bind(this)
         );
 
@@ -83,6 +83,14 @@ sap.ui.define(
 
       /**
        *
+       * @returns {undefined|*}
+       */
+      getFragmentId: function() {
+        return this._sFragmentId;
+      },
+
+      /**
+       *
        * @returns {*}
        */
       getOwnerComponent: function() {
@@ -116,7 +124,7 @@ sap.ui.define(
        * @returns {sap.ui.core.Element} the element matching the id.
        */
       byId: function(sId) {
-        return Fragment.byId(this.sFragmentId, sId);
+        return Fragment.byId(this._sFragmentId, sId);
       },
 
       /**
@@ -125,7 +133,7 @@ sap.ui.define(
        * @returns {string} the id.
        */
       createId: function(sId) {
-        return Fragment.createId(this.sFragmentId, sId);
+        return Fragment.createId(this._sFragmentId, sId);
       },
 
       /**

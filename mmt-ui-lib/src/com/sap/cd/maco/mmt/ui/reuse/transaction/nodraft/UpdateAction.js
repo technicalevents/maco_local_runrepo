@@ -11,7 +11,7 @@ sap.ui.define(
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.transaction.nodraft.UpdateAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.apply(this, arguments);
+        BaseAction.call(this, oComponent, oConfig, '1');
         this._oUI5MetadataTool = new UI5MetadataTool();
       },
 

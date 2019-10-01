@@ -3,7 +3,7 @@ sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/base/BaseAction', 'com/sap/cd/maco/
 
   return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.transaction.nodraft.DeleteAction', {
     constructor: function(oComponent, oConfig) {
-      BaseAction.apply(this, arguments);
+      BaseAction.call(this, oComponent, oConfig, '1..N');
       // TODO check config
     },
 

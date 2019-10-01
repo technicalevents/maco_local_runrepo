@@ -6,16 +6,16 @@ sap.ui.define(
     'com/sap/cd/maco/mmt/ui/reuse/_/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/base/Assert'
   ],
-  function(UI5Object, InputSearch, MessageType, bundle, Assert) {
+  function (UI5Object, InputSearch, MessageType, bundle, Assert) {
     'use strict';
 
     return UI5Object.extend('com.sap.cd.maco.mmt.ui.reuse.message._.MandatoryCheck', {
-      constructor: function(oControl, oAssert) {
+      constructor: function (oControl, oAssert) {
         this._oInputSearch = new InputSearch(oControl);
         this._oAssert = oAssert;
       },
 
-      check: function() {
+      check: function () {
         // get input controls
         var aInputControls = this._oInputSearch.search();
 
@@ -29,7 +29,7 @@ sap.ui.define(
         return aMessages;
       },
 
-      resetValueStates: function() {
+      resetValueStates: function () {
         // get input controls
         var aInputControls = this._oInputSearch.search();
 
@@ -44,7 +44,7 @@ sap.ui.define(
         }
       },
 
-      _checkMandatoryControls: function(aInputControls) {
+      _checkMandatoryControls: function (aInputControls) {
         var aMessages = [];
         var oFirstControlWithError = null;
 
@@ -66,7 +66,10 @@ sap.ui.define(
           var sValue = this._getValue(oControl);
 
           // check value
-          var fValue = parseFloat(sValue);
+          var fValue;
+          if (!isNaN(sValue)) {
+            fValue = parseFloat(sValue);
+          }
           var bError = !sValue || fValue === 0.0;
           if (bError) {
             oControl.setValueState('Error');
@@ -89,7 +92,7 @@ sap.ui.define(
         return aMessages;
       },
 
-      _isMandatory: function(oControl) {
+      _isMandatory: function (oControl) {
         if (oControl.getMandatory) {
           // smart control
           return oControl.getMandatory();
@@ -104,7 +107,7 @@ sap.ui.define(
         }
       },
 
-      _getLabel: function(oControl) {
+      _getLabel: function (oControl) {
         if (oControl.getDataProperty) {
           // smart control
           var oProperty = oControl.getDataProperty();
@@ -121,7 +124,7 @@ sap.ui.define(
         }
       },
 
-      _getValue: function(oControl) {
+      _getValue: function (oControl) {
         if (oControl.getValue) {
           // smart control and others
           return oControl.getValue();
@@ -133,7 +136,7 @@ sap.ui.define(
         }
       },
 
-      _collectInputMessages: function(aInputControls) {
+      _collectInputMessages: function (aInputControls) {
         var messages = [];
 
         // iterate input controls

@@ -6,7 +6,7 @@ sap.ui.define(
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.transaction.draft.CreateAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.apply(this, arguments);
+        BaseAction.call(this, oComponent, oConfig, '0');
         this._oRouteArgsFactory = new RouteArgsFactory(oComponent);
       },
 

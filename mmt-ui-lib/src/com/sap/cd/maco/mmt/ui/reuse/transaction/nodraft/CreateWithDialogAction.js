@@ -10,7 +10,7 @@ sap.ui.define(
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.transaction.nodraft.CreateWithDialogAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.apply(this, arguments);
+        BaseAction.call(this, oComponent, oConfig, '0');
       },
 
       enabled: function(aContexts) {
@@ -60,20 +60,8 @@ sap.ui.define(
       },
 
       execute: function(oParams, oEvent, oController) {
-        return new Promise(
-          function(resolve, reject) {
-            var oDialog = this._getDialog(oController);
-            var oWhen = oDialog.openForCreate(oParams.properties);
-            oWhen.then(
-              function() {
-                resolve({
-                  params: oParams
-                });
-              }.bind(this),
-              reject
-            );
-          }.bind(this)
-        );
+        var oDialog = this._getDialog(oController);
+        return oDialog.openForCreate(oParams.properties);
       }
     });
   }

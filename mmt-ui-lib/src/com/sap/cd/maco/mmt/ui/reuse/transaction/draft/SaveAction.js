@@ -11,7 +11,7 @@ sap.ui.define(
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.transaction.draft.SaveAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.apply(this, arguments);
+        BaseAction.call(this, oComponent, oConfig, '0');
         this._oRouteArgsFactory = new RouteArgsFactory(oComponent);
         this._oODataMetaModelExt = new ODataMetaModelExt(oComponent);
       },

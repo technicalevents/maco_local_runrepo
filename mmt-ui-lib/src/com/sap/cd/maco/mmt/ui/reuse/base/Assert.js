@@ -18,6 +18,14 @@ sap.ui.define(
         this._oUI5MetadataTool = new UI5MetadataTool();
       },
 
+      int: function(iNumber, sMessage) {
+        if (!Number.isInteger(iNumber)) {
+          var oError = new Error(sMessage);
+          this._showAndLog(oError);
+          throw oError;
+        }
+      },
+
       ok: function(oValue, sMessage) {
         if (!oValue) {
           var oError = new Error(sMessage);

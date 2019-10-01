@@ -1,7 +1,6 @@
-/*global location*/
 sap.ui.define(
   [
-    'sap/ui/base/Object',
+    'sap/ui/core/UIComponent',
     'jquery.sap.global',
     'sap/ui/model/json/JSONModel',
     'sap/ui/model/resource/ResourceModel',
@@ -12,16 +11,16 @@ sap.ui.define(
     'com/sap/cd/maco/mmt/ui/reuse/nav/Navigation',
     'com/sap/cd/maco/mmt/ui/reuse/base/ControllerRegistry'
   ],
-  function(Object, jQuery, JSONModel, ResourceModel, Assert, Message, MessageManager, ODataRequestTracer, Navigation, ControllerRegistry) {
+  function(UIComponent, jQuery, JSONModel, ResourceModel, Assert, Message, MessageManager, ODataRequestTracer, Navigation, ControllerRegistry) {
     'use strict';
 
-    return Object.extend('com.sap.cd.maco.mmt.ui.reuse.bootstrap.BootstrapDraft', {
-      constructor: function(oComponent) {
-        this._oComponent = oComponent;
-        this._oComponent.baseProperties = []; // base properties are copied to base controllers and actions
-      },
+    return UIComponent.extend('com.sap.cd.maco.mmt.ui.reuse.base.BaseComponent', {
+      init: function() {
+        // Call super
+        UIComponent.prototype.init.apply(this, arguments);
 
-      initComponent: function() {
+        // our stuff
+        this.baseProperties = [];
         this.initAssert();
         this.initCss();
         this.initI18nModel();
@@ -35,15 +34,15 @@ sap.ui.define(
         this.initControllerRegistry();
       },
 
-      destroyComponent: function() {
+      exit: function() {
         this.destroyMessage();
         this.destroyMessageManager();
         this.destroyRequestTracer();
       },
 
       initAssert: function() {
-        this._oComponent.oAssert = new Assert();
-        this._oComponent.baseProperties.push('oAssert');
+        this.oAssert = new Assert();
+        this.baseProperties.push('oAssert');
       },
 
       initCss: function() {
@@ -55,82 +54,82 @@ sap.ui.define(
         var i18nModel = new ResourceModel({
           bundleName: 'com.sap.cd.maco.mmt.ui.reuse.messagebundle'
         });
-        this._oComponent.setModel(i18nModel, 'i18n-reuse');
+        this.setModel(i18nModel, 'i18n-reuse');
       },
 
       initBundle: function() {
-        this._oComponent.oBundle = this._oComponent.getModel('i18n').getResourceBundle();
-        this._oComponent.baseProperties.push('oBundle');
+        this.oBundle = this.getModel('i18n').getResourceBundle();
+        this.baseProperties.push('oBundle');
       },
 
       initAppModel: function() {
         // add startup parameters
         var oData = {};
-        var oComponentData = this._oComponent.getComponentData();
+        var oComponentData = this.getComponentData();
         if (oComponentData && oComponentData.startupParameters) {
           oData.startupParams = oComponentData.startupParams;
         }
         // create model
         var oAppModel = new JSONModel(oData);
         oAppModel.setDefaultBindingMode('OneWay');
-        this._oComponent.setModel(oAppModel, 'app');
+        this.setModel(oAppModel, 'app');
       },
 
       initMessage: function() {
-        this._oComponent.oMessage = new Message(this._oComponent);
-        this._oComponent.baseProperties.push('oMessage');
+        this.oMessage = new Message(this);
+        this.baseProperties.push('oMessage');
       },
 
       initMessageManager: function() {
-        this._oComponent.oMessageManager = new MessageManager({
-          component: this._oComponent,
-          message: this._oComponent.oMessage
+        this.oMessageManager = new MessageManager({
+          component: this,
+          message: this.oMessage
         });
-        this._oComponent.baseProperties.push('oMessageManager');
+        this.baseProperties.push('oMessageManager');
       },
 
       initDevMode: function() {
-        this._oComponent.bDevMode = document.location.search.indexOf('sap-dev') !== -1;
-        var oAppModel = this._oComponent.getModel('app');
+        this.bDevMode = document.location.search.indexOf('sap-dev') !== -1;
+        var oAppModel = this.getModel('app');
         oAppModel.setData(
           {
             devMode: {
-              enabled: this._oComponent.bDevMode,
-              disabled: !this._oComponent.bDevMode
+              enabled: this.bDevMode,
+              disabled: !this.bDevMode
             }
           },
           true
         );
-        this._oComponent.baseProperties.push('bDevMode');
+        this.baseProperties.push('bDevMode');
       },
 
       initRequestTracer: function() {
-        if (this._oComponent.bDevMode) {
-          this._oComponent._oRequestTracer = new ODataRequestTracer(this._oComponent.getModel());
+        if (this.bDevMode) {
+          this._oRequestTracer = new ODataRequestTracer(this.getModel());
         }
       },
 
       initNav: function() {
-        this._oComponent.oNav = new Navigation(this._oComponent);
-        this._oComponent.baseProperties.push('oNav');
+        this.oNav = new Navigation(this);
+        this.baseProperties.push('oNav');
       },
 
       initControllerRegistry: function() {
-        this._oComponent.oControllerRegistry = new ControllerRegistry(this._oComponent.oAssert);
-        this._oComponent.baseProperties.push('oControllerRegistry');
+        this.oControllerRegistry = new ControllerRegistry(this.oAssert);
+        this.baseProperties.push('oControllerRegistry');
       },
 
       destroyMessage: function() {
-        this._oComponent.oMessage.destroy();
+        this.oMessage.destroy();
       },
 
       destroyMessageManager: function() {
-        this._oComponent.oMessageManager.destroy();
+        this.oMessageManager.destroy();
       },
 
       destroyRequestTracer: function() {
-        if (this._oComponent._oRequestTracer) {
-          this._oComponent._oRequestTracer.destroy();
+        if (this._oRequestTracer) {
+          this._oRequestTracer.destroy();
         }
       }
     });
