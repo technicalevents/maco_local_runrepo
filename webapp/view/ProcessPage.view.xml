@@ -1,7 +1,7 @@
 <mvc:View controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessPage"
   xmlns="sap.m" 
   xmlns:mvc="sap.ui.core.mvc" 
-  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
   xmlns:core="sap.ui.core" 
   xmlns:uxap="sap.uxap"
   xmlns:button="com.sap.cd.maco.monitor.ui.reuse.button"
@@ -28,11 +28,15 @@
         	<Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
 				tooltip="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
 				type="Transparent"
-				press="onPressCloseLatestDeadline" />
+				c:reportAction="Deadline" 
+				c:action="reportExecution" 
+				press="onAction" />
 			<Button text="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
 				tooltip="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
 				type="Transparent"
-				press="onPressExecuteTransferDocument" />
+				c:reportAction="TriggerDoc" 
+				c:action="reportExecution" 
+				press="onAction" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>

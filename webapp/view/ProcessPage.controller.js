@@ -1,11 +1,9 @@
 sap.ui.define(
   [
     "com/sap/cd/maco/mmt/ui/reuse/objectPage/ObjectPageNoDraftController",
-    "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
-    "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
-    "sap/m/MessageToast"
+    "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter"
   ],
-  function(ObjectPageNoDraftController, Formatter, Constants, MessageToast) {
+  function(ObjectPageNoDraftController, Formatter) {
     "use strict";
 
     return ObjectPageNoDraftController.extend(
@@ -17,17 +15,25 @@ sap.ui.define(
          * Lifecycle method - triggered on initialization of ProcessPage Controller
          */
         onInit: function() {
-          ObjectPageNoDraftController.prototype.onInit.call(this, {
-            routes: {
-              this: "processPage"
-            },
-            entitySet: "xMP4GxC_ProcActivityHeader_UI",
-            notFoundMsg: this.notFoundMsg.bind(this),
-            controls: {
-              objectPage: "idProcessObjectPage"
-            },
-            actions: {}
-          });
+        	var oComponentAction = this.getOwnerComponent().actions;
+        	
+			ObjectPageNoDraftController.prototype.onInit.call(this, {
+				routes: {
+					parent: "listReport",
+					this: "processPage",
+					child: null
+				},
+				entitySet: "xMP4GxC_ProcActivityHeader_UI",
+				i18n: {
+					notFoundMsg: this.notFoundMsg.bind(this)
+				},
+				controls: {
+				  objectPage: "idProcessObjectPage"
+				},
+				actions: {
+					reportExecution: oComponentAction.reportExecution
+				}
+			});
         },
 
         /**
@@ -38,48 +44,6 @@ sap.ui.define(
         onBeforeBind: function(oRouteParams){
           this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
             .then(this._onSucessProcessDataRead.bind(this));
-        },
-        
-        /**
-         * Event Handler on press of Close Latest Deadline button
-         * @public
-         */
-        onPressCloseLatestDeadline: function() {
-        	this.headerActionButtonPressed(Constants.PROCESS_LIST_HEADER_ACTION.CLOSE_LATEST_DEADLINE);
-        },
-        
-        /**
-         * Event Handler on press of Execute Transfer Document button
-         * @public
-         */
-        onPressExecuteTransferDocument: function() {
-        	this.headerActionButtonPressed(Constants.PROCESS_LIST_HEADER_ACTION.EXECUTE_TRANSFER_DOCUMENT);
-        },
-        
-        /**
-         * Function is triggered when process page header action buttons are pressed
-         * @public
-         * @param {string} sAction                Action
-         */
-        headerActionButtonPressed: function(sAction) {
-        	var oProcess = this.getView().getBindingContext().getObject();
-        	var sAction_Item = (sAction === Constants.PROCESS_LIST_HEADER_ACTION.EXECUTE_TRANSFER_DOCUMENT) ? oProcess.CommonAccessUUID : "";
-        	var oData = {
-        		ProcessDocumentKey: oProcess.ProcessDocumentKey,
-        		Action: sAction,
-        		Action_Item: sAction_Item
-        	};
-        	
-        	var sKey = this.getView().getModel().createKey("/xMP4GxC_Proc_Detail_Action_UI", 
-                                                    {ProcessDocumentKey: oProcess.ProcessDocumentKey});
-                                                    
-            this.getOwnerComponent().getMessageManager().removeAllMessages();
-                                                    
-            this.getView().getModel().update(sKey, oData, 
-	        	{success: function() {
-	        		this._successRelativeReportExecution();
-	        	}.bind(this)
-        	});
         },
 
         /**
@@ -134,17 +98,6 @@ sap.ui.define(
           var sMarketPartner = aMarketPartner.join(", ");
           var oModel = this.getThisModel();
           oModel.setProperty("/MarketPartner", sMarketPartner);
-        },
-        
-        /**
-         * Function is called when relative report is executed
-         * @private
-         */
-        _successRelativeReportExecution: function() {
-        	var aMessageData = this.getOwnerComponent().getMessageManager().getMessageModel().getData();
-        	if(jQuery.isArray(aMessageData)) {
-    			MessageToast.show(aMessageData[0].message);
-        	}
         }
       }
     );
