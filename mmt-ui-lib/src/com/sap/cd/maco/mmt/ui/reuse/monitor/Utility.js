@@ -69,7 +69,7 @@ sap.ui.define([
 		 * @public
 		 * @returns {object} Object having KeyField (GUID) for cross App Navigation
 	   	 */
-		   getNavigationParameters: function(sBusinessObjectType, sDocumentKey, sProcessID){
+		getNavigationParameters: function(sBusinessObjectType, sDocumentKey, sProcessID){
 			var sSemanticObject = this.getSemanticObject(sBusinessObjectType);
 			var oParam = {};
 			
@@ -81,21 +81,6 @@ sap.ui.define([
 			}
 			
 			return oParam;
-		},
-
-		/**
-		 * Get filter string from array of sap.ui.model.Filter objects
-		 * @public
-		 * @param {sap.ui.model.odata.ODataModel} oODataModel ODATA model reference
-		 * @param {string}                 sEntityName   Name of EntitySet
-		 * @param {sap.ui.model.Filter[]}  aFilter       Array of Filters
-         * @returns {string}                             Filter String
-		 */
-		createODataFilterString: function (oODataModel, sEntitySet, aFilter) {
-			var oMetadata = oODataModel.oMetadata;
-			var oEntityType = this.getEntityTypeBySetName(oODataModel, sEntitySet);
-			
-			return ODataUtils.createFilterParams(aFilter, oMetadata, oEntityType);
 		},
 		
 		/**
