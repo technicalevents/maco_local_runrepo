@@ -89,8 +89,7 @@ sap.ui.define(
 	    		sProcessActivityTitle = oResourceBundle.getText(sI18nFormat, aI18nData);
 	    	} else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.EXCEPTION_DOCUMENT){
 	    		sI18nFormat = "DECISION_LBL";
-	    		aI18nData = [sUserDecision];
-	    		sProcessActivityTitle = oResourceBundle.getText(sI18nFormat, aI18nData);
+	    		sProcessActivityTitle = oResourceBundle.getText(sI18nFormat);
 	    	} else {
 	    		sProcessActivityTitle = "";
 	    	}
