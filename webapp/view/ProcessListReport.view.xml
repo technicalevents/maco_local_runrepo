@@ -6,7 +6,8 @@
 		  xmlns:smartfield="sap.ui.comp.smartfield"
 		  xmlns:smartTable="sap.ui.comp.smarttable"
 		  xmlns:mvc="sap.ui.core.mvc"
-		  xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button"
+		  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.button"
+		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		  controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessListReport"
     	  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table"
     	  xmlns:variants="sap.ui.comp.smartvariants"
@@ -26,12 +27,12 @@
                                          initialized="onFilterBarInitialized"
                                          showFilterConfiguration="false"
                                          persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displayprocesses.filterbar"
-                                         entitySet="{this>/entitySet}">
+                                         entitySet="xMP4GxC_ProcessHeader_UI">
           </smartFilterBar:SmartFilterBar>
      </semantic:headerContent>
     <semantic:content>
       <smartTable:SmartTable id="idProcessSmartTable"
-					        entitySet="{this>/entitySet}"
+					        entitySet="xMP4GxC_ProcessHeader_UI"
 					        tableType="ResponsiveTable"
 					        smartFilterId="idProcessSmartFilterBar"
 					        smartVariant="idProcessVariantManagement"
@@ -49,11 +50,15 @@
         <smartTable:customToolbar>
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>
-            <Button icon="sap-icon://refresh" press="onRefresh"/>
             <Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
 				tooltip="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
 				type="Transparent"
-				press="onPressExecuteMessageAggregation" />
+				press="onAction"
+				c:action="executeMsgAggr"/>
+            <Button text="{i18n>PROCESS_LIST_REFRESH_TITLE}"
+            	tooltip="{i18n>PROCESS_LIST_REFRESH_TITLE}"
+            	type="Transparent"
+            	press="onRefresh"/>
           </OverflowToolbar>
         </smartTable:customToolbar>
         <Table id="idProcessTable"
@@ -74,7 +79,7 @@
             </Column>
           </columns>
           <items>
-            <ColumnListItem type="Navigation" press="onProcessRowSelect">
+            <ColumnListItem type="Navigation" press="onAction" c:action="navToProcessPage">
               <cells>
                   <reuseTable:ObjectIdentifier title="{ProcessDocumentNumber}" text="{ProcessIDDescription}"/>
               </cells>
@@ -82,15 +87,10 @@
           </items>
         </Table>
       </smartTable:SmartTable>
-     </semantic:content>
-    <semantic:saveAsTileAction>
-			<footerbar:AddBookmarkButton id="BookmarkButton" 
-                                      title="{i18n>APP_TITLE}"
-                                      tileIcon="sap-icon://bookmark" 
-                                      serviceUrl="{this>/tileServiceUrl}"
-                                      type="Transparent" />
-		</semantic:saveAsTileAction>
+    </semantic:content>
+    <semantic:titleCustomTextActions>
+     	<reuseButton:Share text="{i18n>SHARE_BTN_LBL}" icon=""
+            press="onAction" c:action="share" />
+    </semantic:titleCustomTextActions>
   </semantic:SemanticPage>
-  
-  
 </mvc:View>
