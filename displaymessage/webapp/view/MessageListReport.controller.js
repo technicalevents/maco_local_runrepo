@@ -1,30 +1,25 @@
 sap.ui.define(
   [
-    "com/sap/cd/maco/mmt/ui/reuse/table/ActionSmartTableController",
+    "com/sap/cd/maco/mmt/ui/reuse/listReport/ListReportNoDraftController",
     "com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
-    "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
     "sap/ui/model/Sorter",
-    "sap/ui/thirdparty/jszip",
-	"sap/ui/core/util/File",
-	"sap/ui/generic/app/navigation/service/SelectionVariant",
-	"sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
+	"sap/ui/generic/app/navigation/service/SelectionVariant"
   ],
-  function(ActionSmartTableController, SmartTableBindingUpdate, messageFormatter, Constants, Utility, Sorter, 
-			JSZip, File, SelectionVariant, Filter, FilterOperator) {
-    'use strict';
+  function(ListReportNoDraftController, SmartTableBindingUpdate, messageFormatter, 
+			Constants, Sorter, SelectionVariant) {
+    "use strict";
 
-    return ActionSmartTableController.extend(
-      'com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessageListReport',
+    return ListReportNoDraftController.extend(
+      "com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessageListReport",
       {
 
-    /**
+        /**
 		 * Formatter Attribute.
 		 * @public
 		 */
-    formatter: messageFormatter,
+		formatter: messageFormatter,
 
         /******************************************************************* */
 		/* LIFECYCLE METHODS */
@@ -35,44 +30,35 @@ sap.ui.define(
 		 * @public
 		 */
         onInit: function() {
-          ActionSmartTableController.prototype.onInit.call(this, {
-            entitySet: 'xMP4GxC_TransferDoc_UI',
-            actions: {},
-            controls: {
-              table: 'idMessageSmartTable'
-            }
-          });
+          var oComponentAction = this.getOwnerComponent().actions;
           
-          this.getThisModel().setProperty("/DownloadBtnEnable", false);
-          this.getThisModel().setProperty("/tileCustomUrl", this.getSaveTileCustomUrl);
-          this.getThisModel().setProperty("/tileServiceUrl", this.getSaveTileServiceUrl.bind(this));
+          ListReportNoDraftController.prototype.onInit.call(this, {
+            entitySet: "xMP4GxC_TransferDoc_UI",
+            actions: {
+            	multiDownload: oComponentAction.multiDownload,
+            	navToMessagePage: oComponentAction.navToMessagePage,
+            	share: oComponentAction.share
+            },
+            routes: {
+				parent: null,
+				this: "listReport",
+				child: "messagePage"
+            },
+            controls: {
+				table: "idMessageSmartTable",
+				variantManagement: "idMessageVariantManagement",
+				filterBar: "idMessageSmartFilterBar"
+            },
+            tableAccessControl: {
+            	multiDownload: true,
+            	navToMessagePage: true
+        	}
+          });
         },
         
       /******************************************************************* */
       /* PUBLIC METHODS */
       /******************************************************************* */
-
-      /**
-	   * Event is triggered when Back button is triggered
-       * @param {object} oEvent BackButton Event
-       * @public
-       */
-      onMessageRowSelect: function(oEvent) {
-          var oObject = oEvent.getSource().getBindingContext().getObject();
-
-          this.oRouter.navTo('messagePage', {
-            TransferDocumentKey: oObject.TransferDocumentKey
-          });
-        },
-        
-        /**
-	   * Event is triggered when message table selection is changed by user interaction
-       * @param {object} oEvent    Table Selction Change event
-	   * @public
-	   */
-        onMessageTableSelChange: function(oEvent) {
-        	this.handleDownloadBtnEnable(oEvent.getSource());
-        },
         
       /**
 	   * Event is triggered before data loading of smart table
@@ -88,56 +74,6 @@ sap.ui.define(
           
           this.storeCurrentAppState();
         },
-        
-        /**
-		 * Function is triggered once Message table is updated
-		 * @param {object} oEvent     Message Table Update Event
-		 * @public
-		 */
-        onMessageTableUpdateFinish: function(oEvent) {
-        	this.handleDownloadBtnEnable(oEvent.getSource());
-        },
-        
-        /**
-		 * Function handle enablity of download button on table selection change and table updation
-		 * @param {object} oEvent     Message Table Control
-		 * @public
-		 */
-        handleDownloadBtnEnable: function(oTableCntrl) {
-        	var aSelectedContexts = oTableCntrl.getSelectedContexts();
-        	var bDownloadBtnEnable = false;
-        	
-        	if(aSelectedContexts.length > 0) {
-        		bDownloadBtnEnable = true;
-        	}
-        	
-        	this.getThisModel().setProperty("/DownloadBtnEnable", bDownloadBtnEnable);
-        },
-        
-        /**
-		 * Function is triggered on click of Download button in List Page
-		 * @public
-		 */
-		onPressDownload: function() {
-			var aSelectedContexts = this.getView().byId("idMessageTable").getSelectedContexts();
-			var aExternalUUIDFilter = [];
-			var oFinalFilter;
-			
-			for(var intI = 0; intI < aSelectedContexts.length; intI++) {
-				aExternalUUIDFilter.push(new Filter("ExternalUUID", FilterOperator.EQ, aSelectedContexts[intI].getObject().ExternalUUID));
-			}
-			
-			oFinalFilter = new Filter(aExternalUUIDFilter, false);
-			
-			this.oTransaction.whenRead({
-				path: "/xMP4GxC_TransferDoc_UI",
-				busyControl: this.getView(),
-				filters: [oFinalFilter],
-				urlParameters : {
-					$select: "ExternalUUID,ExternalPayload"
-				}
-			}).then(this._onSucessLoadMessageListData.bind(this));
-		},
 
         /**
          * Event is triggered when FilterBar is initialized. 
@@ -162,14 +98,14 @@ sap.ui.define(
          * @public
          */
         onNavToProcess: function(oEvent) {
-          var oObject = oEvent.getSource().getBindingContext().getObject();
-          var oParam = {
-          	semanticObject: Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT,
-          	action: Constants.SEMANTIC_ACTION.DISPLAY,
-          	params: {
-          		ProcessDocumentKey: oObject.ProcessDocumentKey,
-          		ProcessID: oObject.ProcessID
-          	}
+			var oObject = oEvent.getSource().getBindingContext().getObject();
+			var oParam = {
+				semanticObject: Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT,
+				action: Constants.SEMANTIC_ACTION.DISPLAY,
+				params: {
+					ProcessDocumentKey: oObject.ProcessDocumentKey,
+					ProcessID: oObject.ProcessID
+				}
           };
           
           this.oNav.navExternal(oParam);
@@ -203,65 +139,6 @@ sap.ui.define(
           
             return oResourceBundle.getText(sI18nFormat, aI18nData);
           },
-          
-       /**
-		* Function to Get the URL that the tile should point to
-    	* @public
-        * @returns {string} Url of Application for save as tile action
-    	*/
-        getSaveTileCustomUrl: function () {
-            return document.URL;
-        },
-        
-        /**
-		* Function to Get the Service URL to show count in Tile
-    	* @public
-        * @returns {string} sQueryUri   Url of Application for count
-    	*/
-        getSaveTileServiceUrl: function () {
-        	var sAppId = this.getOwnerComponent().getManifestEntry("/sap.app/id").split(".").join("");
-        	var sServiceUrl = this.getOwnerComponent().getManifestEntry("/sap.app/dataSources/Main/uri");
-        	
-        	// ensure trailing '/'
-			sServiceUrl = /\/$/.test(sServiceUrl) ? sServiceUrl : sServiceUrl + "/";
-			// ensure leading '/'
-			sServiceUrl = /^\//.test(sServiceUrl) ? sServiceUrl : "/" + sServiceUrl;
-			
-			sServiceUrl = sAppId + sServiceUrl;
-			
-			// ensure trailing '/'
-			sServiceUrl = /\/$/.test(sServiceUrl) ? sServiceUrl : sServiceUrl + "/";
-			// ensure leading '/'
-			sServiceUrl = /^\//.test(sServiceUrl) ? sServiceUrl : "/" + sServiceUrl;
-        	
-        	var oDataModel = this.getView().getModel();
-        	var sEntitySet = this.getThisModel().getProperty("/entitySet");
-        	var aSmartTableQueryUrlParam = [];
-        	var sQueryUri = sServiceUrl + sEntitySet;
-        	
-        	aSmartTableQueryUrlParam.push("$top=0");
-        	
-        	var oSmartFilterBar = this.getView().byId("idMessageSmartFilterBar");
-        	var aFilters = oSmartFilterBar.getFilters();
-        	
-        	if (aFilters && aFilters.length > 0) {
-				aSmartTableQueryUrlParam.push(Utility.createODataFilterString(oDataModel, sEntitySet, aFilters));
-			}
-			
-			var sSearchQuery = oSmartFilterBar.getBasicSearchValue();
-			
-			if(sSearchQuery){
-				aSmartTableQueryUrlParam.push("$search=" + encodeURI(sSearchQuery));
-			}
-			
-			aSmartTableQueryUrlParam.push("$inlinecount=allpages");
-			
-			if (aSmartTableQueryUrlParam.length > 0) {
-				sQueryUri += "?" + aSmartTableQueryUrlParam.join("&");
-			}
-        	
-            return sQueryUri;
-        },
         
         /**
 		 * Function will store application's current state on change in message list
@@ -278,28 +155,6 @@ sap.ui.define(
 				valueTexts: oSmartFilterUiState.getValueTexts()
 			};
             this.oNav.storeInnerAppState(oCurrentAppState);
-        },
-        
-        /******************************************************************* */
-		/* PRIVATE METHODS */
-		/******************************************************************* */
-        
-        /**
-		 * Function is called when data read call is succesfull
-		 * @param {object} oResult   Message List Data
-		 * @private
-		 */
-        _onSucessLoadMessageListData: function(oResult) {
-        	var aMessageListData = oResult.data.results;
-			var oJSZip = new JSZip();
-			var sFolderName = "Market Message " + new Date().toLocaleDateString();
-			
-			for(var intI = 0; intI < aMessageListData.length; intI++) {
-				oJSZip.file(aMessageListData[intI].ExternalUUID + ".txt", aMessageListData[intI].ExternalPayload);
-			}
-			
-			var oContent = oJSZip.generate({type:"blob"});
-			File.save(oContent, sFolderName,"zip","application/zip");
         }
       }
     );

@@ -2,15 +2,13 @@ sap.ui.define(
 	[
 	  "com/sap/cd/maco/mmt/ui/reuse/objectPage/ObjectPageNoDraftController",
 	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
-	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
-	  "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
-	  "sap/ui/core/util/File"
+	  "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter"
 	],
-	function(ObjectPageNoDraftController, Constants, Utility, messageFormatter, File) {
-	  'use strict';
+	function(ObjectPageNoDraftController, Constants, messageFormatter) {
+	  "use strict";
   
 	  return ObjectPageNoDraftController.extend(
-		'com.sap.cd.maco.monitor.ui.app.displaymessages.view.ProcessPage',
+		"com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessagePage",
 		{
   
 		  /**
@@ -28,16 +26,24 @@ sap.ui.define(
 		   * @public
 		   */
 		  onInit: function() {
+		  	  var oComponentActions = this.getOwnerComponent().actions;
+		  	  
 			  ObjectPageNoDraftController.prototype.onInit.call(this, {
-				entitySet: 'xMP4GxC_TransferDoc_UI',
+			  	routes: {
+					parent: "listReport",
+					this: "messagePage"
+				},
+				entitySet: "xMP4GxC_TransferDoc_UI",
+				i18n: {
+					notFoundMsg: this.notFoundMsg.bind(this)
+				},
 				controls: {
-				  objectPage: 'objectPage'
+				  objectPage: "objectPage"
 				},
-				routes: {
-				  this: 'messagePage'
-				},
-				notFoundMsg: this.notFoundMsg.bind(this),
-				actions: {}
+				actions: {
+					singleDownload: oComponentActions.singleDownload,
+					crossAppNavigation: oComponentActions.crossAppNavigation
+				}
 			  });
 			},
 	
@@ -56,79 +62,11 @@ sap.ui.define(
 			/**
 			 * Method will e triggered once object page binding is done with entitySet
 			 * @param {object} oRouteParams    Route Parameters
-			 * @param {object} oMessageData    Message Data
 			 * @public
 			 */
-			onAfterBind: function(oRouteParams, oMessageData) {
-				var oMessageData = {
-					ExternalUUID: oMessageData.ExternalUUID,
-					ExternalPayload: oMessageData.ExternalPayload
-				};
-				
-				this.getThisModel().setProperty("/MessageData", oMessageData);
-				
+			onAfterBind: function(oRouteParams) {
 				this._whenLinkTransferDocumentsRead(oRouteParams)
 				.then(this._onSucessLinkTransferDocumentsRead.bind(this));
-			},
-			
-			/**
-			 * Event Handler - Function is triggered on click of Process link in Message Header
-			 * @param {sap.ui.base.Event} oEvent Link Click event object
-			 * @public
-			 */
-			onNavigateToProcessDocument: function(oEvent) {
-				var sLinkedDocumentNumber = oEvent.getSource().getText();
-				this.navigateToLinkedDocument(sLinkedDocumentNumber, "LinkDocumentNumber");
-			},
-			
-			/**
-			 * Event Handler - Function is triggered on click of Message link in Message Header
-			 * @param {sap.ui.base.Event} oEvent Link Click event object
-			 * @public
-			 */
-			onNavigateToMessageDocument: function(oEvent) {
-				var sLinkedDocumentNumber = oEvent.getSource().getText();
-				this.navigateToLinkedDocument(sLinkedDocumentNumber, "ExternalUUID");
-			},
-			
-			/**
-			 * Function is triggered on click of (Message / Processes) link in Message Header
-			 * @param {string} sLinkedDocumentNumber   Linked Document Number
-			 * @param {string} sProperty               Property name
-			 * @public
-			 */
-			navigateToLinkedDocument: function(sLinkedDocumentNumber, sProperty) {
-				var aLinkedTransferDocuments = this.getThisModel().getProperty("/linkedTransferDocuments");
-				var oLinkedTransferDocument = Utility.getObjectWithAttr(aLinkedTransferDocuments, 
-											sProperty, sLinkedDocumentNumber);
-				
-				if(oLinkedTransferDocument && !jQuery.isEmptyObject(oLinkedTransferDocument)) {
-					var sBusinessObjectType = oLinkedTransferDocument.TecBusinessObjectType;
-					var sLinkedDocumentKey = oLinkedTransferDocument.LinkDocumentKey; 
-					var sProcessID = oLinkedTransferDocument.ProcessID;
-					var oParam = {
-						semanticObject: Utility.getSemanticObject(sBusinessObjectType),
-						action: Constants.SEMANTIC_ACTION.DISPLAY,
-						params: Utility.getNavigationParameters(sBusinessObjectType, sLinkedDocumentKey, sProcessID),
-						appState: null
-					};
-					
-					this.oNav.navExternal(oParam);
-				}
-			},
-			
-			/**
-			 * Function is triggered on click of Download button in Master Page
-			 * @public
-			 */
-			onPressDownload: function() {
-				var oMessageData = this.getThisModel().getProperty("/MessageData");
-				var sExternalPayload = oMessageData.ExternalPayload.replace(/\n/g, "");	
-				var sFileName = oMessageData.ExternalUUID;
-				var oData =  new Blob([sExternalPayload]);
-				var sFileExtension = "txt";
-	
-				File.save(oData, sFileName, sFileExtension);
 			},
 			
 			/******************************************************************* */
@@ -177,7 +115,7 @@ sap.ui.define(
 				oModel.setProperty("/linkedTransferDocuments", []);
 				
 				if(!oResult && !oResult.data){
-				return;
+					return;
 				}
 				
 				var aLinkedTransferDocuments;
@@ -194,16 +132,21 @@ sap.ui.define(
 							oLinkedDocumentIds.controlMessage = aLinkedTransferDocuments[intI].ExternalUUID;
 							oLinkedDocumentIds.controlMessageTimeStamp = aLinkedTransferDocuments[intI].Timestamp;             
 							break;
-			
+								
 						case Constants.BO_OBJECT_TYPE.APERAK_MSG:
 							oLinkedDocumentIds.aperakMessage = aLinkedTransferDocuments[intI].ExternalUUID; 
 							oLinkedDocumentIds.aperakMessageTimeStamp = aLinkedTransferDocuments[intI].Timestamp;
 							break;
-							
+								
 						case Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT:
 							oLinkedDocumentIds.processDocument = aLinkedTransferDocuments[intI].LinkDocumentNumber; 
 							break;
-							
+								
+						case Constants.BO_OBJECT_TYPE.TRANSFER_DOCUMENT:
+							oLinkedDocumentIds.transferMessage = aLinkedTransferDocuments[intI].ExternalUUID; 
+							oLinkedDocumentIds.transferMessageTimeStamp = aLinkedTransferDocuments[intI].Timestamp;
+							break;	
+								
 						default:
 							break;
 					}

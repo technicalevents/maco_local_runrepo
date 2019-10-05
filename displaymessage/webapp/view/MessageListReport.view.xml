@@ -5,7 +5,8 @@
   xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
   xmlns:smartTable="sap.ui.comp.smarttable"
   xmlns:mvc="sap.ui.core.mvc"
-  xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button"
+  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.button"
+  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
   xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table"
   xmlns:variants="sap.ui.comp.smartvariants"
   xmlns:footerbar="sap.ushell.ui.footerbar"
@@ -22,15 +23,14 @@
                                          enableBasicSearch="true"
                                          liveMode="true"
                                          useDateRangeType="true"
-                                         useToolbar="true"
                                          initialized="onFilterBarInitialized"
                                          showFilterConfiguration="false"
                                          persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.filterbar"
-                                         entitySet="{this>/entitySet}" />
+                                         entitySet="xMP4GxC_TransferDoc_UI" />
      </semantic:headerContent>
     <semantic:content>
       <smartTable:SmartTable id="idMessageSmartTable"
-					        entitySet="{this>/entitySet}"
+					        entitySet="xMP4GxC_TransferDoc_UI"
 					        tableType="ResponsiveTable"
 					        smartFilterId="idMessageSmartFilterBar"
 					        smartVariant="idMessageVariantManagement"
@@ -39,7 +39,6 @@
 					        ignoredFields="ExtBusinessMessageID"
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="false"
-					        showRowCount="true"
 					        demandPopin="true"
 					        useExportToExcel="false"
 					        useVariantManagement="false"
@@ -49,13 +48,16 @@
         <smartTable:customToolbar>
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>
-            <Button icon="sap-icon://refresh" 
+            <Button text="{i18n>MESSAGE_LIST_REFRESH_TITLE}" 
+        		tooltip="{i18n>MESSAGE_LIST_REFRESH_TITLE}"
+        		type="Transparent"
             	press="onRefresh"/>
-            <Button icon="sap-icon://download"
+            <Button text="{i18n>DOWNLOAD_BTN_TXT}"
 				tooltip="{i18n>DOWNLOAD_BTN_TXT}"
-				enabled="{this>/DownloadBtnEnable}"
 				type="Transparent"
-				press="onPressDownload"/>
+				press="onAction"
+				enabled="{this>/tableActionEnabled/multiDownload}"
+				c:action="multiDownload"/>
           </OverflowToolbar>
         </smartTable:customToolbar>
         <Table id="idMessageTable"
@@ -63,8 +65,6 @@
 	          growingScrollToLoad="true" 
 	          growingThreshold="100" 
 	          mode="MultiSelect"
-	          selectionChange="onMessageTableSelChange"
-	          updateFinished="onMessageTableUpdateFinish"
 	          sticky="ColumnHeaders,HeaderToolbar" >
           <columns>
             <Column>
@@ -93,7 +93,7 @@
             </Column>
           </columns>
           <items>
-            <ColumnListItem type="Navigation" press="onMessageRowSelect">
+            <ColumnListItem type="Navigation" press="onAction" c:action="navToMessagePage">
               <cells>
               	<reuseTable:ObjectIdentifier title="{ExternalUUID}" />
                 <Text text="{parts: [{path: 'TechnicalMsgID'},
@@ -119,15 +119,10 @@
           </items>
         </Table>
       </smartTable:SmartTable>
-     </semantic:content>
-    <semantic:saveAsTileAction>
-			<footerbar:AddBookmarkButton id="BookmarkButton" 
-                                      title="{i18n>APP_TITLE}"
-                                      tileIcon="sap-icon://bookmark" 
-                                      customUrl="{this>/tileCustomUrl}"
-                                      serviceUrl="{this>/tileServiceUrl}"
-                                      type="Transparent" />
-	</semantic:saveAsTileAction>
-
+    </semantic:content>
+    <semantic:titleCustomTextActions>
+     	<reuseButton:Share text="{i18n>SHARE_BTN_LBL}" icon=""
+            press="onAction" c:action="share" />
+    </semantic:titleCustomTextActions>
   </semantic:SemanticPage>
 </mvc:View>
