@@ -2,9 +2,13 @@ sap.ui.define(
   [
     "sap/ui/core/UIComponent",
     "com/sap/cd/maco/mmt/ui/reuse/bootstrap/BootstrapMmt",
-    "com/sap/cd/maco/mmt/ui/reuse/nav/HashSync"
+    "com/sap/cd/maco/mmt/ui/reuse/nav/HashSync",
+    "com/sap/cd/maco/mmt/ui/reuse/nav/NavToRouteAction",
+    "com/sap/cd/maco/monitor/ui/app/displayprocesses/actions/ExecuteMsgAggrAction",
+    "com/sap/cd/maco/monitor/ui/app/displayprocesses/actions/ReportExecutionAction",
+    "com/sap/cd/maco/mmt/ui/reuse/share/ShareAction"
   ],
-  function(UIComponent, Bootstrap, HashSync) {
+  function(UIComponent, Bootstrap, HashSync, NavToRouteAction, ExecuteMsgAggrAction, ReportExecutionAction, ShareAction) {
     "use strict";
 
     return UIComponent.extend("com.sap.cd.maco.monitor.ui.app.displayprocesses.Component", {
@@ -18,13 +22,21 @@ sap.ui.define(
       init: function() {
         // call the base component"s init function
         UIComponent.prototype.init.apply(this, arguments);
-
+			
         // generic init of component
         this._oBootstrap = new Bootstrap(this);
         this._oBootstrap.initComponent();
-
+        
+        this.actions = {
+          executeMsgAggr: new ExecuteMsgAggrAction(this),
+          reportExecution: new ReportExecutionAction(this),
+          navToProcessPage: new NavToRouteAction(this),
+          share: new ShareAction(this, {
+          	appTitleMsgKey: "APP_TITLE"
+          })
+        };
+        
         this.initRouting();
-
       },
 
       /**
@@ -57,16 +69,16 @@ sap.ui.define(
       },
       
       /**
-		 * Function is used to get Message Model from Message Managewr
-		 * @pubic
-		 * @returns {object}     Message Model
-		 */
-		getMessageManager: function() {
-			if(!this._oMessageManager) {
-				this._oMessageManager = sap.ui.getCore().getMessageManager();
-			}
-			return this._oMessageManager;
-		}
+       * Function is used to get Message Model from Message Managewr
+       * @pubic
+       * @returns {object}     Message Model
+       */
+      getMessageManager: function() {
+        if(!this._oMessageManager) {
+          this._oMessageManager = sap.ui.getCore().getMessageManager();
+        }
+        return this._oMessageManager;
+      }
     });
   }
 );
