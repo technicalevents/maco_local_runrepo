@@ -47,17 +47,15 @@ sap.ui.define([
 						        	
 					var sKey = this.oModel.createKey("/xMP4GxC_Proc_Detail_Action_UI", 
 					                                        {ProcessDocumentKey: oProcessData.ProcessDocumentKey});
-						                                        
-					this.oComponent.getMessageManager().removeAllMessages();
 					
 					this.oTransaction.whenUpdated({
 						path: sKey,
 						data: oData,
 						busyControl: oParams.busyControl
 					}).then(function() {
-						var aMessageData = this.oComponent.getMessageManager().getMessageModel().getData();
+						var aMessageData = this.oComponent.getModel("message").getData();
 						if(jQuery.isArray(aMessageData)) {
-							MessageToast.show(aMessageData[0].message);
+							MessageToast.show(aMessageData[aMessageData.length - 1].message);
 						}
 					}.bind(this));
 					
