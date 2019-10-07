@@ -134,6 +134,10 @@ sap.ui.define(
         return this._oTransactionNonDraft.whenRead(params);
       },
 
+      whenUpdated: function(params) {
+        return this._oTransactionNonDraft.whenUpdated(params);
+      },
+
       whenDeleted: function(params) {
         // check params
         this._oAssert.ok(params, 'cannot execute transaction whenDeleted. no params');

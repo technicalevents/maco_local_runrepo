@@ -1,7 +1,13 @@
 /*global location*/
 sap.ui.define(
-  ['com/sap/cd/maco/mmt/ui/reuse/base/BaseAction', 'com/sap/cd/maco/mmt/ui/reuse/_/bundle', 'com/sap/cd/maco/mmt/ui/reuse/base/UI5MetadataTool'],
-  function(BaseAction, bundle, UI5MetadataTool) {
+  [
+    'com/sap/cd/maco/mmt/ui/reuse/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/_/bundle',
+    'com/sap/cd/maco/mmt/ui/reuse/base/UI5MetadataTool',
+    'sap/ushell/ui/footerbar/AddBookmarkButton'
+  ],
+
+  function(BaseAction, bundle, UI5MetadataTool, AddBookmarkButton) {
     'use strict';
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.share.SaveAsTileAction', {
@@ -16,7 +22,7 @@ sap.ui.define(
             // get bookmark
             var oBookmark;
             if (this._oUI5MetadataTool.isSubclass(oParams.controller, 'com.sap.cd.maco.mmt.ui.reuse.listReport.ListReportController')) {
-              oBookmark = this._getBookmarkListReport(oParams.controller);
+              oBookmark = this._getBookmarkListReport(oParams);
             } else if (this._oUI5MetadataTool.isSubclass(oParams.controller, 'com.sap.cd.maco.mmt.ui.reuse.objectPage.ObjectPageController')) {
               oBookmark = this._getBookmarkObjectPage(oParams);
             } else {
@@ -24,22 +30,10 @@ sap.ui.define(
               reject();
             }
 
-            // call bookmark service
-            var oBookmarkService = sap.ushell.Container.getService('Bookmark');
-            oBookmarkService
-              .addBookmark(oBookmark)
-              .done(
-                function() {
-                  var sMsg = bundle.get().getText('shareSaveAsTileSuccess');
-                  this.oMessage.success({ msg: sMsg });
-                  resolve();
-                }.bind(this)
-              )
-              .fail(function(sMessage) {
-                var sMsg = bundle.get().getText('shareSaveAsTileError') + '. ' + sMessage;
-                this.oMessage.error({ msg: sMsg });
-                reject();
-              });
+            // call bookmark "service"
+            // (tried called the real service in the first place but this does not bring up the dialog)
+            var oButton = new AddBookmarkButton(oBookmark);
+            oButton.firePress();
           }.bind(this)
         );
       },
@@ -48,7 +42,7 @@ sap.ui.define(
         return {
           url: document.location.hash,
           title: this.getConfigText('appTitleMsgKey', '?'),
-          serviceUrl: this._getServiceUrl(oParams.controller)
+          serviceUrl: this._getServiceUrl(oParams)
         };
       },
 
@@ -77,6 +71,11 @@ sap.ui.define(
        * ... but it behaves the same way in a Fiori Element 1.60
        */
       _getServiceUrl: function(oParams) {
+        // skip?
+        if (oParams.hasOwnProperty('setServiceUrl') && !oParams.setServiceUrl) {
+          return null;
+        }
+
         var oTable = oParams.controller.getSmartTable().getTable();
         var oBinding = oTable.getBinding('rows') || oTable.getBinding('items');
         if (!oBinding) {
