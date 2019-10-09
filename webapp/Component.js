@@ -1,31 +1,26 @@
 sap.ui.define(
   [
-    "sap/ui/core/UIComponent",
-    "com/sap/cd/maco/mmt/ui/reuse/bootstrap/BootstrapDraft",
+    "com/sap/cd/maco/mmt/ui/reuse/component/DraftComponent",
     "com/sap/cd/maco/mmt/ui/reuse/nav/HashSync",
     "com/sap/cd/maco/mmt/ui/reuse/nav/NavToRouteAction",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/actions/ExecuteMsgAggrAction",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/actions/ReportExecutionAction",
     "com/sap/cd/maco/mmt/ui/reuse/share/ShareAction"
   ],
-  function(UIComponent, Bootstrap, HashSync, NavToRouteAction, ExecuteMsgAggrAction, ReportExecutionAction, ShareAction) {
+  function(DraftComponent, HashSync, NavToRouteAction, ExecuteMsgAggrAction, ReportExecutionAction, ShareAction) {
     "use strict";
 
-    return UIComponent.extend("com.sap.cd.maco.monitor.ui.app.displayprocesses.Component", {
+    return DraftComponent.extend("com.sap.cd.maco.monitor.ui.app.displayprocesses.Component", {
       metadata: {
         manifest: "json"
       },
 
       /**
-       * Function is used to initialize Component
+       * Function is used to initialize DraftComponent
        */
       init: function() {
         // call the base component"s init function
-        UIComponent.prototype.init.apply(this, arguments);
-			
-        // generic init of component
-        this._oBootstrap = new Bootstrap(this);
-        this._oBootstrap.initComponent();
+        DraftComponent.prototype.init.apply(this, arguments);
         
         this.actions = {
           executeMsgAggr: new ExecuteMsgAggrAction(this),
@@ -61,11 +56,12 @@ sap.ui.define(
        * Function is triggered on exit of Application 
        */
       destroy: function() {
-        // generic destroy of component
-        this._oBootstrap.destroyComponent();
-
+      	for (var sName in this.actions) {
+        	this.actions[sName].destroy();
+        }
+        
         // call the base component's destroy function
-        UIComponent.prototype.destroy.apply(this, arguments);
+        DraftComponent.prototype.destroy.apply(this, arguments);
       }
     });
   }
