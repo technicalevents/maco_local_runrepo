@@ -14,7 +14,7 @@ sap.ui.define(
   function(UIComponent, jQuery, JSONModel, ResourceModel, Assert, Message, MessageManager, ODataRequestTracer, Navigation, ControllerRegistry) {
     'use strict';
 
-    return UIComponent.extend('com.sap.cd.maco.mmt.ui.reuse.base.BaseComponent', {
+    return UIComponent.extend('com.sap.cd.maco.mmt.ui.reuse.component.ReuseComponent', {
       init: function() {
         // Call super
         UIComponent.prototype.init.apply(this, arguments);

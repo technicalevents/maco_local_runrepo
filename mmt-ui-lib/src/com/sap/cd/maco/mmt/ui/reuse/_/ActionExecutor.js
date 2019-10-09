@@ -46,8 +46,7 @@ sap.ui.define(['sap/ui/base/Object', 'com/sap/cd/maco/mmt/ui/reuse/base/UI5Metad
             this._oController[sAfterFunc](oResult, oParams);
           }
         }.bind(this),
-        // reject
-        function() {}
+        null // by giving no reject function we let Chrome log the error to the console
       );
     },
 

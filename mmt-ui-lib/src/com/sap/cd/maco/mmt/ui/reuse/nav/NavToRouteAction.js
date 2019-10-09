@@ -72,10 +72,10 @@ sap.ui.define(
 
         // compute route
         var oConConfig = this._oParams.controller.oConfig;
-        var sRoute = oConConfig.routes.child ? oConConfig.routes.child : this.oConfig.route;
+        var sRoute = oConConfig.routes && oConConfig.routes.child ? oConConfig.routes.child : this.oConfig.route;
         this.oAssert.ok(
           sRoute,
-          'cannot execute create action. no route. configure the childRoute on the executing controller or the route on this action'
+          'cannot execute NavToRouteAction. no child route. configure the child route on the action or the executing controller'
         );
 
         // compute args

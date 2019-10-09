@@ -20,10 +20,22 @@ sap.ui.define(
 
         // init this model
         this.getView().setModel(new JSONModel({}), 'this');
+
+        // set entitySet
+        if (oConfig.entitySet) {
+          this.getThisModel().setProperty('/entitySet', oConfig.entitySet);
+        }
+
+        // initialize enablement
+        this._enableActions();
       },
 
       getSmartTable: function() {
         return getConfigControl(this, 'table', 'sap.ui.comp.smarttable.SmartTable', true);
+      },
+
+      rebindTable: function() {
+        this.getSmartTable().rebindTable();
       },
 
       _enableActions: function() {

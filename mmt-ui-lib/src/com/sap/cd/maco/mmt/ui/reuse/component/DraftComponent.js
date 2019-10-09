@@ -1,13 +1,13 @@
-sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/base/BaseComponent', 'com/sap/cd/maco/mmt/ui/reuse/transaction/draft/Transaction'], function(
-  BaseComponent,
+sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/component/ReuseComponent', 'com/sap/cd/maco/mmt/ui/reuse/transaction/draft/Transaction'], function(
+  ReuseComponent,
   Transaction
 ) {
   'use strict';
 
-  return BaseComponent.extend('com.sap.cd.maco.mmt.ui.reuse.transaction.draft.Component', {
+  return ReuseComponent.extend('com.sap.cd.maco.mmt.ui.reuse.component.DraftComponent', {
     init: function() {
       // Call super
-      BaseComponent.prototype.init.apply(this, arguments);
+      ReuseComponent.prototype.init.apply(this, arguments);
 
       // our stuff
       this.initTransaction();
@@ -15,6 +15,9 @@ sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/base/BaseComponent', 'com/sap/cd/ma
     },
 
     exit: function() {
+      // super
+      ReuseComponent.prototype.exit.apply(this, arguments);
+
       this.destroyTransaction();
     },
 
