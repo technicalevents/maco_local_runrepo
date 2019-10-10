@@ -1,7 +1,0 @@
-<smartForm:Layout
-    xmlns:smartForm="sap.ui.comp.smartform"
-    singleGroupFullSize="false"
-    columnsXL="4"       columnsL="3"        columnsM="2"
-    labelSpanXL="12"    labelSpanL="12"     labelSpanM="12"     labelSpanS="12"
-    emptySpanXL="0"     emptySpanL="0"      emptySpanM="0"      emptySpanS="0">
-</smartForm:Layout>
