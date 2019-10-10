@@ -53,10 +53,7 @@ sap.ui.define([
 						data: oData,
 						busyControl: oParams.busyControl
 					}).then(function() {
-						var aMessageData = this.oComponent.getModel("message").getData();
-						if(jQuery.isArray(aMessageData)) {
-							MessageToast.show(aMessageData[aMessageData.length - 1].message);
-						}
+						MessageToast.show(JSON.parse(oResponse.response.headers["sap-message"]).message);
 					}.bind(this));
 					
 		    	}.bind(this)
