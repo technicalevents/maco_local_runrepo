@@ -62,42 +62,6 @@ sap.ui.define([
 		},
 
 		/**
-		 * Utility Function used to get navigation parameters
-		 * @param {string} sBusinessObjectType - Business Object Type
-		 * @param {string} sDocumentKey - Document key
-		 * @param {string} sProcessID   - Process ID
-		 * @public
-		 * @returns {object} Object having KeyField (GUID) for cross App Navigation
-	   	 */
-		   getNavigationParameters: function(sBusinessObjectType, sDocumentKey, sProcessID){
-			var sSemanticObject = this.getSemanticObject(sBusinessObjectType);
-			var oParam = {};
-			
-			if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT){
-				oParam.ProcessDocumentKey = sDocumentKey;
-				oParam.ProcessID = sProcessID;
-			} else {
-				oParam.TransferDocumentKey = sDocumentKey;
-			}
-			
-			return oParam;
-		},
-		
-		/**
-		 * Get detailed info about entity type based on corresponding entity set
-		 * @param {sap.ui.model.odata.v2.ODataModel} oOdataModel - ODATA model reference
-		 * @param {string} sEntitySet - Name of the corresponding entity set
-		 * @returns {Object} Detailed info about entity type
-		 * @private
-		 */
-		getEntityTypeBySetName: function(oOdataModel, sEntitySet) {
-			var oMetaModel = oOdataModel.getMetaModel();
-			var oEntitySet = oMetaModel.getODataEntitySet(sEntitySet);
-			
-			return oEntitySet ? oMetaModel.getODataEntityType(oEntitySet.entityType) : {};
-		},
-
-		/**
 		 * Function generates a random GUID
 		 * @public
 		 * @returns {String} guid
