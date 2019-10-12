@@ -5,7 +5,6 @@
   xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
   xmlns:smartTable="sap.ui.comp.smarttable"
   xmlns:mvc="sap.ui.core.mvc"
-  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.button"
   xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
   xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table"
   xmlns:variants="sap.ui.comp.smartvariants"
@@ -50,8 +49,8 @@
             <ToolbarSpacer/>
             <Button text="{i18n>MESSAGE_LIST_REFRESH_TITLE}" 
         		tooltip="{i18n>MESSAGE_LIST_REFRESH_TITLE}"
-        		type="Transparent"
-            	press="onRefresh"/>
+        		type="Transparent" 
+        		press="onRefresh"/>
             <Button text="{i18n>DOWNLOAD_BTN_TXT}"
 				tooltip="{i18n>DOWNLOAD_BTN_TXT}"
 				type="Transparent"
@@ -113,16 +112,12 @@
                       formatter: '.formatter.partnerEnd'
                     }"/>
                 </HBox>
-                <Link text="{ProcessDocumentNumber}" press="onNavToProcess"/>
+                <Link text="{ProcessDocumentNumber}" c:action="navToProcessApp" press="onAction"/>
               </cells>
             </ColumnListItem>
           </items>
         </Table>
       </smartTable:SmartTable>
     </semantic:content>
-    <semantic:titleCustomTextActions>
-     	<reuseButton:Share text="{i18n>SHARE_BTN_LBL}" icon=""
-            press="onAction" c:action="share" />
-    </semantic:titleCustomTextActions>
   </semantic:SemanticPage>
 </mvc:View>

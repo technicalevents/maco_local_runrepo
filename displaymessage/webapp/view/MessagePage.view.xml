@@ -5,7 +5,7 @@
   xmlns:core="sap.ui.core" 
   xmlns:uxap="sap.uxap"
   xmlns:form="sap.ui.layout.form"
-  xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button"
+  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.button"
   xmlns:layout="sap.ui.layout"
   xmlns:f="sap.ui.layout.form">
   <uxap:ObjectPageLayout
@@ -38,6 +38,10 @@
 				press="onAction"
 				enabled="{this>/tableActionEnabled/singleDownload}"
 				c:action="singleDownload" />
+			<reuseButton:Share text="{i18n>SHARE_BTN_LBL}" 
+                icon=""
+                press="onAction" 
+                c:action="share" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>
@@ -65,9 +69,8 @@
 									<f:formElements>
 										<f:FormElement label="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}">
 											<f:fields>
-												<Link text="{this>/linkedDocumentIds/processDocument}" 
-													press="onAction" c:action="crossAppNavigation" c:keyField="LinkDocumentNumber"
-													enabled="{this>/tableActionEnabled/crossAppNavigation}" wrapping="true"/>
+												<Link text="{this>/LinkedDocuments/ProcessDocument/LinkDocumentNumber}" 
+													press="onCrossAppNavigation" c:docType="Process" wrapping="true"/>
 											</f:fields>
 										</f:FormElement>
 										<f:FormElement label="{/xMP4GxC_TransferDoc_UI/ExternalCommunicationType/#@sap:label}">
@@ -77,21 +80,20 @@
 										</f:FormElement>
 									</f:formElements>
 								</f:FormContainer>
-								<f:FormContainer>
+								<f:FormContainer visible="{= !(${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
 									<f:title>
 										<core:Title text="{i18n>CONTRL_MSG_TEXT}"/>
 									</f:title>
 									<f:formElements>
 										<f:FormElement label="{i18n>MSG_REF_TEXT}">
 											<f:fields>
-												<Link text="{this>/linkedDocumentIds/controlMessage}"
-													press="onAction" c:action="crossAppNavigation" c:keyField="ExternalUUID"
-													enabled="{this>/tableActionEnabled/crossAppNavigation}" wrapping="true"/>
+												<Link text="{this>/LinkedDocuments/ControlMessage/ExternalUUID}"
+													press="onCrossAppNavigation" c:docType="Message" wrapping="true"/>
 											</f:fields>
 										</f:FormElement>
-										<f:FormElement label="{i18n>Date_LBL}" visible="{=!!${this>/linkedDocumentIds/controlMessage}}">
+										<f:FormElement label="{i18n>Date_LBL}" visible="{=!!${this>/LinkedDocuments/ControlMessage/ExternalUUID}}">
 											<f:fields>
-												<Text text="{ path: 'this>/linkedDocumentIds/controlMessageTimeStamp',
+												<Text text="{ path: 'this>/LinkedDocuments/ControlMessage/Timestamp',
 									                          type: 'sap.ui.model.type.DateTime',
     														  formatOptions: { style: 'medium' }}"
 												      wrapping="true"/>
@@ -99,21 +101,20 @@
 										</f:FormElement>
 									</f:formElements>
 								</f:FormContainer>
-								<f:FormContainer>
+								<f:FormContainer visible="{= !(${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
 									<f:title>
 										<core:Title text="{i18n>APERAK_MSG_TEXT}"/>
 									</f:title>
 									<f:formElements>
 										<f:FormElement label="{i18n>MSG_REF_TEXT}">
 											<f:fields>
-												<Link text="{this>/linkedDocumentIds/aperakMessage}"
-													press="onAction" c:action="crossAppNavigation" c:keyField="ExternalUUID"
-													enabled="{this>/tableActionEnabled/crossAppNavigation}" wrapping="true"/>
+												<Link text="{this>/LinkedDocuments/AperakMessage/ExternalUUID}"
+													press="onCrossAppNavigation" c:docType="Message" wrapping="true"/>
 											</f:fields>
 										</f:FormElement>
-										<f:FormElement label="{i18n>Date_LBL}" visible="{=!!${this>/linkedDocumentIds/aperakMessage}}">
+										<f:FormElement label="{i18n>Date_LBL}" visible="{=!!${this>/LinkedDocuments/AperakMessage/ExternalUUID}}">
 											<f:fields>
-												<Text text="{path: 'this>/linkedDocumentIds/aperakMessageTimeStamp',
+												<Text text="{path: 'this>/LinkedDocuments/AperakMessage/Timestamp',
 															 type: 'sap.ui.model.type.DateTime',
 															 formatOptions: { style: 'medium' }}"
 														wrapping="true"/>
@@ -128,14 +129,13 @@
 									<f:formElements>
 										<f:FormElement label="{i18n>MSG_REF_TEXT}">
 											<f:fields>
-												<Link text="{this>/linkedDocumentIds/transferMessage}"
-													press="onAction" c:action="crossAppNavigation" c:keyField="ExternalUUID"
-													enabled="{this>/tableActionEnabled/crossAppNavigation}" wrapping="true"/>
+												<Link text="{this>/LinkedDocuments/TransferDocument/ExternalUUID}"
+													press="onCrossAppNavigation" c:docType="Message" wrapping="true"/>
 											</f:fields>
 										</f:FormElement>
-										<f:FormElement label="{i18n>Date_LBL}" visible="{=!!${this>/linkedDocumentIds/transferMessage}}">
+										<f:FormElement label="{i18n>Date_LBL}" visible="{=!!${this>/LinkedDocuments/TransferDocument/ExternalUUID}}">
 											<f:fields>
-												<Text text="{path: 'this>/linkedDocumentIds/transferMessageTimeStamp',
+												<Text text="{path: 'this>/LinkedDocuments/TransferDocument/Timestamp',
 															 type: 'sap.ui.model.type.DateTime',
 															 formatOptions: { style: 'medium' }}"
 														 wrapping="true"/>
