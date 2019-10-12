@@ -23,12 +23,14 @@ sap.ui.define(
         DraftComponent.prototype.init.apply(this, arguments);
         
         this.actions = {
-          executeMsgAggr: new ExecuteMsgAggrAction(this),
-          reportExecution: new ReportExecutionAction(this),
-          navToProcessPage: new NavToRouteAction(this),
-          share: new ShareAction(this, {
-          	appTitleMsgKey: "APP_TITLE"
-          })
+			executeMsgAggr: new ExecuteMsgAggrAction(this),
+			reportExecution: new ReportExecutionAction(this),
+			navToProcessPage: new NavToRouteAction(this),
+			share: new ShareAction(this, {
+				appTitleMsgKey: "APP_TITLE",
+				objectIdProperty: "ProcessDocumentNumber",
+				objectTextProperty: "ProcessIDDescription"
+			})
         };
         
         this.initRouting();

@@ -4,7 +4,7 @@
   xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
   xmlns:core="sap.ui.core" 
   xmlns:uxap="sap.uxap"
-  xmlns:button="com.sap.cd.maco.monitor.ui.reuse.button"
+  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.button"
   xmlns:layout="sap.ui.layout">
   <uxap:ObjectPageLayout
     id="idProcessObjectPage"
@@ -37,6 +37,10 @@
 				c:reportAction="TriggerDoc" 
 				c:action="reportExecution" 
 				press="onAction" />
+			<reuseButton:Share text="{i18n>SHARE_BTN_LBL}" 
+                icon=""
+                press="onAction" 
+                c:action="share" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>

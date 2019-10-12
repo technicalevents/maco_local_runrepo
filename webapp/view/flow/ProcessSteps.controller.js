@@ -6,9 +6,11 @@ sap.ui.define(
     "sap/ui/model/Filter",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
-     "sap/ui/model/Sorter"
+    "sap/ui/model/Sorter",
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
   ],
-  function(BaseViewController, formatter, JSONModel, Filter, Constants, Utility, Sorter) {
+  function(BaseViewController, formatter, JSONModel, Filter, Constants, Utility, Sorter, NavToProcessAction, NavToMessageAction) {
     "use strict";
 
     return BaseViewController.extend(
@@ -27,7 +29,7 @@ sap.ui.define(
 
           // Create a JSON Model
           var oThisModel = new JSONModel({});
-          oThisModel.setDefaultBindingMode("OneWay");
+          oThisModel.setDefaultBindingMode("TwoWay");
 
           // Setting model to view
           this.getView().setModel(oThisModel, "this");
@@ -50,17 +52,20 @@ sap.ui.define(
          */
         navigateToBusinessObject: function(oEvent) {
           var oObject = oEvent.getSource().getBindingContext("this").getObject();
-          var sBusinessObjectType = oObject.BusinessObjectType;
-          var sLinkedDocumentKey = Utility.convertToGuidFormat(oObject.BusinessObjectUUID);
-
-          var oParam = {
-          	semanticObject: Utility.getSemanticObject(sBusinessObjectType),
-          	action: Constants.SEMANTIC_ACTION.DISPLAY,
-          	params: Utility.getNavigationParameters(sBusinessObjectType, sLinkedDocumentKey),
-          	appState: null
-          };
-		          
-		  this.oNav.navExternal(oParam);
+          var sSemanticOject = Utility.getSemanticObject(oObject.BusinessObjectType);
+          var oAction;
+		  
+			if(sSemanticOject === Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT) {
+				oAction = new NavToProcessAction(this.getOwnerComponent(), "BusinessObjectUUID");
+			} else if(sSemanticOject === Constants.SEMANCTIC_OBJECT.TRANSFER_DOCUMENT) {
+				oAction = new NavToMessageAction(this.getOwnerComponent(), "BusinessObjectUUID");
+			}
+			
+		    var oParams = {
+		        busyControl: this.getView(),
+		        contexts: [oEvent.getSource().getBindingContext("this")]
+		    };
+		    oAction.execute(oParams);
         },
         
         /**
@@ -121,17 +126,21 @@ sap.ui.define(
          * @param {object} oResult Process Step Data object
          */
         _onSucessProcessStepDataRead: function(oResult){
-          if(!oResult && !oResult.data){
-            return;
-          }
+    		if(!oResult && !oResult.data){
+        		return;
+        	}
 
-          var aProcessSteps;
+        	 var aProcessSteps;
 
-          if (!oResult.data.results){
-            aProcessSteps = [oResult.data];
-          } else if (oResult && oResult.data){
-            aProcessSteps = oResult.data.results;
-          }
+        	if (!oResult.data.results){
+            	aProcessSteps = [oResult.data];
+        	} else if (oResult && oResult.data){
+            	aProcessSteps = oResult.data.results;
+        	}
+          
+        	for(var intI = 0; intI < aProcessSteps.length; intI++) {
+        		aProcessSteps[intI].BusinessObjectUUID = Utility.convertToGuidFormat(aProcessSteps[intI].BusinessObjectUUID);
+        	}
 
           var oModel = this.getThisModel();
           oModel.setProperty("/ProcessStepData", aProcessSteps);

@@ -15,7 +15,7 @@ sap.ui.define(
          * Lifecycle method - triggered on initialization of ProcessPage Controller
          */
         onInit: function() {
-        	var oComponentAction = this.getOwnerComponent().actions;
+        	var oComponentActions = this.getOwnerComponent().actions;
         	
 			ObjectPageNoDraftController.prototype.onInit.call(this, {
 				routes: {
@@ -31,7 +31,8 @@ sap.ui.define(
 				  objectPage: "idProcessObjectPage"
 				},
 				actions: {
-					reportExecution: oComponentAction.reportExecution
+					reportExecution: oComponentActions.reportExecution,
+					share: oComponentActions.share
 				}
 			});
         },

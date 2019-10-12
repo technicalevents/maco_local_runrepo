@@ -6,7 +6,6 @@
 		  xmlns:smartfield="sap.ui.comp.smartfield"
 		  xmlns:smartTable="sap.ui.comp.smarttable"
 		  xmlns:mvc="sap.ui.core.mvc"
-		  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.button"
 		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		  controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessListReport"
     	  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table"
@@ -28,6 +27,18 @@
                                          showFilterConfiguration="false"
                                          persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displayprocesses.filterbar"
                                          entitySet="xMP4GxC_ProcessHeader_UI">
+          	<smartFilterBar:controlConfiguration>
+				<smartFilterBar:ControlConfiguration key="OwnerUUID" 
+													 label="{/xMP4GxC_ProcessHeader_UI/OwnerUUID/#@sap:label}">
+					<smartFilterBar:customControl>
+						<MultiComboBox showSecondaryValues= "true"
+									   items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
+									   selectionChange="onOwnMarketPartnerChange">
+							<core:ListItem key="{market_partner}" text="{mp_name}" additionalText="{market_role}"/>
+						</MultiComboBox>
+          			</smartFilterBar:customControl>
+          		</smartFilterBar:ControlConfiguration>
+          	</smartFilterBar:controlConfiguration>
           </smartFilterBar:SmartFilterBar>
      </semantic:headerContent>
     <semantic:content>
@@ -46,15 +57,10 @@
 					        useVariantManagement="false" 
 					        beforeRebindTable="onBeforeRebindTable"
 					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displayprocesses.table"
-					        requestAtLeastFields="ProcessDocumentKey,StatusCriticality,ProcessID">
+					        requestAtLeastFields="ProcessDocumentKey,StatusCriticality,ProcessID,OwnerUUID">
         <smartTable:customToolbar>
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>
-            <Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
-				tooltip="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
-				type="Transparent"
-				press="onAction"
-				c:action="executeMsgAggr"/>
             <Button text="{i18n>PROCESS_LIST_REFRESH_TITLE}"
             	tooltip="{i18n>PROCESS_LIST_REFRESH_TITLE}"
             	type="Transparent"
@@ -62,11 +68,11 @@
           </OverflowToolbar>
         </smartTable:customToolbar>
         <Table id="idProcessTable"
-	          growing="true"
-	          growingScrollToLoad="true" 
-	          growingThreshold="100" 
-	          mode="None"
-	          sticky="ColumnHeaders,HeaderToolbar" >
+			growing="true"
+			growingScrollToLoad="true" 
+			growingThreshold="100" 
+			mode="None"
+			sticky="ColumnHeaders,HeaderToolbar" >
           <columns>
             <Column width="40%">
               <Text text="{/xMP4GxC_ProcessHeader_UI/ProcessDocumentNumber/#@sap:label}"/>
@@ -89,8 +95,11 @@
       </smartTable:SmartTable>
     </semantic:content>
     <semantic:titleCustomTextActions>
-     	<reuseButton:Share text="{i18n>SHARE_BTN_LBL}" icon=""
-            press="onAction" c:action="share" />
+     	<Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
+				tooltip="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
+				type="Transparent"
+				press="onAction"
+				c:action="executeMsgAggr"/>
     </semantic:titleCustomTextActions>
   </semantic:SemanticPage>
 </mvc:View>

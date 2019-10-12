@@ -4,10 +4,12 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
     "sap/ui/generic/app/navigation/service/SelectionVariant",
-    "sap/ui/model/Sorter"
+    "sap/ui/model/Sorter",
+    "sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
   ],
   function(ListReportNoDraftController, SmartTableBindingUpdate, Formatter, 
-			SelectionVariant, Sorter) {
+			SelectionVariant, Sorter, Filter, FilterOperator) {
     "use strict";
 
     return ListReportNoDraftController.extend(
@@ -28,14 +30,16 @@ sap.ui.define(
          * Lifecycle method - triggered on initialization of ProcessListReport Controller
          */
         onInit: function() {
-			var oComponentAction = this.getOwnerComponent().actions;
+			var oComponentActions = this.getOwnerComponent().actions;
+			
+			this.getOwnerComponent().getModel().setSizeLimit(1200);
         	
 			ListReportNoDraftController.prototype.onInit.call(this, {
 				entitySet: "xMP4GxC_ProcessHeader_UI",
 				actions: {
-					navToProcessPage: oComponentAction.navToProcessPage,
-					executeMsgAggr: oComponentAction.executeMsgAggr,
-					share: oComponentAction.share
+					navToProcessPage: oComponentActions.navToProcessPage,
+					executeMsgAggr: oComponentActions.executeMsgAggr,
+					share: oComponentActions.share
 				},
 				routes: {
 					parent: null,
@@ -58,37 +62,59 @@ sap.ui.define(
         /* PUBLIC METHODS */
         /******************************************************************* */
         
-       /**
+         /**
 	  	  * Event is triggered before data loading of smart table
-        * @param {object} oEvent Table loading event
+          * @param {object} oEvent Table loading event
 	  	  * @public
-		    */
+		  */
         onBeforeRebindTable: function(oEvent) {
-          var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));
-          var aSorters = [];
-          aSorters.push(new Sorter("ProcessTimestamp", true));
-          aSorters.push(new Sorter("ProcessDocumentKey", true));
-          oUpdate.addSorters(aSorters);
-          
-          // This method will add Current application state in URL
-          this.storeCurrentAppState();
+			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));
+			var aSorters = [];
+			
+			aSorters.push(new Sorter("ProcessTimestamp", true));
+			aSorters.push(new Sorter("ProcessDocumentKey", true));
+			oUpdate.addSorters(aSorters);
+			
+			// This method will add Current application state in URL
+			this.storeCurrentAppState();
         },
         
-        /**
-	       * Event is triggered when FilterBar is initialized. 
-	       * This method will set Recently used FilterData in FilterBar
-	       * @public
-	       */
+	   /**
+		* Event is triggered when selection is changed in Own Market Partner MultiComboBox
+		* @public
+		 */
+        onOwnMarketPartnerChange: function() {
+			var aOwnerUUIDKeys = this._getSmartFilterBar().getControlByKey("OwnerUUID").getSelectedKeys();
+			var oSmartFilterData = this._getSmartFilterBar().getFilterData();
+			
+			delete oSmartFilterData.OwnerUUID;
+			
+			if(!jQuery.isEmptyObject(aOwnerUUIDKeys)) {
+				oSmartFilterData["OwnerUUID"] = {"items": []};
+				
+				for (var intI = 0; intI < aOwnerUUIDKeys.length; intI++) {
+					oSmartFilterData["OwnerUUID"].items.push({"key": aOwnerUUIDKeys[intI]});
+				}
+			}
+			
+			this._getSmartFilterBar().setFilterData(oSmartFilterData, true);
+        },
+        
+       /**
+		* Event is triggered when FilterBar is initialized. 
+		* This method will set Recently used FilterData in FilterBar
+		* @public
+		*/
         onFilterBarInitialized: function() {
-          var oSmartFilterBar = this.getView().byId("idProcessSmartFilterBar");
-          var oSmartTable = this.getView().byId("idProcessSmartTable");
-
-          this.oNav.parseNavigation().done(function(oAppState) {
-            if(!jQuery.isEmptyObject(oAppState)) {
-              oSmartFilterBar.setDataSuiteFormat(oAppState.selectionVariant, true);
-              oSmartTable.rebindTable(true);
-            }
-          }.bind(this));
+			var oSmartFilterBar = this._getSmartFilterBar();
+			var oSmartTable = this._getSmartTable();
+				
+			this.oNav.parseNavigation().done(function(oAppState) {
+				if(!jQuery.isEmptyObject(oAppState)) {
+					oSmartFilterBar.setDataSuiteFormat(oAppState.selectionVariant, true);
+					oSmartTable.rebindTable(true);
+				}
+			}.bind(this));
         },
 
         /**
@@ -97,7 +123,7 @@ sap.ui.define(
          * @public
          */
         onRefresh: function() {
-          this.getView().byId("idProcessSmartTable").rebindTable(true);
+			this._getSmartTable().rebindTable(true);
         },
         
         /**
@@ -105,17 +131,45 @@ sap.ui.define(
          * @public
          */
         storeCurrentAppState: function() {
-          var oSmartFilterBar = this.getView().byId("idProcessSmartFilterBar");
-          var oSmartFilterUiState = oSmartFilterBar.getUiState();
-          var oSmartTable = this.getView().byId("idProcessSmartTable");
-          var oSelectionVariant = new SelectionVariant(JSON.stringify(oSmartFilterUiState.getSelectionVariant()));
-          var oCurrentAppState = {
-            selectionVariant: oSelectionVariant.toJSONString(),
-            tableVariantId: oSmartTable.getCurrentVariantId(),
-            valueTexts: oSmartFilterUiState.getValueTexts()
-          };
-
-          this.oNav.storeInnerAppState(oCurrentAppState);
+			var oSmartFilterBar = this._getSmartFilterBar();
+			var oSmartFilterUiState = oSmartFilterBar.getUiState();
+			var oSmartTable = this._getSmartTable();
+			var oSelectionVariant = new SelectionVariant(JSON.stringify(oSmartFilterUiState.getSelectionVariant()));
+			var oCurrentAppState = {
+				selectionVariant: oSelectionVariant.toJSONString(),
+				tableVariantId: oSmartTable.getCurrentVariantId(),
+				valueTexts: oSmartFilterUiState.getValueTexts()
+			};
+			
+			this.oNav.storeInnerAppState(oCurrentAppState);
+        },
+        
+        /******************************************************************* */
+        /* PUBLIC METHODS */
+        /******************************************************************* */
+        
+        /**
+         * Function will return instance of Smart Table Control
+         * @public
+         */
+        _getSmartTable: function() {
+			if(!this._oSmartTable) {
+				this._oSmartTable = this.getView().byId("idProcessSmartTable");
+			}
+			
+			return this._oSmartTable;
+        },
+        
+        /**
+         * Function will return instance of Smart Filter Bar Control
+         * @public
+         */
+        _getSmartFilterBar: function() {
+			if(!this._oSmartFilterBar) {
+				this._oSmartFilterBar = this.getView().byId("idProcessSmartFilterBar");
+			}
+			
+			return this._oSmartFilterBar;
         }
       }
     );
