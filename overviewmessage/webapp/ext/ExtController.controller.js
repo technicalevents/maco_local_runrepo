@@ -6,15 +6,16 @@ function() {
     'com.sap.cd.maco.monitor.ui.app.overviewmessages.ext.ExtController',
     {
 
-  /******************************************************************* */
-  /* LIFECYCLE METHODS */
-  /******************************************************************* */
+	/******************************************************************* */
+	/* LIFECYCLE METHODS */
+	/******************************************************************* */
       
     /**
      * LifeCycle Method
      */
-    onAfterRendering: function(oEvent) {
+    onAfterRendering: function() {
       this.getView().byId("mainView--ovpMain").addStyleClass("comSapCdMacoMmtUiMonitorMsgGraphTitle");
+      this.getView().byId("sapOvpShareButton").setVisible(false);
     }
   });
 });

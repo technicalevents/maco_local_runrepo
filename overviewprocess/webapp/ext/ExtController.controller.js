@@ -15,7 +15,7 @@ function() {
      */
     onAfterRendering: function() {
       this.getView().byId("mainView--ovpMain").addStyleClass("comSapCdMacoMmtUiMonitorMsgGraphTitle");
+      this.getView().byId("sapOvpShareButton").setVisible(false);;
     }
-
   });
 });
