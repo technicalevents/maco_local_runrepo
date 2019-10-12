@@ -4,12 +4,12 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/nav/HashSync",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/SingleDownloadAction",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/MultiDownloadAction",
-    "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/CrossAppNavigationAction",
     "com/sap/cd/maco/mmt/ui/reuse/nav/NavToRouteAction",
-    "com/sap/cd/maco/mmt/ui/reuse/share/ShareAction"
+    "com/sap/cd/maco/mmt/ui/reuse/share/ShareAction",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction"
   ],
   function(DraftComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
-			CrossAppNavigationAction, NavToRouteAction, ShareAction) {
+			NavToRouteAction, ShareAction, NavToProcessAction) {
     "use strict";
 
     return DraftComponent.extend("com.sap.cd.maco.monitor.ui.app.displaymessages.Component", {
@@ -25,13 +25,15 @@ sap.ui.define(
         DraftComponent.prototype.init.apply(this, arguments);
         
         this.actions = {
-          singleDownload: new SingleDownloadAction(this),
-          multiDownload: new MultiDownloadAction(this),
-          crossAppNavigation: new CrossAppNavigationAction(this),
-          navToMessagePage: new NavToRouteAction(this),
-          share: new ShareAction(this, {
-          	appTitleMsgKey: "APP_TITLE"
-          })
+			singleDownload: new SingleDownloadAction(this),
+			multiDownload: new MultiDownloadAction(this),
+			navToMessagePage: new NavToRouteAction(this),
+			navToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey"),
+			share: new ShareAction(this, {
+				appTitleMsgKey: "APP_TITLE",
+				objectIdProperty: "TransferDocumentNumber",
+				objectTextProperty: "ExternalUUID"
+			})
         };
 
         this.initRouting();
