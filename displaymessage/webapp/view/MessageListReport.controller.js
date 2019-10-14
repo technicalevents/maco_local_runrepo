@@ -31,6 +31,8 @@ sap.ui.define(
 		 */
       onInit: function() {
         var oComponentActions = this.getOwnerComponent().actions;
+        
+        this.getOwnerComponent().getModel().setSizeLimit(1200);
           
         ListReportNoDraftController.prototype.onInit.call(this, {
           entitySet: "xMP4GxC_TransferDoc_UI",
@@ -99,6 +101,27 @@ sap.ui.define(
          */
         onRefresh: function() {
           this._getSmartTable().rebindTable(true);
+        },
+        
+        /**
+        * Event is triggered when selection is changed in Own Market Partner MultiComboBox
+        * @public
+        */
+        onOwnMarketPartnerChange: function() {
+          var aOwnerUUIDKeys = this._getSmartFilterBar().getControlByKey("OwnerUUID").getSelectedKeys();
+          var oSmartFilterData = this._getSmartFilterBar().getFilterData();
+          
+          delete oSmartFilterData.OwnerUUID;
+          
+          if(!jQuery.isEmptyObject(aOwnerUUIDKeys)) {
+            oSmartFilterData["OwnerUUID"] = {"items": []};
+            
+            for (var intI = 0; intI < aOwnerUUIDKeys.length; intI++) {
+              oSmartFilterData["OwnerUUID"].items.push({"key": aOwnerUUIDKeys[intI]});
+            }
+          }
+          
+          this._getSmartFilterBar().setFilterData(oSmartFilterData, true);
         },
 
         /**

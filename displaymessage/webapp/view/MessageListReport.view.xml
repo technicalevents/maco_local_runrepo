@@ -26,7 +26,20 @@
                   initialized="onFilterBarInitialized"
                   showFilterConfiguration="false"
                   persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.filterbar"
-                  entitySet="xMP4GxC_TransferDoc_UI" />
+                  entitySet="xMP4GxC_TransferDoc_UI">
+          	<smartFilterBar:controlConfiguration>
+                <smartFilterBar:ControlConfiguration key="OwnerUUID" 
+													 label="{/xMP4GxC_TransferDoc_UI/OwnerUUID/#@sap:label}">
+                <smartFilterBar:customControl>
+                  <MultiComboBox showSecondaryValues= "true"
+                          items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
+                          selectionChange="onOwnMarketPartnerChange">
+                    <core:ListItem key="{market_partner}" text="{mp_name}" additionalText="{market_role}"/>
+                  </MultiComboBox>
+          			</smartFilterBar:customControl>
+          		</smartFilterBar:ControlConfiguration>
+          	</smartFilterBar:controlConfiguration>
+          </smartFilterBar:SmartFilterBar>
      </semantic:headerContent>
     <semantic:content>
       <smartTable:SmartTable id="idMessageSmartTable"
@@ -35,7 +48,7 @@
 					        smartFilterId="idMessageSmartFilterBar"
 					        smartVariant="idMessageVariantManagement"
 					        enableAutoBinding="true" 
-					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID"
+					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID,OwnerUUID"
 					        ignoredFields="ExtBusinessMessageID"
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="false"
