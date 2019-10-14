@@ -7,7 +7,8 @@ sap.ui.define(
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/actions/ReportExecutionAction",
     "com/sap/cd/maco/mmt/ui/reuse/share/ShareAction"
   ],
-  function(DraftComponent, HashSync, NavToRouteAction, ExecuteMsgAggrAction, ReportExecutionAction, ShareAction) {
+  function(DraftComponent, HashSync, NavToRouteAction, ExecuteMsgAggrAction, 
+            ReportExecutionAction, ShareAction) {
     "use strict";
 
     return DraftComponent.extend("com.sap.cd.maco.monitor.ui.app.displayprocesses.Component", {
@@ -21,18 +22,18 @@ sap.ui.define(
       init: function() {
         // call the base component"s init function
         DraftComponent.prototype.init.apply(this, arguments);
-        
+
         this.actions = {
-			executeMsgAggr: new ExecuteMsgAggrAction(this),
-			reportExecution: new ReportExecutionAction(this),
-			navToProcessPage: new NavToRouteAction(this),
-			share: new ShareAction(this, {
-				appTitleMsgKey: "APP_TITLE",
-				objectIdProperty: "ProcessDocumentNumber",
-				objectTextProperty: "ProcessIDDescription"
-			})
-        };
-        
+          executeMsgAggr: new ExecuteMsgAggrAction(this),
+          reportExecution: new ReportExecutionAction(this),
+          navToProcessPage: new NavToRouteAction(this),
+          share: new ShareAction(this, {
+            appTitleMsgKey: "APP_TITLE",
+            objectIdProperty: "ProcessDocumentNumber",
+            objectTextProperty: "ProcessIDDescription"
+          })
+            };
+
         this.initRouting();
       },
 
@@ -58,11 +59,12 @@ sap.ui.define(
        * Function is triggered on exit of Application 
        */
       destroy: function() {
-      	for (var sName in this.actions) {
-        	this.actions[sName].destroy();
+        //Destroy Actions
+        for (var sName in this.actions) {
+          this.actions[sName].destroy();
         }
-        
-        // call the base component's destroy function
+
+        // generic destroy of component
         DraftComponent.prototype.destroy.apply(this, arguments);
       }
     });

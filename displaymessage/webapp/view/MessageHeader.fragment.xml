@@ -1,5 +1,5 @@
 <core:FragmentDefinition
-        xmlns="sap.m"
+        xmlns="sap.m" 
         xmlns:core="sap.ui.core"
         xmlns:reuseFacet="com.sap.cd.maco.mmt.ui.reuse.objectPage.facet"
         xmlns:layout="sap.ui.layout">

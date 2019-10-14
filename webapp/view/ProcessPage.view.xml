@@ -25,22 +25,22 @@
           <Text text="{ProcessIDDescription}"/>
         </uxap:snappedContent>
         <uxap:actions>
-        	<Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
-				tooltip="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
-				type="Transparent"
-				c:reportAction="Deadline" 
-				c:action="reportExecution" 
-				press="onAction" />
-			<Button text="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
-				tooltip="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
-				type="Transparent"
-				c:reportAction="TriggerDoc" 
-				c:action="reportExecution" 
-				press="onAction" />
-			<reuseButton:Share text="{i18n>SHARE_BTN_LBL}" 
-                icon=""
-                press="onAction" 
-                c:action="share" />
+          <Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
+                  tooltip="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
+                  type="Transparent"
+                  c:reportAction="Deadline" 
+                  c:action="reportExecution" 
+                  press="onAction" />
+          <Button text="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
+                  tooltip="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
+                  type="Transparent"
+                  c:reportAction="TriggerDoc" 
+                  c:action="reportExecution" 
+                  press="onAction" />
+          <reuseButton:Share text="{i18n>SHARE_BTN_LBL}" 
+                  icon=""
+                  press="onAction" 
+                  c:action="share" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>

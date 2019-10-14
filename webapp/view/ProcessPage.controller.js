@@ -15,26 +15,26 @@ sap.ui.define(
          * Lifecycle method - triggered on initialization of ProcessPage Controller
          */
         onInit: function() {
-        	var oComponentActions = this.getOwnerComponent().actions;
+          var oComponentActions = this.getOwnerComponent().actions;
         	
-			ObjectPageNoDraftController.prototype.onInit.call(this, {
-				routes: {
-					parent: "listReport",
-					this: "processPage",
-					child: null
-				},
-				entitySet: "xMP4GxC_ProcActivityHeader_UI",
-				i18n: {
-					notFoundMsg: this.notFoundMsg.bind(this)
-				},
-				controls: {
-				  objectPage: "idProcessObjectPage"
-				},
-				actions: {
-					reportExecution: oComponentActions.reportExecution,
-					share: oComponentActions.share
-				}
-			});
+          ObjectPageNoDraftController.prototype.onInit.call(this, {
+            routes: {
+              parent: "listReport",
+              this: "processPage",
+              child: null
+            },
+            entitySet: "xMP4GxC_ProcActivityHeader_UI",
+            i18n: {
+              notFoundMsg: this.notFoundMsg.bind(this)
+            },
+            controls: {
+              objectPage: "idProcessObjectPage"
+            },
+            actions: {
+              reportExecution: oComponentActions.reportExecution,
+              share: oComponentActions.share
+            }
+          });
         },
 
         /**

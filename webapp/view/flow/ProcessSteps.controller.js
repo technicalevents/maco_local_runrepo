@@ -3,14 +3,14 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/base/BaseViewController",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/model/Filter",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
-    "sap/ui/model/Sorter",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
+     "sap/ui/model/Sorter",
+     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
+     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
   ],
-  function(BaseViewController, formatter, JSONModel, Filter, Constants, Utility, Sorter, NavToProcessAction, NavToMessageAction) {
+  function(BaseViewController, formatter, JSONModel, Constants, 
+            Utility, Sorter, NavToProcessAction, NavToMessageAction) {
     "use strict";
 
     return BaseViewController.extend(
@@ -55,17 +55,17 @@ sap.ui.define(
           var sSemanticOject = Utility.getSemanticObject(oObject.BusinessObjectType);
           var oAction;
 		  
-			if(sSemanticOject === Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT) {
-				oAction = new NavToProcessAction(this.getOwnerComponent(), "BusinessObjectUUID");
-			} else if(sSemanticOject === Constants.SEMANCTIC_OBJECT.TRANSFER_DOCUMENT) {
-				oAction = new NavToMessageAction(this.getOwnerComponent(), "BusinessObjectUUID");
-			}
-			
-		    var oParams = {
-		        busyControl: this.getView(),
-		        contexts: [oEvent.getSource().getBindingContext("this")]
-		    };
-		    oAction.execute(oParams);
+          if(sSemanticOject === Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT) {
+            oAction = new NavToProcessAction(this.getOwnerComponent(), "BusinessObjectUUID");
+          } else if(sSemanticOject === Constants.SEMANCTIC_OBJECT.TRANSFER_DOCUMENT) {
+            oAction = new NavToMessageAction(this.getOwnerComponent(), "BusinessObjectUUID");
+          }
+        
+          var oParams = {
+              busyControl: this.getView(),
+              contexts: [oEvent.getSource().getBindingContext("this")]
+          };
+          oAction.execute(oParams);
         },
         
         /**
@@ -79,28 +79,28 @@ sap.ui.define(
          * @returns {string} 	    	             Formatted title
          */
         formatProcessActivityTitle: function(sLinkedDocNumber, sTechnicalMessageId, sBusinessObjectType, sUserDecision, bExternalMessage){
-	    	var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
-	    	var sI18nFormat;
-            var aI18nData = [];
-            var sProcessActivityTitle;
-            
-	    	if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.TRANSFER_DOCUMENT && bExternalMessage) {
-		    	sI18nFormat = "MARKET_MESSAGE_REFERENCE_LINK_LBL";
-		    	aI18nData = [sTechnicalMessageId, sLinkedDocNumber];
-	    		sProcessActivityTitle = oResourceBundle.getText(sI18nFormat, aI18nData);
-	    	} else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT) {
-	    		sI18nFormat = "MARKET_PROCESS_REFERENCE_LINK_LBL";
-	    		aI18nData = [sLinkedDocNumber];
-	    		sProcessActivityTitle = oResourceBundle.getText(sI18nFormat, aI18nData);
-	    	} else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.EXCEPTION_DOCUMENT){
-	    		sI18nFormat = "DECISION_LBL";
-	    		sProcessActivityTitle = oResourceBundle.getText(sI18nFormat);
-	    	} else {
-	    		sProcessActivityTitle = "";
-	    	}
-	    	
-	    	return sProcessActivityTitle;
-    	},
+          var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+          var sI18nFormat;
+              var aI18nData = [];
+              var sProcessActivityTitle;
+              
+          if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.TRANSFER_DOCUMENT && bExternalMessage) {
+            sI18nFormat = "MARKET_MESSAGE_REFERENCE_LINK_LBL";
+            aI18nData = [sTechnicalMessageId, sLinkedDocNumber];
+            sProcessActivityTitle = oResourceBundle.getText(sI18nFormat, aI18nData);
+          } else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT) {
+            sI18nFormat = "MARKET_PROCESS_REFERENCE_LINK_LBL";
+            aI18nData = [sLinkedDocNumber];
+            sProcessActivityTitle = oResourceBundle.getText(sI18nFormat, aI18nData);
+          } else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.EXCEPTION_DOCUMENT){
+            sI18nFormat = "DECISION_LBL";
+            sProcessActivityTitle = oResourceBundle.getText(sI18nFormat);
+          } else {
+            sProcessActivityTitle = "";
+          }
+          
+          return sProcessActivityTitle;
+        },
         
 
         /**
@@ -126,7 +126,7 @@ sap.ui.define(
          * @param {object} oResult Process Step Data object
          */
         _onSucessProcessStepDataRead: function(oResult){
-    		if(!oResult && !oResult.data){
+          if(!oResult && !oResult.data){
         		return;
         	}
 
@@ -139,7 +139,8 @@ sap.ui.define(
         	}
           
         	for(var intI = 0; intI < aProcessSteps.length; intI++) {
-        		aProcessSteps[intI].BusinessObjectUUID = Utility.convertToGuidFormat(aProcessSteps[intI].BusinessObjectUUID);
+            aProcessSteps[intI].BusinessObjectUUID = 
+                          Utility.convertToGuidFormat(aProcessSteps[intI].BusinessObjectUUID);
         	}
 
           var oModel = this.getThisModel();

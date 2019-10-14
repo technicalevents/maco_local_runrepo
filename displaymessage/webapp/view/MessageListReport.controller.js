@@ -5,23 +5,23 @@ sap.ui.define(
     "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
     "sap/ui/model/Sorter",
-	"sap/ui/generic/app/navigation/service/SelectionVariant"
+    "sap/ui/generic/app/navigation/service/SelectionVariant"
   ],
   function(ListReportNoDraftController, SmartTableBindingUpdate, messageFormatter, 
-			Constants, Sorter, SelectionVariant) {
+            Constants, Sorter, SelectionVariant) {
     "use strict";
 
     return ListReportNoDraftController.extend(
       "com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessageListReport",
       {
 
-        /**
+    /**
 		 * Formatter Attribute.
 		 * @public
 		 */
-		formatter: messageFormatter,
+    formatter: messageFormatter,
 
-        /******************************************************************* */
+    /******************************************************************* */
 		/* LIFECYCLE METHODS */
 		/******************************************************************* */
 
@@ -29,52 +29,53 @@ sap.ui.define(
 		 * LifeCycle method Called when MessageListReport controller is instantiated.
 		 * @public
 		 */
-        onInit: function() {
-          var oComponentActions = this.getOwnerComponent().actions;
+      onInit: function() {
+        var oComponentActions = this.getOwnerComponent().actions;
           
-          ListReportNoDraftController.prototype.onInit.call(this, {
-            entitySet: "xMP4GxC_TransferDoc_UI",
-            actions: {
-            	multiDownload: oComponentActions.multiDownload,
-            	navToMessagePage: oComponentActions.navToMessagePage,
-            	navToProcessApp: oComponentActions.navToProcessApp,
-            	share: oComponentActions.share
-            },
-            routes: {
-				parent: null,
-				this: "listReport",
-				child: "messagePage"
-            },
-            controls: {
-				table: "idMessageSmartTable",
-				variantManagement: "idMessageVariantManagement",
-				filterBar: "idMessageSmartFilterBar"
-            },
-            tableAccessControl: {
-            	multiDownload: true,
-            	navToMessagePage: true,
-            	navToProcessApp: true
-        	}
-          });
-        },
-        
+        ListReportNoDraftController.prototype.onInit.call(this, {
+          entitySet: "xMP4GxC_TransferDoc_UI",
+          actions: {
+            multiDownload: oComponentActions.multiDownload,
+            navToMessagePage: oComponentActions.navToMessagePage,
+            navToProcessApp: oComponentActions.navToProcessApp,
+            share: oComponentActions.share
+          },
+          routes: {
+            parent: null,
+            this: "listReport",
+            child: "messagePage"
+          },
+          controls: {
+            table: "idMessageSmartTable",
+            variantManagement: "idMessageVariantManagement",
+            filterBar: "idMessageSmartFilterBar"
+          },
+          tableAccessControl: {
+            multiDownload: true,
+            navToMessagePage: true,
+            navToProcessApp: true
+          }
+        });
+      },
+
       /******************************************************************* */
       /* PUBLIC METHODS */
       /******************************************************************* */
         
       /**
-	   * Event is triggered before data loading of smart table
+	  	 * Event is triggered before data loading of smart table
        * @param {object} oEvent Table loading event
-	   * @public
-	   */
+	  	 * @public
+		   */
         onBeforeRebindTable: function(oEvent) {
-			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
-			var aSorters = [];
-			aSorters.push(new Sorter("Timestamp", true));
-			aSorters.push(new Sorter("TransferDocumentNumber", true));
-			oUpdate.addSorters(aSorters);
-			
-			this.storeCurrentAppState();
+          var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
+          var aSorters = [];
+          aSorters.push(new Sorter("Timestamp", true));
+          aSorters.push(new Sorter("TransferDocumentNumber", true));
+          oUpdate.addSorters(aSorters);
+
+          // This method will add Current application state in URL
+          this.storeCurrentAppState();
         },
 
         /**
@@ -83,12 +84,12 @@ sap.ui.define(
          * @public
          */
         onFilterBarInitialized: function() {
-			this.oNav.parseNavigation().done(function(oAppState) {
-				if(!jQuery.isEmptyObject(oAppState)) {
-					this._getSmartFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
-					this._getSmartTable().rebindTable(true);
-				}
-			}.bind(this));
+          this.oNav.parseNavigation().done(function(oAppState) {
+            if(!jQuery.isEmptyObject(oAppState)) {
+              this._getSmartFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
+              this._getSmartTable().rebindTable(true);
+            }
+          }.bind(this));
         },
 
         /**
@@ -97,7 +98,7 @@ sap.ui.define(
          * @public
          */
         onRefresh: function() {
-			this._getSmartTable().rebindTable(true);
+          this._getSmartTable().rebindTable(true);
         },
 
         /**
@@ -108,31 +109,31 @@ sap.ui.define(
          * @returns {string} 	    	             Formatted text
          */
         formatTechnicalBusinessMsgId: function(sTechnicalId, sExBusinessMsgId) {
-            var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
-            var sI18nFormat = "FORMAT_TXT_LBL";
-            var aI18nData = [sTechnicalId];
-            
-            if(sExBusinessMsgId) {
-              aI18nData.push(sExBusinessMsgId);
-              sI18nFormat = "FORMAT_AMID_TXT_LBL";
-            }
+          var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+          var sI18nFormat = "FORMAT_TXT_LBL";
+          var aI18nData = [sTechnicalId];
           
-            return oResourceBundle.getText(sI18nFormat, aI18nData);
-        },
+          if(sExBusinessMsgId) {
+            aI18nData.push(sExBusinessMsgId);
+            sI18nFormat = "FORMAT_AMID_TXT_LBL";
+          }
         
+          return oResourceBundle.getText(sI18nFormat, aI18nData);
+        },
+
         /**
-		 * Function will store application's current state on change in message list
-		 * @public
-		 */
+         * Function will store application's current state on change in message list
+         * @public
+         */
         storeCurrentAppState: function() {
-			var oSmartFilterUiState = this._getSmartFilterBar().getUiState();
-			var oSelectionVariant = new SelectionVariant(JSON.stringify(oSmartFilterUiState.getSelectionVariant()));
-			var oCurrentAppState = {
-				selectionVariant: oSelectionVariant.toJSONString(),
-				tableVariantId: this._getSmartTable().getCurrentVariantId(),
-				valueTexts: oSmartFilterUiState.getValueTexts()
-			};
-            this.oNav.storeInnerAppState(oCurrentAppState);
+          var oSmartFilterUiState = this._getSmartFilterBar().getUiState();
+          var oSelectionVariant = new SelectionVariant(JSON.stringify(oSmartFilterUiState.getSelectionVariant()));
+          var oCurrentAppState = {
+            selectionVariant: oSelectionVariant.toJSONString(),
+            tableVariantId: this._getSmartTable().getCurrentVariantId(),
+            valueTexts: oSmartFilterUiState.getValueTexts()
+          };
+          this.oNav.storeInnerAppState(oCurrentAppState);
         },
         
         /******************************************************************* */
@@ -144,11 +145,11 @@ sap.ui.define(
          * @public
          */
         _getSmartTable: function() {
-			if(!this._oSmartTable) {
-				this._oSmartTable = this.getView().byId("idMessageSmartTable");
-			}
-			
-			return this._oSmartTable;
+          if(!this._oSmartTable) {
+            this._oSmartTable = this.getView().byId("idMessageSmartTable");
+          }
+          
+          return this._oSmartTable;
         },
         
         /**
@@ -156,11 +157,11 @@ sap.ui.define(
          * @public
          */
         _getSmartFilterBar: function() {
-			if(!this._oSmartFilterBar) {
-				this._oSmartFilterBar = this.getView().byId("idMessageSmartFilterBar");
-			}
-			
-			return this._oSmartFilterBar;
+          if(!this._oSmartFilterBar) {
+            this._oSmartFilterBar = this.getView().byId("idMessageSmartFilterBar");
+          }
+          
+          return this._oSmartFilterBar;
         }
       }
     );

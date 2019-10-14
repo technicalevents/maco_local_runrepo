@@ -52,7 +52,7 @@ sap.ui.define([
 						path: sKey,
 						data: oData,
 						busyControl: oParams.busyControl
-					}).then(function() {
+					}).then(function(oResponse) {
 						MessageToast.show(JSON.parse(oResponse.response.headers["sap-message"]).message);
 					}.bind(this));
 					

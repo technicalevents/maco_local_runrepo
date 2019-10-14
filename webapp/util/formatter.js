@@ -41,21 +41,21 @@ sap.ui.define([
     /**
      * Formatter function for getting status for process steps
      * @param   {string} 	sBusinessObjectType	 Business Object Type
-     * @param   {string} 	sUserDecision		 User Decision text
-     * @param   {string} 	sTransDocStatus  	 Transfer Document Status
+     * @param   {string} 	sUserDecision		     User Decision text
+     * @param   {string} 	sTransDocStatus  	   Transfer Document Status
      * @public
-     * @returns {string} 	    	             Formatted Status
+     * @returns {string} 	    	               Formatted Status
      */
     formatProcessStepStatus: function(sBusinessObjectType, sUserDecision, sTransDocStatus) {
-		var sStatus = "";
-		
-		if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.EXCEPTION_DOCUMENT) {
-			sStatus = sUserDecision;
-		} else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.TRANSFER_DOCUMENT) {
-			sStatus = sTransDocStatus;
-		}
-		
-		return sStatus;
-    }
+      var sStatus = "";
+      
+      if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.EXCEPTION_DOCUMENT) {
+        sStatus = sUserDecision;
+      } else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.TRANSFER_DOCUMENT) {
+        sStatus = sTransDocStatus;
+      }
+      
+      return sStatus;
+    }  
   };
 });

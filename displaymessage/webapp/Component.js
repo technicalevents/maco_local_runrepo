@@ -9,7 +9,7 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction"
   ],
   function(DraftComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
-			NavToRouteAction, ShareAction, NavToProcessAction) {
+            NavToRouteAction, ShareAction, NavToProcessAction) {
     "use strict";
 
     return DraftComponent.extend("com.sap.cd.maco.monitor.ui.app.displaymessages.Component", {
@@ -23,17 +23,17 @@ sap.ui.define(
       init: function() {
         // call the base component's init function
         DraftComponent.prototype.init.apply(this, arguments);
-        
+
         this.actions = {
-			singleDownload: new SingleDownloadAction(this),
-			multiDownload: new MultiDownloadAction(this),
-			navToMessagePage: new NavToRouteAction(this),
-			navToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey"),
-			share: new ShareAction(this, {
-				appTitleMsgKey: "APP_TITLE",
-				objectIdProperty: "TransferDocumentNumber",
-				objectTextProperty: "ExternalUUID"
-			})
+          singleDownload: new SingleDownloadAction(this),
+          multiDownload: new MultiDownloadAction(this),
+          navToMessagePage: new NavToRouteAction(this),
+          navToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey"),
+          share: new ShareAction(this, {
+            appTitleMsgKey: "APP_TITLE",
+            objectIdProperty: "TransferDocumentNumber",
+            objectTextProperty: "ExternalUUID"
+          })
         };
 
         this.initRouting();
@@ -61,11 +61,12 @@ sap.ui.define(
        * Function is used to destroy component
        */
       destroy: function() {
-      	for (var sName in this.actions) {
-        	this.actions[sName].destroy();
+        //Destroy Actions
+        for (var sName in this.actions) {
+          this.actions[sName].destroy();
         }
         
-        // call the base component's destroy function
+        // generic destroy of component
         DraftComponent.prototype.destroy.apply(this, arguments);
       }
     });

@@ -8,7 +8,8 @@ sap.ui.define(
 	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
 	  "sap/ui/model/Context"
 	],
-	function(ObjectPageNoDraftController, Constants, messageFormatter, NavToProcessAction, NavToMessageAction, Utility, Context) {
+	function(ObjectPageNoDraftController, Constants, messageFormatter, 
+				NavToProcessAction, NavToMessageAction, Utility, Context) {
 	  "use strict";
   
 	  return ObjectPageNoDraftController.extend(
@@ -29,26 +30,26 @@ sap.ui.define(
 		   * LifeCycle method Called when MessagePage controller is instantiated.
 		   * @public
 		   */
-		  onInit: function() {
-		  	  var oComponentActions = this.getOwnerComponent().actions;
-		  	  
-			  ObjectPageNoDraftController.prototype.onInit.call(this, {
-			  	routes: {
-					parent: "listReport",
-					this: "messagePage"
-				},
-				entitySet: "xMP4GxC_TransferDoc_UI",
-				i18n: {
-					notFoundMsg: this.notFoundMsg.bind(this)
-				},
-				controls: {
-				  objectPage: "objectPage"
-				},
-				actions: {
-					singleDownload: oComponentActions.singleDownload,
-					share: oComponentActions.share
-				}
-			  });
+			onInit: function() {
+				var oComponentActions = this.getOwnerComponent().actions;
+
+				ObjectPageNoDraftController.prototype.onInit.call(this, {
+					routes: {
+						parent: "listReport",
+						this: "messagePage"
+					},
+					entitySet: "xMP4GxC_TransferDoc_UI",
+					i18n: {
+						notFoundMsg: this.notFoundMsg.bind(this)
+					},
+					controls: {
+						objectPage: "objectPage"
+					},
+					actions: {
+						singleDownload: oComponentActions.singleDownload,
+						share: oComponentActions.share
+					}
+				});
 			},
 	
 			/******************************************************************* */
@@ -68,11 +69,11 @@ sap.ui.define(
 			 * @param {object} oRouteParams    Route Parameters
 			 * @public
 			 */
-			onAfterBind: function(oRouteParams) {
+			onAfterBind: function(oRouteParams) {				
 				this._whenLinkTransferDocumentsRead(oRouteParams)
 				.then(this._onSucessLinkTransferDocumentsRead.bind(this));
 			},
-			
+
 			/**
 			 * Function will be triggered on click of Process Link
 			 * @param {object} oEvent    Link click event
