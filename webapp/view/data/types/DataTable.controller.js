@@ -1,19 +1,18 @@
 sap.ui.define([
-	//	"com/sap/cd/maco/mmt/ui/reuse/base/BaseViewController",
-	"com/sap/cd/maco/mmt/ui/reuse/table/ActionSmartTableController",
+	"com/sap/cd/maco/mmt/ui/reuse/table/SmartTableController",
 	"sap/ui/model/FilterOperator",
 	"com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate"
-], function (ActionSmartTableController, FilterOperator, SmartTableBindingUpdate) {
+], function (SmartTableController, FilterOperator, SmartTableBindingUpdate) {
 	"use strict";
 
-	return ActionSmartTableController.extend(
+	return SmartTableController.extend(
 		"com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.types.DataTable", {
 
 			/**
 			 * Lifecycle method - triggered on initialization of Data Table Controller
 			 */
 			onInit: function () {
-				ActionSmartTableController.prototype.onInit.call(this, {
+				SmartTableController.prototype.onInit.call(this, {
 					entitySet: this.getView().byId("idTable").data("entityName"),
 					actions: {},
 					controls: {
