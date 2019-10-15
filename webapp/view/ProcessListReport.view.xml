@@ -62,7 +62,6 @@
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>
             <Button text="{i18n>PROCESS_LIST_REFRESH_TITLE}"
-                    tooltip="{i18n>PROCESS_LIST_REFRESH_TITLE}"
                     type="Transparent"
                     press="onRefresh"/>
           </OverflowToolbar>
@@ -96,7 +95,6 @@
      </semantic:content>
     <semantic:titleCustomTextActions>
      	<Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
-				tooltip="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
 				type="Transparent"
 				press="onAction"
 				c:action="executeMsgAggr"/>

@@ -33,7 +33,6 @@
         </uxap:snappedContent>
         <uxap:actions>
 			<Button text="{i18n>DOWNLOAD_BTN_TXT}"
-				tooltip="{i18n>DOWNLOAD_BTN_TXT}"
 				type="Transparent"
 				press="onAction"
 				enabled="{this>/tableActionEnabled/singleDownload}"
