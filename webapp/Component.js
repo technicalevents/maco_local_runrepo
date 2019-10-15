@@ -5,10 +5,12 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/nav/NavToRouteAction",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/actions/ExecuteMsgAggrAction",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/actions/ReportExecutionAction",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction",
     "com/sap/cd/maco/mmt/ui/reuse/share/ShareAction"
   ],
   function(DraftComponent, HashSync, NavToRouteAction, ExecuteMsgAggrAction, 
-            ReportExecutionAction, ShareAction) {
+        ReportExecutionAction, NavToProcessAction, NavToMessageAction, ShareAction) {
     "use strict";
 
     return DraftComponent.extend("com.sap.cd.maco.monitor.ui.app.displayprocesses.Component", {
@@ -27,12 +29,14 @@ sap.ui.define(
           executeMsgAggr: new ExecuteMsgAggrAction(this),
           reportExecution: new ReportExecutionAction(this),
           navToProcessPage: new NavToRouteAction(this),
+          navToProcessAction: new NavToProcessAction(this, "BusinessObjectUUID"),
+          navToMessageAction: new NavToMessageAction(this, "BusinessObjectUUID"),
           share: new ShareAction(this, {
             appTitleMsgKey: "APP_TITLE",
             objectIdProperty: "ProcessDocumentNumber",
             objectTextProperty: "ProcessIDDescription"
           })
-            };
+        };
 
         this.initRouting();
       },

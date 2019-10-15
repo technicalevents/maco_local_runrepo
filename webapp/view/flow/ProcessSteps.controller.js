@@ -5,12 +5,9 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
-    "sap/ui/model/Sorter",
-    "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
-    "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
+    "sap/ui/model/Sorter"
   ],
-  function(BaseViewController, formatter, JSONModel, Constants, 
-            Utility, Sorter, NavToProcessAction, NavToMessageAction) {
+  function(BaseViewController, formatter, JSONModel, Constants, Utility, Sorter) {
     "use strict";
 
     return BaseViewController.extend(
@@ -53,12 +50,13 @@ sap.ui.define(
         navigateToBusinessObject: function(oEvent) {
           var oContext = oEvent.getSource().getBindingContext("this");
           var sSemanticOject = Utility.getSemanticObject(oContext.getObject().BusinessObjectType);
+          var oComponentActions = this.getOwnerComponent().actions;
           var oAction;
 		  
           if(sSemanticOject === Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT) {
-            oAction = new NavToProcessAction(this.getOwnerComponent(), "BusinessObjectUUID");
+            oAction = oComponentActions.navToProcessAction;                         ;
           } else if(sSemanticOject === Constants.SEMANCTIC_OBJECT.TRANSFER_DOCUMENT) {
-            oAction = new NavToMessageAction(this.getOwnerComponent(), "BusinessObjectUUID");
+            oAction = oComponentActions.navToMessageAction;
           }
         
           var oParams = {
