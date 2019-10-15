@@ -5,9 +5,9 @@ sap.ui.define(
     "sap/ui/model/json/JSONModel",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
-     "sap/ui/model/Sorter",
-     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
-     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
+    "sap/ui/model/Sorter",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
   ],
   function(BaseViewController, formatter, JSONModel, Constants, 
             Utility, Sorter, NavToProcessAction, NavToMessageAction) {
@@ -29,7 +29,7 @@ sap.ui.define(
 
           // Create a JSON Model
           var oThisModel = new JSONModel({});
-          oThisModel.setDefaultBindingMode("TwoWay");
+          oThisModel.setDefaultBindingMode("OneWay");
 
           // Setting model to view
           this.getView().setModel(oThisModel, "this");
@@ -51,8 +51,8 @@ sap.ui.define(
          * @param {sap.ui.base.Event} oEvent Link Click event object
          */
         navigateToBusinessObject: function(oEvent) {
-          var oObject = oEvent.getSource().getBindingContext("this").getObject();
-          var sSemanticOject = Utility.getSemanticObject(oObject.BusinessObjectType);
+          var oContext = oEvent.getSource().getBindingContext("this");
+          var sSemanticOject = Utility.getSemanticObject(oContext.getObject().BusinessObjectType);
           var oAction;
 		  
           if(sSemanticOject === Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT) {
@@ -63,7 +63,7 @@ sap.ui.define(
         
           var oParams = {
               busyControl: this.getView(),
-              contexts: [oEvent.getSource().getBindingContext("this")]
+              contexts: [oContext]
           };
           oAction.execute(oParams);
         },
