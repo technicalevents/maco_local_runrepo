@@ -83,8 +83,8 @@ sap.ui.define(
         * @public
         */
         onOwnMarketPartnerChange: function() {
-          var aOwnerUUIDKeys = this._getSmartFilterBar().getControlByKey("OwnerUUID").getSelectedKeys();
-          var oSmartFilterData = this._getSmartFilterBar().getFilterData();
+          var aOwnerUUIDKeys = this.getFilterBar().getControlByKey("OwnerUUID").getSelectedKeys();
+          var oSmartFilterData = this.getFilterBar().getFilterData();
           
           delete oSmartFilterData.OwnerUUID;
           
@@ -96,7 +96,7 @@ sap.ui.define(
             }
           }
           
-          this._getSmartFilterBar().setFilterData(oSmartFilterData, true);
+          this.getFilterBar().setFilterData(oSmartFilterData, true);
         },
         
         /**
@@ -107,8 +107,8 @@ sap.ui.define(
         onFilterBarInitialized: function() {            
           this.oNav.parseNavigation().done(function(oAppState) {
             if(!jQuery.isEmptyObject(oAppState)) {
-              this._getSmartFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
-              this._getSmartTable().rebindTable(true);
+              this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
+              this.getSmartTable().rebindTable(true);
             }
           }.bind(this));
         },
@@ -119,7 +119,7 @@ sap.ui.define(
          * @public
          */
         onRefresh: function() {
-          this._getSmartTable().rebindTable(true);
+          this.getSmartTable().rebindTable(true);
         },
         
         /**
@@ -127,43 +127,15 @@ sap.ui.define(
          * @public
          */
         storeCurrentAppState: function() {
-          var oSmartFilterUiState = this._getSmartFilterBar().getUiState();
+          var oSmartFilterUiState = this.getFilterBar().getUiState();
           var oSelectionVariant = new SelectionVariant(JSON.stringify(oSmartFilterUiState.getSelectionVariant()));
           var oCurrentAppState = {
             selectionVariant: oSelectionVariant.toJSONString(),
-            tableVariantId: this._getSmartTable().getCurrentVariantId(),
+            tableVariantId: this.getSmartTable().getCurrentVariantId(),
             valueTexts: oSmartFilterUiState.getValueTexts()
           };
           
           this.oNav.storeInnerAppState(oCurrentAppState);
-        },
-        
-        /******************************************************************* */
-        /* PUBLIC METHODS */
-        /******************************************************************* */
-        
-        /**
-         * Function will return instance of Smart Table Control
-         * @public
-         */
-        _getSmartTable: function() {
-          if(!this._oSmartTable) {
-            this._oSmartTable = this.getView().byId("idProcessSmartTable");
-          }
-          
-          return this._oSmartTable;
-        },
-        
-        /**
-         * Function will return instance of Smart Filter Bar Control
-         * @public
-         */
-        _getSmartFilterBar: function() {
-          if(!this._oSmartFilterBar) {
-            this._oSmartFilterBar = this.getView().byId("idProcessSmartFilterBar");
-          }
-          
-          return this._oSmartFilterBar;
         }
       }
     );
