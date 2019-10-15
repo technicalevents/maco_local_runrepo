@@ -149,7 +149,7 @@
             	</uxap:ObjectPageSubSection>
         	</uxap:subSections>
     	</uxap:ObjectPageSection>
-    	<uxap:ObjectPageSection title="{i18n>MSG_DATA_TITLE}" titleUppercase="false" class="comSapCdMacoMmtUiDispMessagePayloadSection">
+    	<uxap:ObjectPageSection title="{i18n>MSG_DATA_TITLE}" titleUppercase="false">
     		<uxap:subSections>
     			<uxap:ObjectPageSubSection>
     				<uxap:blocks>
