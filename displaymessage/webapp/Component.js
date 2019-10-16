@@ -6,10 +6,11 @@ sap.ui.define(
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/MultiDownloadAction",
     "com/sap/cd/maco/mmt/ui/reuse/nav/NavToRouteAction",
     "com/sap/cd/maco/mmt/ui/reuse/share/ShareAction",
-    "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction"
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
   ],
   function(DraftComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
-            NavToRouteAction, ShareAction, NavToProcessAction) {
+            NavToRouteAction, ShareAction, NavToProcessAction, NavToMessageAction) {
     "use strict";
 
     return DraftComponent.extend("com.sap.cd.maco.monitor.ui.app.displaymessages.Component", {
@@ -28,7 +29,9 @@ sap.ui.define(
           singleDownload: new SingleDownloadAction(this),
           multiDownload: new MultiDownloadAction(this),
           navToMessagePage: new NavToRouteAction(this),
-          navToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey"),
+          navListToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey"),
+          navObjectToProcessApp: new NavToProcessAction(this, "LinkDocumentKey"),
+          navObjectToMessageApp: new NavToMessageAction(this, "LinkDocumentKey"),
           share: new ShareAction(this, {
             appTitleMsgKey: "APP_TITLE",
             objectIdProperty: "TransferDocumentNumber",

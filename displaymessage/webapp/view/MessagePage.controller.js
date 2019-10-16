@@ -3,13 +3,9 @@ sap.ui.define(
 	  "com/sap/cd/maco/mmt/ui/reuse/objectPage/ObjectPageNoDraftController",
 	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
 	  "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
-	  "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
-	  "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction",
-	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
 	  "sap/ui/model/Context"
 	],
-	function(ObjectPageNoDraftController, Constants, messageFormatter, 
-				NavToProcessAction, NavToMessageAction, Utility, Context) {
+	function(ObjectPageNoDraftController, Constants, messageFormatter, Context) {
 	  "use strict";
   
 	  return ObjectPageNoDraftController.extend(
@@ -83,11 +79,12 @@ sap.ui.define(
 				var oAction;
 				var sPath = oEvent.getSource().getBinding("text").getPath();
 				var sSemanticOject = oEvent.getSource().data("docType");
+				var oComponentActions = this.getOwnerComponent().actions;
 				
 				if(sSemanticOject === Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT) {
-					oAction = new NavToProcessAction(this.getOwnerComponent(), "LinkDocumentKey");
+					oAction = oComponentActions.navObjectToProcessApp;
 				} else if(sSemanticOject === Constants.SEMANCTIC_OBJECT.TRANSFER_DOCUMENT) {
-					oAction = new NavToMessageAction(this.getOwnerComponent(), "LinkDocumentKey");
+					oAction = oComponentActions.navObjectToMessageApp;
 				}
 				
 				var oParams = {

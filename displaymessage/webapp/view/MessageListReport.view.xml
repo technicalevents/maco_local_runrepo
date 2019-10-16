@@ -124,7 +124,7 @@
                       formatter: '.formatter.partnerEnd'
                     }"/>
                 </HBox>
-                <Link text="{ProcessDocumentNumber}" c:action="navToProcessApp" press="onAction"/>
+                <Link text="{ProcessDocumentNumber}" c:action="navListToProcessApp" press="onAction"/>
               </cells>
             </ColumnListItem>
           </items>

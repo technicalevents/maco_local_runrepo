@@ -39,7 +39,7 @@ sap.ui.define(
           actions: {
             multiDownload: oComponentActions.multiDownload,
             navToMessagePage: oComponentActions.navToMessagePage,
-            navToProcessApp: oComponentActions.navToProcessApp,
+            navListToProcessApp: oComponentActions.navListToProcessApp,
             share: oComponentActions.share
           },
           routes: {
@@ -55,7 +55,7 @@ sap.ui.define(
           tableAccessControl: {
             multiDownload: true,
             navToMessagePage: true,
-            navToProcessApp: true
+            navListToProcessApp: true
           }
         });
       },
