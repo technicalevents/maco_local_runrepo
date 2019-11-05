@@ -44,16 +44,22 @@
             <Label text="{this>ActivityDescription}" 
                     wrapping="true"/>
             
-            <ObjectStatus visible="{= (${this>BusinessObjectType} === 'TransDoc' &amp;&amp; ${this>isExternalMessage}) || 
+            <ObjectStatus class="sapUiSmallMarginBegin" 
+            			visible="{= (${this>BusinessObjectType} === 'TransDoc' &amp;&amp; ${this>isExternalMessage}) || 
 										${this>BusinessObjectType} === 'ExceptionDoc'}"
 						text="{parts: [{path: 'this>BusinessObjectType'},
 										{path: 'this>UserDescision'},
 										{path: 'this>TransDocStatus'}], 
 								formatter: '.formatter.formatProcessStepStatus'}"
+						inverted="true"
 						state="{
 							path:'this>TDStatusCriticality',
 							formatter: '.formatter.criticality'
-						}" />
+						}" >
+            	<layoutData>
+                	<FlexItemData shrinkFactor="0"/>
+                </layoutData>
+            </ObjectStatus>
         	</items>
           </FlexBox>
           

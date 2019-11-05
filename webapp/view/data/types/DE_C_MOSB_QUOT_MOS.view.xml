@@ -3,7 +3,7 @@
 	controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.types.DataForm"
 	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 	xmlns:html="http://www.w3.org/1999/xhtml">
-	<smartform:SmartForm id="idForm" editable="false" custom:entityName="xMP4GxC_Mosb_Quot_Mos_UI" class="comSapCdMacoMmtUiDispProcessTypeForm">
+	<smartform:SmartForm id="idForm" editable="false" custom:entityName="xMP4GxC_Mosb_Quot_Mos_UI">
 		<smartform:layout>
 			<core:Fragment type="XML" fragmentName="com.sap.cd.maco.mmt.ui.reuse.form.SmartFormLayout"/>
 		</smartform:layout>
