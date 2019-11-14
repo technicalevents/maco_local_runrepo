@@ -17,7 +17,9 @@
         "settings": {
           "odataVersion": "2.0",
           "localUri": "localService/metadata.xml",
-          "annotations": ["Message"]
+          "annotations": [
+            "Message"
+          ]
         }
       },
       "Message": {
@@ -30,19 +32,19 @@
     },
     "resources": "resources.json",
     "crossNavigation": {
-			"inbounds": {
-				"intent1": {
-					"signature": {
-						"parameters": {},
-						"additionalParameters": "allowed"
-					},
-					"semanticObject": "Message",
-					"action": "display",
-					"title": "{{APP_TITLE}}",
-					"icon": "sap-icon://message-popup"
-				}
-			}
-		}
+      "inbounds": {
+        "intent1": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "Message",
+          "action": "display",
+          "title": "{{APP_TITLE}}",
+          "icon": "sap-icon://message-popup"
+        }
+      }
+    }
   },
   "sap.ui": {
     "technology": "UI5",
@@ -74,22 +76,15 @@
     "dependencies": {
       "minUI5Version": "1.56.1",
       "libs": {
-        "sap.m": {
-        },
-        "sap.f": {
-        },
-        "sap.ui.core": {
-        },
-        "sap.ui.layout": {
-        },
-        "sap.uxap": {
-        },
-        "sap.ui.comp": {
-        },
-        "sap.ui.table": {
-        },
-        "com.sap.cd.maco.mmt.ui.reuse":{
-					"minVersion": "2.0.0"
+        "sap.m": {},
+        "sap.f": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.uxap": {},
+        "sap.ui.comp": {},
+        "sap.ui.table": {},
+        "com.sap.cd.maco.mmt.ui.reuse": {
+          "minVersion": "2.0.0"
         }
       }
     },
@@ -99,7 +94,9 @@
     },
     "resources": {
       "css": [
-        { "uri": "css/style.css" }
+        {
+          "uri": "css/style.css"
+        }
       ]
     },
     "models": {
@@ -194,5 +191,10 @@
         }
       }
     }
+  },
+  "sap.platform.cf": {
+    "oAuthScopes": [
+      "$XSAPPNAME.AppMktMsg_Monitor"
+    ]
   }
 }

@@ -17,10 +17,11 @@
         "settings": {
           "odataVersion": "2.0",
           "localUri": "localService/metadata.xml",
-          "annotations": ["_MP4G_PROC_ANNO_MDL"]
+          "annotations": [
+            "_MP4G_PROC_ANNO_MDL"
+          ]
         }
       },
-      
       "_MP4G_PROC_ANNO_MDL": {
         "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FPROCESSHEADER_SB_VAN',Version='0001')/$value/",
         "type": "ODataAnnotation",
@@ -28,7 +29,6 @@
           "localUri": "localService/_MP4G_PROC_ANNO_MDL.xml"
         }
       },
-
       "localAnnotations": {
         "uri": "annotation/Process.xml",
         "type": "ODataAnnotation",
@@ -39,19 +39,19 @@
     },
     "resources": "resources.json",
     "crossNavigation": {
-			"inbounds": {
-				"intent1": {
-					"signature": {
-						"parameters": {},
-						"additionalParameters": "allowed"
-					},
-					"semanticObject": "Process",
-					"action": "display",
-					"title": "{{APP_TITLE}}",
-					"icon": "sap-icon://process"
-				}
-			}
-		}
+      "inbounds": {
+        "intent1": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "Process",
+          "action": "display",
+          "title": "{{APP_TITLE}}",
+          "icon": "sap-icon://process"
+        }
+      }
+    }
   },
   "sap.ui": {
     "technology": "UI5",
@@ -83,26 +83,17 @@
     "dependencies": {
       "minUI5Version": "1.56.1",
       "libs": {
-        "sap.m": {
+        "sap.m": {},
+        "sap.f": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.uxap": {},
+        "sap.ui.comp": {},
+        "sap.ui.table": {},
+        "com.sap.cd.maco.mmt.ui.reuse": {
+          "minVersion": "2.0.0"
         },
-        "sap.f": {
-        },
-        "sap.ui.core": {
-        },
-        "sap.ui.layout": {
-        },
-        "sap.uxap": {
-        },
-        "sap.ui.comp": {
-        },
-        "sap.ui.table": {
-        },
-        "com.sap.cd.maco.mmt.ui.reuse":{
-        	"minVersion": "2.0.0"
-        },
-        "sap.suite.ui.commons":{
-        }
-
+        "sap.suite.ui.commons": {}
       }
     },
     "contentDensities": {
@@ -111,7 +102,9 @@
     },
     "resources": {
       "css": [
-        { "uri": "css/style.css" }
+        {
+          "uri": "css/style.css"
+        }
       ]
     },
     "models": {
@@ -205,6 +198,11 @@
           "viewId": "notFound"
         }
       }
-    }
+    } 
+   },
+   "sap.platform.cf": {
+      "oAuthScopes": [
+        "$XSAPPNAME.AppMktProc_Monitor"
+      ]
   }
 }

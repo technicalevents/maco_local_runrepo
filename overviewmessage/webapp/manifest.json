@@ -7,55 +7,52 @@
     "title": "{{APP_TITLE}}",
     "description": "{{FILTER_TITLE}}",
     "applicationVersion": {
-        "version": "1.0.2"
+      "version": "1.0.2"
     },
     "ach": "MACO-MMT",
     "dataSources": {
-        "Main": {
-            "uri": "/sap/opu/odata/MP4G/MESSAGEMONITOR_SB",
-    	    "type": "OData",
-            "settings": {
-                "odataVersion": "2.0",
-                "localUri": "localService/metadata.xml",
-                "annotations": [
-                    "MP4G_MESSAGEMONITOR_SB_VAN",
-                    "annotations"
-          	    ]
-            }
-        },
-      
-        "MP4G_MESSAGEMONITOR_SB_VAN": {
-          "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FMESSAGEMONITOR_SB_VAN',Version='0001')/$value/",
-          "type": "ODataAnnotation",
-          "settings": {
-            "localUri": "localService/MESSAGEMONITOR_SB/MP4G_MESSAGEMONITOR_SB_VAN.xml"
-          }
-		    },
-			
-        "annotations": {
-          "type": "ODataAnnotation",
-          "uri": "annotation/annotations.xml",
-          "settings": {
-            "localUri": "annotation/annotations.xml"
-          }
+      "Main": {
+        "uri": "/sap/opu/odata/MP4G/MESSAGEMONITOR_SB",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0",
+          "localUri": "localService/metadata.xml",
+          "annotations": [
+            "MP4G_MESSAGEMONITOR_SB_VAN",
+            "annotations"
+          ]
         }
+      },
+      "MP4G_MESSAGEMONITOR_SB_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FMESSAGEMONITOR_SB_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/MESSAGEMONITOR_SB/MP4G_MESSAGEMONITOR_SB_VAN.xml"
+        }
+      },
+      "annotations": {
+        "type": "ODataAnnotation",
+        "uri": "annotation/annotations.xml",
+        "settings": {
+          "localUri": "annotation/annotations.xml"
+        }
+      }
     },
-
     "resources": "resources.json",
-		"crossNavigation": {
-			"inbounds": {
-				"intent1": {
-					"signature": {
-						"parameters": {},
-						"additionalParameters": "allowed"
-					},
-					"semanticObject": "Message",
-					"action": "overview",
-					"title": "{{APP_TITLE}}",
-					"icon": "sap-icon://area-chart"
-				}
-			}
-		}
+    "crossNavigation": {
+      "inbounds": {
+        "intent1": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "Message",
+          "action": "overview",
+          "title": "{{APP_TITLE}}",
+          "icon": "sap-icon://area-chart"
+        }
+      }
+    }
   },
   "sap.ui": {
     "technology": "UI5",
@@ -99,7 +96,9 @@
     },
     "resources": {
       "css": [
-        { "uri": "css/style.css" }
+        {
+          "uri": "css/style.css"
+        }
       ]
     },
     "models": {
@@ -167,45 +166,51 @@
           "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StackedColumnChart",
           "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#StackedColumnChart"
         }
-	  },
-	  "c_todo": {
-			"model": "MessageMonitor",
-			"template": "sap.ovp.cards.charts.analytical",
-			"settings": {
-				"title": "{{FAILED_CARD_INFO}}",
-				"valueSelectionInfo": "{{FAILED_SELECTION_INFO}}",
-				"showFilterInHeader": false,
-				"defaultSpan": {
-					"cols": 3
-				},
-				"tabs": [{
-					"entitySet": "xMP4GxC_MesOpenMon_FromPartner",
-					"value": "{{BY_FROM_PARTNER_LBL}}",
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ReceiverId",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ReceiverId"
-				},{
-					"entitySet": "xMP4GxC_MessOpenMon_ToPartner",
-					"value": "{{BY_TO_PARTNER_LBL}}",
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#SenderId",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#SenderId"
-				},{
-					"entitySet": "xMP4GxC_MessOpenMonitor_Format",
-					"value": "{{BY_FORMAT_LBL}}",
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TechMsgID",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TechMsgID"
-				},{
-					"entitySet": "xMP4GxC_MessOpenMonitor_AMID",
-					"value": "{{BY_AMID_LBL}}",
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExtBuissMsgID",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExtBuissMsgID"
-				},{
-					"entitySet": "xMP4GxC_MessOpenMon_Direction",
-					"value": "{{BY_DIRECTION_LBL}}",
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Direction",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#Direction"
-				}]
-			}
-		}
+      },
+      "c_todo": {
+        "model": "MessageMonitor",
+        "template": "sap.ovp.cards.charts.analytical",
+        "settings": {
+          "title": "{{FAILED_CARD_INFO}}",
+          "valueSelectionInfo": "{{FAILED_SELECTION_INFO}}",
+          "showFilterInHeader": false,
+          "defaultSpan": {
+            "cols": 3
+          },
+          "tabs": [
+            {
+              "entitySet": "xMP4GxC_MesOpenMon_FromPartner",
+              "value": "{{BY_FROM_PARTNER_LBL}}",
+              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ReceiverId",
+              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ReceiverId"
+            },
+            {
+              "entitySet": "xMP4GxC_MessOpenMon_ToPartner",
+              "value": "{{BY_TO_PARTNER_LBL}}",
+              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#SenderId",
+              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#SenderId"
+            },
+            {
+              "entitySet": "xMP4GxC_MessOpenMonitor_Format",
+              "value": "{{BY_FORMAT_LBL}}",
+              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TechMsgID",
+              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TechMsgID"
+            },
+            {
+              "entitySet": "xMP4GxC_MessOpenMonitor_AMID",
+              "value": "{{BY_AMID_LBL}}",
+              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExtBuissMsgID",
+              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExtBuissMsgID"
+            },
+            {
+              "entitySet": "xMP4GxC_MessOpenMon_Direction",
+              "value": "{{BY_DIRECTION_LBL}}",
+              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Direction",
+              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#Direction"
+            }
+          ]
+        }
+      }
     },
     "services": {
       "ShellUIService": {
@@ -217,5 +222,10 @@
         }
       }
     }
+  },
+  "sap.platform.cf": {
+    "oAuthScopes": [
+      "$XSAPPNAME.AppMktMsg_Overview"
+    ]
   }
 }

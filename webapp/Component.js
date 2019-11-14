@@ -10,7 +10,7 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/share/ShareAction"
   ],
   function(DraftComponent, HashSync, NavToRouteAction, ExecuteMsgAggrAction, 
-        ReportExecutionAction, NavToProcessAction, NavToMessageAction, ShareAction) {
+            ReportExecutionAction, NavToProcessAction, NavToMessageAction, ShareAction) {
     "use strict";
 
     return DraftComponent.extend("com.sap.cd.maco.monitor.ui.app.displayprocesses.Component", {

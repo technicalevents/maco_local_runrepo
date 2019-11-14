@@ -7,7 +7,7 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/nav/NavToRouteAction",
     "com/sap/cd/maco/mmt/ui/reuse/share/ShareAction",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
   ],
   function(DraftComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
             NavToRouteAction, ShareAction, NavToProcessAction, NavToMessageAction) {

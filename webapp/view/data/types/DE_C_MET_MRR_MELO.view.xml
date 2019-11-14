@@ -5,7 +5,8 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	<smartform:SmartForm id="idForm" 
 						 editable="false" 
-						 custom:entityName="xMP4GxC_Met_Mrr_Melo_UI">
+						 custom:entityName="xMP4GxC_Met_Mrr_Melo_UI"
+						 class="comSapCdMacoMmtUiDispProcessTypeForm">
 		<smartform:layout>
 			<core:Fragment type="XML" fragmentName="com.sap.cd.maco.mmt.ui.reuse.form.SmartFormLayout"/>
 		</smartform:layout>

@@ -4,12 +4,10 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
     "sap/ui/generic/app/navigation/service/SelectionVariant",
-    "sap/ui/model/Sorter",
-    "sap/ui/model/Filter",
-	"sap/ui/model/FilterOperator"
+    "sap/ui/model/Sorter"
   ],
   function(ListReportNoDraftController, SmartTableBindingUpdate, Formatter, 
-            SelectionVariant, Sorter, Filter, FilterOperator) {
+            SelectionVariant, Sorter) {
     "use strict";
 
     return ListReportNoDraftController.extend(
