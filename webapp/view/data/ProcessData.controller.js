@@ -25,13 +25,17 @@ sap.ui.define([
 		 * @params {object} oRouteArgs Router Arguments object
 		 */
 		onBeforeBindObjectPage: function (oRouteArgs) {
+			
+			var oContainer = this.getView().byId("idProcessData");
+			oContainer.removeAllItems();
+			
 			if (this.aProcessTypesAvailable.indexOf(oRouteArgs.ProcessID) > -1) {
 				var sViewName = "com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.types." + oRouteArgs.ProcessID;
 				var oContainer = this.getView().byId("idProcessData");
 				var oProcessTypeView;
 	
 				this.getOwnerComponent().runAsOwner(function () {
-				oContainer.removeAllItems();
+				
 
 					var oProcessTypeViewDet = Utility.getObjectWithAttr(this.aProcessViews, "viewName", sViewName);
 
