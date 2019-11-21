@@ -1,5 +1,5 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/table/SmartTableController",
+	"com/sap/cd/maco/mmt/ui/reuse/controller/table/SmartTableController",
 	"sap/ui/model/FilterOperator",
 	"com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate"
 ], function (SmartTableController, FilterOperator, SmartTableBindingUpdate) {

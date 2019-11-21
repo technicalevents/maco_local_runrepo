@@ -40,7 +40,7 @@ sap.ui.define([
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
 									"title": "Display Messages",
-									"targetURL": "#DisplayMessages-display"
+									"targetURL": "#UtilsDataExchangeProcessing-displayMessage"
 								}
 							}]
 						}]
@@ -51,9 +51,9 @@ sap.ui.define([
 				"adapter": {
 					"config": {
 						"inbounds": {
-							"DisplayMessages-display": {
-								"semanticObject": "DisplayMessages",
-								"action": "display",
+							"UtilsDataExchangeProcessing-displayMessage": {
+								"semanticObject": "UtilsDataExchangeProcessing",
+								"action": "displayMessage",
 								"description": "Display Messages",
 								"title": "Display Messages",
 								"signature": {

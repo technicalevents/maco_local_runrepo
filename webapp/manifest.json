@@ -45,8 +45,8 @@
             "parameters": {},
             "additionalParameters": "allowed"
           },
-          "semanticObject": "Process",
-          "action": "display",
+          "semanticObject": "UtilsDataExchangeProcessing",
+          "action": "displayProcess",
           "title": "{{APP_TITLE}}",
           "icon": "sap-icon://process"
         }
@@ -76,7 +76,7 @@
   },
   "sap.ui5": {
     "rootView": {
-      "viewName": "com.sap.cd.maco.mmt.ui.reuse.root.Root",
+      "viewName": "com.sap.cd.maco.mmt.ui.reuse.controller.app.App",
       "type": "XML",
       "id": "app"
     },
@@ -193,16 +193,11 @@
           "title": "{i18n>PROCESS_SINGULAR_LBL}"
         },
         "notFound": {
-          "viewPath": "com.sap.cd.maco.mmt.ui.reuse.nav",
+          "viewPath": "com.sap.cd.maco.mmt.ui.reuse.controller.notFound",
           "viewName": "NotFound",
           "viewId": "notFound"
         }
       }
-    } 
-   },
-   "sap.platform.cf": {
-      "oAuthScopes": [
-        "$XSAPPNAME.AppMktProc_Monitor"
-      ]
+    }
   }
 }

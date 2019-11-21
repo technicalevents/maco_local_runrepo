@@ -1,5 +1,5 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/base/BaseAction",
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction",
 	"sap/ui/core/util/File"
 	], function(BaseAction, File) {
   "use strict";

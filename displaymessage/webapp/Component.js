@@ -1,11 +1,11 @@
 sap.ui.define(
   [
-    "com/sap/cd/maco/mmt/ui/reuse/component/DraftComponent",
-    "com/sap/cd/maco/mmt/ui/reuse/nav/HashSync",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/base/DraftComponent",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/SingleDownloadAction",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/MultiDownloadAction",
-    "com/sap/cd/maco/mmt/ui/reuse/nav/NavToRouteAction",
-    "com/sap/cd/maco/mmt/ui/reuse/share/ShareAction",
+    "com/sap/cd/maco/mmt/ui/reuse/action/nav/NavToRouteAction",
+    "com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
   ],

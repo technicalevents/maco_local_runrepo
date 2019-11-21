@@ -1,5 +1,5 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/base/BaseViewController"
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseViewController"
 ], function (BaseViewController) {
 	"use strict";
 

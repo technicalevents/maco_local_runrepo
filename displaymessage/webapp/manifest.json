@@ -38,8 +38,8 @@
             "parameters": {},
             "additionalParameters": "allowed"
           },
-          "semanticObject": "Message",
-          "action": "display",
+          "semanticObject": "UtilsDataExchangeProcessing",
+          "action": "displayMessage",
           "title": "{{APP_TITLE}}",
           "icon": "sap-icon://message-popup"
         }
@@ -69,7 +69,7 @@
   },
   "sap.ui5": {
     "rootView": {
-      "viewName": "com.sap.cd.maco.mmt.ui.reuse.root.Root",
+      "viewName": "com.sap.cd.maco.mmt.ui.reuse.controller.app.App",
       "type": "XML",
       "id": "app"
     },
@@ -185,7 +185,7 @@
           "title": "{i18n>SINGLE_MSG_TITLE}"
         },
         "notFound": {
-          "viewPath": "com.sap.cd.maco.mmt.ui.reuse.nav",
+          "viewPath": "com.sap.cd.maco.mmt.ui.reuse.controller.notFound",
           "viewName": "NotFound",
           "viewId": "notFound"
         }

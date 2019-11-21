@@ -1,7 +1,7 @@
 <core:FragmentDefinition
         xmlns="sap.m" 
         xmlns:core="sap.ui.core"
-        xmlns:reuseFacet="com.sap.cd.maco.mmt.ui.reuse.objectPage.facet"
+        xmlns:reuseFacet="com.sap.cd.maco.mmt.ui.reuse.control.facet"
         xmlns:layout="sap.ui.layout">
     <reuseFacet:FormFacet>
         <reuseFacet:FormFacetField

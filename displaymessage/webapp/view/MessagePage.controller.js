@@ -1,6 +1,6 @@
 sap.ui.define(
 	[
-	  "com/sap/cd/maco/mmt/ui/reuse/objectPage/ObjectPageNoDraftController",
+	  "com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
 	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
 	  "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
 	  "sap/ui/model/Context"
@@ -78,13 +78,15 @@ sap.ui.define(
 			onCrossAppNavigation: function(oEvent) {
 				var oAction;
 				var sPath = oEvent.getSource().getBinding("text").getPath();
-				var sSemanticOject = oEvent.getSource().data("docType");
+				var sDocType = oEvent.getSource().data("docType");
 				var oComponentActions = this.getOwnerComponent().actions;
 				
-				if(sSemanticOject === Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT) {
+				if(sDocType === "Process") {
 					oAction = oComponentActions.navObjectToProcessApp;
-				} else if(sSemanticOject === Constants.SEMANCTIC_OBJECT.TRANSFER_DOCUMENT) {
+				} else if(sDocType === "Message") {
 					oAction = oComponentActions.navObjectToMessageApp;
+				} else {
+					throw new Error("undefined mapping for object type: " + sDocType);
 				}
 				
 				var oParams = {

@@ -1,5 +1,5 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/base/BaseViewController",
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseViewController",
 	"com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
 	"sap/ui/core/mvc/ViewType",
 	"com/sap/cd/maco/mmt/ui/reuse/monitor/Utility"

@@ -5,9 +5,9 @@
   xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
   xmlns:smartTable="sap.ui.comp.smarttable"
   xmlns:mvc="sap.ui.core.mvc"
-  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.button"
+  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
   xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table"
+  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
   xmlns:variants="sap.ui.comp.smartvariants"
   xmlns:footerbar="sap.ushell.ui.footerbar"
   controllerName="com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessageListReport">
