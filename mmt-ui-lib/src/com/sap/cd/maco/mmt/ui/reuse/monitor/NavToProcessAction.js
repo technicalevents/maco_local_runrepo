@@ -1,5 +1,5 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/nav/NavToExternalAction",
+	"com/sap/cd/maco/mmt/ui/reuse/actions/nav/NavToExternalAction",
 	"com/sap/cd/maco/mmt/ui/reuse/monitor/Constants"
 	], function(NavToExternalAction, Constants) {
   "use strict";
@@ -16,8 +16,8 @@ sap.ui.define([
         constructor: function(oComponent, sKeyField) {
 			var sCardinality = "1";
 			var oConfig = {
-				semanticObject: Constants.SEMANCTIC_OBJECT.PROCESS_DOCUMENT,
-				action: Constants.SEMANTIC_ACTION.DISPLAY,
+				semanticObject: "UtilsDataExchangeProcessing",
+				action: "displayProcess",
 				paramsMap: {
 					ProcessDocumentKey: sKeyField,
 					ProcessID: "ProcessID"

@@ -9,15 +9,6 @@ sap.ui.define([], function () {
             TRANSFER_DOCUMENT: "TransDoc"
         },
 
-        SEMANCTIC_OBJECT: {
-            TRANSFER_DOCUMENT: "Message",
-            PROCESS_DOCUMENT: "Process"
-        },
-
-        SEMANTIC_ACTION: {
-            DISPLAY: "display"
-        },
-
         FLOW_TYPE: {
             OUTBOUND: "O",
             INBOUND: "I"
