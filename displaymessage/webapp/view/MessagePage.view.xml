@@ -32,14 +32,13 @@
         </uxap:snappedContent>
         <uxap:actions>
 			<Button text="{i18n>DOWNLOAD_BTN_TXT}"
-				type="Transparent"
-				press="onAction"
-				enabled="{this>/tableActionEnabled/singleDownload}"
-				c:action="singleDownload" />
-			<reuseButton:Share text="{i18n>SHARE_BTN_LBL}" 
-                icon=""
-                press="onAction" 
-                c:action="share" />
+					type="Transparent"
+					press="onAction"
+					enabled="{this>/tableActionEnabled/singleDownload}"
+					c:action="singleDownload" />
+			<reuseButton:Share icon="sap-icon://action"
+				                press="onAction" 
+				                c:action="share" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>

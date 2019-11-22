@@ -22,14 +22,15 @@
                                          enableBasicSearch="true"
                                          liveMode="true"
                                          useDateRangeType="true"
-                                         useToolbar="true"
+                                         useToolbar="false"
                                          initialized="onFilterBarInitialized"
                                          showFilterConfiguration="false"
                                          persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displayprocesses.filterbar"
                                          entitySet="xMP4GxC_ProcessHeader_UI">
             <smartFilterBar:controlConfiguration>
                 <smartFilterBar:ControlConfiguration key="OwnerUUID" 
-													 label="{/xMP4GxC_ProcessHeader_UI/OwnerUUID/#@sap:label}">
+													 label="{/xMP4GxC_ProcessHeader_UI/OwnerUUID/#@sap:label}"
+													 preventInitialDataFetchInValueHelpDialog="false">
                 <smartFilterBar:customControl>
                   <MultiComboBox showSecondaryValues= "true"
                           items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 

@@ -20,6 +20,7 @@
     <semantic:headerContent>
           <smartFilterBar:SmartFilterBar id="idMessageSmartFilterBar"
                   smartVariant="idMessageVariantManagement"
+                  useToolbar="false"
                   enableBasicSearch="true"
                   liveMode="true"
                   useDateRangeType="true"
@@ -28,7 +29,7 @@
                   persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.filterbar"
                   entitySet="xMP4GxC_TransferDoc_UI">
           	<smartFilterBar:controlConfiguration>
-                <smartFilterBar:ControlConfiguration key="OwnerUUID" 
+                <smartFilterBar:ControlConfiguration key="OwnerUUID"
 													 label="{/xMP4GxC_TransferDoc_UI/OwnerUUID/#@sap:label}">
                 <smartFilterBar:customControl>
                   <MultiComboBox showSecondaryValues= "true"
@@ -38,6 +39,12 @@
                   </MultiComboBox>
           			</smartFilterBar:customControl>
           		</smartFilterBar:ControlConfiguration>
+          		<smartFilterBar:ControlConfiguration key="ProcessID"
+                									 preventInitialDataFetchInValueHelpDialog="false"
+													 label="{/xMP4GxC_TransferDoc_UI/ProcessID/#@sap:label}"/>
+                <smartFilterBar:ControlConfiguration key="ExtBusinessMessageID"
+                									 preventInitialDataFetchInValueHelpDialog="false"
+													 label="{/xMP4GxC_TransferDoc_UI/ExtBusinessMessageID/#@sap:label}" />
           	</smartFilterBar:controlConfiguration>
           </smartFilterBar:SmartFilterBar>
      </semantic:headerContent>

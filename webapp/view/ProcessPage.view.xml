@@ -35,10 +35,9 @@
                   c:reportAction="TriggerDoc" 
                   c:action="reportExecution" 
                   press="onAction" />
-          <reuseButton:Share text="{i18n>SHARE_BTN_LBL}" 
-                  icon=""
-                  press="onAction" 
-                  c:action="share" />
+          <reuseButton:Share icon="sap-icon://action"
+			                  press="onAction" 
+			                  c:action="share" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>
