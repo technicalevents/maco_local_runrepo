@@ -1,7 +1,7 @@
 sap.ui.define(
   [
     "com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportNoDraftController",
-    "com/sap/cd/maco/mmt/ui/reuse/table/SmartTableBindingUpdate",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
     "sap/ui/generic/app/navigation/service/SelectionVariant",
     "sap/ui/model/Sorter"
