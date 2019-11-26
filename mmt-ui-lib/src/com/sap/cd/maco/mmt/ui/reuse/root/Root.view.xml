@@ -1,6 +1,0 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" 
-  controllerName="com.sap.cd.maco.mmt.ui.reuse.root.Root"
-  displayBlock="true" 
-  xmlns="sap.m">
-  <App id="app"/>
-</mvc:View>
