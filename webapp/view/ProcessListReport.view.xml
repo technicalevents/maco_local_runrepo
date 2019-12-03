@@ -24,6 +24,7 @@
                                          useDateRangeType="true"
                                          useToolbar="false"
                                          initialized="onFilterBarInitialized"
+                                         filterChange="onProcessFilterBarChanged"
                                          showFilterConfiguration="false"
                                          persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displayprocesses.filterbar"
                                          entitySet="xMP4GxC_ProcessHeader_UI">

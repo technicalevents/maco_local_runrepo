@@ -35,7 +35,7 @@ sap.ui.define([
 			if(!this.oNoDataText){
 				this.oNoDataText = new Text({
 					text: oResourceBundle.getText("NO_DATA_FOUND_LBL")
-				})
+				});
 			}
 			
 			if (this.aProcessTypesAvailable.indexOf(oRouteArgs.ProcessID) > -1) {

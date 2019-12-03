@@ -4,10 +4,11 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
     "sap/ui/generic/app/navigation/service/SelectionVariant",
-    "sap/ui/model/Sorter"
+    "sap/ui/model/Sorter",
+    "sap/ui/model/FilterOperator"
   ],
   function(ListReportNoDraftController, SmartTableBindingUpdate, Formatter, 
-            SelectionVariant, Sorter) {
+            SelectionVariant, Sorter, FilterOperator) {
     "use strict";
 
     return ListReportNoDraftController.extend(
@@ -75,6 +76,29 @@ sap.ui.define(
           // This method will add Current application state in URL
           this.storeCurrentAppState();
         },
+
+        /**
+        * Event is triggered when selection is changed in Smart Filter Bar
+        * @public
+        */
+       onProcessFilterBarChanged: function() {
+        var oFilterData = jQuery.extend(true, {}, this.getFilterBar().getFilterData());
+        var aRanges = []; 
+        var bIsFilterDataChanged = false;
+        
+        if(oFilterData.MarketPartner) {
+          aRanges = oFilterData.MarketPartner.ranges;
+          for(var intI = 0; intI < aRanges.length && aRanges[intI].operation === FilterOperator.EQ; intI++) {
+            oFilterData.MarketPartner.ranges[intI].operation = FilterOperator.Contains;
+            oFilterData.MarketPartner.ranges[intI].tokenText = "*" + aRanges[intI].tokenText.slice(1) +"*";
+            bIsFilterDataChanged = true;
+          }
+          
+          if(bIsFilterDataChanged) {
+            this.getFilterBar().setFilterData(oFilterData, true);
+          }
+        }
+      },
 
        /**
         * Event is triggered when selection is changed in Own Market Partner MultiComboBox
