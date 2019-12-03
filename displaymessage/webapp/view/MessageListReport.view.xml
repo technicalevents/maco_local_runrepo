@@ -88,7 +88,7 @@
             <Column>
               <Text text="{/xMP4GxC_TransferDoc_UI/ExternalUUID/#@sap:label}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"0", "columnKey":"ExternalUUID", "leadingProperty":["ExternalUUID"]}'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"0", "columnKey":"ExternalUUID", "leadingProperty":["ExternalUUID", "SenderId"]}'/>
               </customData>
             </Column>
             <Column>
@@ -113,7 +113,7 @@
           <items>
             <ColumnListItem type="Navigation" press="onAction" c:action="navToMessagePage">
               <cells>
-              	<reuseTable:ObjectIdentifier title="{ExternalUUID}" />
+              	<reuseTable:ObjectIdentifier title="{ExternalUUID}" text="{SenderId}"/>
                 <Text text="{parts: [{path: 'TechnicalMsgID'},
                   {path: 'ExtBusinessMessageID'}],
                   formatter: '.formatTechnicalBusinessMsgId'}"/>
