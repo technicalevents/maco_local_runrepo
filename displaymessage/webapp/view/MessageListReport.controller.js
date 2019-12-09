@@ -104,7 +104,7 @@ sap.ui.define(
          * @public
          */
         onRefresh: function() {
-          this.getSmartTable().rebindTable(true);
+        	this.getSmartTable().rebindTable(true);
         },
 
         /**
@@ -115,6 +115,16 @@ sap.ui.define(
          */
         formatMultiplePDocVisible: function(sPDocNumber) {
         	return sPDocNumber.split(",").length > 1 ? true : false;
+        },
+        
+        /**
+         * Formatter method to handle text for multiple process document
+         * @param   {string} sPDocNumber     Process Document Number
+         * @public
+         * @returns {Text}                   Multiple PDoc text
+         */
+        formatMultiplePDocText: function(sPDocNumber) {
+        	return this.oBundle.getText("MULTI_DOCUMENT_TXT", [sPDocNumber.split(",").length]);
         },
         
         /**

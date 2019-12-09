@@ -131,9 +131,9 @@
                 		  visible="{= !${path: 'ProcessDocumentNumber', formatter: '.formatMultiplePDocVisible'}}"
                 		  c:action="navListToProcessApp" 
                 		  press="onAction"/>
-                	<Text text="{i18n>MULTI_PDOC_EXIST_TXT}"
+                	<Text text="{path: 'ProcessDocumentNumber', formatter: '.formatMultiplePDocText'}"
                 		  visible="{path: 'ProcessDocumentNumber', formatter: '.formatMultiplePDocVisible'}"
-						          wrapping="true" />
+						  wrapping="true" />
                 </VBox>
               </cells>
             </ColumnListItem>

@@ -67,6 +67,10 @@
 										  c:docType="Process" 
 										  wrapping="true"/>
 								</smartForm:GroupElement>
+								<smartForm:GroupElement label="{/xMP4GxC_TransferDoc_UI/Direction/#@sap:label}">
+									<Text text="{Direction_Text}" 
+										  wrapping="true"/>
+								</smartForm:GroupElement>
 								<smartForm:GroupElement label="{/xMP4GxC_TransferDoc_UI/ExternalCommunicationType/#@sap:label}">
 									<Text text="{ExternalCommunicationType_Text}" 
 										  wrapping="true"/>
