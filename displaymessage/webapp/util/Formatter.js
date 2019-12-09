@@ -27,38 +27,6 @@ sap.ui.define([
         
         return sFormattedExternalPayload;
       },
-      
-    /**
-     * Formatter method returns name of Start Partner(Sender)
-     * @param   {string} 	sDir	 Direction('s' for sender and 'r' for receiver)
-     * @param   {string} 	sFrom  Sender
-     * @param   {string} 	sTo	   Receiver
-     * @public
-     * @returns {string} 	    	 Start Partner
-     */		
-      partnerStart: function(sDir, sFrom, sTo) {
-        if (sDir === Constants.FLOW_TYPE.OUTBOUND) {
-          return sFrom;
-        } else {
-          return sTo;
-        }
-      },
-
-    /**
-     * Formatter method returns name of End Partner(Receiver)
-     * @param   {string} 	sDir	 Direction('s' for sender and 'r' for receiver)
-     * @param   {string} 	sFrom  Sender
-     * @param   {string} 	sTo	   Receiver
-     * @public
-     * @returns {string} 	    	 End Partner
-     */
-      partnerEnd: function(sDir, sFrom, sTo) {
-        if (sDir === Constants.FLOW_TYPE.OUTBOUND) {
-          return sTo;
-        } else {
-          return sFrom;
-        }
-      },
 
     /**
      * Formatter method returns icon between Start Partner(Sender) and End Partner(Receiver)
