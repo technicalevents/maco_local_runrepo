@@ -22,7 +22,7 @@
 	  <Table id="idProcessTypeTable"
 	          growing="true"
 	          growingScrollToLoad="true" 
-	          growingThreshold="10" 
+	          growingThreshold="50" 
 	          mode="None"
 	          sticky="ColumnHeaders,HeaderToolbar" >
           <columns>

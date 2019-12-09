@@ -13,7 +13,7 @@
 					        enableAutoBinding="true" 
 					        requestAtLeastFields="Path,ProcessDocumentKey,ProcessDocumentType"
 					        beforeRebindTable="onBeforeRebindTable"
-					        custom:entityName="xMP4GxC_Mosb_Aggr_Rev_Invc_Mos"s>
+					        custom:entityName="xMP4GxC_Mosb_Aggr_Rev_Invc_Mos">
 		
 	  <smartTable:customToolbar>
 	  	<Toolbar height="0rem"/>
@@ -22,7 +22,7 @@
 	  <Table id="idProcessTypeTable"
 	          growing="true"
 	          growingScrollToLoad="true" 
-	          growingThreshold="10" 
+	          growingThreshold="50" 
 	          mode="None"
 	          sticky="ColumnHeaders,HeaderToolbar" >
           <columns>

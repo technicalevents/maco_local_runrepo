@@ -131,7 +131,15 @@
                       formatter: '.formatter.partnerEnd'
                     }"/>
                 </HBox>
-                <Link text="{ProcessDocumentNumber}" c:action="navListToProcessApp" press="onAction"/>
+                <VBox>
+                	<Link text="{ProcessDocumentNumber}" 
+                		  visible="{= !${path: 'ProcessDocumentNumber', formatter: '.formatMultiplePDocVisible'}}"
+                		  c:action="navListToProcessApp" 
+                		  press="onAction"/>
+                	<Text text="{i18n>MULTI_PDOC_EXIST_TXT}"
+                		  visible="{path: 'ProcessDocumentNumber', formatter: '.formatMultiplePDocVisible'}"
+						          wrapping="true" />
+                </VBox>
               </cells>
             </ColumnListItem>
           </items>

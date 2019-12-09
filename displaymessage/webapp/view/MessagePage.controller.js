@@ -3,9 +3,11 @@ sap.ui.define(
 	  "com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
 	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
 	  "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
-	  "sap/ui/model/Context"
+	  "sap/ui/model/Context",
+	  "sap/ui/model/Filter",
+	  "sap/ui/model/FilterOperator"
 	],
-	function(ObjectPageNoDraftController, Constants, messageFormatter, Context) {
+	function(ObjectPageNoDraftController, Constants, messageFormatter, Context, Filter, FilterOperator) {
 	  "use strict";
   
 	  return ObjectPageNoDraftController.extend(
@@ -43,7 +45,9 @@ sap.ui.define(
 					},
 					actions: {
 						singleDownload: oComponentActions.singleDownload,
-						share: oComponentActions.share
+						share: oComponentActions.share,
+						multipleDoc: oComponentActions.multipleDoc,
+						navListToProcessApp: oComponentActions.navListToProcessApp
 					}
 				});
 			},
@@ -62,12 +66,91 @@ sap.ui.define(
 			
 			/**
 			 * Method will be triggered once object page binding is done with entitySet
-			 * @param {object} oRouteParams    Route Parameters
+			 * @param {object} oRouteParams        Route Parameters
+			 * @param {object} oTransferDocument   TransferDocument 
 			 * @public
 			 */
-			onAfterBind: function(oRouteParams) {				
+			onAfterBind: function(oRouteParams, oTransferDocument) {				
 				this._whenLinkTransferDocumentsRead(oRouteParams)
 				.then(this._onSucessLinkTransferDocumentsRead.bind(this));
+				
+				var aProcessDocumentKey = oTransferDocument.ProcessDocumentKey.split(",");
+				var oModel = this.getThisModel();
+				
+				oModel.setProperty("/LinkedProcessDocuments", aProcessDocumentKey);
+				oModel.setProperty("/TransferDocumentKey", oRouteParams.TransferDocumentKey);
+				
+				if(aProcessDocumentKey.length > 1) {
+					this.byId("idLinkedProcessSmartTable").rebindTable();
+				}
+			},
+			
+			/**
+			 * Method will be triggered before object page binding is done with entitySet
+			 * @public
+			 */
+			 onBeforeBind: function() {
+				this.oComponent.getService("ShellUIService").then(
+					function(oService) {
+						oService.setTitle(this.oBundle.getText("SINGLE_MSG_TITLE"));
+						var oSapApp = this.oComponent.getManifestEntry("sap.app");
+						var oIntent = oSapApp.crossNavigation.inbounds.intent1;
+						var sIntent = "#" + oIntent.semanticObject + "-" + oIntent.action;
+						oService.setHierarchy([
+							{
+								title: this.oBundle.getText("APP_TITLE"),
+								intent: sIntent
+							}
+						]);
+					}.bind(this),
+					function(oError) {
+						jQuery.sap.log.error("Cannot get ShellUIService", oError);
+					}
+				);
+			},
+			
+			/**
+			 * Method will be triggered before Rebinding Smart Table
+			 * @param {object} oEvent   Rebinding table event
+			 * @public
+			 */
+        	onBeforeRebindTable: function(oEvent) {
+        		var oSmartTable = this.byId("idLinkedProcessSmartTable");
+        		var oModel = this.getThisModel();
+        		var aLinkedProcessDocument = oModel.getProperty("/LinkedProcessDocuments");
+        		var sTransferDocumentKey = oModel.getProperty("/TransferDocumentKey");
+        		
+        		if(aLinkedProcessDocument && aLinkedProcessDocument.length > 0) {
+        			oSmartTable.setTableBindingPath("/xMP4GxC_TransferDoc_UI(TransferDocumentKey=guid'"+ sTransferDocumentKey + "')/to_linkedTransferPdoc");
+        			var oParams = oEvent.getParameter("bindingParams");
+	        		if(oParams) {
+	        			oParams.parameters.select = "ProcessDocumentNumber,ProcessIDDescription,ProcessClusterDescriptionISL,OwnerUUID,ProcessDate," + 
+	        										"ProcessTimestamp,ProcessStatusDescription,StatusCriticality,ProcessDocumentKey,ProcessID";
+	        		}
+        		}
+			},
+			
+			/**
+			 * Formatter method to handle label for multiple document
+			 * @param   {object} aLinkedDocument            Array of linked document
+			 * @param   {string} sTecBusinessObjectType     Technical Business Object Type
+			 * @public
+			 * @returns {string}                            Label for multiple document
+			 */
+        	formatMultipleDocumentLabel: function(aLinkedDocument, sTecBusinessObjectType) {
+				return this.oBundle.getText("MULTI_DOCUMENT_TXT", [
+						messageFormatter.multipleDocumentLabelnNumber(aLinkedDocument, sTecBusinessObjectType)]);
+			},
+			
+			/**
+			 * Formatter method to handle visibility for multiple document
+			 * @param   {object} aLinkedDocument            Array of linked document
+			 * @param   {string} sTecBusinessObjectType     Technical Business Object Type
+			 * @public
+			 * @returns {string}                            Visibility for multiple document
+			 */
+			formatMultipleDocumentVisible: function(aLinkedDocument, sTecBusinessObjectType) {
+				return (messageFormatter.multipleDocumentLabelnNumber(aLinkedDocument, sTecBusinessObjectType)) > 1 ? true : false;
 			},
 
 			/**
@@ -132,10 +215,10 @@ sap.ui.define(
 			 */
 			_onSucessLinkTransferDocumentsRead: function(oResult){
 				var oModel = this.getThisModel();
-				oModel.setProperty("/LinkedDocuments", {});
-				oModel.setProperty("/linkedTransferDocuments", []);
 				
 				if(!oResult && !oResult.data){
+					oModel.setProperty("/LinkedDocuments", {});
+					oModel.setProperty("/LinkedTransferDocuments", []);
 					return;
 				}
 				
@@ -172,7 +255,7 @@ sap.ui.define(
 				}
 				
 				oModel.setProperty("/LinkedDocuments", jQuery.extend(true, {}, oLinkedDocuments));
-				oModel.setProperty("/linkedTransferDocuments", jQuery.extend(true, [], aLinkedTransferDocuments));
+				oModel.setProperty("/LinkedTransferDocuments", jQuery.extend(true, [], aLinkedTransferDocuments));
 			}
 		}
 	  );

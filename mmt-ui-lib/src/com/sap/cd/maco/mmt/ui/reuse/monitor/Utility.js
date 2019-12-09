@@ -16,6 +16,18 @@ sap.ui.define([
 		},
 
 		/**
+		 * Utility Function is used to check whether id is in guid format or not 
+		 * @public
+		 * @param   {String}   sId     id to be checked
+		 * @returns {String}           whether id is in guid format or not
+		 */
+		isGuid: function(sId) {
+			var sRegex = /[a-f0-9]{8}(?:-[a-f0-9]{4}){3}-[a-f0-9]{12}/i;
+			var oMatch = sRegex.exec(sId);
+			return oMatch != null;
+		},
+
+		/**
 		* Utility function to Get source array element with a given attribute (property) value
 		* @param {Array} aSourceArray - Search source
 		* @param {string} sAttribute - Attribute name

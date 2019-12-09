@@ -5,7 +5,9 @@
   xmlns:core="sap.ui.core" 
   xmlns:uxap="sap.uxap"
   xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
+  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
   xmlns:smartForm="sap.ui.comp.smartform"
+  xmlns:smartTable="sap.ui.comp.smarttable"
   xmlns:smartField="sap.ui.comp.smartfield">
   <uxap:ObjectPageLayout
     id="objectPage"
@@ -37,8 +39,8 @@
 					enabled="{this>/tableActionEnabled/singleDownload}"
 					c:action="singleDownload" />
 			<reuseButton:Share icon="sap-icon://action"
-				                press="onAction" 
-				                c:action="share" />
+				               press="onAction" 
+				               c:action="share" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>
@@ -57,7 +59,9 @@
 								<core:Fragment type="XML" fragmentName="com.sap.cd.maco.mmt.ui.reuse.fragment.form.SmartFormLayout"/>
 							</smartForm:layout>
 							<smartForm:Group label="{i18n>MSG_PROPERTIES_GEN_SUBSECTION_TITLE}">
-								<smartForm:GroupElement label="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}">
+								<smartForm:GroupElement label="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}" 
+														visible="{= !${parts: [{path: 'this>/LinkedTransferDocuments'}, {value:'PDoc'}], 
+																       formatter: '.formatMultipleDocumentVisible'}}">
 									<Link text="{this>/LinkedDocuments/ProcessDocument/LinkDocumentNumber}" 
 										  press="onCrossAppNavigation" 
 										  c:docType="Process" 
@@ -70,14 +74,28 @@
 							</smartForm:Group>
 							<smartForm:Group label="{i18n>CONTRL_MSG_TEXT}" 
 											 visible="{= !(${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
-								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}">
+								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}"
+														visible="{parts: [{path: 'this>/LinkedTransferDocuments'}, {value:'BO_CP_CONTRL'}], 
+																  formatter: '.formatMultipleDocumentVisible'}">
+									<Link text="{parts: [{path: 'this>/LinkedTransferDocuments'}, {value:'BO_CP_CONTRL'}], 
+																  formatter: '.formatMultipleDocumentLabel'}"
+										  wrapping="true" 
+										  press="onAction"
+										  c:boObjectType="BO_CP_CONTRL"
+										  c:action="multipleDoc"/>
+								</smartForm:GroupElement>
+								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}"
+														visible="{= !${parts: [{path: 'this>/LinkedTransferDocuments'}, {value:'BO_CP_CONTRL'}], 
+																  formatter: '.formatMultipleDocumentVisible'}}">
 									<Link text="{this>/LinkedDocuments/ControlMessage/ExternalUUID}"
 										  press="onCrossAppNavigation" 
 										  c:docType="Message" 
 										  wrapping="true"/>
 								</smartForm:GroupElement>
 								<smartForm:GroupElement label="{i18n>Date_LBL}" 
-														visible="{=!!${this>/LinkedDocuments/ControlMessage/ExternalUUID}}">
+														visible="{= (!!${this>/LinkedDocuments/ControlMessage/ExternalUUID} &amp;&amp; 
+																	(!${parts: [{path: 'this>/LinkedTransferDocuments'}, {value:'BO_CP_CONTRL'}], 
+																		formatter: '.formatMultipleDocumentVisible'}))}">
 									<Text text="{path: 'this>/LinkedDocuments/ControlMessage/Timestamp',
 									             type: 'sap.ui.model.type.DateTime',
 												 formatOptions: {style: 'medium'}}"
@@ -86,14 +104,28 @@
 							</smartForm:Group>
 							<smartForm:Group label="{i18n>APERAK_MSG_TEXT}" 
 											 visible="{= !(${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
-								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}">
+								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}"
+														visible="{parts: [{path: 'this>/LinkedTransferDocuments'}, {value:'BO_CP_APERAK'}], 
+																  formatter: '.formatMultipleDocumentVisible'}">
+									<Link text="{parts: [{path: 'this>/LinkedTransferDocuments'}, {value:'BO_CP_APERAK'}], 
+																  formatter: '.formatMultipleDocumentLabel'}"
+										  wrapping="true" 
+										  press="onAction"
+										  c:boObjectType="BO_CP_APERAK"
+										  c:action="multipleDoc"/>
+								</smartForm:GroupElement>
+								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}"
+														visible="{= !${parts: [{path: 'this>/LinkedTransferDocuments'}, {value:'BO_CP_APERAK'}], 
+																  formatter: '.formatMultipleDocumentVisible'}}">
 									<Link text="{this>/LinkedDocuments/AperakMessage/ExternalUUID}"
 										  press="onCrossAppNavigation" 
 										  c:docType="Message" 
 										  wrapping="true"/>
 								</smartForm:GroupElement>
 								<smartForm:GroupElement label="{i18n>Date_LBL}" 
-														visible="{=!!${this>/LinkedDocuments/AperakMessage/ExternalUUID}}">
+														visible="{= (!!${this>/LinkedDocuments/AperakMessage/ExternalUUID} &amp;&amp; 
+																	(!${parts: [{path: 'this>/LinkedTransferDocuments'}, {value:'BO_CP_APERAK'}], 
+																		formatter: '.formatMultipleDocumentVisible'}))}">
 									<Text text="{path: 'this>/LinkedDocuments/AperakMessage/Timestamp',
 										         type: 'sap.ui.model.type.DateTime',
 										         formatOptions: { style: 'medium' }}"
@@ -128,6 +160,52 @@
             			<TextArea value="{path: 'ExternalPayload', formatter: '.formatter.externalPayload'}" 
 							editable="false" width="100%" growing="true">
         				</TextArea>
+    			    </uxap:blocks>
+        		</uxap:ObjectPageSubSection>
+			</uxap:subSections>
+		</uxap:ObjectPageSection>
+		<uxap:ObjectPageSection title="{i18n>LINKED_PROCESS_DOC_TITLE}" titleUppercase="false" 
+								visible="{parts: [{path: 'this>/LinkedTransferDocuments'}, {value:'PDoc'}], 
+												   formatter: '.formatMultipleDocumentVisible'}">
+    		<uxap:subSections>
+    			<uxap:ObjectPageSubSection>
+    				<uxap:blocks>
+    					<smartTable:SmartTable id="idLinkedProcessSmartTable"
+					        entitySet="xMP4GxI_LinkedPdoc_details"
+					        tableType="ResponsiveTable"
+					        enableAutoBinding="true" 
+					        demandPopin="true"
+					        useExportToExcel="false"
+					        useTablePersonalisation="false"
+					        useVariantManagement="false" 
+					        beforeRebindTable="onBeforeRebindTable"
+					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displaymessages.pdoc.table">
+					        <Table id="idLinkedProcessTable"
+						          growing="true"
+						          growingScrollToLoad="true" 
+						          growingThreshold="20" 
+						          mode="None"
+						          sticky="ColumnHeaders,HeaderToolbar" >
+					          <columns>
+					            <Column width="40%">
+					              <Text text="{/xMP4GxI_LinkedPdoc_details/ProcessDocumentNumber/#@sap:label}"/>
+					              <customData>
+					                <core:CustomData key="p13nData" 
+					                				 value='\{"columnIndex":"0", 
+					                						  "columnKey":"ProcessDocumentNumber", 
+					                						  "leadingProperty":["ProcessDocumentNumber", "ProcessIDDescription"] }'/>
+					              </customData>
+					            </Column>
+					          </columns>
+					          <items>
+					            <ColumnListItem type="Navigation" press="onAction" c:action="navListToProcessApp">
+					              <cells>
+					                  <reuseTable:ObjectIdentifier title="{ProcessDocumentNumber}" text="{ProcessIDDescription}"/>
+					              </cells>
+					            </ColumnListItem>
+					          </items>
+					        </Table>
+					      </smartTable:SmartTable>
     			    </uxap:blocks>
         		</uxap:ObjectPageSubSection>
 			</uxap:subSections>

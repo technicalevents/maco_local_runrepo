@@ -72,6 +72,60 @@ sap.ui.define([
         } else {
           return 'sap-icon://arrow-left';
         }
+      },
+
+      /**
+			 * Formatter method to handle label and visibility for multiple document
+			 * @param   {object} aLinkedDocument            Array of linked document
+			 * @param   {string} sTecBusinessObjectType     Technical Business Object Type
+			 * @public
+			 * @returns {integer}                            Document Count
+			 */
+      multipleDocumentLabelnNumber: function(aLinkedDocument, sTecBusinessObjectType) {
+        var iProcessDocument = 0;
+        var iControlDocument = 0;
+        var iAperakDocument = 0;
+        var iMultipleDocumentNumber = 0;
+        
+        if(aLinkedDocument) {
+          for(var intI = 0; intI < aLinkedDocument.length; intI++) {
+            switch (aLinkedDocument[intI].TecBusinessObjectType) {
+              case Constants.BO_OBJECT_TYPE.CONTRL_MSG:
+                iControlDocument++;          
+                break;
+                  
+              case Constants.BO_OBJECT_TYPE.APERAK_MSG:
+                iAperakDocument++;   
+                break;
+                  
+              case Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT:
+                iProcessDocument++;  
+                break;	
+                  
+              default:
+                break;
+            }
+          }
+        }
+        
+        switch (sTecBusinessObjectType) {
+          case Constants.BO_OBJECT_TYPE.CONTRL_MSG:
+            iMultipleDocumentNumber = iControlDocument;
+            break;
+              
+          case Constants.BO_OBJECT_TYPE.APERAK_MSG:
+            iMultipleDocumentNumber = iAperakDocument;   
+            break;
+              
+          case Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT:
+            iMultipleDocumentNumber = iProcessDocument; 
+            break;	
+              
+          default:
+            break;
+        }
+        
+        return iMultipleDocumentNumber;
       }
 	};
 });

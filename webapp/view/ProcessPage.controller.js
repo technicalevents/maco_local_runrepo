@@ -45,6 +45,24 @@ sap.ui.define(
         onBeforeBind: function(oRouteParams){
           this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
             .then(this._onSucessProcessDataRead.bind(this));
+            
+            this.oComponent.getService("ShellUIService").then(
+            function(oService) {
+              oService.setTitle(this.oBundle.getText("SINGLE_MSG_TITLE"));
+              var oSapApp = this.oComponent.getManifestEntry("sap.app");
+              var oIntent = oSapApp.crossNavigation.inbounds.intent1;
+              var sIntent = "#" + oIntent.semanticObject + "-" + oIntent.action;
+              oService.setHierarchy([
+                {
+                  title: this.oBundle.getText("APP_TITLE"),
+                  intent: sIntent
+                }
+              ]);
+            }.bind(this),
+            function(oError) {
+              jQuery.sap.log.error("Cannot get ShellUIService", oError);
+            }
+          );
         },
 
         /**

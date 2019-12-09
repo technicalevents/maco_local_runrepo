@@ -1,7 +1,10 @@
 /*global location*/
 sap.ui.define(
-  ['com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction', 'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle', 'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'],
-  function(BaseAction, bundle, Assert) {
+  ['com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction', 
+   'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle', 
+   'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert', 
+   'com/sap/cd/maco/mmt/ui/reuse/monitor/Utility'],
+  function(BaseAction, bundle, Assert, Utility) {
     'use strict';
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.nav.NavToExternalAction', {
@@ -24,7 +27,8 @@ sap.ui.define(
                 oObject.hasOwnProperty(sFromParam),
                 'cannot execute NavToRouteAction. cannot map params. object has no property ' + sFromParam
               );
-              oNavParams[sToParam] = oObject[sFromParam];
+              oNavParams[sToParam] = (sFromParam === this.oConfig.guidFields && !Utility.isGuid(oObject[sFromParam])) ? 
+            									Utility.convertToGuidFormat(oObject[sFromParam]) : oObject[sFromParam];
             }
 
             // navigate

@@ -20,7 +20,8 @@ sap.ui.define([
 				action: "displayMessage",
 				paramsMap: {
 					TransferDocumentKey: sKeyField
-				}
+				},
+				guidFields: sKeyField
 			};
 			
 			NavToExternalAction.call(this, oComponent, oConfig, sCardinality);

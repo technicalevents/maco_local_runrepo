@@ -58,6 +58,9 @@ sap.ui.define(
             navListToProcessApp: true
           }
         });
+
+        var oRoute = this.oRouter.getRoute("initial");
+        oRoute.attachPatternMatched(this._onRoutePatternMatched, this);
       },
 
       /******************************************************************* */
@@ -101,6 +104,16 @@ sap.ui.define(
          */
         onRefresh: function() {
           this.getSmartTable().rebindTable(true);
+        },
+
+        /**
+         * Formatter method to handle visibility for multiple process document
+         * @param   {string} sPDocNumber     Process Document Number
+         * @public
+         * @returns {boolean}                Whether multiple PDoc text should be visible or not 
+         */
+        formatMultiplePDocVisible: function(sPDocNumber) {
+        	return sPDocNumber.split(",").length > 1 ? true : false;
         },
         
         /**
@@ -157,6 +170,25 @@ sap.ui.define(
             valueTexts: oSmartFilterUiState.getValueTexts()
           };
           this.oNav.storeInnerAppState(oCurrentAppState);
+        },
+        
+        /******************************************************************* */
+        /* PRIVATE METHODS */
+        /******************************************************************* */
+	    
+	      /**
+         * Method is called on Route to Message List Page
+         * @private
+         */
+        _onRoutePatternMatched: function() {
+          this.oComponent.getService("ShellUIService").then(
+            function(oService) {
+              oService.setHierarchy([]);
+            }.bind(this),
+            function(oError) {
+              jQuery.sap.log.error("Cannot get ShellUIService", oError);
+            }
+          );
         }
       }
     );

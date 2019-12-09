@@ -21,7 +21,8 @@ sap.ui.define([
 				paramsMap: {
 					ProcessDocumentKey: sKeyField,
 					ProcessID: "ProcessID"
-				}
+				},
+				guidFields: sKeyField
 			};
 			
 			NavToExternalAction.call(this, oComponent, oConfig, sCardinality);
