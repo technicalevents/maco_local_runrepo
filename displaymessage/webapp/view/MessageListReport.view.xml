@@ -56,7 +56,7 @@
 					        smartFilterId="idMessageSmartFilterBar"
 					        smartVariant="idMessageVariantManagement"
 					        enableAutoBinding="true" 
-					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID,OwnerUUID"
+					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID,OwnerUUID,ExternalMarketPartner,OwnMarketPartner"
 					        ignoredFields="ExtBusinessMessageID"
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="false"
@@ -119,12 +119,12 @@
                   {path: 'ExtBusinessMessageID'}],
                   formatter: '.formatTechnicalBusinessMsgId'}"/>
                 <HBox>
-                  <Text text="{SenderId}"/>
+                  <Text text="{OwnMarketPartner}"/>
                   <core:Icon src="{
                       parts: [ 'Direction' ],
                       formatter: '.formatter.partnerIcon'
                     }" class="sapUiTinyMarginBegin sapUiTinyMarginEnd" />
-                  <Text text="{ReceiverId}"/>
+                  <Text text="{ExternalMarketPartner}"/>
                 </HBox>
                 <VBox>
                 	<Link text="{ProcessDocumentNumber}" 
