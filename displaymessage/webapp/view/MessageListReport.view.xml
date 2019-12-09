@@ -118,18 +118,12 @@
                   {path: 'ExtBusinessMessageID'}],
                   formatter: '.formatTechnicalBusinessMsgId'}"/>
                 <HBox>
-                  <Text text="{
-                      parts: [ 'Direction', 'SenderId', 'ReceiverId' ],
-                      formatter: '.formatter.partnerStart'
-                    }"/>
+                  <Text text="{SenderId}"/>
                   <core:Icon src="{
                       parts: [ 'Direction' ],
                       formatter: '.formatter.partnerIcon'
                     }" class="sapUiTinyMarginBegin sapUiTinyMarginEnd" />
-                  <Text text="{
-                      parts: [ 'Direction', 'SenderId', 'ReceiverId' ],
-                      formatter: '.formatter.partnerEnd'
-                    }"/>
+                  <Text text="{ReceiverId}"/>
                 </HBox>
                 <VBox>
                 	<Link text="{ProcessDocumentNumber}" 
