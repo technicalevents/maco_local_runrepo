@@ -25,6 +25,7 @@
                   liveMode="true"
                   useDateRangeType="true"
                   initialized="onFilterBarInitialized"
+                  filterChange="onMessageFilterBarChanged"
                   showFilterConfiguration="false"
                   persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.filterbar"
                   entitySet="xMP4GxC_TransferDoc_UI">

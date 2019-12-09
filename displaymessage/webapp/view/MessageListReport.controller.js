@@ -5,10 +5,11 @@ sap.ui.define(
     "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
     "sap/ui/model/Sorter",
-    "sap/ui/generic/app/navigation/service/SelectionVariant"
+    "sap/ui/generic/app/navigation/service/SelectionVariant",
+    "sap/ui/model/FilterOperator"
   ],
   function(ListReportNoDraftController, SmartTableBindingUpdate, messageFormatter, 
-            Constants, Sorter, SelectionVariant) {
+            Constants, Sorter, SelectionVariant, FilterOperator) {
     "use strict";
 
     return ListReportNoDraftController.extend(
@@ -136,6 +137,29 @@ sap.ui.define(
           
           this.getFilterBar().setFilterData(oSmartFilterData, true);
         },
+        
+        /**
+       * Event is triggered when selection is changed in Smart Filter Bar
+       * @public
+       */
+      onMessageFilterBarChanged: function() {
+        var oFilterData = jQuery.extend(true, {}, this.getFilterBar().getFilterData());
+        var aRanges = []; 
+        var bIsFilterDataChanged = false;
+        
+        if(oFilterData.ProcessDocumentNumber) {
+          aRanges = oFilterData.ProcessDocumentNumber.ranges;
+          for(var intI = 0; intI < aRanges.length && aRanges[intI].operation === FilterOperator.EQ; intI++) {
+            oFilterData.ProcessDocumentNumber.ranges[intI].operation = FilterOperator.Contains;
+            oFilterData.ProcessDocumentNumber.ranges[intI].tokenText = "*" + aRanges[intI].tokenText.slice(1) +"*";
+            bIsFilterDataChanged = true;
+          }
+          
+          if(bIsFilterDataChanged) {
+            this.getFilterBar().setFilterData(oFilterData, true);
+          }
+        }
+      },
 
         /**
          * Formatter method returns formatted Technical Id and External Business Message Id
