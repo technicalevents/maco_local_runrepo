@@ -13,14 +13,14 @@ sap.ui.define([
 		/**
 		 * Constructor
 		 */
-        constructor: function(oComponent, sKeyField) {
+        constructor: function(oComponent, sKeyField, sProcessId) {
 			var sCardinality = "1";
 			var oConfig = {
 				semanticObject: "UtilsDataExchangeProcessing",
 				action: "displayProcess",
 				paramsMap: {
 					ProcessDocumentKey: sKeyField,
-					ProcessID: "ProcessID"
+					ProcessID: sProcessId
 				},
 				guidFields: sKeyField
 			};

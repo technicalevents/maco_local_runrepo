@@ -6,7 +6,9 @@ sap.ui.define([], function () {
             CONTRL_MSG: "BO_CP_CONTRL",
             EXCEPTION_DOCUMENT: "ExceptionDoc",
             PROCESS_DOCUMENT: "PDoc",
-            TRANSFER_DOCUMENT: "TransDoc"
+            TRANSFER_DOCUMENT: "TransDoc",
+            APERAK_DOC: "APERAK",
+            CONTRL_DOC: "CONTRL"
         },
 
         FLOW_TYPE: {
