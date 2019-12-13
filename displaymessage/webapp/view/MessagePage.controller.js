@@ -3,11 +3,9 @@ sap.ui.define(
 	  "com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
 	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
 	  "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
-	  "sap/ui/model/Context",
-	  "sap/ui/model/Filter",
-	  "sap/ui/model/FilterOperator"
+	  "sap/ui/model/Context"
 	],
-	function(ObjectPageNoDraftController, Constants, messageFormatter, Context, Filter, FilterOperator) {
+	function(ObjectPageNoDraftController, Constants, messageFormatter, Context) {
 	  "use strict";
   
 	  return ObjectPageNoDraftController.extend(
@@ -47,7 +45,7 @@ sap.ui.define(
 						singleDownload: oComponentActions.singleDownload,
 						share: oComponentActions.share,
 						multipleDoc: oComponentActions.multipleDoc,
-						navListToProcessApp: oComponentActions.navListToProcessApp
+						navObjectTableToProcessApp: oComponentActions.navObjectTableToProcessApp
 					}
 				});
 			},
@@ -70,18 +68,18 @@ sap.ui.define(
 			 * @param {object} oTransferDocument   TransferDocument 
 			 * @public
 			 */
-			onAfterBind: function(oRouteParams, oTransferDocument) {				
-				this._whenLinkTransferDocumentsRead(oRouteParams)
-				.then(this._onSucessLinkTransferDocumentsRead.bind(this));
-				
-				var aProcessDocumentKey = oTransferDocument.ProcessDocumentKey.split(",");
+			onAfterBind: function(oRouteParams, oTransferDocument) {
 				var oModel = this.getThisModel();
-				
-				oModel.setProperty("/LinkedProcessDocuments", aProcessDocumentKey);
+				oModel.setProperty("/LinkedDocuments", {});
+				oModel.setProperty("/LinkedTransferDocuments", []);
 				oModel.setProperty("/TransferDocumentKey", oRouteParams.TransferDocumentKey);
 				
-				if(aProcessDocumentKey.length > 1) {
+				this._whenLinkTransferDocumentsRead(oRouteParams);
+				
+				if(oTransferDocument.ProcessDocumentKey === "00000000-0000-0000-0000-000000000000") {
 					this.byId("idLinkedProcessSmartTable").rebindTable();
+				} else {
+					oModel.setProperty("/LinkedDocuments/ProcessDocCount", 1);
 				}
 			},
 			
@@ -111,46 +109,36 @@ sap.ui.define(
 			
 			/**
 			 * Method will be triggered before Rebinding Smart Table
-			 * @param {object} oEvent   Rebinding table event
 			 * @public
 			 */
-        	onBeforeRebindTable: function(oEvent) {
-        		var oSmartTable = this.byId("idLinkedProcessSmartTable");
-        		var oModel = this.getThisModel();
-        		var aLinkedProcessDocument = oModel.getProperty("/LinkedProcessDocuments");
-        		var sTransferDocumentKey = oModel.getProperty("/TransferDocumentKey");
+        	onBeforeRebindTable: function() {
+        		var sTransferDocumentKey = this.getThisModel().getProperty("/TransferDocumentKey");
         		
-        		if(aLinkedProcessDocument && aLinkedProcessDocument.length > 0) {
-        			oSmartTable.setTableBindingPath("/xMP4GxC_TransferDoc_UI(TransferDocumentKey=guid'"+ sTransferDocumentKey + "')/to_linkedTransferPdoc");
-        			var oParams = oEvent.getParameter("bindingParams");
-	        		if(oParams) {
-	        			oParams.parameters.select = "ProcessDocumentNumber,ProcessIDDescription,ProcessClusterDescriptionISL,OwnerUUID,ProcessDate," + 
-	        										"ProcessTimestamp,ProcessStatusDescription,StatusCriticality,ProcessDocumentKey,ProcessID";
-	        		}
+        		if(sTransferDocumentKey) {
+        			this.byId("idLinkedProcessSmartTable").setTableBindingPath("/xMP4GxC_GetLinkedPdocDetails(TransferDocumentKey=guid'"+ sTransferDocumentKey + "')/Set");
         		}
 			},
 			
 			/**
-			 * Formatter method to handle label for multiple document
-			 * @param   {object} aLinkedDocument            Array of linked document
-			 * @param   {string} sTecBusinessObjectType     Technical Business Object Type
+			 * Method will be triggered once data has been recevied for process document table
+			 * @param {object} oResponseData   Response Data
 			 * @public
-			 * @returns {string}                            Label for multiple document
 			 */
-        	formatMultipleDocumentLabel: function(aLinkedDocument, sTecBusinessObjectType) {
-				return this.oBundle.getText("MULTI_DOCUMENT_TXT", [
-						messageFormatter.multipleDocumentLabelnNumber(aLinkedDocument, sTecBusinessObjectType)]);
-			},
-			
-			/**
-			 * Formatter method to handle visibility for multiple document
-			 * @param   {object} aLinkedDocument            Array of linked document
-			 * @param   {string} sTecBusinessObjectType     Technical Business Object Type
-			 * @public
-			 * @returns {string}                            Visibility for multiple document
-			 */
-			formatMultipleDocumentVisible: function(aLinkedDocument, sTecBusinessObjectType) {
-				return (messageFormatter.multipleDocumentLabelnNumber(aLinkedDocument, sTecBusinessObjectType)) > 1 ? true : false;
+			onProcessDocDataReceived: function(oResponseData) {
+				var oProcessDocData = oResponseData.getParameter("mParameters").data;
+				var iProcessDocCount;
+				
+				if(oProcessDocData) {
+					if(oProcessDocData.__count) {
+						iProcessDocCount = Number(oProcessDocData.__count);
+					}
+				} else {
+					iProcessDocCount = 0;
+				}
+				
+				if(iProcessDocCount) {
+					this.getThisModel().setProperty("/LinkedDocuments/ProcessDocCount", iProcessDocCount);
+				}
 			},
 
 			/**
@@ -193,13 +181,23 @@ sap.ui.define(
 				var sTransferDocumentKey = oRouteParams.TransferDocumentKey;
 				
 				if(sTransferDocumentKey) {
-					var sKey = this.getView().getModel().createKey("/xMP4GxC_TransferDoc_UI", 
+					var sLinkedDocumentKey = this.getView().getModel().createKey("/xMP4GxC_LinkedDocuments_UI", 
 			    						{TransferDocumentKey: sTransferDocumentKey});
 			    						
-					return this.oTransaction.whenRead({
-						path: sKey + "/to_linkedTransferDocument",
+					this.oTransaction.whenRead({
+						path: sLinkedDocumentKey + "/Set",
 						busyControl: this.getView()
-					});
+					}).then(this._onSucessLinkTransferDocumentsRead.bind(this));
+					
+					var sExternalPayloadKey = this.getView().getModel().createKey("/xMP4GxC_TransferDoc_UI", 
+			    						{TransferDocumentKey: sTransferDocumentKey});
+					this.oTransaction.whenRead({
+						path: sExternalPayloadKey,
+						urlParameters: {
+							$select: "ExternalPayload"
+						},
+						busyControl: this.getView()
+					}).then(this._onSucessExternalPayloadRead.bind(this));
 				} else {
 					// show message
                     this.oNav.navNotFound({
@@ -215,47 +213,54 @@ sap.ui.define(
 			 */
 			_onSucessLinkTransferDocumentsRead: function(oResult){
 				var oModel = this.getThisModel();
+				var aLinkedTransferDocuments = oModel.getProperty("/LinkedTransferDocuments");
+				var oLinkedDocuments = oModel.getProperty("/LinkedDocuments");
+		        var iControlDocument = 0;
+		        var iAperakDocument = 0;
 				
-				if(!oResult && !oResult.data){
-					oModel.setProperty("/LinkedDocuments", {});
-					oModel.setProperty("/LinkedTransferDocuments", []);
-					return;
-				}
-				
-				var aLinkedTransferDocuments;
-				var oLinkedDocuments = {};
-				
-				if (!oResult.data.results){
+				if (oResult && oResult.data && !oResult.data.results){
 					aLinkedTransferDocuments = [oResult.data];
 				} else if (oResult && oResult.data){
 					aLinkedTransferDocuments = oResult.data.results;
 				}
 				
 				for(var intI = 0; intI < aLinkedTransferDocuments.length; intI++) {
-					switch (aLinkedTransferDocuments[intI].TecBusinessObjectType) {
-						case Constants.BO_OBJECT_TYPE.CONTRL_MSG:
-							oLinkedDocuments.ControlMessage = aLinkedTransferDocuments[intI];            
-							break;
-								
-						case Constants.BO_OBJECT_TYPE.APERAK_MSG:
-							oLinkedDocuments.AperakMessage = aLinkedTransferDocuments[intI];    
-							break;
-								
-						case Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT:
-							oLinkedDocuments.ProcessDocument = aLinkedTransferDocuments[intI];    
-							break;
-								
-						case Constants.BO_OBJECT_TYPE.TRANSFER_DOCUMENT:
-							oLinkedDocuments.TransferDocument = aLinkedTransferDocuments[intI];    
-							break;	
-								
-						default:
-							break;
+					if(aLinkedTransferDocuments[intI].TecBusinessObjectType === Constants.BO_OBJECT_TYPE.TRANSFER_DOCUMENT) {
+						if(aLinkedTransferDocuments[intI].SemanticType === Constants.BO_OBJECT_TYPE.APERAK_DOC) {
+							oLinkedDocuments.AperakMessage = aLinkedTransferDocuments[intI];   
+							iAperakDocument++;
+						} else if(aLinkedTransferDocuments[intI].SemanticType === Constants.BO_OBJECT_TYPE.CONTRL_DOC) {
+							oLinkedDocuments.ControlMessage = aLinkedTransferDocuments[intI];  
+							iControlDocument++;
+						} else {
+							oLinkedDocuments.OriginalMessage = aLinkedTransferDocuments[intI];
+						}
+					} else if(aLinkedTransferDocuments[intI].TecBusinessObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT) {
+						oLinkedDocuments.ProcessDocument = aLinkedTransferDocuments[intI];   
 					}
 				}
 				
-				oModel.setProperty("/LinkedDocuments", jQuery.extend(true, {}, oLinkedDocuments));
-				oModel.setProperty("/LinkedTransferDocuments", jQuery.extend(true, [], aLinkedTransferDocuments));
+				oLinkedDocuments.AperakDocCount = iAperakDocument;
+				oLinkedDocuments.ContrlDocCount = iControlDocument;
+				
+				oModel.setProperty("/LinkedDocuments", oLinkedDocuments);
+				oModel.setProperty("/LinkedTransferDocuments", aLinkedTransferDocuments);
+			},
+			
+			/**
+			 * Function is called when data read call is succesfull
+			 * @param {object} oResult   Linked transfer documents
+			 * @private
+			 */
+			_onSucessExternalPayloadRead: function(oResponseData) {
+				var sExternalPayload = oResponseData.data.ExternalPayload;
+				var sFormattedExternalPayload = "";
+        
+		        if(sExternalPayload) {
+		          sFormattedExternalPayload = sExternalPayload.replace(new RegExp("'", 'g'), "' \n");
+		        }
+		        
+				this.getThisModel().setProperty("/ExternalPayload", sFormattedExternalPayload);
 			}
 		}
 	  );

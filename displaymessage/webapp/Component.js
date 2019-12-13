@@ -31,9 +31,10 @@ sap.ui.define(
           singleDownload: new SingleDownloadAction(this),
           multiDownload: new MultiDownloadAction(this),
           navToMessagePage: new NavToRouteAction(this),
-          navListToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey"),
-          navObjectToProcessApp: new NavToProcessAction(this, "LinkDocumentKey"),
-          navObjectToMessageApp: new NavToMessageAction(this, "LinkDocumentKey"),
+          navListToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey", "ProcessID"),
+          navObjectTableToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey", "SemanticType"),
+          navObjectToProcessApp: new NavToProcessAction(this, "LinkedDocumentKey", "SemanticType"),
+          navObjectToMessageApp: new NavToMessageAction(this, "LinkedDocumentKey"),
           multipleDoc: new MultipleDocumentAction(this),
           share: new ShareAction(this, {
             appTitleMsgKey: "APP_TITLE",

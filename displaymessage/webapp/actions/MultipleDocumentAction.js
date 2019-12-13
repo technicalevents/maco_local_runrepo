@@ -20,7 +20,7 @@ sap.ui.define([
 			var sCardinality = "1..N";
 			BaseAction.call(this, oComponent, oConfig, sCardinality);
 			
-			this._oNavToMessageAction = new NavToMessageAction(oComponent, "LinkDocumentKey");
+			this._oNavToMessageAction = new NavToMessageAction(oComponent, "LinkedDocumentKey");
         },
         
         /******************************************************************* */
@@ -53,7 +53,7 @@ sap.ui.define([
               
               this._oMultipeDocumentActionSheet.getBinding("buttons").filter();
               this._oMultipeDocumentActionSheet.getBinding("buttons").filter(
-              		new Filter("TecBusinessObjectType", FilterOperator.EQ, oParams.event.getSource().data("boObjectType")));
+              		new Filter("SemanticType", FilterOperator.EQ, oParams.event.getSource().data("boObjectType")));
               
               this._oMultipeDocumentActionSheet.openBy(oParams.event.getSource());
 

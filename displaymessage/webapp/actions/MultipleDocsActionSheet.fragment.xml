@@ -4,10 +4,10 @@
 	xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 	<ActionSheet placement="Bottom" 
 				 buttons="{path: 'this>/LinkedTransferDocuments', 
-						   sorter: {path : 'ExternalUUID'}, 
+						   sorter: {path : 'ExtUUID'}, 
 						   templateShareable: true}">
 			<buttons>
-				<Button text="{this>ExternalUUID}" press="onDocumentPress" />
+				<Button text="{this>ExtUUID}" press="onDocumentPress" />
 			</buttons>
 	</ActionSheet>
 </core:FragmentDefinition>
