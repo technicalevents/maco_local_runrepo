@@ -39,6 +39,11 @@
 					press="onAction"
 					enabled="{this>/tableActionEnabled/singleDownload}"
 					c:action="singleDownload" />
+			<Button visible="{this>/ExternalPayload/LoadCompMsgBtnVisible}" 
+					text="{i18n>LOAD_COMP_MSG_TXT}" 
+					press="onLoadCompleteMessage"
+					type="Transparent">
+			</Button>
 			<reuseButton:Share icon="sap-icon://action"
 				               press="onAction" 
 				               c:action="share" />
@@ -156,13 +161,6 @@
     	<uxap:ObjectPageSection title="{i18n>MSG_DATA_TITLE}" titleUppercase="false">
     		<uxap:subSections>
     			<uxap:ObjectPageSubSection>
-    				<uxap:actions>
-    					<Button visible="{this>/ExternalPayload/LoadCompMsgBtnVisible}" 
-    							text="{i18n>LOAD_COMP_MSG_TXT}" 
-    							press="onLoadCompleteMessage"
-    							type="Transparent">
-    						</Button>
-    				</uxap:actions>
     				<uxap:blocks>
     					<TextArea value="{this>/ExternalPayload/InitialExternalPayload}" 
 								  editable="false" width="100%" growing="true" growingMaxLines="51">
