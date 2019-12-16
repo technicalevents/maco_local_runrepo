@@ -167,6 +167,22 @@ sap.ui.define(
 				oAction.execute(oParams);
 			},
 			
+			/**
+			 * Function will be triggered on click of Load Complete EDIFACT Message
+			 * @public
+			 */
+			onLoadCompleteMessage: function() {
+				var oModel = this.getThisModel();
+				var oExternalPayload = oModel.getProperty("/ExternalPayload");
+				var oUpdatedExternalPayload = {};
+				
+				oUpdatedExternalPayload.CompExternalPayload = oExternalPayload.CompExternalPayload;
+				oUpdatedExternalPayload.LoadCompMsgBtnVisible = false;
+		        oUpdatedExternalPayload.InitialExternalPayload = oExternalPayload.CompExternalPayload.replace(new RegExp("'", 'g'), "' \n");
+		        
+				oModel.setProperty("/ExternalPayload", oUpdatedExternalPayload);
+			},
+			
 			/******************************************************************* */
 			/* PRIVATE METHODS */
 			/******************************************************************* */
@@ -253,14 +269,26 @@ sap.ui.define(
 			 * @private
 			 */
 			_onSucessExternalPayloadRead: function(oResponseData) {
-				var sExternalPayload = oResponseData.data.ExternalPayload;
+				var oModel = this.getThisModel();
+				var sCompExternalPayload = oResponseData.data.ExternalPayload;
+				var oExternalPayload = {};
 				var sFormattedExternalPayload = "";
+				
+				oExternalPayload.CompExternalPayload = sCompExternalPayload;
+				oExternalPayload.InitialExternalPayload = sCompExternalPayload;
+				oExternalPayload.LoadCompMsgBtnVisible = false;
+				
+				if(sCompExternalPayload && sCompExternalPayload.match(/'/g || []).length > 50) {
+					oExternalPayload.LoadCompMsgBtnVisible = true;
+					oExternalPayload.InitialExternalPayload = sCompExternalPayload.split("'").splice(0, 50).join("'").concat("'...");
+				}
         
-		        if(sExternalPayload) {
-		          sFormattedExternalPayload = sExternalPayload.replace(new RegExp("'", 'g'), "' \n");
+		        if(oExternalPayload.InitialExternalPayload) {
+		            sFormattedExternalPayload = oExternalPayload.InitialExternalPayload.replace(new RegExp("'", 'g'), "' \n");
 		        }
 		        
-				this.getThisModel().setProperty("/ExternalPayload", sFormattedExternalPayload);
+		        oExternalPayload.InitialExternalPayload = sFormattedExternalPayload;
+				oModel.setProperty("/ExternalPayload", oExternalPayload);
 			}
 		}
 	  );

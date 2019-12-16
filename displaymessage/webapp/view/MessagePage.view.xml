@@ -156,9 +156,16 @@
     	<uxap:ObjectPageSection title="{i18n>MSG_DATA_TITLE}" titleUppercase="false">
     		<uxap:subSections>
     			<uxap:ObjectPageSubSection>
+    				<uxap:actions>
+    					<Button visible="{this>/ExternalPayload/LoadCompMsgBtnVisible}" 
+    							text="{i18n>LOAD_COMP_MSG_TXT}" 
+    							press="onLoadCompleteMessage"
+    							type="Transparent">
+    						</Button>
+    				</uxap:actions>
     				<uxap:blocks>
-            			<TextArea value="{this>/ExternalPayload}" 
-							editable="false" width="100%" growing="true">
+    					<TextArea value="{this>/ExternalPayload/InitialExternalPayload}" 
+								  editable="false" width="100%" growing="true" growingMaxLines="51">
         				</TextArea>
     			    </uxap:blocks>
         		</uxap:ObjectPageSubSection>
