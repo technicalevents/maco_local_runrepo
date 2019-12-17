@@ -183,6 +183,19 @@ sap.ui.define(
 				oModel.setProperty("/ExternalPayload", oUpdatedExternalPayload);
 			},
 			
+			/**
+			 * Formatter method returns formatted Technical Id and External Business Message Id
+		 	 * @param   {string} 	sTechnicalId	     Technical Id
+			 * @param   {string} 	sExBusinessMsgId	 External Business Message Id
+			 * @public
+			 * @returns {string} 	    	             Formatted text
+			 */
+			formatTechnicalBusinessMsgId: function(sTechnicalId, sExBusinessMsgId) {
+				var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+				var oI18nText = messageFormatter.formatTechnicalBusinessMsgId(sTechnicalId, sExBusinessMsgId);
+				return oResourceBundle.getText(oI18nText.i18nFormat, oI18nText.i18nData);
+			},
+			
 			/******************************************************************* */
 			/* PRIVATE METHODS */
 			/******************************************************************* */

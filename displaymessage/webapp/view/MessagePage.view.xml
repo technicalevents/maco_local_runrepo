@@ -22,16 +22,14 @@
           <Title text="{ExternalUUID}" wrapping="true"/>
         </uxap:snappedHeading>
         <uxap:expandedContent>
-          <Text text="{parts: [{path: 'i18n>FORMAT_AMID_TXT_LBL'},
-                                      {path: 'TechnicalMsgID'},
-                                      {path: 'ExtBusinessMessageID'}],
-                                      formatter: '.formatter.formatMessage'}" />
+          <Text text="{parts: [{path: 'TechnicalMsgID'},
+                               {path: 'ExtBusinessMessageID'}],
+                       formatter: '.formatTechnicalBusinessMsgId'}" />
         </uxap:expandedContent>
         <uxap:snappedContent>
-          <Text text="{parts: [{path: 'i18n>FORMAT_AMID_TXT_LBL'},
-                                      {path: 'TechnicalMsgID'},
-                                      {path: 'ExtBusinessMessageID'}],
-                                      formatter: '.formatter.formatMessage'}" />
+          <Text text="{parts: [{path: 'TechnicalMsgID'},
+                               {path: 'ExtBusinessMessageID'}],
+                       formatter: '.formatTechnicalBusinessMsgId'}" />
         </uxap:snappedContent>
         <uxap:actions>
 			<Button text="{i18n>DOWNLOAD_BTN_TXT}"

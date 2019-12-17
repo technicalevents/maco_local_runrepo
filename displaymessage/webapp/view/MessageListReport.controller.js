@@ -135,15 +135,8 @@ sap.ui.define(
          */
         formatTechnicalBusinessMsgId: function(sTechnicalId, sExBusinessMsgId) {
           var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
-          var sI18nFormat = "FORMAT_TXT_LBL";
-          var aI18nData = [sTechnicalId];
-          
-          if(sExBusinessMsgId) {
-            aI18nData.push(sExBusinessMsgId);
-            sI18nFormat = "FORMAT_AMID_TXT_LBL";
-          }
-        
-          return oResourceBundle.getText(sI18nFormat, aI18nData);
+          var oI18nText = messageFormatter.formatTechnicalBusinessMsgId(sTechnicalId, sExBusinessMsgId);
+          return oResourceBundle.getText(oI18nText.i18nFormat, oI18nText.i18nData);
         },
 
         /**
