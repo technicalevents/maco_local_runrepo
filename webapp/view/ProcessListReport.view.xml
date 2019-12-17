@@ -8,9 +8,9 @@
 		  xmlns:mvc="sap.ui.core.mvc"
 		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		  controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessListReport"
-      xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
-      xmlns:variants="sap.ui.comp.smartvariants"
-      xmlns:footerbar="sap.ushell.ui.footerbar">
+    	  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
+    	  xmlns:variants="sap.ui.comp.smartvariants"
+    	  xmlns:footerbar="sap.ushell.ui.footerbar">
   <semantic:SemanticPage headerExpanded="true" toggleHeaderOnTitleClick="true">
   	<semantic:titleHeading>
 			 <variants:SmartVariantManagement id="idProcessVariantManagement" 
@@ -97,6 +97,7 @@
      </semantic:content>
     <semantic:titleCustomTextActions>
      	<Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
+     			visible="{= ${this>/SystemDetails/Sysid_MCP} === 'X' ? false : true}"
 				type="Transparent"
 				press="onAction"
 				c:action="executeMsgAggr"/>

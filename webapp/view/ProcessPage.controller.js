@@ -35,6 +35,13 @@ sap.ui.define(
               share: oComponentActions.share
             }
           });
+          
+          this.oTransaction.whenRead({
+			path: "/xMP4GxC_System_Details",
+			busyControl: this.getView()
+		  }).then(function(oData) {
+		  	this.getThisModel().setProperty("/SystemDetails", oData.data.results[0]);
+		  }.bind(this));
         },
 
         /**
