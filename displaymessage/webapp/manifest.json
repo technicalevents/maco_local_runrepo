@@ -41,7 +41,7 @@
           "semanticObject": "UtilsDataExchangeProcessing",
           "action": "displayMessage",
           "title": "{{APP_TITLE}}",
-          "icon": "sap-icon://message-popup"
+          "icon": "sap-icon://email"
         }
       }
     }
