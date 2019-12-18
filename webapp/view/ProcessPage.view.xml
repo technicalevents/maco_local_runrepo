@@ -26,13 +26,13 @@
         </uxap:snappedContent>
         <uxap:actions>
           <Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
-        		  visible="{= ${this>/SystemDetails/Sysid_MCP} === 'X' ? false : true}"
+        		  visible="{= ${this>/SystemDetails/UIActionHidden} === 'X' ? false : true}"
                   type="Transparent"
                   c:reportAction="Deadline" 
                   c:action="reportExecution" 
                   press="onAction" />
           <Button text="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
-        		  visible="{= ${this>/SystemDetails/Sysid_MCP} === 'X' ? false : true}"
+        		  visible="{= ${this>/SystemDetails/UIActionHidden} === 'X' ? false : true}"
                   type="Transparent"
                   c:reportAction="TriggerDoc" 
                   c:action="reportExecution" 

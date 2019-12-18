@@ -97,7 +97,7 @@
      </semantic:content>
     <semantic:titleCustomTextActions>
      	<Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
-     			visible="{= ${this>/SystemDetails/Sysid_MCP} === 'X' ? false : true}"
+     			visible="{= ${this>/SystemDetails/UIActionHidden} === 'X' ? false : true}"
 				type="Transparent"
 				press="onAction"
 				c:action="executeMsgAggr"/>
