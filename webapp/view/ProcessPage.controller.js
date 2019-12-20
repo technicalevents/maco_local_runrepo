@@ -55,9 +55,6 @@ sap.ui.define(
          * @param {object} oRouteParams Route parameters of Process Page
          */
         onBeforeBind: function(oRouteParams){
-        	this.getThisModel().setProperty("/ProcessDocumentKey", oRouteParams.ProcessDocumentKey);
-        	this.byId("idAssociatedProcessSmartTable").rebindTable();                             
-        	
         	this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
             	.then(this._onSucessProcessDataRead.bind(this));
             
@@ -78,6 +75,16 @@ sap.ui.define(
               jQuery.sap.log.error("Cannot get ShellUIService", oError);
             }
           );
+        },
+        
+        /**
+         * Event Handler - Triggered after Binding is done on parent view (Process Page)
+         * @public
+         * @param {object} oRouteParams Route parameters of Process Page
+         */
+        onAfterBind: function(oRouteParams) {
+        	this.getThisModel().setProperty("/ProcessDocumentKey", oRouteParams.ProcessDocumentKey);
+        	this.byId("idAssociatedProcessSmartTable").rebindTable(); 
         },
 
         /**
