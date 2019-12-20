@@ -5,7 +5,7 @@
 	xmlns:html="http://www.w3.org/1999/xhtml">
 	
 	<smartTable:SmartTable id="idTable"
-					        entitySet="xMP4GxC_Mosb_Aggr_Invc_Mos"
+					        entitySet="xMP4GxC_Met_Aggr_Profile_Value"
 					        tableType="ResponsiveTable"
 					        demandPopin="true"
 					        useExportToExcel="false"
@@ -13,8 +13,8 @@
 					        enableAutoBinding="true" 
 					        requestAtLeastFields="Path,ProcessDocumentKey,ProcessDocumentType"
 					        beforeRebindTable="onBeforeRebindTable"
-					        custom:entityName="xMP4GxC_Mosb_Aggr_Invc_Mos">
-		
+					        custom:entityName="xMP4GxC_Met_Aggr_Profile_Value">
+	 
 	  <smartTable:customToolbar>
 	  	<Toolbar height="0rem"/>
 	  </smartTable:customToolbar>

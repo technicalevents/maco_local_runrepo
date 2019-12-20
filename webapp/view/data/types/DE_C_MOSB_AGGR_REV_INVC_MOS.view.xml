@@ -25,25 +25,6 @@
 	          growingThreshold="50" 
 	          mode="None"
 	          sticky="ColumnHeaders,HeaderToolbar" >
-          <columns>
-            <Column>
-              <Text text="{/xMP4GxC_Mosb_Aggr_Rev_Invc_Mos/InvoiceDoc/#@sap:label}"/>
-              <customData>
-                <core:CustomData key="p13nData" 
-                				 value='\{"columnIndex":"0", 
-                						  "columnKey":"InvoiceDoc", 
-                						  "leadingProperty":["InvoiceDoc"] }'/>
-              </customData>
-            </Column>
-          </columns>
-          <items>
-            <ColumnListItem type="Inactive">
-              <cells>
-                  <smartfield:SmartField value="{InvoiceDoc}"/>
-              </cells>
-            </ColumnListItem>
-          </items>
-        </Table>
 	</smartTable:SmartTable>
 	
 </mvc:View>

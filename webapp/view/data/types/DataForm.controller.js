@@ -22,7 +22,8 @@ sap.ui.define([
 				var sEntityName = oFormControl.data("entityName");
 				
 				var sKey = this.getView().getModel().createKey("/" + sEntityName, {
-					ProcessDocumentKey: sProcessDocumentKey
+					ProcessDocumentKey: sProcessDocumentKey,
+					IsGeneral: false
 				});
 				
 				oFormControl.bindElement(sKey);

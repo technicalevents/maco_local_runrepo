@@ -24,57 +24,8 @@
 	          growingScrollToLoad="true" 
 	          growingThreshold="50" 
 	          mode="None"
-	          sticky="ColumnHeaders,HeaderToolbar" >
-          <columns>
-            <Column>
-              <Text text="{/xMP4GxC_Met_Send_Aggr_Mscons/PODID/#@sap:label}"/>
-              <customData>
-                <core:CustomData key="p13nData" 
-                				 value='\{"columnIndex":"0", 
-                						  "columnKey":"PODID", 
-                						  "leadingProperty":["PODID"] }'/>
-              </customData>
-            </Column>
-            <Column>
-              <Text text="{/xMP4GxC_Met_Send_Aggr_Mscons/DateFrom/#@sap:label}"/>
-              <customData>
-                <core:CustomData key="p13nData" 
-                				 value='\{"columnIndex":"1", 
-                						  "columnKey":"DateFrom", 
-                						  "leadingProperty":["DateFrom"] }'/>
-              </customData>
-            </Column>
-            <Column>
-              <Text text="{/xMP4GxC_Met_Send_Aggr_Mscons/DateTo/#@sap:label}"/>
-              <customData>
-                <core:CustomData key="p13nData" 
-                				 value='\{"columnIndex":"2", 
-                						  "columnKey":"DateTo", 
-                						  "leadingProperty":["DateTo"] }'/>
-              </customData>
-            </Column>
-            <Column>
-              <Text text="{/xMP4GxC_Met_Send_Aggr_Mscons/Division/#@sap:label}"/>
-              <customData>
-                <core:CustomData key="p13nData" 
-                				 value='\{"columnIndex":"3", 
-                						  "columnKey":"Division", 
-                						  "leadingProperty":["Division"] }'/>
-              </customData>
-            </Column>
-            
-          </columns>
-          <items>
-            <ColumnListItem type="Inactive">
-              <cells>
-                  <smartfield:SmartField value="{PODID}"/>
-                  <smartfield:SmartField value="{DateFrom}"/>
-                  <smartfield:SmartField value="{DateTo}"/>
-                  <smartfield:SmartField value="{Division}"/>
-              </cells>
-            </ColumnListItem>
-          </items>
-        </Table>
+	          sticky="ColumnHeaders,HeaderToolbar" />
+
 	</smartTable:SmartTable>
 	
 </mvc:View>

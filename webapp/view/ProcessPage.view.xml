@@ -65,6 +65,11 @@
               <mvc:XMLView id="idProcessDataView" viewName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.ProcessData"/>
             </uxap:blocks>
           </uxap:ObjectPageSubSection>
+          <!--<uxap:ObjectPageSubSection>
+            <uxap:blocks>
+              <mvc:XMLView id="idProcessDataGenSectionView" viewName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.ProcessGeneral"/>
+            </uxap:blocks>
+          </uxap:ObjectPageSubSection>-->
         </uxap:subSections>
       </uxap:ObjectPageSection>
       <uxap:ObjectPageSection title="{i18n>ASSOCIATED_PROCESS_SECTION_LBL}" titleUppercase="false">

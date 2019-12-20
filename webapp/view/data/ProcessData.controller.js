@@ -10,7 +10,8 @@ sap.ui.define([
 	return BaseViewController.extend("com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.ProcessData", {
 		formatter: formatter,
 		aProcessTypesAvailable: ["DE_C_MET_MRR_MELO", "DE_C_MOSB_EOBM_MOS", "DE_C_MOSB_PCAT_MOS", "DE_C_MOSB_QUOT_MOS", "DE_C_MOSB_REQT_MOS",
-			"DE_C_MET_SEND_AGGR_MSCONS", "DE_C_MOSB_AGGR_INVC_MOS", "DE_C_MOSB_AGGR_REV_INVC_MOS", "DE_C_MET_AGGR_ENERGY_VALUE"
+			"DE_C_MET_SEND_AGGR_MSCONS", "DE_C_MOSB_AGGR_INVC_MOS", "DE_C_MOSB_AGGR_REV_INVC_MOS", "DE_C_MET_AGGR_ENERGY_VALUE", 
+			"DE_C_MET_AGGR_PROFILE_VALUE", "DE_C_MET_AGGR_INTERIM_MR", "DE_C_CP_ADV_RECV", "DE_C_MET_AGGR_PERIODIC_MR"
 		],
 		aProcessViews: [],
 		oNoDataText: null,
@@ -65,7 +66,7 @@ sap.ui.define([
 
 					oContainer.addItem(oProcessTypeView);
 
-					oProcessTypeView.getController().bindView(oRouteArgs.ProcessDocumentKey);
+					oProcessTypeView.getController().bindView(oRouteArgs.ProcessDocumentKey, oRouteArgs.ProcessID);
 				}.bind(this));
 			} else {
 				oContainer.addItem(this.oNoDataText);
