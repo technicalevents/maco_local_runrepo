@@ -29,7 +29,7 @@ sap.ui.define(
           executeMsgAggr: new ExecuteMsgAggrAction(this),
           reportExecution: new ReportExecutionAction(this),
           navToProcessPage: new NavToRouteAction(this),
-          navToProcessAction: new NavToProcessAction(this, "BusinessObjectUUID"),
+          navToProcessAction: new NavToProcessAction(this, "ProcDocKey", "ProcessID"),
           navToMessageAction: new NavToMessageAction(this, "BusinessObjectUUID"),
           share: new ShareAction(this, {
             appTitleMsgKey: "APP_TITLE",

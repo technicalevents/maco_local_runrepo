@@ -32,7 +32,8 @@ sap.ui.define(
             },
             actions: {
               reportExecution: oComponentActions.reportExecution,
-              share: oComponentActions.share
+              share: oComponentActions.share,
+              navToProcessAction: oComponentActions.navToProcessAction
             }
           });
           
@@ -43,6 +44,10 @@ sap.ui.define(
 		  	this.getThisModel().setProperty("/SystemDetails", oData.data.results[0]);
 		  }.bind(this));
         },
+        
+        /******************************************************************* */
+        /* PUBLIC METHODS */
+        /******************************************************************* */
 
         /**
          * Event Handler - Triggered before Binding is started on parent view (Process Page)
@@ -50,8 +55,11 @@ sap.ui.define(
          * @param {object} oRouteParams Route parameters of Process Page
          */
         onBeforeBind: function(oRouteParams){
-          this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
-            .then(this._onSucessProcessDataRead.bind(this));
+        	this.getThisModel().setProperty("/ProcessDocumentKey", oRouteParams.ProcessDocumentKey);
+        	this.byId("idAssociatedProcessSmartTable").rebindTable();                             
+        	
+        	this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
+            	.then(this._onSucessProcessDataRead.bind(this));
             
             this.oComponent.getService("ShellUIService").then(
             function(oService) {
@@ -80,6 +88,21 @@ sap.ui.define(
         notFoundMsg: function() {
           return this.oBundle.getText("PROCESS_NOT_FOUND_TXT", [this.oRouteArgs.Id]);
         },
+        
+        /**
+	  	 * Event is triggered before data loading of smart table
+	  	 * @public
+		 */
+        onBeforeRebindTable: function() {
+        	var sProcessDocumentKey = this.getThisModel().getProperty("/ProcessDocumentKey");
+        	var sBindingPath = this.getView().getModel().createKey("/xMP4GxC_Linked_Associated_Proc", {ProcessDocumentKey: sProcessDocumentKey}) + "/Set";
+        	this.byId("idAssociatedProcessSmartTable").setTableBindingPath(sBindingPath);
+        	// this.byId("idAssociatedProcessSmartTable").setTableBindingPath("/xMP4GxC_Linked_Associated_Proc(ProcessDocumentKey=guid'"+ sProcessDocumentKey + "')/Set");
+        },
+
+        /******************************************************************* */
+        /* PRIVATE METHODS */
+        /******************************************************************* */
         
         /**
          * Function is used to trigger call to fetch data for the selected Process

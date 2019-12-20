@@ -67,6 +67,15 @@
           </uxap:ObjectPageSubSection>
         </uxap:subSections>
       </uxap:ObjectPageSection>
+      <uxap:ObjectPageSection title="{i18n>ASSOCIATED_PROCESS_SECTION_LBL}" titleUppercase="false">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+              <core:Fragment type="XML" fragmentName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.AssociatedProcess"/>
+            </uxap:blocks>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
     </uxap:sections>
   </uxap:ObjectPageLayout>
 </mvc:View>
