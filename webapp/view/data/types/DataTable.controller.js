@@ -51,9 +51,9 @@ sap.ui.define([
 			},
 
 			/**
-			 * 
-			 * 
-			 * 
+			 * Event is triggered before data loading of General Inbound Information Section smart table
+			 * @param {object} oEvent Table loading event
+			 * @public
 			 */
 			onBeforeRebindGenInfoTable: function (oEvent) {
 				var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));

@@ -17,6 +17,7 @@
 					        enableAutoBinding="true" 
 					        requestAtLeastFields="Path,ProcessDocumentKey,ProcessDocumentType"
 					        beforeRebindTable="onBeforeRebindTable"
+					        header="{i18n>PROCESS_DATA_SECTION_LBL}"
 					        custom:entityName="xMP4GxC_Cp_Adv_Recv">
 	 
 	  <smartTable:customToolbar>
@@ -40,6 +41,7 @@
 					        enableAutoBinding="true" 
 					        requestAtLeastFields="Path,ProcessDocumentKey,ProcessDocumentType"
 					        beforeRebindTable="onBeforeRebindGenInfoTable"
+					        header="{i18n>GENERAL_INFO_SECTION_TITLE}"
 					        class="sapUiLargeMarginTop">
 	 
 	  <smartTable:customToolbar>
