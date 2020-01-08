@@ -25,7 +25,7 @@
 	          growingScrollToLoad="true" 
 	          growingThreshold="50" 
 	          mode="None"
-	          sticky="ColumnHeaders,HeaderToolbar" >
+	          sticky="ColumnHeaders,HeaderToolbar" />
 	</smartTable:SmartTable>
 	
 </mvc:View>

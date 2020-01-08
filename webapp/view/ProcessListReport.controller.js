@@ -55,16 +55,16 @@ sap.ui.define(
               executeMsgAggr: true
             }
           });
-          
+
           var oRoute = this.oRouter.getRoute("initial");
           oRoute.attachPatternMatched(this._onRoutePatternMatched, this);
-          
+
           this.oTransaction.whenRead({
-			path: "/xMP4GxC_System_Details",
-			busyControl: this.getView()
-		  }).then(function(oData) {
-		  	this.getThisModel().setProperty("/SystemDetails", oData.data.results[0]);
-		  }.bind(this));
+            path: "/xMP4GxC_System_Details",
+            busyControl: this.getView()
+          }).then(function(oData) {
+              this.getThisModel().setProperty("/SystemDetails", oData.data.results[0]);
+          }.bind(this));
         },
         
         /******************************************************************* */
@@ -72,10 +72,10 @@ sap.ui.define(
         /******************************************************************* */
         
        /**
-	  	* Event is triggered before data loading of smart table
+	  	  * Event is triggered before data loading of smart table
         * @param {object} oEvent Table loading event
-	  	* @public
-		*/
+	  	  * @public
+		    */
         onBeforeRebindTable: function(oEvent) {
           var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));
           var aSorters = [];
@@ -86,8 +86,8 @@ sap.ui.define(
           // This method will add Current application state in URL
           this.storeCurrentAppState();
         },
-        
-       /**
+
+        /**
         * Event is triggered when selection is changed in Smart Filter Bar
         * @public
         */
@@ -132,10 +132,10 @@ sap.ui.define(
         },
         
         /**
-	     * Event is triggered when FilterBar is initialized. 
-	     * This method will set Recently used FilterData in FilterBar
-	     * @public
-	     */
+	       * Event is triggered when FilterBar is initialized. 
+	       * This method will set Recently used FilterData in FilterBar
+	       * @public
+	       */
         onFilterBarInitialized: function() {            
           this.oNav.parseNavigation().done(function(oAppState) {
             if(!jQuery.isEmptyObject(oAppState)) {
@@ -174,7 +174,7 @@ sap.ui.define(
         /* PRIVATE METHODS */
         /******************************************************************* */
 	    
-	    /**
+	      /**
          * Method is called on Route to Message List Page
          * @private
          */

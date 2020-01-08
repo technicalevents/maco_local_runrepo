@@ -34,17 +34,17 @@ sap.ui.define([
      * @returns {object} 	    	             I18nFormat and I18nData
      */
       formatTechnicalBusinessMsgId: function(sTechnicalId, sExBusinessMsgId) {
-          var oI18nText = {
-          	i18nFormat: "FORMAT_TXT_LBL",
-          	i18nData: [sTechnicalId]
-          };
-          
-          if(sExBusinessMsgId && sExBusinessMsgId !== "null" && sExBusinessMsgId !== "") {
-            oI18nText.i18nFormat = "FORMAT_AMID_TXT_LBL";
-            oI18nText.i18nData.push(sExBusinessMsgId);
-          }
-          
-          return oI18nText;
+        var oI18nText = {
+          i18nFormat: "FORMAT_TXT_LBL",
+          i18nData: [sTechnicalId]
+        };
+        
+        if(sExBusinessMsgId && sExBusinessMsgId !== "null" && sExBusinessMsgId !== "") {
+          oI18nText.i18nFormat = "FORMAT_AMID_TXT_LBL";
+          oI18nText.i18nData.push(sExBusinessMsgId);
+        }
+        
+        return oI18nText;
       }
 	};
 });

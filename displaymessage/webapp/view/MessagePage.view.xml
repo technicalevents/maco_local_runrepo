@@ -165,7 +165,7 @@
 								</link>
 							</MessageStrip>
 							<TextArea value="{this>/ExternalPayload/InitialExternalPayload}" 
-								  editable="false" width="100%" growing="true" growingMaxLines="51">
+								  editable="false" width="100%" growing="true" growingMaxLines="151">
         				</TextArea>
     					</VBox>
     			    </uxap:blocks>
@@ -187,7 +187,7 @@
 					        useVariantManagement="false" 
 					        beforeRebindTable="onBeforeRebindTable"
 					        dataReceived="onProcessDocDataReceived"
-					        requestAtLeastFields="ProcessDocumentKey,StatusCriticality,SemanticType,OwnerUUID"
+							requestAtLeastFields="ProcessDocumentKey,StatusCriticality,SemanticType,OwnerUUID"
 					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displaymessages.pdoc.table">
 					        <Table id="idLinkedProcessTable"
 						          growing="true"

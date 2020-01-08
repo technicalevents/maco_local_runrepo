@@ -26,13 +26,13 @@
         </uxap:snappedContent>
         <uxap:actions>
           <Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
-        		  visible="{= ${this>/SystemDetails/UIActionHidden} === 'X' ? false : true}"
+                  visible="{= ${this>/SystemDetails/UIActionHidden} === 'X' ? false : true}"
                   type="Transparent"
                   c:reportAction="Deadline" 
                   c:action="reportExecution" 
                   press="onAction" />
           <Button text="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
-        		  visible="{= ${this>/SystemDetails/UIActionHidden} === 'X' ? false : true}"
+                  visible="{= ${this>/SystemDetails/UIActionHidden} === 'X' ? false : true}"
                   type="Transparent"
                   c:reportAction="TriggerDoc" 
                   c:action="reportExecution" 
@@ -49,7 +49,7 @@
       <core:Fragment type="XML" fragmentName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessHeader"/>
     </uxap:headerContent>
     <uxap:sections>
-      <uxap:ObjectPageSection title="{i18n>PROCESS_FLOW_SECTION_LBL}" titleUppercase="false">
+      <uxap:ObjectPageSection id="idFlowTab" title="{i18n>PROCESS_FLOW_SECTION_LBL}" titleUppercase="false">
         <uxap:subSections>
           <uxap:ObjectPageSubSection>
             <uxap:blocks>
@@ -58,7 +58,7 @@
           </uxap:ObjectPageSubSection>
         </uxap:subSections>
       </uxap:ObjectPageSection>
-      <uxap:ObjectPageSection title="{i18n>ADDITIONAL_DATA_SECTION_LBL}" titleUppercase="false">
+      <uxap:ObjectPageSection id="idAdditionalDataTab" title="{i18n>ADDITIONAL_DATA_SECTION_LBL}" titleUppercase="false">
         <uxap:subSections>
           <uxap:ObjectPageSubSection>
             <uxap:blocks>
@@ -67,7 +67,7 @@
           </uxap:ObjectPageSubSection>
         </uxap:subSections>
       </uxap:ObjectPageSection>
-      <uxap:ObjectPageSection title="{i18n>ASSOCIATED_PROCESS_SECTION_LBL}" titleUppercase="false">
+      <uxap:ObjectPageSection id="idAssociatedTab" title="{i18n>ASSOCIATED_PROCESS_SECTION_LBL}" titleUppercase="false" visible="{this>/IsAssociatedTabVisible}">
         <uxap:subSections>
           <uxap:ObjectPageSubSection>
             <uxap:blocks>

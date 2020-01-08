@@ -36,15 +36,15 @@ sap.ui.define(
               navToProcessAction: oComponentActions.navToProcessAction
             }
           });
-          
+
           this.oTransaction.whenRead({
-			path: "/xMP4GxC_System_Details",
-			busyControl: this.getView()
-		  }).then(function(oData) {
-		  	this.getThisModel().setProperty("/SystemDetails", oData.data.results[0]);
-		  }.bind(this));
+            path: "/xMP4GxC_System_Details",
+            busyControl: this.getView()
+          }).then(function(oData) {
+              this.getThisModel().setProperty("/SystemDetails", oData.data.results[0]);
+          }.bind(this));
         },
-        
+
         /******************************************************************* */
         /* PUBLIC METHODS */
         /******************************************************************* */
@@ -54,9 +54,14 @@ sap.ui.define(
          * @public
          * @param {object} oRouteParams Route parameters of Process Page
          */
-        onBeforeBind: function(oRouteParams){
-        	this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
-            	.then(this._onSucessProcessDataRead.bind(this));
+        onBeforeBind: function(oRouteParams){  
+        	// Set first tab 'FlowTab' as by default on click of process in process list app
+        	this.byId("idProcessObjectPage").setSelectedSection(this.getView().getId() + "--idFlowTab");
+        	
+          this.getThisModel().setProperty("/IsAssociatedTabVisible", false);
+                  
+          this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
+            .then(this._onSucessProcessDataRead.bind(this));
             
             this.oComponent.getService("ShellUIService").then(
             function(oService) {
@@ -76,7 +81,7 @@ sap.ui.define(
             }
           );
         },
-        
+
         /**
          * Event Handler - Triggered after Binding is done on parent view (Process Page)
          * @public
@@ -96,15 +101,38 @@ sap.ui.define(
           return this.oBundle.getText("PROCESS_NOT_FOUND_TXT", [this.oRouteArgs.Id]);
         },
         
-        /**
-	  	 * Event is triggered before data loading of smart table
-	  	 * @public
-		 */
+       /**
+	  	  * Event is triggered before data loading of smart table
+	  	  * @public
+		    */
         onBeforeRebindTable: function() {
         	var sProcessDocumentKey = this.getThisModel().getProperty("/ProcessDocumentKey");
         	var sBindingPath = this.getView().getModel().createKey("/xMP4GxC_Linked_Associated_Proc", {ProcessDocumentKey: sProcessDocumentKey}) + "/Set";
         	this.byId("idAssociatedProcessSmartTable").setTableBindingPath(sBindingPath);
-        	// this.byId("idAssociatedProcessSmartTable").setTableBindingPath("/xMP4GxC_Linked_Associated_Proc(ProcessDocumentKey=guid'"+ sProcessDocumentKey + "')/Set");
+        },
+
+
+        
+        /**
+         * Method will be triggered once data has been recevied for associated process table
+         * @param {object} oResponseData   Response Data
+         * @public
+         */
+        onAssociatedProcessDataReceived: function(oResponseData) {
+          var oAssocaitedProcessData = oResponseData.getParameter("mParameters").data;
+          var iAssociatedProcessCount;
+          
+          if(oAssocaitedProcessData) {
+            if(oAssocaitedProcessData.__count) {
+              iAssociatedProcessCount = Number(oAssocaitedProcessData.__count);
+            }
+          } else {
+            iAssociatedProcessCount = 0;
+          }
+          
+          if(iAssociatedProcessCount) {
+            this.getThisModel().setProperty("/IsAssociatedTabVisible", iAssociatedProcessCount > 0);
+          }
         },
 
         /******************************************************************* */

@@ -118,7 +118,7 @@ sap.ui.define(
         			this.byId("idLinkedProcessSmartTable").setTableBindingPath("/xMP4GxC_GetLinkedPdocDetails(TransferDocumentKey=guid'"+ sTransferDocumentKey + "')/Set");
         		}
 			},
-			
+
 			/**
 			 * Method will be triggered once data has been recevied for process document table
 			 * @param {object} oResponseData   Response Data
@@ -166,7 +166,7 @@ sap.ui.define(
 				};
 				oAction.execute(oParams);
 			},
-			
+
 			/**
 			 * Function will be triggered on click of Load Complete EDIFACT Message
 			 * @public
@@ -182,7 +182,7 @@ sap.ui.define(
 		        
 				oModel.setProperty("/ExternalPayload", oUpdatedExternalPayload);
 			},
-			
+
 			/**
 			 * Formatter method returns formatted Technical Id and External Business Message Id
 		 	 * @param   {string} 	sTechnicalId	     Technical Id
@@ -291,9 +291,9 @@ sap.ui.define(
 				oExternalPayload.InitialExternalPayload = sCompExternalPayload;
 				oExternalPayload.LoadCompMsgBtnVisible = false;
 				
-				if(sCompExternalPayload && sCompExternalPayload.match(/'/g || []).length > 50) {
+				if(sCompExternalPayload && sCompExternalPayload.match(/'/g || []).length > 150) {
 					oExternalPayload.LoadCompMsgBtnVisible = true;
-					oExternalPayload.InitialExternalPayload = sCompExternalPayload.split("'").splice(0, 50).join("'").concat("'...");
+					oExternalPayload.InitialExternalPayload = sCompExternalPayload.split("'").splice(0, 150).join("'").concat("'...");
 				}
         
 		        if(oExternalPayload.InitialExternalPayload) {

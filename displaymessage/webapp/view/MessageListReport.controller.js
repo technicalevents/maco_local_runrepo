@@ -102,7 +102,7 @@ sap.ui.define(
          * @public
          */
         onRefresh: function() {
-        	this.getSmartTable().rebindTable(true);
+          this.getSmartTable().rebindTable(true);
         },
         
         /**

@@ -9,37 +9,37 @@ sap.ui.define([
   return BaseAction.extend(
     "com.sap.cd.maco.monitor.ui.app.displaymessages.actions.MultiDownloadAction",
     {
-		/******************************************************************* */
-		/* CONSTRUCTOR */
-		/******************************************************************* */
+      /******************************************************************* */
+      /* CONSTRUCTOR */
+      /******************************************************************* */
 		
-		/**
-		 * Constructor
-		 */
+      /**
+       * Constructor
+       */
         constructor: function(oComponent, oConfig) {
-			var sCardinality = "1..N";
-			BaseAction.call(this, oComponent, oConfig, sCardinality);
-			
-			this._oNavToMessageAction = new NavToMessageAction(oComponent, "LinkedDocumentKey");
+          var sCardinality = "1..N";
+          BaseAction.call(this, oComponent, oConfig, sCardinality);
+          
+          this._oNavToMessageAction = new NavToMessageAction(oComponent, "LinkedDocumentKey");
         },
         
-        /******************************************************************* */
-		/* PUBLIC METHODS */
-		/******************************************************************* */
+      /******************************************************************* */
+      /* PUBLIC METHODS */
+      /******************************************************************* */
         
-        /**
-		 * Function is triggered on click of Download button in List Page
-         * @param {object} oParams  Parameters
-		 * @public
-		 */
+      /**
+       * Function is triggered on click of Download button in List Page
+       * @param {object} oParams  Parameters
+       * @public
+       */
         execute: function(oParams) {
-			// check params to have a context
-			this.assertContextParam(oParams);
-			
-			return new Promise(
-			  function(resolve, reject) {
+          // check params to have a context
+          this.assertContextParam(oParams);
+          
+          return new Promise(
+			      function(resolve, reject) {
 					
-			  // Store params for async usage
+			        // Store params for async usage
               this._oParams = oParams;
               
               // Create Multiple Document action sheet only once
@@ -62,14 +62,14 @@ sap.ui.define([
                 params: oParams
               });
 				
-		    }.bind(this));
+		      }.bind(this));
         },
         
         /**
-		 * Function is triggered on click of any item in action sheet
+         * Function is triggered on click of any item in action sheet
          * @param {object} oEvent  Button press event
-		 * @public
-		 */
+         * @public
+         */
         onDocumentPress: function(oEvent) {
         	this._oParams.contexts = [oEvent.getSource().getBindingContext("this")];
         	this._oNavToMessageAction.execute(this._oParams);

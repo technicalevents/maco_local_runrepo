@@ -16,6 +16,7 @@
 					        useExportToExcel="false"
 					        useVariantManagement="false" 
 					        beforeRebindTable="onBeforeRebindTable"
+							dataReceived="onAssociatedProcessDataReceived"
 					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displayprocesses.associatedprocesstable"
 					        requestAtLeastFields="ProcDocKey,StatusCriticality,ProcessID,OwnerUUID">
     	<smartTable:customToolbar>

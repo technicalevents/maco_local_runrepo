@@ -1,7 +1,6 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/action/nav/NavToExternalAction",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/Constants"
-	], function(NavToExternalAction, Constants) {
+	"com/sap/cd/maco/mmt/ui/reuse/action/nav/NavToExternalAction"
+	], function(NavToExternalAction) {
   "use strict";
 
   return NavToExternalAction.extend("com.sap.cd.maco.mmt.ui.reuse.monitor.NavToProcessAction",

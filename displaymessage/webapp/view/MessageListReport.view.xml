@@ -36,12 +36,12 @@
                           items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
                           selectionChange="onOwnMarketPartnerChange">
                     <core:ListItem key="{market_partner}" 
-                    			   text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
-                                    			  {path: 'mp_name'},
-                                                  {path: 'market_partner'},
-                                                  {path: 'division_text'}],
+                    			        text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
+                                    			       {path: 'mp_name'},
+                                                 {path: 'market_partner'},
+                                                 {path: 'division_text'}],
                                          formatter: '.formatter.formatMessage'}"
-                                    additionalText="{market_role}"/>
+                                  additionalText="{market_role}"/>
                   </MultiComboBox>
           			</smartFilterBar:customControl>
           		</smartFilterBar:ControlConfiguration>
