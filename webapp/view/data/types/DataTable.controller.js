@@ -29,12 +29,12 @@ sap.ui.define([
 			bindView: function (sProcessDocumentKey, sProcessId) {
 				this._sProcessDocumentKey = sProcessDocumentKey;
 				this._sProcessId = sProcessId;
-				
+
 				this.getView().byId("idTable").rebindTable();
 				if (this.aProcessTypesForGenInbInfo.indexOf(this._sProcessId) >= 0) {
 					this.getView().byId("idGeneralDataTable").rebindTable();
 				}
-				
+
 			},
 
 			/**
@@ -61,7 +61,23 @@ sap.ui.define([
 				oUpdate.addFilter("IsGeneral", FilterOperator.EQ, true);
 
 				oUpdate.endFilterAnd();
+			},
 
+			onTableDataReceived: function (oResponseData) {
+				var oAdditionalData = oResponseData.getParameter("mParameters").data;
+
+				if (oAdditionalData && oAdditionalData.__count) {
+					var oResult = oAdditionalData.results[0];
+					if (oResult.Device) {
+						this.getThisModel().setProperty("/", {
+							isDeviceVisible: true
+						});
+					} else {
+						this.getThisModel().setProperty("/", {
+							isDeviceVisible: false
+						});
+					}
+				}
 			}
 
 		});
