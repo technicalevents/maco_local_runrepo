@@ -64,11 +64,12 @@
 					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID,OwnerUUID,ExternalMarketPartner,OwnMarketPartner"
 					        ignoredFields="ExtBusinessMessageID"
 					        header="{i18n>messageTitlePlural}"
-					        useTablePersonalisation="false"
+					        useTablePersonalisation="true"
 					        demandPopin="true"
 					        useExportToExcel="false"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
+                  c:p13nDialogSettings='{filter:{visible:false}}' 
 					        beforeRebindTable="onBeforeRebindTable"
 					        persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.table">
         <smartTable:customToolbar>
@@ -94,25 +95,25 @@
             <Column>
               <Text text="{/xMP4GxC_TransferDoc_UI/ExternalUUID/#@sap:label}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"0", "columnKey":"ExternalUUID", "leadingProperty":["ExternalUUID", "SenderId"]}'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"0", "columnKey":"ExternalUUID", "leadingProperty":["ExternalUUID", "SenderId"],"sortProperty": "ExternalUUID" }'/>
               </customData>
             </Column>
             <Column>
               <Text text="{i18n>FORMAT_OR_AMID_TITLE}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"Format-AMID", "leadingProperty":["TechnicalMsgID", "ExtBusinessMessageID"] }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"Format-AMID", "leadingProperty":["TechnicalMsgID", "ExtBusinessMessageID"], "sortProperty": "TechnicalMsgID" }'/>
               </customData>
             </Column>
             <Column>
               <Text text="{/xMP4GxC_TransferDoc_UI/Direction/#@sap:label}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"Direction", "leadingProperty":["Direction", "SenderId", "SenderCodeList", "ReceiverId", "ReceiverCodeList"] }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"Direction", "leadingProperty":["Direction", "SenderId", "SenderCodeList", "ReceiverId", "ReceiverCodeList"], "sortProperty": "OwnMarketPartner" }'/>
               </customData>
             </Column>
             <Column>
               <Text text="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"ProcessDocumentNumber", "leadingProperty":["ProcessDocumentNumber"] }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"ProcessDocumentNumber", "leadingProperty":["ProcessDocumentNumber"],"sortProperty": "ProcessDocumentNumber" }'/>
               </customData>
             </Column>
           </columns>
@@ -131,16 +132,18 @@
                     }" class="sapUiTinyMarginBegin sapUiTinyMarginEnd" />
                   <Text text="{ExternalMarketPartner}"/>
                 </HBox>
-                <VBox>
-                	<Link text="{ProcessDocumentNumber}" 
+                <Link text="{ProcessDocumentNumber}" 
                 		  c:action="navListToProcessApp" 
                 		  press="onAction"/>
-                </VBox>
               </cells>
             </ColumnListItem>
           </items>
         </Table>
       </smartTable:SmartTable>
     </semantic:content>
+    <semantic:titleCustomTextActions>
+		<reuseButton:Share press="onAction" 
+                       c:action="share" />
+    </semantic:titleCustomTextActions>
   </semantic:SemanticPage>
 </mvc:View>

@@ -34,7 +34,8 @@
 					        text="{this>ActivityDescription}"
 					        filterValue="{this>JobTitle}"
 					        icon="{parts: [{path: 'this>BusinessObjectType'}, 
-					                       {path: 'this>Direction'}],
+					                       {path: 'this>Direction'},
+					                       {path: 'this>StepID'}],
 					               formatter: '.formatter.processStepIcon'
 					         }"
 					         class="comSapCdMacoMmtUiActivityTitle">

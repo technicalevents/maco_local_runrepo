@@ -14,13 +14,16 @@ sap.ui.define([
      * Formatter function for getting Icon for process steps
      * @param {string} sBusinessObjectType  Business Object type
      * @param {string} sDirection           Direction
+     * @param {string} sStepID              Process Step Id
      * @public
      * @return {string} icon name for given Business Object type
      */
-    processStepIcon: function(sBusinessObjectType, sDirection) {
+    processStepIcon: function(sBusinessObjectType, sDirection, sStepID) {
       var sIcon;
-
-      if(sBusinessObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT) {
+      
+      if(sStepID === Constants.PROCESS_LIST_HEADER_ACTION.CLOSE_LATEST_DEADLINE) {
+      	sIcon = "sap-icon://date-time";
+      } else if(sBusinessObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT) {
         sIcon = "sap-icon://cloud";
       } else if (sBusinessObjectType === Constants.BO_OBJECT_TYPE.EXCEPTION_DOCUMENT) {
         sIcon = "sap-icon://user-edit";

@@ -74,8 +74,24 @@
 										  wrapping="true"/>
 								</smartForm:GroupElement>
 							</smartForm:Group>
+							<smartForm:Group label="{i18n>ORIGINAL_MSG_TEXT}" 
+											 visible="{= (${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
+								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}">
+									<Link text="{this>/LinkedDocuments/OriginalMessage/ExtUUID}"
+										  press="onCrossAppNavigation" 
+										  c:docType="Message" 
+										  wrapping="true"/>
+								</smartForm:GroupElement>
+								<smartForm:GroupElement label="{i18n>Date_LBL}" 
+														visible="{=!!${this>/LinkedDocuments/OriginalMessage/ExtUUID}}">
+									<Text text="{path: 'this>/LinkedDocuments/OriginalMessage/Timestamp',
+												 type: 'sap.ui.model.type.DateTime',
+												 formatOptions: { style: 'medium' }}"
+										  wrapping="true"/>
+								</smartForm:GroupElement>
+							</smartForm:Group>
 							<smartForm:Group label="{i18n>CONTRL_MSG_TEXT}" 
-											 visible="{= !(${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
+											 visible="{= ${TechnicalMsgID} === 'CONTRL' ? false : true}">
 								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}"
 														visible="{= ${this>/LinkedDocuments/ContrlDocCount} > 1 ? true : false}">
 									<Link text="{parts: [{path: 'i18n>MULTI_DOCUMENT_TXT'}, 
@@ -130,22 +146,6 @@
 										  wrapping="true"/>
 								</smartForm:GroupElement>
 							</smartForm:Group>
-							<smartForm:Group label="{i18n>ORIGINAL_MSG_TEXT}" 
-											 visible="{= (${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
-								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}">
-									<Link text="{this>/LinkedDocuments/OriginalMessage/ExtUUID}"
-										  press="onCrossAppNavigation" 
-										  c:docType="Message" 
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-								<smartForm:GroupElement label="{i18n>Date_LBL}" 
-														visible="{=!!${this>/LinkedDocuments/OriginalMessage/ExtUUID}}">
-									<Text text="{path: 'this>/LinkedDocuments/OriginalMessage/Timestamp',
-												 type: 'sap.ui.model.type.DateTime',
-												 formatOptions: { style: 'medium' }}"
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-							</smartForm:Group>
 						</smartForm:SmartForm>
             		</uxap:blocks>
             	</uxap:ObjectPageSubSection>
@@ -187,7 +187,7 @@
 					        useVariantManagement="false" 
 					        beforeRebindTable="onBeforeRebindTable"
 					        dataReceived="onProcessDocDataReceived"
-							requestAtLeastFields="ProcessDocumentKey,StatusCriticality,SemanticType,OwnerUUID"
+					        requestAtLeastFields="ProcessDocumentKey,StatusCriticality,SemanticType,OwnerUUID"
 					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displaymessages.pdoc.table">
 					        <Table id="idLinkedProcessTable"
 						          growing="true"

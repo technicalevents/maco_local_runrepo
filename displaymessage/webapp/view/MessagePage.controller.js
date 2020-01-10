@@ -72,7 +72,7 @@ sap.ui.define(
 				var oModel = this.getThisModel();
 				oModel.setProperty("/LinkedDocuments", {});
 				oModel.setProperty("/LinkedTransferDocuments", []);
-				oModel.setProperty("/TransferDocumentKey", oRouteParams.TransferDocumentKey);
+				oModel.setProperty("/TransferDocument", oTransferDocument);
 				
 				this._whenLinkTransferDocumentsRead(oRouteParams);
 				
@@ -112,7 +112,7 @@ sap.ui.define(
 			 * @public
 			 */
         	onBeforeRebindTable: function() {
-        		var sTransferDocumentKey = this.getThisModel().getProperty("/TransferDocumentKey");
+        		var sTransferDocumentKey = this.getThisModel().getProperty("/TransferDocument").TransferDocumentKey;
         		
         		if(sTransferDocumentKey) {
         			this.byId("idLinkedProcessSmartTable").setTableBindingPath("/xMP4GxC_GetLinkedPdocDetails(TransferDocumentKey=guid'"+ sTransferDocumentKey + "')/Set");
@@ -243,6 +243,7 @@ sap.ui.define(
 			_onSucessLinkTransferDocumentsRead: function(oResult){
 				var oModel = this.getThisModel();
 				var aLinkedTransferDocuments = oModel.getProperty("/LinkedTransferDocuments");
+				var sTechnicalMsgID = oModel.getProperty("/TransferDocument").TechnicalMsgID;
 				var oLinkedDocuments = oModel.getProperty("/LinkedDocuments");
 		        var iControlDocument = 0;
 		        var iAperakDocument = 0;
@@ -258,6 +259,9 @@ sap.ui.define(
 						if(aLinkedTransferDocuments[intI].SemanticType === Constants.BO_OBJECT_TYPE.APERAK_DOC) {
 							oLinkedDocuments.AperakMessage = aLinkedTransferDocuments[intI];   
 							iAperakDocument++;
+							if(sTechnicalMsgID === Constants.BO_OBJECT_TYPE.CONTRL_DOC) {
+								oLinkedDocuments.OriginalMessage = aLinkedTransferDocuments[intI]; 
+							}
 						} else if(aLinkedTransferDocuments[intI].SemanticType === Constants.BO_OBJECT_TYPE.CONTRL_DOC) {
 							oLinkedDocuments.ControlMessage = aLinkedTransferDocuments[intI];  
 							iControlDocument++;
