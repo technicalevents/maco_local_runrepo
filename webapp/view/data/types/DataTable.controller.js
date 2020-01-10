@@ -9,6 +9,7 @@ sap.ui.define([
 		"com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.types.DataTable", {
 
 			aProcessTypesForGenInbInfo: ["DE_C_CP_ADV_RECV"],
+			aVisibilityHandler: ["Device"],
 			/**
 			 * Lifecycle method - triggered on initialization of Data Table Controller
 			 */
@@ -62,21 +63,24 @@ sap.ui.define([
 
 				oUpdate.endFilterAnd();
 			},
-
+			
+			/**
+			 * Event is triggered on data received in Table
+			 * @param {object} oResponseData Data Received Table event object
+			 * @public
+			 */
 			onTableDataReceived: function (oResponseData) {
 				var oAdditionalData = oResponseData.getParameter("mParameters").data;
-
+				var oVisiblilityObj = {};
+				
 				if (oAdditionalData && oAdditionalData.__count) {
 					var oResult = oAdditionalData.results[0];
-					if (oResult.Device) {
-						this.getThisModel().setProperty("/", {
-							isDeviceVisible: true
-						});
-					} else {
-						this.getThisModel().setProperty("/", {
-							isDeviceVisible: false
-						});
-					}
+					
+					this.aVisibilityHandler.forEach(function(sProperty){
+						oVisiblilityObj["is"+sProperty+"Visible"] = !!oResult[sProperty];
+					}.bind(this));
+					
+					this.getThisModel().setProperty("/", oVisiblilityObj);
 				}
 			}
 
