@@ -61,7 +61,8 @@
 					        useTablePersonalisation="true"
 					        showRowCount="true"
 					        demandPopin="true"
-					        useExportToExcel="false"
+					        useExportToExcel="true"
+					        beforeExport="onBeforeExport"
 					        header="{i18n>PROCESS_PLURAL_LBL}"
 					        useVariantManagement="false" 
                   c:p13nDialogSettings='{filter:{visible:false}}' 

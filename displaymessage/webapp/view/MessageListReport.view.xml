@@ -66,7 +66,7 @@
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="true"
 					        demandPopin="true"
-					        useExportToExcel="false"
+					        useExportToExcel="true"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
                   c:p13nDialogSettings='{filter:{visible:false}}' 

@@ -125,6 +125,15 @@ sap.ui.define(
           
           this.getFilterBar().setFilterData(oSmartFilterData, true);
         },
+        
+        /**
+	  	* Event is triggered before export of Records 
+        * @param {object} oEvent Table Export event
+	  	* @public
+		*/
+        onBeforeExport: function(oEvent){
+        	oEvent.getParameter("exportSettings").dataSource.count = 10000;
+        },
 
         /**
          * Formatter method returns formatted Technical Id and External Business Message Id

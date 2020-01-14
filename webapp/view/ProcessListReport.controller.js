@@ -86,6 +86,15 @@ sap.ui.define(
           // This method will add Current application state in URL
           this.storeCurrentAppState();
         },
+        
+        /**
+	  	* Event is triggered before export of Records 
+        * @param {object} oEvent Table Export event
+	  	* @public
+		*/
+        onBeforeExport: function(oEvent){
+        	oEvent.getParameter("exportSettings").dataSource.count = 10000;
+        },
 
         /**
         * Event is triggered when selection is changed in Smart Filter Bar

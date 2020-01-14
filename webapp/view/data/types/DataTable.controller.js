@@ -77,7 +77,7 @@ sap.ui.define([
 					var oResult = oAdditionalData.results[0];
 					
 					this.aVisibilityHandler.forEach(function(sProperty){
-						oVisiblilityObj["is"+sProperty+"Visible"] = !!oResult[sProperty];
+						oVisiblilityObj["is" + sProperty + "Visible"] = !!oResult[sProperty];
 					}.bind(this));
 					
 					this.getThisModel().setProperty("/", oVisiblilityObj);
