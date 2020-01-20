@@ -1,17 +1,14 @@
 <mvc:View xmlns:core="sap.ui.core" 
 		  xmlns="sap.m" 
-		  xmlns:f="sap.f" 
 		  xmlns:semantic="sap.f.semantic" 
 		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
-		  xmlns:smartfield="sap.ui.comp.smartfield"
 		  xmlns:smartTable="sap.ui.comp.smarttable"
 		  xmlns:mvc="sap.ui.core.mvc"
 		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		  controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessListReport"
       xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
       xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
-      xmlns:variants="sap.ui.comp.smartvariants"
-      xmlns:footerbar="sap.ushell.ui.footerbar">
+      xmlns:variants="sap.ui.comp.smartvariants">
   <semantic:SemanticPage headerExpanded="true" toggleHeaderOnTitleClick="true">
   	<semantic:titleHeading>
 			 <variants:SmartVariantManagement id="idProcessVariantManagement" 
@@ -58,8 +55,6 @@
 					        smartVariant="idProcessVariantManagement"
 					        enableAutoBinding="true" 
 					        ignoredFields="" 
-					        useTablePersonalisation="true"
-					        showRowCount="true"
 					        demandPopin="true"
 					        useExportToExcel="true"
 					        beforeExport="onBeforeExport"
@@ -68,7 +63,7 @@
                   c:p13nDialogSettings='{filter:{visible:false}}' 
 					        beforeRebindTable="onBeforeRebindTable"
 					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displayprocesses.table"
-					        requestAtLeastFields="ProcessDocumentKey,StatusCriticality,ProcessID,OwnerUUID">
+					        requestAtLeastFields="ProcessDocumentKey,StatusCriticality,ProcessID,OwnerUUID,OwnerUUIDText">
         <smartTable:customToolbar>
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>
@@ -94,11 +89,18 @@
                 						  "sortProperty": "ProcessDocumentNumber"}'/>
               </customData>
             </Column>
+            <Column>
+              <Text text="{/xMP4GxC_ProcessHeader_UI/OwnerUUID/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"OwnerUUID", "leadingProperty":["OwnerUUID", "OwnerUUIDText"], "sortProperty": "OwnerUUID" }'/>
+              </customData>
+            </Column>
           </columns>
           <items>
             <ColumnListItem type="Navigation" press="onAction" c:action="navToProcessPage">
               <cells>
                   <reuseTable:ObjectIdentifier title="{ProcessDocumentNumber}" text="{ProcessIDDescription}"/>
+                  <reuseTable:ObjectIdentifier title="{OwnerUUIDText}" text="{OwnerUUID}"/>
               </cells>
             </ColumnListItem>
           </items>

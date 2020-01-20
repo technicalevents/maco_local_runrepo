@@ -61,12 +61,13 @@
 					        smartFilterId="idMessageSmartFilterBar"
 					        smartVariant="idMessageVariantManagement"
 					        enableAutoBinding="true" 
-					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID,OwnerUUID,ExternalMarketPartner,OwnMarketPartner"
+					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID"
 					        ignoredFields="ExtBusinessMessageID"
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="true"
 					        demandPopin="true"
 					        useExportToExcel="true"
+                  beforeExport="onBeforeExport"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
                   c:p13nDialogSettings='{filter:{visible:false}}' 
@@ -105,15 +106,27 @@
               </customData>
             </Column>
             <Column>
+              <Text text="{i18n>OWN_MARKET_PARTNER_TITLE}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"Direction", "leadingProperty":["Direction", "SenderId", "ReceiverId", "SenderText", "ReceiverText"], "sortProperty": "SenderId" }'/>
+              </customData>
+            </Column>
+            <Column width="5rem">
               <Text text="{/xMP4GxC_TransferDoc_UI/Direction/#@sap:label}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"Direction", "leadingProperty":["Direction", "SenderId", "SenderCodeList", "ReceiverId", "ReceiverCodeList"], "sortProperty": "OwnMarketPartner" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"Direction", "leadingProperty":["Direction"], "sortProperty": "Direction" }'/>
+              </customData>
+            </Column>
+            <Column>
+              <Text text="{i18n>EXTERNAL_MARKET_PARTNER_TITLE}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"Direction", "leadingProperty":["Direction", "SenderId", "ReceiverId", "SenderText", "ReceiverText"], "sortProperty": "ReceiverId" }'/>
               </customData>
             </Column>
             <Column>
               <Text text="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"ProcessDocumentNumber", "leadingProperty":["ProcessDocumentNumber"],"sortProperty": "ProcessDocumentNumber" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"6", "columnKey":"ProcessDocumentNumber", "leadingProperty":["ProcessDocumentNumber"],"sortProperty": "ProcessDocumentNumber" }'/>
               </customData>
             </Column>
           </columns>
@@ -122,19 +135,14 @@
               <cells>
               	<reuseTable:ObjectIdentifier title="{ExternalUUID}" text="{SenderId}"/>
                 <Text text="{parts: [{path: 'TechnicalMsgID'},
-                  {path: 'ExtBusinessMessageID'}],
-                  formatter: '.formatTechnicalBusinessMsgId'}"/>
-                <HBox>
-                  <Text text="{OwnMarketPartner}"/>
-                  <core:Icon src="{
-                      parts: [ 'Direction' ],
-                      formatter: '.formatter.partnerIcon'
-                    }" class="sapUiTinyMarginBegin sapUiTinyMarginEnd" />
-                  <Text text="{ExternalMarketPartner}"/>
-                </HBox>
-                <Link text="{ProcessDocumentNumber}" 
-                		  c:action="navListToProcessApp" 
-                		  press="onAction"/>
+                					 {path: 'ExtBusinessMessageID'}],
+                			 formatter: '.formatTechnicalBusinessMsgId'}"/>
+                <reuseTable:ObjectIdentifier title="{parts: [ 'Direction', 'SenderId', 'ReceiverId' ], formatter: '.formatter.partnerStart'}" 
+                							 text="{parts: [ 'Direction', 'SenderText', 'ReceiverText' ], formatter: '.formatter.partnerStart'}"/>
+                <core:Icon src="{parts: [ 'Direction' ], formatter: '.formatter.partnerIcon'}"/>
+                <reuseTable:ObjectIdentifier title="{parts: [ 'Direction', 'SenderId', 'ReceiverId' ], formatter: '.formatter.partnerEnd'}" 
+                							 text="{parts: [ 'Direction', 'SenderText', 'ReceiverText' ], formatter: '.formatter.partnerEnd'}"/>
+                <Link text="{ProcessDocumentNumber}" c:action="navListToProcessApp" press="onAction"/>
               </cells>
             </ColumnListItem>
           </items>
