@@ -133,6 +133,9 @@ sap.ui.define(
 		*/
         onBeforeExport: function(oEvent){
         	oEvent.getParameter("exportSettings").dataSource.count = 10000;
+        	this.oMessage.info({
+						msg: this.oBundle.getText("EXCEL_DOWNLOAD_INFO_MSG")
+					});
         },
 
         /**
