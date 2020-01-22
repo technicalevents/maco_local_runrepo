@@ -1,0 +1,67 @@
+[{
+	"Id": 1,
+	"Name": "Settlement of metering point operation against the LF"
+}, {
+	"Id": 2,
+	"Name": "billing services for kME"
+}, {
+	"Id": 3,
+	"Name": "billing services for kME"
+}, {
+	"Id": 4,
+	"Name": "billing services for mME and iMS"
+}, {
+	"Id": 5,
+	"Name": "Request for invoice processing of the measuring point operation via the LF by the LF"
+}, {
+	"Id": 6,
+	"Name": "Request for invoice processing of the measuring point operation via the LF by the MSB"
+}, {
+	"Id": 7,
+	"Name": "Request for master data change from MSB to LF (responsible)"
+}, {
+	"Id": 8,
+	"Name": "Request for master data change from MSB to NB (responsible)"
+}, {
+	"Id": 9,
+	"Name": "Order change device configuration from NB to MSB"
+}, {
+	"Id": 10,
+	"Name": "Initial installation of an iMS in an existing measurement location"
+}, {
+	"Id": 11,
+	"Name": "Initiation Price Sheet Catalog"
+}, {
+	"Id": 12,
+	"Name": "Start of measuring point operation"
+}, {
+	"Id": 13,
+	"Name": "End of measuring point operation"
+}, {
+	"Id": 14,
+	"Name": "termination of measuring point operation"
+}, {
+	"Id": 15,
+	"Name": "Change of measurement location at kME, mME incl. IMS installation"
+}, {
+	"Id": 16,
+	"Name": "Commitment gMSB"
+}, {
+	"Id": 17,
+	"Name": "Complaint of MSB values"
+}, {
+	"Id": 18,
+	"Name": "Change master data from MSB (responsible)"
+}, {
+	"Id": 19,
+	"Name": "Cancel values"
+}, {
+	"Id": 20,
+	"Name": "Submit price sheet after change"
+}, {
+	"Id": 21,
+	"Name": "Take over point of delivery (superordinate supplementary process for device change / device transfer)"
+}, {
+	"Id": 22,
+	"Name": "Forwarding the master data change from MSB (responsible)"
+}]

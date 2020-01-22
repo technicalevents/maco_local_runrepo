@@ -1,0 +1,29 @@
+[{
+	"ProcessId": "1000001",
+	"Path": "User",
+	"Value": "Martin Müller"
+}, {
+	"ProcessId": "1000001",
+	"Path": "PointOfMetering",
+	"Value": "1234567890"
+}, {
+	"ProcessId": "1000001",
+	"Path": "City",
+	"Value": "Wegstädt"
+}, {
+	"ProcessId": "1000001",
+	"Path": "ZIP",
+	"Value": "64742"
+}, {
+	"ProcessId": "1000001",
+	"Path": "Street",
+	"Value": "On the way 1"
+}, {
+	"ProcessId": "1000001",
+	"Path": "PlannedDate",
+	"Value": 1548021100000
+}, {
+	"ProcessId": "1000001",
+	"Path": "ProcessVariant",
+	"Value": "Existing measuring point operation"
+}]
