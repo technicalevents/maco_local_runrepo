@@ -99,13 +99,13 @@
                 <core:CustomData key="p13nData" value='\{"columnIndex":"0", "columnKey":"ExternalUUID", "leadingProperty":["ExternalUUID", "SenderId"],"sortProperty": "ExternalUUID" }'/>
               </customData>
             </Column>
-            <Column>
+            <Column width="10rem">
               <Text text="{i18n>FORMAT_OR_AMID_TITLE}"/>
               <customData>
                 <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"Format-AMID", "leadingProperty":["TechnicalMsgID", "ExtBusinessMessageID"], "sortProperty": "TechnicalMsgID" }'/>
               </customData>
             </Column>
-            <Column width="10rem">
+            <Column width="13rem">
               <Text text="{i18n>OWN_MARKET_PARTNER_TITLE}"/>
               <customData>
                 <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"Direction", "leadingProperty":["Direction", "SenderId", "ReceiverId", "SenderText", "ReceiverText"], "sortProperty": "SenderId" }'/>
@@ -134,14 +134,14 @@
               <cells>
               	<reuseTable:ObjectIdentifier title="{ExternalUUID}" text="{SenderId}"/>
                 <Text text="{parts: [{path: 'TechnicalMsgID'},
-                					           {path: 'ExtBusinessMessageID'}],
-                			      formatter: '.formatTechnicalBusinessMsgId'}"/>
-                <reuseTable:ObjectIdentifier title="{= ${Direction} === 'O' ? ${SenderId} : ${ReceiverId}}" 
-                							               text="{= ${Direction} === 'O' ? ${SenderText} : ${ReceiverText}}"/>
+                					 {path: 'ExtBusinessMessageID'}],
+                			 formatter: '.formatTechnicalBusinessMsgId'}"/>
+                <reuseTable:ObjectIdentifier title="{= ${Direction} === 'O' ? ${SenderText} : ${ReceiverText}}" 
+                							 text="{= ${Direction} === 'O' ? ${SenderId} : ${ReceiverId}}"/>
                 <core:Icon src="{= ${Direction} === 'O' ? 'sap-icon://arrow-right' : 'sap-icon://arrow-left'}" 
-                		       tooltip="{= ${Direction} === 'O' ? 'Outbound' : 'Inbound'}"/>
-                <reuseTable:ObjectIdentifier title="{= ${Direction} === 'O' ? ${ReceiverId} : ${SenderId}}" 
-                							               text="{= ${Direction} === 'O' ? ${ReceiverText} : ${SenderText}}"/>
+                		   tooltip="{= ${Direction} === 'O' ? 'Outbound' : 'Inbound'}"/>
+                <reuseTable:ObjectIdentifier title="{= ${Direction} === 'O' ? ${ReceiverText} : ${SenderText}}" 
+                							 text="{= ${Direction} === 'O' ? ${ReceiverId} : ${SenderId}}"/>
                 <Link text="{ProcessDocumentNumber}" c:action="navListToProcessApp" press="onAction"/>
               </cells>
             </ColumnListItem>
