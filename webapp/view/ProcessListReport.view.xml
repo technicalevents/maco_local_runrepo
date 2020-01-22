@@ -108,13 +108,7 @@
       </smartTable:SmartTable>
      </semantic:content>
     <semantic:titleCustomTextActions>
-     	<Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
-        visible="{= ${this>/SystemDetails/UIActionHidden} === 'X' ? false : true}"
-				type="Transparent"
-				press="onAction"
-				c:action="executeMsgAggr"/>
-        <reuseButton:Share press="onAction" 
-                           c:action="share" />
+        <reuseButton:Share press="onAction" c:action="share" />
     </semantic:titleCustomTextActions>
   </semantic:SemanticPage>
 </mvc:View>

@@ -25,7 +25,7 @@
             label="{/xMP4GxC_ProcActivityHeader_UI/CommonAccessUUID/#@sap:label}"
             text="{CommonAccessUUID}"/>
     </reuseObjectPageFacet:FormFacet>
-	<reuseObjectPageFacet:FormFacet width="20%" class="comSapCdMacoMmtUiOwnMarketPartner">
+	<reuseObjectPageFacet:FormFacet width="30%" class="comSapCdMacoMmtUiOwnMarketPartner">
 		<reuseObjectPageFacet:FormFacetField
             label="{/xMP4GxC_ProcActivityHeader_UI/OwnerUUID/#@sap:label}"
             text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_OBJ_LBL'},

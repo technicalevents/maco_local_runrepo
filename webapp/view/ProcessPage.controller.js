@@ -1,5 +1,4 @@
-sap.ui.define(
-  [
+sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter"
   ],
@@ -31,18 +30,10 @@ sap.ui.define(
               objectPage: "idProcessObjectPage"
             },
             actions: {
-              reportExecution: oComponentActions.reportExecution,
               share: oComponentActions.share,
               navToProcessAction: oComponentActions.navToProcessAction
             }
           });
-
-          this.oTransaction.whenRead({
-            path: "/xMP4GxC_System_Details",
-            busyControl: this.getView()
-          }).then(function(oData) {
-              this.getThisModel().setProperty("/SystemDetails", oData.data.results[0]);
-          }.bind(this));
         },
 
         /******************************************************************* */
@@ -59,6 +50,13 @@ sap.ui.define(
         	this.byId("idProcessObjectPage").setSelectedSection(this.getView().getId() + "--idFlowTab");
         	
           this.getThisModel().setProperty("/IsAssociatedTabVisible", false);
+
+          var sBindingPath = this.getView().getModel().createKey("/xMP4GxC_Linked_Associated_Proc", 
+                          {ProcessDocumentKey: oRouteParams.ProcessDocumentKey}) + "/Set";
+          var oAssociatedSmartTable = this.byId("idAssociatedProcessSmartTable");
+
+        	oAssociatedSmartTable.setTableBindingPath(sBindingPath);
+        	oAssociatedSmartTable.rebindTable();
                   
           this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
             .then(this._onSucessProcessDataRead.bind(this));
@@ -83,16 +81,6 @@ sap.ui.define(
         },
 
         /**
-         * Event Handler - Triggered after Binding is done on parent view (Process Page)
-         * @public
-         * @param {object} oRouteParams Route parameters of Process Page
-         */
-        onAfterBind: function(oRouteParams) {
-        	this.getThisModel().setProperty("/ProcessDocumentKey", oRouteParams.ProcessDocumentKey);
-        	this.byId("idAssociatedProcessSmartTable").rebindTable(); 
-        },
-
-        /**
          * Function returns no found message in case of some errors
          * @public
          * @returns {string} No found message
@@ -100,18 +88,6 @@ sap.ui.define(
         notFoundMsg: function() {
           return this.oBundle.getText("PROCESS_NOT_FOUND_TXT", [this.oRouteArgs.Id]);
         },
-        
-       /**
-	  	  * Event is triggered before data loading of smart table
-	  	  * @public
-		    */
-        onBeforeRebindTable: function() {
-        	var sProcessDocumentKey = this.getThisModel().getProperty("/ProcessDocumentKey");
-        	var sBindingPath = this.getView().getModel().createKey("/xMP4GxC_Linked_Associated_Proc", {ProcessDocumentKey: sProcessDocumentKey}) + "/Set";
-        	this.byId("idAssociatedProcessSmartTable").setTableBindingPath(sBindingPath);
-        },
-
-
         
         /**
          * Method will be triggered once data has been recevied for associated process table
@@ -175,7 +151,7 @@ sap.ui.define(
           
           for(var intI = 0; intI < aProcess.length; intI++) {
           	if(aProcess[intI].MarketPartner !== "") {
-          		aMarketPartner.push(aProcess[intI].MarketPartner);
+          		aMarketPartner.push(aProcess[intI].MarketPartnerText + " (" + aProcess[intI].MarketPartner + ")");
           	}
           }
 

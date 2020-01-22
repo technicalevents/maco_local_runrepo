@@ -69,9 +69,6 @@ sap.ui.define(
           } else if (sCardinality === '1') {
             var bAccessControl = this._evaluateAccessControls(oAccessControl, aContexts);
             bEnabled = aContexts.length === 1 && bAccessControl;
-          } else if (sCardinality === '1..35') {
-            var bAccessControl = this._evaluateAccessControls(oAccessControl, aContexts);
-            bEnabled = aContexts.length >= 1 && aContexts.length <= 35 && bAccessControl;
           } else if (sCardinality === '1..N') {
             var bAccessControl = this._evaluateAccessControls(oAccessControl, aContexts);
             bEnabled = aContexts.length >= 1 && bAccessControl;

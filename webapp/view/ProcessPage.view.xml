@@ -25,18 +25,6 @@
           <Text text="{ProcessIDDescription}"/>
         </uxap:snappedContent>
         <uxap:actions>
-          <Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
-                  visible="{= ${this>/SystemDetails/UIActionHidden} === 'X' ? false : true}"
-                  type="Transparent"
-                  c:reportAction="Deadline" 
-                  c:action="reportExecution" 
-                  press="onAction" />
-          <Button text="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
-                  visible="{= ${this>/SystemDetails/UIActionHidden} === 'X' ? false : true}"
-                  type="Transparent"
-                  c:reportAction="TriggerDoc" 
-                  c:action="reportExecution" 
-                  press="onAction" />
           <reuseButton:Share icon="sap-icon://action"
 			                  press="onAction" 
 			                  c:action="share" />

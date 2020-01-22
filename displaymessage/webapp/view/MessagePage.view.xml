@@ -6,9 +6,7 @@
   xmlns:uxap="sap.uxap"
   xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
   xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
-  xmlns:smartForm="sap.ui.comp.smartform"
-  xmlns:smartTable="sap.ui.comp.smarttable"
-  xmlns:smartField="sap.ui.comp.smartfield">
+  xmlns:smartTable="sap.ui.comp.smarttable">
   <uxap:ObjectPageLayout
     id="objectPage"
     useIconTabBar="false"
@@ -53,100 +51,7 @@
         	<uxap:subSections>
             	<uxap:ObjectPageSubSection>
             		<uxap:blocks>
-						<smartForm:SmartForm>
-							<smartForm:layout>
-								<core:Fragment type="XML" fragmentName="com.sap.cd.maco.mmt.ui.reuse.fragment.form.SmartFormLayout"/>
-							</smartForm:layout>
-							<smartForm:Group label="{i18n>MSG_PROPERTIES_GEN_SUBSECTION_TITLE}">
-								<smartForm:GroupElement label="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}" 
-														visible="{= ${this>/LinkedDocuments/ProcessDocCount} > 1 ? false : true}">
-									<Link text="{this>/LinkedDocuments/ProcessDocument/LinkedDocumentNumber}" 
-										  press="onCrossAppNavigation" 
-										  c:docType="Process" 
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-								<smartForm:GroupElement label="{/xMP4GxC_TransferDoc_UI/Direction/#@sap:label}">
-									<Text text="{Direction_Text}" 
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-								<smartForm:GroupElement label="{/xMP4GxC_TransferDoc_UI/ExternalCommunicationType/#@sap:label}">
-									<Text text="{ExternalCommunicationType_Text}" 
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-							</smartForm:Group>
-							<smartForm:Group label="{i18n>ORIGINAL_MSG_TEXT}" 
-											 visible="{= (${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
-								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}">
-									<Link text="{this>/LinkedDocuments/OriginalMessage/ExtUUID}"
-										  press="onCrossAppNavigation" 
-										  c:docType="Message" 
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-								<smartForm:GroupElement label="{i18n>Date_LBL}" 
-														visible="{=!!${this>/LinkedDocuments/OriginalMessage/ExtUUID}}">
-									<Text text="{path: 'this>/LinkedDocuments/OriginalMessage/Timestamp',
-												 type: 'sap.ui.model.type.DateTime',
-												 formatOptions: { style: 'medium' }}"
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-							</smartForm:Group>
-							<smartForm:Group label="{i18n>CONTRL_MSG_TEXT}" 
-											 visible="{= ${TechnicalMsgID} === 'CONTRL' ? false : true}">
-								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}"
-														visible="{= ${this>/LinkedDocuments/ContrlDocCount} > 1 ? true : false}">
-									<Link text="{parts: [{path: 'i18n>MULTI_DOCUMENT_TXT'}, 
-														 {path: 'this>/LinkedDocuments/ContrlDocCount'}],
-                                    			 formatter: '.formatter.formatMessage'}"
-										  wrapping="true" 
-										  press="onAction"
-										  c:boObjectType="CONTRL"
-										  c:action="multipleDoc"/>
-								</smartForm:GroupElement>
-								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}"
-														visible="{= ${this>/LinkedDocuments/ContrlDocCount} > 1 ? false : true}">
-									<Link text="{this>/LinkedDocuments/ControlMessage/ExtUUID}"
-										  press="onCrossAppNavigation" 
-										  c:docType="Message" 
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-								<smartForm:GroupElement label="{i18n>Date_LBL}" 
-														visible="{= (!!${this>/LinkedDocuments/ControlMessage/ExtUUID} &amp;&amp; 
-																	(${this>/LinkedDocuments/ContrlDocCount} > 1 ? false : true))}">
-									<Text text="{path: 'this>/LinkedDocuments/ControlMessage/Timestamp',
-									             type: 'sap.ui.model.type.DateTime',
-												 formatOptions: {style: 'medium'}}"
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-							</smartForm:Group>
-							<smartForm:Group label="{i18n>APERAK_MSG_TEXT}" 
-											 visible="{= !(${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
-								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}"
-														visible="{= ${this>/LinkedDocuments/AperakDocCount} > 1 ? true : false}">
-									<Link text="{parts: [{path: 'i18n>MULTI_DOCUMENT_TXT'}, 
-														 {path: 'this>/LinkedDocuments/AperakDocCount'}],
-                                    			 formatter: '.formatter.formatMessage'}"
-										  wrapping="true" 
-										  press="onAction"
-										  c:boObjectType="APERAK"
-										  c:action="multipleDoc"/>
-								</smartForm:GroupElement>
-								<smartForm:GroupElement label="{i18n>MSG_REF_TEXT}"
-														visible="{= ${this>/LinkedDocuments/AperakDocCount} > 1 ? false : true}">
-									<Link text="{this>/LinkedDocuments/AperakMessage/ExtUUID}"
-										  press="onCrossAppNavigation" 
-										  c:docType="Message" 
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-								<smartForm:GroupElement label="{i18n>Date_LBL}" 
-														visible="{= (!!${this>/LinkedDocuments/AperakMessage/ExtUUID} &amp;&amp; 
-																	(${this>/LinkedDocuments/AperakDocCount} > 1 ? false : true))}">
-									<Text text="{path: 'this>/LinkedDocuments/AperakMessage/Timestamp',
-										         type: 'sap.ui.model.type.DateTime',
-										         formatOptions: { style: 'medium' }}"
-										  wrapping="true"/>
-								</smartForm:GroupElement>
-							</smartForm:Group>
-						</smartForm:SmartForm>
+						<core:Fragment type="XML" fragmentName="com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessagePageProperties"/>
             		</uxap:blocks>
             	</uxap:ObjectPageSubSection>
         	</uxap:subSections>

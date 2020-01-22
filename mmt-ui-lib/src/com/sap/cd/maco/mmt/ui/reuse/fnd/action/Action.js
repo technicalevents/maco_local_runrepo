@@ -10,8 +10,8 @@ sap.ui.define(['sap/ui/base/Object', 'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert', 
     constructor: function(oConfig, sCardinality) {
       this.oConfig = oConfig ? oConfig : {};
       Assert.ok(
-        sCardinality === '0' || sCardinality === '1' || sCardinality === '1..N' || sCardinality === '2..N' || sCardinality === '1..35',
-        'cannot instantiate base action. cardinality must be 0, 1, 1..N, 2..N or 1..35'
+        sCardinality === '0' || sCardinality === '1' || sCardinality === '1..N' || sCardinality === '2..N',
+        'cannot instantiate base action. cardinality must be 0, 1, 1..N or 2..N'
       );
       this._sCardinality = sCardinality;
     },

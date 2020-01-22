@@ -3,17 +3,17 @@
         xmlns:core="sap.ui.core">
     <FormFacet>
         <FormFacetField
-            label="{i18n>FROM_SENDER_TEXT}"
-            text="{parts: [{path: 'i18n>SENDER_RECEIVER_TEXT'},
-                           {path: 'SenderText'},
-                           {path: 'SenderId'}],
-                   formatter: '.formatter.formatMessage'}"/>
+            label="{i18n>OWN_MARKET_PARTNER_TITLE}"
+            text="{parts: [{path: 'Direction'}, {path: 'SenderId'},
+                           {path: 'SenderText'}, {path: 'ReceiverId'},
+                           {path: 'ReceiverText'}, {value: 'Own'}],
+                   formatter: '.formatMarketPartner'}"/>
         <FormFacetField
-            label="{i18n>TO_RECEIVER_TEXT}"
-            text="{parts: [{path: 'i18n>SENDER_RECEIVER_TEXT'},
-                           {path: 'ReceiverText'},
-                           {path: 'ReceiverId'}],
-                   formatter: '.formatter.formatMessage'}"/>
+            label="{i18n>EXTERNAL_MARKET_PARTNER_TITLE}"
+            text="{parts: [{path: 'Direction'}, {path: 'SenderId'},
+                           {path: 'SenderText'}, {path: 'ReceiverId'},
+                           {path: 'ReceiverText'}, {value: 'External'}],
+                   formatter: '.formatMarketPartner'}"/>
         <FormFacetField
             label="{/xMP4GxC_TransferDoc_UI/TransferDate/#@sap:label}"
             text="{path: 'Timestamp', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' }}"/>

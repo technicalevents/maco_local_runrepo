@@ -195,6 +195,26 @@ sap.ui.define(
 				var oI18nText = messageFormatter.formatTechnicalBusinessMsgId(sTechnicalId, sExBusinessMsgId);
 				return oResourceBundle.getText(oI18nText.i18nFormat, oI18nText.i18nData);
 			},
+
+			/**
+	         * Formatter method returns formatted Own and External Market Partner
+	         * @param   {string} 	sDirection	         Direction
+	         * @param   {string} 	sSenderId	         Sender Id
+	         * @param   {string} 	sSenderText	         Sender Text
+	         * @param   {string} 	sReceiverId	         Receiver Id
+	         * @param   {string} 	sReceiverText	     Receiver Text
+	         * @param   {string} 	sMarketPartner	     Market Partner
+	         * @public
+	         * @returns {string} 	    	             Formatted Own and External Market Partner
+	         */
+	        formatMarketPartner: function(sDirection, sSenderId, sSenderText, sReceiverId, sReceiverText, sMarketPartner) {
+				var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
+				if(sMarketPartner === "Own") {
+					return oResourceBundle.getText("SENDER_RECEIVER_TEXT", sDirection === Constants.FLOW_TYPE.OUTBOUND ? [sSenderText, sSenderId] : [sReceiverText, sReceiverId]);
+				} else if(sMarketPartner === "External") {
+					return oResourceBundle.getText("SENDER_RECEIVER_TEXT", sDirection === Constants.FLOW_TYPE.OUTBOUND ? [sReceiverText, sReceiverId] : [sSenderText, sSenderId]);
+				}
+			},
 			
 			/******************************************************************* */
 			/* PRIVATE METHODS */

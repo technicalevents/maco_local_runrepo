@@ -135,10 +135,14 @@ sap.ui.define(
 				 * @public
 				 */
 				onBeforeExport: function (oEvent) {
-					oEvent.getParameter("exportSettings").dataSource.count = 10000;
-					this.oMessage.info({
-						msg: this.oBundle.getText("EXCEL_DOWNLOAD_INFO_MSG")
-					});
+					var iCount = oEvent.getParameter("exportSettings").dataSource.count;
+
+					if (iCount > 10000) {
+						oEvent.getParameter("exportSettings").dataSource.count = 10000;
+						this.oMessage.info({
+							msgKey: "EXCEL_DOWNLOAD_INFO_MSG"
+						});
+					}
 				},
 
 				/**

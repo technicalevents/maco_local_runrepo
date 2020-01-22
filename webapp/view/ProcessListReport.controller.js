@@ -1,13 +1,11 @@
-sap.ui.define(
-	[
+sap.ui.define([
 		"com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportNoDraftController",
 		"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
 		"com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
 		"sap/ui/generic/app/navigation/service/SelectionVariant",
 		"sap/ui/model/Sorter",
 		"sap/ui/model/FilterOperator"
-	],
-	function (ListReportNoDraftController, SmartTableBindingUpdate, Formatter,
+	], function (ListReportNoDraftController, SmartTableBindingUpdate, Formatter,
 		SelectionVariant, Sorter, FilterOperator) {
 		"use strict";
 
@@ -27,7 +25,7 @@ sap.ui.define(
 				/**
 				 * Lifecycle method - triggered on initialization of ProcessListReport Controller
 				 */
-				onInit: function () {
+				onInit: function() {
 					var oComponentActions = this.getOwnerComponent().actions;
 
 					this.getOwnerComponent().getModel().setSizeLimit(1200);
@@ -36,7 +34,6 @@ sap.ui.define(
 						entitySet: "xMP4GxC_ProcessHeader_UI",
 						actions: {
 							navToProcessPage: oComponentActions.navToProcessPage,
-							executeMsgAggr: oComponentActions.executeMsgAggr,
 							share: oComponentActions.share
 						},
 						routes: {
@@ -50,20 +47,12 @@ sap.ui.define(
 							filterBar: "idProcessSmartFilterBar"
 						},
 						tableAccessControl: {
-							navToProcessPage: true,
-							executeMsgAggr: true
+							navToProcessPage: true
 						}
 					});
 
 					var oRoute = this.oRouter.getRoute("initial");
 					oRoute.attachPatternMatched(this._onRoutePatternMatched, this);
-
-					this.oTransaction.whenRead({
-						path: "/xMP4GxC_System_Details",
-						busyControl: this.getView()
-					}).then(function (oData) {
-						this.getThisModel().setProperty("/SystemDetails", oData.data.results[0]);
-					}.bind(this));
 				},
 
 				/******************************************************************* */
@@ -75,7 +64,7 @@ sap.ui.define(
 				 * @param {object} oEvent Table loading event
 				 * @public
 				 */
-				onBeforeRebindTable: function (oEvent) {
+				onBeforeRebindTable: function(oEvent) {
 					var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));
 					var aSorters = [];
 					aSorters.push(new Sorter("ProcessTimestamp", true));
@@ -91,31 +80,35 @@ sap.ui.define(
 				 * @param {object} oEvent Table Export event
 				 * @public
 				 */
-				onBeforeExport: function (oEvent) {
-					oEvent.getParameter("exportSettings").dataSource.count = 10000;
-					this.oMessage.info({
-						msg: this.oBundle.getText("EXCEL_DOWNLOAD_INFO_MSG")
-					});
+				onBeforeExport: function(oEvent) {
+					var iCount = oEvent.getParameter("exportSettings").dataSource.count;
+
+					if(iCount > 10000) {
+						oEvent.getParameter("exportSettings").dataSource.count = 10000;
+						this.oMessage.info({
+							msgKey: "EXCEL_DOWNLOAD_INFO_MSG"
+						});
+					}
 				},
 
 				/**
 				 * Event is triggered when selection is changed in Smart Filter Bar
 				 * @public
 				 */
-				onProcessFilterBarChanged: function () {
+				onProcessFilterBarChanged: function() {
 					var oFilterData = jQuery.extend(true, {}, this.getFilterBar().getFilterData());
 					var aRanges = [];
 					var bIsFilterDataChanged = false;
 
-					if (oFilterData.MarketPartner) {
+					if(oFilterData.MarketPartner) {
 						aRanges = oFilterData.MarketPartner.ranges;
-						for (var intI = 0; intI < aRanges.length && aRanges[intI].operation === FilterOperator.EQ; intI++) {
+						for(var intI = 0; intI < aRanges.length && aRanges[intI].operation === FilterOperator.EQ; intI++) {
 							oFilterData.MarketPartner.ranges[intI].operation = FilterOperator.Contains;
 							oFilterData.MarketPartner.ranges[intI].tokenText = "*" + aRanges[intI].tokenText.slice(1) + "*";
 							bIsFilterDataChanged = true;
 						}
 
-						if (bIsFilterDataChanged) {
+						if(bIsFilterDataChanged) {
 							this.getFilterBar().setFilterData(oFilterData, true);
 						}
 					}
@@ -125,18 +118,18 @@ sap.ui.define(
 				 * Event is triggered when selection is changed in Own Market Partner MultiComboBox
 				 * @public
 				 */
-				onOwnMarketPartnerChange: function () {
+				onOwnMarketPartnerChange: function() {
 					var aOwnerUUIDKeys = this.getFilterBar().getControlByKey("OwnerUUID").getSelectedKeys();
 					var oSmartFilterData = this.getFilterBar().getFilterData();
 
 					delete oSmartFilterData.OwnerUUID;
 
-					if (!jQuery.isEmptyObject(aOwnerUUIDKeys)) {
+					if(!jQuery.isEmptyObject(aOwnerUUIDKeys)) {
 						oSmartFilterData["OwnerUUID"] = {
 							"items": []
 						};
 
-						for (var intI = 0; intI < aOwnerUUIDKeys.length; intI++) {
+						for(var intI = 0; intI < aOwnerUUIDKeys.length; intI++) {
 							oSmartFilterData["OwnerUUID"].items.push({
 								"key": aOwnerUUIDKeys[intI]
 							});
@@ -151,7 +144,7 @@ sap.ui.define(
 				 * This method will set Recently used FilterData in FilterBar
 				 * @public
 				 */
-				onFilterBarInitialized: function () {
+				onFilterBarInitialized: function() {
 					this.oNav.parseNavigation().done(function (oAppState) {
 						if (!jQuery.isEmptyObject(oAppState)) {
 							this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
@@ -165,7 +158,7 @@ sap.ui.define(
 				 * This method will refresh SmartTable DAa
 				 * @public
 				 */
-				onRefresh: function () {
+				onRefresh: function() {
 					this.getSmartTable().rebindTable(true);
 				},
 
@@ -173,7 +166,7 @@ sap.ui.define(
 				 * Function will store application's current state on change in message list
 				 * @public
 				 */
-				storeCurrentAppState: function () {
+				storeCurrentAppState: function() {
 					var oSmartFilterUiState = this.getFilterBar().getUiState();
 					var oSelectionVariant = new SelectionVariant(JSON.stringify(oSmartFilterUiState.getSelectionVariant()));
 					var oCurrentAppState = {
@@ -193,12 +186,12 @@ sap.ui.define(
 				 * Method is called on Route to Message List Page
 				 * @private
 				 */
-				_onRoutePatternMatched: function () {
+				_onRoutePatternMatched: function() {
 					this.oComponent.getService("ShellUIService").then(
-						function (oService) {
+						function(oService) {
 							oService.setHierarchy([]);
 						}.bind(this),
-						function (oError) {
+						function(oError) {
 							jQuery.sap.log.error("Cannot get ShellUIService", oError);
 						}
 					);

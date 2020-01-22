@@ -105,16 +105,15 @@
                 <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"Format-AMID", "leadingProperty":["TechnicalMsgID", "ExtBusinessMessageID"], "sortProperty": "TechnicalMsgID" }'/>
               </customData>
             </Column>
-            <Column>
+            <Column width="10rem">
               <Text text="{i18n>OWN_MARKET_PARTNER_TITLE}"/>
               <customData>
                 <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"Direction", "leadingProperty":["Direction", "SenderId", "ReceiverId", "SenderText", "ReceiverText"], "sortProperty": "SenderId" }'/>
               </customData>
             </Column>
-            <Column width="5rem">
-              <Text text="{/xMP4GxC_TransferDoc_UI/Direction/#@sap:label}"/>
+            <Column width="3rem">
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"Direction", "leadingProperty":["Direction"], "sortProperty": "Direction" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"Direction", "leadingProperty":["Direction"]}'/>
               </customData>
             </Column>
             <Column>
@@ -135,13 +134,14 @@
               <cells>
               	<reuseTable:ObjectIdentifier title="{ExternalUUID}" text="{SenderId}"/>
                 <Text text="{parts: [{path: 'TechnicalMsgID'},
-                					 {path: 'ExtBusinessMessageID'}],
-                			 formatter: '.formatTechnicalBusinessMsgId'}"/>
-                <reuseTable:ObjectIdentifier title="{parts: [ 'Direction', 'SenderId', 'ReceiverId' ], formatter: '.formatter.partnerStart'}" 
-                							 text="{parts: [ 'Direction', 'SenderText', 'ReceiverText' ], formatter: '.formatter.partnerStart'}"/>
-                <core:Icon src="{parts: [ 'Direction' ], formatter: '.formatter.partnerIcon'}"/>
-                <reuseTable:ObjectIdentifier title="{parts: [ 'Direction', 'SenderId', 'ReceiverId' ], formatter: '.formatter.partnerEnd'}" 
-                							 text="{parts: [ 'Direction', 'SenderText', 'ReceiverText' ], formatter: '.formatter.partnerEnd'}"/>
+                					           {path: 'ExtBusinessMessageID'}],
+                			      formatter: '.formatTechnicalBusinessMsgId'}"/>
+                <reuseTable:ObjectIdentifier title="{= ${Direction} === 'O' ? ${SenderId} : ${ReceiverId}}" 
+                							               text="{= ${Direction} === 'O' ? ${SenderText} : ${ReceiverText}}"/>
+                <core:Icon src="{= ${Direction} === 'O' ? 'sap-icon://arrow-right' : 'sap-icon://arrow-left'}" 
+                		       tooltip="{= ${Direction} === 'O' ? 'Outbound' : 'Inbound'}"/>
+                <reuseTable:ObjectIdentifier title="{= ${Direction} === 'O' ? ${ReceiverId} : ${SenderId}}" 
+                							               text="{= ${Direction} === 'O' ? ${ReceiverText} : ${SenderText}}"/>
                 <Link text="{ProcessDocumentNumber}" c:action="navListToProcessApp" press="onAction"/>
               </cells>
             </ColumnListItem>
