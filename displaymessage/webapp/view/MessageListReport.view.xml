@@ -66,7 +66,7 @@
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="true"
 					        demandPopin="true"
-					        useExportToExcel="true"
+					        useExportToExcel="false"
                   beforeExport="onBeforeExport"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
@@ -134,14 +134,14 @@
               <cells>
               	<reuseTable:ObjectIdentifier title="{ExternalUUID}" text="{SenderId}"/>
                 <Text text="{parts: [{path: 'TechnicalMsgID'},
-                					 {path: 'ExtBusinessMessageID'}],
-                			 formatter: '.formatTechnicalBusinessMsgId'}"/>
+                					           {path: 'ExtBusinessMessageID'}],
+                			      formatter: '.formatTechnicalBusinessMsgId'}"/>
                 <reuseTable:ObjectIdentifier title="{= ${Direction} === 'O' ? ${SenderText} : ${ReceiverText}}" 
-                							 text="{= ${Direction} === 'O' ? ${SenderId} : ${ReceiverId}}"/>
+                							               text="{= ${Direction} === 'O' ? ${SenderId} : ${ReceiverId}}"/>
                 <core:Icon src="{= ${Direction} === 'O' ? 'sap-icon://arrow-right' : 'sap-icon://arrow-left'}" 
-                		   tooltip="{= ${Direction} === 'O' ? 'Outbound' : 'Inbound'}"/>
+                		       tooltip="{= ${Direction} === 'O' ? 'Outbound' : 'Inbound'}"/>
                 <reuseTable:ObjectIdentifier title="{= ${Direction} === 'O' ? ${ReceiverText} : ${SenderText}}" 
-                							 text="{= ${Direction} === 'O' ? ${ReceiverId} : ${SenderId}}"/>
+                							               text="{= ${Direction} === 'O' ? ${ReceiverId} : ${SenderId}}"/>
                 <Link text="{ProcessDocumentNumber}" c:action="navListToProcessApp" press="onAction"/>
               </cells>
             </ColumnListItem>

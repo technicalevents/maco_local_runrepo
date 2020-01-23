@@ -16,7 +16,7 @@
 		</semantic:titleHeading>
     <semantic:headerContent>
           <smartFilterBar:SmartFilterBar id="idProcessSmartFilterBar"
-        								 smartVariant="idProcessVariantManagement"
+        								                 smartVariant="idProcessVariantManagement"
                                          enableBasicSearch="true"
                                          liveMode="true"
                                          useDateRangeType="true"
@@ -56,7 +56,7 @@
 					        enableAutoBinding="true" 
 					        ignoredFields="" 
 					        demandPopin="true"
-					        useExportToExcel="true"
+					        useExportToExcel="false"
 					        beforeExport="onBeforeExport"
 					        header="{i18n>PROCESS_PLURAL_LBL}"
 					        useVariantManagement="false" 
