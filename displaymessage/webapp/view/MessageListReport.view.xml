@@ -99,33 +99,39 @@
                 <core:CustomData key="p13nData" value='\{"columnIndex":"0", "columnKey":"ExternalUUID", "leadingProperty":["ExternalUUID", "SenderId"],"sortProperty": "ExternalUUID" }'/>
               </customData>
             </Column>
-            <Column width="10rem">
-              <Text text="{i18n>FORMAT_OR_AMID_TITLE}"/>
+            <Column width="5rem">
+              <Text text="{/xMP4GxC_TransferDoc_UI/TechnicalMsgID/#@sap:label}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"Format-AMID",  "displayBehaviour": "idAndDescription", "description":"ExtBusinessMessageID", "leadingProperty":["TechnicalMsgID","ExtBusinessMessageID"], "sortProperty": "TechnicalMsgID" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"Format", "leadingProperty":["TechnicalMsgID"], "sortProperty": "TechnicalMsgID" }'/>
+              </customData>
+            </Column>
+            <Column width="5rem">
+              <Text text="{/xMP4GxC_TransferDoc_UI/ExtBusinessMessageID/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"AMID", "leadingProperty":["ExtBusinessMessageID"], "sortProperty": "ExtBusinessMessageID" }'/>
               </customData>
             </Column>
             <Column width="13rem">
               <Text text="{i18n>OWN_MARKET_PARTNER_TITLE}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"OwnMarketPartner", "displayBehaviour": "idAndDescription", "description":"OwnMarketPartnerText", "leadingProperty":["OwnMarketPartner","OwnMarketPartnerText"], "sortProperty": "OwnMarketPartner" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"OwnMarketPartner", "displayBehaviour": "idAndDescription", "description":"OwnMarketPartnerText", "leadingProperty":["OwnMarketPartner","OwnMarketPartnerText"], "sortProperty": "OwnMarketPartner" }'/>
               </customData>
             </Column>
             <Column width="3rem">
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"DirectionText", "leadingProperty":["DirectionText"]}'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"Direction", "displayBehaviour": "descriptionOnly", "description":"DirectionText", "leadingProperty":["Direction", "DirectionText"]}'/>
               </customData>
             </Column>
             <Column>
               <Text text="{i18n>EXTERNAL_MARKET_PARTNER_TITLE}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"ExternalMarketPartner", "description":"ExternalMarketPartnerText", "displayBehaviour": "idAndDescription", "leadingProperty":["ExternalMarketPartner","ExternalMarketPartnerText"], "sortProperty": "ExternalMarketPartner" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"5", "columnKey":"ExternalMarketPartner", "description":"ExternalMarketPartnerText", "displayBehaviour": "idAndDescription", "leadingProperty":["ExternalMarketPartner","ExternalMarketPartnerText"], "sortProperty": "ExternalMarketPartner" }'/>
               </customData>
             </Column>
             <Column>
               <Text text="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"5", "columnKey":"ProcessDocumentNumber", "leadingProperty":["ProcessDocumentNumber"],"sortProperty": "ProcessDocumentNumber" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"6", "columnKey":"ProcessDocumentNumber", "leadingProperty":["ProcessDocumentNumber"],"sortProperty": "ProcessDocumentNumber" }'/>
               </customData>
             </Column>
           </columns>
@@ -133,9 +139,8 @@
             <ColumnListItem type="Navigation" press="onAction" c:action="navToMessagePage">
               <cells>
               	<reuseTable:ObjectIdentifier title="{ExternalUUID}" text="{SenderId}"/>
-                <Text text="{parts: [{path: 'TechnicalMsgID'},
-                					           {path: 'ExtBusinessMessageID'}],
-                			      formatter: '.formatTechnicalBusinessMsgId'}"/>
+                <Text text="{TechnicalMsgID}"/>
+                <Text text="{ExtBusinessMessageID}"/>			      
                 <reuseTable:ObjectIdentifier title="{OwnMarketPartnerText}"  text="{OwnMarketPartner}"/>
                 <core:Icon src="{= ${Direction} === 'O' ? 'sap-icon://arrow-right' : 'sap-icon://arrow-left'}" 
                 		       tooltip="{= ${Direction} === 'O' ? 'Outbound' : 'Inbound'}"/>
