@@ -66,7 +66,7 @@
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="true"
 					        demandPopin="true"
-					        useExportToExcel="false"
+					        useExportToExcel="true"
                   beforeExport="onBeforeExport"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
@@ -92,7 +92,7 @@
                 growingThreshold="100" 
                 mode="MultiSelect"
                 sticky="ColumnHeaders,HeaderToolbar" >
-          <columns>
+		<columns>
             <Column>
               <Text text="{/xMP4GxC_TransferDoc_UI/ExternalUUID/#@sap:label}"/>
               <customData>
@@ -102,30 +102,30 @@
             <Column width="10rem">
               <Text text="{i18n>FORMAT_OR_AMID_TITLE}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"Format-AMID", "leadingProperty":["TechnicalMsgID", "ExtBusinessMessageID"], "sortProperty": "TechnicalMsgID" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"Format-AMID",  "displayBehaviour": "idAndDescription", "description":"ExtBusinessMessageID", "leadingProperty":["TechnicalMsgID","ExtBusinessMessageID"], "sortProperty": "TechnicalMsgID" }'/>
               </customData>
             </Column>
             <Column width="13rem">
               <Text text="{i18n>OWN_MARKET_PARTNER_TITLE}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"Direction", "leadingProperty":["Direction", "SenderId", "ReceiverId", "SenderText", "ReceiverText"], "sortProperty": "SenderId" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"OwnMarketPartner", "displayBehaviour": "idAndDescription", "description":"OwnMarketPartnerText", "leadingProperty":["OwnMarketPartner","OwnMarketPartnerText"], "sortProperty": "OwnMarketPartner" }'/>
               </customData>
             </Column>
             <Column width="3rem">
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"Direction", "leadingProperty":["Direction"]}'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"DirectionText", "leadingProperty":["DirectionText"]}'/>
               </customData>
             </Column>
             <Column>
               <Text text="{i18n>EXTERNAL_MARKET_PARTNER_TITLE}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"Direction", "leadingProperty":["Direction", "SenderId", "ReceiverId", "SenderText", "ReceiverText"], "sortProperty": "ReceiverId" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"ExternalMarketPartner", "description":"ExternalMarketPartnerText", "displayBehaviour": "idAndDescription", "leadingProperty":["ExternalMarketPartner","ExternalMarketPartnerText"], "sortProperty": "ExternalMarketPartner" }'/>
               </customData>
             </Column>
             <Column>
               <Text text="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}"/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"6", "columnKey":"ProcessDocumentNumber", "leadingProperty":["ProcessDocumentNumber"],"sortProperty": "ProcessDocumentNumber" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"5", "columnKey":"ProcessDocumentNumber", "leadingProperty":["ProcessDocumentNumber"],"sortProperty": "ProcessDocumentNumber" }'/>
               </customData>
             </Column>
           </columns>
@@ -136,12 +136,10 @@
                 <Text text="{parts: [{path: 'TechnicalMsgID'},
                 					           {path: 'ExtBusinessMessageID'}],
                 			      formatter: '.formatTechnicalBusinessMsgId'}"/>
-                <reuseTable:ObjectIdentifier title="{= ${Direction} === 'O' ? ${SenderText} : ${ReceiverText}}" 
-                							               text="{= ${Direction} === 'O' ? ${SenderId} : ${ReceiverId}}"/>
+                <reuseTable:ObjectIdentifier title="{OwnMarketPartnerText}"  text="{OwnMarketPartner}"/>
                 <core:Icon src="{= ${Direction} === 'O' ? 'sap-icon://arrow-right' : 'sap-icon://arrow-left'}" 
                 		       tooltip="{= ${Direction} === 'O' ? 'Outbound' : 'Inbound'}"/>
-                <reuseTable:ObjectIdentifier title="{= ${Direction} === 'O' ? ${ReceiverText} : ${SenderText}}" 
-                							               text="{= ${Direction} === 'O' ? ${ReceiverId} : ${SenderId}}"/>
+                <reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}"  text="{ExternalMarketPartner}"/>
                 <Link text="{ProcessDocumentNumber}" c:action="navListToProcessApp" press="onAction"/>
               </cells>
             </ColumnListItem>
