@@ -137,8 +137,8 @@ sap.ui.define(
 				onBeforeExport: function (oEvent) {
 					var iCount = oEvent.getParameter("exportSettings").dataSource.count;
 
-					if (iCount > 10000) {
-						oEvent.getParameter("exportSettings").dataSource.count = 10000;
+					if (iCount > 500) {
+						oEvent.getParameter("exportSettings").dataSource.count = 500;
 						this.oMessage.info({
 							msgKey: "EXCEL_DOWNLOAD_INFO_MSG"
 						});
