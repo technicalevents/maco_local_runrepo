@@ -16,7 +16,7 @@
 		</semantic:titleHeading>
     <semantic:headerContent>
           <smartFilterBar:SmartFilterBar id="idProcessSmartFilterBar"
-        								                 smartVariant="idProcessVariantManagement"
+        								 smartVariant="idProcessVariantManagement"
                                          enableBasicSearch="true"
                                          liveMode="true"
                                          useDateRangeType="true"
