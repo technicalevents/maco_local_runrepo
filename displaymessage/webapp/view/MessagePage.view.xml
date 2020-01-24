@@ -4,13 +4,8 @@
   xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
   xmlns:core="sap.ui.core" 
   xmlns:uxap="sap.uxap"
-  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
-  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
-  xmlns:smartTable="sap.ui.comp.smarttable">
-  <uxap:ObjectPageLayout
-    id="objectPage"
-    useIconTabBar="false"
-    upperCaseAnchorBar="false">
+  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button">
+  <uxap:ObjectPageLayout id="objectPage" useIconTabBar="false" upperCaseAnchorBar="false">
     <uxap:headerTitle>
       <uxap:ObjectPageDynamicHeaderTitle>
         <uxap:expandedHeading>
@@ -20,24 +15,15 @@
           <Title text="{ExternalUUID}" wrapping="true"/>
         </uxap:snappedHeading>
         <uxap:expandedContent>
-          <Text text="{parts: [{path: 'TechnicalMsgID'},
-                               {path: 'ExtBusinessMessageID'}],
-                       formatter: '.formatTechnicalBusinessMsgId'}" />
+          <Text text="{parts: [{path: 'TechnicalMsgID'},{path: 'ExtBusinessMessageID'}], formatter: '.formatTechnicalBusinessMsgId'}" />
         </uxap:expandedContent>
         <uxap:snappedContent>
-          <Text text="{parts: [{path: 'TechnicalMsgID'},
-                               {path: 'ExtBusinessMessageID'}],
-                       formatter: '.formatTechnicalBusinessMsgId'}" />
+          <Text text="{parts: [{path: 'TechnicalMsgID'},{path: 'ExtBusinessMessageID'}], formatter: '.formatTechnicalBusinessMsgId'}" />
         </uxap:snappedContent>
         <uxap:actions>
-			<Button text="{i18n>DOWNLOAD_BTN_TXT}"
-					type="Transparent"
-					press="onAction"
-					enabled="{this>/tableActionEnabled/singleDownload}"
-					c:action="singleDownload" />
-			<reuseButton:Share icon="sap-icon://action"
-				               press="onAction" 
-				               c:action="share" />
+			<Button text="{i18n>DOWNLOAD_BTN_TXT}" type="Transparent" press="onAction"
+					enabled="{this>/tableActionEnabled/singleDownload}" c:action="singleDownload" />
+			<reuseButton:Share icon="sap-icon://action" press="onAction" c:action="share" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>
@@ -51,7 +37,7 @@
         	<uxap:subSections>
             	<uxap:ObjectPageSubSection>
             		<uxap:blocks>
-						<core:Fragment type="XML" fragmentName="com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessagePageProperties"/>
+						<core:Fragment type="XML" fragmentName="com.sap.cd.maco.monitor.ui.app.displaymessages.view.Properties"/>
             		</uxap:blocks>
             	</uxap:ObjectPageSubSection>
         	</uxap:subSections>
@@ -60,19 +46,7 @@
     		<uxap:subSections>
     			<uxap:ObjectPageSubSection>
     				<uxap:blocks>
-    					<VBox>
-    						<MessageStrip text="{i18n>SHOW_EDIFACT_INFO_MSG_TXT}" type="Information"
-				                          visible="{this>/ExternalPayload/LoadCompMsgBtnVisible}" 
-				                          class="sapUiTinyMarginBottom">
-								<link>
-									<Link text="{i18n>LOAD_COMP_MSG_TXT}"
-										  press="onLoadCompleteMessage" />
-								</link>
-							</MessageStrip>
-							<TextArea value="{this>/ExternalPayload/InitialExternalPayload}" 
-								  editable="false" width="100%" growing="true" growingMaxLines="151">
-        				</TextArea>
-    					</VBox>
+    					<core:Fragment type="XML" fragmentName="com.sap.cd.maco.monitor.ui.app.displaymessages.view.EDIFACT"/>
     			    </uxap:blocks>
         		</uxap:ObjectPageSubSection>
 			</uxap:subSections>
@@ -82,44 +56,7 @@
     		<uxap:subSections>
     			<uxap:ObjectPageSubSection>
     				<uxap:blocks>
-    					<smartTable:SmartTable id="idLinkedProcessSmartTable"
-					        entitySet="xMP4GxC_GetLinkedPdocDetailsSet"
-					        tableType="ResponsiveTable"
-					        enableAutoBinding="false" 
-					        demandPopin="false"
-					        useExportToExcel="false"
-					        useTablePersonalisation="false"
-					        useVariantManagement="false" 
-					        beforeRebindTable="onBeforeRebindTable"
-					        dataReceived="onProcessDocDataReceived"
-					        requestAtLeastFields="ProcessDocumentKey,StatusCriticality,SemanticType,OwnerUUID"
-					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displaymessages.pdoc.table">
-					        <Table id="idLinkedProcessTable"
-						          growing="true"
-						          growingScrollToLoad="true" 
-						          growingThreshold="100" 
-						          mode="None"
-						          sticky="ColumnHeaders,HeaderToolbar" >
-					          <columns>
-					            <Column width="40%">
-					              <Text text="{/xMP4GxC_GetLinkedPdocDetailsSet/ProcessDocumentNumber/#@sap:label}"/>
-					              <customData>
-					                <core:CustomData key="p13nData" 
-					                				 value='\{"columnIndex":"0", 
-					                						  "columnKey":"ProcessDocumentNumber", 
-					                						  "leadingProperty":["ProcessDocumentNumber", "ProcessIDDescription"] }'/>
-					              </customData>
-					            </Column>
-					          </columns>
-					          <items>
-					            <ColumnListItem type="Navigation" press="onAction" c:action="navObjectTableToProcessApp">
-					              <cells>
-					                  <reuseTable:ObjectIdentifier title="{ProcessDocumentNumber}" text="{ProcessIDDescription}"/>
-					              </cells>
-					            </ColumnListItem>
-					          </items>
-					        </Table>
-					      </smartTable:SmartTable>
+    					<core:Fragment type="XML" fragmentName="com.sap.cd.maco.monitor.ui.app.displaymessages.view.MarketProcessDocuments"/>
     			    </uxap:blocks>
         		</uxap:ObjectPageSubSection>
 			</uxap:subSections>
