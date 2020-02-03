@@ -61,14 +61,13 @@ sap.ui.define([
 		},
 
 		/**
-		 * Function to modify Filter Conditions 
+		 * Function to override Filter Data with Contains operator for given properties 
 		 * @public
 		 * @param {Object} oFilterData - Filter Data Object
-		 * @param {string} sOperator - FilterOperator
 		 * @param {Array} aProperties - property array that needs to be updated
 		 * @returns {String} Updated Filter Object
 		 */
-		modifyFilterDataWithOperator: function (oFilterData, sOperator, aProperties) {
+		modifyFilterDataWithContainsOperator: function (oFilterData, aProperties) {
 			var bIsFilterDataChanged = false;
 
 			aProperties.forEach(function (sProperty) {
@@ -83,15 +82,15 @@ sap.ui.define([
 							keyField: sProperty,
 							value1: aFilterItem[intI].key,
 							value2: null,
-							operation: sOperator,
+							operation: FilterOperator.Contains,
 							tokenText: "*" + aFilterItem[intI].key + "*"
 						});
 					}
 					oFilterData[sProperty].items = [];
 				} else {
 					aFilterItem = oFilterData[sProperty].ranges;
-					for (var intI = 0; intI < aFilterItem.length && aFilterItem[intI].operation != sOperator; intI++) {
-						oFilterData[sProperty].ranges[intI].operation = sOperator;
+					for (var intI = 0; intI < aFilterItem.length && aFilterItem[intI].operation = FilterOperator.EQ; intI++) {
+						oFilterData[sProperty].ranges[intI].operation = FilterOperator.Contains;
 						oFilterData[sProperty].ranges[intI].tokenText = "*" + aFilterItem[intI].tokenText.slice(1) + "*";
 						bIsFilterDataChanged = true;
 					}

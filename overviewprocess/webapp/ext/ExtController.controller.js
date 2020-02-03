@@ -31,7 +31,7 @@ sap.ui.define([
 				this.filterChanged = true;
 				
 				if(!jQuery.isEmptyObject(oFilterData)){
-					oUpdatedFilterData = Utility.modifyFilterDataWithOperator(oFilterData, FilterOperator.Contains, ["MarketPartner"]);
+					oUpdatedFilterData = Utility.modifyFilterDataWithContainsOperator(oFilterData, FilterOperator.Contains, ["MarketPartner"]);
 				}
 				
 				if(!jQuery.isEmptyObject(oUpdatedFilterData)){
