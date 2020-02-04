@@ -1,8 +1,7 @@
 sap.ui.define([
-		"sap/ui/model/FilterOperator",
-		"com/sap/cd/maco/mmt/ui/reuse/monitor/Utility"
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/Utility"
 	],
-	function (FilterOperator, Utility) {
+	function (Utility) {
 		'use strict';
 
 		sap.ui.controller("com.sap.cd.maco.monitor.ui.app.overviewprocesses.ext.ExtController", {
@@ -31,7 +30,7 @@ sap.ui.define([
 				this.filterChanged = true;
 				
 				if(!jQuery.isEmptyObject(oFilterData)){
-					oUpdatedFilterData = Utility.modifyFilterDataWithContainsOperator(oFilterData, FilterOperator.Contains, ["MarketPartner"]);
+					oUpdatedFilterData = Utility.modifyFilterDataWithContainsOperator(oFilterData, ["MarketPartner"]);
 				}
 				
 				if(!jQuery.isEmptyObject(oUpdatedFilterData)){
