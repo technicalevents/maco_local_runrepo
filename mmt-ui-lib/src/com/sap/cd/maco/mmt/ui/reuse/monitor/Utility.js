@@ -83,7 +83,7 @@ sap.ui.define([
 							value1: aFilterItem[intI].key,
 							value2: null,
 							operation: FilterOperator.Contains,
-							tokenText: "*" + aFilterItem[intI].key + "*"
+							tokenText: aFilterItem[intI].key
 						});
 					}
 					oFilterData[sProperty].items = [];
@@ -91,7 +91,7 @@ sap.ui.define([
 					aFilterItem = oFilterData[sProperty].ranges;
 					for (var intI = 0; intI < aFilterItem.length && aFilterItem[intI].operation == FilterOperator.EQ; intI++) {
 						oFilterData[sProperty].ranges[intI].operation = FilterOperator.Contains;
-						oFilterData[sProperty].ranges[intI].tokenText = "*" + aFilterItem[intI].tokenText.slice(1) + "*";
+						oFilterData[sProperty].ranges[intI].tokenText = aFilterItem[intI].tokenText.slice(1);
 						bIsFilterDataChanged = true;
 					}
 				}

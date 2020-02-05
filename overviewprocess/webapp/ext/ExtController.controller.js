@@ -1,5 +1,4 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/Utility"
 	],
 	function (Utility) {
 		'use strict';
@@ -16,27 +15,6 @@ sap.ui.define([
 			onAfterRendering: function () {
 				this.getView().byId("mainView--ovpMain").addStyleClass("comSapCdMacoMmtUiMonitorMsgGraphTitle");
 				this.getView().byId("sapOvpShareButton").setVisible(false);
-			},
-			
-			/**
-			 * Event Handler for Filter Change
-			 * @public
-			 * @param {sap.ui.base.Event} oEvent Filter Change Event
-			 */
-			onGlobalFilterChange: function (oEvent) {
-				var oFilterData = jQuery.extend(true, {}, oEvent.getSource().getFilterData());
-				var oUpdatedFilterData = {};
-				
-				this.filterChanged = true;
-				
-				if(!jQuery.isEmptyObject(oFilterData)){
-					oUpdatedFilterData = Utility.modifyFilterDataWithContainsOperator(oFilterData, ["MarketPartner"]);
-				}
-				
-				if(!jQuery.isEmptyObject(oUpdatedFilterData)){
-					oEvent.getSource().setFilterData(oFilterData, true);
-				}
-
 			}
 		});
 	});
