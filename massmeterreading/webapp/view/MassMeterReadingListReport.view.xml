@@ -1,0 +1,171 @@
+<mvc:View xmlns:core="sap.ui.core" 
+		  xmlns="sap.m" 
+		  xmlns:semantic="sap.f.semantic" 
+		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+		  xmlns:smartTable="sap.ui.comp.smarttable"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+		  controllerName="com.sap.cd.maco.monitor.ui.app.massmeterreadings.view.MassMeterReadingListReport"
+          xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
+          xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
+          xmlns:variants="sap.ui.comp.smartvariants">
+    <semantic:SemanticPage headerExpanded="true" 
+						   toggleHeaderOnTitleClick="true">
+  		<semantic:titleHeading>
+			 <variants:SmartVariantManagement id="idMassMeterReadingVariantManagement" 
+											  persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.massmeterreadings.filterbar"/>
+		</semantic:titleHeading>
+	    <semantic:headerContent>
+	        <smartFilterBar:SmartFilterBar id="idMassMeterReadingSmartFilterBar"
+										   smartVariant="idMassMeterReadingVariantManagement"
+										   enableBasicSearch="true"
+										   liveMode="true"
+										   useDateRangeType="true"
+										   useToolbar="false"
+										   initialized="onFilterBarInitialized"
+										   filterChange="onMassMeterReadingsFilterBarChanged"
+										   showFilterConfiguration="false"
+										   persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.massmeterreadings.filterbar"
+										   entitySet="xMP4GxC_MassProcMtrRead">
+				<smartFilterBar:controlConfiguration>
+					<smartFilterBar:ControlConfiguration key="OwnMarketPartner"
+														 label="{/xMP4GxC_MassProcMtrRead/OwnMarketPartner/#@sap:label}">
+						<smartFilterBar:customControl>
+							<MultiComboBox showSecondaryValues= "true"
+										   items="{path:'/xMP4GxC_MarketPartner_VH',sorter:{path:'mp_name'}}" 
+										   selectionChange="onOwnMarketPartnerChange">
+								<core:ListItem key="{market_partner}" 
+											   text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
+															  {path: 'mp_name'},
+															  {path: 'market_partner'},
+															  {path: 'division_text'}],
+													  formatter: 'jQuery.sap.formatMessage'}"
+											   additionalText="{market_role}"/>
+							</MultiComboBox>
+						</smartFilterBar:customControl>
+					</smartFilterBar:ControlConfiguration>
+				</smartFilterBar:controlConfiguration>
+			</smartFilterBar:SmartFilterBar>
+		</semantic:headerContent>
+		<semantic:content>
+			<smartTable:SmartTable id="idMassMeterReadingSmartTable"
+								   entitySet="xMP4GxC_MassProcMtrRead"
+								   tableType="ResponsiveTable"
+								   smartFilterId="idMassMeterReadingSmartFilterBar"
+								   smartVariant="idMassMeterReadingVariantManagement"
+								   enableAutoBinding="true" 
+								   ignoredFields="" 
+								   demandPopin="true"
+								   header="{i18n>METER_READINGS_PLURAL_LBL}"
+								   c:p13nDialogSettings='{filter:{visible:false}}' 
+								   beforeExport="onBeforeExport"
+								   beforeRebindTable="onBeforeRebindTable"
+								   persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.massmeterreadings.table"
+								   requestAtLeastFields="Receiver,OwnMarketPartner,MeterReadType,ExternalUUID,
+														 CommonAccessReference,MessageReferenceUUID,AggregationProcessID,
+														 AggregationProcessKey,MassUploadProcessID,MassUploadProcessKey">
+				<smartTable:customToolbar>
+					<OverflowToolbar design="Transparent">
+						<SegmentedButton items="{/xMP4GxC_MassProcMtrReadType_VH}" selectionChange="onMeterTypeSelectionChange">
+							<items>
+								<SegmentedButtonItem text="{Description}" key="{Value}"/>
+							</items>
+						</SegmentedButton>
+						<ToolbarSpacer/>
+						<Button text="{i18n>MASS_METER_READING_LIST_REFRESH_TITLE}" type="Transparent" press="onRefresh"/>
+					</OverflowToolbar>
+				</smartTable:customToolbar>
+				<Table id="idMassMeterReadingTable"
+					   growing="true"
+					   growingScrollToLoad="true" 
+					   growingThreshold="100" 
+					   mode="None"
+					   sticky="ColumnHeaders,HeaderToolbar">
+					<columns>
+						<Column width="20%">
+							<Text text="{/xMP4GxC_MassProcMtrRead/PointOfDelivery/#@sap:label}"/>
+							<customData>
+								<core:CustomData key="p13nData" 
+									value='\{"columnIndex":0,"columnKey":"PointOfDelivery","leadingProperty":["PointOfDelivery"],"sortProperty":"PointOfDelivery"}'/>
+							</customData>
+						</Column>
+						<Column width="5%">
+							<Text text="{/xMP4GxC_MassProcMtrRead/OBIS/#@sap:label}"/>
+							<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":1,"columnKey":"OBIS","leadingProperty":["OBIS"],"sortProperty":"OBIS"}'/>
+							</customData>
+						</Column>
+						<Column width="5%">
+							<Text text="{/xMP4GxC_MassProcMtrRead/PeriodFromDate/#@sap:label}"/>
+							<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":2,"columnKey":"PeriodFromDate","type":"date","leadingProperty":["PeriodFromDate"],"sortProperty":"PeriodFromDate"}'/>
+							</customData>
+						</Column>
+						<Column width="5%">
+							<Text text="{/xMP4GxC_MassProcMtrRead/PeriodToDate/#@sap:label}"/>
+							<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":3,"columnKey":"PeriodToDate","type":"date","leadingProperty":["PeriodToDate"],"sortProperty":"PeriodToDate"}'/>
+							</customData>
+						</Column>
+						<Column width="5%">
+							<Text text="{/xMP4GxC_MassProcMtrRead/UploadDate/#@sap:label}"/>
+							<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":4,"columnKey":"UploadDate","type":"date","leadingProperty":["UploadDate"],"sortProperty":"UploadDate"}'/>
+							</customData>
+						</Column>
+						<Column>
+							<Text text="{/xMP4GxC_MassProcMtrRead/ExternalMarketPartner/#@sap:label}"/>
+							<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":5,"columnKey":"ExternalMarketPartner","description":"ExternalMarketPartnerText","displayBehaviour":"idAndDescription","leadingProperty":["ExternalMarketPartner","ExternalMarketPartnerText"],"sortProperty":"ExternalMarketPartner"}'/>
+							</customData>
+						</Column>
+						<Column>
+							<Text text="{/xMP4GxC_MassProcMtrRead/MassUploadProcessDoc/#@sap:label}"/>
+							<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":6,"columnKey":"MassUploadProcessDoc","leadingProperty":["MassUploadProcessDoc],"sortProperty":"MassUploadProcessDoc"}'/>
+							</customData>
+						</Column>
+						<Column>
+							<Text text="{/xMP4GxC_MassProcMtrRead/AggregationProcessDoc/#@sap:label}"/>
+							<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":7,"columnKey":"AggregationProcessDoc","leadingProperty":["AggregationProcessDoc"],"sortProperty":"AggregationProcessDoc"}'/>
+							</customData>
+						</Column>
+						<Column>
+							<Text text="{/xMP4GxC_MassProcMtrRead/MessageReference/#@sap:label}"/>
+							<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":8,"columnKey":"MessageReference","leadingProperty":["MessageReference"],"sortProperty":"MessageReference"}'/>
+							</customData>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem >
+							<cells>
+								<reuseTable:ObjectIdentifier title="{PointOfDelivery}"/>
+								<reuseTable:ObjectIdentifier title="{OBIS}"/>
+								<reuseTable:ObjectIdentifier title="{path:'PeriodFromDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
+								<reuseTable:ObjectIdentifier title="{path:'PeriodFromDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
+								<Text text="{path:'PeriodFromDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
+								<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}" text="{ExternalMarketPartner}"/>
+								<Link text="{MassUploadProcessDoc}" c:action="navToUploadProcessAction" press="onAction"/>
+								<Link text="{AggregationProcessDoc}" c:action="navToAggrProcessAction" press="onAction"/>
+								<Link text="{MessageReference}" c:action="navToMessageAction" press="onAction"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+	    </semantic:content>
+	    <semantic:titleCustomTextActions>
+			<reuseButton:Share press="onAction" c:action="share" />
+	    </semantic:titleCustomTextActions>
+	</semantic:SemanticPage>
+</mvc:View>
