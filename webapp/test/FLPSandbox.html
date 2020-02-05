@@ -62,6 +62,18 @@
           applicationType: "URL",
           url: "../../displayprocessuiaction/webapp/",
           title: "Execute Process Reports"
+        },
+        "UtilsDataExchangeProcessing-massMeterReading": {
+          additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.massmeterreadings",
+          applicationType: "URL",
+          url: "../../massmeterreading/webapp/",
+          title: "Monitor Mass Meter Readings"
+        },
+        "UtilsDataExchangeProcessing-invoiceMeterReading": {
+          additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.invoicemeterreadings",
+          applicationType: "URL",
+          url: "../../invoicemeterreading/webapp/",
+          title: "Monitor Invoice Meter Readings"
         }
       }
     };
@@ -79,6 +91,8 @@
       "com.sap.cd.maco.monitor.ui.app.displayprocesses": "../",
       "com.sap.cd.maco.monitor.ui.app.displaymessages": "../../displaymessage/webapp",
       "com.sap.cd.maco.monitor.ui.app.processuiactions": "../../displayprocessuiaction/webapp",
+      "com.sap.cd.maco.monitor.ui.app.massmeterreadings": "../../massmeterreading/webapp",
+      "com.sap.cd.maco.monitor.ui.app.invoicemeterreadings": "../../invoicemeterreading/webapp",
       "com.sap.cd.maco.monitor.ui.app.overviewprocesses": "../../overviewprocess/webapp",
       "com.sap.cd.maco.monitor.ui.app.overviewmessages": "../../overviewmessage/webapp",
       "com.sap.cd.maco.mmt.ui.reuse": "../../mmt-ui-lib/src/com/sap/cd/maco/mmt/ui/reuse"
@@ -89,16 +103,7 @@
   <script>
     sap.ui.getCore().attachInit(function () {
       sap.ui.require([
-          // "com/sap/cd/maco/monitor/ui/app/mtrmessages/localService/mockserver",
-          // "com/sap/cd/maco/monitor/ui/app/mtrprocesses/localService/mockserver",
-		  //"com/sap/cd/maco/monitor/ui/app/displayprocesses/localService/mockserver"
-		 //  "com/sap/cd/maco/monitor/ui/app/displaymessages/localService/mockserver"
       ], function () {
-      //     mtrmessagesMock.init();
-      //     mtrprocessesMock.init();
-		  // displayprocessesMock.init();
-		  //displayprocessesMock.init();
-		 // displaymessagesMock.init();
           sap.ushell.Container.createRenderer().placeAt("content");
       });
     });
