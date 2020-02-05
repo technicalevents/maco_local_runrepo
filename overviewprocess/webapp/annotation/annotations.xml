@@ -11,25 +11,24 @@
 	</edmx:Reference>
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="cds_xmp4gxprocessmonitor_sd">
-			
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType">
 				<Annotation Term="UI.SelectionFields">
-                    <Collection>
-                        <PropertyPath>ProcessIDDescription</PropertyPath>
-                        <PropertyPath>ProcessDate</PropertyPath>
-                        <PropertyPath>ProcessStatus</PropertyPath>
-                        <PropertyPath>ProcessClusterDescriptionISL</PropertyPath>
-                        <PropertyPath>MarketPartner</PropertyPath>
-                        <PropertyPath>BusinessObjectUUID</PropertyPath>
-                        <PropertyPath>OwnerUUID</PropertyPath>
-                        <PropertyPath>CommonAccessUUID</PropertyPath>
-                    </Collection>
-                </Annotation>
-		    </Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcStatusMonitoing_UIType/SuccessRatio">
+					<Collection>
+						<PropertyPath>ProcessIDDescription</PropertyPath>
+						<PropertyPath>ProcessDate</PropertyPath>
+						<PropertyPath>ProcessStatus</PropertyPath>
+						<PropertyPath>ProcessClusterDescriptionISL</PropertyPath>
+						<PropertyPath>MarketPartner</PropertyPath>
+						<PropertyPath>BusinessObjectUUID</PropertyPath>
+						<PropertyPath>OwnerUUID</PropertyPath>
+						<PropertyPath>CommonAccessUUID</PropertyPath>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcStatMonitoring_UIType/SuccessRatio">
 				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcStatusMonitoing_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcStatMonitoring_UIType">
 				<Annotation Term="UI.DataPoint" Qualifier="StatusSuccessRatio">
 					<Record Type="UI.DataPointType">
 						<PropertyValue Property="Value" Path="SuccessRatio"/>
@@ -46,7 +45,7 @@
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcLoadMonitoring_UIType">
 				<Annotation Term="UI.KPI" Qualifier="StackedColumnChart">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="StackedColumnChart" />
+						<PropertyValue Property="ID" String="StackedColumnChart"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -70,7 +69,7 @@
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
 								<PropertyValue Property="Value" Path="ProcessStatusCount"/>
-								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -88,29 +87,29 @@
 												<AnnotationPath>@UI.Chart#StackedColumnChart</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<PropertyValue Property="MaxItems" Int="10"/>
+										<PropertyValue Property="MaxItems" Int="5000"/>
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
-													<PropertyValue Property="Property" PropertyPath="ProcessDate"/>
-													<PropertyValue Property="Descending" Bool="true"/>
+													<PropertyValue Property="Property" PropertyPath="ProcessStatus"/>
+													<PropertyValue Property="Descending" Bool="false"/>
 												</Record>
 											</Collection>
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process" />
-                				<PropertyValue Property="Action" String="display" />
-                    			<PropertyValue Property="RequiresContext" Bool="false" />
+								<PropertyValue Property="SemanticObject" String="Process"/>
+								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMon_PType_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PType_UIType">
 				<Annotation Term="UI.KPI" Qualifier="PType">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="PType" />
+						<PropertyValue Property="ID" String="PType"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -134,7 +133,7 @@
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
 								<PropertyValue Property="Value" Path="OpenCount"/>
-								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -152,7 +151,7 @@
 												<AnnotationPath>@UI.Chart#PType</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<PropertyValue Property="MaxItems" Int="50"/>
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -163,18 +162,18 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process" />
-                				<PropertyValue Property="Action" String="display" />
-                    			<PropertyValue Property="RequiresContext" Bool="false" />
+								<PropertyValue Property="SemanticObject" String="Process"/>
+								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoniPClust_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PClust_UIType">
 				<Annotation Term="UI.KPI" Qualifier="PCluster">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="PCluster" />
+						<PropertyValue Property="ID" String="PCluster"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -198,7 +197,7 @@
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
 								<PropertyValue Property="Value" Path="OpenCount"/>
-								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -216,7 +215,7 @@
 												<AnnotationPath>@UI.Chart#PCluster</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<PropertyValue Property="MaxItems" Int="50"/>
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -227,18 +226,18 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process" />
-                				<PropertyValue Property="Action" String="display" />
-                    			<PropertyValue Property="RequiresContext" Bool="false" />
+								<PropertyValue Property="SemanticObject" String="Process"/>
+								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_MPart_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_MaPart_UIType">
 				<Annotation Term="UI.KPI" Qualifier="MP">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="MP" />
+						<PropertyValue Property="ID" String="MP"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -262,7 +261,7 @@
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
 								<PropertyValue Property="Value" Path="OpenCount"/>
-								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -280,7 +279,7 @@
 												<AnnotationPath>@UI.Chart#MP</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<PropertyValue Property="MaxItems" Int="50"/>
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -291,18 +290,18 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process" />
-                				<PropertyValue Property="Action" String="display" />
-                    			<PropertyValue Property="RequiresContext" Bool="false" />
+								<PropertyValue Property="SemanticObject" String="Process"/>
+								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMonitor_UPR_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_UPR_UIType">
 				<Annotation Term="UI.KPI" Qualifier="UPR">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="UPR" />
+						<PropertyValue Property="ID" String="UPR"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -326,7 +325,7 @@
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
 								<PropertyValue Property="Value" Path="OpenCount"/>
-								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -344,7 +343,7 @@
 												<AnnotationPath>@UI.Chart#UPR</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<PropertyValue Property="MaxItems" Int="50"/>
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -355,18 +354,18 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process" />
-                				<PropertyValue Property="Action" String="display" />
-                    			<PropertyValue Property="RequiresContext" Bool="false" />
+								<PropertyValue Property="SemanticObject" String="Process"/>
+								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMonitor_POD_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_POD_UIType">
 				<Annotation Term="UI.KPI" Qualifier="POD">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="POD" />
+						<PropertyValue Property="ID" String="POD"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -390,7 +389,7 @@
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
 								<PropertyValue Property="Value" Path="OpenCount"/>
-								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -408,7 +407,7 @@
 												<AnnotationPath>@UI.Chart#POD</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<PropertyValue Property="MaxItems" Int="50"/>
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -419,18 +418,18 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process" />
-                				<PropertyValue Property="Action" String="display" />
-                    			<PropertyValue Property="RequiresContext" Bool="false" />
+								<PropertyValue Property="SemanticObject" String="Process"/>
+								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMonitor_OMP_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_OMP_UIType">
 				<Annotation Term="UI.KPI" Qualifier="OMP">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="OMP" />
+						<PropertyValue Property="ID" String="OMP"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -454,7 +453,7 @@
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
 								<PropertyValue Property="Value" Path="OpenCount"/>
-								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -472,7 +471,7 @@
 												<AnnotationPath>@UI.Chart#OMP</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<PropertyValue Property="MaxItems" Int="50"/>
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -483,9 +482,9 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process" />
-                				<PropertyValue Property="Action" String="display" />
-                    			<PropertyValue Property="RequiresContext" Bool="false" />
+								<PropertyValue Property="SemanticObject" String="Process"/>
+								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
