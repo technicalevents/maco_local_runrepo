@@ -42,7 +42,7 @@
 					</Record>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcLoadMonitoring_UIType">
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcLoadMoni_UIType">
 				<Annotation Term="UI.KPI" Qualifier="StackedColumnChart">
 					<Record Type="UI.KPIType">
 						<PropertyValue Property="ID" String="StackedColumnChart"/>
@@ -68,7 +68,7 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="ProcessStatusCount"/>
+								<PropertyValue Property="Value" Path="LoadCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
@@ -91,7 +91,7 @@
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
-													<PropertyValue Property="Property" PropertyPath="ProcessStatus"/>
+													<PropertyValue Property="Property" PropertyPath="ProcessDate"/>
 													<PropertyValue Property="Descending" Bool="false"/>
 												</Record>
 											</Collection>

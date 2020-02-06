@@ -153,7 +153,7 @@
 				"model": "PROCESSMONITOR_SB",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"entitySet": "xMP4GxC_ProcLoadMonitoring_UI",
+					"entitySet": "xMP4GxC_ProcLoadMoni_UI",
 					"title": "{{LOAD_CARD_TITLE}}",
 					"valueSelectionInfo": "{{LOAD_SELECTION_INFO}}",
 					"showFilterInHeader": false,
