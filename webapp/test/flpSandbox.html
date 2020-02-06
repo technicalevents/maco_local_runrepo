@@ -7,12 +7,18 @@
 
 	<script id="sap-ui-bootstrap"
 			src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
-			data-sap-ui-theme="sap_belize"
+			data-sap-ui-theme="sap_fiori_3"
 			data-sap-ui-resourceroots='{
-				"com.sap.cd.maco.monitor.ui.app.displayprocess": "../",
-				"com.sap.cd.maco.mmt.ui.reuse": "../../comsapcdmacommtuireuse-1.0.0"
+				"com.sap.cd.maco.monitor.ui.app.displayprocesses": "../",
+    			"com.sap.cd.maco.monitor.ui.app.displaymessages": "../../displaymessage/webapp",
+    			"com.sap.cd.maco.monitor.ui.app.processuiactions": "../../displayprocessuiaction/webapp",
+    			"com.sap.cd.maco.monitor.ui.app.massmeterreadings": "../../massmeterreading/webapp",
+    			"com.sap.cd.maco.monitor.ui.app.invoicemeterreadings": "../../invoicemeterreading/webapp",
+    			"com.sap.cd.maco.monitor.ui.app.overviewprocesses": "../../overviewprocess/webapp",
+    			"com.sap.cd.maco.monitor.ui.app.overviewmessages": "../../overviewmessage/webapp",
+    			"com.sap.cd.maco.mmt.ui.reuse": "../../mmt-ui-lib/src/com/sap/cd/maco/mmt/ui/reuse"
 			}'
-			data-sap-ui-oninit="module:com/sap/cd/maco/monitor/ui/app/displayprocess/test/initFlpSandbox"
+			data-sap-ui-oninit="module:com/sap/cd/maco/monitor/ui/app/displayprocesses/test/initFlpSandbox"
 			data-sap-ui-compatVersion="edge"
 			data-sap-ui-async="true"
 			data-sap-ui-frameOptions="allow">
