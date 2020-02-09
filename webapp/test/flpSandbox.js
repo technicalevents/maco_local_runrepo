@@ -53,7 +53,7 @@ sap.ui.define(
 										title: "Overview Process",
 										targetURL: "#UtilsDataExchangeProcessing-overviewProcess"
 									}
-								},{
+								}, {
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
 										title: "Overview Message",
@@ -74,12 +74,22 @@ sap.ui.define(
 								}]
 							}, {
 								id: "defaultGroupId2",
-								title: "Self Service",
+								title: "Market Communication Technical Self Service",
 								tiles: [{
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
 										title: "Execute Process Reports",
 										targetURL: "#UtilsDataExchangeProcessing-processUiAction"
+									}
+								}]
+							}, {
+								id: "defaultGroupId3",
+								title: "Market Communication Business Self Service",
+								tiles: [{
+									tileType: "sap.ushell.ui.tile.StaticTile",
+									properties: {
+										title: "Display Market Partners",
+										targetURL: "#UtilsDataExchangeProcessing-displayMarketPartner"
 									}
 								}]
 							}]
@@ -158,23 +168,6 @@ sap.ui.define(
 										)
 									}
 								},
-								"UtilsDataExchangeProcessing-processUiAction": {
-									semanticObject: "UtilsDataExchangeProcessing",
-									action: "processUiAction",
-									description: "Execute Process Reports",
-									title: "Execute Process Reports",
-									signature: {
-										additionalParameters: "allowed",
-										parameters: {}
-									},
-									resolutionResult: {
-										applicationType: "SAPUI5",
-										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.processuiactions",
-										url: sap.ui.require.toUrl(
-											"com/sap/cd/maco/monitor/ui/app/processuiactions"
-										)
-									}
-								},
 								"UtilsDataExchangeProcessing-massMeterReading": {
 									semanticObject: "UtilsDataExchangeProcessing",
 									action: "massMeterReading",
@@ -206,6 +199,40 @@ sap.ui.define(
 										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.invoicemeterreadings",
 										url: sap.ui.require.toUrl(
 											"com/sap/cd/maco/monitor/ui/app/invoicemeterreadings"
+										)
+									}
+								},
+								"UtilsDataExchangeProcessing-processUiAction": {
+									semanticObject: "UtilsDataExchangeProcessing",
+									action: "processUiAction",
+									description: "Execute Process Reports",
+									title: "Execute Process Reports",
+									signature: {
+										additionalParameters: "allowed",
+										parameters: {}
+									},
+									resolutionResult: {
+										applicationType: "SAPUI5",
+										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.processuiactions",
+										url: sap.ui.require.toUrl(
+											"com/sap/cd/maco/monitor/ui/app/processuiactions"
+										)
+									}
+								},
+								"UtilsDataExchangeProcessing-displayMarketPartner": {
+									semanticObject: "UtilsDataExchangeProcessing",
+									action: "displayMarketPartner",
+									description: "Display Market Partners",
+									title: "Display Market Partners",
+									signature: {
+										additionalParameters: "allowed",
+										parameters: {}
+									},
+									resolutionResult: {
+										applicationType: "SAPUI5",
+										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.selfservice.ui.app.displaymarketpartners",
+										url: sap.ui.require.toUrl(
+											"com/sap/cd/maco/selfservice/ui/app/displaymarketpartners"
 										)
 									}
 								}
