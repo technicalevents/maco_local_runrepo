@@ -1,0 +1,92 @@
+<mvc:View xmlns:core="sap.ui.core" 
+  xmlns="sap.m" 
+  xmlns:smartTable="sap.ui.comp.smarttable" 
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  xmlns:button="com.sap.cd.maco.mmt.ui.reuse.control.button"
+  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
+  xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
+  controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.CertificatesTable" 
+  height="100%">
+  <smartTable:SmartTable id="smartTable" 
+    entitySet="{this>/entitySet}"
+    tableType="ResponsiveTable" 
+    enableAutoBinding="true" 
+    beforeRebindTable="onBeforeRebindTable" 
+    requestAtLeastFields="ObjectId,CertificateName,CertSerialNum,ValidFrom,ValidTo"
+    ignoredFields="" 
+    beforeExport="beforeExport" 
+    useExportToExcel="true" 
+    useTablePersonalisation="true"
+    persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.CertificatesTable"
+    showRowCount="true" 
+    placeToolbarInTable="true" 
+    header="{i18n>tableHeaderCertificates}" 
+    demandPopin="true" 
+    useVariantManagement="false">
+    <smartTable:customToolbar>
+      <OverflowToolbar design="Transparent">
+        <ToolbarSpacer/>
+        <reuseButton:Delete id="delete" c:action="delete" press="onAction" enabled="{this>/tableActionEnabled/delete}" />
+        <reuseButton:Create id="create" c:action="create" press="onAction" enabled="true" />
+      </OverflowToolbar>
+    </smartTable:customToolbar>
+    <Table id="table" 
+      growing="false" 
+      growingScrollToLoad="false" 
+      growingThreshold="10000" 
+      sticky="ColumnHeaders,HeaderToolbar"
+      mode="MultiSelect" >
+      <columns>
+        <Column>
+          <Text text="{/Certificates/CertificateName/#@sap:label}"/>
+          <customData>
+            <core:CustomData key="p13nData" 
+              value='\{"columnIndex":"0", "columnKey":"CertificateName", "leadingProperty":["CertificateName"] }'/>
+          </customData>
+        </Column>
+        <Column>
+          <Text text="{i18n>validity}"/>
+          <customData>
+            <core:CustomData key="p13nData" 
+              value='\{"columnIndex":"1", "columnKey":"ValidFrom", "leadingProperty":["ValidFrom", "ValidTo"] }'/>
+          </customData>
+        </Column>
+        <Column>
+          <Text text="{/Certificates/SubjectDN/#@sap:label}"/>
+          <customData>
+            <core:CustomData key="p13nData" 
+              value='\{"columnIndex":"2", "columnKey":"SubjectDN", "leadingProperty":["SubjectDN"] }'/>
+          </customData>
+        </Column>
+         <Column>
+          <Text text="{/Certificates/IssuerDN/#@sap:label}"/>
+          <customData>
+            <core:CustomData key="p13nData" 
+               value='\{"columnIndex":"3", "columnKey":"IssuerDN", "leadingProperty":["IssuerDN"] }'/>
+          </customData>
+        </Column>
+      </columns>
+      <items>
+        <ColumnListItem>
+          <cells>
+            <reuseTable:ObjectIdentifier title="{CertificateName}"
+              text="{CertSerialNum}"/>
+            <VBox>
+                 <Text text="{ path: 'ValidFrom',
+                              type: 'sap.ui.model.type.DateTime',
+                              formatOptions: { style: 'medium' }
+                             }"/>
+                <Text text="{ path: 'ValidTo',
+                              type: 'sap.ui.model.type.DateTime',
+                              formatOptions: { style: 'medium' }
+                             }"/>
+              </VBox>    
+            <Text text="{SubjectDN}"/>
+            <Text text="{IssuerDN}"/>    
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+  </smartTable:SmartTable>
+</mvc:View>

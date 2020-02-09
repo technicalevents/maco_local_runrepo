@@ -1,0 +1,71 @@
+<mvc:View xmlns:core="sap.ui.core" 
+  xmlns="sap.m" 
+  xmlns:smartTable="sap.ui.comp.smarttable" 
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button"
+  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table"
+  controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.AS2Table" 
+  height="100%">
+  <smartTable:SmartTable
+    id="smartTable"
+    entitySet="{this>/entitySet}"
+    tableType="ResponsiveTable" 
+    enableAutoBinding="true" 
+    beforeRebindTable="onBeforeRebindTable" 
+    requestAtLeastFields="Pid,ObjectId,ValidFrom,ValidTo,AS2ID,AS2Address"
+    ignoredFields="" 
+    useExportToExcel="false" 
+    useTablePersonalisation="false" 
+    showRowCount="false" 
+    demandPopin="true" 
+    useVariantManagement="false">
+    <smartTable:customToolbar>
+      <OverflowToolbar design="Transparent">
+        <ToolbarSpacer/>
+        <button:Update id="upload" c:action="update" press="onAction" enabled="{this>/tableActionEnabled/update}" />
+        <button:Delete id="delete" c:action="delete" press="onAction" enabled="{this>/tableActionEnabled/delete}" />
+        <button:Create id="create" c:action="create" press="onAction" />
+      </OverflowToolbar>
+    </smartTable:customToolbar>
+    <Table id="table" 
+      growing="true" 
+      growingScrollToLoad="false" 
+      growingThreshold="10"
+      mode="MultiSelect" >
+      <columns>
+        <Column>
+          <Text text="{/ExtPartnerAS2Adapter/AS2Address/#@sap:label}"/>
+          <customData>
+            <core:CustomData key="p13nData" 
+              value='\{"columnIndex":"0", columnKey":"AS2Address", "leadingProperty":["AS2Address"] }'/>
+          </customData>
+        </Column>
+        <Column>
+          <Text text="{i18n>validity}"/>
+          <customData>
+            <core:CustomData key="p13nData" 
+              value='\{"columnIndex":"1", "columnKey":"ValidFrom", "leadingProperty":["ValidFrom"] }'/>
+          </customData>
+        </Column>
+        <Column visible="{app>/devMode/enabled}">
+          <Text text="ObjectId"/>
+          <customData>
+            <core:CustomData key="p13nData" 
+              value='\{"columnIndex":"100", "columnKey":"ObjectId", "leadingProperty":["ObjectId"] }'/>
+          </customData>
+        </Column>
+      </columns>
+      <items>
+        <ColumnListItem type="Navigation" press="onAction" c:action="navExternal">
+          <cells>
+            <reuseTable:ObjectIdentifier title="{AS2Address}"/>
+            <core:Fragment fragmentName="com.sap.cd.maco.mmt.ui.reuse.mmt.ValidityCell" 
+              type="XML"/>
+            <Text text="{ObjectId}"/>
+          </cells>
+        </ColumnListItem>
+      </items>
+    </Table>
+  </smartTable:SmartTable>
+</mvc:View>
