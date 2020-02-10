@@ -41,6 +41,49 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="StatusSuccessRatio">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>ProcessStatus</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataFieldForIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" 
+                                String="UtilsDataExchangeProcessing" />
+                            <PropertyValue Property="Action" 
+                                String="displayProcess" />
+                            <PropertyValue Property="RequiresContext" 
+                                Bool="false" />
+                        </Record>
+                    </Collection>
+                </Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcLoadMoni_UIType">
 				<Annotation Term="UI.KPI" Qualifier="StackedColumnChart">
@@ -98,13 +141,63 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process"/>
-								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayProcess"/>
 								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="StackedColumnChart">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>ProcessDate</PropertyPath>
+								<PropertyPath>ProcessStatus</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessDate"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataFieldForIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" 
+                                String="UtilsDataExchangeProcessing" />
+                            <PropertyValue Property="Action" 
+                                String="displayProcess" />
+                            <PropertyValue Property="RequiresContext" 
+                                Bool="false" />
+                        </Record>
+                    </Collection>
+                </Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PType_UIType">
 				<Annotation Term="UI.KPI" Qualifier="PType">
@@ -162,13 +255,63 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process"/>
-								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayProcess"/>
 								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="PType">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>ProcessIDDescription</PropertyPath>
+								<PropertyPath>ProcessStatus</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessIDDescription"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataFieldForIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" 
+                                String="UtilsDataExchangeProcessing" />
+                            <PropertyValue Property="Action" 
+                                String="displayProcess" />
+                            <PropertyValue Property="RequiresContext" 
+                                Bool="false" />
+                        </Record>
+                    </Collection>
+                </Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PClust_UIType">
 				<Annotation Term="UI.KPI" Qualifier="PCluster">
@@ -226,13 +369,63 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process"/>
-								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayProcess"/>
 								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="PCluster">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>ProcessClusterDescriptionISL</PropertyPath>
+								<PropertyPath>ProcessStatus</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessClusterDescriptionISL"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataFieldForIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" 
+                                String="UtilsDataExchangeProcessing" />
+                            <PropertyValue Property="Action" 
+                                String="displayProcess" />
+                            <PropertyValue Property="RequiresContext" 
+                                Bool="false" />
+                        </Record>
+                    </Collection>
+                </Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_MaPart_UIType">
 				<Annotation Term="UI.KPI" Qualifier="MP">
@@ -290,13 +483,63 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process"/>
-								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayProcess"/>
 								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="MP">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>MarketPartner</PropertyPath>
+								<PropertyPath>ProcessStatus</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="MarketPartner"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataFieldForIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" 
+                                String="UtilsDataExchangeProcessing" />
+                            <PropertyValue Property="Action" 
+                                String="displayProcess" />
+                            <PropertyValue Property="RequiresContext" 
+                                Bool="false" />
+                        </Record>
+                    </Collection>
+                </Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_UPR_UIType">
 				<Annotation Term="UI.KPI" Qualifier="UPR">
@@ -354,13 +597,63 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process"/>
-								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayProcess"/>
 								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="UPR">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>CommonAccessUUID</PropertyPath>
+								<PropertyPath>ProcessStatus</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="CommonAccessUUID"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataFieldForIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" 
+                                String="UtilsDataExchangeProcessing" />
+                            <PropertyValue Property="Action" 
+                                String="displayProcess" />
+                            <PropertyValue Property="RequiresContext" 
+                                Bool="false" />
+                        </Record>
+                    </Collection>
+                </Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_POD_UIType">
 				<Annotation Term="UI.KPI" Qualifier="POD">
@@ -418,13 +711,63 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process"/>
-								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayProcess"/>
 								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="POD">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>BusinessObjectUUID</PropertyPath>
+								<PropertyPath>ProcessStatus</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="BusinessObjectUUID"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataFieldForIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" 
+                                String="UtilsDataExchangeProcessing" />
+                            <PropertyValue Property="Action" 
+                                String="displayProcess" />
+                            <PropertyValue Property="RequiresContext" 
+                                Bool="false" />
+                        </Record>
+                    </Collection>
+                </Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_OMP_UIType">
 				<Annotation Term="UI.KPI" Qualifier="OMP">
@@ -482,13 +825,63 @@
 										</PropertyValue>
 									</Record>
 								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="Process"/>
-								<PropertyValue Property="Action" String="display"/>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayProcess"/>
 								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="OMP">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>MarketPartner</PropertyPath>
+								<PropertyPath>ProcessStatus</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="MarketPartner"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataFieldForIntentBasedNavigation">
+                            <PropertyValue Property="SemanticObject" 
+                                String="UtilsDataExchangeProcessing" />
+                            <PropertyValue Property="Action" 
+                                String="displayProcess" />
+                            <PropertyValue Property="RequiresContext" 
+                                Bool="false" />
+                        </Record>
+                    </Collection>
+                </Annotation>
 			</Annotations>
 		</Schema>
 	</edmx:DataServices>

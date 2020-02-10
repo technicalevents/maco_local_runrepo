@@ -16,26 +16,15 @@
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
-					"localUri": "localService/metadata.xml",
 					"annotations": [
-						"MP4G_PROCESSMONITOR_SB_VAN",
 						"annotations"
 					]
-				}
-			},
-
-			"MP4G_PROCESSMONITOR_SB_VAN": {
-				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FPROCESSMONITOR_SB_VAN',Version='0001')/$value/",
-				"type": "ODataAnnotation",
-				"settings": {
-					"localUri": "localService/PROCESSMONITOR_SB/MP4G_PROCESSMONITOR_SB_VAN.xml"
 				}
 			},
 			"annotations": {
 				"type": "ODataAnnotation",
 				"uri": "annotation/annotations.xml",
 				"settings": {
-					"localUri": "annotation/annotations.xml"
 				}
 			}
 		},
@@ -47,8 +36,8 @@
 						"parameters": {},
 						"additionalParameters": "allowed"
 					},
-					"semanticObject": "Process",
-					"action": "overview",
+					"semanticObject": "UtilsDataExchangeProcessing",
+					"action": "overviewProcess",
 					"title": "{{APP_TITLE}}",
 					"icon": "sap-icon://area-chart"
 				}
@@ -88,7 +77,10 @@
 				"sap.ui.comp": {},
 				"sap.ui.table": {},
 				"sap.ovp": {},
-				"sap.ui.suite": {}
+				"sap.ui.suite": {},
+				"com.sap.cd.maco.mmt.ui.reuse": {
+					"minVersion": "2.0.0"
+				}
 			}
 		},
 		"contentDensities": {
@@ -145,7 +137,7 @@
 					"defaultSpan": {
 						"cols": 1
 					},
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StatusSuccessRatio",
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#StatusSuccessRatio"
 				}
 			},
