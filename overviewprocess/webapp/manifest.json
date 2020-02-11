@@ -126,7 +126,7 @@
 		"useDateRangeType": true,
 		"containerLayout": "resizable",
 		"cards": {
-			"idStatusCard": {
+			"a_StatusCard": {
 				"model": "PROCESSMONITOR_SB",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
@@ -141,7 +141,7 @@
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#StatusSuccessRatio"
 				}
 			},
-			"idLoadCard": {
+			"b_LoadCard": {
 				"model": "PROCESSMONITOR_SB",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
@@ -156,7 +156,7 @@
 					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#StackedColumnChart"
 				}
 			},
-			"idTodoCard": {
+			"c_TodoCard": {
 				"model": "PROCESSMONITOR_SB",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
@@ -200,18 +200,17 @@
 					}]
 				}
 			},
-			"idErrorProcess": {
+			"d_ErrorProcess": {
 				"model": "PROCESSMONITOR_SB",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_ProcOpenMoni_PType_UI",
 					"title": "{{ERRONEOUS_PROCESS_CARD_TITLE}}",
-					"valueSelectionInfo": "{{ERRONEOUS_PROCESS_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
 						"cols": 2
 					},
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PType",
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ERRProcessId",
 					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ERRProcessId"
 				}
 			}

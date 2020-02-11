@@ -293,7 +293,7 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="OpenCount"/>
+								<PropertyValue Property="Value" Path="LoadCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
@@ -309,7 +309,7 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#PType</AnnotationPath>
+												<AnnotationPath>@UI.Chart#ERRProcessId</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<PropertyValue Property="MaxItems" Int="5000"/>
@@ -359,6 +359,37 @@
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessIDDescription"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="ERRProcessId">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>ProcessIDDescription</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="ProcessIDDescription"/>
@@ -903,7 +934,7 @@
 						</PropertyValue>
 						<PropertyValue Property="Dimensions">
 							<Collection>
-								<PropertyPath>MarketPartner</PropertyPath>
+								<PropertyPath>OwnerUUID</PropertyPath>
 								<PropertyPath>ProcessStatus</PropertyPath>
 							</Collection>
 						</PropertyValue>
@@ -916,7 +947,7 @@
 							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="MarketPartner"/>
+									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
 								</Record>
 							</Collection>

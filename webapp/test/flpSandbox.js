@@ -50,7 +50,7 @@ sap.ui.define(
 								}, {
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
-										title: "Overview Process",
+										title: "Overview Market Processes",
 										targetURL: "#UtilsDataExchangeProcessing-overviewProcess"
 									}
 								}, {
@@ -137,8 +137,8 @@ sap.ui.define(
 								"UtilsDataExchangeProcessing-overviewProcess": {
 									semanticObject: "UtilsDataExchangeProcessing",
 									action: "overviewProcess",
-									description: "OverView Process",
-									title: "OverView Process",
+									description: "Overview Market Processes",
+									title: "Overview Market Processes",
 									signature: {
 										additionalParameters: "allowed",
 										parameters: {}
