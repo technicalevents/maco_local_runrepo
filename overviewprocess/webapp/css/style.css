@@ -1,3 +1,7 @@
 .comSapCdMacoMmtUiMonitorMsgGraphTitle .sapMNCIndScale {
 	overflow: inherit;
 }
+
+.comSapCdMacoMmtUiMonitorMsgGraphTitle .ovpChartTitle {
+	visibility: hidden;
+}
