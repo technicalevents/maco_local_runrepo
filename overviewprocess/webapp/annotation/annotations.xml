@@ -309,7 +309,7 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#ErrPType</AnnotationPath>
+												<AnnotationPath>@UI.Chart#OpenPType</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<PropertyValue Property="MaxItems" Int="5000"/>
@@ -359,37 +359,6 @@
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
-							<Collection>
-								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="ProcessIDDescription"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="ErrPType">
-					<Record Type="UI.ChartDefinitionType">
-						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
-						<PropertyValue Property="Measures">
-							<Collection>
-								<PropertyPath>ProcessStatusCount</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="MeasureAttributes">
-							<Collection>
-								<Record Type="UI.ChartMeasureAttributeType">
-									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
-								</Record>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="Dimensions">
-							<Collection>
-								<PropertyPath>ProcessIDDescription</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="ProcessIDDescription"/>
@@ -563,7 +532,7 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#ErrPCluster</AnnotationPath>
+												<AnnotationPath>@UI.Chart#OpenPCluster</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
@@ -581,37 +550,6 @@
 								<PropertyValue Property="Action" String="displayProcess"/>
 								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="ErrPCluster">
-					<Record Type="UI.ChartDefinitionType">
-						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
-						<PropertyValue Property="Measures">
-							<Collection>
-								<PropertyPath>ProcessStatusCount</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="MeasureAttributes">
-							<Collection>
-								<Record Type="UI.ChartMeasureAttributeType">
-									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
-								</Record>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="Dimensions">
-							<Collection>
-								<PropertyPath>ProcessClusterDescriptionISL</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="DimensionAttributes">
-							<Collection>
-								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="ProcessClusterDescriptionISL"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
-								</Record>
-							</Collection>
 						</PropertyValue>
 					</Record>
 				</Annotation>
@@ -671,14 +609,14 @@
 											</Collection>
 										</PropertyValue>
 										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
-										<PropertyValue Property="SortOrder">
+										<!--<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
 													<PropertyValue Property="Property" PropertyPath="MarketPartner"/>
 													<PropertyValue Property="Descending" Bool="false"/>
 												</Record>
 											</Collection>
-										</PropertyValue>
+										</PropertyValue>-->
 									</Record>
 								</PropertyValue>
 								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
@@ -779,55 +717,24 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#ErrMP</AnnotationPath>
+												<AnnotationPath>@UI.Chart#OpenMP</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
-										<PropertyValue Property="SortOrder">
+										<!--<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
 													<PropertyValue Property="Property" PropertyPath="MarketPartner"/>
 													<PropertyValue Property="Descending" Bool="false"/>
 												</Record>
 											</Collection>
-										</PropertyValue>
+										</PropertyValue>-->
 									</Record>
 								</PropertyValue>
 								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
 								<PropertyValue Property="Action" String="displayProcess"/>
 								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="ErrMP">
-					<Record Type="UI.ChartDefinitionType">
-						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
-						<PropertyValue Property="Measures">
-							<Collection>
-								<PropertyPath>ProcessStatusCount</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="MeasureAttributes">
-							<Collection>
-								<Record Type="UI.ChartMeasureAttributeType">
-									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
-								</Record>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="Dimensions">
-							<Collection>
-								<PropertyPath>MarketPartner</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="DimensionAttributes">
-							<Collection>
-								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="MarketPartner"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
-								</Record>
-							</Collection>
 						</PropertyValue>
 					</Record>
 				</Annotation>
@@ -883,7 +790,7 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#OMP</AnnotationPath>
+												<AnnotationPath>@UI.Chart#OpenOMP</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<PropertyValue Property="MaxItems" Int="500"/>
@@ -901,37 +808,6 @@
 								<PropertyValue Property="Action" String="displayProcess"/>
 								<PropertyValue Property="RequiresContext" Bool="false"/>
 							</Record>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="ErrOMP">
-					<Record Type="UI.ChartDefinitionType">
-						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
-						<PropertyValue Property="Measures">
-							<Collection>
-								<PropertyPath>ProcessStatusCount</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="MeasureAttributes">
-							<Collection>
-								<Record Type="UI.ChartMeasureAttributeType">
-									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
-								</Record>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="Dimensions">
-							<Collection>
-								<PropertyPath>OwnerUUID</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="DimensionAttributes">
-							<Collection>
-								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
-								</Record>
-							</Collection>
 						</PropertyValue>
 					</Record>
 				</Annotation>
@@ -988,7 +864,7 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#ErrOMP</AnnotationPath>
+												<AnnotationPath>@UI.Chart#OpenOMP</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<PropertyValue Property="MaxItems" Int="500"/>

@@ -37,14 +37,11 @@ sap.ui.define([
 					child: "null"
 				},
 				controls: {
-					table: "idProcessSmartTable",
-					variantManagement: "idProcessVariantManagement",
-					filterBar: "idProcessSmartFilterBar"
+					table: "idMarketPartnersSmartTable",
+					variantManagement: "idMarketPartnersVariantManagement",
+					filterBar: "idMarketPartnersSmartFilterBar"
 				},
-				tableAccessControl: {
-					executeMsgAggr: true,
-					reportExecution: true
-				}
+				tableAccessControl: {}
 			});
 			
 			this.oRouter.getRoute("initial").attachPatternMatched(this._onRoutePatternMatched, this);

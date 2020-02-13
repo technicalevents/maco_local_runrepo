@@ -12,12 +12,12 @@
     <semantic:SemanticPage headerExpanded="true" 
 						   toggleHeaderOnTitleClick="true">
   		<semantic:titleHeading>
-			 <variants:SmartVariantManagement id="idProcessVariantManagement" 
+			 <variants:SmartVariantManagement id="idMarketPartnersVariantManagement" 
 											  persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.filterbar"/>
 		</semantic:titleHeading>
     <semantic:headerContent>
-        <smartFilterBar:SmartFilterBar id="idProcessSmartFilterBar"
-									   smartVariant="idProcessVariantManagement"
+        <smartFilterBar:SmartFilterBar id="idMarketPartnersSmartFilterBar"
+									   smartVariant="idMarketPartnersVariantManagement"
 									   enableBasicSearch="true"
 									   liveMode="true"
 									   useDateRangeType="true"
@@ -26,35 +26,16 @@
 									   filterChange="onProcessFilterBarChanged"
 									   showFilterConfiguration="false"
 									   persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.filterbar"
-									   entitySet="xMP4GxC_ProcessHeader_UI">
-            <smartFilterBar:controlConfiguration>
-                <smartFilterBar:ControlConfiguration key="OwnerUUID" 
-													 label="{/xMP4GxC_ProcessHeader_UI/OwnerUUID/#@sap:label}"
-													 preventInitialDataFetchInValueHelpDialog="false">
-					<smartFilterBar:customControl>
-						<MultiComboBox showSecondaryValues= "true"
-									   items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
-									   selectionChange="onOwnMarketPartnerChange">
-							<core:ListItem key="{market_partner}" 
-										   text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
-														  {path: 'mp_name'},
-														  {path: 'market_partner'},
-														  {path: 'division_text'}],
-												 formatter: '.formatMessage'}"
-										   additionalText="{market_role}"/>
-						</MultiComboBox>
-					</smartFilterBar:customControl>
-				</smartFilterBar:ControlConfiguration>
-          	</smartFilterBar:controlConfiguration>
+									   entitySet="xMP4GxCE_PARTNERS">
         </smartFilterBar:SmartFilterBar>
     </semantic:headerContent>
     <semantic:content>
-		<smartTable:SmartTable id="idProcessSmartTable"
-							   entitySet="xMP4GxC_ProcessHeader_UI"
+		<smartTable:SmartTable id="idMarketPartnersSmartTable"
+							   entitySet="xMP4GxCE_PARTNERS"
 							   tableType="ResponsiveTable"
 							   smartFilterId="idProcessSmartFilterBar"
 							   smartVariant="idProcessVariantManagement"
-							   enableAutoBinding="false" 
+							   enableAutoBinding="true" 
 							   ignoredFields="" 
 							   demandPopin="true"
 							   useExportToExcel="false"
@@ -62,35 +43,14 @@
 							   useVariantManagement="false" 
 							   c:p13nDialogSettings='{filter:{visible:false}}' 
 							   beforeRebindTable="onBeforeRebindTable"
-							   persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.processuiactions.table"
-							   requestAtLeastFields="ProcessDocumentKey,StatusCriticality,ProcessID,OwnerUUID,OwnerUUIDText">
-			<smartTable:customToolbar>
-				<OverflowToolbar design="Transparent">
-					<ToolbarSpacer/>
-					<Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
-			                enabled="{this>/tableActionEnabled/reportExecution}"
-			                type="Transparent"
-			                c:reportAction="Deadline" 
-			                c:action="reportExecution" 
-			                press="onAction"/>
-			        <Button text="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
-			                enabled="{this>/tableActionEnabled/reportExecution}"
-			                type="Transparent"
-			                c:reportAction="TriggerDoc" 
-			                c:action="reportExecution" 
-			                press="onAction"/>
-					<Button text="{i18n>PROCESS_LIST_REFRESH_TITLE}"
-							type="Transparent"
-							press="onRefresh"/>
-				</OverflowToolbar>
-			</smartTable:customToolbar>
+							   persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.table">
 			<Table id="idProcessTable"
 				   growing="true"
 				   growingScrollToLoad="true" 
 				   growingThreshold="100" 
 				   mode="MultiSelect"
 				   sticky="ColumnHeaders,HeaderToolbar">
-				<columns>
+				<!--<columns>
 					<Column width="40%">
 						<Text text="{/xMP4GxC_ProcessHeader_UI/ProcessDocumentNumber/#@sap:label}"/>
 						<customData>
@@ -121,17 +81,9 @@
 														 text="{OwnerUUID}"/>
 						</cells>
 					</ColumnListItem>
-				</items>
+				</items>-->
 			</Table>
 		</smartTable:SmartTable>
     </semantic:content>
-    <semantic:titleCustomTextActions>
-     	<Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
-				type="Transparent"
-				press="onAction"
-				c:action="executeMsgAggr"/>
-        <reuseButton:Share press="onAction" 
-                           c:action="share" />
-    </semantic:titleCustomTextActions>
 	</semantic:SemanticPage>
 </mvc:View>

@@ -12,7 +12,7 @@
     "ach": "MACO-MMT",
     "dataSources": {
       "maindatasource": {
-        "uri": "/sap/opu/odata/MP4G/PROCESSHEADER_SB",
+        "uri": "/sap/opu/odata/MP4G/UI_MRKTPARTNER_DISP",
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
@@ -24,7 +24,7 @@
         }
       },
       "remoteAnnotation": {
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FPROCESSHEADER_SB_VAN',Version='0001')/$value/",
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MRKTPARTNER_DISP_VAN',Version='0001')/$value/",
         "type": "ODataAnnotation",
         "settings": {
         }
@@ -46,7 +46,7 @@
             "additionalParameters": "allowed"
           },
           "semanticObject": "UtilsDataExchangeProcessing",
-          "action": "processUiAction",
+          "action": "displayMarketPartner",
           "title": "{{APP_TITLE}}",
           "icon": "sap-icon://process"
         }
