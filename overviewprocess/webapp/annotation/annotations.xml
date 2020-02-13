@@ -194,9 +194,9 @@
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PType_UIType">
-				<Annotation Term="UI.KPI" Qualifier="PType">
+				<Annotation Term="UI.KPI" Qualifier="OpenPType">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="PType"/>
+						<PropertyValue Property="ID" String="OpenPType"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -235,7 +235,7 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#PType</AnnotationPath>
+												<AnnotationPath>@UI.Chart#OpenPType</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
@@ -256,9 +256,9 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.KPI" Qualifier="ERRProcessId">
+				<Annotation Term="UI.KPI" Qualifier="ErrPType">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="ERRProcessId"/>
+						<PropertyValue Property="ID" String="ErrPType"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -309,7 +309,7 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#ERRProcessId</AnnotationPath>
+												<AnnotationPath>@UI.Chart#ErrPType</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<PropertyValue Property="MaxItems" Int="5000"/>
@@ -330,7 +330,7 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="PType">
+				<Annotation Term="UI.Chart" Qualifier="OpenPType">
 					<Record Type="UI.ChartDefinitionType">
 						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
 						<PropertyValue Property="Measures">
@@ -368,9 +368,9 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="ERRProcessId">
+				<Annotation Term="UI.Chart" Qualifier="ErrPType">
 					<Record Type="UI.ChartDefinitionType">
-						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
 						<PropertyValue Property="Measures">
 							<Collection>
 								<PropertyPath>ProcessStatusCount</PropertyPath>
@@ -410,9 +410,9 @@
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PClust_UIType">
-				<Annotation Term="UI.KPI" Qualifier="PCluster">
+				<Annotation Term="UI.KPI" Qualifier="OpenPCluster">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="PCluster"/>
+						<PropertyValue Property="ID" String="OpenPCluster"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -451,7 +451,7 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#PCluster</AnnotationPath>
+												<AnnotationPath>@UI.Chart#OpenPCluster</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
@@ -472,7 +472,7 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="PCluster">
+				<Annotation Term="UI.Chart" Qualifier="OpenPCluster">
 					<Record Type="UI.ChartDefinitionType">
 						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
 						<PropertyValue Property="Measures">
@@ -510,6 +510,111 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.KPI" Qualifier="ErrPCluster">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="OpenPCluster"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="ProcessStatus"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+														<PropertyValue Property="Low" String="ERR"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="LoadCount"/>
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#ErrPCluster</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="ProcessClusterDescriptionISL"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayProcess"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="ErrPCluster">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>ProcessClusterDescriptionISL</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessClusterDescriptionISL"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
 				<Annotation Term="UI.Identification">
 					<Collection>
 						<Record Type="UI.DataFieldForIntentBasedNavigation">
@@ -521,9 +626,9 @@
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_MaPart_UIType">
-				<Annotation Term="UI.KPI" Qualifier="MP">
+				<Annotation Term="UI.KPI" Qualifier="OpenMP">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="MP"/>
+						<PropertyValue Property="ID" String="OpenMP"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -562,7 +667,7 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#MP</AnnotationPath>
+												<AnnotationPath>@UI.Chart#OpenMP</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
@@ -583,7 +688,7 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="MP">
+				<Annotation Term="UI.Chart" Qualifier="OpenMP">
 					<Record Type="UI.ChartDefinitionType">
 						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
 						<PropertyValue Property="Measures">
@@ -621,20 +726,9 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.Identification">
-					<Collection>
-						<Record Type="UI.DataFieldForIntentBasedNavigation">
-							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
-							<PropertyValue Property="Action" String="displayProcess"/>
-							<PropertyValue Property="RequiresContext" Bool="false"/>
-						</Record>
-					</Collection>
-				</Annotation>
-			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_UPR_UIType">
-				<Annotation Term="UI.KPI" Qualifier="UPR">
+				<Annotation Term="UI.KPI" Qualifier="ErrMP">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="UPR"/>
+						<PropertyValue Property="ID" String="ErrMP"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -651,13 +745,25 @@
 												</Collection>
 											</PropertyValue>
 										</Record>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="ProcessStatus"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+														<PropertyValue Property="Low" String="ERR"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
 									</Collection>
 								</PropertyValue>
 							</Record>
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="OpenCount"/>
+								<PropertyValue Property="Value" Path="LoadCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
@@ -673,14 +779,14 @@
 									<Record Type="UI.PresentationVariantType">
 										<PropertyValue Property="Visualizations">
 											<Collection>
-												<AnnotationPath>@UI.Chart#UPR</AnnotationPath>
+												<AnnotationPath>@UI.Chart#ErrMP</AnnotationPath>
 											</Collection>
 										</PropertyValue>
 										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
-													<PropertyValue Property="Property" PropertyPath="CommonAccessUUID"/>
+													<PropertyValue Property="Property" PropertyPath="MarketPartner"/>
 													<PropertyValue Property="Descending" Bool="false"/>
 												</Record>
 											</Collection>
@@ -694,7 +800,7 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="UPR">
+				<Annotation Term="UI.Chart" Qualifier="ErrMP">
 					<Record Type="UI.ChartDefinitionType">
 						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
 						<PropertyValue Property="Measures">
@@ -712,131 +818,13 @@
 						</PropertyValue>
 						<PropertyValue Property="Dimensions">
 							<Collection>
-								<PropertyPath>CommonAccessUUID</PropertyPath>
-								<PropertyPath>ProcessStatus</PropertyPath>
+								<PropertyPath>MarketPartner</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
-								</Record>
-							</Collection>
-							<Collection>
-								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="CommonAccessUUID"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.Identification">
-					<Collection>
-						<Record Type="UI.DataFieldForIntentBasedNavigation">
-							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
-							<PropertyValue Property="Action" String="displayProcess"/>
-							<PropertyValue Property="RequiresContext" Bool="false"/>
-						</Record>
-					</Collection>
-				</Annotation>
-			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_POD_UIType">
-				<Annotation Term="UI.KPI" Qualifier="POD">
-					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="POD"/>
-						<PropertyValue Property="SelectionVariant">
-							<Record Type="UI.SelectionVariantType">
-								<PropertyValue Property="SelectOptions">
-									<Collection>
-										<Record Type="UI.SelectOptionType">
-											<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
-											<PropertyValue Property="Ranges">
-												<Collection>
-													<Record Type="UI.SelectionRangeType">
-														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
-														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
-														<PropertyValue Property="Low" String="0"/>
-													</Record>
-												</Collection>
-											</PropertyValue>
-										</Record>
-									</Collection>
-								</PropertyValue>
-							</Record>
-						</PropertyValue>
-						<PropertyValue Property="DataPoint">
-							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="OpenCount"/>
-								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
-								<PropertyValue Property="ValueFormat">
-									<Record Type="UI.NumberFormat">
-										<PropertyValue Property="ScaleFactor" Decimal="1"/>
-										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
-									</Record>
-								</PropertyValue>
-							</Record>
-						</PropertyValue>
-						<PropertyValue Property="Detail">
-							<Record Type="UI.KPIDetailType">
-								<PropertyValue Property="DefaultPresentationVariant">
-									<Record Type="UI.PresentationVariantType">
-										<PropertyValue Property="Visualizations">
-											<Collection>
-												<AnnotationPath>@UI.Chart#POD</AnnotationPath>
-											</Collection>
-										</PropertyValue>
-										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
-										<PropertyValue Property="SortOrder">
-											<Collection>
-												<Record Type="Common.SortOrderType">
-													<PropertyValue Property="Property" PropertyPath="BusinessObjectUUID"/>
-													<PropertyValue Property="Descending" Bool="false"/>
-												</Record>
-											</Collection>
-										</PropertyValue>
-									</Record>
-								</PropertyValue>
-								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
-								<PropertyValue Property="Action" String="displayProcess"/>
-								<PropertyValue Property="RequiresContext" Bool="false"/>
-							</Record>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="POD">
-					<Record Type="UI.ChartDefinitionType">
-						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
-						<PropertyValue Property="Measures">
-							<Collection>
-								<PropertyPath>ProcessStatusCount</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="MeasureAttributes">
-							<Collection>
-								<Record Type="UI.ChartMeasureAttributeType">
-									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
-								</Record>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="Dimensions">
-							<Collection>
-								<PropertyPath>BusinessObjectUUID</PropertyPath>
-								<PropertyPath>ProcessStatus</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="DimensionAttributes">
-							<Collection>
-								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
-								</Record>
-							</Collection>
-							<Collection>
-								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="BusinessObjectUUID"/>
+									<PropertyValue Property="Dimension" PropertyPath="MarketPartner"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
 								</Record>
 							</Collection>
@@ -854,9 +842,9 @@
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_OMP_UIType">
-				<Annotation Term="UI.KPI" Qualifier="OMP">
+				<Annotation Term="UI.KPI" Qualifier="OpenOMP">
 					<Record Type="UI.KPIType">
-						<PropertyValue Property="ID" String="OMP"/>
+						<PropertyValue Property="ID" String="OpenOMP"/>
 						<PropertyValue Property="SelectionVariant">
 							<Record Type="UI.SelectionVariantType">
 								<PropertyValue Property="SelectOptions">
@@ -898,7 +886,7 @@
 												<AnnotationPath>@UI.Chart#OMP</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
+										<PropertyValue Property="MaxItems" Int="500"/>
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -916,7 +904,112 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.Chart" Qualifier="OMP">
+				<Annotation Term="UI.Chart" Qualifier="ErrOMP">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>OwnerUUID</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.KPI" Qualifier="ErrOMP">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="ErrOMP"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="ProcessStatus"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+														<PropertyValue Property="Low" String="ERR"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="LoadCount"/>
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#ErrOMP</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<PropertyValue Property="MaxItems" Int="500"/>
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="OwnerUUID"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayProcess"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="OpenOMP">
 					<Record Type="UI.ChartDefinitionType">
 						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
 						<PropertyValue Property="Measures">

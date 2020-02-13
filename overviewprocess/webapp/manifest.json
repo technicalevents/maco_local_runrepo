@@ -17,7 +17,8 @@
 				"settings": {
 					"odataVersion": "2.0",
 					"annotations": [
-						"annotations"
+						"annotations",
+						""
 					]
 				}
 			},
@@ -169,34 +170,23 @@
 					"tabs": [{
 						"entitySet": "xMP4GxC_ProcOpenMoni_PType_UI",
 						"value": "{{BY_PROCESS_TYPE_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PType",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PType",
-						"bEnableStableColors": false
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OpenPType",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OpenPType"
 					}, {
 						"entitySet": "xMP4GxC_ProcOpenMoni_PClust_UI",
 						"value": "{{BY_PROCESS_CLUSTER_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PCluster",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PCluster"
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OpenPCluster",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OpenPCluster"
 					}, {
 						"entitySet": "xMP4GxC_ProcOpenMoni_MaPart_UI",
 						"value": "{{BY_MARKET_PARTNER_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#MP",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#MP"
-					}, {
-						"entitySet": "xMP4GxC_ProcOpenMoni_POD_UI",
-						"value": "{{BY_POD_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#POD",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#POD"
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OpenMP",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OpenMP"
 					}, {
 						"entitySet": "xMP4GxC_ProcOpenMoni_OMP_UI",
 						"value": "{{BY_OMP_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OMP",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OMP"
-					}, {
-						"entitySet": "xMP4GxC_ProcOpenMoni_UPR_UI",
-						"value": "{{BY_UPR_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#UPR",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#UPR"
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OpenOMP",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OpenOMP"
 					}]
 				}
 			},
@@ -204,14 +194,32 @@
 				"model": "PROCESSMONITOR_SB",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"entitySet": "xMP4GxC_ProcOpenMoni_PType_UI",
 					"title": "{{ERRONEOUS_PROCESS_CARD_TITLE}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
 						"cols": 2
 					},
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ERRProcessId",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ERRProcessId"
+					"tabs": [{
+						"entitySet": "xMP4GxC_ProcOpenMoni_PType_UI",
+						"value": "{{BY_PROCESS_TYPE_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ErrPType",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ErrPType"
+					}, {
+						"entitySet": "xMP4GxC_ProcOpenMoni_PClust_UI",
+						"value": "{{BY_PROCESS_CLUSTER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ErrPCluster",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ErrPCluster"
+					}, {
+						"entitySet": "xMP4GxC_ProcOpenMoni_MaPart_UI",
+						"value": "{{BY_MARKET_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ErrMP",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ErrMP"
+					}, {
+						"entitySet": "xMP4GxC_ProcOpenMoni_OMP_UI",
+						"value": "{{BY_OMP_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ErrOMP",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ErrOMP"
+					}]
 				}
 			}
 		},
