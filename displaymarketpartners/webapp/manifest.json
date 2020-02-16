@@ -12,7 +12,7 @@
     "ach": "MACO-MMT",
     "dataSources": {
       "maindatasource": {
-        "uri": "/sap/opu/odata/MP4G/UI_MRKTPARTNER_DISP",
+        "uri": "/sap/opu/odata/sap/ZUI_SELFSERVICE",
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
@@ -24,7 +24,7 @@
         }
       },
       "remoteAnnotation": {
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MRKTPARTNER_DISP_VAN',Version='0001')/$value/",
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUI_SELFSERVICE_VAN',Version='0001')/$value/",
         "type": "ODataAnnotation",
         "settings": {
         }
@@ -157,6 +157,13 @@
           "target": [
             "listReport"
           ]
+        },
+        {
+          "name": "partnerPage",
+          "pattern": "partnerPage/{PartnerId}",
+          "target": [
+            "partnerPage"
+          ]
         }
       ],
       "targets": {
@@ -166,6 +173,13 @@
           "viewId": "listReport",
           "viewLevel": 1,
           "title": "{i18n>APP_TITLE}"
+        },
+        "partnerPage": {
+          "viewPath": "com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view",
+          "viewName": "PartnerPage",
+          "viewId": "partnerPage",
+          "viewLevel": 2,
+          "title": "{i18n>PROCESS_SINGULAR_LBL}"
         },
         "notFound": {
           "viewPath": "com.sap.cd.maco.mmt.ui.reuse.controller.notFound",

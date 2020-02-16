@@ -1,9 +1,10 @@
 sap.ui.define(
   [
     "com/sap/cd/maco/mmt/ui/reuse/fnd/base/DraftComponent",
-    "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync"
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
+    "com/sap/cd/maco/mmt/ui/reuse/action/nav/NavToRouteAction"
   ],
-  function(DraftComponent, HashSync) {
+  function(DraftComponent, HashSync, NavToRouteAction) {
     "use strict";
 
     return DraftComponent.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.Component", {
@@ -19,6 +20,7 @@ sap.ui.define(
         DraftComponent.prototype.init.apply(this, arguments);
 
         this.actions = {
+        	navToPartnerPage: new NavToRouteAction(this)
         };
 
         this.initRouting();

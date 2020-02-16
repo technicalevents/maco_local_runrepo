@@ -1,8 +1,10 @@
 sap.ui.define(
-	["sap/base/util/ObjectPath", "sap/ushell/services/Container"],
-	function (ObjectPath) {
+	["sap/base/util/ObjectPath", "sap/ui/thirdparty/datajs", "sap/ushell/services/Container"],
+	function (ObjectPath, Odata) {
 		"use strict";
-
+		
+		numberValue1: "",
+		
 		// define ushell config
 		ObjectPath.set(["sap-ushell-config"], {
 			defaultRenderer: "fiori2",
@@ -60,10 +62,13 @@ sap.ui.define(
 										targetURL: "#UtilsDataExchangeProcessing-overviewMessage"
 									}
 								}, {
-									tileType: "sap.ushell.ui.tile.StaticTile",
+									tileType: "sap.ushell.ui.tile.DynamicTile",
 									properties: {
 										title: "Monitor Mass Meter Readings",
-										targetURL: "#UtilsDataExchangeProcessing-massMeterReading"
+										targetURL: "#UtilsDataExchangeProcessing-massMeterReading",
+										//serviceUrl: "/sap/opu/odata/MP4G/UI_MASSPROCMTRREAD/xMP4GxC_MassProcMRCount/$count",
+										numberValue: this.numberValue1
+										
 									}
 								}, {
 									tileType: "sap.ushell.ui.tile.StaticTile",
@@ -262,6 +267,15 @@ sap.ui.define(
 						sap.ushell.Container.createRenderer().placeAt("content");
 					});
 				}
+				
+				window.setInterval(function () {
+                    OData.read("/sap/opu/odata/MP4G/UI_MASSPROCMTRREAD/xMP4GxC_MassProcMRCount/$count",
+                        function (iCount) {
+                        	this.numberValue1 = 1;
+                        }.bind(this),
+                        function (sMessage) {
+                        });
+                }, 10000);
 
 				return this._oBootstrapFinished;
 			}

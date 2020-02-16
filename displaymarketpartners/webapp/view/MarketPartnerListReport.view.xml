@@ -26,12 +26,12 @@
 									   filterChange="onProcessFilterBarChanged"
 									   showFilterConfiguration="false"
 									   persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.filterbar"
-									   entitySet="xMP4GxCE_PARTNERS">
+									   entitySet="Partners">
         </smartFilterBar:SmartFilterBar>
     </semantic:headerContent>
     <semantic:content>
 		<smartTable:SmartTable id="idMarketPartnersSmartTable"
-							   entitySet="xMP4GxCE_PARTNERS"
+							   entitySet="Partners"
 							   tableType="ResponsiveTable"
 							   smartFilterId="idProcessSmartFilterBar"
 							   smartVariant="idProcessVariantManagement"
@@ -43,45 +43,34 @@
 							   useVariantManagement="false" 
 							   c:p13nDialogSettings='{filter:{visible:false}}' 
 							   beforeRebindTable="onBeforeRebindTable"
+							   requestAtLeastFields="PartnerId,Name"
 							   persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.table">
 			<Table id="idProcessTable"
 				   growing="true"
 				   growingScrollToLoad="true" 
 				   growingThreshold="100" 
-				   mode="MultiSelect"
+				   mode="None"
 				   sticky="ColumnHeaders,HeaderToolbar">
-				<!--<columns>
+				<columns>
 					<Column width="40%">
-						<Text text="{/xMP4GxC_ProcessHeader_UI/ProcessDocumentNumber/#@sap:label}"/>
+						<Text text="{/Partners/Name/#@sap:label}"/>
 						<customData>
 							<core:CustomData key="p13nData" 
 											 value='\{"columnIndex":"0", 
-													  "columnKey":"ProcessDocumentNumber", 
-													  "leadingProperty":["ProcessDocumentNumber", "ProcessIDDescription"],
-													  "sortProperty": "ProcessDocumentNumber"}'/>
-						</customData>
-					</Column>
-					<Column>
-						<Text text="{/xMP4GxC_ProcessHeader_UI/OwnerUUID/#@sap:label}"/>
-						<customData>
-						<core:CustomData key="p13nData" 
-										 value='\{"columnIndex":"2", 
-												  "columnKey":"OwnerUUID", 
-												  "leadingProperty":["OwnerUUID", "OwnerUUIDText"], 
-												  "sortProperty": "OwnerUUID" }'/>
+													  "columnKey":"Name", 
+													  "leadingProperty":["PartnerId", "Name"],
+													  "sortProperty": "Name"}'/>
 						</customData>
 					</Column>
 				</columns>
 				<items>
-					<ColumnListItem>
+					<ColumnListItem type="Navigation" press="onAction" c:action="navToPartnerPage">
 						<cells>
-							<reuseTable:ObjectIdentifier title="{ProcessDocumentNumber}" 
-														 text="{ProcessIDDescription}"/>
-							<reuseTable:ObjectIdentifier title="{OwnerUUIDText}" 
-														 text="{OwnerUUID}"/>
+							<reuseTable:ObjectIdentifier title="{Name}" 
+														 text="{PartnerId}"/>
 						</cells>
 					</ColumnListItem>
-				</items>-->
+				</items>
 			</Table>
 		</smartTable:SmartTable>
     </semantic:content>

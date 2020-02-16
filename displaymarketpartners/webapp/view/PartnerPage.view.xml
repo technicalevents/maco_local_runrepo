@@ -1,14 +1,10 @@
-<mvc:View
-	controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.PartnerPage"
-	xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc"
-	xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-	xmlns:core="sap.ui.core"
-	xmlns:uxap="sap.uxap"
-	xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button"
-	xmlns:layout="sap.ui.layout">
+<mvc:View controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.PartnerPage" xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:core="sap.ui.core"
+	xmlns:uxap="sap.uxap" xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button" xmlns:layout="sap.ui.layout"
+	xmlns:reuseObjectPageFacet="com.sap.cd.maco.mmt.ui.reuse.control.facet">
 	<uxap:ObjectPageLayout id="objectPage" upperCaseAnchorBar="false">
 		<uxap:headerTitle>
-			<uxap:ObjectPageDynamicHeaderTitle primaryArea="Left">
+			<uxap:ObjectPageDynamicHeaderTitle>
 				<uxap:expandedHeading>
 					<Title text="{Name}" wrapping="true" class="sapUiTinyMarginTop"/>
 				</uxap:expandedHeading>
@@ -16,91 +12,45 @@
 					<Title text="{Name}" wrapping="true" class="sapUiTinyMarginTop"/>
 				</uxap:snappedHeading>
 				<uxap:expandedContent>
-					<Text text="{Pid}" />
+					<Text
+						text="{parts: [{path: 'i18n>PARTNER_ILN_ROLE_LBL'}, {path: 'PartnerId'}, {path: 'MarketRole'}], formatter: '.formatter.formatMessage'}"/>
 				</uxap:expandedContent>
 				<uxap:snappedContent>
-					<Text text="{Pid}"/>
+					<Text
+						text="{parts: [{path: 'i18n>PARTNER_ILN_ROLE_LBL'}, {path: 'PartnerId'}, {path: 'MarketRole'}], formatter: '.formatter.formatMessage'}"/>
 				</uxap:snappedContent>
-				<uxap:actions>
-					<button:Update id="upload" c:action="update" press="onAction" type="Emphasized" />
-					<button:Delete id="delete" c:action="delete" press="onAction" type="Transparent" />
-				</uxap:actions>
 			</uxap:ObjectPageDynamicHeaderTitle>
 		</uxap:headerTitle>
 		<uxap:headerContent>
-			<layout:VerticalLayout class="sapUiSmallMarginEnd">
-				<HBox>
-					<ObjectAttribute title="{/PartnerMasterData/ValidFrom/#@sap:label}" class="sapUiTinyMarginEnd"/>
-					<ObjectAttribute text="{
-						path: 'ValidFrom',
-						type: 'sap.ui.model.type.Date',
-						formatOptions: { style: 'medium' }
-					}"/>
-				</HBox>
-				<HBox>
-					<ObjectAttribute title="{/PartnerMasterData/ValidTo/#@sap:label}" class="sapUiTinyMarginEnd"/>
-					<ObjectAttribute text="{
-						path: 'ValidTo',
-						type: 'sap.ui.model.type.Date',
-						formatOptions: { style: 'medium' }
-					}"/>
-				</HBox>
-				<HBox>
-					<ObjectAttribute title="{/PartnerMasterData/EmailContact/#@sap:label}" class="sapUiTinyMarginEnd"/>
-					<ObjectAttribute text="{EmailContact}"/>
-				</HBox>
-			</layout:VerticalLayout>
-			<layout:VerticalLayout class="sapUiSmallMarginEnd">
-				<HBox>
-					<ObjectAttribute title="{/PartnerMasterData/MarketRole/#@sap:label}" class="sapUiTinyMarginEnd"/>
-					<ObjectAttribute text="{
-						path: 'MarketRole',
-						formatter: '.valueHelpFormatter.marketRole'
-					}"/>
-				</HBox>
-				<HBox>
-					<ObjectAttribute title="{/PartnerMasterData/Division/#@sap:label}" class="sapUiTinyMarginEnd"/>
-					<ObjectAttribute text="{
-						path: 'Division',
-						formatter: '.valueHelpFormatter.division'
-					}"/>
-				</HBox>
-				<HBox>
-					<ObjectAttribute title="{/PartnerMasterData/MPIDqualifiers/#@sap:label}" class="sapUiTinyMarginEnd"/>
-					<ObjectAttribute text="{MPIDqualifiers}"/>
-				</HBox>
-			</layout:VerticalLayout>
-			<layout:VerticalLayout visible="{app>/devMode/enabled}">
-				<HBox>
-					<ObjectAttribute title="UUID" class="sapUiTinyMarginEnd"/>
-					<ObjectAttribute text="{UUID}" />
-				</HBox>
-			</layout:VerticalLayout>
+			<reuseObjectPageFacet:FormFacet>
+				<reuseObjectPageFacet:FormFacetField label="{/Partners/Division/#@sap:label}" text="{ path: 'Division' }"/>
+				<reuseObjectPageFacet:FormFacetField label="{/Partners/EmailContact/#@sap:label}" text="{ path: 'EmailContact' }"/>
+			</reuseObjectPageFacet:FormFacet>
 		</uxap:headerContent>
 		<uxap:sections>
-			<uxap:ObjectPageSection title="{i18n>emailTitlePlural}" titleUppercase="false">
+			<uxap:ObjectPageSection title="{i18n>EMAIL_ADDRESS_SECTION_LBL}" titleUppercase="false">
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection>
 						<uxap:blocks>
-							<mvc:XMLView id="emailTable" viewName="com.sap.cd.maco.mmt.ui.app.mgrpartners.page.partner.EMailTable"/>
+							<mvc:XMLView id="idEmailView" viewName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.EMailTable"/>
 						</uxap:blocks>
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
 			</uxap:ObjectPageSection>
-			<uxap:ObjectPageSection title="{i18n>as2TitlePlural}" titleUppercase="false">
+			<uxap:ObjectPageSection title="{i18n>AS2_ADDRESS_SECTION_LBL}" titleUppercase="false">
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection>
 						<uxap:blocks>
-							<mvc:XMLView id="as2Table" viewName="com.sap.cd.maco.mmt.ui.app.mgrpartners.page.partner.AS2Table"/>
+							<mvc:XMLView id="idAS2View" viewName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.AS2Table"/>
 						</uxap:blocks>
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
 			</uxap:ObjectPageSection>
-			<uxap:ObjectPageSection title="{i18n>certificateTitlePlural}" titleUppercase="false">
+			<uxap:ObjectPageSection title="{i18n>CERTIFICATE_SECTION_LBL}" titleUppercase="false">
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection>
 						<uxap:blocks>
-							<mvc:XMLView id="as2Table" viewName="com.sap.cd.maco.mmt.ui.app.mgrpartners.page.partner.AS2Table"/>
+							<!--<mvc:XMLView id="as2Table" viewName="com.sap.cd.maco.mmt.ui.app.mgrpartners.page.partner.AS2Table"/>-->
 						</uxap:blocks>
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
