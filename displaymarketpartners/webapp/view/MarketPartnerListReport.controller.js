@@ -27,7 +27,7 @@ sap.ui.define([
 			this.getOwnerComponent().getModel().setSizeLimit(1200);
 
 			ListReportNoDraftController.prototype.onInit.call(this, {
-				entitySet: "Partners",
+				entitySet: "xMP4GxCE_PARTNERS",
 				actions: {
 					navToPartnerPage: oComponentActions.navToPartnerPage,
 					share: oComponentActions.share

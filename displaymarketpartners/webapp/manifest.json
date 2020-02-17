@@ -12,7 +12,7 @@
     "ach": "MACO-MMT",
     "dataSources": {
       "maindatasource": {
-        "uri": "/sap/opu/odata/sap/ZUI_SELFSERVICE",
+        "uri": "/sap/opu/odata/mp4g/UI_MRKTPARTNER_DISP",
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
@@ -24,7 +24,7 @@
         }
       },
       "remoteAnnotation": {
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZUI_SELFSERVICE_VAN',Version='0001')/$value/",
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MRKTPARTNER_DISP_VAN',Version='0001')/$value/",
         "type": "ODataAnnotation",
         "settings": {
         }

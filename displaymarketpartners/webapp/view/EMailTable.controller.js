@@ -14,7 +14,7 @@ sap.ui.define(
 						controls: {
 							table: "idEmailSmartTable"
 						},
-						entitySet: "EmailAdapters",
+						entitySet: "xMP4GxCE_EMAILADAPTERS",
 						actions: {},
 						tableAccessControl: {}
 					});
@@ -30,7 +30,7 @@ sap.ui.define(
 					if (!this.oRouteArgs) {
 						oUpdate.prevent();
 					} else {
-						this.byId("idEmailSmartTable").setTableBindingPath("/Partners('" + this.oRouteArgs.PartnerId + "')/to_ToEmails");
+						this.byId("idEmailSmartTable").setTableBindingPath("/xMP4GxCE_PARTNERS('" + this.oRouteArgs.PartnerId + "')/to_ToEmails");
 					}
 				}
 			}

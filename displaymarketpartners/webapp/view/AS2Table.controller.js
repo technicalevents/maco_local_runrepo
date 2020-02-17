@@ -14,7 +14,7 @@ sap.ui.define(
 						controls: {
 							table: "idAS2SmartTable"
 						},
-						entitySet: "AS2Adapters",
+						entitySet: "xMP4GxCE_AS2ADAPTERS",
 						actions: {},
 						tableAccessControl: {}
 					});
@@ -30,7 +30,7 @@ sap.ui.define(
 					if (!this.oRouteArgs) {
 						oUpdate.prevent();
 					} else {
-						this.byId("idAS2SmartTable").setTableBindingPath("/Partners('" + this.oRouteArgs.PartnerId + "')/to_ToAS2s");
+						this.byId("idAS2SmartTable").setTableBindingPath("/xMP4GxCE_PARTNERS('" + this.oRouteArgs.PartnerId + "')/to_ToAS2s");
 					}
 				}
 			}

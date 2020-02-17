@@ -26,12 +26,12 @@
 									   filterChange="onProcessFilterBarChanged"
 									   showFilterConfiguration="false"
 									   persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.filterbar"
-									   entitySet="Partners">
+									   entitySet="xMP4GxCE_PARTNERS">
         </smartFilterBar:SmartFilterBar>
     </semantic:headerContent>
     <semantic:content>
 		<smartTable:SmartTable id="idMarketPartnersSmartTable"
-							   entitySet="Partners"
+							   entitySet="xMP4GxCE_PARTNERS"
 							   tableType="ResponsiveTable"
 							   smartFilterId="idProcessSmartFilterBar"
 							   smartVariant="idProcessVariantManagement"
