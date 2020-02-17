@@ -9,6 +9,10 @@ sap.ui.define(
 
 		return SmartTableController.extend(
 			"com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.EMailTable", {
+				
+				/**
+        		 * Lifecycle method - triggered on initialization of EmailTable Controller
+        		 */
 				onInit: function () {
 					SmartTableController.prototype.onInit.call(this, {
 						controls: {
@@ -19,18 +23,27 @@ sap.ui.define(
 						tableAccessControl: {}
 					});
 				},
-
+				
+				/**
+        		 * Function triggered before binding of Object Page
+        		 * @param {object} oRouteArgs Router Arguments
+        		 */
 				onBeforeBindObjectPage: function (oRouteArgs) {
 					this.oRouteArgs = oRouteArgs;
 					this.rebindTable();
 				},
-
+				
+				/**
+        		 * Function triggered before Rebind of Email Table
+        		 * @param {sap.ui.base.Event} 
+        		 */
 				onBeforeRebindTable: function (oEvent) {
 					var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
 					if (!this.oRouteArgs) {
 						oUpdate.prevent();
 					} else {
-						this.byId("idEmailSmartTable").setTableBindingPath("/xMP4GxCE_PARTNERS('" + this.oRouteArgs.PartnerId + "')/to_ToEmails");
+						oUpdate.addFilter('PartnerId', FilterOperator.EQ, this.oRouteArgs.PartnerId);
+            			oUpdate.endFilterAnd();
 					}
 				}
 			}

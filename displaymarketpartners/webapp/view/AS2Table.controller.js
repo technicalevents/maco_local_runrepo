@@ -9,6 +9,9 @@ sap.ui.define(
 
 		return SmartTableController.extend(
 			"com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.AS2Table", {
+				/**
+        		 * Lifecycle method - triggered on initialization of AS2Table Controller
+        		 */
 				onInit: function () {
 					SmartTableController.prototype.onInit.call(this, {
 						controls: {
@@ -19,18 +22,27 @@ sap.ui.define(
 						tableAccessControl: {}
 					});
 				},
-
+				
+				/**
+        		 * Function triggered before binding of Object Page
+        		 * @param {object} oRouteArgs Router Arguments
+        		 */
 				onBeforeBindObjectPage: function (oRouteArgs) {
 					this.oRouteArgs = oRouteArgs;
 					this.rebindTable();
 				},
-
+				
+				/**
+        		 * Function triggered before Rebind of AS2 Table
+        		 * @param {sap.ui.base.Event} 
+        		 */
 				onBeforeRebindTable: function (oEvent) {
 					var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
 					if (!this.oRouteArgs) {
 						oUpdate.prevent();
 					} else {
-						this.byId("idAS2SmartTable").setTableBindingPath("/xMP4GxCE_PARTNERS('" + this.oRouteArgs.PartnerId + "')/to_ToAS2s");
+						oUpdate.addFilter('PartnerId', FilterOperator.EQ, this.oRouteArgs.PartnerId);
+            			oUpdate.endFilterAnd();
 					}
 				}
 			}

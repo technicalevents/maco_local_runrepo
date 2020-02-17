@@ -2,10 +2,8 @@ sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportNoDraftController",
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
 	"sap/ui/generic/app/navigation/service/SelectionVariant",
-	"sap/ui/model/Sorter",
-	"sap/ui/model/FilterOperator",
 	"sap/base/strings/formatMessage"
-], function (ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, Sorter, FilterOperator, formatMessage) {
+], function (ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, formatMessage) {
 	"use strict";
 	return ListReportNoDraftController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.ProcessListReport", {
 
@@ -60,59 +58,8 @@ sap.ui.define([
 		 * @public
 		 */
 		onBeforeRebindTable: function (oEvent) {
-			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));
-			var aSorters = [];
-			//aSorters.push(new Sorter("ProcessTimestamp", true));
-			//aSorters.push(new Sorter("ProcessDocumentKey", true));
-			oUpdate.addSorters(aSorters);
-
 			// This method will add Current application state in URL
 			this.storeCurrentAppState();
-		},
-
-		/**
-		 * Event is triggered when selection is changed in Smart Filter Bar
-		 * @public
-		 */
-		onProcessFilterBarChanged: function () {
-			/*var oFilterData = jQuery.extend(true, {}, this.getFilterBar().getFilterData());
-			var aRanges = []; 
-			var bIsFilterDataChanged = false;
-			
-			if(oFilterData.MarketPartner) {
-				aRanges = oFilterData.MarketPartner.ranges;
-				for(var intI = 0; intI < aRanges.length && aRanges[intI].operation === FilterOperator.EQ; intI++) {
-					oFilterData.MarketPartner.ranges[intI].operation = FilterOperator.Contains;
-					oFilterData.MarketPartner.ranges[intI].tokenText = "*" + aRanges[intI].tokenText.slice(1) +"*";
-					bIsFilterDataChanged = true;
-				}
-				
-				if(bIsFilterDataChanged) {
-					this.getFilterBar().setFilterData(oFilterData, true);
-				}
-			}
-			
-			this.getSmartTable().rebindTable(true);*/
-		},
-
-		/**
-		 * Event is triggered when selection is changed in Own Market Partner MultiComboBox
-		 * @public
-		 */
-		onOwnMarketPartnerChange: function () {
-			/*var aOwnerUUIDKeys = this.getFilterBar().getControlByKey("OwnerUUID").getSelectedKeys();
-			var oSmartFilterData = this.getFilterBar().getFilterData();
-			
-			delete oSmartFilterData.OwnerUUID;
-			
-			if(!jQuery.isEmptyObject(aOwnerUUIDKeys)) {
-				oSmartFilterData["OwnerUUID"] = {"items": []};
-				for (var intI = 0; intI < aOwnerUUIDKeys.length; intI++) {
-					oSmartFilterData["OwnerUUID"].items.push({"key": aOwnerUUIDKeys[intI]});
-				}
-			}
-			
-			this.getFilterBar().setFilterData(oSmartFilterData, true);*/
 		},
 
 		/**

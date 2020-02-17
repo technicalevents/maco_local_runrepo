@@ -53,7 +53,7 @@
 				   sticky="ColumnHeaders,HeaderToolbar">
 				<columns>
 					<Column width="40%">
-						<Text text="{/Partners/Name/#@sap:label}"/>
+						<Text text="{/xMP4GxCE_PARTNERS/Name/#@sap:label}"/>
 						<customData>
 							<core:CustomData key="p13nData" 
 											 value='\{"columnIndex":"0", 

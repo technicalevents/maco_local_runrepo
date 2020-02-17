@@ -94,6 +94,7 @@ sap.ui.define(
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
 										title: "Display Market Partners",
+										icon: "sap-icon://BusinessSuiteInAppSymbols/icon-business-partner",
 										targetURL: "#UtilsDataExchangeProcessing-displayMarketPartner"
 									}
 								}]
@@ -268,14 +269,14 @@ sap.ui.define(
 					});
 				}
 				
-				window.setInterval(function () {
-                    OData.read("/sap/opu/odata/MP4G/UI_MASSPROCMTRREAD/xMP4GxC_MassProcMRCount/$count",
-                        function (iCount) {
-                        	this.numberValue1 = 1;
-                        }.bind(this),
-                        function (sMessage) {
-                        });
-                }, 10000);
+				// window.setInterval(function () {
+    //                 OData.read("/sap/opu/odata/MP4G/UI_MASSPROCMTRREAD/xMP4GxC_MassProcMRCount/$count",
+    //                     function (iCount) {
+    //                     	this.numberValue1 = 1;
+    //                     }.bind(this),
+    //                     function (sMessage) {
+    //                     });
+    //             }, 10000);
 
 				return this._oBootstrapFinished;
 			}

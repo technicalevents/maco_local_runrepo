@@ -23,8 +23,8 @@
 		</uxap:headerTitle>
 		<uxap:headerContent>
 			<reuseObjectPageFacet:FormFacet>
-				<reuseObjectPageFacet:FormFacetField label="{/Partners/Division/#@sap:label}" text="{ path: 'Division' }"/>
-				<reuseObjectPageFacet:FormFacetField label="{/Partners/EmailContact/#@sap:label}" text="{ path: 'EmailContact' }"/>
+				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/Division/#@sap:label}" text="{ path: 'Division' }"/>
+				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/EmailContact/#@sap:label}" text="{ path: 'EmailContact' }"/>
 			</reuseObjectPageFacet:FormFacet>
 		</uxap:headerContent>
 		<uxap:sections>
