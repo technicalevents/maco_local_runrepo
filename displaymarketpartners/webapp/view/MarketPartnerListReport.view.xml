@@ -23,7 +23,6 @@
 									   useDateRangeType="true"
 									   useToolbar="false"
 									   initialized="onFilterBarInitialized"
-									   filterChange="onProcessFilterBarChanged"
 									   showFilterConfiguration="false"
 									   persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.filterbar"
 									   entitySet="xMP4GxCE_PARTNERS">
@@ -33,8 +32,8 @@
 		<smartTable:SmartTable id="idMarketPartnersSmartTable"
 							   entitySet="xMP4GxCE_PARTNERS"
 							   tableType="ResponsiveTable"
-							   smartFilterId="idProcessSmartFilterBar"
-							   smartVariant="idProcessVariantManagement"
+							   smartFilterId="idMarketPartnersSmartFilterBar"
+							   smartVariant="idMarketPartnersVariantManagement"
 							   enableAutoBinding="true" 
 							   ignoredFields="" 
 							   demandPopin="true"
