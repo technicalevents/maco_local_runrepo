@@ -13,11 +13,11 @@
 				</uxap:snappedHeading>
 				<uxap:expandedContent>
 					<Text
-						text="{parts: [{path: 'i18n>PARTNER_ILN_ROLE_LBL'}, {path: 'PartnerId'}, {path: 'MarketRole'}], formatter: '.formatter.formatMessage'}"/>
+						text="{parts: [{path: 'i18n>PARTNER_ILN_ROLE_LBL'}, {path: 'PartnerId'}, {path: 'MarketRole'}], formatter: '.formatMessage'}"/>
 				</uxap:expandedContent>
 				<uxap:snappedContent>
 					<Text
-						text="{parts: [{path: 'i18n>PARTNER_ILN_ROLE_LBL'}, {path: 'PartnerId'}, {path: 'MarketRole'}], formatter: '.formatter.formatMessage'}"/>
+						text="{parts: [{path: 'i18n>PARTNER_ILN_ROLE_LBL'}, {path: 'PartnerId'}, {path: 'MarketRole'}], formatter: '.formatMessage'}"/>
 				</uxap:snappedContent>
 			</uxap:ObjectPageDynamicHeaderTitle>
 		</uxap:headerTitle>

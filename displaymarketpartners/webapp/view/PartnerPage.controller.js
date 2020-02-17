@@ -1,14 +1,14 @@
 sap.ui.define([
 		"com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
-		"com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter"
+		"sap/base/strings/formatMessage"
 	],
-	function (ObjectPageNoDraftController, Formatter) {
+	function (ObjectPageNoDraftController, FormatMessage) {
 		"use strict";
 
 		return ObjectPageNoDraftController.extend(
 			"com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.PartnerPage", {
 				
-				formatter: Formatter,
+				formatMessage: FormatMessage,
 				
 				/**
         		 * Lifecycle method - triggered on initialization of PartnerPage Controller
