@@ -96,21 +96,21 @@
 								value='\{"columnIndex":1,"columnKey":"OBIS","leadingProperty":["OBIS"],"sortProperty":"OBIS"}'/>
 							</customData>
 						</Column>
-						<Column width="5%">
+						<Column width="7%">
 							<Text text="{/xMP4GxC_MassProcMtrRead/PeriodFromDate/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
 								value='\{"columnIndex":2,"columnKey":"PeriodFromDate","type":"date","leadingProperty":["PeriodFromDate"],"sortProperty":"PeriodFromDate"}'/>
 							</customData>
 						</Column>
-						<Column width="5%">
+						<Column width="7%">
 							<Text text="{/xMP4GxC_MassProcMtrRead/PeriodToDate/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
 								value='\{"columnIndex":3,"columnKey":"PeriodToDate","type":"date","leadingProperty":["PeriodToDate"],"sortProperty":"PeriodToDate"}'/>
 							</customData>
 						</Column>
-						<Column width="5%">
+						<Column width="7%">
 							<Text text="{/xMP4GxC_MassProcMtrRead/UploadDate/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 

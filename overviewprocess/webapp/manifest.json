@@ -78,10 +78,7 @@
 				"sap.ui.comp": {},
 				"sap.ui.table": {},
 				"sap.ovp": {},
-				"sap.ui.suite": {},
-				"com.sap.cd.maco.mmt.ui.reuse": {
-					"minVersion": "2.0.0"
-				}
+				"sap.ui.suite": {}
 			}
 		},
 		"contentDensities": {

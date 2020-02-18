@@ -24,6 +24,25 @@
 	      growingScrollToLoad="false" 
 	      growingThreshold="10"
 	      mode="None" >
+    	<columns>
+			 <Column>
+              <Text text="{i18n>VALIDITY_COLUMN_LABEL}"/>
+              <customData>
+                <core:CustomData key="p13nData" 
+                  value='\{"columnIndex":"1", "columnKey":"ValidFrom", "leadingProperty":["ValidFrom", "ValidTo"] }'/>
+              </customData>
+            </Column>
+	      </columns>
+	      <items>
+	        <ColumnListItem>
+	          <cells>
+	            <VBox>
+	            	<Text text =" { path: 'ValidFrom', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' } }" />
+					<Text text ="{ path: 'ValidTo', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' } }"/>
+	            </VBox>
+	          </cells>
+	        </ColumnListItem>
+	      </items>
     </Table>
   </smartTable:SmartTable>
 </mvc:View>

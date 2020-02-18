@@ -13,17 +13,17 @@
 				</uxap:snappedHeading>
 				<uxap:expandedContent>
 					<Text
-						text="{parts: [{path: 'i18n>PARTNER_ILN_ROLE_LBL'}, {path: 'PartnerId'}, {path: 'MarketRole'}], formatter: '.formatMessage'}"/>
+						text="{parts: [{path: 'i18n>PARTNER_ILN_ROLE_LBL'}, {path: 'PartnerId'}, {path: 'MarketRole', formatter: '.valueHelpFormatter.marketRole'}], formatter: '.formatMessage'}"/>
 				</uxap:expandedContent>
 				<uxap:snappedContent>
 					<Text
-						text="{parts: [{path: 'i18n>PARTNER_ILN_ROLE_LBL'}, {path: 'PartnerId'}, {path: 'MarketRole'}], formatter: '.formatMessage'}"/>
+						text="{parts: [{path: 'i18n>PARTNER_ILN_ROLE_LBL'}, {path: 'PartnerId'}, {path: 'MarketRole', formatter: '.valueHelpFormatter.marketRole'}], formatter: '.formatMessage'}"/>
 				</uxap:snappedContent>
 			</uxap:ObjectPageDynamicHeaderTitle>
 		</uxap:headerTitle>
 		<uxap:headerContent>
 			<reuseObjectPageFacet:FormFacet>
-				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/Division/#@sap:label}" text="{ path: 'Division' }"/>
+				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/Division/#@sap:label}" text="{ path: 'Division', formatter: '.valueHelpFormatter.division' }"/>
 				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/EmailContact/#@sap:label}" text="{ path: 'EmailContact' }"/>
 			</reuseObjectPageFacet:FormFacet>
 		</uxap:headerContent>
@@ -50,7 +50,7 @@
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection>
 						<uxap:blocks>
-							<!--<mvc:XMLView id="as2Table" viewName="com.sap.cd.maco.mmt.ui.app.mgrpartners.page.partner.AS2Table"/>-->
+							<mvc:XMLView id="idCertificateView" viewName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.CertificatesTable"/>
 						</uxap:blocks>
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
