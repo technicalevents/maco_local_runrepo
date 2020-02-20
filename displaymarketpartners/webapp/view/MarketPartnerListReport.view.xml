@@ -13,7 +13,8 @@
 						   toggleHeaderOnTitleClick="true">
   		<semantic:titleHeading>
 			 <variants:SmartVariantManagement id="idMarketPartnersVariantManagement" 
-											  persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.filterbar"/>
+											  persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.filterbar"
+											  />
 		</semantic:titleHeading>
     <semantic:headerContent>
         <smartFilterBar:SmartFilterBar id="idMarketPartnersSmartFilterBar"
@@ -39,10 +40,10 @@
 							   demandPopin="true"
 							   useExportToExcel="true"
 							   header="{i18n>PROCESS_PLURAL_LBL}"
-							   useVariantManagement="false" 
+							   useVariantManagement="true" 
 							   c:p13nDialogSettings='{filter:{visible:false}}' 
 							   beforeRebindTable="onBeforeRebindTable"
-							   requestAtLeastFields="PartnerId,Name"
+							   requestAtLeastFields="PartnerId,Name,CertValidityCriticality"
 							   persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.table">
 			<smartTable:customToolbar>
 	          <OverflowToolbar design="Transparent">
@@ -52,26 +53,26 @@
 	                    press="onRefresh"/>
 	          </OverflowToolbar>
     		 </smartTable:customToolbar>
-			<Table id="idProcessTable"
+			<Table id="idMarketPartnersTable"
 				   growing="true"
 				   growingScrollToLoad="true" 
 				   growingThreshold="100" 
 				   mode="None"
 				   sticky="ColumnHeaders,HeaderToolbar">
 				<columns>
-					<Column width="40%">
+					<Column width="400px">
 						<Text text="{/xMP4GxCE_PARTNERS/Name/#@sap:label}"/>
 						<customData>
 							<core:CustomData key="p13nData" 
 											 value='\{"columnIndex":"0", 
-											          "displayBehaviour": "idAndDescription"
-													  "columnKey":"Name", 
+											          "displayBehaviour": "idAndDescription",
+													  "columnKey":"PartnerId", 
 													  "leadingProperty":["PartnerId", "Name"],
 													  "description": "Name",
 													  "sortProperty": "Name"}'/>
 						</customData>
 					</Column>
-		            <Column>
+		            <Column width="150px">
 		              <Text text="{/xMP4GxCE_PARTNERS/MarketRole/#@sap:label}"/>
 		              <customData>
 		                <core:CustomData key="p13nData" 
@@ -87,7 +88,7 @@
 		            </Column>
 				</columns>
 				<items>
-					<ColumnListItem type="Navigation" press="onAction" c:action="navToPartnerPage">
+					<ColumnListItem highlight="{= !!!${CertificateValidTo} ? 'Error':'None'}" type="Navigation" press="onAction" c:action="navToPartnerPage">
 						<cells>
 							<reuseTable:ObjectIdentifier title="{Name}" 
 														 text="{PartnerId}"/>

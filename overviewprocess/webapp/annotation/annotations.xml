@@ -21,7 +21,6 @@
 						<PropertyPath>MarketPartner</PropertyPath>
 						<PropertyPath>BusinessObjectUUID</PropertyPath>
 						<PropertyPath>OwnerUUID</PropertyPath>
-						<PropertyPath>CommonAccessUUID</PropertyPath>
 					</Collection>
 				</Annotation>
 			</Annotations>

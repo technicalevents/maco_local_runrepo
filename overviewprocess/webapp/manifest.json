@@ -119,7 +119,7 @@
 	"sap.ovp": {
 		"globalFilterModel": "PROCESSMONITOR_SB",
 		"globalFilterEntityType": "xMP4GxC_ProcessHeader_UIType",
-		"enableLiveFilter": true,
+		"enableLiveFilter": false,
 		"smartVariantRequired": true,
 		"useDateRangeType": true,
 		"containerLayout": "resizable",
