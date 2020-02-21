@@ -14,6 +14,7 @@ sap.ui.define(
 
       /**
        * Function is used to initialize DraftComponent
+       * @public
        */
       init: function() {
         // call the base component"s init function
@@ -28,6 +29,7 @@ sap.ui.define(
 
       /**
        * Function is used to initialize Router
+       * @public
        */
       initRouting: function() {
         // sync hash
@@ -35,7 +37,7 @@ sap.ui.define(
           component: this,
           message: this.oMessage,
           getRouteName: function(startupParams) {
-            return "processPage";
+            return "partnerPage";
           }
         });
         oHashSync.synch();
@@ -46,6 +48,7 @@ sap.ui.define(
 
       /**
        * Function is triggered on exit of Application 
+       * @public
        */
       destroy: function() {
         //Destroy Actions

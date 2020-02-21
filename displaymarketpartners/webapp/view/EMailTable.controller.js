@@ -10,6 +10,10 @@ sap.ui.define(
 		return SmartTableController.extend(
 			"com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.EMailTable", {
 				
+				/******************************************************************* */
+				/* LIFECYCLE METHODS */
+				/******************************************************************* */
+
 				/**
         		 * Lifecycle method - triggered on initialization of EmailTable Controller
         		 */
@@ -24,6 +28,10 @@ sap.ui.define(
 					});
 				},
 				
+				/******************************************************************* */
+				/* PUBLIC METHODS 													*/
+				/******************************************************************* */
+
 				/**
         		 * Function triggered before binding of Object Page
         		 * @param {object} oRouteArgs Router Arguments

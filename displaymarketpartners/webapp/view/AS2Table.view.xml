@@ -2,10 +2,7 @@
 		  xmlns="sap.m" 
 		  xmlns:smartTable="sap.ui.comp.smarttable" 
 		  xmlns:mvc="sap.ui.core.mvc"
-		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-		  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.table"
-		  controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.AS2Table" 
-		  height="100%">
+		  controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.AS2Table">
   <smartTable:SmartTable id="idAS2SmartTable"
 					    entitySet="{this>/entitySet}"
 					    tableType="ResponsiveTable" 

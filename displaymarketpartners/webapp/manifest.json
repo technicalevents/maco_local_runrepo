@@ -16,10 +16,8 @@
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
-          "localUri": "localService/metadata.xml",
           "annotations": [
-            "remoteAnnotation",
-            "localAnnotation"
+            "remoteAnnotation"
           ]
         }
       },
@@ -27,13 +25,6 @@
         "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MRKTPARTNER_DISP_VAN',Version='0001')/$value/",
         "type": "ODataAnnotation",
         "settings": {
-        }
-      },
-      "localAnnotations": {
-        "uri": "annotation/MarketPartner.xml",
-        "type": "ODataAnnotation",
-        "settings": {
-          "localUri": "annotation/MarketPartner.xml"
         }
       }
     },
