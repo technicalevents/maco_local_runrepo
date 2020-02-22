@@ -54,7 +54,7 @@
 							   tableType="ResponsiveTable"
 							   smartFilterId="idProcessSmartFilterBar"
 							   smartVariant="idProcessVariantManagement"
-							   enableAutoBinding="false" 
+							   enableAutoBinding="true" 
 							   ignoredFields="" 
 							   demandPopin="true"
 							   useExportToExcel="false"

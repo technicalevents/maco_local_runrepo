@@ -15,10 +15,12 @@
           <Title text="{ExternalUUID}" wrapping="true"/>
         </uxap:snappedHeading>
         <uxap:expandedContent>
-          <Text text="{parts: [{path: 'TechnicalMsgID'},{path: 'ExtBusinessMessageID'}], formatter: '.formatTechnicalBusinessMsgId'}" />
+          <Text text="{parts: [{path: 'TechnicalMsgID'},{path: 'ExtBusinessMessageID'}],
+                       formatter: '.formatTechnicalBusinessMsgId'}" />
         </uxap:expandedContent>
         <uxap:snappedContent>
-          <Text text="{parts: [{path: 'TechnicalMsgID'},{path: 'ExtBusinessMessageID'}], formatter: '.formatTechnicalBusinessMsgId'}" />
+          <Text text="{parts: [{path: 'TechnicalMsgID'},{path: 'ExtBusinessMessageID'}],
+                       formatter: '.formatTechnicalBusinessMsgId'}" />
         </uxap:snappedContent>
         <uxap:actions>
 			<Button text="{i18n>DOWNLOAD_BTN_TXT}" type="Transparent" press="onAction"

@@ -94,8 +94,6 @@ sap.ui.define([
 					this.getFilterBar().setFilterData(oFilterData, true);
 				}
 			}
-			
-			this.getSmartTable().rebindTable(true);
       },
 
        /**
@@ -123,11 +121,14 @@ sap.ui.define([
 		 * This method will set Recently used FilterData in FilterBar
 		 * @public
 		 */
-		onFilterBarInitialized: function() {            
+		onFilterBarInitialized: function() {
 			this.oNav.parseNavigation().done(function(oAppState) {
 				if(!jQuery.isEmptyObject(oAppState)) {
 					this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
-					this.getSmartTable().rebindTable(true);
+				} else {
+					//To set Active/Erroneous/On Hold Status by Default
+					var oDefaultStatus = {ProcessStatus: {value: null,items:[{key:"HOLD"},{key:"ERR"},{key:"ACTV"}]}};
+					this.getFilterBar().setFilterData(oDefaultStatus, true);
 				}
 			}.bind(this));
 		},

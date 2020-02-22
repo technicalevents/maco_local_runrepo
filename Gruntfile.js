@@ -5,7 +5,7 @@ const shell = require('shelljs');
 
 var aGithubMapping = [{
   actualGit: "mmt-ui-app-dispprocess-b",
-  localGit: "displaymessage",
+  localGit: "",
   isReuseLib: false,
   resourceFolder: "webapp"
 }, {
@@ -47,21 +47,21 @@ var aGithubMapping = [{
 
 
 
- function triggerSyncOperation (grunt, oGithubMapping, sOperation) {
+function triggerSyncOperation(grunt, oGithubMapping, sOperation) {
   grunt.log.writeln(sOperation);
   // Return unique array of all file paths which match globbing pattern
   var sSrcPath = getSrcPath(oGithubMapping, sOperation);
   var sDestinationPath = getDestinatiationPath(oGithubMapping, sOperation);
 
-  var options = { cwd: sDestinationPath };
+  var options = { cwd: sSrcPath };
   var globPattern = "**/*"
 
   grunt.file.expand(options, globPattern).forEach(function (srcPathRelCwd) {
     if (srcPathRelCwd.indexOf("test") < 0 && srcPathRelCwd.indexOf("localService") < 0 && srcPathRelCwd.indexOf(".") > 0) {
       // Copy a source file to a destination path, creating directories if necessary
       grunt.file.copy(
-        path.join(sDestinationPath, srcPathRelCwd),
-        path.join(sSrcPath, srcPathRelCwd)
+        path.join(sSrcPath, srcPathRelCwd),
+        path.join(sDestinationPath, srcPathRelCwd)
       );
     }
   });
@@ -69,18 +69,19 @@ var aGithubMapping = [{
   shell.exec("git add .");
 
   grunt.log.writeln(sDestinationPath);
+  grunt.log.writeln(sSrcPath);
 };
 
-function getSrcPath (oGithubMapping, sOperation) {
+function getSrcPath(oGithubMapping, sOperation) {
   var sActualPath = "../" + oGithubMapping.actualGit + "/" + oGithubMapping.resourceFolder + "/";
   var sLocalPath = oGithubMapping.localGit + "/" + oGithubMapping.resourceFolder;
 
   return sOperation === "syncActual" ? sLocalPath : sActualPath;
 };
 
-function getDestinatiationPath (oGithubMapping, sOperation) {
+function getDestinatiationPath(oGithubMapping, sOperation) {
   var sActualPath = "../" + oGithubMapping.actualGit + "/" + oGithubMapping.resourceFolder + "/";
-  var sLocalPath = oGithubMapping.localGit + "/" + oGithubMapping.resourceFolder;
+  var sLocalPath = oGithubMapping.localGit ? oGithubMapping.localGit + "/" + oGithubMapping.resourceFolder : oGithubMapping.resourceFolder;
 
   return sOperation === "syncActual" ? sActualPath : sLocalPath;
 };
@@ -118,7 +119,10 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.registerTask('synclocal', 'Sync Local Github', function (sModuleName, sMessage) {
+  grunt.registerTask('synclocal', 'Sync Local Github', function (sMessage, sModuleName) {
+    if (!sMessage) {
+      grunt.fail.fatal("Commit Message not provided");
+    }
 
     if (sModuleName) {
       grunt.log.writeln(sModuleName);
@@ -130,12 +134,14 @@ module.exports = function (grunt) {
       triggerSyncOperation(grunt, oGithubMapping, "syncLocal");
 
     } else {
-      aGithubMapping.find(function (oGithubMapping) {
+      aGithubMapping.forEach(function (oGithubMapping) {
         triggerSyncOperation(grunt, oGithubMapping, "syncLocal");
       }.bind(this));
     }
 
-    shell.exec("git commit -m " + sMessage);
+    //grunt.log.writeln("git commit -m '" + sMessage + "'");
+
+    shell.exec("git commit -m '" + sMessage + "'");
     shell.exec("git push origin");
 
   }.bind(this));

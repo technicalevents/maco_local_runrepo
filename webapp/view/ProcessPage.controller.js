@@ -143,6 +143,9 @@ sap.ui.define([
 
           var aProcess, aMarketPartner = [];
 
+          var oBindingContext = this.getView().byId("idProcessObjectPage").getBindingContext();
+          var sOwnerUUID = oBindingContext.getObject("OwnerUUIDText") + " (" + oBindingContext.getObject("OwnerUUID") + ")";
+
           if (!oResult.data.results){
             aProcess = [oResult.data];
           } else if (oResult && oResult.data){
@@ -153,6 +156,10 @@ sap.ui.define([
           	if(aProcess[intI].MarketPartner !== "") {
           		aMarketPartner.push(aProcess[intI].MarketPartnerText + " (" + aProcess[intI].MarketPartner + ")");
           	}
+          }
+
+          if(aMarketPartner.length > 1 && aMarketPartner.indexOf(sOwnerUUID) >= 0) {
+          	aMarketPartner.splice(aMarketPartner.indexOf(sOwnerUUID), 1);
           }
 
           var sMarketPartner = aMarketPartner.join(", ");
