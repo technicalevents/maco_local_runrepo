@@ -45,6 +45,45 @@ var aGithubMapping = [{
   resourceFolder: "src/com/sap/cd/maco/mmt/ui/reuse"
 }];
 
+
+
+ function triggerSyncOperation (grunt, oGithubMapping, sOperation) {
+  grunt.log.writeln(sOperation);
+  // Return unique array of all file paths which match globbing pattern
+  var sSrcPath = getSrcPath(oGithubMapping, sOperation);
+  var sDestinationPath = getDestinatiationPath(oGithubMapping, sOperation);
+
+  var options = { cwd: sDestinationPath };
+  var globPattern = "**/*"
+
+  grunt.file.expand(options, globPattern).forEach(function (srcPathRelCwd) {
+    if (srcPathRelCwd.indexOf("test") < 0 && srcPathRelCwd.indexOf("localService") < 0 && srcPathRelCwd.indexOf(".") > 0) {
+      // Copy a source file to a destination path, creating directories if necessary
+      grunt.file.copy(
+        path.join(sDestinationPath, srcPathRelCwd),
+        path.join(sSrcPath, srcPathRelCwd)
+      );
+    }
+  });
+
+  shell.exec("git add .");
+
+  grunt.log.writeln(sDestinationPath);
+};
+
+function getSrcPath (oGithubMapping, sOperation) {
+  var sActualPath = "../" + oGithubMapping.actualGit + "/" + oGithubMapping.resourceFolder + "/";
+  var sLocalPath = oGithubMapping.localGit + "/" + oGithubMapping.resourceFolder;
+
+  return sOperation === "syncActual" ? sLocalPath : sActualPath;
+};
+
+function getDestinatiationPath (oGithubMapping, sOperation) {
+  var sActualPath = "../" + oGithubMapping.actualGit + "/" + oGithubMapping.resourceFolder + "/";
+  var sLocalPath = oGithubMapping.localGit + "/" + oGithubMapping.resourceFolder;
+
+  return sOperation === "syncActual" ? sActualPath : sLocalPath;
+};
 module.exports = function (grunt) {
 
   grunt.registerTask('syncactual', 'Sync Actual Github', function (sModuleName) {
@@ -68,8 +107,8 @@ module.exports = function (grunt) {
           grunt.log.writeln(path.join(sSrcPath, srcPathRelCwd));
           // Copy a source file to a destination path, creating directories if necessary
           grunt.file.copy(
-              path.join(sSrcPath, srcPathRelCwd), 
-              path.join(sDestinationPath, srcPathRelCwd)
+            path.join(sSrcPath, srcPathRelCwd),
+            path.join(sDestinationPath, srcPathRelCwd)
           );
         }
       });
@@ -88,31 +127,17 @@ module.exports = function (grunt) {
         return oGithubMapping.localGit === sModuleName;
       }.bind(this));
 
-      var sDestinationPath = "../" + oGithubMapping.actualGit + "/" + oGithubMapping.resourceFolder + "/";
-      var sSrcPath = oGithubMapping.localGit + "/" + oGithubMapping.resourceFolder;
+      triggerSyncOperation(grunt, oGithubMapping, "syncLocal");
 
-      // Return unique array of all file paths which match globbing pattern
-      var options = { cwd: sDestinationPath };
-      var globPattern = "**/*"
-
-      grunt.file.expand(options, globPattern).forEach(function (srcPathRelCwd) {
-        if (srcPathRelCwd.indexOf("test") < 0 && srcPathRelCwd.indexOf("localService") < 0 && srcPathRelCwd.indexOf(".") > 0) {
-          grunt.log.writeln(path.join(sSrcPath, srcPathRelCwd));
-          // Copy a source file to a destination path, creating directories if necessary
-          grunt.file.copy(
-              path.join(sDestinationPath, srcPathRelCwd), 
-              path.join(sSrcPath, srcPathRelCwd)
-          );
-        }
-      });
-
-      shell.exec("git add .");
-      shell.exec("git commit -m "+ sMessage);
-      shell.exec("git push origin");
-
-      grunt.log.writeln(sDestinationPath);
+    } else {
+      aGithubMapping.find(function (oGithubMapping) {
+        triggerSyncOperation(grunt, oGithubMapping, "syncLocal");
+      }.bind(this));
     }
 
-  });
+    shell.exec("git commit -m " + sMessage);
+    shell.exec("git push origin");
 
-};
+  }.bind(this));
+
+}.bind(this);
