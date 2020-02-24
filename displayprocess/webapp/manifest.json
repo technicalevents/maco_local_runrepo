@@ -1,7 +1,7 @@
 {
   "_version": "1.4.0",
   "sap.app": {
-    "id": "com.sap.cd.maco.monitor.ui.app.displaymessages",
+    "id": "com.sap.cd.maco.monitor.ui.app.displayprocesses",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "title": "{{APP_TITLE}}",
@@ -11,22 +11,29 @@
     },
     "ach": "MACO-MMT",
     "dataSources": {
-      "Main": {
-        "uri": "/sap/opu/odata/MP4G/TRANSDOCHEADER_SB/",
+      "maindatasource": {
+        "uri": "/sap/opu/odata/MP4G/PROCESSHEADER_SB",
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
           "localUri": "localService/metadata.xml",
           "annotations": [
-            "Message"
+            "_MP4G_PROC_ANNO_MDL"
           ]
         }
       },
-      "Message": {
+      "_MP4G_PROC_ANNO_MDL": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FPROCESSHEADER_SB_VAN',Version='0001')/$value/",
         "type": "ODataAnnotation",
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FTRANSDOCHEADER_SB_VAN',Version='0001')/$value/",
         "settings": {
-          "localUri": "annotation/Message.xml"
+          "localUri": "localService/_MP4G_PROC_ANNO_MDL.xml"
+        }
+      },
+      "localAnnotations": {
+        "uri": "annotation/Process.xml",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "annotation/Process.xml"
         }
       }
     },
@@ -39,9 +46,9 @@
             "additionalParameters": "allowed"
           },
           "semanticObject": "UtilsDataExchangeProcessing",
-          "action": "displayMessage",
+          "action": "displayProcess",
           "title": "{{APP_TITLE}}",
-          "icon": "sap-icon://email"
+          "icon": "sap-icon://process"
         }
       }
     }
@@ -85,7 +92,8 @@
         "sap.ui.table": {},
         "com.sap.cd.maco.mmt.ui.reuse": {
           "minVersion": "2.0.0"
-        }
+        },
+        "sap.suite.ui.commons": {}
       }
     },
     "contentDensities": {
@@ -103,11 +111,11 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.sap.cd.maco.monitor.ui.app.displaymessages.i18n.i18n"
+          "bundleName": "com.sap.cd.maco.monitor.ui.app.displayprocesses.i18n.i18n"
         }
       },
       "": {
-        "dataSource": "Main",
+        "dataSource": "maindatasource",
         "preload": true,
         "settings": {
           "defaultBindingMode": "TwoWay",
@@ -161,27 +169,27 @@
           ]
         },
         {
-          "name": "messagePage",
-          "pattern": "messagePage/{TransferDocumentKey}",
+          "name": "processPage",
+          "pattern": "processPage/{ProcessDocumentKey},{ProcessID}",
           "target": [
-            "messagePage"
+            "processPage"
           ]
         }
       ],
       "targets": {
         "listReport": {
-          "viewPath": "com.sap.cd.maco.monitor.ui.app.displaymessages.view",
-          "viewName": "MessageListReport",
+          "viewPath": "com.sap.cd.maco.monitor.ui.app.displayprocesses.view",
+          "viewName": "ProcessListReport",
           "viewId": "listReport",
           "viewLevel": 1,
           "title": "{i18n>APP_TITLE}"
         },
-        "messagePage": {
-          "viewPath": "com.sap.cd.maco.monitor.ui.app.displaymessages.view",
-          "viewName": "MessagePage",
-          "viewId": "messagePage",
+        "processPage": {
+          "viewPath": "com.sap.cd.maco.monitor.ui.app.displayprocesses.view",
+          "viewName": "ProcessPage",
+          "viewId": "processPage",
           "viewLevel": 2,
-          "title": "{i18n>SINGLE_MSG_TITLE}"
+          "title": "{i18n>PROCESS_SINGULAR_LBL}"
         },
         "notFound": {
           "viewPath": "com.sap.cd.maco.mmt.ui.reuse.controller.notFound",
@@ -190,10 +198,5 @@
         }
       }
     }
-  },
-  "sap.platform.cf": {
-    "oAuthScopes": [
-      "$XSAPPNAME.AppMktMsg_Monitor"
-    ]
   }
 }

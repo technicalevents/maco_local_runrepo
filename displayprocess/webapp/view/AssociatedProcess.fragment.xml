@@ -1,0 +1,50 @@
+<core:FragmentDefinition
+          xmlns:core="sap.ui.core" 
+          xmlns="sap.m" 
+		  xmlns:semantic="sap.f.semantic" 
+		  xmlns:smartTable="sap.ui.comp.smarttable"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    	  xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table">
+    <smartTable:SmartTable id="idAssociatedProcessSmartTable"
+					        entitySet="xMP4GxC_Linked_Associated_ProcSet"
+					        tableType="ResponsiveTable"
+					        enableAutoBinding="false" 
+					        useTablePersonalisation="false"
+					        showRowCount="false"
+					        demandPopin="true"
+					        useExportToExcel="false"
+					        useVariantManagement="false" 
+							dataReceived="onAssociatedProcessDataReceived"
+					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displayprocesses.associatedprocesstable"
+					        requestAtLeastFields="ProcDocKey,StatusCriticality,ProcessID,OwnerUUID">
+    	<smartTable:customToolbar>
+	  		<Toolbar height="0rem"/>
+	    </smartTable:customToolbar>
+        <Table id="idAssociatedProcessTable"
+	          growing="true"
+	          growingScrollToLoad="true" 
+	          growingThreshold="100" 
+	          mode="None"
+	          sticky="ColumnHeaders,HeaderToolbar" >
+          <columns>
+            <Column width="40%">
+              <Text text="{/xMP4GxC_Linked_Associated_ProcSet/ProcessDocumentNumber/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" 
+                				 value='\{"columnIndex":"0", 
+                						  "columnKey":"ProcessDocumentNumber", 
+                						  "leadingProperty":["ProcessDocumentNumber", "ProcessIDDescription"] }'/>
+              </customData>
+            </Column>
+          </columns>
+          <items>
+            <ColumnListItem type="Navigation" press="onAction" c:action="navToProcessAction">
+              <cells>
+                  <reuseTable:ObjectIdentifier title="{ProcessDocumentNumber}" text="{ProcessIDDescription}"/>
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </smartTable:SmartTable>
+</core:FragmentDefinition>

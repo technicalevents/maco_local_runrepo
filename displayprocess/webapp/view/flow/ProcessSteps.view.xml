@@ -1,0 +1,71 @@
+<mvc:View controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.flow.ProcessSteps"
+		  xmlns="sap.m" 
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:commons="sap.suite.ui.commons"
+		  xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+		  xmlns:core="sap.ui.core" 
+		  xmlns:uxap="sap.uxap"
+		  xmlns:layout="sap.ui.layout">
+
+  <commons:Timeline id="idProcessSteps"
+				    showHeaderBar="false"
+				    enableScroll="false"
+				    groupBy="ActivityTimestamp"
+				    groupByType="Day"
+				    enableDoubleSided="false"
+				    growingThreshold="1000"
+				    sortOldestFirst="false"
+				    content="{this>/ProcessStepData}">
+    <commons:content>
+      <commons:TimelineItem dateTime="{this>ActivityTimestamp}"
+					        userName="{
+					        		 parts: [
+	                							{path: 'this>ExternalUUID'}, 
+	                							{path: 'this>TechnicalMessage'},
+	                							{path: 'this>BusinessObjectType'},
+	                							{path: 'this>UserDescision'},
+	                							{path: 'this>isExternalMessage'}
+	                							
+                    						], 
+                    						formatter: '.formatProcessActivityTitle'
+                    				}"
+					        userNameClickable="{= (${this>BusinessObjectType} === 'PDoc' || (${this>BusinessObjectType} === 'TransDoc' &amp;&amp; ${this>isExternalMessage}))}"
+							userNameClicked="navigateToBusinessObject"
+					        text="{this>ActivityDescription}"
+					        filterValue="{this>JobTitle}"
+					        icon="{parts: [{path: 'this>BusinessObjectType'}, 
+					                       {path: 'this>Direction'},
+					                       {path: 'this>StepID'}],
+					               formatter: '.formatter.processStepIcon'
+					         }"
+					         class="comSapCdMacoMmtUiActivityTitle">
+        <commons:embeddedControl>
+          <FlexBox alignItems="Start" justifyContent="SpaceBetween">
+          	<items>
+            <Label text="{this>ActivityDescription}" 
+                    wrapping="true"/>
+            
+            <ObjectStatus class="sapUiSmallMarginBegin" 
+						visible="{= (${this>BusinessObjectType} === 'TransDoc' &amp;&amp; ${this>isExternalMessage}) || 
+										${this>BusinessObjectType} === 'ExceptionDoc'}"
+						text="{parts: [{path: 'this>BusinessObjectType'},
+										{path: 'this>UserDescision'},
+										{path: 'this>TransDocStatus'}], 
+								formatter: '.formatter.formatProcessStepStatus'}"
+						inverted="true"
+						state="{
+							path:'this>TDStatusCriticality',
+							formatter: '.formatter.criticality'
+						}" >
+					<layoutData>
+                		<FlexItemData shrinkFactor="0"/>
+                	</layoutData>
+				</ObjectStatus>
+        	</items>
+          </FlexBox>
+          
+        </commons:embeddedControl>
+      </commons:TimelineItem>
+    </commons:content>
+  </commons:Timeline>
+</mvc:View>
