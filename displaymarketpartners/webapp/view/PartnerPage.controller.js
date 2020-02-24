@@ -10,8 +10,13 @@ sap.ui.define([
 				
 				formatMessage: FormatMessage,
 				
+				/******************************************************************* */
+				/* LIFECYCLE METHODS */
+				/******************************************************************* */
+				
 				/**
         		 * Lifecycle method - triggered on initialization of PartnerPage Controller
+				 * @public
         		 */
 				onInit: function () {
 					var oPartnerActions = this.getOwnerComponent().actions.partner;
@@ -31,6 +36,10 @@ sap.ui.define([
 					});
 				},
 				
+				/******************************************************************* */
+				/* Public Methods													*/
+				/******************************************************************* */
+
 				/**
         		 * Function returns no found message in case of some errors
         		 * @public

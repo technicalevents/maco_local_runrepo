@@ -40,16 +40,14 @@ sap.ui.define([
 					variantManagement: "idMarketPartnersVariantManagement",
 					filterBar: "idMarketPartnersSmartFilterBar"
 				},
-				tableAccessControl: {
-					navToPartnerPage: true
-				}
+				tableAccessControl: {}
 			});
 
 			this.oRouter.getRoute("initial").attachPatternMatched(this._onRoutePatternMatched, this);
 		},
 
 		/******************************************************************* */
-		/* PUBLIC METHODS */
+		/* PUBLIC METHODS 													*/
 		/******************************************************************* */
 
 		/**

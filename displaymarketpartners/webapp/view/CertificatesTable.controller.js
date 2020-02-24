@@ -10,6 +10,10 @@ sap.ui.define(
 		return SmartTableController.extend(
 			"com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.CertificatesTable", {
 				
+				/******************************************************************* */
+				/* LIFECYCLE METHODS */
+				/******************************************************************* */
+
 				/**
         		 * Lifecycle method - triggered on initialization of CertificateTable Controller
         		 */
@@ -23,6 +27,10 @@ sap.ui.define(
 						tableAccessControl: {}
 					});
 				},
+
+				/******************************************************************* */
+				/* PUBLIC METHODS 													*/
+				/******************************************************************* */
 				
 				/**
         		 * Function triggered before binding of Object Page

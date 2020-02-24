@@ -17,8 +17,7 @@
 				"settings": {
 					"odataVersion": "2.0",
 					"annotations": [
-						"annotations",
-						""
+						"annotations"
 					]
 				}
 			},

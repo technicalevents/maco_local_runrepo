@@ -9,6 +9,11 @@ sap.ui.define(
 
 		return SmartTableController.extend(
 			"com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.AS2Table", {
+
+				/******************************************************************* */
+				/* LIFECYCLE METHODS */
+				/******************************************************************* */
+
 				/**
         		 * Lifecycle method - triggered on initialization of AS2Table Controller
         		 */
@@ -22,6 +27,10 @@ sap.ui.define(
 						tableAccessControl: {}
 					});
 				},
+
+				/******************************************************************* */
+				/* PUBLIC METHODS 													*/
+				/******************************************************************* */
 				
 				/**
         		 * Function triggered before binding of Object Page
