@@ -1,11 +1,11 @@
 {
 	"_version": "1.4.0",
 	"sap.app": {
-		"id": "com.sap.cd.maco.monitor.ui.app.displayprocesses",
+		"id": "com.sap.cd.maco.monitor.ui.app",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
-		"title": "{{APP_TITLE}}",
-		"description": "{{APP_TITLE}}",
+		"title": "Market Commnication Applications",
+		"description": "Market Commnication Applications",
 		"applicationVersion": {
 			"version": "1.0.0"
 		},
@@ -22,26 +22,29 @@
 					]
 				}
 			},
+			"Main": {
+				"uri": "/sap/opu/odata/MP4G/PROCESSMONITOR_SB",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "../overviewprocess/webapp/localService/metadata.xml",
+					"annotations": [
+						"annotations"
+					]
+				}
+			},
 			"_MP4G_PROC_ANNO_MDL": {
 				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FPROCESSHEADER_SB_VAN',Version='0001')/$value/",
 				"type": "ODataAnnotation",
 				"settings": {
 					"localUri": "localService/_MP4G_PROC_ANNO_MDL.xml"
 				}
-			}
-		},
-		"resources": "resources.json",
-		"crossNavigation": {
-			"inbounds": {
-				"intent1": {
-					"signature": {
-						"parameters": {},
-						"additionalParameters": "allowed"
-					},
-					"semanticObject": "UtilsDataExchangeProcessing",
-					"action": "displayProcess",
-					"title": "{{APP_TITLE}}",
-					"icon": "sap-icon://process"
+			},
+			"annotations": {
+				"uri": "../overviewprocess/webapp/annotation/annotations.xml",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "../overviewprocess/webapp/annotation/annotations.xml"
 				}
 			}
 		}
@@ -100,23 +103,7 @@
 				}
 			]
 		},
-		"models": {
-			"i18n": {
-				"type": "sap.ui.model.resource.ResourceModel",
-				"settings": {
-					"bundleName": "com.sap.cd.maco.monitor.ui.app.displayprocesses.i18n.i18n"
-				}
-			},
-			"": {
-				"dataSource": "maindatasource",
-				"preload": true,
-				"settings": {
-					"defaultBindingMode": "TwoWay",
-					"defaultCountMode": "Inline",
-					"useBatch": true
-				}
-			}
-		},
+		"models": {},
 		"services": {
 			"ShellUIService": {
 				"factoryName": "sap.ushell.ui5service.ShellUIService",
@@ -139,57 +126,8 @@
 				},
 				"async": true
 			},
-			"routes": [
-				{
-					"name": "initial",
-					"pattern": "",
-					"target": [
-						"listReport"
-					]
-				},
-				{
-					"name": "listReport",
-					"pattern": "listReport",
-					"target": [
-						"listReport"
-					]
-				},
-				{
-					"name": "localstate-new",
-					"pattern": "{?query}",
-					"target": [
-						"listReport"
-					]
-				},
-				{
-					"name": "processPage",
-					"pattern": "processPage/{ProcessDocumentKey},{ProcessID}",
-					"target": [
-						"processPage"
-					]
-				}
-			],
-			"targets": {
-				"listReport": {
-					"viewPath": "com.sap.cd.maco.monitor.ui.app.displayprocesses.view",
-					"viewName": "ProcessListReport",
-					"viewId": "listReport",
-					"viewLevel": 1,
-					"title": "{i18n>APP_TITLE}"
-				},
-				"processPage": {
-					"viewPath": "com.sap.cd.maco.monitor.ui.app.displayprocesses.view",
-					"viewName": "ProcessPage",
-					"viewId": "processPage",
-					"viewLevel": 2,
-					"title": "{i18n>PROCESS_SINGULAR_LBL}"
-				},
-				"notFound": {
-					"viewPath": "com.sap.cd.maco.mmt.ui.reuse.controller.notFound",
-					"viewName": "NotFound",
-					"viewId": "notFound"
-				}
-			}
+			"routes": [],
+			"targets": {}
 		}
 	}
 }
