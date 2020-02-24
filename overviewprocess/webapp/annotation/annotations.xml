@@ -9,6 +9,9 @@
 	<edmx:Reference Uri="../../../mp4g/processmonitor_sb/$metadata">
 		<edmx:Include Alias="cds_xmp4gxprocessmonitor_sd" Namespace="cds_xmp4gxprocessmonitor_sd"/>
 	</edmx:Reference>
+	<edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Measures.V1.xml">
+		<edmx:Include Alias="Measures" Namespace="Org.OData.Measures.V1"/>
+	</edmx:Reference>
 	<edmx:DataServices>
 		<Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="cds_xmp4gxprocessmonitor_sd">
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType">
@@ -31,13 +34,21 @@
 				<Annotation Term="UI.DataPoint" Qualifier="StatusSuccessRatio">
 					<Record Type="UI.DataPointType">
 						<PropertyValue Property="Value" Path="SuccessRatio"/>
-						<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Positive"/>
 						<PropertyValue Property="ValueFormat">
 							<Record Type="UI.NumberFormat">
 								<PropertyValue Property="ScaleFactor" Decimal="1"/>
 								<PropertyValue Property="NumberOfFractionalDigits" Int="1"/>
 							</Record>
 						</PropertyValue>
+						<PropertyValue Property="CriticalityCalculation">
+							<Record Type="UI.CriticalityCalculationType">
+								<PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Maximize"/>
+								<PropertyValue Property="DeviationRangeLowValue" String="80"/>
+								<PropertyValue Property="ToleranceRangeLowValue" String="95"/>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="MinimumValue" Decimal="0"/>
+						<PropertyValue Property="MaximumValue" Decimal="100"/>
 					</Record>
 				</Annotation>
 				<Annotation Term="UI.Chart" Qualifier="StatusSuccessRatio">
@@ -107,8 +118,8 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="LoadCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="LoadCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -218,8 +229,8 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="OpenCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="OpenCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -232,12 +243,12 @@
 							<Record Type="UI.KPIDetailType">
 								<PropertyValue Property="DefaultPresentationVariant">
 									<Record Type="UI.PresentationVariantType">
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="Visualizations">
 											<Collection>
 												<AnnotationPath>@UI.Chart#OpenPType</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -292,8 +303,8 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="LoadCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="LoadCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -403,8 +414,8 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="OpenCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="OpenCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -417,12 +428,12 @@
 							<Record Type="UI.KPIDetailType">
 								<PropertyValue Property="DefaultPresentationVariant">
 									<Record Type="UI.PresentationVariantType">
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="Visualizations">
 											<Collection>
 												<AnnotationPath>@UI.Chart#OpenPCluster</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -515,8 +526,8 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="LoadCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="LoadCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -529,12 +540,12 @@
 							<Record Type="UI.KPIDetailType">
 								<PropertyValue Property="DefaultPresentationVariant">
 									<Record Type="UI.PresentationVariantType">
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="Visualizations">
 											<Collection>
 												<AnnotationPath>@UI.Chart#OpenPCluster</AnnotationPath>
 											</Collection>
 										</PropertyValue>
-										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="SortOrder">
 											<Collection>
 												<Record Type="Common.SortOrderType">
@@ -588,8 +599,8 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="OpenCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="OpenCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -602,11 +613,6 @@
 							<Record Type="UI.KPIDetailType">
 								<PropertyValue Property="DefaultPresentationVariant">
 									<Record Type="UI.PresentationVariantType">
-										<PropertyValue Property="Visualizations">
-											<Collection>
-												<AnnotationPath>@UI.Chart#OpenMP</AnnotationPath>
-											</Collection>
-										</PropertyValue>
 										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<!--<PropertyValue Property="SortOrder">
 											<Collection>
@@ -616,6 +622,11 @@
 												</Record>
 											</Collection>
 										</PropertyValue>-->
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#OpenMP</AnnotationPath>
+											</Collection>
+										</PropertyValue>
 									</Record>
 								</PropertyValue>
 								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
@@ -700,8 +711,8 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="LoadCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="LoadCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -714,11 +725,6 @@
 							<Record Type="UI.KPIDetailType">
 								<PropertyValue Property="DefaultPresentationVariant">
 									<Record Type="UI.PresentationVariantType">
-										<PropertyValue Property="Visualizations">
-											<Collection>
-												<AnnotationPath>@UI.Chart#OpenMP</AnnotationPath>
-											</Collection>
-										</PropertyValue>
 										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<!--<PropertyValue Property="SortOrder">
 											<Collection>
@@ -728,6 +734,11 @@
 												</Record>
 											</Collection>
 										</PropertyValue>-->
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#OpenMP</AnnotationPath>
+											</Collection>
+										</PropertyValue>
 									</Record>
 								</PropertyValue>
 								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
@@ -773,8 +784,8 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="OpenCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="OpenCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -847,8 +858,8 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
-								<PropertyValue Property="Value" Path="LoadCount"/>
 								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="LoadCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
 										<PropertyValue Property="ScaleFactor" Decimal="1"/>

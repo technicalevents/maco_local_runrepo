@@ -61,7 +61,7 @@
 					        smartFilterId="idMessageSmartFilterBar"
 					        smartVariant="idMessageVariantManagement"
 					        enableAutoBinding="true" 
-					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID"
+					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID,BusinessObjectDocumentKey"
 					        ignoredFields="ExtBusinessMessageID"
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="true"
