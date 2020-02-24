@@ -88,7 +88,10 @@
 		            </Column>
 				</columns>
 				<items>
-					<ColumnListItem highlight="{= !!!${CertificateValidTo} ? 'Error':'None'}" type="Navigation" press="onAction" c:action="navToPartnerPage">
+					<ColumnListItem highlight="{= !!!${CertificateValidTo} ? 'Error':'None'}" 
+									type="Navigation" 
+									press="onAction"
+									c:action="navToPartnerPage">
 						<cells>
 							<reuseTable:ObjectIdentifier title="{Name}" 
 														 text="{PartnerId}"/>
