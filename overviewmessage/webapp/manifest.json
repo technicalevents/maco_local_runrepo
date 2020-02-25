@@ -46,8 +46,8 @@
             "parameters": {},
             "additionalParameters": "allowed"
           },
-          "semanticObject": "Message",
-          "action": "overview",
+          "semanticObject": "UtilsDataExchangeProcessing",
+          "action": "overviewMessage",
           "title": "{{APP_TITLE}}",
           "icon": "sap-icon://area-chart"
         }
@@ -130,7 +130,7 @@
   "sap.ovp": {
     "globalFilterModel": "MessageMonitor",
     "globalFilterEntityType": "xMP4GxC_TransferDoc_UIType",
-    "enableLiveFilter": true,
+    "enableLiveFilter": false,
     "smartVariantRequired": true,
     "useDateRangeType": true,
     "containerLayout": "resizable",
@@ -139,7 +139,7 @@
         "model": "MessageMonitor",
         "template": "sap.ovp.cards.charts.analytical",
         "settings": {
-          "entitySet": "xMP4GxC_MesStatusMonitoring_UI",
+          "entitySet": "xMP4GxC_MesStatMonitoring_UI",
           "title": "{{STATUS_CARD_TITLE}}",
           "customParams": "CardStatus",
           "valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
@@ -147,15 +147,15 @@
           "defaultSpan": {
             "cols": 1
           },
-          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart",
-          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#kpi"
+          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StatusSuccessRatio",
+          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#StatusSuccessRatio"
         }
       },
       "b_load": {
         "model": "MessageMonitor",
         "template": "sap.ovp.cards.charts.analytical",
         "settings": {
-          "entitySet": "xMP4GxC_MessLoadMonitoring_UI",
+          "entitySet": "xMP4GxC_MesStatMonitoring_UI",
           "title": "{{LOAD_CARD_INFO}}",
           "customParams": "CardLoad",
           "valueSelectionInfo": "{{PROCESSED_SELECTION_INFO}}",
@@ -178,32 +178,32 @@
             "cols": 3
           },
           "tabs": [
-            {
-              "entitySet": "xMP4GxC_MesOpenMon_FromPartner",
-              "value": "{{BY_FROM_PARTNER_LBL}}",
-              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ReceiverId",
-              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ReceiverId"
-            },
-            {
-              "entitySet": "xMP4GxC_MessOpenMon_ToPartner",
-              "value": "{{BY_TO_PARTNER_LBL}}",
-              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#SenderId",
-              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#SenderId"
-            },
-            {
-              "entitySet": "xMP4GxC_MessOpenMonitor_Format",
+          	{
+              "entitySet": "xMP4GxC_MesStatMonitoring_UI",
               "value": "{{BY_FORMAT_LBL}}",
               "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TechMsgID",
               "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TechMsgID"
             },
             {
-              "entitySet": "xMP4GxC_MessOpenMonitor_AMID",
+              "entitySet": "xMP4GxC_MesStatMonitoring_UI",
+              "value": "{{BY_FROM_PARTNER_LBL}}",
+              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ReceiverId",
+              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ReceiverId"
+            },
+            {
+              "entitySet": "xMP4GxC_MesStatMonitoring_UI",
+              "value": "{{BY_TO_PARTNER_LBL}}",
+              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#SenderId",
+              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#SenderId"
+            },
+            {
+              "entitySet": "xMP4GxC_MesStatMonitoring_UI",
               "value": "{{BY_AMID_LBL}}",
               "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExtBuissMsgID",
               "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExtBuissMsgID"
             },
             {
-              "entitySet": "xMP4GxC_MessOpenMon_Direction",
+              "entitySet": "xMP4GxC_MesStatMonitoring_UI",
               "value": "{{BY_DIRECTION_LBL}}",
               "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Direction",
               "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#Direction"

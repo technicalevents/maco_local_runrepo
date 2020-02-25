@@ -39,7 +39,7 @@ sap.ui.define([
 							"tiles": [{
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
-									"title": "Overview Messages",
+									"title": "Overview Market Messages",
 									"targetURL": "#OverviewMessages-display"
 								}
 							}]
@@ -54,8 +54,8 @@ sap.ui.define([
 							"OverviewMessages-display": {
 								"semanticObject": "OverviewMessages",
 								"action": "display",
-								"description": "Overview Messages",
-								"title": "Overview Messages",
+								"description": "Overview Market Messages",
+								"title": "Overview Market Messages",
 								"signature": {
 									"parameters": {}
 								},

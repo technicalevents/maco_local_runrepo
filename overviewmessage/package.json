@@ -1,5 +1,5 @@
 {
-  "name": "monitormessage",
+  "name": "overviewMessage",
   "description": "",
   "devDependencies": {
     "@sap/grunt-sapui5-bestpractice-build": "1.4.1"
