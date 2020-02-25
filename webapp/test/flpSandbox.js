@@ -58,7 +58,7 @@ sap.ui.define(
 								}, {
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
-										title: "Overview Message",
+										title: "Overview Market Message",
 										targetURL: "#UtilsDataExchangeProcessing-overviewMessage"
 									}
 								}, {
