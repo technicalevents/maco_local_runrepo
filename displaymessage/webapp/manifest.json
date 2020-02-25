@@ -162,7 +162,7 @@
         },
         {
           "name": "messagePage",
-          "pattern": "messagePage/{TransferDocumentKey}",
+          "pattern": "messagePage/{TransferDocumentKey},{BusinessObjectDocumentKey}",
           "target": [
             "messagePage"
           ]
