@@ -70,7 +70,8 @@ sap.ui.define(
 										numberValue: this.numberValue1
 										
 									}
-								}, {
+								}]
+							}, {
 								id: "defaultGroupId2",
 								title: "Market Communication Technical Self Service",
 								tiles: [{
