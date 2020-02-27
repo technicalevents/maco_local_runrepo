@@ -191,23 +191,6 @@ sap.ui.define(
 										)
 									}
 								},
-								"UtilsDataExchangeProcessing-invoiceMeterReading": {
-									semanticObject: "UtilsDataExchangeProcessing",
-									action: "invoiceMeterReading",
-									description: "Monitor Invoice Meter Readings",
-									title: "Monitor Invoice Meter Readings",
-									signature: {
-										additionalParameters: "allowed",
-										parameters: {}
-									},
-									resolutionResult: {
-										applicationType: "SAPUI5",
-										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.invoicemeterreadings",
-										url: sap.ui.require.toUrl(
-											"com/sap/cd/maco/monitor/ui/app/invoicemeterreadings"
-										)
-									}
-								},
 								"UtilsDataExchangeProcessing-processUiAction": {
 									semanticObject: "UtilsDataExchangeProcessing",
 									action: "processUiAction",
