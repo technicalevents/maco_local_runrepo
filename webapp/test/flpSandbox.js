@@ -71,13 +71,6 @@ sap.ui.define(
 										
 									}
 								}, {
-									tileType: "sap.ushell.ui.tile.StaticTile",
-									properties: {
-										title: "Monitor Invoice Meter Readings",
-										targetURL: "#UtilsDataExchangeProcessing-invoicemeterreadings"
-									}
-								}]
-							}, {
 								id: "defaultGroupId2",
 								title: "Market Communication Technical Self Service",
 								tiles: [{
