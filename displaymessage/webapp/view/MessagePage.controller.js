@@ -228,7 +228,6 @@ sap.ui.define(
 			 */
 			_whenLinkTransferDocumentsRead: function(oRouteParams) {
 				var sTransferDocumentKey = oRouteParams.TransferDocumentKey;
-				var sBusinessObjectDocumentKey = oRouteParams.BusinessObjectDocumentKey;
 				
 				if(sTransferDocumentKey) {
 					var sLinkedDocumentKey = this.getView().getModel().createKey("/xMP4GxC_LinkedDocuments_UI", 
@@ -240,8 +239,7 @@ sap.ui.define(
 					}).then(this._onSucessLinkTransferDocumentsRead.bind(this));
 					
 					var sExternalPayloadKey = this.getView().getModel().createKey("/xMP4GxC_TransferDoc_UI", 
-			    						{TransferDocumentKey: sTransferDocumentKey,
-			    						 BusinessObjectDocumentKey: sBusinessObjectDocumentKey	
+			    						{TransferDocumentKey: sTransferDocumentKey	
 			    						});
 					this.oTransaction.whenRead({
 						path: sExternalPayloadKey,

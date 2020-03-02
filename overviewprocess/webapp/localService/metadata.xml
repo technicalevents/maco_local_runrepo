@@ -43,7 +43,16 @@
 				<Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Lang." sap:quickinfo="Language Key"/>
 				<Property Name="Description" Type="Edm.String" MaxLength="60" sap:label="Status Description" sap:quickinfo="Short Text for Fixed Values"/>
 			</EntityType>
-			<EntityType Name="xMP4GxC_MarketPartner_VHType" sap:label="Value Help for Market Partner" sap:value-list="true" sap:content-version="1">
+			<EntityType Name="xMP4GxC_CommonAccessRef_VHType" sap:label="Value Help for Common Access Reference" sap:value-list="true"
+				sap:content-version="1">
+				<Key>
+					<PropertyRef Name="com_acc_uuid"/>
+				</Key>
+				<Property Name="com_acc_uuid" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Common Access Ref."
+					sap:quickinfo="Common Access Reference"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_ExtMarketPartner_VHType" sap:label="Value Help for External Market Partner" sap:value-list="true"
+				sap:content-version="1">
 				<Key>
 					<PropertyRef Name="market_partner"/>
 				</Key>
@@ -55,6 +64,20 @@
 				<Property Name="div_category" Type="Edm.String" MaxLength="2" sap:display-format="NonNegative" sap:label="Division Cat."
 					sap:quickinfo="Division Category"/>
 				<Property Name="division_text" Type="Edm.String" MaxLength="60" sap:label="Division Category" sap:quickinfo="Short Text for Fixed Values"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_PDocNo_VHType" sap:label="Value Help for Market Process Document" sap:value-list="true" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessDocumentNumber"/>
+				</Key>
+				<Property Name="ProcessDocumentNumber" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Document"
+					sap:quickinfo="Document Number"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_PointOfDelivery_VHType" sap:label="Value Help for business object UUID" sap:value-list="true"
+				sap:content-version="1">
+				<Key>
+					<PropertyRef Name="bo_uuid"/>
+				</Key>
+				<Property Name="bo_uuid" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="External Reference of BO"/>
 			</EntityType>
 			<EntityType Name="xMP4GxC_ProcessCluster_VHType" sap:label="Process Cluster" sap:value-list="true" sap:content-version="1">
 				<Key>
@@ -78,7 +101,7 @@
 				<Property Name="ProcessDocumentKey" Type="Edm.Guid" Nullable="false" sap:label="Appl DB Key" sap:quickinfo="Application Table DB Key"
 					sap:creatable="false" sap:updatable="false"/>
 				<Property Name="ProcessDocumentNumber" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:text="ProcessIDDescription"
-					sap:label="Market Process Document" sap:quickinfo="Document Number"/>
+					sap:label="Market Process Document" sap:quickinfo="Document Number" sap:value-list="standard"/>
 				<Property Name="ProcessID" Type="Edm.String" MaxLength="40" sap:field-control="ProcessID_fc" sap:text="ProcessIDDescription"
 					sap:label="Process ID"/>
 				<Property Name="ProcessIDDescription" Type="Edm.String" MaxLength="120" sap:label="Market Process" sap:quickinfo="Description"
@@ -101,10 +124,11 @@
 				<Property Name="StatusDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:filter-restriction="interval"
 					sap:label="Process Status Date"/>
 				<Property Name="proc_id" Type="Edm.String" MaxLength="40" sap:label="Process ID"/>
-				<Property Name="BusinessObjectUUID" Type="Edm.String" MaxLength="70" sap:label="Point of Delivery" sap:quickinfo="External Reference of BO"/>
+				<Property Name="BusinessObjectUUID" Type="Edm.String" MaxLength="70" sap:label="Point of Delivery" sap:quickinfo="External Reference of BO"
+					sap:value-list="standard"/>
 				<Property Name="OwnerUUID" Type="Edm.String" MaxLength="40" sap:label="Own Market Partner" sap:quickinfo="Business Object Owner UUID"/>
 				<Property Name="OwnerUUIDText" Type="Edm.String" MaxLength="500" sap:label="Partner Name" sap:quickinfo="Market Partner Name"/>
-				<Property Name="CommonAccessUUID" Type="Edm.String" MaxLength="70" sap:label="Common Access Reference"/>
+				<Property Name="CommonAccessUUID" Type="Edm.String" MaxLength="70" sap:label="Common Access Reference" sap:value-list="standard"/>
 				<Property Name="client_name" Type="Edm.String" MaxLength="3" sap:label="Client"/>
 				<Property Name="client_uuid" Type="Edm.String" MaxLength="36" sap:label="Client UUID"/>
 			</EntityType>
@@ -181,6 +205,11 @@
 				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
 				<Property Name="OpenCount" Type="Edm.Int64"/>
 				<Property Name="LoadCount" Type="Edm.Int64"/>
+				<Property Name="OpenCountRef" Type="Edm.Int64"/>
+				<Property Name="UpDifference" Type="Edm.Int64"/>
+				<Property Name="DownDifference" Type="Edm.Int64"/>
+				<Property Name="ToleranceRangeLowValue" Type="Edm.Int64"/>
+				<Property Name="DeviationRangeHighValue" Type="Edm.Int64"/>
 			</EntityType>
 			<EntityType Name="xMP4GxC_ProcOpenMoni_OMP_UIType" sap:label="Analytical Chart for Own Market partner" sap:content-version="1">
 				<Key>
@@ -213,6 +242,11 @@
 				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
 				<Property Name="OpenCount" Type="Edm.Int64"/>
 				<Property Name="LoadCount" Type="Edm.Int64"/>
+				<Property Name="OpenCountRef" Type="Edm.Int64"/>
+				<Property Name="UpDifference" Type="Edm.Int64"/>
+				<Property Name="DownDifference" Type="Edm.Int64"/>
+				<Property Name="ToleranceRangeLowValue" Type="Edm.Int64"/>
+				<Property Name="DeviationRangeHighValue" Type="Edm.Int64"/>
 			</EntityType>
 			<EntityType Name="xMP4GxC_ProcOpenMoni_PClust_UIType" sap:label="Analytical Chart for Process Cluster" sap:content-version="1">
 				<Key>
@@ -246,6 +280,11 @@
 				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
 				<Property Name="OpenCount" Type="Edm.Int64"/>
 				<Property Name="LoadCount" Type="Edm.Int64"/>
+				<Property Name="OpenCountRef" Type="Edm.Int64"/>
+				<Property Name="UpDifference" Type="Edm.Int64"/>
+				<Property Name="DownDifference" Type="Edm.Int64"/>
+				<Property Name="ToleranceRangeLowValue" Type="Edm.Int64"/>
+				<Property Name="DeviationRangeHighValue" Type="Edm.Int64"/>
 			</EntityType>
 			<EntityType Name="xMP4GxC_ProcOpenMoni_PType_UIType" sap:label="Analytical Chart for Process Type" sap:content-version="1">
 				<Key>
@@ -279,6 +318,11 @@
 				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
 				<Property Name="OpenCount" Type="Edm.Int64"/>
 				<Property Name="LoadCount" Type="Edm.Int64"/>
+				<Property Name="OpenCountRef" Type="Edm.Int64"/>
+				<Property Name="UpDifference" Type="Edm.Int64"/>
+				<Property Name="DownDifference" Type="Edm.Int64"/>
+				<Property Name="ToleranceRangeLowValue" Type="Edm.Int64"/>
+				<Property Name="DeviationRangeHighValue" Type="Edm.Int64"/>
 			</EntityType>
 			<EntityType Name="xMP4GxC_ProcStatMonitoring_UIType" sap:label="Process Status Monitoring" sap:content-version="1">
 				<Key>
@@ -315,7 +359,13 @@
 				sap:supported-formats="atom json xlsx">
 				<EntitySet Name="xAPExC_ProcStatus_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xAPExC_ProcStatus_VHType" sap:creatable="false"
 					sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
-				<EntitySet Name="xMP4GxC_MarketPartner_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_MarketPartner_VHType" sap:creatable="false"
+				<EntitySet Name="xMP4GxC_CommonAccessRef_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_CommonAccessRef_VHType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_ExtMarketPartner_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ExtMarketPartner_VHType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_PDocNo_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_PDocNo_VHType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_PointOfDelivery_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_PointOfDelivery_VHType" sap:creatable="false"
 					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
 				<EntitySet Name="xMP4GxC_ProcessCluster_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessCluster_VHType" sap:creatable="false"
 					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
@@ -336,6 +386,24 @@
 				<EntitySet Name="xMP4GxC_ProcStatMonitoring_UI" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcStatMonitoring_UIType"
 					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
 			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/ProcessDocumentNumber">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Value Help for Market Process Document"/>
+						<PropertyValue Property="CollectionPath" String="xMP4GxC_PDocNo_VH"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="ProcessDocumentNumber"/>
+									<PropertyValue Property="ValueListProperty" String="ProcessDocumentNumber"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
 			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
 				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/ProcessIDDescription">
 				<Annotation Term="Common.ValueList">
@@ -415,8 +483,8 @@
 			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/MarketPartner">
 				<Annotation Term="Common.ValueList">
 					<Record>
-						<PropertyValue Property="Label" String="Value Help for Market Partner"/>
-						<PropertyValue Property="CollectionPath" String="xMP4GxC_MarketPartner_VH"/>
+						<PropertyValue Property="Label" String="Value Help for External Market Partner"/>
+						<PropertyValue Property="CollectionPath" String="xMP4GxC_ExtMarketPartner_VH"/>
 						<PropertyValue Property="SearchSupported" Bool="true"/>
 						<PropertyValue Property="Parameters">
 							<Collection>
@@ -441,6 +509,42 @@
 								</Record>
 								<Record Type="Common.ValueListParameterDisplayOnly">
 									<PropertyValue Property="ValueListProperty" String="division_text"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/BusinessObjectUUID">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Value Help for business object UUID"/>
+						<PropertyValue Property="CollectionPath" String="xMP4GxC_PointOfDelivery_VH"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="BusinessObjectUUID"/>
+									<PropertyValue Property="ValueListProperty" String="bo_uuid"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/CommonAccessUUID">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Value Help for Common Access Reference"/>
+						<PropertyValue Property="CollectionPath" String="xMP4GxC_CommonAccessRef_VH"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="CommonAccessUUID"/>
+									<PropertyValue Property="ValueListProperty" String="com_acc_uuid"/>
 								</Record>
 							</Collection>
 						</PropertyValue>

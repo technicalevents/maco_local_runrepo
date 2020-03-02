@@ -6,7 +6,7 @@
   <smartTable:SmartTable id="idCertificateSmartTable" 
 					    entitySet="{this>/entitySet}"
 					    tableType="ResponsiveTable" 
-					    enableAutoBinding="false" 
+					    enableAutoBinding="true" 
 					    beforeRebindTable="onBeforeRebindTable"
 					    ignoredFields="" 
 					    beforeExport="beforeExport" 

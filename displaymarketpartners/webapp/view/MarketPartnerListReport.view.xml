@@ -88,7 +88,7 @@
 		            </Column>
 				</columns>
 				<items>
-					<ColumnListItem highlight="{= !!!${CertificateValidTo} ? 'Error':'None'}" 
+					<ColumnListItem highlight="{= ${CertValidityCriticality} === 0 ? 'Error':'None'}" 
 									type="Navigation" 
 									press="onAction"
 									c:action="navToPartnerPage">

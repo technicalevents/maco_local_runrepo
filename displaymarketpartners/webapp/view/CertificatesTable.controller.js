@@ -22,7 +22,7 @@ sap.ui.define(
 						controls: {
 							table: "idCertificateSmartTable"
 						},
-						entitySet: "xMP4GxCE_CERTIFICATES",
+						entitySet: "xMP4GxCE_PARTNERCERT",
 						actions: {},
 						tableAccessControl: {}
 					});

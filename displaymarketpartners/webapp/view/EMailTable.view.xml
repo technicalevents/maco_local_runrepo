@@ -6,7 +6,7 @@
 	  <smartTable:SmartTable id="idEmailSmartTable"
 						    entitySet="{this>/entitySet}"
 						    tableType="ResponsiveTable" 
-						    enableAutoBinding="false" 
+						    enableAutoBinding="true" 
 						    beforeRebindTable="onBeforeRebindTable"
 						    ignoredFields="" 
 						    useExportToExcel="false" 
