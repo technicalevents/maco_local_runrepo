@@ -45,11 +45,6 @@ sap.ui.define([
 					table: "idMassMeterReadingSmartTable",
 					variantManagement: "idMassMeterReadingVariantManagement",
 					filterBar: "idMassMeterReadingSmartFilterBar"
-				},
-				tableAccessControl: {
-					navToUploadProcessAction: true,
-					navToAggrProcessAction: true,
-					navToMessageAction: true
 				}
 			});
 			
@@ -140,9 +135,9 @@ sap.ui.define([
          */
         onRefresh: function() {
 			this.getSmartTable().rebindTable(true);
-        },
-        
-        /**
+		},
+		
+		/**
          * Event is triggered when Meter Type Segmented Button selection is changed
          * @params {object} oEvent  Segmented button selection change event
          * @public

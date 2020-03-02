@@ -86,74 +86,66 @@
 							<Text text="{/xMP4GxC_MassProcMtrRead/PointOfDelivery/#@sap:label}"/>
 							<customData>
 								<core:CustomData key="p13nData" 
-									value='\{"columnIndex":0,"columnKey":"PointOfDelivery","leadingProperty":["PointOfDelivery"],"sortProperty":"PointOfDelivery"}'/>
+									value='\{"columnIndex":0,"columnKey":"PointOfDelivery","description":"OBIS","displayBehaviour":"idAndDescription","leadingProperty":["PointOfDelivery","OBIS"],"sortProperty":"PointOfDelivery"}'/>
 							</customData>
 						</Column>
 						<Column width="5%">
-							<Text text="{/xMP4GxC_MassProcMtrRead/OBIS/#@sap:label}"/>
-							<customData>
-							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":1,"columnKey":"OBIS","leadingProperty":["OBIS"],"sortProperty":"OBIS"}'/>
-							</customData>
-						</Column>
-						<Column width="7%">
 							<Text text="{/xMP4GxC_MassProcMtrRead/PeriodFromDate/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":2,"columnKey":"PeriodFromDate","type":"date","leadingProperty":["PeriodFromDate"],"sortProperty":"PeriodFromDate"}'/>
+								value='\{"columnIndex":1,"columnKey":"PeriodFromDate","type":"date","leadingProperty":["PeriodFromDate"],"sortProperty":"PeriodFromDate"}'/>
 							</customData>
 						</Column>
-						<Column width="7%">
+						<Column width="5%">
 							<Text text="{/xMP4GxC_MassProcMtrRead/PeriodToDate/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":3,"columnKey":"PeriodToDate","type":"date","leadingProperty":["PeriodToDate"],"sortProperty":"PeriodToDate"}'/>
+								value='\{"columnIndex":2,"columnKey":"PeriodToDate","type":"date","leadingProperty":["PeriodToDate"],"sortProperty":"PeriodToDate"}'/>
 							</customData>
 						</Column>
-						<Column width="7%">
+						<Column width="5%">
 							<Text text="{/xMP4GxC_MassProcMtrRead/UploadDate/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":4,"columnKey":"UploadDate","type":"date","leadingProperty":["UploadDate"],"sortProperty":"UploadDate"}'/>
+								value='\{"columnIndex":3,"columnKey":"UploadDate","type":"date","leadingProperty":["UploadDate"],"sortProperty":"UploadDate"}'/>
 							</customData>
 						</Column>
 						<Column>
 							<Text text="{/xMP4GxC_MassProcMtrRead/ExternalMarketPartner/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":5,"columnKey":"ExternalMarketPartner","description":"ExternalMarketPartnerText","displayBehaviour":"idAndDescription","leadingProperty":["ExternalMarketPartner","ExternalMarketPartnerText"],"sortProperty":"ExternalMarketPartner"}'/>
+								value='\{"columnIndex":4,"columnKey":"ExternalMarketPartner","description":"ExternalMarketPartnerText","displayBehaviour":"idAndDescription","leadingProperty":["ExternalMarketPartner","ExternalMarketPartnerText"],"sortProperty":"ExternalMarketPartner"}'/>
 							</customData>
 						</Column>
 						<Column>
 							<Text text="{/xMP4GxC_MassProcMtrRead/MassUploadProcessDoc/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":6,"columnKey":"MassUploadProcessDoc","leadingProperty":["MassUploadProcessDoc],"sortProperty":"MassUploadProcessDoc"}'/>
+								value='\{"columnIndex":5,"columnKey":"MassUploadProcessDoc","leadingProperty":["MassUploadProcessDoc"],"sortProperty":"MassUploadProcessDoc"}'/>
 							</customData>
 						</Column>
 						<Column>
 							<Text text="{/xMP4GxC_MassProcMtrRead/AggregationProcessDoc/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":7,"columnKey":"AggregationProcessDoc","leadingProperty":["AggregationProcessDoc"],"sortProperty":"AggregationProcessDoc"}'/>
+								value='\{"columnIndex":6,"columnKey":"AggregationProcessDoc","leadingProperty":["AggregationProcessDoc"],"sortProperty":"AggregationProcessDoc"}'/>
 							</customData>
 						</Column>
 						<Column>
 							<Text text="{/xMP4GxC_MassProcMtrRead/MessageReference/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":8,"columnKey":"MessageReference","leadingProperty":["MessageReference"],"sortProperty":"MessageReference"}'/>
+								value='\{"columnIndex":7,"columnKey":"MessageReference","leadingProperty":["MessageReference"],"sortProperty":"MessageReference"}'/>
 							</customData>
 						</Column>
 					</columns>
 					<items>
 						<ColumnListItem >
 							<cells>
-								<reuseTable:ObjectIdentifier title="{PointOfDelivery}"/>
-								<reuseTable:ObjectIdentifier title="{OBIS}"/>
+								<reuseTable:ObjectIdentifier title="{PointOfDelivery}" text="{OBIS}"/>
 								<reuseTable:ObjectIdentifier title="{path:'PeriodFromDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
 								<reuseTable:ObjectIdentifier title="{path:'PeriodFromDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
-								<Text text="{path:'PeriodFromDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
+								<Text text="{path:'UploadDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
 								<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}" text="{ExternalMarketPartner}"/>
 								<Link text="{MassUploadProcessDoc}" c:action="navToUploadProcessAction" press="onAction"/>
 								<Link text="{AggregationProcessDoc}" c:action="navToAggrProcessAction" press="onAction"/>

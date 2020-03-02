@@ -70,12 +70,6 @@ sap.ui.define(
 										numberValue: this.numberValue1
 										
 									}
-								}, {
-									tileType: "sap.ushell.ui.tile.StaticTile",
-									properties: {
-										title: "Monitor Invoice Meter Readings",
-										targetURL: "#UtilsDataExchangeProcessing-invoicemeterreadings"
-									}
 								}]
 							}, {
 								id: "defaultGroupId2",
@@ -188,23 +182,6 @@ sap.ui.define(
 										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.massmeterreadings",
 										url: sap.ui.require.toUrl(
 											"com/sap/cd/maco/monitor/ui/app/massmeterreadings"
-										)
-									}
-								},
-								"UtilsDataExchangeProcessing-invoiceMeterReading": {
-									semanticObject: "UtilsDataExchangeProcessing",
-									action: "invoiceMeterReading",
-									description: "Monitor Invoice Meter Readings",
-									title: "Monitor Invoice Meter Readings",
-									signature: {
-										additionalParameters: "allowed",
-										parameters: {}
-									},
-									resolutionResult: {
-										applicationType: "SAPUI5",
-										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.invoicemeterreadings",
-										url: sap.ui.require.toUrl(
-											"com/sap/cd/maco/monitor/ui/app/invoicemeterreadings"
 										)
 									}
 								},
