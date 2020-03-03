@@ -354,6 +354,9 @@
 					sap:quickinfo="Common Access Reference"/>
 				<Property Name="SuccessRatio" Type="Edm.Int64"/>
 				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
+				<Property Name="SuccessRatioRef" Type="Edm.Int64"/>
+				<Property Name="UpDifference" Type="Edm.Int64"/>
+				<Property Name="DownDifference" Type="Edm.Int64"/>
 			</EntityType>
 			<EntityContainer Name="cds_xmp4gxprocessmonitor_sd_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
 				sap:supported-formats="atom json xlsx">

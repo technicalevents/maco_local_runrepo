@@ -49,7 +49,15 @@
 								<PropertyValue Property="ToleranceRangeLowValue" String="95"/>
 							</Record>
 						</PropertyValue>
-						<PropertyValue Property="Trend"/>
+						<PropertyValue Property="TrendCalculation">
+							<Record Type="UI.TrendCalculationType">
+								<PropertyValue Property="ReferenceValue" Path="SuccessRatioRef"/>
+								<PropertyValue Property="UpDifference" Path="UpDifference"/>
+								<PropertyValue Property="StrongUpDifference" Path="UpDifference"/>
+								<PropertyValue Property="DownDifference" Path="DownDifference"/>
+								<PropertyValue Property="StrongDownDifference" Path="DownDifference"/>
+							</Record>
+						</PropertyValue>
 					</Record>
 				</Annotation>
 				<Annotation Term="UI.Chart" Qualifier="StatusSuccessRatio">
@@ -180,6 +188,10 @@
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessDate"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
 								</Record>
 							</Collection>
 							<Collection>
