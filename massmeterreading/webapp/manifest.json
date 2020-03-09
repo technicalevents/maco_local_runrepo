@@ -23,10 +23,7 @@
 		},
 		"MassMeterReading": {
 			"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MASSPROCMTRREAD_VAN',Version='0001')/$value/",
-			"type": "ODataAnnotation",
-			"settings": {
-				"localUri": "annotation/MassMeterReading.xml"
-			}
+			"type": "ODataAnnotation"
 		}
     },
     "resources": "resources.json",
@@ -88,13 +85,7 @@
       "compact": true,
       "cozy": true
     },
-    "resources": {
-		"css": [
-			{
-				"uri": "css/style.css"
-			}
-		]
-    },
+    "resources": {},
     "models": {
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",

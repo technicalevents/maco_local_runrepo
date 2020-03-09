@@ -3,6 +3,7 @@
 		  xmlns:semantic="sap.f.semantic" 
 		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 		  xmlns:smartTable="sap.ui.comp.smarttable"
+		  xmlns:smartchart="sap.ui.comp.smartchart"
 		  xmlns:mvc="sap.ui.core.mvc"
 		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		  controllerName="com.sap.cd.maco.monitor.ui.app.massmeterreadings.view.MassMeterReadingListReport"
@@ -46,6 +47,24 @@
 					</smartFilterBar:ControlConfiguration>
 				</smartFilterBar:controlConfiguration>
 			</smartFilterBar:SmartFilterBar>
+			<VBox fitContainer="true" class="sapUiSmallMarginTop">
+				<smartchart:SmartChart id="idMassMeterReadingSmartChart"
+									   enableAutoBinding="false"
+									   entitySet="xMP4GxC_MassProcPerDayCountMR" 
+									   useVariantManagement="false"
+									   persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.massmeterreadings.chart" 
+									   useChartPersonalisation="false"
+									   showFullScreenButton="false" 
+									   showDrillBreadcrumbs="false"
+									   header="{i18n>UPLOAD_DOC_CHART_TITLE}"
+									   showDrillButtons="false"
+									   showZoomButtons="false"
+									   showChartTypeSelectionButton="false"
+									   showLegendButton="false"
+									   showSemanticNavigationButton="false"
+									   beforeRebindChart="onBeforeRebindChart"
+									   height="300px"/>
+			</VBox>
 		</semantic:headerContent>
 		<semantic:content>
 			<smartTable:SmartTable id="idMassMeterReadingSmartTable"
@@ -53,8 +72,7 @@
 								   tableType="ResponsiveTable"
 								   smartFilterId="idMassMeterReadingSmartFilterBar"
 								   smartVariant="idMassMeterReadingVariantManagement"
-								   enableAutoBinding="true" 
-								   ignoredFields="" 
+								   enableAutoBinding="false" 
 								   demandPopin="true"
 								   header="{i18n>METER_READINGS_PLURAL_LBL}"
 								   c:p13nDialogSettings='{filter:{visible:false}}' 
@@ -66,6 +84,7 @@
 														 AggregationProcessKey,MassUploadProcessID,MassUploadProcessKey">
 				<smartTable:customToolbar>
 					<OverflowToolbar design="Transparent">
+						<ToolbarSpacer/>
 						<SegmentedButton items="{/xMP4GxC_MassProcMtrReadType_VH}" selectionChange="onMeterTypeSelectionChange">
 							<items>
 								<SegmentedButtonItem text="{Description}" key="{Value}"/>
@@ -89,21 +108,21 @@
 									value='\{"columnIndex":0,"columnKey":"PointOfDelivery","description":"OBIS","displayBehaviour":"idAndDescription","leadingProperty":["PointOfDelivery","OBIS"],"sortProperty":"PointOfDelivery"}'/>
 							</customData>
 						</Column>
-						<Column width="5%">
+						<Column width="100px">
 							<Text text="{/xMP4GxC_MassProcMtrRead/PeriodFromDate/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
 								value='\{"columnIndex":1,"columnKey":"PeriodFromDate","type":"date","leadingProperty":["PeriodFromDate"],"sortProperty":"PeriodFromDate"}'/>
 							</customData>
 						</Column>
-						<Column width="5%">
+						<Column width="100px">
 							<Text text="{/xMP4GxC_MassProcMtrRead/PeriodToDate/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
 								value='\{"columnIndex":2,"columnKey":"PeriodToDate","type":"date","leadingProperty":["PeriodToDate"],"sortProperty":"PeriodToDate"}'/>
 							</customData>
 						</Column>
-						<Column width="5%">
+						<Column width="100px">
 							<Text text="{/xMP4GxC_MassProcMtrRead/UploadDate/#@sap:label}"/>
 							<customData>
 							<core:CustomData key="p13nData" 
