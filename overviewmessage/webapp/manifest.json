@@ -1,231 +1,250 @@
 {
-  "_version": "1.4.0",
-  "sap.app": {
-    "id": "com.sap.cd.maco.monitor.ui.app.overviewmessages",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "title": "{{APP_TITLE}}",
-    "description": "{{FILTER_TITLE}}",
-    "applicationVersion": {
-      "version": "1.0.2"
-    },
-    "ach": "MACO-MMT",
-    "dataSources": {
-      "Main": {
-        "uri": "/sap/opu/odata/MP4G/MESSAGEMONITOR_SB",
-        "type": "OData",
-        "settings": {
-          "odataVersion": "2.0",
-          "localUri": "localService/metadata.xml",
-          "annotations": [
-            "MP4G_MESSAGEMONITOR_SB_VAN",
-            "annotations"
-          ]
-        }
-      },
-      "MP4G_MESSAGEMONITOR_SB_VAN": {
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FMESSAGEMONITOR_SB_VAN',Version='0001')/$value/",
-        "type": "ODataAnnotation",
-        "settings": {
-          "localUri": "localService/MESSAGEMONITOR_SB/MP4G_MESSAGEMONITOR_SB_VAN.xml"
-        }
-      },
-      "annotations": {
-        "type": "ODataAnnotation",
-        "uri": "annotation/annotations.xml",
-        "settings": {
-          "localUri": "annotation/annotations.xml"
-        }
-      }
-    },
-    "resources": "resources.json",
-    "crossNavigation": {
-      "inbounds": {
-        "intent1": {
-          "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
-          },
-          "semanticObject": "UtilsDataExchangeProcessing",
-          "action": "overviewMessage",
-          "title": "{{APP_TITLE}}",
-          "icon": "sap-icon://area-chart"
-        }
-      }
-    }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "fullWidth": true,
-    "icons": {
-      "icon": "sap-icon://task",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": false,
-      "phone": false
-    },
-    "supportedThemes": [
-      "sap_hcb",
-      "sap_belize"
-    ]
-  },
-  "sap.ui5": {
-    "dependencies": {
-      "minUI5Version": "1.65.0",
-      "libs": {
-        "sap.m": {},
-        "sap.f": {},
-        "sap.ui.core": {},
-        "sap.ui.layout": {},
-        "sap.uxap": {},
-        "sap.ui.comp": {},
-        "sap.ui.table": {},
-        "sap.ovp": {},
-        "sap.ui.suite": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
-        }
-      ]
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "com.sap.cd.maco.monitor.ui.app.overviewmessages.i18n.i18n"
-        }
-      },
-      "MessageMonitor": {
-        "dataSource": "Main",
-        "preload": true,
-        "settings": {
-          "defaultBindingMode": "OneWay",
-          "defaultCountMode": "None"
-        }
-      }
-    },
-    "extends": {
-      "extensions": {
-        "sap.ui.controllerExtensions": {
-          "sap.ovp.app.Main": {
-            "controllerName": "com.sap.cd.maco.monitor.ui.app.overviewmessages.ext.ExtController"
-          }
-        }
-      }
-    }
-  },
-  "sap.ovp": {
-    "globalFilterModel": "MessageMonitor",
-    "globalFilterEntityType": "xMP4GxC_TransferDoc_UIType",
-    "enableLiveFilter": false,
-    "smartVariantRequired": true,
-    "useDateRangeType": true,
-    "containerLayout": "resizable",
-    "cards": {
-      "a_status": {
-        "model": "MessageMonitor",
-        "template": "sap.ovp.cards.charts.analytical",
-        "settings": {
-          "entitySet": "xMP4GxC_MesStatMonitoring_UI",
-          "title": "{{STATUS_CARD_TITLE}}",
-          "customParams": "CardStatus",
-          "valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
-          "showFilterInHeader": false,
-          "defaultSpan": {
-            "cols": 1
-          },
-          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StatusSuccessRatio",
-          "dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#StatusSuccessRatio"
-        }
-      },
-      "b_load": {
-        "model": "MessageMonitor",
-        "template": "sap.ovp.cards.charts.analytical",
-        "settings": {
-          "entitySet": "xMP4GxC_MesStatMonitoring_UI",
-          "title": "{{LOAD_CARD_INFO}}",
-          "customParams": "CardLoad",
-          "valueSelectionInfo": "{{PROCESSED_SELECTION_INFO}}",
-          "showFilterInHeader": false,
-          "defaultSpan": {
-            "cols": 2
-          },
-          "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StackedColumnChart",
-          "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#StackedColumnChart"
-        }
-      },
-      "c_todo": {
-        "model": "MessageMonitor",
-        "template": "sap.ovp.cards.charts.analytical",
-        "settings": {
-          "title": "{{FAILED_CARD_INFO}}",
-          "valueSelectionInfo": "{{FAILED_SELECTION_INFO}}",
-          "showFilterInHeader": false,
-          "defaultSpan": {
-            "cols": 3
-          },
-          "tabs": [
-          	{
-              "entitySet": "xMP4GxC_MesStatMonitoring_UI",
-              "value": "{{BY_FORMAT_LBL}}",
-              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TechMsgID",
-              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TechMsgID"
-            },
-            {
-              "entitySet": "xMP4GxC_MesStatMonitoring_UI",
-              "value": "{{BY_FROM_PARTNER_LBL}}",
-              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ReceiverId",
-              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ReceiverId"
-            },
-            {
-              "entitySet": "xMP4GxC_MesStatMonitoring_UI",
-              "value": "{{BY_TO_PARTNER_LBL}}",
-              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#SenderId",
-              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#SenderId"
-            },
-            {
-              "entitySet": "xMP4GxC_MesStatMonitoring_UI",
-              "value": "{{BY_AMID_LBL}}",
-              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExtBuissMsgID",
-              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExtBuissMsgID"
-            },
-            {
-              "entitySet": "xMP4GxC_MesStatMonitoring_UI",
-              "value": "{{BY_DIRECTION_LBL}}",
-              "chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Direction",
-              "kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#Direction"
-            }
-          ]
-        }
-      }
-    },
-    "services": {
-      "ShellUIService": {
-        "factoryName": "sap.ushell.ui5service.ShellUIService",
-        "lazy": false,
-        "settings": {
-          "setHierarchy": "auto",
-          "setTitle": "auto"
-        }
-      }
-    }
-  },
-  "sap.platform.cf": {
-    "oAuthScopes": [
-      "$XSAPPNAME.AppMktMsg_Overview"
-    ]
-  }
+	"_version": "1.4.0",
+	"sap.app": {
+		"id": "com.sap.cd.maco.monitor.ui.app.overviewmessages",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{APP_TITLE}}",
+		"description": "{{FILTER_TITLE}}",
+		"applicationVersion": {
+			"version": "1.0.2"
+		},
+		"ach": "MACO-MMT",
+		"dataSources": {
+			"Main": {
+				"uri": "/sap/opu/odata/MP4G/MESSAGEMONITOR_SB",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml",
+					"annotations": [
+						"MP4G_MESSAGEMONITOR_SB_VAN",
+						"annotations"
+					]
+				}
+			},
+			"MP4G_MESSAGEMONITOR_SB_VAN": {
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FMESSAGEMONITOR_SB_VAN',Version='0001')/$value/",
+				"type": "ODataAnnotation",
+				"settings": {
+					"localUri": "localService/MESSAGEMONITOR_SB/MP4G_MESSAGEMONITOR_SB_VAN.xml"
+				}
+			},
+			"annotations": {
+				"type": "ODataAnnotation",
+				"uri": "annotation/annotations.xml",
+				"settings": {
+					"localUri": "annotation/annotations.xml"
+				}
+			}
+		},
+		"resources": "resources.json",
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "UtilsDataExchangeProcessing",
+					"action": "overviewMessage",
+					"title": "{{APP_TITLE}}",
+					"icon": "sap-icon://area-chart"
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"fullWidth": true,
+		"icons": {
+			"icon": "sap-icon://task",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": false,
+			"phone": false
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"dependencies": {
+			"minUI5Version": "1.65.0",
+			"libs": {
+				"sap.m": {},
+				"sap.f": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.uxap": {},
+				"sap.ui.comp": {},
+				"sap.ui.table": {},
+				"sap.ovp": {},
+				"sap.ui.suite": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.sap.cd.maco.monitor.ui.app.overviewmessages.i18n.i18n"
+				}
+			},
+			"MessageMonitor": {
+				"dataSource": "Main",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "OneWay",
+					"defaultCountMode": "None"
+				}
+			}
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.controllerExtensions": {
+					"sap.ovp.app.Main": {
+						"controllerName": "com.sap.cd.maco.monitor.ui.app.overviewmessages.ext.ExtController"
+					}
+				}
+			}
+		}
+	},
+	"sap.ovp": {
+		"globalFilterModel": "MessageMonitor",
+		"globalFilterEntityType": "xMP4GxC_TransferDoc_UIType",
+		"enableLiveFilter": true,
+		"smartVariantRequired": true,
+		"useDateRangeType": true,
+		"containerLayout": "resizable",
+		"cards": {
+			"a_status": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+					"title": "{{STATUS_CARD_TITLE}}",
+					"customParams": "CardStatus",
+					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 1
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StatusSuccessRatio",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#StatusSuccessRatio"
+				}
+			},
+			"b_load": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+					"title": "{{LOAD_CARD_INFO}}",
+					"customParams": "CardLoad",
+					"valueSelectionInfo": "{{PROCESSED_SELECTION_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StackedColumnChart",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#StackedColumnChart"
+				}
+			},
+			"c_todo": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{FAILED_CARD_INFO}}",
+					"valueSelectionInfo": "{{FAILED_SELECTION_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 3
+					},
+					"tabs": [{
+						"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+						"value": "{{BY_FORMAT_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TechMsgID",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TechMsgID"
+					}, {
+						"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+						"value": "{{BY_FROM_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ReceiverId",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ReceiverId"
+					}, {
+						"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+						"value": "{{BY_TO_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#SenderId",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#SenderId"
+					}, {
+						"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+						"value": "{{BY_AMID_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExtBuissMsgID",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExtBuissMsgID"
+					}, {
+						"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+						"value": "{{BY_DIRECTION_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Direction",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#Direction"
+					}]
+				}
+			},
+			"d_MPload": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+					"title": "{{LOAD_CARD_INFO}}",
+					"customParams": "CardMPLoad",
+					"valueSelectionInfo": "{{OWN_MARKET_PARTNER_PROCESSED_SELECTION_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OMPStackedColumnChart",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OMPStackedColumnChart"
+				}
+			},
+			"e_MPload": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+					"title": "{{LOAD_CARD_INFO}}",
+					"customParams": "CardMPLoad",
+					"valueSelectionInfo": "{{SENT_ACK_PROCESSED_SELECTION_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ACKStackedColumnChart",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ACKStackedColumnChart"
+				}
+			}
+		},
+		"services": {
+			"ShellUIService": {
+				"factoryName": "sap.ushell.ui5service.ShellUIService",
+				"lazy": false,
+				"settings": {
+					"setHierarchy": "auto",
+					"setTitle": "auto"
+				}
+			}
+		}
+	}
 }
