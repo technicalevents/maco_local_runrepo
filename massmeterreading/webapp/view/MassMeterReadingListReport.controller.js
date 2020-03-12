@@ -39,7 +39,7 @@ sap.ui.define([
 				routes: {
 					parent: null,
 					this: "listReport",
-					child: "null"
+					child: null
 				},
 				controls: {
 					table: "idMassMeterReadingSmartTable",
@@ -130,7 +130,7 @@ sap.ui.define([
 		 * @public
 		 */
 		onFilterBarInitialized: function() {
-			this.byId("idMassMeterReadingSmartChart").rebindChart(true)
+			this.byId("idMassMeterReadingSmartChart").rebindChart(true);
 			this.oNav.parseNavigation().done(function(oAppState) {
 				if(!jQuery.isEmptyObject(oAppState)) {
 					this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);

@@ -17,8 +17,7 @@
 			"settings": {
 				"annotations": [
 					"MassMeterReading"
-				],
-				"localUri": "localService/metadata.xml"
+				]
 			}
 		},
 		"MassMeterReading": {

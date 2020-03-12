@@ -47,24 +47,19 @@
 					</smartFilterBar:ControlConfiguration>
 				</smartFilterBar:controlConfiguration>
 			</smartFilterBar:SmartFilterBar>
-			<VBox fitContainer="true" class="sapUiSmallMarginTop">
-				<smartchart:SmartChart id="idMassMeterReadingSmartChart"
-									   enableAutoBinding="false"
-									   entitySet="xMP4GxC_MassProcPerDayCountMR" 
-									   useVariantManagement="false"
-									   persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.massmeterreadings.chart" 
-									   useChartPersonalisation="false"
-									   showFullScreenButton="false" 
-									   showDrillBreadcrumbs="false"
-									   header="{i18n>UPLOAD_DOC_CHART_TITLE}"
-									   showDrillButtons="false"
-									   showZoomButtons="false"
-									   showChartTypeSelectionButton="false"
-									   showLegendButton="false"
-									   showSemanticNavigationButton="false"
-									   beforeRebindChart="onBeforeRebindChart"
-									   height="300px"/>
-			</VBox>
+			<smartchart:SmartChart id="idMassMeterReadingSmartChart"
+								   enableAutoBinding="false"
+								   entitySet="xMP4GxC_MassProcPerDayCountMR" 
+								   useVariantManagement="false"
+								   persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.massmeterreadings.chart" 
+								   useChartPersonalisation="false"
+								   showToolbar="false"
+								   showMeasuresTitle="false"
+								   showChartTypeSelectionButton="false"
+								   showSemanticNavigationButton="false"
+								   beforeRebindChart="onBeforeRebindChart"
+								   height="300px"
+								   class="sapUiSmallMarginTop"/>
 		</semantic:headerContent>
 		<semantic:content>
 			<smartTable:SmartTable id="idMassMeterReadingSmartTable"
