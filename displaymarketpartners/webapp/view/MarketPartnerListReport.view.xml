@@ -86,10 +86,16 @@
 		                  value='\{"columnIndex":"2", "columnKey":"Division", "leadingProperty":["Division"] }'/>
 		              </customData>
 		            </Column>
+		            <Column>
+		              <Text text="{/xMP4GxCE_PARTNERS/EmailCertValidTo/#@sap:label}"/>
+		              <customData>
+		                <core:CustomData key="p13nData" 
+		                  value='\{"columnIndex":"50", "columnKey":"EmailCertValidTo", "leadingProperty":["EmailCertValidTo"] }'/>
+		              </customData>
+		            </Column>
 				</columns>
 				<items>
-					<ColumnListItem highlight="{= ${CertValidityCriticality} === 0 ? 'Error':'None'}" 
-									type="Navigation" 
+					<ColumnListItem type="Navigation" 
 									press="onAction"
 									c:action="navToPartnerPage">
 						<cells>
@@ -102,7 +108,21 @@
                 			<Text text="{
 									path: 'Division',
 									formatter: '.valueHelpFormatter.division'
-								}"/>							 
+								}"/>	
+							<ObjectStatus text="{= !!${EmailCertValidTo} ? ${path: 'EmailCertValidTo',
+																			type: 'sap.ui.model.type.DateTime', 
+																			formatOptions: { style: 'medium' }} : ${i18n>EXPIRED_TEXT}}"
+										 state="{= ${CertValidityCriticality} === 3 ? 'Indication04' : 
+																				${CertValidityCriticality} === 1 ? 'Indication01' : 
+																													${CertValidityCriticality} === 2 ? 'Indication03' :
+																																						'Indication02'}"
+									    inverted="{=!!!${EmailCertValidTo}}"/>
+									
+						    <!--<ObjectStatus text="Expired"-->
+						    <!--              inverted="true"-->
+										<!--  state="Indication01"-->
+										<!--  visible="{= !!!${EmailCertValidTo}}"/>-->
+						    
 						</cells>
 					</ColumnListItem>
 				</items>

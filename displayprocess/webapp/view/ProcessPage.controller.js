@@ -122,12 +122,15 @@ sap.ui.define([
          * @returns {Promise} Promise object of data read call
          */
         _whenProcessDataRead: function(sProcessDocumentKey) {
-          var sKey = this.getView().getModel().createKey("/xMP4GxC_ProcActivityHeader_UI", 
-                                                    {ProcessDocumentKey: sProcessDocumentKey});
-                                                    
+           var sKey = this.getView()
+            .getModel()
+            .createKey("/xMP4GxC_ProcHeader_MktPrtner", {
+              ProcessDocumentKey: sProcessDocumentKey
+            });
+
           return this.oTransaction.whenRead({
-                path: sKey + "/to_PrMkPartner",
-                busyControl: this.getView()
+            path: sKey + "/Set",
+            busyControl: this.getView()
           });
         },
         

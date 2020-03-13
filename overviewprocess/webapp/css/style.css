@@ -5,3 +5,7 @@
 .comSapCdMacoMmtUiMonitorMsgGraphTitle .ovpChartTitle {
 	visibility: hidden;
 }
+
+.comSapCdMacoMmtUiMonitorMsgGraphTitle .TargetDeviationFlexbox {
+	visibility: hidden;
+}

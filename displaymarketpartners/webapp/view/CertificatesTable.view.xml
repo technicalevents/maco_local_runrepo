@@ -14,10 +14,12 @@
 					    useTablePersonalisation="false"
 					    persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.CertificatesTable"
 					    showRowCount="true" 
-					    placeToolbarInTable="true" 
-					    header="{i18n>CERTIFICATE_SECTION_LBL}" 
+					    placeToolbarInTable="false"
 					    demandPopin="true" 
 					    useVariantManagement="false">
+  	 <smartTable:customToolbar>
+	  	<Toolbar height="0rem"/>
+	  </smartTable:customToolbar>
     <Table id="idCertificateTable" 
 	      growing="false" 
 	      growingScrollToLoad="false" 
