@@ -70,7 +70,17 @@ sap.ui.define([
 			// This method will add Current application state in URL
 			this.storeCurrentAppState();
         },
-
+        
+        /**
+         * Event is triggered before data loading of smart chart
+         * @param {object} oEvent Table loading event
+         * @public
+		 */
+        onBeforeRebindChart: function(oEvent) {
+        	var o30DaysPriorDate = new Date(new Date().getTime() - 2592000000);
+        	oEvent.getParameter("bindingParams").filters.push(new Filter("UploadDate", FilterOperator.GT, o30DaysPriorDate));
+        },
+        
         /**
         * Event is triggered when selection is changed in Smart Filter Bar
         * @public
@@ -92,8 +102,8 @@ sap.ui.define([
 					this.getFilterBar().setFilterData(oFilterData, true);
 				}
 			}
-    	},
-
+		},
+		
        /**
         * Event is triggered when selection is changed in Own Market Partner MultiComboBox
         * @public
@@ -119,7 +129,8 @@ sap.ui.define([
 		 * This method will set Recently used FilterData in FilterBar
 		 * @public
 		 */
-		onFilterBarInitialized: function() {            
+		onFilterBarInitialized: function() {
+			this.byId("idMassMeterReadingSmartChart").rebindChart(true)
 			this.oNav.parseNavigation().done(function(oAppState) {
 				if(!jQuery.isEmptyObject(oAppState)) {
 					this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
@@ -143,13 +154,15 @@ sap.ui.define([
          * @public
          */
         onMeterTypeSelectionChange: function(oEvent) {
-        	var sSelSegmentKey = oEvent.getSource().getSelectedKey();
-        	var oItemBinding = this.getSmartTable().getTable().getBinding("items");
-        	if(sSelSegmentKey === "ALL") {
-        		oItemBinding.filter();
-        	} else {
-        		oItemBinding.filter([new Filter("MeterReadType", FilterOperator.EQ, sSelSegmentKey)]);
-        	}
+			var sSelSegmentKey = oEvent.getSource().getSelectedKey();
+			var oItemBinding = this.getSmartTable().getTable().getBinding("items");
+			if(oItemBinding) {
+				if(sSelSegmentKey === "ALL") {
+					oItemBinding.filter();
+				} else {
+					oItemBinding.filter([new Filter("MeterReadType", FilterOperator.EQ, sSelSegmentKey)]);
+				}
+			}
         },
         
         /**
