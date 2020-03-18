@@ -3,8 +3,10 @@
 		  xmlns:semantic="sap.f.semantic" 
 		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 		  xmlns:smartTable="sap.ui.comp.smarttable"
-		  xmlns:smartchart="sap.ui.comp.smartchart"
 		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:viz="sap.viz.ui5.controls" 
+		  xmlns:viz.data="sap.viz.ui5.data"
+		  xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
 		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		  controllerName="com.sap.cd.maco.monitor.ui.app.massmeterreadings.view.MassMeterReadingListReport"
           xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
@@ -20,7 +22,7 @@
 	        <smartFilterBar:SmartFilterBar id="idMassMeterReadingSmartFilterBar"
 										   smartVariant="idMassMeterReadingVariantManagement"
 										   enableBasicSearch="true"
-										   liveMode="true"
+										   liveMode="false"
 										   useDateRangeType="true"
 										   useToolbar="false"
 										   initialized="onFilterBarInitialized"
@@ -47,19 +49,55 @@
 					</smartFilterBar:ControlConfiguration>
 				</smartFilterBar:controlConfiguration>
 			</smartFilterBar:SmartFilterBar>
-			<smartchart:SmartChart id="idMassMeterReadingSmartChart"
-								   enableAutoBinding="false"
-								   entitySet="xMP4GxC_MassProcPerDayCountMR" 
-								   useVariantManagement="false"
-								   persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.massmeterreadings.chart" 
-								   useChartPersonalisation="false"
-								   showToolbar="false"
-								   showMeasuresTitle="false"
-								   showChartTypeSelectionButton="false"
-								   showSemanticNavigationButton="false"
-								   beforeRebindChart="onBeforeRebindChart"
-								   height="300px"
-								   class="sapUiSmallMarginTop"/>
+			<viz:Popover></viz:Popover>
+			<viz:VizFrame vizProperties="{
+											title:{visible:false},
+											plotArea:{dataLabel:{visible:true}},
+											interaction:{selectability:{mode:'single'}},
+											categoryAxis:{title:{visible:true}},
+											valueAxis:{title:{visible:false}}
+										}" 
+						  uiConfig="{applicationSet:'fiori'}" 
+						  height="300px" 
+						  width="100%" 
+						  vizType="line" 
+						  selectData="onMeterReadGraphDataPointSelection">
+				<viz:dataset>
+					<viz.data:FlattenedDataset 
+						data="{path:'/xMP4GxC_MassProcPerDayCountMR',
+							parameters:{
+									select:'UploadDate,ProcessAllCount,ProcessInterimCount,ProcessIntervalCount,ProcessEnergyValCount,ProcessPeriodicalCount'
+								}
+							}"
+						dataRefresh="onMeterReadGraphDataRefresh">
+						<viz.data:dimensions>
+							<viz.data:DimensionDefinition name="{/xMP4GxC_MassProcPerDayCountMR/UploadDate/#@sap:label}" 
+														  value="{path:'UploadDate',type:'sap.ui.model.odata.type.Date',formatOptions:{style:'short'}}"
+														  dataType="date"/>
+						</viz.data:dimensions>
+						<viz.data:measures>
+							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/ProcessAllCount/#@sap:label}" 
+														value="{ProcessAllCount}"/>
+							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/ProcessEnergyValCount/#@sap:label}" 
+														value="{ProcessEnergyValCount}"/>
+							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/ProcessInterimCount/#@sap:label}" 
+														value="{ProcessInterimCount}"/>
+							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/ProcessIntervalCount/#@sap:label}" 
+														value="{ProcessIntervalCount}"/>
+							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/ProcessPeriodicalCount/#@sap:label}" 
+														value="{ProcessPeriodicalCount}"/>
+						</viz.data:measures>
+					</viz.data:FlattenedDataset>
+				</viz:dataset>
+				<viz:feeds>
+					<viz.feeds:FeedItem id="valueAxisFeed1" uid="valueAxis" type="Measure" values="Total"/>
+				    <viz.feeds:FeedItem id="valueAxisFeed2" uid="valueAxis" type="Measure" values="Energy Values"/>
+				    <viz.feeds:FeedItem id="valueAxisFeed3" uid="valueAxis" type="Measure" values="Interim"/>
+				    <viz.feeds:FeedItem id="valueAxisFeed4" uid="valueAxis" type="Measure" values="Interval"/>
+				    <viz.feeds:FeedItem id="valueAxisFeed5" uid="valueAxis" type="Measure" values="Periodical"/>
+					<viz.feeds:FeedItem id="categoryAxisFeed" uid="categoryAxis" type="Dimension" values="Uploads per Day"/>
+				</viz:feeds>
+			</viz:VizFrame>
 		</semantic:headerContent>
 		<semantic:content>
 			<smartTable:SmartTable id="idMassMeterReadingSmartTable"
@@ -74,15 +112,18 @@
 								   beforeExport="onBeforeExport"
 								   beforeRebindTable="onBeforeRebindTable"
 								   persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.massmeterreadings.table"
-								   requestAtLeastFields="Receiver,OwnMarketPartner,MeterReadType,ExternalUUID,
-														 CommonAccessReference,MessageReferenceUUID,AggregationProcessID,
-														 AggregationProcessKey,MassUploadProcessID,MassUploadProcessKey">
+								   requestAtLeastFields="Receiver,OwnMarketPartner,MeterReadType,ExternalUUID,CommonAccessReference,MessageReferenceUUID,AggregationProcessID,AggregationProcessKey,MassUploadProcessID,MassUploadProcessKey">
 				<smartTable:customToolbar>
 					<OverflowToolbar design="Transparent">
 						<ToolbarSpacer/>
-						<SegmentedButton items="{/xMP4GxC_MassProcMtrReadType_VH}" selectionChange="onMeterTypeSelectionChange">
+						<SegmentedButton id="idMassMeterReadSegmentedButton" 
+										 selectionChange="onMeterTypeSelectionChange">
 							<items>
-								<SegmentedButtonItem text="{Description}" key="{Value}"/>
+								<SegmentedButtonItem text="{i18n>ALL_SEGMENTED_LBL}" key="ALL"/>
+								<SegmentedButtonItem text="{i18n>ENERGY_VALUES_SEGMENTED_LBL}" key="ENERVAL"/>
+								<SegmentedButtonItem text="{i18n>INTERIM_SEGMENTED_LBL}" key="INTERIM"/>
+								<SegmentedButtonItem text="{i18n>INTERVAL_SEGMENTED_LBL}" key="INTERVAL"/>
+								<SegmentedButtonItem text="{i18n>PERIODICAL_SEGMENTED_LBL}" key="PERIODICAL"/>
 							</items>
 						</SegmentedButton>
 						<ToolbarSpacer/>

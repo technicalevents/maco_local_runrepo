@@ -5,8 +5,12 @@ sap.ui.define([
 	"sap/ui/model/Sorter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-	"sap/base/strings/formatMessage"
-  ], function(ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, Sorter, Filter, FilterOperator, formatMessage) {
+	"sap/base/strings/formatMessage",
+	"sap/base/security/encodeURL",
+	"sap/ui/core/CalendarType",
+	"sap/ui/core/format/DateFormat"
+  ], function(ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, Sorter, 
+			Filter, FilterOperator, formatMessage, encodeURL, CalendarType, DateFormat) {
     "use strict";
     return ListReportNoDraftController.extend("com.sap.cd.maco.monitor.ui.app.massmeterreadings.view.MassMeterReadingListReport",
       {
@@ -23,6 +27,7 @@ sap.ui.define([
 
         /**
          * Lifecycle method - triggered on initialization of MassMeterReadingListReport Controller
+		 * @public
          */
         onInit: function() {
 			var oComponentActions = this.getOwnerComponent().actions;
@@ -49,7 +54,7 @@ sap.ui.define([
 			});
 			
 			this.oRouter.getRoute("initial").attachPatternMatched(this._onRoutePatternMatched, this);
-        },
+		},
         
         /******************************************************************* */
         /* PUBLIC METHODS */
@@ -69,18 +74,51 @@ sap.ui.define([
 			
 			// This method will add Current application state in URL
 			this.storeCurrentAppState();
+		},
+		
+		/**
+         * Event is triggered before data Refreshing of VizFrame Graph
+         * @param {object} oEvent                   Data refresh event
+         * @public
+		 */
+        onMeterReadGraphDataRefresh: function(oEvent) {
+        	var oDateTimeFormat = DateFormat.getDateInstance({
+				pattern: "'datetime'''yyyy-MM-dd'T'HH:mm:ss''",
+				calendarType: CalendarType.Gregorian
+			});
+			var oDateTimeFormatMs = DateFormat.getDateInstance({
+				pattern: "'datetime'''yyyy-MM-dd'T'HH:mm:ss.SSS''",
+				calendarType: CalendarType.Gregorian
+			});
+			var oDate = new Date(new Date().getTime() - 2505600000);
+			var sDate = (oDate.getMilliseconds() > 0) ? oDateTimeFormatMs.format(oDate, true) : oDateTimeFormat.format(oDate, true);
+			
+			oEvent.getSource().getBindingInfo("data").binding.sFilterParams = "$filter=UploadDate%20gt%20" + encodeURL(sDate);
         },
         
         /**
-         * Event is triggered before data loading of smart chart
-         * @param {object} oEvent Table loading event
+         * Event is triggered on Data point selection in VizFrame Graph
+         * @param {object} oEvent            Data point selection event
          * @public
 		 */
-        onBeforeRebindChart: function(oEvent) {
-        	var o30DaysPriorDate = new Date(new Date().getTime() - 2592000000);
-        	oEvent.getParameter("bindingParams").filters.push(new Filter("UploadDate", FilterOperator.GT, o30DaysPriorDate));
+        onMeterReadGraphDataPointSelection: function(oEvent) {
+			var oSelectedDataPoint = oEvent.getParameter("data")[0].data;
+			var oBindingData = oEvent.getSource().getAggregation("dataset").getBindingInfo("data").binding;
+			var oBindingContext = JSON.parse(oBindingData.aLastContextData[oSelectedDataPoint._context_row_number]).UploadDate;
+			var oUploadDate = new Date(new Date(oBindingContext).toDateString());
+			var oFilterData = jQuery.extend(true, {}, this.getFilterBar().getFilterData());
+			
+			oFilterData.UploadDate = jQuery.extend(true, {}, this._getFilterUploadDate(oUploadDate));
+			this.getFilterBar().setFilterData(oFilterData, true);
+			this.getFilterBar().fireSearch();
+			
+			var oSegmentedButtons = this.byId("idMassMeterReadSegmentedButton");
+			var sSelSegmentedKey = this._getMeterReadTypeKey(oSelectedDataPoint.measureNames);
+			
+			oSegmentedButtons.setSelectedKey(sSelSegmentedKey);
+			this._massMeterReadSelectionChange(sSelSegmentedKey);
         },
-        
+
         /**
         * Event is triggered when selection is changed in Smart Filter Bar
         * @public
@@ -102,8 +140,8 @@ sap.ui.define([
 					this.getFilterBar().setFilterData(oFilterData, true);
 				}
 			}
-		},
-		
+    	},
+
        /**
         * Event is triggered when selection is changed in Own Market Partner MultiComboBox
         * @public
@@ -129,8 +167,7 @@ sap.ui.define([
 		 * This method will set Recently used FilterData in FilterBar
 		 * @public
 		 */
-		onFilterBarInitialized: function() {
-			this.byId("idMassMeterReadingSmartChart").rebindChart(true);
+		onFilterBarInitialized: function() {      
 			this.oNav.parseNavigation().done(function(oAppState) {
 				if(!jQuery.isEmptyObject(oAppState)) {
 					this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
@@ -154,15 +191,7 @@ sap.ui.define([
          * @public
          */
         onMeterTypeSelectionChange: function(oEvent) {
-			var sSelSegmentKey = oEvent.getSource().getSelectedKey();
-			var oItemBinding = this.getSmartTable().getTable().getBinding("items");
-			if(oItemBinding) {
-				if(sSelSegmentKey === "ALL") {
-					oItemBinding.filter();
-				} else {
-					oItemBinding.filter([new Filter("MeterReadType", FilterOperator.EQ, sSelSegmentKey)]);
-				}
-			}
+			this._massMeterReadSelectionChange(oEvent.getSource().getSelectedKey());
         },
         
         /**
@@ -213,6 +242,69 @@ sap.ui.define([
 					jQuery.sap.log.error("Cannot get ShellUIService", oError);
 				}
 			);
+        },
+        
+        /**
+         * Function returns Upload date for filter bar as per selected data point in Mass meter read graph
+         * @param   {object} oUploadDate       Upload date
+         * @private
+         * @returns {object}                   Upload date for filter bar
+		 */
+        _getFilterUploadDate: function(oUploadDate) {
+        	return {
+				conditionTypeInfo: {
+					name: "sap.ui.comp.config.condition.DateRangeType",
+					data: {
+						operation: "DATE",
+						value1: oUploadDate,
+						value2: null,
+						key: "UploadDate",
+						tokenText: "",
+						calendarType: CalendarType.Gregorian
+					}
+				},
+				ranges: [{
+					operation: FilterOperator.BT,
+					value1: oUploadDate,
+					value2: new Date(oUploadDate.getTime() + 86399999),
+					tokenText: "",
+					exclude: false,
+					keyField: "UploadDate"
+				}],
+				items: []
+			};
+        },
+        
+        /**
+         * Function returns Meter read type key as per selected Meter read type
+         * @param   {string} sMeterReadType       Meter read type
+         * @private
+         * @returns {string}                      Meter read type key
+		 */
+        _getMeterReadTypeKey: function(sMeterReadType) {
+        	switch (sMeterReadType) {
+				case "Total": return "ALL";
+				case "Energy Values": return "ENERVAL";
+				case "Interim": return "INTERIM";
+				case "Interval": return "INTERVAL";
+				case "Periodical": return "PERIODICAL";
+			}
+        },
+        
+        /**
+         * Function returns Meter read data as per selected Meter read type
+         * @param   {string} sSelSegmentKey       Selected segment key
+         * @private
+		 */
+        _massMeterReadSelectionChange: function(sSelSegmentKey) {
+        	var oItemBinding = this.getSmartTable().getTable().getBinding("items");
+			if(oItemBinding) {
+				if(sSelSegmentKey === "ALL") {
+					oItemBinding.filter();
+				} else {
+					oItemBinding.filter([new Filter("MeterReadType", FilterOperator.EQ, sSelSegmentKey)]);
+				}
+			}
         }
     });
 });

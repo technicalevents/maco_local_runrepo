@@ -11,19 +11,19 @@
     },
     "ach": "MACO-MMT",
     "dataSources": {
-		"maindatasource": {
-			"uri": "/sap/opu/odata/MP4G/UI_MASSPROCMTRREAD/",
-			"type": "OData",
-			"settings": {
-				"annotations": [
-					"MassMeterReading"
-				]
-			}
-		},
-		"MassMeterReading": {
-			"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MASSPROCMTRREAD_VAN',Version='0001')/$value/",
-			"type": "ODataAnnotation"
-		}
+      "maindatasource": {
+        "uri": "/sap/opu/odata/MP4G/UI_MASSPROCMTRREAD/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "MassMeterReading"
+          ]
+        }
+      },
+      "MassMeterReading": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MASSPROCMTRREAD_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation"
+      }
     },
     "resources": "resources.json",
     "crossNavigation": {
@@ -36,7 +36,7 @@
           "semanticObject": "UtilsDataExchangeProcessing",
           "action": "massMeterReading",
           "title": "{{APP_TITLE}}",
-          "icon": "sap-icon://process"
+          "icon": "sap-icon://email"
         }
       }
     }
@@ -75,6 +75,7 @@
         "sap.f": {},
         "sap.ui.core": {},
         "sap.ui.comp": {},
+        "sap.viz": {},
         "com.sap.cd.maco.mmt.ui.reuse": {
           "minVersion": "2.0.0"
         }

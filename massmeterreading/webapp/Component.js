@@ -17,7 +17,7 @@ sap.ui.define([
        * Function is used to initialize DraftComponent
        */
       init: function() {
-        // call the base component"s init function
+        // call the base component's init function
         DraftComponent.prototype.init.apply(this, arguments);
 
         this.actions = {
@@ -60,7 +60,7 @@ sap.ui.define([
         for (var sName in this.actions) {
           this.actions[sName].destroy();
         }
-
+        
         // generic destroy of component
         DraftComponent.prototype.destroy.apply(this, arguments);
       }
