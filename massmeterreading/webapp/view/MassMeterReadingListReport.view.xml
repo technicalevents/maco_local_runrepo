@@ -29,12 +29,15 @@
 										   filterChange="onMassMeterReadingsFilterBarChanged"
 										   showFilterConfiguration="false"
 										   persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.massmeterreadings.filterbar"
-										   entitySet="xMP4GxC_MassProcMtrRead">
+										   entitySet="xMP4GxC_MassProcMtrRead"
+										   beforeVariantFetch="onBeforeMassMeterReadVariantFetch"
+										   afterVariantLoad="onAfterMassMeterReadVariantLoad">
 				<smartFilterBar:controlConfiguration>
 					<smartFilterBar:ControlConfiguration key="OwnMarketPartner"
 														 label="{/xMP4GxC_MassProcMtrRead/OwnMarketPartner/#@sap:label}">
 						<smartFilterBar:customControl>
-							<MultiComboBox showSecondaryValues= "true"
+							<MultiComboBox id="idOwnMarketPartner"
+										   showSecondaryValues= "true"
 										   items="{path:'/xMP4GxC_MarketPartner_VH',sorter:{path:'mp_name'}}" 
 										   selectionChange="onOwnMarketPartnerChange">
 								<core:ListItem key="{market_partner}" 
@@ -127,7 +130,6 @@
 							</items>
 						</SegmentedButton>
 						<ToolbarSpacer/>
-						<Button text="{i18n>MASS_METER_READING_LIST_REFRESH_TITLE}" type="Transparent" press="onRefresh"/>
 					</OverflowToolbar>
 				</smartTable:customToolbar>
 				<Table id="idMassMeterReadingTable"
@@ -202,9 +204,9 @@
 								<reuseTable:ObjectIdentifier title="{path:'PeriodFromDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
 								<Text text="{path:'UploadDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
 								<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}" text="{ExternalMarketPartner}"/>
-								<Link text="{MassUploadProcessDoc}" c:action="navToUploadProcessAction" press="onAction"/>
-								<Link text="{AggregationProcessDoc}" c:action="navToAggrProcessAction" press="onAction"/>
-								<Link text="{MessageReference}" c:action="navToMessageAction" press="onAction"/>
+								<Link text="{MassUploadProcessDoc}" tooltip="{MassUploadProcessDoc}" c:action="navToUploadProcessAction" press="onAction"/>
+								<Link text="{AggregationProcessDoc}" tooltip="{AggregationProcessDoc}" c:action="navToAggrProcessAction" press="onAction"/>
+								<Link text="{MessageReference}" tooltip="{MessageReference}" c:action="navToMessageAction" press="onAction"/>
 							</cells>
 						</ColumnListItem>
 					</items>

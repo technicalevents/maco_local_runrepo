@@ -75,6 +75,45 @@ sap.ui.define([
 			// This method will add Current application state in URL
 			this.storeCurrentAppState();
 		},
+
+		/**
+	  	* Event is triggered before smart variant is fetched
+	  	* @public
+		*/
+        onBeforeMassMeterReadVariantFetch: function() {
+        	var oFilterData = this.getFilterBar().getFilterData();
+			var sSelMassMeterReadType = this.byId("idMassMeterReadSegmentedButton").getSelectedKey();
+			
+			oFilterData._CUSTOM = {
+				MeterReadType: (sSelMassMeterReadType && sSelMassMeterReadType !== "") ? sSelMassMeterReadType : "ALL"
+			};
+			
+			this.getFilterBar().setFilterData(oFilterData);
+        },
+        
+        /**
+	  	* Event is triggered after smart variant is loaded
+	  	* @public
+		*/
+        onAfterMassMeterReadVariantLoad: function() {
+			var oFilterData = this.getFilterBar().getFilterData();
+			var aOwnMarketPartnerKeys = [];
+			var sSelMassMeterReadType;
+			
+			if(oFilterData.OwnMarketPartner && jQuery.isArray(oFilterData.OwnMarketPartner.items)) {
+				var aOwnMarketPartnerItems = oFilterData.OwnMarketPartner.items;
+				for(var intI = 0; intI < aOwnMarketPartnerItems.length; intI++) {
+					aOwnMarketPartnerKeys.push(aOwnMarketPartnerItems[intI].key);
+				}
+			}
+			
+			if(oFilterData._CUSTOM) {
+				sSelMassMeterReadType = oFilterData._CUSTOM.MeterReadType
+			}
+			
+			this.byId("idOwnMarketPartner").setSelectedKeys(aOwnMarketPartnerKeys);
+			this.byId("idMassMeterReadSegmentedButton").setSelectedKey(sSelMassMeterReadType || "ALL");
+        },
 		
 		/**
          * Event is triggered before data Refreshing of VizFrame Graph
@@ -174,15 +213,6 @@ sap.ui.define([
 					this.getSmartTable().rebindTable(true);
 				}
 			}.bind(this));
-		},
-
-        /**
-         * Event is triggered when SmartTable refresh button is pressed 
-         * This method will refresh SmartTable Data
-         * @public
-         */
-        onRefresh: function() {
-			this.getSmartTable().rebindTable(true);
 		},
 		
 		/**
