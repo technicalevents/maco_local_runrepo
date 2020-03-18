@@ -37,20 +37,20 @@
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
 			</uxap:ObjectPageSection>
-			<uxap:ObjectPageSection title="{i18n>AS2_ADDRESS_SECTION_LBL}" titleUppercase="false">
-				<uxap:subSections>
-					<uxap:ObjectPageSubSection>
-						<uxap:blocks>
-							<mvc:XMLView id="idAS2View" viewName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.AS2Table"/>
-						</uxap:blocks>
-					</uxap:ObjectPageSubSection>
-				</uxap:subSections>
-			</uxap:ObjectPageSection>
 			<uxap:ObjectPageSection title="{i18n>CERTIFICATE_SECTION_LBL}" titleUppercase="false">
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection>
 						<uxap:blocks>
 							<mvc:XMLView id="idCertificateView" viewName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.CertificatesTable"/>
+						</uxap:blocks>
+					</uxap:ObjectPageSubSection>
+				</uxap:subSections>
+			</uxap:ObjectPageSection>
+			<uxap:ObjectPageSection title="{i18n>AS2_ADDRESS_SECTION_LBL}" titleUppercase="false">
+				<uxap:subSections>
+					<uxap:ObjectPageSubSection>
+						<uxap:blocks>
+							<mvc:XMLView id="idAS2View" viewName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.AS2Table"/>
 						</uxap:blocks>
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>

@@ -21,7 +21,6 @@
 						<PropertyPath>ProcessDate</PropertyPath>
 						<PropertyPath>ProcessStatus</PropertyPath>
 						<PropertyPath>ProcessClusterDescriptionISL</PropertyPath>
-						<PropertyPath>MarketPartner</PropertyPath>
 						<PropertyPath>BusinessObjectUUID</PropertyPath>
 						<PropertyPath>OwnerUUID</PropertyPath>
 					</Collection>

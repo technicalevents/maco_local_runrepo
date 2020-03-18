@@ -14,8 +14,10 @@
 					    demandPopin="true" 
 					    useVariantManagement="false"
 					    showRowCount="true" 
-					    placeToolbarInTable="true" 
-					    header="{i18n>AS2_ADDRESS_SECTION_LBL}">
+					    placeToolbarInTable="false">
+  	<smartTable:customToolbar>
+	  	<Toolbar height="0rem"/>
+	  </smartTable:customToolbar>
     <Table id="idAS2Table" 
 	      growing="true" 
 	      growingScrollToLoad="false" 

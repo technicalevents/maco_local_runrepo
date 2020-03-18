@@ -14,8 +14,10 @@
 						    demandPopin="true" 
 						    useVariantManagement="false"
 						    showRowCount="true" 
-						    placeToolbarInTable="true" 
-						    header="{i18n>EMAIL_ADDRESS_SECTION_LBL}" >
+						    placeToolbarInTable="false" >
+		  <smartTable:customToolbar>
+		  	<Toolbar height="0rem"/>
+		  </smartTable:customToolbar>
 	    <Table id="idEmailTable" 
 		      growing="true" 
 		      growingScrollToLoad="false" 
