@@ -138,9 +138,9 @@ sap.ui.define([
          * This method will refresh SmartTable DAa
          * @public
          */
-        onRefresh: function() {
-			this.getSmartTable().rebindTable(true);
-        },
+   //     onRefresh: function() {
+			// this.getSmartTable().rebindTable(true);
+   //     },
         
         /**
          * Function will store application's current state on change in message list

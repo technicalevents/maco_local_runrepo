@@ -19,7 +19,7 @@
         <smartFilterBar:SmartFilterBar id="idProcessSmartFilterBar"
 									   smartVariant="idProcessVariantManagement"
 									   enableBasicSearch="true"
-									   liveMode="true"
+									   liveMode="false"
 									   useDateRangeType="true"
 									   useToolbar="false"
 									   initialized="onFilterBarInitialized"
@@ -67,6 +67,11 @@
 			<smartTable:customToolbar>
 				<OverflowToolbar design="Transparent">
 					<ToolbarSpacer/>
+					<Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
+							enabled="{this>/tableActionEnabled/executeMsgAggr}"
+							type="Transparent"
+							press="onAction"
+							c:action="executeMsgAggr"/>
 					<Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
 			                enabled="{this>/tableActionEnabled/reportExecution}"
 			                type="Transparent"
@@ -79,9 +84,9 @@
 			                c:reportAction="TriggerDoc" 
 			                c:action="reportExecution" 
 			                press="onAction"/>
-					<Button text="{i18n>PROCESS_LIST_REFRESH_TITLE}"
-							type="Transparent"
-							press="onRefresh"/>
+					<!--<Button text="{i18n>PROCESS_LIST_REFRESH_TITLE}"-->
+					<!--		type="Transparent"-->
+					<!--		press="onRefresh"/>-->
 				</OverflowToolbar>
 			</smartTable:customToolbar>
 			<Table id="idProcessTable"
@@ -126,10 +131,6 @@
 		</smartTable:SmartTable>
     </semantic:content>
     <semantic:titleCustomTextActions>
-     	<Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
-				type="Transparent"
-				press="onAction"
-				c:action="executeMsgAggr"/>
         <reuseButton:Share press="onAction" 
                            c:action="share" />
     </semantic:titleCustomTextActions>

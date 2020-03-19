@@ -16,7 +16,7 @@ sap.ui.define([
          * Constructor
          */
         constructor: function(oComponent, oConfig) {
-          var sCardinality = "0";
+          var sCardinality = "1..35";
           BaseAction.call(this, oComponent, oConfig, sCardinality);
         },
 
@@ -32,6 +32,7 @@ sap.ui.define([
           return new Promise(function(resolve, reject) {
             // store params for async usage
             this._oView = oParams.busyControl;
+            this._oContext = oParams.contexts;
             
             // create message aggregation action sheet only once
             if (!this._oExecuteMsgAggrActionSheet) {
@@ -52,8 +53,15 @@ sap.ui.define([
          */
         onExecuteMsgAggrItemSelected: function(oEvent) {
           var oProcessDocumentKey = Utility.generateGuid();
+          var aProcessDocumentNumber = [];
+					
+		  for(var intI = 0; intI < this._oContext.length; intI++) {
+			aProcessDocumentNumber.push(this._oContext[intI].getProperty("ProcessDocumentNumber"));
+		  }
+          
           var oData = {
             ProcessDocumentKey: oProcessDocumentKey,
+            MultipleKey: aProcessDocumentNumber.toString(),
             Action: Constants.PROCESS_LIST_HEADER_ACTION.EXECUTE_MESSAGE_AGGREGATION,
             Action_Item: oEvent.getSource().data("processId")
           };
