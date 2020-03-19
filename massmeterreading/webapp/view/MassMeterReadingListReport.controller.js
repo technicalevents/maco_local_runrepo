@@ -67,10 +67,18 @@ sap.ui.define([
 		*/
         onBeforeRebindTable: function(oEvent) {
 			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
-			var aSorters = [];
-			aSorters.push(new Sorter("PeriodFromDate", true));
-			aSorters.push(new Sorter("PeriodToDate", true));
+			var aSorters = [new Sorter("PeriodFromDate", true), new Sorter("PeriodToDate", true)];
+			var sSelMassMeterReadType = this.byId("idMassMeterReadSegmentedButton").getSelectedKey();
+			
 			oUpdate.addSorters(aSorters);
+			
+			if(sSelMassMeterReadType === "ALL") {
+				oUpdate.addFilter("MeterReadType", FilterOperator.NE, "");  
+			} else {
+				oUpdate.addFilter("MeterReadType", FilterOperator.EQ, sSelMassMeterReadType);  
+			}
+			
+			oUpdate.endFilterAnd();
 			
 			// This method will add Current application state in URL
 			this.storeCurrentAppState();
@@ -149,13 +157,12 @@ sap.ui.define([
 			
 			oFilterData.UploadDate = jQuery.extend(true, {}, this._getFilterUploadDate(oUploadDate));
 			this.getFilterBar().setFilterData(oFilterData, true);
-			this.getFilterBar().fireSearch();
 			
 			var oSegmentedButtons = this.byId("idMassMeterReadSegmentedButton");
 			var sSelSegmentedKey = this._getMeterReadTypeKey(oSelectedDataPoint.measureNames);
 			
 			oSegmentedButtons.setSelectedKey(sSelSegmentedKey);
-			this._massMeterReadSelectionChange(sSelSegmentedKey);
+			this.getSmartTable().rebindTable(true);
         },
 
         /**
@@ -221,7 +228,7 @@ sap.ui.define([
          * @public
          */
         onMeterTypeSelectionChange: function(oEvent) {
-			this._massMeterReadSelectionChange(oEvent.getSource().getSelectedKey());
+			this.getSmartTable().rebindTable(true);
         },
         
         /**
@@ -318,22 +325,6 @@ sap.ui.define([
 				case "Interim": return "INTERIM";
 				case "Interval": return "INTERVAL";
 				case "Periodical": return "PERIODICAL";
-			}
-        },
-        
-        /**
-         * Function returns Meter read data as per selected Meter read type
-         * @param   {string} sSelSegmentKey       Selected segment key
-         * @private
-		 */
-        _massMeterReadSelectionChange: function(sSelSegmentKey) {
-        	var oItemBinding = this.getSmartTable().getTable().getBinding("items");
-			if(oItemBinding) {
-				if(sSelSegmentKey === "ALL") {
-					oItemBinding.filter();
-				} else {
-					oItemBinding.filter([new Filter("MeterReadType", FilterOperator.EQ, sSelSegmentKey)]);
-				}
 			}
         }
     });
