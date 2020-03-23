@@ -1,0 +1,73 @@
+<mvc:View xmlns:core="sap.ui.core" 
+		  xmlns="sap.m" 
+		  xmlns:semantic="sap.f.semantic" 
+		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+		  xmlns:smartTable="sap.ui.comp.smarttable"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+		  controllerName="com.sap.cd.maco.monitor.ui.app.maintmsgcontacts.view.MaintMsgContactListReport"
+          xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
+          xmlns:variants="sap.ui.comp.smartvariants">
+    <semantic:SemanticPage headerExpanded="true" 
+						   toggleHeaderOnTitleClick="true">
+  		<semantic:titleHeading>
+			 <variants:SmartVariantManagement id="idMaintMsgContactVariantManagement" 
+											  persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.maintmsgcontacts.filterbar"/>
+		</semantic:titleHeading>
+	    <semantic:headerContent>
+	        <smartFilterBar:SmartFilterBar id="idMaintMsgContactSmartFilterBar"
+										   smartVariant="idMaintMsgContactVariantManagement"
+										   enableBasicSearch="true"
+										   liveMode="false"
+										   useDateRangeType="true"
+										   useToolbar="false"
+										   initialized="onFilterBarInitialized"
+										   filterChange="onMaintMsgContactFilterBarChanged"
+										   showFilterConfiguration="false"
+										   persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.maintmsgcontacts.filterbar"
+										   entitySet="xMP4GxC_MassProcMtrRead"
+										   beforeVariantFetch="onBeforeMaintMsgContactVariantFetch"
+										   afterVariantLoad="onAfterMaintMsgContactVariantLoad">
+			</smartFilterBar:SmartFilterBar>
+		</semantic:headerContent>
+		<semantic:content>
+			<smartTable:SmartTable id="idMaintMsgContactSmartTable"
+								   entitySet="xMP4GxC_MassProcMtrRead"
+								   tableType="ResponsiveTable"
+								   smartFilterId="idMaintMsgContactSmartFilterBar"
+								   smartVariant="idMaintMsgContactVariantManagement"
+								   enableAutoBinding="false" 
+								   demandPopin="true"
+								   header="{i18n>CONTACT_PLURAL_LBL}"
+								   c:p13nDialogSettings='{filter:{visible:false}}' 
+								   beforeExport="onBeforeExport"
+								   beforeRebindTable="onBeforeRebindTable"
+								   persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.maintmsgcontacts.table"
+								   requestAtLeastFields="">
+				<Table id="idMaintMsgContactTable"
+					   growing="true"
+					   growingScrollToLoad="true" 
+					   growingThreshold="100" 
+					   mode="None"
+					   sticky="ColumnHeaders,HeaderToolbar">
+					<columns>
+						<Column width="20%">
+							<Text text="{/xMP4GxC_MassProcMtrRead/PointOfDelivery/#@sap:label}"/>
+							<customData>
+								<core:CustomData key="p13nData" 
+									value='\{"columnIndex":0,"columnKey":"PointOfDelivery","description":"OBIS","displayBehaviour":"idAndDescription","leadingProperty":["PointOfDelivery","OBIS"],"sortProperty":"PointOfDelivery"}'/>
+							</customData>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem >
+							<cells>
+								<reuseTable:ObjectIdentifier title="{PointOfDelivery}" text="{OBIS}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</smartTable:SmartTable>
+	    </semantic:content>
+	</semantic:SemanticPage>
+</mvc:View>
