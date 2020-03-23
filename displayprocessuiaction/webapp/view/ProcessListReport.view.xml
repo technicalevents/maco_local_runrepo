@@ -84,9 +84,6 @@
 			                c:reportAction="TriggerDoc" 
 			                c:action="reportExecution" 
 			                press="onAction"/>
-					<!--<Button text="{i18n>PROCESS_LIST_REFRESH_TITLE}"-->
-					<!--		type="Transparent"-->
-					<!--		press="onRefresh"/>-->
 				</OverflowToolbar>
 			</smartTable:customToolbar>
 			<Table id="idProcessTable"
@@ -131,8 +128,7 @@
 		</smartTable:SmartTable>
     </semantic:content>
     <semantic:titleCustomTextActions>
-        <reuseButton:Share press="onAction" 
-                           c:action="share" />
+        <reuseButton:Share press="onAction" c:action="share" />
     </semantic:titleCustomTextActions>
 	</semantic:SemanticPage>
 </mvc:View>

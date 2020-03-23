@@ -239,8 +239,7 @@ sap.ui.define(
 					}).then(this._onSucessLinkTransferDocumentsRead.bind(this));
 					
 					var sExternalPayloadKey = this.getView().getModel().createKey("/xMP4GxC_TransferDoc_UI", 
-			    						{TransferDocumentKey: sTransferDocumentKey	
-			    						});
+			    						{TransferDocumentKey: sTransferDocumentKey});
 					this.oTransaction.whenRead({
 						path: sExternalPayloadKey,
 						urlParameters: {

@@ -10,12 +10,12 @@
   xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
   xmlns:variants="sap.ui.comp.smartvariants"
   xmlns:footerbar="sap.ushell.ui.footerbar"
-  controllerName="com.sap.cd.maco.monitor.ui.app.displaymessages.view.MessageListReport">
+  controllerName="com.sap.cd.maco.monitor.ui.app.definecontactrules.view.ContactRulesListReport">
 
   <semantic:SemanticPage headerExpanded="true" toggleHeaderOnTitleClick="true">
   	<semantic:titleHeading>
 			 <variants:SmartVariantManagement id="idMessageVariantManagement" 
-											persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displayprocesses.filterbar" />
+											persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.definecontactrules.filterbar" />
 		</semantic:titleHeading>
     <semantic:headerContent>
           <smartFilterBar:SmartFilterBar id="idMessageSmartFilterBar"
@@ -26,7 +26,7 @@
                   useDateRangeType="true"
                   initialized="onFilterBarInitialized"
                   showFilterConfiguration="false"
-                  persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.filterbar"
+                  persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.definecontactrules.filterbar"
                   entitySet="xMP4GxC_TransferDoc_UI">
           	<smartFilterBar:controlConfiguration>
                 <smartFilterBar:ControlConfiguration key="OwnerUUID"
@@ -72,7 +72,7 @@
 					        placeToolbarInTable="true" 
                   c:p13nDialogSettings='{filter:{visible:false}}' 
 					        beforeRebindTable="onBeforeRebindTable"
-					        persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.table">
+					        persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.definecontactrules.table">
         <smartTable:customToolbar>
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>

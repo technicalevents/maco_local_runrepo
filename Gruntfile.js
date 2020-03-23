@@ -41,6 +41,11 @@ var aGithubMapping = [{
   isReuseLib: false,
   resourceFolder: "webapp"
 }, {
+  actualGit: "mmt-ui-app-definecontactrules-b",
+  localGit: "definecontactrules",
+  isReuseLib: false,
+  resourceFolder: "webapp"
+}, {
   actualGit: "mmt-ui-lib-b",
   localGit: "mmt-ui-lib",
   isReuseLib: true,
@@ -54,7 +59,7 @@ function triggerSyncOperation(grunt, oGithubMapping, sOperation) {
   // Return unique array of all file paths which match globbing pattern
   var sSrcPath = getSrcPath(oGithubMapping, sOperation);
   var sDestinationPath = getDestinatiationPath(oGithubMapping, sOperation);
-  var sGitFolder = sOperation === "syncActual" ? oGithubMapping.actualGit : oGithubMapping.localGit;
+  var sGitFolder = sOperation === "syncActual" ? "../" + oGithubMapping.actualGit : oGithubMapping.localGit;
 
   grunt.log.writeln(sGitFolder + "=" + grunt.file.exists(sGitFolder));
 
@@ -114,11 +119,13 @@ module.exports = function (grunt) {
 
   });
 
-  grunt.registerTask('synclocal', 'Sync Local Github', function (sMessage, sModuleName) {
+  grunt.registerTask('synclocal', 'Sync Local Github', function (sModuleName, sMessage) {
     // If no commit message passed throw error and exit
-    if (!sMessage) {
-      grunt.fail.fatal("Commit Message not provided");
-    }
+    // if (!sMessage) {
+    //   grunt.fail.fatal("Commit Message not provided");
+    // }
+
+    grunt.log.writeln("ModuleName:" + sModuleName);
 
     // First pull the latest code
     shell.exec("git pull origin");

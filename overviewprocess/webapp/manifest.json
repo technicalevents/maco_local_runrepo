@@ -69,15 +69,10 @@
 		"dependencies": {
 			"minUI5Version": "1.65.0",
 			"libs": {
-				"sap.m": {},
-				"sap.f": {},
-				"sap.ui.core": {},
-				"sap.ui.layout": {},
-				"sap.uxap": {},
-				"sap.ui.comp": {},
-				"sap.ui.table": {},
 				"sap.ovp": {},
-				"sap.ui.suite": {}
+				"sap.ui.rta": {},
+				"sap.ui.dt": {},
+				"sap.viz": {}
 			}
 		},
 		"contentDensities": {

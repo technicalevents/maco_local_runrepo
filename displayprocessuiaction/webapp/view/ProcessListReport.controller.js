@@ -132,15 +132,6 @@ sap.ui.define([
 				}
 			}.bind(this));
 		},
-
-        /**
-         * Event is triggered when SmartTable refresh button is pressed 
-         * This method will refresh SmartTable DAa
-         * @public
-         */
-   //     onRefresh: function() {
-			// this.getSmartTable().rebindTable(true);
-   //     },
         
         /**
          * Function will store application's current state on change in message list

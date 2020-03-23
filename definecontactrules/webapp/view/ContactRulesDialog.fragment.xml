@@ -1,0 +1,100 @@
+<core:FragmentDefinition
+		xmlns="sap.ui.comp.smartform"
+        xmlns:m="sap.m" 
+        xmlns:core="sap.ui.core"
+        xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+    <SmartForm>
+		<layout>
+			<core:Fragment type="XML" fragmentName="com.sap.cd.maco.mmt.ui.reuse.fragment.form.SmartFormLayout"/>
+		</layout>
+		<Group label="{i18n>MSG_PROPERTIES_GEN_SUBSECTION_TITLE}">
+			<GroupElement label="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}" 
+						  visible="{= ${this>/LinkedDocuments/ProcessDocCount} > 1 ? false : true}">
+				<m:Link text="{this>/LinkedDocuments/ProcessDocument/LinkedDocumentNumber}" 
+					  press="onCrossAppNavigation" 
+					  c:docType="Process" 
+					  wrapping="true"/>
+			</GroupElement>
+			<GroupElement label="{/xMP4GxC_TransferDoc_UI/Direction/#@sap:label}">
+				<m:Text text="{Direction_Text}" 
+					  wrapping="true"/>
+			</GroupElement>
+			<GroupElement label="{/xMP4GxC_TransferDoc_UI/ExternalCommunicationType/#@sap:label}">
+				<m:Text text="{ExternalCommunicationType_Text}" 
+					  wrapping="true"/>
+			</GroupElement>
+		</Group>
+		<Group label="{i18n>ORIGINAL_MSG_TEXT}" 
+						 visible="{= (${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
+			<GroupElement label="{i18n>MSG_REF_TEXT}">
+				<m:Link text="{this>/LinkedDocuments/OriginalMessage/ExtUUID}"
+					  press="onCrossAppNavigation" 
+					  c:docType="Message" 
+					  wrapping="true"/>
+			</GroupElement>
+			<GroupElement label="{i18n>Date_LBL}" 
+									visible="{=!!${this>/LinkedDocuments/OriginalMessage/ExtUUID}}">
+				<m:Text text="{path: 'this>/LinkedDocuments/OriginalMessage/Timestamp',
+							 type: 'sap.ui.model.type.DateTime',
+							 formatOptions: { style: 'medium' }}"
+					  wrapping="true"/>
+			</GroupElement>
+		</Group>
+		<Group label="{i18n>CONTRL_MSG_TEXT}" 
+						 visible="{= ${TechnicalMsgID} === 'CONTRL' ? false : true}">
+			<GroupElement label="{i18n>MSG_REF_TEXT}"
+						  visible="{= ${this>/LinkedDocuments/ContrlDocCount} > 1 ? true : false}">
+				<m:Link text="{parts: [{path: 'i18n>MULTI_DOCUMENT_TXT'}, 
+									 {path: 'this>/LinkedDocuments/ContrlDocCount'}],
+	            			 formatter: '.formatter.formatMessage'}"
+					  wrapping="true" 
+					  press="onAction"
+					  c:boObjectType="CONTRL"
+					  c:action="multipleDoc"/>
+			</GroupElement>
+			<GroupElement label="{i18n>MSG_REF_TEXT}"
+									visible="{= ${this>/LinkedDocuments/ContrlDocCount} > 1 ? false : true}">
+				<m:Link text="{this>/LinkedDocuments/ControlMessage/ExtUUID}"
+					  press="onCrossAppNavigation" 
+					  c:docType="Message" 
+					  wrapping="true"/>
+			</GroupElement>
+			<GroupElement label="{i18n>Date_LBL}" 
+									visible="{= (!!${this>/LinkedDocuments/ControlMessage/ExtUUID} &amp;&amp; 
+												(${this>/LinkedDocuments/ContrlDocCount} > 1 ? false : true))}">
+				<m:Text text="{path: 'this>/LinkedDocuments/ControlMessage/Timestamp',
+				             type: 'sap.ui.model.type.DateTime',
+							 formatOptions: {style: 'medium'}}"
+					  wrapping="true"/>
+			</GroupElement>
+		</Group>
+		<Group label="{i18n>APERAK_MSG_TEXT}" 
+						 visible="{= !(${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
+			<GroupElement label="{i18n>MSG_REF_TEXT}"
+									visible="{= ${this>/LinkedDocuments/AperakDocCount} > 1 ? true : false}">
+				<m:Link text="{parts: [{path: 'i18n>MULTI_DOCUMENT_TXT'}, 
+									 {path: 'this>/LinkedDocuments/AperakDocCount'}],
+	            			 formatter: '.formatter.formatMessage'}"
+					  wrapping="true" 
+					  press="onAction"
+					  c:boObjectType="APERAK"
+					  c:action="multipleDoc"/>
+			</GroupElement>
+			<GroupElement label="{i18n>MSG_REF_TEXT}"
+									visible="{= ${this>/LinkedDocuments/AperakDocCount} > 1 ? false : true}">
+				<m:Link text="{this>/LinkedDocuments/AperakMessage/ExtUUID}"
+					  press="onCrossAppNavigation" 
+					  c:docType="Message" 
+					  wrapping="true"/>
+			</GroupElement>
+			<GroupElement label="{i18n>Date_LBL}" 
+									visible="{= (!!${this>/LinkedDocuments/AperakMessage/ExtUUID} &amp;&amp; 
+												(${this>/LinkedDocuments/AperakDocCount} > 1 ? false : true))}">
+				<m:Text text="{path: 'this>/LinkedDocuments/AperakMessage/Timestamp',
+					         type: 'sap.ui.model.type.DateTime',
+					         formatOptions: { style: 'medium' }}"
+					  wrapping="true"/>
+			</GroupElement>
+		</Group>
+	</SmartForm>
+</core:FragmentDefinition>

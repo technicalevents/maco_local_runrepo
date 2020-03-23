@@ -117,12 +117,6 @@
 																													${CertValidityCriticality} === 2 ? 'Indication03' :
 																																						'Indication02'}"
 									    inverted="{=!!!${EmailCertValidTo}}"/>
-									
-						    <!--<ObjectStatus text="Expired"-->
-						    <!--              inverted="true"-->
-										<!--  state="Indication01"-->
-										<!--  visible="{= !!!${EmailCertValidTo}}"/>-->
-						    
 						</cells>
 					</ColumnListItem>
 				</items>
