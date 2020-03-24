@@ -39,7 +39,7 @@ sap.ui.define([
 							"tiles": [{
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
-									"title": "Monitor Mass Meter Readings",
+									"title": "Monitor Mass Meter Reading Processes",
 									"targetURL": "#UtilsDataExchangeProcessing-massMeterReading"
 								}
 							}]
@@ -54,8 +54,8 @@ sap.ui.define([
 							"UtilsDataExchangeProcessing-massMeterReading": {
 								"semanticObject": "UtilsDataExchangeProcessing",
 								"action": "massMeterReading",
-								"description": "Monitor Mass Meter Readings",
-								"title": "Monitor Mass Meter Readings",
+								"description": "Monitor Mass Meter Reading Processes",
+								"title": "Monitor Mass Meter Reading Processes",
 								"signature": {
 									"parameters": {}
 								},
