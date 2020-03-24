@@ -39,7 +39,7 @@ sap.ui.define([
 							"tiles": [{
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
-									"title": "Execute Process Reports",
+									"title": "Accelerate Market Processes",
 									"targetURL": "#UtilsDataExchangeProcessing-processUiAction"
 								}
 							}]
@@ -54,8 +54,8 @@ sap.ui.define([
 							"UtilsDataExchangeProcessing-processUiAction": {
 								"semanticObject": "UtilsDataExchangeProcessing",
 								"action": "processUiAction",
-								"description": "Execute Process Reports",
-								"title": "Execute Process Reports",
+								"description": "Accelerate Market Processes",
+								"title": "Accelerate Market Processes",
 								"signature": {
 									"parameters": {}
 								},

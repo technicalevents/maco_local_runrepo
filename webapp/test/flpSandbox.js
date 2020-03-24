@@ -40,7 +40,7 @@ sap.ui.define(
 								tiles: [{
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
-										title: "Moniton Market Processes",
+										title: "Monitor Market Processes",
 										targetURL: "#UtilsDataExchangeProcessing-displayProcess"
 									}
 								}, {
@@ -52,23 +52,21 @@ sap.ui.define(
 								}, {
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
-										title: "Overview Market Processes",
+										title: "Market Processes Overview",
 										targetURL: "#UtilsDataExchangeProcessing-overviewProcess"
 									}
 								}, {
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
-										title: "Overview Market Message",
+										title: "Market Messages Overview",
 										targetURL: "#UtilsDataExchangeProcessing-overviewMessage"
 									}
 								}, {
 									tileType: "sap.ushell.ui.tile.DynamicTile",
 									properties: {
-										title: "Monitor Mass Meter Readings",
+										title: "Monitor Mass Meter Reading Processes",
 										targetURL: "#UtilsDataExchangeProcessing-massMeterReading",
-										//serviceUrl: "/sap/opu/odata/MP4G/UI_MASSPROCMTRREAD/xMP4GxC_MassProcMRCount/$count",
 										numberValue: this.numberValue1
-										
 									}
 								}]
 							}, {
@@ -137,8 +135,8 @@ sap.ui.define(
 								"UtilsDataExchangeProcessing-overviewProcess": {
 									semanticObject: "UtilsDataExchangeProcessing",
 									action: "overviewProcess",
-									description: "Overview Market Processes",
-									title: "Overview Market Processes",
+									description: "Market Processes Overview",
+									title: "Market Processes Overview",
 									signature: {
 										additionalParameters: "allowed",
 										parameters: {}
@@ -245,16 +243,6 @@ sap.ui.define(
 						sap.ushell.Container.createRenderer().placeAt("content");
 					});
 				}
-				
-				// window.setInterval(function () {
-    //                 OData.read("/sap/opu/odata/MP4G/UI_MASSPROCMTRREAD/xMP4GxC_MassProcMRCount/$count",
-    //                     function (iCount) {
-    //                     	this.numberValue1 = 1;
-    //                     }.bind(this),
-    //                     function (sMessage) {
-    //                     });
-    //             }, 10000);
-
 				return this._oBootstrapFinished;
 			}
 		};
