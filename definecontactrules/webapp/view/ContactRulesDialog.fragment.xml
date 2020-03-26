@@ -1,100 +1,79 @@
-<core:FragmentDefinition
-		xmlns="sap.ui.comp.smartform"
-        xmlns:m="sap.m" 
-        xmlns:core="sap.ui.core"
-        xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-    <SmartForm>
-		<layout>
-			<core:Fragment type="XML" fragmentName="com.sap.cd.maco.mmt.ui.reuse.fragment.form.SmartFormLayout"/>
-		</layout>
-		<Group label="{i18n>MSG_PROPERTIES_GEN_SUBSECTION_TITLE}">
-			<GroupElement label="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}" 
-						  visible="{= ${this>/LinkedDocuments/ProcessDocCount} > 1 ? false : true}">
-				<m:Link text="{this>/LinkedDocuments/ProcessDocument/LinkedDocumentNumber}" 
-					  press="onCrossAppNavigation" 
-					  c:docType="Process" 
-					  wrapping="true"/>
-			</GroupElement>
-			<GroupElement label="{/xMP4GxC_TransferDoc_UI/Direction/#@sap:label}">
-				<m:Text text="{Direction_Text}" 
-					  wrapping="true"/>
-			</GroupElement>
-			<GroupElement label="{/xMP4GxC_TransferDoc_UI/ExternalCommunicationType/#@sap:label}">
-				<m:Text text="{ExternalCommunicationType_Text}" 
-					  wrapping="true"/>
-			</GroupElement>
-		</Group>
-		<Group label="{i18n>ORIGINAL_MSG_TEXT}" 
-						 visible="{= (${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
-			<GroupElement label="{i18n>MSG_REF_TEXT}">
-				<m:Link text="{this>/LinkedDocuments/OriginalMessage/ExtUUID}"
-					  press="onCrossAppNavigation" 
-					  c:docType="Message" 
-					  wrapping="true"/>
-			</GroupElement>
-			<GroupElement label="{i18n>Date_LBL}" 
-									visible="{=!!${this>/LinkedDocuments/OriginalMessage/ExtUUID}}">
-				<m:Text text="{path: 'this>/LinkedDocuments/OriginalMessage/Timestamp',
-							 type: 'sap.ui.model.type.DateTime',
-							 formatOptions: { style: 'medium' }}"
-					  wrapping="true"/>
-			</GroupElement>
-		</Group>
-		<Group label="{i18n>CONTRL_MSG_TEXT}" 
-						 visible="{= ${TechnicalMsgID} === 'CONTRL' ? false : true}">
-			<GroupElement label="{i18n>MSG_REF_TEXT}"
-						  visible="{= ${this>/LinkedDocuments/ContrlDocCount} > 1 ? true : false}">
-				<m:Link text="{parts: [{path: 'i18n>MULTI_DOCUMENT_TXT'}, 
-									 {path: 'this>/LinkedDocuments/ContrlDocCount'}],
-	            			 formatter: '.formatter.formatMessage'}"
-					  wrapping="true" 
-					  press="onAction"
-					  c:boObjectType="CONTRL"
-					  c:action="multipleDoc"/>
-			</GroupElement>
-			<GroupElement label="{i18n>MSG_REF_TEXT}"
-									visible="{= ${this>/LinkedDocuments/ContrlDocCount} > 1 ? false : true}">
-				<m:Link text="{this>/LinkedDocuments/ControlMessage/ExtUUID}"
-					  press="onCrossAppNavigation" 
-					  c:docType="Message" 
-					  wrapping="true"/>
-			</GroupElement>
-			<GroupElement label="{i18n>Date_LBL}" 
-									visible="{= (!!${this>/LinkedDocuments/ControlMessage/ExtUUID} &amp;&amp; 
-												(${this>/LinkedDocuments/ContrlDocCount} > 1 ? false : true))}">
-				<m:Text text="{path: 'this>/LinkedDocuments/ControlMessage/Timestamp',
-				             type: 'sap.ui.model.type.DateTime',
-							 formatOptions: {style: 'medium'}}"
-					  wrapping="true"/>
-			</GroupElement>
-		</Group>
-		<Group label="{i18n>APERAK_MSG_TEXT}" 
-						 visible="{= !(${TechnicalMsgID} === 'CONTRL' || ${TechnicalMsgID} === 'APERAK')}">
-			<GroupElement label="{i18n>MSG_REF_TEXT}"
-									visible="{= ${this>/LinkedDocuments/AperakDocCount} > 1 ? true : false}">
-				<m:Link text="{parts: [{path: 'i18n>MULTI_DOCUMENT_TXT'}, 
-									 {path: 'this>/LinkedDocuments/AperakDocCount'}],
-	            			 formatter: '.formatter.formatMessage'}"
-					  wrapping="true" 
-					  press="onAction"
-					  c:boObjectType="APERAK"
-					  c:action="multipleDoc"/>
-			</GroupElement>
-			<GroupElement label="{i18n>MSG_REF_TEXT}"
-									visible="{= ${this>/LinkedDocuments/AperakDocCount} > 1 ? false : true}">
-				<m:Link text="{this>/LinkedDocuments/AperakMessage/ExtUUID}"
-					  press="onCrossAppNavigation" 
-					  c:docType="Message" 
-					  wrapping="true"/>
-			</GroupElement>
-			<GroupElement label="{i18n>Date_LBL}" 
-									visible="{= (!!${this>/LinkedDocuments/AperakMessage/ExtUUID} &amp;&amp; 
-												(${this>/LinkedDocuments/AperakDocCount} > 1 ? false : true))}">
-				<m:Text text="{path: 'this>/LinkedDocuments/AperakMessage/Timestamp',
-					         type: 'sap.ui.model.type.DateTime',
-					         formatOptions: { style: 'medium' }}"
-					  wrapping="true"/>
-			</GroupElement>
-		</Group>
-	</SmartForm>
+<core:FragmentDefinition xmlns="sap.m" 
+  xmlns:mvc="sap.ui.core.mvc" 
+  xmlns:core="sap.ui.core" 
+  xmlns:smartForm="sap.ui.comp.smartform" 
+  xmlns:smartField="sap.ui.comp.smartfield">
+  <Dialog title="{this>/title}" 
+    contentWidth="700px" 
+    afterClose="onAfterClose">
+    <smartForm:SmartForm id="smartForm" 
+      editable="true">
+      <smartForm:layout>
+        <core:Fragment type="XML" 
+          fragmentName="com.sap.cd.maco.mmt.ui.reuse.fragment.form.SmartFormLayout"/>
+      </smartForm:layout>
+      <smartForm:Group>
+
+        <smartForm:GroupElement >
+         <smartForm:label>
+            <Label required="true"
+                   text="{/xMP4GxC_CTA_MP_UI/OwnMarketPartner/#@sap:label}"/>
+          </smartForm:label>
+        	<ComboBox showSecondaryValues= "true"
+                          items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
+                          change="onOwnMarketPartnerChange"
+                          selectedKey="{OwnMarketPartner}">
+                    <core:ListItem key="{market_partner}" 
+                    			        text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
+                                    			       {path: 'mp_name'},
+                                                 {path: 'market_partner'},
+                                                 {path: 'division_text'}],
+                                         formatter: '.formatter.formatMessage'}"
+                                  additionalText="{market_role}"/>
+                  </ComboBox>
+          <!--<smartField:SmartField value="{OwnMarketPartner}" />-->
+        </smartForm:GroupElement>
+
+        <smartForm:GroupElement >
+          <smartField:SmartField value="{ExternalMarketPartner}" />
+        </smartForm:GroupElement>
+
+        <smartForm:GroupElement>
+          <smartField:SmartField value="{TechnicalMsgID}" />
+        </smartForm:GroupElement>
+
+        <smartForm:GroupElement>
+          <smartField:SmartField value="{ExtBusinessMessageID}" />
+        </smartForm:GroupElement>
+
+        <!--<smartForm:GroupElement>-->
+        <!--  <smartForm:label>-->
+        <!--    <Label required="true"-->
+        <!--           text="{/Partners/ContactID/#@sap:label}"/>-->
+        <!--  </smartForm:label>-->
+        <!--  <Select selectedKey='{Division}'-->
+        <!--          items="{valueHelp>/divisions}">-->
+        <!--    <items>-->
+        <!--      <core:Item key="{valueHelp>id}"-->
+        <!--                 text="{valueHelp>text}" />-->
+        <!--    </items>-->
+        <!--  </Select>-->
+        <!--</smartForm:GroupElement>-->
+
+        <smartForm:GroupElement>
+          <smartField:SmartField value="{ContactID}" />
+        </smartForm:GroupElement>
+
+      </smartForm:Group>
+      
+    </smartForm:SmartForm>
+    
+    <buttons>
+      <Button text="{this>/saveButtonText}" 
+        press="onSubmit" 
+        type="Emphasized"/>
+      <Button text="{this>/cancelButtonText}" 
+        press="onCancel"/>
+    </buttons>
+  </Dialog>
 </core:FragmentDefinition>

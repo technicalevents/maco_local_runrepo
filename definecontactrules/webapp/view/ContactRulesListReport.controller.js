@@ -2,7 +2,7 @@ sap.ui.define(
 	[
 		"com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportNoDraftController",
 		"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
-		"com/sap/cd/maco/monitor/ui/app/definecontactrules/util/Formatter",
+		"com/sap/cd/maco/selfservice/ui/app/definecontactrules/util/Formatter",
 		"sap/ui/model/Sorter",
 		"sap/ui/generic/app/navigation/service/SelectionVariant"
 	],
@@ -11,7 +11,7 @@ sap.ui.define(
 		"use strict";
 
 		return ListReportNoDraftController.extend(
-			"com.sap.cd.maco.monitor.ui.app.definecontactrules.view.ContactRulesListReport", {
+			"com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesListReport", {
 
 				/**
 				 * Formatter Attribute.
@@ -33,27 +33,23 @@ sap.ui.define(
 					this.getOwnerComponent().getModel().setSizeLimit(1200);
 
 					ListReportNoDraftController.prototype.onInit.call(this, {
-						entitySet: "xMP4GxC_TransferDoc_UI",
+						entitySet: "xMP4GxC_CTA_MP_UI",
 						actions: {
-							multiDownload: oComponentActions.multiDownload,
-							navToMessagePage: oComponentActions.navToMessagePage,
-							navListToProcessApp: oComponentActions.navListToProcessApp,
-							share: oComponentActions.share
+							create: oComponentActions.create,
+							update: oComponentActions.update,
+							delete: oComponentActions.delete
 						},
 						routes: {
 							parent: null,
-							this: "listReport",
-							child: "messagePage"
+							this: "listReport"
 						},
 						controls: {
-							table: "idMessageSmartTable",
-							variantManagement: "idMessageVariantManagement",
-							filterBar: "idMessageSmartFilterBar"
+							table: "idContactRulesSmartTable",
+							variantManagement: "idContactRulesVariantManagement",
+							filterBar: "idContactRulesFilterBar"
 						},
 						tableAccessControl: {
-							multiDownload: true,
-							navToMessagePage: true,
-							navListToProcessApp: true
+							create: true
 						}
 					});
 
@@ -73,8 +69,7 @@ sap.ui.define(
 				onBeforeRebindTable: function (oEvent) {
 					var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
 					var aSorters = [];
-					aSorters.push(new Sorter("Timestamp", true));
-					aSorters.push(new Sorter("TransferDocumentNumber", true));
+					aSorters.push(new Sorter("OwnMarketPartner", true, true));
 					oUpdate.addSorters(aSorters);
 
 					// This method will add Current application state in URL

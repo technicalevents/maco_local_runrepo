@@ -10,27 +10,27 @@
   xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
   xmlns:variants="sap.ui.comp.smartvariants"
   xmlns:footerbar="sap.ushell.ui.footerbar"
-  controllerName="com.sap.cd.maco.monitor.ui.app.definecontactrules.view.ContactRulesListReport">
+  controllerName="com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesListReport">
 
   <semantic:SemanticPage headerExpanded="true" toggleHeaderOnTitleClick="true">
   	<semantic:titleHeading>
-			 <variants:SmartVariantManagement id="idMessageVariantManagement" 
-											persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.definecontactrules.filterbar" />
+			 <variants:SmartVariantManagement id="idContactRulesVariantManagement" 
+											persistencyKey="com.sap.cd.maco.selfservice.ui.app.controller.definecontactrules.filterbar" />
 		</semantic:titleHeading>
     <semantic:headerContent>
-          <smartFilterBar:SmartFilterBar id="idMessageSmartFilterBar"
-                  smartVariant="idMessageVariantManagement"
+          <smartFilterBar:SmartFilterBar id="idContactRulesFilterBar"
+                  smartVariant="idContactRulesVariantManagement"
                   useToolbar="false"
                   enableBasicSearch="true"
                   liveMode="false"
                   useDateRangeType="true"
                   initialized="onFilterBarInitialized"
                   showFilterConfiguration="false"
-                  persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.definecontactrules.filterbar"
-                  entitySet="xMP4GxC_TransferDoc_UI">
+                  persistencyKey="com.sap.cd.maco.selfservice.ui.app.controller.definecontactrules.filterbar"
+                  entitySet="xMP4GxC_CTA_MP_UI">
           	<smartFilterBar:controlConfiguration>
                 <smartFilterBar:ControlConfiguration key="OwnerUUID"
-													 label="{/xMP4GxC_TransferDoc_UI/OwnerUUID/#@sap:label}">
+													 label="{/xMP4GxC_CTA_MP_UI/OwnMarketPartner/#@sap:label}">
                 <smartFilterBar:customControl>
                   <MultiComboBox showSecondaryValues= "true"
                           items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
@@ -45,107 +45,72 @@
                   </MultiComboBox>
           			</smartFilterBar:customControl>
           		</smartFilterBar:ControlConfiguration>
-          		<smartFilterBar:ControlConfiguration key="ProcessID"
-                									 preventInitialDataFetchInValueHelpDialog="false"
-													 label="{/xMP4GxC_TransferDoc_UI/ProcessID/#@sap:label}"/>
                 <smartFilterBar:ControlConfiguration key="ExtBusinessMessageID"
                 									 preventInitialDataFetchInValueHelpDialog="false"
-													 label="{/xMP4GxC_TransferDoc_UI/ExtBusinessMessageID/#@sap:label}" />
+													 label="{/xMP4GxC_CTA_MP_UI/ExtBusinessMessageID/#@sap:label}" />
           	</smartFilterBar:controlConfiguration>
           </smartFilterBar:SmartFilterBar>
      </semantic:headerContent>
     <semantic:content>
-      <smartTable:SmartTable id="idMessageSmartTable"
-					        entitySet="xMP4GxC_TransferDoc_UI"
+      <smartTable:SmartTable id="idContactRulesSmartTable"
+					        entitySet="xMP4GxC_CTA_MP_UI"
 					        tableType="ResponsiveTable"
-					        smartFilterId="idMessageSmartFilterBar"
-					        smartVariant="idMessageVariantManagement"
+					        smartFilterId="idContactRulesFilterBar"
+					        smartVariant="idContactRulesVariantManagement"
 					        enableAutoBinding="false" 
-					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID"
-					        ignoredFields="ExtBusinessMessageID"
-					        header="{i18n>messageTitlePlural}"
+					        requestAtLeastFields="ContactDeterminationKey"
+					        ignoredFields=""
+					        header="{i18n>ContactDeterminationTitlePlural}"
 					        useTablePersonalisation="true"
 					        demandPopin="true"
 					        useExportToExcel="true"
-                  beforeExport="onBeforeExport"
+                			beforeExport="onBeforeExport"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
-                  c:p13nDialogSettings='{filter:{visible:false}}' 
+                			c:p13nDialogSettings='{filter:{visible:false}}' 
 					        beforeRebindTable="onBeforeRebindTable"
-					        persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.definecontactrules.table">
+					        persistencyKey="com.sap.cd.maco.selfservice.ui.app.controller.definecontactrules.table">
         <smartTable:customToolbar>
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>
-            <Button text="{i18n>MESSAGE_LIST_REFRESH_TITLE}" 
-                    type="Transparent"
-                    press="onRefresh"/>
-            <Button text="{i18n>DOWNLOAD_BTN_TXT}"
+            <Button icon="sap-icon://add"
                     type="Transparent"
                     press="onAction"
-                    enabled="{this>/tableActionEnabled/multiDownload}"
-                    c:action="multiDownload"/>
+                    c:action="create"/>
           </OverflowToolbar>
         </smartTable:customToolbar>
         <Table id="idMessageTable"
                 growing="true"
                 growingScrollToLoad="true" 
                 growingThreshold="100" 
-                mode="MultiSelect"
+                mode="None"
                 sticky="ColumnHeaders,HeaderToolbar" >
 		<columns>
-            <Column>
-              <Text text="{/xMP4GxC_TransferDoc_UI/ExternalUUID/#@sap:label}"/>
+            <Column width="5%">
+              <Text text=""/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"0", "columnKey":"ExternalUUID", "leadingProperty":["ExternalUUID", "SenderId"],"sortProperty": "ExternalUUID" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"6", "columnKey":"Edit" }'/>
               </customData>
             </Column>
-            <Column width="5rem">
-              <Text text="{/xMP4GxC_TransferDoc_UI/TechnicalMsgID/#@sap:label}"/>
+            <Column width="5%">
+              <Text text=""/>
               <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"Format", "leadingProperty":["TechnicalMsgID"], "sortProperty": "TechnicalMsgID" }'/>
-              </customData>
-            </Column>
-            <Column width="5rem">
-              <Text text="{/xMP4GxC_TransferDoc_UI/ExtBusinessMessageID/#@sap:label}"/>
-              <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"AMID", "leadingProperty":["ExtBusinessMessageID"], "sortProperty": "ExtBusinessMessageID" }'/>
-              </customData>
-            </Column>
-            <Column width="13rem">
-              <Text text="{i18n>OWN_MARKET_PARTNER_TITLE}"/>
-              <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"OwnMarketPartner", "displayBehaviour": "idAndDescription", "description":"OwnMarketPartnerText", "leadingProperty":["OwnMarketPartner","OwnMarketPartnerText"], "sortProperty": "OwnMarketPartner" }'/>
-              </customData>
-            </Column>
-            <Column width="3rem">
-              <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"Direction", "displayBehaviour": "descriptionOnly", "description":"DirectionText", "leadingProperty":["Direction", "DirectionText"]}'/>
-              </customData>
-            </Column>
-            <Column>
-              <Text text="{i18n>EXTERNAL_MARKET_PARTNER_TITLE}"/>
-              <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"5", "columnKey":"ExternalMarketPartner", "description":"ExternalMarketPartnerText", "displayBehaviour": "idAndDescription", "leadingProperty":["ExternalMarketPartner","ExternalMarketPartnerText"], "sortProperty": "ExternalMarketPartner" }'/>
-              </customData>
-            </Column>
-            <Column>
-              <Text text="{/xMP4GxC_TransferDoc_UI/ProcessDocumentNumber/#@sap:label}"/>
-              <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"6", "columnKey":"ProcessDocumentNumber", "leadingProperty":["ProcessDocumentNumber"],"sortProperty": "ProcessDocumentNumber" }'/>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"7", "columnKey":"Delete"}'/>
               </customData>
             </Column>
           </columns>
           <items>
-            <ColumnListItem type="Navigation" press="onAction" c:action="navToMessagePage">
+            <ColumnListItem type="Inactive">
               <cells>
-              	<reuseTable:ObjectIdentifier title="{ExternalUUID}" text="{SenderId}"/>
-                <Text text="{TechnicalMsgID}"/>
-                <Text text="{ExtBusinessMessageID}"/>			      
-                <reuseTable:ObjectIdentifier title="{OwnMarketPartnerText}"  text="{OwnMarketPartner}"/>
-                <core:Icon src="{= ${Direction} === 'O' ? 'sap-icon://arrow-right' : 'sap-icon://arrow-left'}" 
-                		       tooltip="{= ${Direction} === 'O' ? 'Outbound' : 'Inbound'}"/>
-                <reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}"  text="{ExternalMarketPartner}"/>
-                <Link text="{ProcessDocumentNumber}" c:action="navListToProcessApp" press="onAction"/>
+              	<Button icon="sap-icon://edit"
+                    type="Transparent"
+                    press="onAction"
+                    c:action="update"/>
+                    <Button icon="sap-icon://delete"
+                    type="Transparent"
+                    press="onAction"
+                    c:action="delete"/>
+           
               </cells>
             </ColumnListItem>
           </items>

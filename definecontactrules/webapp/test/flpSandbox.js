@@ -40,7 +40,7 @@ sap.ui.define([
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
 									"title": "Display Messages",
-									"targetURL": "#UtilsDataExchangeProcessing-displayMessage"
+									"targetURL": "#UtilsDataExchangeProcessing-defineContactRules"
 								}
 							}]
 						}]
@@ -51,18 +51,18 @@ sap.ui.define([
 				"adapter": {
 					"config": {
 						"inbounds": {
-							"UtilsDataExchangeProcessing-displayMessage": {
+							"UtilsDataExchangeProcessing-defineContactRules": {
 								"semanticObject": "UtilsDataExchangeProcessing",
-								"action": "displayMessage",
-								"description": "Display Messages",
-								"title": "Display Messages",
+								"action": "defineContactRules",
+								"description": "Define Contact Determination Rules",
+								"title": "Define Contact Determination Rules",
 								"signature": {
 									"parameters": {}
 								},
 								"resolutionResult": {
 									"applicationType": "SAPUI5",
-									"additionalInformation": "SAPUI5.Component=com.sap.cd.maco.monitor.ui.app.displaymessage",
-									"url": sap.ui.require.toUrl("com/sap/cd/maco/monitor/ui/app/displaymessage")
+									"additionalInformation": "SAPUI5.Component=com.sap.cd.maco.selfservice.ui.app.definecontactrules",
+									"url": sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/definecontactrules")
 								}
 							}
 						}

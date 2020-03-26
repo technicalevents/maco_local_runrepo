@@ -1,7 +1,7 @@
 {
   "_version": "1.4.0",
   "sap.app": {
-    "id": "com.sap.cd.maco.monitor.ui.app.definecontactrules",
+    "id": "com.sap.cd.maco.selfservice.ui.app.definecontactrules",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "title": "{{APP_TITLE}}",
@@ -12,7 +12,7 @@
     "ach": "MACO-MMT",
     "dataSources": {
       "Main": {
-        "uri": "/sap/opu/odata/MP4G/??/",
+        "uri": "/sap/opu/odata/MP4G/UI_CONTACT_DETR",
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
@@ -24,7 +24,7 @@
       },
       "Message": {
         "type": "ODataAnnotation",
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2F??_VAN',Version='0001')/$value/",
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_CONTACT_DETR_VAN',Version='0001')/$value/",
         "settings": {
           "localUri": "annotation/Message.xml"
         }
@@ -103,7 +103,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.sap.cd.maco.monitor.ui.app.definecontactrules.i18n.i18n"
+          "bundleName": "com.sap.cd.maco.selfservice.ui.app.definecontactrules.i18n.i18n"
         }
       },
       "": {
@@ -163,7 +163,7 @@
       ],
       "targets": {
         "listReport": {
-          "viewPath": "com.sap.cd.maco.monitor.ui.app.definecontactrules.view",
+          "viewPath": "com.sap.cd.maco.selfservice.ui.app.definecontactrules.view",
           "viewName": "ContactRulesListReport",
           "viewId": "listReport",
           "viewLevel": 1,
