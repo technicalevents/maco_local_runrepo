@@ -39,7 +39,7 @@ sap.ui.define([
 							"tiles": [{
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
-									"title": "Display Processes",
+									"title": "Market Processes Overview",
 									"targetURL": "#DisplayProcesses-display"
 								}
 							}]
@@ -54,8 +54,8 @@ sap.ui.define([
 							"OverviewProcesses-display": {
 								"semanticObject": "OverviewProcesses",
 								"action": "display",
-								"description": "Overview Processes",
-								"title": "Overview Processes",
+								"description": "Market Processes Overview",
+								"title": "Market Processes Overview",
 								"signature": {
 									"parameters": {}
 								},

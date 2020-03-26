@@ -195,6 +195,13 @@
 								value='\{"columnIndex":7,"columnKey":"MessageReference","leadingProperty":["MessageReference"],"sortProperty":"MessageReference"}'/>
 							</customData>
 						</Column>
+						<Column visible="false">
+							<Text text="{/xMP4GxC_MassProcMtrRead/OwnMarketPartner/#@sap:label}"/>
+							<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":8,"columnKey":"OwnMarketPartner","description":"OwnMarketPartnerText","displayBehaviour":"idAndDescription","leadingProperty":["OwnMarketPartner","OwnMarketPartnerText"],"sortProperty":"OwnMarketPartner"}'/>
+							</customData>
+						</Column>
 					</columns>
 					<items>
 						<ColumnListItem >
@@ -207,6 +214,7 @@
 								<Link text="{MassUploadProcessDoc}" tooltip="{MassUploadProcessDoc}" c:action="navToUploadProcessAction" press="onAction"/>
 								<Link text="{AggregationProcessDoc}" tooltip="{AggregationProcessDoc}" c:action="navToAggrProcessAction" press="onAction"/>
 								<Link text="{MessageReference}" tooltip="{MessageReference}" c:action="navToMessageAction" press="onAction"/>
+								<reuseTable:ObjectIdentifier title="{OwnMarketPartnerText}" text="{OwnMarketPartner}"/>
 							</cells>
 						</ColumnListItem>
 					</items>
