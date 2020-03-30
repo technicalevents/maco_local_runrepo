@@ -1,6 +1,6 @@
 sap.ui.define(
   [
-    "com/sap/cd/maco/mmt/ui/reuse/fnd/base/DraftComponent",
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorComponent",
     "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/SingleDownloadAction",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/MultiDownloadAction",
@@ -10,22 +10,22 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/MultipleDocumentAction"
   ],
-  function(DraftComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
+  function(MonitorComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
             NavToRouteAction, ShareAction, NavToProcessAction, NavToMessageAction,
             MultipleDocumentAction) {
     "use strict";
 
-    return DraftComponent.extend("com.sap.cd.maco.monitor.ui.app.displaymessages.Component", {
+    return MonitorComponent.extend("com.sap.cd.maco.monitor.ui.app.displaymessages.Component", {
       metadata: {
         manifest: "json"
       },
 
       /**
-       * Function is used to initialize DraftComponent
+       * Function is used to initialize MonitorComponent
        */
       init: function() {
         // call the base component's init function
-        DraftComponent.prototype.init.apply(this, arguments);
+        MonitorComponent.prototype.init.apply(this, arguments);
 
         this.actions = {
           singleDownload: new SingleDownloadAction(this),
@@ -74,8 +74,7 @@ sap.ui.define(
         }
         
         // generic destroy of component
-        DraftComponent.prototype.destroy.apply(this, arguments);
+        MonitorComponent.prototype.destroy.apply(this, arguments);
       }
     });
-  }
-);
+});
