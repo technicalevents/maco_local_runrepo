@@ -12,8 +12,8 @@
       "endpoint": "abap"
     },
     {
-      "source": "^/sap/opu/odata/MP4G/PROCESSHEADER_SB/(.*)$",
-      "target": "/sap/opu/odata/MP4G/PROCESSHEADER_SB/$1",
+      "source": "^/sap/opu/odata/MP4G/UI_ProcessActions/(.*)$",
+      "target": "/sap/opu/odata/MP4G/UI_ProcessActions/$1",
       "authenticationType": "xsuaa",
       "service": "com.sap.cloud.abap",
       "endpoint": "abap"
