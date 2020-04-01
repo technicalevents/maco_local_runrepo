@@ -49,8 +49,6 @@ sap.ui.define([
 					reportExecution: true
 				}
 			});
-			
-			this.oRouter.getRoute("initial").attachPatternMatched(this._onRoutePatternMatched, this);
         },
         
         /******************************************************************* */
@@ -147,27 +145,6 @@ sap.ui.define([
 			};
 			
 			this.oNav.storeInnerAppState(oCurrentAppState);
-        },
-        
-        /******************************************************************* */
-        /* PRIVATE METHODS */
-        /******************************************************************* */
-	    
-	    /**
-         * Method is called on Route to Message List Page
-         * @private
-         */
-        _onRoutePatternMatched: function() {
-			this.oComponent.getService("ShellUIService").then(
-				function(oService) {
-					oService.setHierarchy([]);
-				}.bind(this),
-				function(oError) {
-					jQuery.sap.log.error("Cannot get ShellUIService", oError);
-				}
-			);
         }
-      }
-    );
-  }
-);
+    });
+});

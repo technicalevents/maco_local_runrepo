@@ -108,7 +108,8 @@
         "factoryName": "sap.ushell.ui5service.ShellUIService",
         "lazy": false,
         "settings": {
-          "setTitle": "auto"
+          "setTitle": "auto",
+          "setHierarchy": "auto"
         }
       }
     },
