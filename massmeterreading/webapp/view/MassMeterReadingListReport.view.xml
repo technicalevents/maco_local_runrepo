@@ -208,7 +208,7 @@
 							<cells>
 								<reuseTable:ObjectIdentifier title="{PointOfDelivery}" text="{OBIS}"/>
 								<reuseTable:ObjectIdentifier title="{path:'PeriodFromDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
-								<reuseTable:ObjectIdentifier title="{path:'PeriodFromDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
+								<reuseTable:ObjectIdentifier title="{path:'PeriodToDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
 								<Text text="{path:'UploadDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
 								<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}" text="{ExternalMarketPartner}"/>
 								<Link text="{MassUploadProcessDoc}" tooltip="{MassUploadProcessDoc}" c:action="navToUploadProcessAction" press="onAction"/>
