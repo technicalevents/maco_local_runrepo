@@ -3,16 +3,15 @@ sap.ui.define(
     'sap/ui/base/Object',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/message/_/ODataResponseParser',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/js/startsWith'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/js/startsWith',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage'
   ],
-  function(UI5Object, ODataResponseParser, bundle, startsWith) {
+  function(UI5Object, ODataResponseParser, bundle, startsWith, getMessage) {
     'use strict';
 
     return UI5Object.extend('com.sap.cd.maco.mmt.ui.reuse.message.ErrorManager', {
-      constructor: function(params) {
-        // keep stuff
-        this._oComponent = params.component;
-        this._oMessage = params.message;
+      constructor: function(oComponent) {
+        this._oComponent = oComponent;
         this._oInput = {};
 
         // attach events
@@ -140,7 +139,8 @@ sap.ui.define(
       },
 
       _showError: function(params) {
-        this._oMessage.error(params).then(
+        var oMessage = getMessage(this._oComponent);
+        oMessage.error(params).then(
           function() {
             if (this._oInput.onClose) {
               this._oInput.onClose();
@@ -182,7 +182,8 @@ sap.ui.define(
         if (!sMsg) {
           sMsg = bundle.getText('messageManagerUnknownError');
         }
-        this._oMessage
+        var oMessage = getMessage(this._oComponent);
+        oMessage
           .error({
             msg: sMsg
           })

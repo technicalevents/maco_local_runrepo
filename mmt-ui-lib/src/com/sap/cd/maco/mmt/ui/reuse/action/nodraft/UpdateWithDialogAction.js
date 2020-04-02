@@ -1,7 +1,7 @@
 /*global location*/
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateUpdateDialogController',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
@@ -11,9 +11,14 @@ sap.ui.define(
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.nodraft.UpdateWithDialogAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.call(this, oComponent, oConfig, '1');
+        BaseAction.call(this, oComponent, oConfig);
+        this.oConfig.minContexts = 1;
+        this.oConfig.maxContexts = 1;
       },
 
+      /**
+       * @deprecated
+       */
       enabled: function(aContexts) {
         return aContexts.length > 0;
       },

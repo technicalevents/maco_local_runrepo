@@ -4,11 +4,10 @@ sap.ui.define(
     'com/sap/cd/maco/mmt/ui/reuse/fnd/odata/ODataMetaModelExt',
     'sap/ui/model/json/JSONModel',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/getConfigText',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/getConfigControl',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getNav'
   ],
-  function(BaseViewController, ODataMetaModelExt, JSONModel, bundle, getConfigText, getConfigControl, Assert) {
+  function(BaseViewController, ODataMetaModelExt, JSONModel, bundle, Assert, getNav) {
     'use strict';
 
     return BaseViewController.extend('com.sap.cd.maco.mmt.ui.reuse.controller.objectPage.ObjectPageController', {
@@ -29,9 +28,7 @@ sap.ui.define(
         this._oODataMetaModelExt = new ODataMetaModelExt(this.oComponent);
 
         // set this model
-        var oThisModel = new JSONModel({});
-        oThisModel.setDefaultBindingMode('OneWay');
-        this.getView().setModel(oThisModel, 'this');
+        this.initViewModel();
 
         // register for routing
         var oRoute = this.oRouter.getRoute(config.routes.this);
@@ -39,12 +36,8 @@ sap.ui.define(
         oRoute.attachPatternMatched(this._onRouteMatched, this);
       },
 
-      _getConfigText: function(sKey, sDefault, oObject) {
-        return getConfigText(this, this.oConfig['i18n'], sKey, sDefault, oObject);
-      },
-
       _getObjectPage: function() {
-        return getConfigControl(this, 'objectPage', 'sap.uxap.ObjectPageLayout', true);
+        return this.getConfigControl('objectPage', 'sap.uxap.ObjectPageLayout', false);
       },
 
       //~~~~ private subclassers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -62,7 +55,7 @@ sap.ui.define(
       },
 
       _getNotFoundText: function() {
-        return this._getConfigText('notFoundMsg', 'objectPageNotFound', this.oRouteArgs);
+        return this.getConfigText('notFoundMsg', 'objectPageNotFound', this.oRouteArgs);
       },
 
       //~~~~ public subclassers ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -101,6 +94,9 @@ sap.ui.define(
       _getSectionController: function() {
         var aResult = [];
         var oObjectPage = this._getObjectPage();
+        if (!oObjectPage) {
+          return aResult;
+        }
         var aSections = oObjectPage.getSections();
         for (var i = 0; i < aSections.length; i++) {
           var oSection = aSections[i];
@@ -199,7 +195,7 @@ sap.ui.define(
         } else {
           // show message
           var sMsg = this._getNotFoundText();
-          this.oNav.navNotFound({
+          getNav(this).navNotFound({
             msg: sMsg
           });
         }

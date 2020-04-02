@@ -21,6 +21,7 @@
         <ObjectStatus
             text="{$this>text}"
             state="{$this>state}"
+            inverted="{$this>statusInverted}"
             visible="{
                 path: '$this>type',
                 formatter: '._showStatus'

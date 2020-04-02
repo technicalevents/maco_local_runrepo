@@ -4,12 +4,13 @@ sap.ui.define(
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/js/startsWith',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/message/CallWithMessageHandling',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage'
   ],
-  function(ObjectPageController, bundle, startsWith, CallWithMessageHandling, Assert) {
+  function(ObjectPageController, bundle, startsWith, CallWithMessageHandling, Assert, getMessage) {
     'use strict';
 
-    return ObjectPageController.extend('com.sap.cd.maco.mmt.ui.reuse.controller,objectPage.ObjectPageNoDraftController', {
+    return ObjectPageController.extend('com.sap.cd.maco.mmt.ui.reuse.controller.objectPage.ObjectPageNoDraftController', {
       onInit: function(config) {
         // super
         ObjectPageController.prototype.onInit.apply(this, arguments);
@@ -36,7 +37,7 @@ sap.ui.define(
         var bCreate = this._isCreate(oRouteArgs);
         if (bLeavingThisObjectPage && !bCreate && bModelChanged) {
           this.oModel.resetChanges();
-          this.oMessage.warning({
+          getMessage(this).warning({
             msg: bundle.getText('objectPageResetChangesByNav')
           });
         }
@@ -51,11 +52,11 @@ sap.ui.define(
         this._sMode = sMode;
 
         // update this model
-        var oThisModel = this.getThisModel();
-        oThisModel.setProperty('/IsCreate', sMode === 'Create');
-        oThisModel.setProperty('/IsUpdate', sMode === 'Update');
-        oThisModel.setProperty('/IsCreateOrUpdate', sMode === 'Create' || sMode === 'Update');
-        oThisModel.setProperty('/IsDisplay', sMode === 'Display');
+        var oViewModel = this.getViewModel();
+        oViewModel.setProperty('/IsCreate', sMode === 'Create');
+        oViewModel.setProperty('/IsUpdate', sMode === 'Update');
+        oViewModel.setProperty('/IsCreateOrUpdate', sMode === 'Create' || sMode === 'Update');
+        oViewModel.setProperty('/IsDisplay', sMode === 'Display');
       },
 
       getMode: function() {
@@ -115,7 +116,7 @@ sap.ui.define(
         if (bCreate) {
           return bundle.getText('objectPageNotFoundCreate');
         } else {
-          return this._getConfigText('notFoundMsg', 'objectPageNotFound', this.oRouteArgs);
+          return this.getConfigText('notFoundMsg', 'objectPageNotFound', this.oRouteArgs);
         }
       },
 

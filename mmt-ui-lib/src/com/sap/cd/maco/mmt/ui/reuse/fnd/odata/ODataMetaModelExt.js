@@ -13,6 +13,14 @@ sap.ui.define(['sap/ui/base/EventProvider', 'com/sap/cd/maco/mmt/ui/reuse/fnd/As
       return oMeta;
     },
 
+    getEntitySetFromContext: function(oContext) {
+      var sPath = oContext.getPath();
+      var iFrom = sPath.indexOf('/');
+      var iTo = sPath.indexOf('(');
+      var sEntitySet = sPath.substr(iFrom + 1, iTo - 1);
+      return sEntitySet;
+    },
+
     getProperties: function(sEntitySet) {
       var oMeta = this._getMetaModel();
       var oEntitySet = oMeta.getODataEntitySet(sEntitySet);
@@ -57,6 +65,13 @@ sap.ui.define(['sap/ui/base/EventProvider', 'com/sap/cd/maco/mmt/ui/reuse/fnd/As
         }
       }
       Assert.ok(false, 'cannot determine guid for entityset ' + sEntitySet);
+    },
+
+    isDraftRoot: function(sEntitySet) {
+      var oMeta = this._getMetaModel();
+      var oEntitySet = oMeta.getODataEntitySet(sEntitySet);
+      var bIsDraftRoot = oEntitySet.hasOwnProperty('com.sap.vocabularies.Common.v1.DraftRoot');
+      return bIsDraftRoot;
     },
 
     _getProperty: function(sEntitySet, oEntityType, sName) {

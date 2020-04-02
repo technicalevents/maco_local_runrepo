@@ -3,15 +3,16 @@ sap.ui.define(
     'sap/ui/base/EventProvider',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/odata/ODataResponseHandler',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getErrorManager'
   ],
-  function(EventProvider, ODataResponseHandler, bundle, Assert) {
+  function(EventProvider, ODataResponseHandler, bundle, Assert, getErrorManager) {
     'use strict';
 
     return EventProvider.extend('com.sap.cd.maco.mmt.ui.reuse.fnd.transaction.TransactionNoDraft', {
-      constructor: function(params) {
-        this._component = params.component;
-        this._model = params.model;
+      constructor: function(oComponent) {
+        this._component = oComponent;
+        this._model = oComponent.getModel();
       },
 
       _setBusy: function(params, bValue) {
@@ -28,7 +29,7 @@ sap.ui.define(
        */
       whenSubmitted: function(params) {
         // check params
-        Assert.ok(params, 'cannot execute transaction whenDeleted. no params');
+        Assert.ok(params, 'cannot execute transaction whenSubmitted. no params');
 
         return new Promise(
           function(resolve, reject) {
@@ -102,7 +103,8 @@ sap.ui.define(
               }.bind(this),
 
               error: function(response) {
-                this._component.oErrorManager.addTechnicalMessage('remove failed for paths: ' + params.paths);
+                var oErrorManager = getErrorManager(this._component);
+                oErrorManager.addTechnicalMessage('remove failed for paths: ' + params.paths);
                 this._setBusy(params, false);
                 reject();
               }.bind(this)

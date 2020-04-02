@@ -74,9 +74,10 @@ sap.ui.define(['sap/ui/core/Control', 'sap/m/ObjectMarker'], function(Control, O
 
     _formatAdditionalInfo: function(bIsActiveEntity, oDraftAdministrativeData) {
       if (!oDraftAdministrativeData) {
-        return false;
+        return '?';
+      } else {
+        return bIsActiveEntity ? oDraftAdministrativeData.LastChangedByUser : '';
       }
-      return bIsActiveEntity ? oDraftAdministrativeData.LastChangedByUser : '';
     },
 
     renderer: function(oRM, oControl) {

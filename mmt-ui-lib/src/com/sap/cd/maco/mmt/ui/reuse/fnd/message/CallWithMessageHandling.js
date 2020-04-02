@@ -3,9 +3,10 @@ sap.ui.define(
     'sap/ui/base/Object',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/message/_/MandatoryCheck',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getErrorManager'
   ],
-  function(Object, bundle, MandatoryCheck, Assert) {
+  function(Object, bundle, MandatoryCheck, Assert, getErrorManager) {
     'use strict';
 
     return Object.extend('com.sap.cd.maco.mmt.ui.reuse.message.CallWithMessageHandling', {
@@ -82,8 +83,9 @@ sap.ui.define(
               function() {
                 if (bServer) {
                   var sMsg = bundle.getText('messageCallInputError');
-                  this._oController.oErrorManager.replaceBusinessMessage(sMsg);
-                  this._oController.oErrorManager.showInPopover(oMessageButton);
+                  var oErrorManager = getErrorManager(this._oController);
+                  oErrorManager.replaceBusinessMessage(sMsg);
+                  oErrorManager.showInPopover(oMessageButton);
                   reject();
                 }
               }.bind(this)
@@ -111,7 +113,8 @@ sap.ui.define(
               function() {
                 if (bServer) {
                   var sMsg = bundle.getText('messageCallInputError');
-                  this._oController.oErrorManager.replaceBusinessMessage(sMsg);
+                  var oErrorManager = getErrorManager(this._oController);
+                  oErrorManager.replaceBusinessMessage(sMsg);
                   reject();
                 }
               }.bind(this)

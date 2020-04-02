@@ -1,19 +1,26 @@
 /*global location*/
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/UI5Metadata',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getNav'
   ],
-  function(BaseAction, bundle, UI5Metadata, Assert) {
+  function(BaseAction, bundle, UI5Metadata, Assert, getMessage, getNav) {
     'use strict';
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.nodraft.CancelAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.call(this, oComponent, oConfig, '1');
+        BaseAction.call(this, oComponent, oConfig);
+        this.oConfig.minContexts = 1;
+        this.oConfig.maxContexts = 1;
       },
 
+      /**
+       * @deprecated
+       */
       enabled: function(aContexts) {
         return aContexts.length > 0;
       },
@@ -37,7 +44,7 @@ sap.ui.define(
             this._fnReject = reject;
 
             if (this.oModel.hasPendingChanges()) {
-              this.oMessage
+              getMessage(this)
                 .confirm({
                   msg: bundle.getText('transactionCancelConfirm'),
                   buttonText: bundle.getText('buttonDiscard'),
@@ -63,7 +70,7 @@ sap.ui.define(
         if ('Create' === sMode) {
           // navigate back
           var sParentRoute = null; // would be only necessary in deep link scenario ... but there is no deep link for create :-)
-          this.oNav.navHistoryBackAppTarget(sParentRoute);
+          getNav(this).navHistoryBackAppTarget(sParentRoute);
         } else if ('Update' === sMode) {
           // just change the mode
           this._oParams.controller.setMode('Display');

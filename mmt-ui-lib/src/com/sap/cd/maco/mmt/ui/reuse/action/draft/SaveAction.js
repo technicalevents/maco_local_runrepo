@@ -1,23 +1,28 @@
 /*global location*/
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/nav/RouteArgs',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/odata/ODataMetaModelExt',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getNav',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getTransaction'
   ],
-  function(BaseAction, bundle, RouteArgs, ODataMetaModelExt, Assert) {
+  function(BaseAction, bundle, RouteArgs, ODataMetaModelExt, Assert, getMessage, getNav, getTransaction) {
     'use strict';
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.draft.SaveAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.call(this, oComponent, oConfig, '0');
+        BaseAction.call(this, oComponent, oConfig);
+        this.oConfig.minContexts = 1;
+        this.oConfig.maxContexts = 1;
         this._oODataMetaModelExt = new ODataMetaModelExt(oComponent);
-      },
-
-      enabled: function(aContexts) {
-        return aContexts.length > 0;
+        // default config
+        if (!this.oConfig.hasOwnProperty('nav')) {
+          this.oConfig.nav = true;
+        }
       },
 
       execute: function(oParams) {
@@ -28,11 +33,6 @@ sap.ui.define(
         this._oParams = oParams;
         this._oContext = oParams.contexts[0];
         this._oObject = this._oContext.getObject();
-
-        // default nav
-        if (!oParams.hasOwnProperty('nav')) {
-          oParams.nav = true;
-        }
 
         // check controller
         Assert.subclass(
@@ -46,7 +46,8 @@ sap.ui.define(
             this._fnResolve = resolve;
             this._fnReject = reject;
 
-            this.oTransaction
+            var oTransaction = getTransaction(this);
+            oTransaction
               .whenDraftActivated({
                 context: this._oContext,
                 busyControl: this._oParams.busyControl
@@ -59,11 +60,11 @@ sap.ui.define(
       _onActivation: function(oResult) {
         // show success message
         var sMsg = this.getConfigText('successMsg', 'transactionDraftActivateSuccess', [this._oObject]);
-        this.oMessage.success({
+        getMessage(this).success({
           msg: sMsg
         });
 
-        if (this._oParams.nav) {
+        if (this.oConfig.nav) {
           var oConConfig = this._oParams.controller.oConfig;
           if (this._oObject.HasActiveEntity) {
             // determine guid
@@ -93,7 +94,7 @@ sap.ui.define(
             // navigate back (or to list report if history is empty)
             var sParentRoute = oConConfig.routes.parent;
             Assert.ok(sParentRoute, 'cannot execute cancel action. no parent route. configure the parent route on the executing controller');
-            this.oNav.navHistoryBackAppTarget(sParentRoute, {}); // TODO empty route params
+            getNav(this).navHistoryBackAppTarget(sParentRoute, {}); // TODO empty route params
           }
         }
 

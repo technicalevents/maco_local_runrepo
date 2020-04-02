@@ -1,0 +1,12 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <HBox>
+        <Label
+            text="{$this>label}"
+            wrapping="false" />
+        <Link
+            text="{$this>text}"
+            press="_onPress"/>
+    </HBox>
+</core:FragmentDefinition>

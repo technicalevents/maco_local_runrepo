@@ -7,7 +7,8 @@ sap.ui.define(
       metadata: {
         properties: {
           title: { invalidate: true, type: 'string', defaultValue: '' },
-          text: { invalidate: true, type: 'string', defaultValue: '' }
+          text: { invalidate: true, type: 'string', defaultValue: '' },
+          noDataText: { invalidate: true, type: 'string', defaultValue: '&lt;' + bundle.getText('controlTableObjectIdentifierNoData') + '&gt;' }
         },
         events: {}
       },
@@ -16,12 +17,8 @@ sap.ui.define(
         return !!sValue;
       },
 
-      _unknownVisible: function(sTitle, sText) {
+      _noDataVisible: function(sTitle, sText) {
         return !sTitle && !sText;
-      },
-
-      _unknownText: function() {
-        return '<cite>&lt;' + bundle.getText('tableObjectIdUnamed') + '&gt;</cite>';
       }
     });
   },

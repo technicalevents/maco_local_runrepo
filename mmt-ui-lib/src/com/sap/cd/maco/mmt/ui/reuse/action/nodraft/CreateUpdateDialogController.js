@@ -1,14 +1,14 @@
 /*global location*/
 sap.ui.define(
   [
-    'sap/ui/model/json/JSONModel',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseFragmentController',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/message/CallWithMessageHandling',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/getConfigText',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getTransaction'
   ],
-  function(JSONModel, BaseFragmentController, bundle, CallWithMessageHandling, getConfigText, Assert) {
+  function(BaseFragmentController, bundle, CallWithMessageHandling, Assert, getMessage, getTransaction) {
     'use strict';
 
     return BaseFragmentController.extend('com.sap.cd.maco.mmt.ui.reuse.action.nodraft.CreateUpdateDialogController', {
@@ -36,13 +36,12 @@ sap.ui.define(
         // call overwritten onInit
         BaseFragmentController.prototype.onInit.apply(this, arguments);
 
-        // set view model
-        var oViewModel = new JSONModel({
-          title: null,
-          saveButtonText: null,
-          cancelButtonText: bundle.getText('buttonCancel')
-        });
-        this.getFragment().setModel(oViewModel, 'this');
+        // set fragment model
+        this.initFragmentModel();
+        var oFragmentModel = this.getFragmentModel();
+        oFragmentModel.setProperty('/title', null);
+        oFragmentModel.setProperty('/saveButtonText', null);
+        oFragmentModel.setProperty('/cancelButtonText', bundle.getText('buttonCancel'));
 
         // init call with message handling
         this._oCallWith = new CallWithMessageHandling(this);
@@ -52,26 +51,22 @@ sap.ui.define(
         this.getFragment().setBusyIndicatorDelay(0);
       },
 
-      _getConfigText: function(sKey, sDefault, oObject) {
-        return getConfigText(this, this.oConfig, sKey, sDefault, oObject);
-      },
-
       //~~~~ create ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-      onOpenForCreate: function() {},
+      onOpenForCreate: function(oProperties) {},
 
       openForCreate: function(oProperties) {
         this._bSubmitted = false;
 
-        this.onOpenForCreate();
+        this.onOpenForCreate(oProperties);
 
-        // set view model
-        var sTitle = this._getConfigText('createTitle', 'transactionDialogCreateTitle', null);
-        var oViewModel = this.getThisModel();
-        oViewModel.setProperty('/title', sTitle);
-        oViewModel.setProperty('/saveButtonText', bundle.getText('buttonCreate'));
-        oViewModel.setProperty('/isCreate', true);
-        oViewModel.setProperty('/isUpdate', false);
+        // set fragment model
+        var sTitle = this._getConfigText('createTitle', 'transactionDialogCreateTitle');
+        var oFragmentModel = this.getFragmentModel();
+        oFragmentModel.setProperty('/title', sTitle);
+        oFragmentModel.setProperty('/saveButtonText', bundle.getText('buttonCreate'));
+        oFragmentModel.setProperty('/isCreate', true);
+        oFragmentModel.setProperty('/isUpdate', false);
 
         // reset messages
         // (also done by UI5 on binding but very few sometimes a value state was not reset)
@@ -105,20 +100,20 @@ sap.ui.define(
 
       //~~~~ update ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-      onOpenForUpdate: function() {},
+      onOpenForUpdate: function(sPath) {},
 
       openForUpdate: function(sPath) {
         this._bSubmitted = false;
 
-        this.onOpenForUpdate();
+        this.onOpenForUpdate(sPath);
 
-        // set view model
-        var sTitle = this._getConfigText('updateTitle', 'transactionDialogUpdateTitle', null);
-        var oViewModel = this.getThisModel();
-        oViewModel.setProperty('/title', sTitle);
-        oViewModel.setProperty('/saveButtonText', bundle.getText('buttonSave'));
-        oViewModel.setProperty('/isCreate', false);
-        oViewModel.setProperty('/isUpdate', true);
+        // set fragment model
+        var sTitle = this._getConfigText('updateTitle', 'transactionDialogUpdateTitle');
+        var oFragmentModel = this.getFragmentModel();
+        oFragmentModel.setProperty('/title', sTitle);
+        oFragmentModel.setProperty('/saveButtonText', bundle.getText('buttonSave'));
+        oFragmentModel.setProperty('/isCreate', false);
+        oFragmentModel.setProperty('/isUpdate', true);
 
         // reset messages
         // (also done by UI5 on binding but very few sometimes a value state was not reset)
@@ -156,7 +151,8 @@ sap.ui.define(
       //~~~~ submit / cancel ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
       onSubmit: function() {
-        var fnCall = this.oTransaction.whenSubmitted.bind(this.oTransaction, {
+        var oTransaction = getTransaction(this);
+        var fnCall = oTransaction.whenSubmitted.bind(oTransaction, {
           busyControl: this.getFragment()
         });
         var oWhen = this._oCallWith.whenCalled(fnCall, this.oConfig.manageMessagesClient, this.oConfig.manageMessagesServer);
@@ -167,15 +163,15 @@ sap.ui.define(
             this._bSubmitted = true;
             this.getFragment().close();
 
-            var oViewModel = this.getThisModel();
-            var bIsCreate = oViewModel.getProperty('/isCreate');
+            var oFragmentModel = this.getFragmentModel();
+            var bIsCreate = oFragmentModel.getProperty('/isCreate');
             if (bIsCreate) {
               // resolve & message for create is done in other place (we need the result data)
             } else {
               var oContext = this.getFragment().getBindingContext();
               var oObject = oContext.getObject();
-              var sMessage = this._getConfigText('updateSuccessMsg', 'transactionDialogUpdateSuccess', oObject);
-              this.oMessage.success({ msg: sMessage });
+              var sMessage = this._getConfigText('updateSuccessMsg', 'transactionDialogUpdateSuccess');
+              getMessage(this).success({ msg: sMessage });
               this._fnResolve();
             }
           }.bind(this),
@@ -188,8 +184,8 @@ sap.ui.define(
       },
 
       _onSubmitCreateSuccess: function(oData) {
-        var sMessage = this._getConfigText('createSuccessMsg', 'transactionDialogCreateSuccess', oData);
-        this.oMessage.success({ msg: sMessage });
+        var sMessage = this._getConfigText('createSuccessMsg', 'transactionDialogCreateSuccess');
+        getMessage(this).success({ msg: sMessage });
         this._fnResolve({
           data: oData
         });
@@ -203,8 +199,8 @@ sap.ui.define(
           var oDialog = this.getFragment();
           var oContext = oDialog.getBindingContext();
           if (oContext) {
-            var oViewModel = this.getThisModel();
-            var bIsCreate = oViewModel.getProperty('/isCreate');
+            var oFragmentModel = this.getFragmentModel();
+            var bIsCreate = oFragmentModel.getProperty('/isCreate');
             if (bIsCreate) {
               this.oModel.deleteCreatedEntry(oContext);
             } else {
@@ -220,6 +216,16 @@ sap.ui.define(
       onCancel: function() {
         this.getFragment().close();
         // the undo is done in _onAfterClose
+      },
+
+      _getConfigText: function(sKey, sDefault) {
+        if (!this.oConfig || !this.oConfig[sKey]) {
+          return bundle.getText(sDefault);
+        } else {
+          var sResult = this.oBundle.getText(this.oConfig[sKey]);
+          Assert.ok(sResult !== this.oConfig[sKey], 'the key ' + this.oConfig[sKey] + ' does not exist in the apps i18n file');
+          return sResult;
+        }
       }
     });
   }

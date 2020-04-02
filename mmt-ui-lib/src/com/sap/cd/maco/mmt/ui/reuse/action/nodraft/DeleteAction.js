@@ -1,19 +1,29 @@
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/UI5Metadata',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getNav',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getTransaction'
   ],
-  function(BaseAction, bundle, UI5Metadata, Assert) {
+  function(BaseAction, bundle, UI5Metadata, Assert, getMessage, getNav, getTransaction) {
     'use strict';
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.nodraft.DeleteAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.call(this, oComponent, oConfig, '1..N');
-        // TODO check config
+        BaseAction.call(this, oComponent, oConfig);
+        this.oConfig.minContexts = 1;
+        // default config
+        if (!this.oConfig.hasOwnProperty('nav')) {
+          this.oConfig.nav = true;
+        }
       },
 
+      /**
+       * @deprecated
+       */
       enabled: function(aContexts) {
         return aContexts.length > 0;
       },
@@ -24,11 +34,6 @@ sap.ui.define(
           function(resolve, reject) {
             this._fnResolve = resolve;
             this._fnReject = reject;
-
-            // default nav
-            if (!oParams.hasOwnProperty('nav')) {
-              oParams.nav = true;
-            }
 
             // get msg
             var aObjects = [];
@@ -42,7 +47,7 @@ sap.ui.define(
 
             // raise dialog
             this._oParams = oParams;
-            this.oMessage
+            getMessage(this)
               .confirm({
                 msg: sMsg,
                 buttonText: bundle.getText('buttonDelete'),
@@ -59,7 +64,8 @@ sap.ui.define(
       },
 
       _deleteEntry: function() {
-        this.oTransaction
+        var oTransaction = getTransaction(this);
+        oTransaction
           .whenDeleted({
             contexts: this._oParams.contexts,
             busyControl: this._oParams.busyControl
@@ -80,13 +86,13 @@ sap.ui.define(
           this._oParams.contexts.length === 1
             ? this.getConfigText('successMsg1', 'transactionDeleteSuccess1', aObjects)
             : this.getConfigText('successMsgN', 'transactionDeleteSuccessN', aObjects);
-        this.oMessage.success({
+        getMessage(this).success({
           msg: sMsg
         });
 
         // nav
         if (
-          this._oParams.nav &&
+          this.oConfig.nav &&
           UI5Metadata.isSubclass(this._oParams.controller, 'com.sap.cd.maco.mmt.ui.reuse.controller.objectPage.ObjectPageController')
         ) {
           // compute route
@@ -95,7 +101,7 @@ sap.ui.define(
           Assert.ok(sRoute, 'cannot execute DeleteAction. no parent route. configure the parent route on the action or the executing controller');
 
           // navigate
-          this.oNav.navHistoryBackAppTarget(sRoute, {}); // TODO: no params in sub object page case = crash
+          getNav(this).navHistoryBackAppTarget(sRoute, {}); // TODO: no params in sub object page case = crash
         }
 
         this._fnResolve({

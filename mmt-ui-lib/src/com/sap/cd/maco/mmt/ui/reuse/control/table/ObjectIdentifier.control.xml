@@ -17,16 +17,13 @@
                 formatter: '._visible'
             }" />
         <FormattedText
-            htmlText="{
-                path: '$this>text',
-                formatter: '._unknownText'
-            }"
+            htmlText="&lt;cite&gt;{$this>noDataText}&lt;/cite&gt;"
             visible="{
                 parts: [
                     { path: '$this>title' },
                     { path: '$this>text' }
                 ],
-                formatter: '._unknownVisible'
+                formatter: '._noDataVisible'
             }" />
     </layout:VerticalLayout>
 </core:FragmentDefinition>

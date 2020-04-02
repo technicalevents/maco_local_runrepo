@@ -1,29 +1,25 @@
 /*global location*/
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/nav/RouteArgs',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getTransaction'
   ],
-  function(BaseAction, bundle, RouteArgs, Assert) {
+  function(BaseAction, bundle, RouteArgs, Assert, getTransaction) {
     'use strict';
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.draft.CreateAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.call(this, oComponent, oConfig, '0');
-      },
-
-      enabled: function(aContexts) {
-        return true;
+        BaseAction.call(this, oComponent, oConfig);
+        // default config
+        if (!this.oConfig.hasOwnProperty('nav')) {
+          this.oConfig.nav = true;
+        }
       },
 
       execute: function(oParams) {
-        // default params
-        if (!oParams.hasOwnProperty('nav')) {
-          oParams.nav = true;
-        }
-
         return new Promise(
           function(resolve, reject) {
             // determine entity set
@@ -31,7 +27,8 @@ sap.ui.define(
             Assert.ok(sEntitySet, 'cannot execute create action. no entitySet. configure the entitySet on the action or on the executing controller');
 
             // call create
-            var oWhen = this.oTransaction.whenDraftNewCreated({
+            var oTransaction = getTransaction(this);
+            var oWhen = oTransaction.whenDraftNewCreated({
               busyControl: oParams.controller.getView(),
               path: '/' + sEntitySet,
               properties: oParams.properties
@@ -39,7 +36,7 @@ sap.ui.define(
 
             oWhen.then(
               function(oResult) {
-                if (oParams.nav) {
+                if (this.oConfig.nav) {
                   // compute route
                   var oConConfig = oParams.controller.oConfig;
                   var sRoute = oConConfig.routes && oConConfig.routes.child ? oConConfig.routes.child : this.oConfig.route;

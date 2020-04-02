@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <HBox>
+        <Label
+            text="{$this>label}"
+            wrapping="false" />
+        <Text
+            text="{$this>text}" />
+    </HBox>
+</core:FragmentDefinition>
