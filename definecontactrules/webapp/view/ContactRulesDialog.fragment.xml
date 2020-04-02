@@ -4,7 +4,7 @@
   xmlns:smartForm="sap.ui.comp.smartform" 
   xmlns:smartField="sap.ui.comp.smartfield">
   <Dialog title="{this>/title}" 
-    contentWidth="700px" 
+    contentWidth="500px" 
     afterClose="onAfterClose">
     <smartForm:SmartForm id="smartForm" 
       editable="true">
@@ -19,7 +19,7 @@
             <Label required="true"
                    text="{/xMP4GxC_CTA_MP_UI/OwnMarketPartner/#@sap:label}"/>
           </smartForm:label>
-        	<ComboBox showSecondaryValues= "true"
+        	<ComboBox id="idOwmMarketPartner" showSecondaryValues= "true"
                           items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
                           change="onOwnMarketPartnerChange"
                           selectedKey="{OwnMarketPartner}">

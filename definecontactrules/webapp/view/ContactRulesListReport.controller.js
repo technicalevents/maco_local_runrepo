@@ -4,10 +4,11 @@ sap.ui.define(
 		"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
 		"com/sap/cd/maco/selfservice/ui/app/definecontactrules/util/Formatter",
 		"sap/ui/model/Sorter",
-		"sap/ui/generic/app/navigation/service/SelectionVariant"
+		"sap/ui/generic/app/navigation/service/SelectionVariant",
+		"sap/ui/comp/util/FormatUtil"
 	],
 	function (ListReportNoDraftController, SmartTableBindingUpdate, messageFormatter,
-		Sorter, SelectionVariant) {
+		Sorter, SelectionVariant, FormatUtil) {
 		"use strict";
 
 		return ListReportNoDraftController.extend(
@@ -69,11 +70,24 @@ sap.ui.define(
 				onBeforeRebindTable: function (oEvent) {
 					var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
 					var aSorters = [];
-					aSorters.push(new Sorter("OwnMarketPartner", true, true));
+					aSorters.push(new Sorter("OwnMarketPartner", true, function (oContext) {
+						var sKey = oContext.getProperty("OwnMarketPartner");
+						var sKeyText = oContext.getProperty("OwnMarketPartnerText");
+						
+						return {
+							key: sKey,
+							text: "Own Market Partner: " + sKey + " (" + sKeyText + ")"
+						};
+					}));
+
 					oUpdate.addSorters(aSorters);
 
 					// This method will add Current application state in URL
 					this.storeCurrentAppState();
+				},
+
+				_getGroupHeader: function (oContext) {
+					debugger;
 				},
 
 				/**
@@ -139,6 +153,53 @@ sap.ui.define(
 						});
 					}
 				},
+
+				onDefaultRuleCreate: function (oEvent) {
+					
+					var oAction = this.oComponent.actions.create;
+					var oParams = {
+						busyControl: this.getView(),
+						contexts: [],
+						properties: {
+							OwnMarketPartner : oEvent.getSource().getBindingContext().getObject().OwnMarketPartner
+						},
+						controller: this,
+						event: oEvent
+					};
+					oAction.execute(oParams);
+				},
+
+				onDeleteAction: function (oEvent) {
+					var oAction = this.oComponent.actions.delete;
+					var oParams = {
+						busyControl: this.getView(),
+						contexts: [oEvent.getParameter("listItem").getBindingContext()],
+						controller: this,
+						event: oEvent
+					};
+					oAction.execute(oParams);
+				},
+				
+				onAfterActionUpdate: function(oResult, oParams) {
+			    	// your code
+			    	debugger;
+			    	
+			    	this.getView().byId("idMessageStripVBox").getBinding("items").refresh(true);
+			    },
+			    
+			    onAfterActionCreate: function(oResult, oParams) {
+			    	// your code
+			    	debugger;
+			    	
+			    	this.getView().byId("idMessageStripVBox").getBinding("items").refresh(true);
+			    },
+			    
+			    onAfterActionDelete: function(oResult, oParams) {
+			    	// your code
+			    	debugger;
+			    	
+			    	this.getView().byId("idMessageStripVBox").getBinding("items").refresh(true);
+			    },
 
 				/**
 				 * Formatter method returns formatted Technical Id and External Business Message Id
