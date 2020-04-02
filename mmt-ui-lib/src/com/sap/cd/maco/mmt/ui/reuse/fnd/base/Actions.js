@@ -2,7 +2,8 @@ sap.ui.define(['sap/ui/base/Object'], function(Object) {
   'use strict';
 
   /**
-   * !!! deprecated !!!
+   * TODO remove in next reuse version
+   * @deprecated only for compatibility. use BaseComponent
    */
   return Object.extend('com.sap.cd.maco.mmt.ui.reuse.fnd.base.Actions', {
     destroy: function() {

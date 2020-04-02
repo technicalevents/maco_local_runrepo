@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:core="sap.ui.core">
+    <HBox>
+        <Label
+            text="{$this>label}"
+            wrapping="false" />
+        <ObjectStatus
+            text="{$this>text}"
+            state="{$this>state}"
+            inverted="{$this>inverted}"
+            icon="{$this>icon}" />
+    </HBox>
+</core:FragmentDefinition>

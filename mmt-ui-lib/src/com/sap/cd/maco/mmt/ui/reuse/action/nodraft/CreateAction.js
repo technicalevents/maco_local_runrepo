@@ -1,7 +1,7 @@
 /*global location*/
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/UI5Metadata',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/odata/ODataMetaModelExt',
@@ -12,10 +12,13 @@ sap.ui.define(
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.nodraft.CreateAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.call(this, oComponent, oConfig, '0');
+        BaseAction.call(this, oComponent, oConfig);
         this._oODataMetaModelExt = new ODataMetaModelExt(oComponent);
       },
 
+      /**
+       * @deprecated
+       */
       enabled: function(aContexts) {
         return true;
       },

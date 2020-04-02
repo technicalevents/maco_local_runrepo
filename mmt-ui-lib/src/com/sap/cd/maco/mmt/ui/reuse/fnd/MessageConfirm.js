@@ -1,5 +1,5 @@
 /*global location*/
-sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/fnd/FragmentController', 'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'], function(
+sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/fnd/base/FragmentController', 'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'], function(
   FragmentController,
   Assert
 ) {

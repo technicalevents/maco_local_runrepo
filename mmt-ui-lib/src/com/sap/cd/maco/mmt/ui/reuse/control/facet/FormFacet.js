@@ -7,7 +7,7 @@ sap.ui.define(
       metadata: {
         aggregations: {
           fields: {
-            type: 'com.sap.cd.maco.mmt.ui.reuse.control.facet.FormFacetField',
+            type: 'sap.ui.core.Control',
             invalidate: true,
             multiple: true,
             forwarding: {
@@ -23,6 +23,7 @@ sap.ui.define(
         // default XMLComposite properties to avoid block display
         this.setDisplayBlock(false);
         this.setWidth('');
+        this.addStyleClass('comSapCdMacoMmtUiReuseFormFacet');
       }
     });
   },

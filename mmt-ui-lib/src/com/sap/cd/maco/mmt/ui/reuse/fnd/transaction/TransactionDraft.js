@@ -13,23 +13,20 @@ sap.ui.define(
     'use strict';
 
     return EventProvider.extend('com.sap.cd.maco.mmt.ui.reuse.fnd.transaction.TransactionDraft', {
-      constructor: function(params) {
+      constructor: function(oComponent) {
         // read params
-        this._oComponent = params.component;
-        this._oModel = params.model;
+        this._oComponent = oComponent;
+        this._oModel = oComponent.getModel();
 
         // create generic API
         this._oTransactionController = new TransactionController(this._oModel);
         this._oDraftController = this._oTransactionController.getDraftController();
 
         // create utils
-        this._oODataMetaModelExt = new ODataMetaModelExt(params.component);
+        this._oODataMetaModelExt = new ODataMetaModelExt(oComponent);
 
         // create non-draft transaction object
-        this._oTransactionNonDraft = new Transaction({
-          component: params.component,
-          model: params.model
-        });
+        this._oTransactionNonDraft = new Transaction(oComponent);
 
         // invalidation
         this.aInvalidatedCallbacks = [];
@@ -123,29 +120,32 @@ sap.ui.define(
         return this._oTransactionNonDraft.whenUpdated(params);
       },
 
+      whenCreated: function(params) {
+        return this._oTransactionNonDraft.whenCreated(params);
+      },
+
       whenDeleted: function(params) {
         // check params
         Assert.ok(params, 'cannot execute transaction whenDeleted. no params');
         Assert.ok(params.contexts, 'cannot execute transaction whenDeleted. no contexts');
 
-        // get contexts to delete
-        //  - for draft entities we have to compute the active context !!!
-        // get contexts to invalidate (drafts only)
+        // !!!
+        // active entities or create drafts are simply deleted ...
+        // ... but for edit drafts we have to compute the active entity and delete this instead of the edit draft
+        // (applies only to draft roots)
 
         var aDeleteContexts = [];
         var aInvalidationContexts = [];
         for (var i = 0; i < params.contexts.length; i++) {
           var oContext = params.contexts[i];
           var oObject = oContext.getObject();
-          if (oObject.IsActiveEntity) {
-            aDeleteContexts.push(oContext);
-          } else {
-            // determine entity set
-            var sPath = oContext.getPath();
-            var iFrom = sPath.indexOf('/');
-            var iTo = sPath.indexOf('(');
-            var sEntitySet = sPath.substr(iFrom + 1, iTo - 1);
+          Assert.ok(oObject.hasOwnProperty('IsActiveEntity'), 'cannot execute transaction whenDeleted. object has no property IsActiveEntity');
+          Assert.ok(oObject.hasOwnProperty('HasActiveEntity'), 'cannot execute transaction whenDeleted. object has no property HasActiveEntity');
+          Assert.ok(oObject.hasOwnProperty('ActiveUUID'), 'cannot execute transaction whenDeleted. object has no property ActiveUUID');
+          var sEntitySet = this._oODataMetaModelExt.getEntitySetFromContext(oContext);
+          var bDraftRoot = this._oODataMetaModelExt.isDraftRoot(sEntitySet);
 
+          if (bDraftRoot && !oObject.IsActiveEntity && oObject.HasActiveEntity) {
             // determine active context
             var oActiveObject = {};
             oActiveObject.IsActiveEntity = true;
@@ -158,6 +158,8 @@ sap.ui.define(
             // push contexts
             aDeleteContexts.push(oActiveContext);
             aInvalidationContexts.push(oContext);
+          } else {
+            aDeleteContexts.push(oContext);
           }
         }
 

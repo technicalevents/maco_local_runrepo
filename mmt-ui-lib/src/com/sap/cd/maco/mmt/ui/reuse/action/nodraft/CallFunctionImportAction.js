@@ -1,20 +1,23 @@
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/odata/ODataResponseHandler',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage'
   ],
-  function(BaseAction, bundle, ODataResponseHandler, Assert) {
+  function(BaseAction, bundle, ODataResponseHandler, Assert, getMessage) {
     'use strict';
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.nodraft.CallFunctionImportAction', {
       constructor: function(oComponent, oConfig) {
-        // if not specified by consumer the cardinality is 1..N
-        var sCardinality = oConfig && oConfig.cardinality && oConfig.cardinality === '1' ? '1' : '1..N';
+        // default min
+        if (oConfig && !oConfig.hasOwnProperty('minContexts')) {
+          oConfig.minContexts = 1;
+        }
 
         // super
-        BaseAction.call(this, oComponent, oConfig, sCardinality);
+        BaseAction.call(this, oComponent, oConfig);
 
         // default config
         if (!oConfig.method) {
@@ -29,6 +32,9 @@ sap.ui.define(
         Assert.ok(oConfig.method === 'GET' || oConfig.method === 'POST', 'cannot init CallFunctionImportAction. wrong method: ' + oConfig.method);
       },
 
+      /**
+       * @deprecated
+       */
       enabled: function(aContexts) {
         return aContexts.length > 0;
       },
@@ -213,7 +219,7 @@ sap.ui.define(
           this._oParams.contexts.length === 1
             ? this.getConfigText('successMsg1', 'transactionCallFunctionImportSuccess')
             : this.getConfigText('successMsgN', 'transactionCallFunctionImportSuccess');
-        this.oMessage.success({
+        getMessage(this).success({
           msg: sMsg
         });
       }

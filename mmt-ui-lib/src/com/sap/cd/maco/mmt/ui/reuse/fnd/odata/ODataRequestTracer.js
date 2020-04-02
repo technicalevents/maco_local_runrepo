@@ -16,44 +16,12 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'], function(jQuery, Obje
       this._model.detachEvent('requestFailed', this._onRequest, this);
     },
 
-    _output: function() {
-      console.group('ODATA BATCH (' + new Date().toLocaleTimeString('en-US') + ')');
-
-      for (var i = 0; i < this._aLog.length; i++) {
-        var oLog = this._aLog[i];
-
-        // call
-        console.groupCollapsed(oLog.method + ' ' + oLog.url + ' (' + oLog.statusCode + ')');
-
-        // params
-        console.group('PARAMS');
-        for (var j = 0; j < oLog.params.length; j++) {
-          console.dir(oLog.params[j]);
-        }
-        console.groupEnd();
-
-        // objects
-        console.group('OBJECTS');
-        if (oLog.objects.length === 0) {
-          console.log('no objects found');
-        } else {
-          oLog.objects.forEach(function(d) {
-            console.dir(d);
-          });
-        }
-        console.groupEnd();
-
-        console.groupEnd();
-      }
-
-      console.groupEnd();
-
-      // reset
-      this._aLog = [];
-      this._triggeredOutput = false;
+    _onRequest: function(oEvent) {
+      var oLog = this._getLog(oEvent);
+      this._outputLog(oLog);
     },
 
-    _onRequest: function(oEvent) {
+    _getLog: function(oEvent) {
       var oLog = {};
       var params = oEvent.getParameters();
 
@@ -98,12 +66,32 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/base/Object'], function(jQuery, Obje
         oLog.objects = [];
       }
 
-      // trigger log
-      this._aLog.push(oLog);
-      if (!this._triggeredOutput) {
-        this._triggeredOutput = true;
-        setTimeout(this._output.bind(this), 0);
+      return oLog;
+    },
+
+    _outputLog: function(oLog) {
+      // call
+      console.groupCollapsed(oLog.method + ' ' + oLog.url + ' (' + oLog.statusCode + ')');
+
+      // params
+      console.group('PARAMS');
+      for (var j = 0; j < oLog.params.length; j++) {
+        console.dir(oLog.params[j]);
       }
+      console.groupEnd();
+
+      // objects
+      console.groupCollapsed('OBJECTS');
+      if (oLog.objects.length === 0) {
+        console.log('no objects found');
+      } else {
+        oLog.objects.forEach(function(d) {
+          console.dir(d);
+        });
+      }
+      console.groupEnd();
+
+      console.groupEnd();
     }
   });
 });

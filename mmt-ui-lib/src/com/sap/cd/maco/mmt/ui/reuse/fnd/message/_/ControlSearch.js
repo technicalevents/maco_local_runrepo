@@ -1,7 +1,7 @@
 sap.ui.define(['sap/ui/base/Object'], function(Object) {
   'use strict';
 
-  return Object.extend('com.sap.cd.maco.mmt.ui.message._.ControlSearch', {
+  return Object.extend('com.sap.cd.maco.mmt.ui.reuse.message._.ControlSearch', {
     constructor: function(control, bAbortOnMatch) {
       this._control = control;
       this._bAbortOnMatch = bAbortOnMatch;

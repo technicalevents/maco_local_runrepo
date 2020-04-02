@@ -1,12 +1,13 @@
 /*global location*/
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/nav/RouteArgs',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getTransaction'
   ],
-  function(BaseAction, bundle, RouteArgs, Assert) {
+  function(BaseAction, bundle, RouteArgs, Assert, getTransaction) {
     'use strict';
 
     // check for unsaved changes of other users?
@@ -19,12 +20,13 @@ sap.ui.define(
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.draft.UpdateAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.call(this, oComponent, oConfig, '1');
-        // TODO check config
-      },
-
-      enabled: function(aContexts) {
-        return aContexts.length > 0;
+        BaseAction.call(this, oComponent, oConfig);
+        this.oConfig.minContexts = 1;
+        this.oConfig.maxContexts = 1;
+        // default config
+        if (!this.oConfig.hasOwnProperty('nav')) {
+          this.oConfig.nav = true;
+        }
       },
 
       execute: function(oParams) {
@@ -32,14 +34,10 @@ sap.ui.define(
         this.assertContextParam(oParams);
         var oContext = oParams.contexts[0];
 
-        // default params
-        if (!oParams.hasOwnProperty('nav')) {
-          oParams.nav = true;
-        }
-
         return new Promise(
           function(resolve, reject) {
-            var oWhen = this.oTransaction.whenDraftEditCreated({
+            var oTransaction = getTransaction(this);
+            var oWhen = oTransaction.whenDraftEditCreated({
               context: oContext,
               busyControl: oParams.busyControl
             });
@@ -47,7 +45,7 @@ sap.ui.define(
               // resolve
               function(oResult, oError) {
                 // navigate
-                if (oParams.nav) {
+                if (this.oConfig.nav) {
                   // get route from controller config
                   Assert.subclass(
                     oParams.controller,
@@ -71,32 +69,6 @@ sap.ui.define(
             );
           }.bind(this)
         );
-
-        /*
-           // ask the user if he wants to discard the unsaved changes
-           var oAdminData = params.context.getObject('DraftAdministrativeData');
-           if (oObject.HasDraftEntity && !oAdminData.InProcessByUser) {
-           var sMsg = bundle.getText('draftMessageEditUnsavedChanges');
-           this._oMessage
-           .confirm({
-           msg: sMsg,
-           msgParams: oAdminData.LastChangedByUser,
-           buttonText: bundle.getText('buttonEdit'),
-           warning: true
-           })
-           .then(
-           // resolve
-           function() {
-           return this._whenEditDraftReady(params);
-           }.bind(this),
-           // rejct
-           reject
-           );
-           } else {
-           return this._whenEditDraftReady(params);
-           }
-           draftMessageEditUnsavedChanges=User {0} edited this object without saving the changes. If you take over, those changes will be lost.
-           */
       }
     });
   }

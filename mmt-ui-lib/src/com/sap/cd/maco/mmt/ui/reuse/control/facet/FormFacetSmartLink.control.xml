@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+        xmlns="sap.m"
+        xmlns:smartlink="sap.ui.comp.navpopover"
+        xmlns:core="sap.ui.core">
+    <HBox>
+        <Label
+            text="{$this>label}"
+            wrapping="false" />
+        <smartlink:SmartLink
+            text="{$this>text}"
+            beforePopoverOpens="_onBeforePopoverOpens"
+            semanticObject="{$this>semanticObject}" />
+    </HBox>
+</core:FragmentDefinition>

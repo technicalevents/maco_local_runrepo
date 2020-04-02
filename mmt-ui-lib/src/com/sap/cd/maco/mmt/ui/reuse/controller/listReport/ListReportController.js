@@ -3,10 +3,9 @@ sap.ui.define(
     'sap/ui/model/json/JSONModel',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/controller/table/SmartTableController',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/getConfigControl',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
   ],
-  function(JSONModel, bundle, SmartTableController, getConfigControl, Assert) {
+  function(JSONModel, bundle, SmartTableController, Assert) {
     'use strict';
 
     return SmartTableController.extend('com.sap.cd.maco.mmt.ui.reuse.controller.listReport.ListReportController', {
@@ -23,11 +22,11 @@ sap.ui.define(
       },
 
       getVariantManagement: function() {
-        return getConfigControl(this, 'variantManagement', 'sap.ui.comp.smartvariants.SmartVariantManagement', false);
+        return this.getConfigControl('variantManagement', 'sap.ui.comp.smartvariants.SmartVariantManagement', false);
       },
 
       getFilterBar: function() {
-        return getConfigControl(this, 'filterBar', 'sap.ui.comp.smartfilterbar.SmartFilterBar', true);
+        return this.getConfigControl('filterBar', 'sap.ui.comp.smartfilterbar.SmartFilterBar', true);
       }
     });
   }

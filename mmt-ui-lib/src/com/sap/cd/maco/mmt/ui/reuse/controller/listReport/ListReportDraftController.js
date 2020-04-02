@@ -4,10 +4,9 @@ sap.ui.define(
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportController',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/getConfigControl',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
   ],
-  function(JSONModel, bundle, ListReportController, SmartTableBindingUpdate, getConfigControl, Assert) {
+  function(JSONModel, bundle, ListReportController, SmartTableBindingUpdate, Assert) {
     'use strict';
 
     return ListReportController.extend('com.sap.cd.maco.mmt.ui.reuse.controller.listReport.ListReportDraftController', {
@@ -27,10 +26,14 @@ sap.ui.define(
         if (oStatusFilter) {
           oStatusFilter.attachEvent('change', this._onDraftStatusFilterChange, this);
         }
+
+        // attach table events
+        var oTable = this.getSmartTable();
+        oTable.attachEvent('beforeRebindTable', this._onBeforeRebindTable, this);
       },
 
       getDraftStatusFilter: function() {
-        return getConfigControl(this, 'draftStatusFilter', 'com.sap.cd.maco.mmt.ui.reuse.control.draft.DraftStatusFilter', false);
+        return this.getConfigControl('draftStatusFilter', 'com.sap.cd.maco.mmt.ui.reuse.control.draft.DraftStatusFilter', false);
       },
 
       //~~~~ filter bar ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -72,14 +75,14 @@ sap.ui.define(
         }
       },
 
-      onBeforeRebindTable: function(oEvent) {
+      _onBeforeRebindTable: function(oEvent) {
         var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));
 
         // expand
         oUpdate.addExpand('DraftAdministrativeData');
 
         // select
-        oUpdate.addSelects(['IsActiveEntity', 'HasDraftEntity', 'HasActiveEntity', 'DraftAdministrativeData']);
+        oUpdate.addSelects(['IsActiveEntity', 'HasDraftEntity', 'HasActiveEntity', 'DraftAdministrativeData', 'ActiveUUID']);
 
         // filter
         var oSelect = this.getDraftStatusFilter();

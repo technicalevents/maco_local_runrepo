@@ -1,5 +1,5 @@
 <core:FragmentDefinition
         xmlns="sap.m"
         xmlns:core="sap.ui.core">
-    <VBox id="layout" class="comSapCdMacoMmtUiReuseFormFacet" />
+    <VBox id="layout" />
 </core:FragmentDefinition>

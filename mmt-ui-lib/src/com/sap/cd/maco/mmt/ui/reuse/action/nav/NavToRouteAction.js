@@ -1,18 +1,21 @@
 /*global location*/
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/nav/RouteArgs',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/UI5Metadata',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
+    'com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage'
   ],
-  function(BaseAction, bundle, RouteArgs, UI5Metadata, Assert) {
+  function(BaseAction, bundle, RouteArgs, UI5Metadata, Assert, getMessage) {
     'use strict';
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.nav.NavToRouteAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.call(this, oComponent, oConfig, '1');
+        BaseAction.call(this, oComponent, oConfig);
+        this.oConfig.minContexts = 1;
+        this.oConfig.maxContexts = 1;
       },
 
       execute: function(oParams) {
@@ -34,7 +37,8 @@ sap.ui.define(
               this.oModel.hasPendingChanges();
 
             if (bConfirmDataLoss) {
-              this.oMessage
+              var oMessage = getMessage(this);
+              oMessage
                 .confirm({
                   msg: bundle.getText('navConfirmDataLoss'),
                   buttonText: bundle.getText('navConfirmButton'),
@@ -53,7 +57,7 @@ sap.ui.define(
         var oObject = this._oContext.getObject();
         var oParams = {};
         for (var sKey in oObject) {
-          var sMapped = this.oConfig.paramsMapping ? this.oConfig.paramsMapping[sKey] : null;
+          var sMapped = this.oConfig.paramsMap ? this.oConfig.paramsMap[sKey] : null;
           if (sMapped) {
             oParams[sMapped] = oObject[sKey];
           } else {

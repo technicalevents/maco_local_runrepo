@@ -1,7 +1,7 @@
 /*global location*/
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
+    'com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/UI5Metadata',
     'sap/ushell/ui/footerbar/AddBookmarkButton',
@@ -13,7 +13,7 @@ sap.ui.define(
 
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.share.SaveAsTileAction', {
       constructor: function(oComponent, oConfig) {
-        BaseAction.call(this, oComponent, oConfig, '0');
+        BaseAction.call(this, oComponent, oConfig);
       },
 
       execute: function(oParams) {

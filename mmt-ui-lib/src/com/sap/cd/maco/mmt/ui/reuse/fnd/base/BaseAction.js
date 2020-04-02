@@ -1,14 +1,10 @@
 /*global location*/
-sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/fnd/action/Action', 'com/sap/cd/maco/mmt/ui/reuse/fnd/base/_/copy'], function(Action, copy) {
+sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/action/base/BaseAction'], function(BaseAction) {
   'use strict';
 
-  return Action.extend('com.sap.cd.maco.mmt.ui.reuse.fnd.base.BaseAction', {
-    constructor: function(oComponent, oConfig, sCardinality) {
-      // super
-      Action.call(this, oConfig, sCardinality);
-
-      // copy properties from component
-      copy(oComponent, this);
-    }
-  });
+  /**
+   * TODO remove in next reuse version
+   * @deprecated only for compatibility. user super class.
+   */
+  return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.base.BaseAction', {});
 });

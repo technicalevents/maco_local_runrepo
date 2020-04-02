@@ -25,18 +25,28 @@ sap.ui.define(
         );
       },
 
-      //~~~~ must implement ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      //~~~~ can implement of object page ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      _getNotFoundText: function() {
+        if (this.oRouteArgs.IsActiveEntity === 'false') {
+          return bundle.getText('objectPageNotFoundDraft');
+        } else {
+          return ObjectPageController.prototype._getNotFoundText.apply(this, arguments);
+        }
+      },
+
+      //~~~~ must implement of object page ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
       _onBeforeBind: function() {
-        var oThisModel = this.getThisModel();
+        var oViewModel = this.getViewModel();
         var bActive = 'true' === this.oRouteArgs.IsActiveEntity;
         var bDraft = 'true' !== this.oRouteArgs.IsActiveEntity;
         var bEditDraft = bDraft && 'true' === this.oRouteArgs.HasActiveEntity;
         var bCreateDraft = bDraft && 'true' !== this.oRouteArgs.HasActiveEntity;
-        oThisModel.setProperty('/IsActiveEntity', bActive);
-        oThisModel.setProperty('/IsDraftEntity', bDraft);
-        oThisModel.setProperty('/IsEditDraftEntity', bEditDraft);
-        oThisModel.setProperty('/IsCreateDraftEntity', bCreateDraft);
+        oViewModel.setProperty('/IsActiveEntity', bActive);
+        oViewModel.setProperty('/IsDraftEntity', bDraft);
+        oViewModel.setProperty('/IsEditDraftEntity', bEditDraft);
+        oViewModel.setProperty('/IsCreateDraftEntity', bCreateDraft);
       },
 
       _getBindingPath: function() {
