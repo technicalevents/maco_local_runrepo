@@ -54,27 +54,10 @@
      </semantic:headerContent>
     <semantic:content>
     	<VBox>
-    		<VBox id="idMessageStripVBox" items="{
-    						path:'/xMP4GxC_CTA_OWNMP_NOGENRULE', 
-    						filters: [{
-        								path: 'GenRuleDefined', 
-        								operator: 'NE', 
-        								value1: 'X'
-							}]}"
-				 busy="false" >
-    		<MessageStrip
-      	        text="{parts: [{path: 'i18n>MISSIGN_DEFAULT_RULE_TXT'},
-                                    			        {path: 'OwnMarketPartner'}],
-                                         formatter: '.formatter.formatMessage'}"
-				type="Error"
-				showIcon="true"
-				showCloseButton="false"
-				class="sapUiSmallMarginTop">
-				<link>
-					<Link text="{i18n>CREATE_DEFAULT_RULE_TXT}"
-					      press="onDefaultRuleCreate"/>
-				</link>
-			</MessageStrip>
+    		<VBox id="idMessageStripVBox" 
+				 busy="false" 
+				 class="sapUiSmallMarginTop" height="auto">
+    			 
 			</VBox>
 	      
       <smartTable:SmartTable id="idContactRulesSmartTable"
@@ -125,6 +108,18 @@
                 <core:CustomData key="p13nData" value='\{"columnIndex":"1", "columnKey":"ExternalMarketPartner", "description":"ExternalMarketPartnerText", "displayBehaviour": "idAndDescription", "leadingProperty":["ExternalMarketPartner","ExternalMarketPartnerText"], "sortProperty": "ExternalMarketPartner" }'/>
               </customData>
             </Column>
+            <Column>
+              <Text text="{/xMP4GxC_CTA_MP_UI/TechnicalMsgID/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"2", "columnKey":"TechnicalMsgID", "leadingProperty":["TechnicalMsgID"], "sortProperty": "TechnicalMsgID" }'/>
+              </customData>
+            </Column>
+            <Column>
+              <Text text="{/xMP4GxC_CTA_MP_UI/ExtBusinessMessageID/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"ExtBusinessMessageID", "leadingProperty":["ExtBusinessMessageID"], "sortProperty": "ExtBusinessMessageID" }'/>
+              </customData>
+            </Column>
           </columns>
           <items>
             <ColumnListItem type="Detail"
@@ -132,7 +127,9 @@
                             c:action="update">
               <cells>
               	<reuseTable:ObjectIdentifier title="{OwnMarketPartnerText}"  text="{OwnMarketPartner}"/>
-              	<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}"  text="{ExternalMarketPartner}"/>
+              	<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}"  text="{ExternalMarketPartner}" noDataText="{i18n>ANY_DATA_TXT}"/>
+              	<reuseTable:ObjectIdentifier text="{TechnicalMsgID}" noDataText="{i18n>ANY_DATA_TXT}"/>
+              	<reuseTable:ObjectIdentifier text="{ExtBusinessMessageID}" noDataText="{i18n>ANY_DATA_TXT}"/>
               </cells>
             </ColumnListItem>
           </items>

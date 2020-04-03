@@ -5,10 +5,13 @@ sap.ui.define(
 		"com/sap/cd/maco/selfservice/ui/app/definecontactrules/util/Formatter",
 		"sap/ui/model/Sorter",
 		"sap/ui/generic/app/navigation/service/SelectionVariant",
-		"sap/ui/comp/util/FormatUtil"
+		"sap/ui/comp/util/FormatUtil",
+		"sap/ui/model/Filter",
+		"sap/ui/model/FilterOperator",
+		"sap/m/MessageStrip"
 	],
 	function (ListReportNoDraftController, SmartTableBindingUpdate, messageFormatter,
-		Sorter, SelectionVariant, FormatUtil) {
+		Sorter, SelectionVariant, FormatUtil, Filter, FilterOperator, MessageStrip) {
 		"use strict";
 
 		return ListReportNoDraftController.extend(
@@ -56,6 +59,8 @@ sap.ui.define(
 
 					var oRoute = this.oRouter.getRoute("initial");
 					oRoute.attachPatternMatched(this._onRoutePatternMatched, this);
+
+					this._bindMessage();
 				},
 
 				/******************************************************************* */
@@ -73,7 +78,7 @@ sap.ui.define(
 					aSorters.push(new Sorter("OwnMarketPartner", true, function (oContext) {
 						var sKey = oContext.getProperty("OwnMarketPartner");
 						var sKeyText = oContext.getProperty("OwnMarketPartnerText");
-						
+
 						return {
 							key: sKey,
 							text: "Own Market Partner: " + sKey + " (" + sKeyText + ")"
@@ -84,10 +89,8 @@ sap.ui.define(
 
 					// This method will add Current application state in URL
 					this.storeCurrentAppState();
-				},
 
-				_getGroupHeader: function (oContext) {
-					debugger;
+					//	this.getView().byId("idMessageStripVBox").getBinding("items").refresh(true);
 				},
 
 				/**
@@ -102,15 +105,6 @@ sap.ui.define(
 							this.getSmartTable().rebindTable(true);
 						}
 					}.bind(this));
-				},
-
-				/**
-				 * Event is triggered when SmartTable refresh button is pressed 
-				 * This method will refresh SmartTable Data
-				 * @public
-				 */
-				onRefresh: function () {
-					this.getSmartTable().rebindTable(true);
 				},
 
 				/**
@@ -155,63 +149,52 @@ sap.ui.define(
 				},
 
 				onDefaultRuleCreate: function (oEvent) {
-					
+
 					var oAction = this.oComponent.actions.create;
 					var oParams = {
 						busyControl: this.getView(),
 						contexts: [],
 						properties: {
-							OwnMarketPartner : oEvent.getSource().getBindingContext().getObject().OwnMarketPartner
+							OwnMarketPartner: oEvent.getSource().getBindingContext().getObject().OwnMarketPartner
 						},
 						controller: this,
 						event: oEvent
 					};
-					oAction.execute(oParams);
+					oAction.execute(oParams).then(this._bindMessage.bind(this));
 				},
 
-				onDeleteAction: function (oEvent) {
-					var oAction = this.oComponent.actions.delete;
-					var oParams = {
-						busyControl: this.getView(),
-						contexts: [oEvent.getParameter("listItem").getBindingContext()],
-						controller: this,
-						event: oEvent
-					};
-					oAction.execute(oParams);
+				onAfterActionUpdate: function (oResult, oParams) {
+					this._bindMessage();
 				},
-				
-				onAfterActionUpdate: function(oResult, oParams) {
-			    	// your code
-			    	debugger;
-			    	
-			    	this.getView().byId("idMessageStripVBox").getBinding("items").refresh(true);
-			    },
-			    
-			    onAfterActionCreate: function(oResult, oParams) {
-			    	// your code
-			    	debugger;
-			    	
-			    	this.getView().byId("idMessageStripVBox").getBinding("items").refresh(true);
-			    },
-			    
-			    onAfterActionDelete: function(oResult, oParams) {
-			    	// your code
-			    	debugger;
-			    	
-			    	this.getView().byId("idMessageStripVBox").getBinding("items").refresh(true);
-			    },
 
-				/**
-				 * Formatter method returns formatted Technical Id and External Business Message Id
-				 * @param   {string} 	sTechnicalId	     Technical Id
-				 * @param   {string} 	sExBusinessMsgId	 External Business Message Id
-				 * @public
-				 * @returns {string} 	    	             Formatted text
-				 */
-				formatTechnicalBusinessMsgId: function (sTechnicalId, sExBusinessMsgId) {
-					var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
-					var oI18nText = messageFormatter.formatTechnicalBusinessMsgId(sTechnicalId, sExBusinessMsgId);
-					return oResourceBundle.getText(oI18nText.i18nFormat, oI18nText.i18nData);
+				onAfterActionCreate: function (oResult, oParams) {
+					this._bindMessage();
+				},
+
+				onAfterActionDelete: function (oResult, oParams) {
+					this._bindMessage();
+				},
+
+				_bindMessage: function () {
+					var oBox = this.getView().byId('idMessageStripVBox');
+
+					if (!this._oMessageStrip) {
+						this._oMessageStrip = sap.ui.xmlfragment(this.createId("idMessageStrip"),
+							"com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.MessageStrip", this);
+					}
+					
+					oBox.setBusy(true);
+
+					oBox.bindAggregation('items', {
+						path: '/xMP4GxC_CTA_OWNMP_NOGENRULE',
+						filters: [new Filter('GenRuleDefined', FilterOperator.NE, 'X')],
+						template: this._oMessageStrip,
+						events: {
+							change: function () {
+								oBox.setBusy(false);
+							}
+						}
+					});
 				},
 
 				/**

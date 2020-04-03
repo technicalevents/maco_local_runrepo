@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc">
+	<MessageStrip text="{parts: [{path: 'i18n>MISSIGN_DEFAULT_RULE_TXT'},
+                                    			        {path: 'OwnMarketPartner'}],
+                                         formatter: '.formatter.formatMessage'}"
+				type="Error"
+				showIcon="true"
+				showCloseButton="false"
+				class="sapUiSmallMarginTop">
+				<link>
+					<Link text="{i18n>CREATE_DEFAULT_RULE_TXT}"
+					      press="onDefaultRuleCreate"/>
+				</link>
+			</MessageStrip>
+</core:FragmentDefinition>
