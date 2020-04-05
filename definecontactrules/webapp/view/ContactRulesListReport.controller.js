@@ -3,15 +3,14 @@ sap.ui.define(
 		"com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportNoDraftController",
 		"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
 		"com/sap/cd/maco/selfservice/ui/app/definecontactrules/util/Formatter",
-		"sap/ui/model/Sorter",
 		"sap/ui/generic/app/navigation/service/SelectionVariant",
-		"sap/ui/comp/util/FormatUtil",
 		"sap/ui/model/Filter",
 		"sap/ui/model/FilterOperator",
-		"sap/m/MessageStrip"
+		"sap/ui/model/Sorter"
 	],
 	function (ListReportNoDraftController, SmartTableBindingUpdate, messageFormatter,
-		Sorter, SelectionVariant, FormatUtil, Filter, FilterOperator, MessageStrip) {
+		SelectionVariant, Filter, FilterOperator, Sorter) {
+			
 		"use strict";
 
 		return ListReportNoDraftController.extend(
@@ -89,8 +88,6 @@ sap.ui.define(
 
 					// This method will add Current application state in URL
 					this.storeCurrentAppState();
-
-					//	this.getView().byId("idMessageStripVBox").getBinding("items").refresh(true);
 				},
 
 				/**
@@ -131,25 +128,13 @@ sap.ui.define(
 
 					this.getFilterBar().setFilterData(oSmartFilterData, true);
 				},
-
+				
 				/**
-				 * Event is triggered before export of Records 
-				 * @param {object} oEvent Table Export event
+				 * Event is triggered when user create a default rule
 				 * @public
+				 * @param {object} oEvent Table loading event
 				 */
-				onBeforeExport: function (oEvent) {
-					var iCount = oEvent.getParameter("exportSettings").dataSource.count;
-
-					if (iCount > 500) {
-						oEvent.getParameter("exportSettings").dataSource.count = 500;
-						this.oMessage.info({
-							msgKey: "EXCEL_DOWNLOAD_INFO_MSG"
-						});
-					}
-				},
-
 				onDefaultRuleCreate: function (oEvent) {
-
 					var oAction = this.oComponent.actions.create;
 					var oParams = {
 						busyControl: this.getView(),
@@ -162,43 +147,63 @@ sap.ui.define(
 					};
 					oAction.execute(oParams).then(this._bindMessage.bind(this));
 				},
-
+				
+				/**
+				 * Event is triggered when user updates a record
+				 * @public
+				 * @param {object} oEvent Table loading event
+				 */
 				onAfterActionUpdate: function (oResult, oParams) {
 					this._bindMessage();
 				},
-
+				
+				/**
+				 * Event is triggered After Creation of new record
+				 * @public
+				 * @param {object} oEvent Table loading event
+				 */
 				onAfterActionCreate: function (oResult, oParams) {
 					this._bindMessage();
 				},
-
+				
+				/**
+				 * Event is triggered After deletion of record
+				 * @public
+				 * @param {object} oEvent Table loading event
+				 */
 				onAfterActionDelete: function (oResult, oParams) {
 					this._bindMessage();
 				},
-
+				
+				/**
+				 * Event is triggered After deletion of record
+				 * @public
+				 * @param {object} oEvent Table loading event
+				 */
 				_bindMessage: function () {
-					var oBox = this.getView().byId('idMessageStripVBox');
+					var oMessageStripVBox = this.getView().byId('idMessageStripVBox');
 
 					if (!this._oMessageStrip) {
 						this._oMessageStrip = sap.ui.xmlfragment(this.createId("idMessageStrip"),
-							"com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.MessageStrip", this);
+							"com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.DefRuleMissingMStrip", this);
 					}
 					
-					oBox.setBusy(true);
+					oMessageStripVBox.setBusy(true);
 
-					oBox.bindAggregation('items', {
+					oMessageStripVBox.bindAggregation('items', {
 						path: '/xMP4GxC_CTA_OWNMP_NOGENRULE',
 						filters: [new Filter('GenRuleDefined', FilterOperator.NE, 'X')],
 						template: this._oMessageStrip,
 						events: {
 							change: function () {
-								oBox.setBusy(false);
+								oMessageStripVBox.setBusy(false);
 							}
 						}
 					});
 				},
 
 				/**
-				 * Function will store application's current state on change in message list
+				 * Function will store application's current state on change in Contact Rule Determination
 				 * @public
 				 */
 				storeCurrentAppState: function () {
@@ -217,7 +222,7 @@ sap.ui.define(
 				/******************************************************************* */
 
 				/**
-				 * Method is called on Route to Message List Page
+				 * Method is called on Route to Contact Rule Determination Page
 				 * @private
 				 */
 				_onRoutePatternMatched: function () {

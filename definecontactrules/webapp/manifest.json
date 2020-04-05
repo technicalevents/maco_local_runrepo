@@ -93,11 +93,7 @@
       "cozy": true
     },
     "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
-        }
-      ]
+    
     },
     "models": {
       "i18n": {

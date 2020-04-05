@@ -4,10 +4,9 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
     'com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateWithDialogAction',
     'com/sap/cd/maco/mmt/ui/reuse/action/nodraft/UpdateWithDialogAction',
-    'com/sap/cd/maco/mmt/ui/reuse/action/nodraft/DeleteAction',
-    'com/sap/cd/maco/selfservice/ui/app/definecontactrules/view/FileDialog'
+    'com/sap/cd/maco/mmt/ui/reuse/action/nodraft/DeleteAction'
   ],
-  function(NoDraftComponent, HashSync, CreateWithDialogAction, UpdateWithDialogAction, DeleteAction, FileDialog) {
+  function(NoDraftComponent, HashSync, CreateWithDialogAction, UpdateWithDialogAction, DeleteAction) {
     "use strict";
 
     return NoDraftComponent.extend("com.sap.cd.maco.selfservice.ui.app.definecontactrules.Component", {
@@ -25,7 +24,6 @@ sap.ui.define(
         this.actions = {
           create : new CreateWithDialogAction(this, {
             fragmentName: 'com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesDialog',
-            //fragmentControllerClass: FileDialog,
             title: 'CONTACTDETERMINATION_CREATE_TITLE',
             successMsg: 'CONTACTDETERMINATION_CREATE_SUCCESS_MSG'
           }),

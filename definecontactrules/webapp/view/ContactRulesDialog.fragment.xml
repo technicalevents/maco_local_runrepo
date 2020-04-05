@@ -28,10 +28,9 @@
                                     			       {path: 'mp_name'},
                                                  {path: 'market_partner'},
                                                  {path: 'division_text'}],
-                                         formatter: '.formatter.formatMessage'}"
+                                         formatter: 'jQuery.sap.formatMessage'}"
                                   additionalText="{market_role}"/>
                   </ComboBox>
-          <!--<smartField:SmartField value="{OwnMarketPartner}" />-->
         </smartForm:GroupElement>
 
         <smartForm:GroupElement >
@@ -46,22 +45,15 @@
           <smartField:SmartField value="{ExtBusinessMessageID}" />
         </smartForm:GroupElement>
 
-        <!--<smartForm:GroupElement>-->
-        <!--  <smartForm:label>-->
-        <!--    <Label required="true"-->
-        <!--           text="{/Partners/ContactID/#@sap:label}"/>-->
-        <!--  </smartForm:label>-->
-        <!--  <Select selectedKey='{Division}'-->
-        <!--          items="{valueHelp>/divisions}">-->
-        <!--    <items>-->
-        <!--      <core:Item key="{valueHelp>id}"-->
-        <!--                 text="{valueHelp>text}" />-->
-        <!--    </items>-->
-        <!--  </Select>-->
-        <!--</smartForm:GroupElement>-->
-
         <smartForm:GroupElement>
-          <smartField:SmartField value="{ContactID}" />
+          <smartField:SmartField mandatory="true" value="{ContactID}" />
+        </smartForm:GroupElement>
+        
+        <smartForm:GroupElement>
+          <MessageStrip text="{i18n>DEFAULT_RULE_TXT}"
+						type="Information"
+						showIcon="true"
+						showCloseButton="false" />
         </smartForm:GroupElement>
 
       </smartForm:Group>
