@@ -18,8 +18,8 @@ sap.ui.define([
 		 * Constructor
 		 */
         constructor: function(oComponent, oConfig) {
-			var sCardinality = "1..N";
-			BaseAction.call(this, oComponent, oConfig, sCardinality);
+			BaseAction.call(this, oComponent, oConfig);
+			this.oConfig.minContexts = 1;
         },
         
         /******************************************************************* */

@@ -1,15 +1,14 @@
 /*global location*/
-sap.ui.define(
-  [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
-    'com/sap/cd/maco/mmt/ui/reuse/monitor/Utility'
+sap.ui.define([
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/bundle",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/Assert",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/Guid"
   ],
-  function(BaseAction, bundle, Assert, Utility) {
-    'use strict';
+  function(BaseAction, bundle, Assert, Guid) {
+    "use strict";
 
-    return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.nav.NavToExternalAction', {
+    return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.monitor.NavToExternalAction', {
       constructor: function(oComponent, oConfig) {
         BaseAction.call(this, oComponent, oConfig);
         this.oConfig.minContexts = 1;
@@ -29,16 +28,16 @@ sap.ui.define(
               var sFromParam = this.oConfig.paramsMap[sToParam];
               Assert.ok(
                 oObject.hasOwnProperty(sFromParam),
-                'cannot execute NavToRouteAction. cannot map params. object has no property ' + sFromParam
+                "cannot execute NavToRouteAction. cannot map params. object has no property " + sFromParam
               );
               oNavParams[sToParam] =
-                sFromParam === this.oConfig.guidFields && !Utility.isGuid(oObject[sFromParam])
-                  ? Utility.convertToGuidFormat(oObject[sFromParam])
+                sFromParam === this.oConfig.guidFields && !Guid.isGuid(oObject[sFromParam])
+                  ? Guid.convertIdToGuid(oObject[sFromParam])
                   : oObject[sFromParam];
             }
 
             // navigate
-            var oCrossAppNavigator = sap.ushell.Container.getService('CrossApplicationNavigation');
+            var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
             oCrossAppNavigator.toExternal({
               target: {
                 semanticObject: this.oConfig.semanticObject,
@@ -52,5 +51,4 @@ sap.ui.define(
         );
       }
     });
-  }
-);
+});

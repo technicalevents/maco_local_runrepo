@@ -1,8 +1,7 @@
 sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter"
-  ],
-  function(ObjectPageNoDraftController, Formatter) {
+  ],function(ObjectPageNoDraftController, Formatter) {
     "use strict";
 
     return ObjectPageNoDraftController.extend(
@@ -46,17 +45,17 @@ sap.ui.define([
          * @param {object} oRouteParams Route parameters of Process Page
          */
         onBeforeBind: function(oRouteParams){  
-        	// Set first tab 'FlowTab' as by default on click of process in process list app
-        	this.byId("idProcessObjectPage").setSelectedSection(this.getView().getId() + "--idFlowTab");
+          // Set first tab 'FlowTab' as by default on click of process in process list app
+          this.byId("idProcessObjectPage").setSelectedSection(this.getView().getId() + "--idFlowTab");
         	
-          this.getThisModel().setProperty("/IsAssociatedTabVisible", false);
+          this.getViewModel().setProperty("/IsAssociatedTabVisible", false);
 
           var sBindingPath = this.getView().getModel().createKey("/xMP4GxC_Linked_Associated_Proc", 
                           {ProcessDocumentKey: oRouteParams.ProcessDocumentKey}) + "/Set";
           var oAssociatedSmartTable = this.byId("idAssociatedProcessSmartTable");
 
-        	oAssociatedSmartTable.setTableBindingPath(sBindingPath);
-        	oAssociatedSmartTable.rebindTable();
+          oAssociatedSmartTable.setTableBindingPath(sBindingPath);
+          oAssociatedSmartTable.rebindTable();
                   
           this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
             .then(this._onSucessProcessDataRead.bind(this));
@@ -107,7 +106,7 @@ sap.ui.define([
           }
           
           if(iAssociatedProcessCount) {
-            this.getThisModel().setProperty("/IsAssociatedTabVisible", iAssociatedProcessCount > 0);
+            this.getViewModel().setProperty("/IsAssociatedTabVisible", iAssociatedProcessCount > 0);
           }
         },
 
@@ -163,7 +162,7 @@ sap.ui.define([
           }
 
           var sMarketPartner = aMarketPartner.join(", ");
-          var oModel = this.getThisModel();
+          var oModel = this.getViewModel();
           oModel.setProperty("/MarketPartner", sMarketPartner);
         }
       }

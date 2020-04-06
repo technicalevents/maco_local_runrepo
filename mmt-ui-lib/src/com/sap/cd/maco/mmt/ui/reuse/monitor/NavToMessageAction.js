@@ -1,8 +1,7 @@
-sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/monitor/NavToExternalAction', 'com/sap/cd/maco/mmt/ui/reuse/monitor/Constants'], function(
-  NavToExternalAction,
-  Constants
+sap.ui.define(["com/sap/cd/maco/mmt/ui/reuse/monitor/NavToExternalAction"], function(
+  NavToExternalAction
 ) {
-  'use strict';
+  "use strict";
 
   return NavToExternalAction.extend('com.sap.cd.maco.mmt.ui.reuse.monitor.NavToMessageAction', {
     /******************************************************************* */
@@ -13,17 +12,17 @@ sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/monitor/NavToExternalAction', 'com/
      * Constructor
      */
     constructor: function(oComponent, sKeyField) {
-      var sCardinality = '1';
       var oConfig = {
-        semanticObject: 'UtilsDataExchangeProcessing',
-        action: 'displayMessage',
+        semanticObject: "UtilsDataExchangeProcessing",
+        action: "displayMessage",
         paramsMap: {
           TransferDocumentKey: sKeyField
         },
         guidFields: sKeyField
       };
 
-      NavToExternalAction.call(this, oComponent, oConfig, sCardinality);
+      NavToExternalAction.call(this, oComponent, oConfig);
+      this.oConfig.minContexts = 1;
     }
   });
 });

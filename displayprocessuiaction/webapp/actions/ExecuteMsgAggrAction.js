@@ -1,9 +1,9 @@
 sap.ui.define([
   "com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction",
-  "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
+  "com/sap/cd/maco/mmt/ui/reuse/fnd/Guid",
   "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
   "sap/m/MessageToast"
-], function(BaseAction, Utility, Constants, MessageToast) {
+], function(BaseAction, Guid, Constants, MessageToast) {
   "use strict";
 
   return BaseAction.extend("com.sap.cd.maco.monitor.ui.app.processuiactions.actions.ExecuteMsgAggrAction",
@@ -16,8 +16,9 @@ sap.ui.define([
        * Constructor
        */
       constructor: function(oComponent, oConfig) {
-        var sCardinality = "1..35";
-        BaseAction.call(this, oComponent, oConfig, sCardinality);
+        BaseAction.call(this, oComponent, oConfig);
+        this.oConfig.minContexts = 1;
+		this.oConfig.maxContexts = 35;
       },
 
       /******************************************************************* */
@@ -52,7 +53,7 @@ sap.ui.define([
        * @public
        */
       onExecuteMsgAggrItemSelected: function(oEvent) {
-        var oProcessDocumentKey = Utility.generateGuid();
+        var oProcessDocumentKey = Guid.generateGuid();
         var aProcessDocumentNumber = [];
         
         for(var intI = 0; intI < this._oContext.length; intI++) {

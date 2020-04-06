@@ -1,23 +1,29 @@
-sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/component/BaseComponent', 'com/sap/cd/maco/mmt/ui/reuse/fnd/transaction/TransactionNoDraft'], function(
-  BaseComponent,
-  TransactionNoDraft
-) {
-  'use strict';
+sap.ui.define([
+	"com/sap/cd/maco/mmt/ui/reuse/component/ReuseComponent", 
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/transaction/TransactionNoDraft",
+	"com/sap/cd/maco/mmt/ui/reuse/controller/base/ControllerRegistry",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/message/ErrorManager",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/Message",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/Navigation"
+], function(ReuseComponent, TransactionNoDraft, ControllerRegistry, ErrorManager, Message, Navigation) {
+  "use strict";
 
-  return BaseComponent.extend('com.sap.cd.maco.mmt.ui.reuse.fnd.base.MonitorComponent', {
+  return ReuseComponent.extend('com.sap.cd.maco.mmt.ui.reuse.monitor.MonitorComponent', {
     init: function() {
-      // super
-      BaseComponent.prototype.init.apply(this, arguments);
+		// super
+		ReuseComponent.prototype.init.apply(this, arguments);
+		
+		// singles
+		this.mSingles.controllerRegistry = new ControllerRegistry();
+		this.mSingles.errorManager = new ErrorManager(this);
+		this.mSingles.message = new Message(this);
+		this.mSingles.messageManager = sap.ui.getCore().getMessageManager();
+		this.mSingles.nav = new Navigation(this);
+		this.mSingles.transaction = new TransactionNoDraft(this);
 
-      // singles
-      this.mSingles.transaction = new TransactionNoDraft(this);
-
-      // message model
-      var oMessageModel = sap.ui
-        .getCore()
-        .getMessageManager()
-        .getMessageModel();
-      this.setModel(oMessageModel, 'message');
+		// message model
+		var oMessageModel = sap.ui.getCore().getMessageManager().getMessageModel();
+		this.setModel(oMessageModel, "message");
     }
   });
 });

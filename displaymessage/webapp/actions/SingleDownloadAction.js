@@ -15,8 +15,7 @@ sap.ui.define([
 		 * Constructor
 		 */
 		constructor: function(oComponent, oConfig) {
-			var sCardinality = "0";
-			BaseAction.call(this, oComponent, oConfig, sCardinality);
+			BaseAction.call(this, oComponent, oConfig);
 		},
 		
 		/******************************************************************* */

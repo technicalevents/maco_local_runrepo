@@ -89,13 +89,21 @@ sap.ui.define(
 										icon: "sap-icon://BusinessSuiteInAppSymbols/icon-business-partner",
 										targetURL: "#UtilsDataExchangeProcessing-displayMarketPartner"
 									}
-								}, {
-										"tileType": "sap.ushell.ui.tile.StaticTile",
-										"properties": {
-											"title": "Define Contact Determination Rules",
-											"targetURL": "#UtilsDataExchangeProcessing-defineContactRules"
-										}
-									}]
+								},{
+									tileType: "sap.ushell.ui.tile.StaticTile",
+									properties: {
+										title: "Maintain Message Contacts",
+										icon: "sap-icon://contacts",
+										targetURL: "#UtilsDataExchangeProcessing-maintMsgContact"
+									}
+								},{
+									tileType: "sap.ushell.ui.tile.StaticTile",
+									properties: {
+										title: "Define Contact Determination Rules",
+										icon: "sap-icon://BusinessSuiteInAppSymbols/icon-business-partner",
+										targetURL: "#UtilsDataExchangeProcessing-defineContactRules"
+									}
+								}]
 							}]
 						}
 					}
@@ -223,18 +231,35 @@ sap.ui.define(
 										)
 									}
 								}, 
+								"UtilsDataExchangeProcessing-maintMsgContact": {
+									semanticObject: "UtilsDataExchangeProcessing",
+									action: "maintMsgContact",
+									description: "Maintain Message Contacts",
+									title: "Maintain Message Contacts",
+									signature: {
+										additionalParameters: "allowed",
+										parameters: {}
+									},
+									resolutionResult: {
+										applicationType: "SAPUI5",
+										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts",
+										url: sap.ui.require.toUrl(
+											"com/sap/cd/maco/selfservice/ui/app/maintmsgcontacts"
+										)
+									}
+								},
 								"UtilsDataExchangeProcessing-defineContactRules": {
-										"semanticObject": "UtilsDataExchangeProcessing",
-										"action": "defineContactRules",
-										"description": "Define Contact Determination Rules",
-										"title": "Define Contact Determination Rules",
-										"signature": {
-											"parameters": {}
+										semanticObject: "UtilsDataExchangeProcessing",
+										action: "defineContactRules",
+										description: "Define Contact Determination Rules",
+										title: "Define Contact Determination Rules",
+										signature: {
+											parameters: {}
 										},
-										"resolutionResult": {
-											"applicationType": "SAPUI5",
-											"additionalInformation": "SAPUI5.Component=com.sap.cd.maco.selfservice.ui.app.definecontactrules",
-											"url": sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/definecontactrules")
+										resolutionResult: {
+											applicationType: "SAPUI5",
+											additionalInformation: "SAPUI5.Component=com.sap.cd.maco.selfservice.ui.app.definecontactrules",
+											url: sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/definecontactrules")
 										}
 									}
 							}
@@ -250,12 +275,11 @@ sap.ui.define(
 		});
 
 		var oFlpSandbox = {
+			/**
+			 * Initializes the FLP sandbox
+			 * @returns {Promise} a promise that is resolved when the sandbox bootstrap has finshed
+			 */
 			init: function () {
-				/**
-				 * Initializes the FLP sandbox
-				 * @returns {Promise} a promise that is resolved when the sandbox bootstrap has finshed
-				 */
-
 				// sandbox is a singleton, so we can start it only once
 				if (!this._oBootstrapFinished) {
 					this._oBootstrapFinished = sap.ushell.bootstrap("local");

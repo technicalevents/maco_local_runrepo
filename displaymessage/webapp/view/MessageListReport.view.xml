@@ -67,18 +67,15 @@
 					        useTablePersonalisation="true"
 					        demandPopin="true"
 					        useExportToExcel="true"
-                  beforeExport="onBeforeExport"
+                			beforeExport="onBeforeExport"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
-                  c:p13nDialogSettings='{filter:{visible:false}}' 
+                			c:p13nDialogSettings='{filter:{visible:false}}' 
 					        beforeRebindTable="onBeforeRebindTable"
 					        persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.table">
         <smartTable:customToolbar>
           <OverflowToolbar design="Transparent">
             <ToolbarSpacer/>
-            <Button text="{i18n>MESSAGE_LIST_REFRESH_TITLE}" 
-                    type="Transparent"
-                    press="onRefresh"/>
             <Button text="{i18n>DOWNLOAD_BTN_TXT}"
                     type="Transparent"
                     press="onAction"

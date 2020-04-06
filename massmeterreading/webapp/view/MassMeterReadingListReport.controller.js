@@ -3,14 +3,13 @@ sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
 	"sap/ui/generic/app/navigation/service/SelectionVariant",
 	"sap/ui/model/Sorter",
-	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"sap/base/strings/formatMessage",
 	"sap/base/security/encodeURL",
 	"sap/ui/core/CalendarType",
 	"sap/ui/core/format/DateFormat"
   ], function(ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, Sorter, 
-			Filter, FilterOperator, formatMessage, encodeURL, CalendarType, DateFormat) {
+			FilterOperator, formatMessage, encodeURL, CalendarType, DateFormat) {
     "use strict";
     return ListReportNoDraftController.extend("com.sap.cd.maco.monitor.ui.app.massmeterreadings.view.MassMeterReadingListReport",
       {
@@ -19,7 +18,7 @@ sap.ui.define([
        * Formatter Attribute.
        * @public
        */
-        formatMessage: formatMessage,
+        formatter: formatMessage,
         
         /******************************************************************* */
         /* LIFECYCLE METHODS */

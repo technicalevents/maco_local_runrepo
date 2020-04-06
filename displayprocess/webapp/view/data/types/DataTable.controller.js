@@ -80,10 +80,8 @@ sap.ui.define([
 						oVisiblilityObj["is" + sProperty + "Visible"] = !!oResult[sProperty];
 					}.bind(this));
 					
-					this.getThisModel().setProperty("/", oVisiblilityObj);
+					this.getViewModel().setProperty("/", oVisiblilityObj);
 				}
 			}
-
 		});
-
 });

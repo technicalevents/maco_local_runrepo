@@ -1,9 +1,8 @@
 sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
 	"sap/m/MessageToast",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/Utility"
-	], function(BaseAction, Constants, MessageToast, Utility) {
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/Guid"
+], function(BaseAction, MessageToast, Guid) {
   "use strict";
 
 	return BaseAction.extend("com.sap.cd.maco.monitor.ui.app.displayprocessuiaction.actions.ReportExecutionAction",
@@ -16,8 +15,9 @@ sap.ui.define([
 		 * Constructor
 		 */
         constructor: function(oComponent, oConfig) {
-        	var sCardinality = "1..35";
-			BaseAction.call(this, oComponent, oConfig, sCardinality);
+			BaseAction.call(this, oComponent, oConfig);
+			this.oConfig.minContexts = 1;
+			this.oConfig.maxContexts = 35;
         },
         
         /******************************************************************* */
@@ -35,7 +35,7 @@ sap.ui.define([
 					this.assertContextParam(oParams);
 					
 					var aProcessDocumentKey = [];
-					var sRandomGuid = Utility.generateGuid();
+					var sRandomGuid = Guid.generateGuid();
 					
 					for(var intI = 0; intI < oParams.contexts.length; intI++) {
 						aProcessDocumentKey.push(oParams.contexts[intI].getProperty("ProcessDocumentKey").split("-").join("").toUpperCase());

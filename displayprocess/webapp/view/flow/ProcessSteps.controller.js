@@ -1,20 +1,11 @@
-sap.ui.define(
-  [
+sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseViewController",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
     "sap/ui/model/json/JSONModel",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
-    "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/Guid",
     "sap/ui/model/Sorter"
-  ],
-  function(
-    BaseViewController,
-    formatter,
-    JSONModel,
-    Constants,
-    Utility,
-    Sorter
-  ) {
+],function(BaseViewController, formatter, JSONModel, Constants, Guid, Sorter) {
     "use strict";
 
     return BaseViewController.extend(
@@ -182,12 +173,12 @@ sap.ui.define(
           for (var intI = 0; intI < aProcessSteps.length; intI++) {
             aProcessSteps[
               intI
-            ].BusinessObjectUUID = Utility.convertToGuidFormat(
+            ].BusinessObjectUUID = Guid.convertIdToGuid(
               aProcessSteps[intI].BusinessObjectUUID
             );
           }
 
-          var oModel = this.getThisModel();
+          var oModel = this.getViewModel();
           oModel.setProperty("/ProcessStepData", aProcessSteps);
         }
       }

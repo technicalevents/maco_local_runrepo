@@ -60,18 +60,10 @@
 					        beforeExport="onBeforeExport"
 					        header="{i18n>PROCESS_PLURAL_LBL}"
 					        useVariantManagement="false" 
-                  c:p13nDialogSettings='{filter:{visible:false}}' 
+                			c:p13nDialogSettings='{filter:{visible:false}}' 
 					        beforeRebindTable="onBeforeRebindTable"
 					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displayprocesses.table"
 					        requestAtLeastFields="ProcessDocumentKey,StatusCriticality,ProcessID,OwnerUUID,OwnerUUIDText">
-        <smartTable:customToolbar>
-          <OverflowToolbar design="Transparent">
-            <ToolbarSpacer/>
-            <Button text="{i18n>PROCESS_LIST_REFRESH_TITLE}"
-                    type="Transparent"
-                    press="onRefresh"/>
-          </OverflowToolbar>
-        </smartTable:customToolbar>
         <Table id="idProcessTable"
 	          growing="true"
 	          growingScrollToLoad="true" 

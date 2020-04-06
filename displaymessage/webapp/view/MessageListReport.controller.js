@@ -96,15 +96,6 @@ sap.ui.define(
 				},
 
 				/**
-				 * Event is triggered when SmartTable refresh button is pressed 
-				 * This method will refresh SmartTable Data
-				 * @public
-				 */
-				onRefresh: function () {
-					this.getSmartTable().rebindTable(true);
-				},
-
-				/**
 				 * Event is triggered when selection is changed in Own Market Partner MultiComboBox
 				 * @public
 				 */
