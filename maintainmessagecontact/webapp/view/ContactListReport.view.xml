@@ -1,0 +1,116 @@
+<mvc:View xmlns:core="sap.ui.core" 
+		  xmlns="sap.m" 
+		  xmlns:semantic="sap.f.semantic" 
+		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+		  xmlns:smartTable="sap.ui.comp.smarttable"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+		  controllerName="com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts.view.ContactListReport"
+          xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
+          xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
+          xmlns:variants="sap.ui.comp.smartvariants">
+    <semantic:SemanticPage headerExpanded="true" 
+						   toggleHeaderOnTitleClick="true">
+  		<semantic:titleHeading>
+			 <variants:SmartVariantManagement id="idContactVariantManagement" 
+											  persistencyKey="com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts.filterbar"/>
+		</semantic:titleHeading>
+    <semantic:headerContent>
+        <smartFilterBar:SmartFilterBar id="idContactSmartFilterBar"
+									   smartVariant="idContactVariantManagement"
+									   enableBasicSearch="true"
+									   liveMode="false"
+									   useDateRangeType="true"
+									   useToolbar="false"
+									   initialized="onContactFilterBarInitialized"
+									   showFilterConfiguration="false"
+									   persistencyKey="com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts.filterbar"
+									   entitySet="xMP4GxC_Mantain_Contact_Info"
+									   afterVariantLoad="onAfterContactListVariantLoad">
+            <smartFilterBar:controlConfiguration>
+                <smartFilterBar:ControlConfiguration key="OwnMarketPartner" 
+													 label="{/xMP4GxC_Mantain_Contact_Info/OwnMarketPartner/#@sap:label}"
+													 preventInitialDataFetchInValueHelpDialog="false">
+					<smartFilterBar:customControl>
+						<MultiComboBox id="idOwnMarketPartner"
+									   showSecondaryValues= "true"
+									   items="{path:'/xMP4GxC_MarketPartner_VH',sorter:{path:'mp_name'}}" 
+									   selectionChange="onOwnMarketPartnerChange">
+							<core:ListItem key="{market_partner}" 
+										   text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
+														  {path: 'mp_name'},
+														  {path: 'market_partner'},
+														  {path: 'division_text'}],
+												 formatter: 'jQuery.sap.formatMessage'}"
+										   additionalText="{market_role}"/>
+						</MultiComboBox>
+					</smartFilterBar:customControl>
+				</smartFilterBar:ControlConfiguration>
+          	</smartFilterBar:controlConfiguration>
+        </smartFilterBar:SmartFilterBar>
+    </semantic:headerContent>
+    <semantic:content>
+		<smartTable:SmartTable id="idContactSmartTable"
+							   entitySet="xMP4GxC_Mantain_Contact_Info"
+							   tableType="ResponsiveTable"
+							   smartFilterId="idContactSmartFilterBar"
+							   smartVariant="idContactVariantManagement"
+							   enableAutoBinding="true" 
+							   demandPopin="true"
+							   useExportToExcel="true"
+							   header="{i18n>CONTACT_PLURAL_LBL}"
+							   useVariantManagement="false" 
+							   c:p13nDialogSettings="{filter:{visible:false}}"
+							   beforeRebindTable="onBeforeRebindTable"
+							   beforeExport="onBeforeExport"
+							   persistencyKey="com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts.table"
+							   requestAtLeastFields="OwnMarketPartner,OwnMarketPartnerText">
+			<smartTable:customToolbar>
+				<OverflowToolbar design="Transparent">
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://add"
+							tooltip="{i18n>ADD_BTN_TXT}"
+							type="Transparent"
+							press="onAction"
+							c:action="createContact"/>
+				</OverflowToolbar>
+			</smartTable:customToolbar>
+			<Table id="idContactTable"
+				   growing="true"
+				   growingScrollToLoad="true" 
+				   growingThreshold="100" 
+				   mode="Delete"
+				   delete="onAction('deleteContact', $event)"
+				   sticky="ColumnHeaders,HeaderToolbar">
+				<columns>
+					<Column>
+						<Text text="{/xMP4GxC_Mantain_Contact_Info/ContactId/#@sap:label}"/>
+						<customData>
+							<core:CustomData key="p13nData" 
+											 value='\{"columnIndex":0,
+													  "columnKey":"ContactId",
+													  "description":"ContactName",
+													  "displayBehaviour":"idAndDescription",
+													  "leadingProperty":["ContactId","ContactName"],
+													  "sortProperty":"ContactId"}'/>
+							</customData>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Detail"
+                            		detailPress="onAction"
+                            		c:action="updateContact">
+						<cells>
+							<reuseTable:ObjectIdentifier title="{ContactId}" 
+														 text="{ContactName}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</smartTable:SmartTable>
+    </semantic:content>
+    <semantic:titleCustomTextActions>
+        <reuseButton:Share press="onAction" c:action="share" />
+    </semantic:titleCustomTextActions>
+	</semantic:SemanticPage>
+</mvc:View>
