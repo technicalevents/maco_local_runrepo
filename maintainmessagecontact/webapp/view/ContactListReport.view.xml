@@ -57,7 +57,6 @@
 							   smartVariant="idContactVariantManagement"
 							   enableAutoBinding="true" 
 							   demandPopin="true"
-							   useExportToExcel="true"
 							   header="{i18n>CONTACT_PLURAL_LBL}"
 							   useVariantManagement="false" 
 							   c:p13nDialogSettings="{filter:{visible:false}}"
@@ -71,8 +70,7 @@
 					<Button icon="sap-icon://add"
 							tooltip="{i18n>ADD_BTN_TXT}"
 							type="Transparent"
-							press="onAction"
-							c:action="createContact"/>
+							press="onAction('createContact', $event)"/>
 				</OverflowToolbar>
 			</smartTable:customToolbar>
 			<Table id="idContactTable"
@@ -98,11 +96,9 @@
 				</columns>
 				<items>
 					<ColumnListItem type="Detail"
-                            		detailPress="onAction"
-                            		c:action="updateContact">
+                            		detailPress="onAction('updateContact', $event)">
 						<cells>
-							<reuseTable:ObjectIdentifier title="{ContactId}" 
-														 text="{ContactName}"/>
+							<reuseTable:ObjectIdentifier title="{ContactId}" text="{ContactName}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
@@ -110,7 +106,7 @@
 		</smartTable:SmartTable>
     </semantic:content>
     <semantic:titleCustomTextActions>
-        <reuseButton:Share press="onAction" c:action="share" />
+        <reuseButton:Share press="onAction('share', $event)"/>
     </semantic:titleCustomTextActions>
 	</semantic:SemanticPage>
 </mvc:View>

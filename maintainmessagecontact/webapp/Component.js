@@ -22,7 +22,7 @@ sap.ui.define([
 			// call the base component"s init function
 			MonitorComponent.prototype.init.apply(this, arguments);
 			
-			this.actions = {
+			this.mActions = {
 				createContact : new CreateWithDialogAction(this, {
 					fragmentName: "com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts.view.ContactDialog",
 					title: "NEW_CONTACT_LBL",
@@ -55,7 +55,7 @@ sap.ui.define([
 			// Sync hash
 			var oHashSync = new HashSync({
 				component: this,
-				message: this.oMessage,
+				message: this.mSingles.message,
 				getRouteName: function(startupParams) {
 					return "processPage";
 				}
@@ -71,11 +71,6 @@ sap.ui.define([
 		 * @public
 		 */
 		destroy: function() {
-			// Destroy Actions
-			for (var sName in this.actions) {
-				this.actions[sName].destroy();
-			}
-			
 			// Generic destroy of component
 			MonitorComponent.prototype.destroy.apply(this, arguments);
 		}
