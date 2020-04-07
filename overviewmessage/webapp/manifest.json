@@ -16,7 +16,6 @@
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
-					"localUri": "localService/metadata.xml",
 					"annotations": [
 						"MP4G_MESSAGEMONITOR_SB_VAN",
 						"annotations"
@@ -25,10 +24,7 @@
 			},
 			"MP4G_MESSAGEMONITOR_SB_VAN": {
 				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FMESSAGEMONITOR_SB_VAN',Version='0001')/$value/",
-				"type": "ODataAnnotation",
-				"settings": {
-					"localUri": "localService/MESSAGEMONITOR_SB/MP4G_MESSAGEMONITOR_SB_VAN.xml"
-				}
+				"type": "ODataAnnotation"
 			},
 			"annotations": {
 				"type": "ODataAnnotation",
