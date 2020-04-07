@@ -4,13 +4,7 @@ sap.ui.define([
 ], function (criticality, formatMessage) {
 	"use strict";
 	return {
-
     	criticality: criticality,
 		formatMessage: formatMessage
-    /******************************************************************* */
-    /* PUBLIC METHODS */
-    /******************************************************************* */
-      
- 
 	};
 });

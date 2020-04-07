@@ -11,7 +11,6 @@
   xmlns:variants="sap.ui.comp.smartvariants"
   xmlns:footerbar="sap.ushell.ui.footerbar"
   controllerName="com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesListReport">
-
   <semantic:SemanticPage headerExpanded="true" toggleHeaderOnTitleClick="true">
   	<semantic:titleHeading>
 			 <variants:SmartVariantManagement id="idContactRulesVariantManagement" 
@@ -57,9 +56,7 @@
     		<VBox id="idMessageStripVBox" 
 				 busy="false" 
 				 class="sapUiSmallMarginTop" height="auto">
-    			 
 			</VBox>
-	      
       <smartTable:SmartTable id="idContactRulesSmartTable"
 					        entitySet="xMP4GxC_CTA_MP_UI"
 					        tableType="ResponsiveTable"
@@ -84,8 +81,7 @@
             <ToolbarSpacer/>
             <Button icon="sap-icon://add"
                     type="Transparent"
-                    press="onAction"
-                    c:action="create"/>
+                    press="onAction('create', $event)"/>
           </OverflowToolbar>
         </smartTable:customToolbar>
         <Table id="idMessageTable"
@@ -123,8 +119,7 @@
           </columns>
           <items>
             <ColumnListItem type="Detail"
-                            detailPress="onAction"
-                            c:action="update">
+                            detailPress="onAction('update', $event)">
               <cells>
               	<reuseTable:ObjectIdentifier title="{OwnMarketPartnerText}"  text="{OwnMarketPartner}"/>
               	<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}"  text="{ExternalMarketPartner}" noDataText="{i18n>ANY_DATA_TXT}"/>
@@ -135,14 +130,10 @@
           </items>
         </Table>
       </smartTable:SmartTable>
-      <!--<VBox items="{/xMP4GxC_CTA_OWNMP_NOGENRULE}">-->
-      	<!--<VBox >-->
-      	
       </VBox>
     </semantic:content>
     <semantic:titleCustomTextActions>
-		<reuseButton:Share press="onAction" 
-                       c:action="share" />
+		<reuseButton:Share press="onAction('share', $event)"/>
     </semantic:titleCustomTextActions>
   </semantic:SemanticPage>
 </mvc:View>

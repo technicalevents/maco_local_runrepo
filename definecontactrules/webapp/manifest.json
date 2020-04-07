@@ -16,7 +16,6 @@
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
-          "localUri": "localService/metadata.xml",
           "annotations": [
             "Message"
           ]
@@ -24,10 +23,7 @@
       },
       "Message": {
         "type": "ODataAnnotation",
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_CONTACT_DETR_VAN',Version='0001')/$value/",
-        "settings": {
-          "localUri": "annotation/Message.xml"
-        }
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_CONTACT_DETR_VAN',Version='0001')/$value/"
       }
     },
     "resources": "resources.json",
@@ -92,9 +88,7 @@
       "compact": true,
       "cozy": true
     },
-    "resources": {
-    
-    },
+    "resources": {},
     "models": {
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
@@ -117,7 +111,8 @@
         "factoryName": "sap.ushell.ui5service.ShellUIService",
         "lazy": false,
         "settings": {
-          "setTitle": "auto"
+          "setTitle": "auto",
+          "setHierarchy": "auto"
         }
       }
     },
@@ -172,10 +167,5 @@
         }
       }
     }
-  },
-  "sap.platform.cf": {
-    "oAuthScopes": [
-      "$XSAPPNAME.AppMktMsg_Monitor"
-    ]
   }
 }

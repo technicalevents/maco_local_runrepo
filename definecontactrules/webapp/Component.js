@@ -1,42 +1,41 @@
-sap.ui.define(
-  [
-    "com/sap/cd/maco/mmt/ui/reuse/fnd/base/NoDraftComponent",
+sap.ui.define([
+    "com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorComponent",
     "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
-    'com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateWithDialogAction',
-    'com/sap/cd/maco/mmt/ui/reuse/action/nodraft/UpdateWithDialogAction',
-    'com/sap/cd/maco/mmt/ui/reuse/action/nodraft/DeleteAction'
+    "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateWithDialogAction",
+    "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/UpdateWithDialogAction",
+    "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/DeleteAction"
   ],
-  function(NoDraftComponent, HashSync, CreateWithDialogAction, UpdateWithDialogAction, DeleteAction) {
+  function(MonitorComponent, HashSync, CreateWithDialogAction, UpdateWithDialogAction, DeleteAction) {
     "use strict";
 
-    return NoDraftComponent.extend("com.sap.cd.maco.selfservice.ui.app.definecontactrules.Component", {
+    return MonitorComponent.extend("com.sap.cd.maco.selfservice.ui.app.definecontactrules.Component", {
       metadata: {
         manifest: "json"
       },
 
       /**
-       * Function is used to initialize NoDraftComponent
+       * Function is used to initialize MonitorComponent
        */
       init: function() {
         // call the base component's init function
-        NoDraftComponent.prototype.init.apply(this, arguments);
+        MonitorComponent.prototype.init.apply(this, arguments);
 
-        this.actions = {
+        this.mActions = {
           create : new CreateWithDialogAction(this, {
-            fragmentName: 'com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesDialog',
-            title: 'CONTACTDETERMINATION_CREATE_TITLE',
-            successMsg: 'CONTACTDETERMINATION_CREATE_SUCCESS_MSG'
+            fragmentName: "com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesDialog",
+            title: "CONTACTDETERMINATION_CREATE_TITLE",
+            successMsg: "CONTACTDETERMINATION_CREATE_SUCCESS_MSG"
           }),
   
           update: new UpdateWithDialogAction(this, {
-            fragmentName: 'com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesDialog',
-            title: 'CONTACTDETERMINATION_EDIT_TITLE',
-            successMsg: 'CONTACTDETERMINATION_EDIT_SUCCESS_MSG'
+            fragmentName: "com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesDialog",
+            title: "CONTACTDETERMINATION_EDIT_TITLE",
+            successMsg: "CONTACTDETERMINATION_EDIT_SUCCESS_MSG"
           }),
 
           delete: new DeleteAction(this, {
-            confirmMsg1: 'CONTACTDETERMINATION_DELETE_CONFIRM_MSG',
-            successMsg1: 'CONTACTDETERMINATION_DELETE_SUCCESS_MSG'
+            confirmMsg1: "CONTACTDETERMINATION_DELETE_CONFIRM_MSG",
+            successMsg1: "CONTACTDETERMINATION_DELETE_SUCCESS_MSG"
           })
         };
 
@@ -50,7 +49,7 @@ sap.ui.define(
         // sync hash
         var oHashSync = new HashSync({
           component: this,
-          message: this.oMessage,
+          message: this.mSingles.message,
           getRouteName: function(startupParams) {
             return "contactrulesPage";
           }
@@ -65,14 +64,8 @@ sap.ui.define(
        * Function is used to destroy component
        */
       destroy: function() {
-        //Destroy Actions
-        for (var sName in this.actions) {
-          this.actions[sName].destroy();
-        }
-        
         // generic destroy of component
-        DraftComponent.prototype.destroy.apply(this, arguments);
+        MonitorComponent.prototype.destroy.apply(this, arguments);
       }
     });
-  }
-);
+});
