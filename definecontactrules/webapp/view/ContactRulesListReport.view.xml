@@ -75,7 +75,7 @@
 					        useTablePersonalisation="true"
 					        demandPopin="true"
 					        useExportToExcel="true"
-                			beforeExport="onBeforeExport"
+                			beforeExport="onBeforeExport($event, 500)"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
                 			c:p13nDialogSettings='{filter:{visible:false}}' 

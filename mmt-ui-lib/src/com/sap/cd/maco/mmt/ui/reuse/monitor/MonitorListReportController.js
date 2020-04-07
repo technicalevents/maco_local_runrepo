@@ -33,7 +33,7 @@ sap.ui.define(
 				 * @public
 				 */
 				onFilterBarInitialized: function () {
-					this.oNav.parseNavigation().done(function (oAppState) {
+					this.mSingles.nav.parseNavigation().done(function (oAppState) {
 						if (!jQuery.isEmptyObject(oAppState)) {
 							this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
 							this.getSmartTable().rebindTable(true);
@@ -85,7 +85,7 @@ sap.ui.define(
 
 					if (iCount > iAllowedRowsToExport) {
 						oEvent.getParameter("exportSettings").dataSource.count = iAllowedRowsToExport;
-						this.oMessage.info({
+						this.mSingles.message.info({
 							msgKey: "EXCEL_DOWNLOAD_INFO_MSG"
 						});
 					}
@@ -103,7 +103,7 @@ sap.ui.define(
 						tableVariantId: this.getSmartTable().getCurrentVariantId(),
 						valueTexts: oSmartFilterUiState.getValueTexts()
 					};
-					this.oNav.storeInnerAppState(oCurrentAppState);
+					this.mSingles.nav.storeInnerAppState(oCurrentAppState);
 				},
 				
 				/**
