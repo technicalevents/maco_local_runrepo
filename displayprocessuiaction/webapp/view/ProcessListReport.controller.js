@@ -24,16 +24,11 @@ sap.ui.define([
          * Lifecycle method - triggered on initialization of ProcessListReport Controller
          */
         onInit: function() {
-			var oComponentActions = this.getOwnerComponent().actions;
 			this.getOwnerComponent().getModel().setSizeLimit(1200);
 			
 			ListReportNoDraftController.prototype.onInit.call(this, {
 				entitySet: "xMP4GxC_ProcessHeader_UI",
-				actions: {
-					executeMsgAggr: oComponentActions.executeMsgAggr,
-					reportExecution: oComponentActions.reportExecution,
-					share: oComponentActions.share
-				},
+				actions: this.getOwnerComponent().mActions,
 				routes: {
 					parent: null,
 					this: "listReport",
@@ -61,7 +56,7 @@ sap.ui.define([
 	  	* @public
 		*/
         onBeforeRebindTable: function(oEvent) {
-			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));
+			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
 			var aSorters = [];
 			aSorters.push(new Sorter("ProcessTimestamp", true));
 			aSorters.push(new Sorter("ProcessDocumentKey", true));
@@ -120,7 +115,7 @@ sap.ui.define([
 		 * @public
 		 */
 		onFilterBarInitialized: function() {
-			this.oNav.parseNavigation().done(function(oAppState) {
+			this.mSingles.nav.parseNavigation().done(function(oAppState) {
 				if(!jQuery.isEmptyObject(oAppState)) {
 					this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
 				} else {
@@ -144,7 +139,7 @@ sap.ui.define([
 				valueTexts: oSmartFilterUiState.getValueTexts()
 			};
 			
-			this.oNav.storeInnerAppState(oCurrentAppState);
+			this.mSingles.nav.storeInnerAppState(oCurrentAppState);
         }
     });
 });

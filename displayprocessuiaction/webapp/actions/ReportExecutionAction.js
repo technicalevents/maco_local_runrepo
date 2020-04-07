@@ -50,7 +50,7 @@ sap.ui.define([
 						        	
 					var sKey = this.oModel.createKey("/xMP4GxC_Proc_Detail_Action_UI", {ProcessDocumentKey: sRandomGuid});
 					
-					this.oTransaction.whenUpdated({
+					this.mSingles.transaction.whenUpdated({
 						path: sKey,
 						data: oData,
 						busyControl: oParams.busyControl
