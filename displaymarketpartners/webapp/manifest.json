@@ -23,9 +23,7 @@
       },
       "remoteAnnotation": {
         "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MRKTPARTNER_DISP_VAN',Version='0001')/$value/",
-        "type": "ODataAnnotation",
-        "settings": {
-        }
+        "type": "ODataAnnotation"
       }
     },
     "resources": "resources.json",
@@ -110,7 +108,8 @@
         "factoryName": "sap.ushell.ui5service.ShellUIService",
         "lazy": false,
         "settings": {
-          "setTitle": "auto"
+          "setTitle": "auto",
+          "setHierarchy": "auto"
         }
       }
     },

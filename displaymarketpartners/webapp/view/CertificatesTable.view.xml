@@ -8,13 +8,10 @@
 					    tableType="ResponsiveTable" 
 					    enableAutoBinding="true" 
 					    beforeRebindTable="onBeforeRebindTable"
-					    ignoredFields="" 
 					    beforeExport="beforeExport" 
 					    useExportToExcel="false" 
 					    useTablePersonalisation="false"
 					    persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.CertificatesTable"
-					    showRowCount="true" 
-					    placeToolbarInTable="false"
 					    demandPopin="true" 
 					    useVariantManagement="false">
   	 <smartTable:customToolbar>

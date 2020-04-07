@@ -21,15 +21,11 @@ sap.ui.define([
 		 * Lifecycle method - triggered on initialization of ProcessListReport Controller
 		 */
 		onInit: function () {
-			var oComponentActions = this.getOwnerComponent().actions;
 			this.getOwnerComponent().getModel().setSizeLimit(1200);
 
 			ListReportNoDraftController.prototype.onInit.call(this, {
 				entitySet: "xMP4GxCE_PARTNERS",
-				actions: {
-					navToPartnerPage: oComponentActions.navToPartnerPage,
-					share: oComponentActions.share
-				},
+				actions: this.getOwnerComponent().mActions,
 				routes: {
 					parent: null,
 					this: "listReport",
@@ -42,8 +38,6 @@ sap.ui.define([
 				},
 				tableAccessControl: {}
 			});
-
-			this.oRouter.getRoute("initial").attachPatternMatched(this._onRoutePatternMatched, this);
 		},
 
 		/******************************************************************* */
@@ -66,7 +60,7 @@ sap.ui.define([
 		 * @public
 		 */
 		onFilterBarInitialized: function () {
-			this.oNav.parseNavigation().done(function (oAppState) {
+			this.mSingles.nav.parseNavigation().done(function (oAppState) {
 				if (!jQuery.isEmptyObject(oAppState)) {
 					this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
 					this.getSmartTable().rebindTable(true);
@@ -96,26 +90,7 @@ sap.ui.define([
 				valueTexts: oSmartFilterUiState.getValueTexts()
 			};
 
-			this.oNav.storeInnerAppState(oCurrentAppState);
-		},
-
-		/******************************************************************* */
-		/* PRIVATE METHODS */
-		/******************************************************************* */
-
-		/**
-		 * Method is called on Route to Message List Page
-		 * @private
-		 */
-		_onRoutePatternMatched: function () {
-			this.oComponent.getService("ShellUIService").then(
-				function (oService) {
-					oService.setHierarchy([]);
-				}.bind(this),
-				function (oError) {
-					jQuery.sap.log.error("Cannot get ShellUIService", oError);
-				}
-			);
+			this.mSingles.nav.storeInnerAppState(oCurrentAppState);
 		}
 	});
 });
