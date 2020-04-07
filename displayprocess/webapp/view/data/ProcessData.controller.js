@@ -46,21 +46,18 @@ sap.ui.define([
 				var oProcessTypeView;
 	
 				this.getOwnerComponent().runAsOwner(function () {
-				
-
 					var oProcessTypeViewDet = Utility.getObjectWithAttr(this.aProcessViews, "viewName", sViewName);
 
 					if (jQuery.isEmptyObject(oProcessTypeViewDet)) {
+						oProcessTypeView = sap.ui.view({
+							viewName: sViewName,
+							type: ViewType.XML
+						});
 
-							oProcessTypeView = sap.ui.view({
-								viewName: sViewName,
-								type: ViewType.XML
-							});
-
-							this.aProcessViews.push({
-								viewName: sViewName,
-								oView: oProcessTypeView
-							});
+						this.aProcessViews.push({
+							viewName: sViewName,
+							oView: oProcessTypeView
+						});
 					} else {
 						oProcessTypeView = oProcessTypeViewDet.oView;
 					}
@@ -73,7 +70,5 @@ sap.ui.define([
 				oContainer.addItem(this.oNoDataText);
 			}
 		}
-
 	});
-
 });

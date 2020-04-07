@@ -13,8 +13,6 @@ sap.ui.define([
          * Lifecycle method - triggered on initialization of ProcessPage Controller
          */
         onInit: function() {
-          var oComponentActions = this.getOwnerComponent().actions;
-        	
           ObjectPageNoDraftController.prototype.onInit.call(this, {
             routes: {
               parent: "listReport",
@@ -28,10 +26,7 @@ sap.ui.define([
             controls: {
               objectPage: "idProcessObjectPage"
             },
-            actions: {
-              share: oComponentActions.share,
-              navToProcessAction: oComponentActions.navToProcessAction
-            }
+            actions: this.getOwnerComponent().mActions
           });
         },
 
@@ -124,7 +119,7 @@ sap.ui.define([
           var sKey = this.getView().getModel().createKey("/xMP4GxC_ProcActivityHeader_UI", 
                                                     {ProcessDocumentKey: sProcessDocumentKey});
                                                     
-          return this.oTransaction.whenRead({
+          return this.mSingles.transaction.whenRead({
                 path: sKey + "/to_PrMkPartner",
                 busyControl: this.getView()
           });
@@ -165,7 +160,5 @@ sap.ui.define([
           var oModel = this.getViewModel();
           oModel.setProperty("/MarketPartner", sMarketPartner);
         }
-      }
-    );
-  }
-);
+    });
+});

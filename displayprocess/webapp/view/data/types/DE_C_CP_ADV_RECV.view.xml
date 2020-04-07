@@ -4,7 +4,6 @@
 		  controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.types.DataTable"
 		  xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		  xmlns:html="http://www.w3.org/1999/xhtml">
-	
 	<smartTable:SmartTable id="idTable"
 					        entitySet="xMP4GxC_Cp_Adv_Recv"
 					        tableType="ResponsiveTable"
@@ -16,11 +15,9 @@
 					        beforeRebindTable="onBeforeRebindTable"
 					        header="{i18n>PROCESS_DATA_SECTION_LBL}"
 					        custom:entityName="xMP4GxC_Cp_Adv_Recv">
-	 
 	  <smartTable:customToolbar>
 	  	<Toolbar height="0rem"/>
 	  </smartTable:customToolbar>
-	  
 	  <Table id="idProcessTypeTable"
 	          growing="true"
 	          growingScrollToLoad="true" 
@@ -28,7 +25,6 @@
 	          mode="None"
 	          sticky="ColumnHeaders,HeaderToolbar" />
 	</smartTable:SmartTable>
-	
 	<smartTable:SmartTable id="idGeneralDataTable"
 							entitySet="xMP4GxC_General_Inbound_Info"
 					        tableType="ResponsiveTable"
@@ -40,16 +36,13 @@
 					        beforeRebindTable="onBeforeRebindGenInfoTable"
 					        header="{i18n>GENERAL_INFO_SECTION_TITLE}"
 					        class="sapUiLargeMarginTop">
-	 
 	  <smartTable:customToolbar>
 	  	<Toolbar height="0rem"/>
 	  </smartTable:customToolbar>
-	  
 	  <Table growing="true"
 	          growingScrollToLoad="true" 
 	          growingThreshold="50" 
 	          mode="None"
 	          sticky="ColumnHeaders,HeaderToolbar"  />
 	</smartTable:SmartTable>
-	
 </mvc:View>

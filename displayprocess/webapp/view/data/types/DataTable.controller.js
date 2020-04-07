@@ -35,7 +35,6 @@ sap.ui.define([
 				if (this.aProcessTypesForGenInbInfo.indexOf(this._sProcessId) >= 0) {
 					this.getView().byId("idGeneralDataTable").rebindTable();
 				}
-
 			},
 
 			/**
@@ -47,7 +46,6 @@ sap.ui.define([
 				var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));
 				oUpdate.addFilter("ProcessDocumentKey", FilterOperator.EQ, this._sProcessDocumentKey);
 				oUpdate.addFilter("IsGeneral", FilterOperator.EQ, false);
-
 				oUpdate.endFilterAnd();
 			},
 
@@ -57,7 +55,7 @@ sap.ui.define([
 			 * @public
 			 */
 			onBeforeRebindGenInfoTable: function (oEvent) {
-				var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));
+				var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
 				oUpdate.addFilter("ProcessDocumentKey", FilterOperator.EQ, this._sProcessDocumentKey);
 				oUpdate.addFilter("IsGeneral", FilterOperator.EQ, true);
 

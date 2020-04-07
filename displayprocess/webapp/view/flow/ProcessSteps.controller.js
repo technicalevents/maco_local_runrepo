@@ -49,7 +49,7 @@ sap.ui.define([
         navigateToBusinessObject: function(oEvent) {
           var oContext = oEvent.getSource().getBindingContext("this");
           var sObjectType = oContext.getObject().BusinessObjectType;
-          var oActions = this.getOwnerComponent().actions;
+          var oActions = this.oComponent.mActions;
           var oAction;
 
           if (sObjectType === Constants.BO_OBJECT_TYPE.PROCESS_DOCUMENT) {
@@ -142,7 +142,7 @@ sap.ui.define([
               ProcessDocumentKey: sProcessDocumentKey
             });
 
-          return this.oTransaction.whenRead({
+          return this.mSingles.transaction.whenRead({
             path: sKey + "/Set",
             busyControl: this.getView(),
             sorters: [
@@ -181,7 +181,5 @@ sap.ui.define([
           var oModel = this.getViewModel();
           oModel.setProperty("/ProcessStepData", aProcessSteps);
         }
-      }
-    );
-  }
-);
+    });
+});
