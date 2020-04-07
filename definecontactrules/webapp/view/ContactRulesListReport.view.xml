@@ -55,7 +55,7 @@
     <semantic:content>
     	<VBox>
     		<ToggleButton visible="{app>/devMode/enabled}" 
-    					  text="{= ${ContactRuleApp>/messageStripHidden} ? ${i18nSHOW_MESSAGE_STRIP} : ${18n>1HIDE_MESSAGE_STRIP}}" 
+    					  text="{= !!${ContactRuleApp>/messageStripHidden} ? ${i18n>SHOW_MESSAGE_STRIP} : ${18n>HIDE_MESSAGE_STRIP}}" 
     					  pressed="{ContactRuleApp>/messageStripHidden}" />
     		<VBox id="idMessageStripVBox" 
 				 busy="false" 
