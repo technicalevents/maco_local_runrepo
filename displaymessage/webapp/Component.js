@@ -1,5 +1,4 @@
-sap.ui.define(
-  [
+sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorComponent",
     "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/SingleDownloadAction",
@@ -9,8 +8,7 @@ sap.ui.define(
     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/MultipleDocumentAction"
-  ],
-  function(MonitorComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
+],function(MonitorComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
             NavToRouteAction, ShareAction, NavToProcessAction, NavToMessageAction,
             MultipleDocumentAction) {
     "use strict";
@@ -27,7 +25,7 @@ sap.ui.define(
         // call the base component's init function
         MonitorComponent.prototype.init.apply(this, arguments);
 
-        this.actions = {
+        this.mActions = {
           singleDownload: new SingleDownloadAction(this),
           multiDownload: new MultiDownloadAction(this),
           navToMessagePage: new NavToRouteAction(this),
@@ -53,7 +51,7 @@ sap.ui.define(
         // sync hash
         var oHashSync = new HashSync({
           component: this,
-          message: this.oMessage,
+          message: this.mSingles.message,
           getRouteName: function(startupParams) {
             return "messagePage";
           }
@@ -68,11 +66,6 @@ sap.ui.define(
        * Function is used to destroy component
        */
       destroy: function() {
-        //Destroy Actions
-        for (var sName in this.actions) {
-          this.actions[sName].destroy();
-        }
-        
         // generic destroy of component
         MonitorComponent.prototype.destroy.apply(this, arguments);
       }

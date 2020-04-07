@@ -6,7 +6,7 @@ sap.ui.define([
 	return {
 
     criticality: criticality,
-		formatMessage: formatMessage,
+	formatMessage: formatMessage,
     /******************************************************************* */
     /* PUBLIC METHODS */
     /******************************************************************* */

@@ -25,8 +25,6 @@ sap.ui.define([
 		   * @public
 		   */
 			onInit: function() {
-				var oComponentActions = this.getOwnerComponent().actions;
-
 				ObjectPageNoDraftController.prototype.onInit.call(this, {
 					routes: {
 						parent: "listReport",
@@ -39,12 +37,7 @@ sap.ui.define([
 					controls: {
 						objectPage: "objectPage"
 					},
-					actions: {
-						singleDownload: oComponentActions.singleDownload,
-						share: oComponentActions.share,
-						multipleDoc: oComponentActions.multipleDoc,
-						navObjectTableToProcessApp: oComponentActions.navObjectTableToProcessApp
-					}
+					actions: this.getOwnerComponent().mActions
 				});
 			},
 	
@@ -148,12 +141,11 @@ sap.ui.define([
 				var oAction;
 				var sPath = oEvent.getSource().getBinding("text").getPath();
 				var sDocType = oEvent.getSource().data("docType");
-				var oComponentActions = this.getOwnerComponent().actions;
 				
 				if(sDocType === "Process") {
-					oAction = oComponentActions.navObjectToProcessApp;
+					oAction = this.oComponent.mActions.navObjectToProcessApp;
 				} else if(sDocType === "Message") {
-					oAction = oComponentActions.navObjectToMessageApp;
+					oAction = this.oComponent.mActions.navObjectToMessageApp;
 				} else {
 					throw new Error("undefined mapping for object type: " + sDocType);
 				}
@@ -231,14 +223,14 @@ sap.ui.define([
 					var sLinkedDocumentKey = this.getView().getModel().createKey("/xMP4GxC_LinkedDocuments_UI", 
 			    						{TransferDocumentKey: sTransferDocumentKey});
 			    						
-					this.oTransaction.whenRead({
+					this.mSingles.transaction.whenRead({
 						path: sLinkedDocumentKey + "/Set",
 						busyControl: this.getView()
 					}).then(this._onSucessLinkTransferDocumentsRead.bind(this));
 					
 					var sExternalPayloadKey = this.getView().getModel().createKey("/xMP4GxC_TransferDoc_UI", 
 			    						{TransferDocumentKey: sTransferDocumentKey});
-					this.oTransaction.whenRead({
+					this.mSingles.transaction.whenRead({
 						path: sExternalPayloadKey,
 						urlParameters: {
 							$select: "ExternalPayload"
@@ -247,7 +239,7 @@ sap.ui.define([
 					}).then(this._onSucessExternalPayloadRead.bind(this));
 				} else {
 					// show message
-                    this.oNav.navNotFound({
+                    this.mSingles.nav.navNotFound({
 						msg: this.notFoundMsg()
 					});
 				}
@@ -325,8 +317,5 @@ sap.ui.define([
 		        oExternalPayload.InitialExternalPayload = sFormattedExternalPayload;
 				oModel.setProperty("/ExternalPayload", oExternalPayload);
 			}
-		}
-	  );
-	}
-  );
-  
+		});
+});

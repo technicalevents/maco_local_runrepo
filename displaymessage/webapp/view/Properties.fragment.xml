@@ -48,9 +48,8 @@
 									 {path: 'this>/LinkedDocuments/ContrlDocCount'}],
 	            			 formatter: '.formatter.formatMessage'}"
 					  wrapping="true" 
-					  press="onAction"
-					  c:boObjectType="CONTRL"
-					  c:action="multipleDoc"/>
+					  press="onAction('multipleDoc', $event)"
+					  c:boObjectType="CONTRL"/>
 			</GroupElement>
 			<GroupElement label="{i18n>MSG_REF_TEXT}"
 									visible="{= ${this>/LinkedDocuments/ContrlDocCount} > 1 ? false : true}">
@@ -76,9 +75,8 @@
 									 {path: 'this>/LinkedDocuments/AperakDocCount'}],
 	            			 formatter: '.formatter.formatMessage'}"
 					  wrapping="true" 
-					  press="onAction"
-					  c:boObjectType="APERAK"
-					  c:action="multipleDoc"/>
+					  press="onAction('multipleDoc', $event)"
+					  c:boObjectType="APERAK"/>
 			</GroupElement>
 			<GroupElement label="{i18n>MSG_REF_TEXT}"
 									visible="{= ${this>/LinkedDocuments/AperakDocCount} > 1 ? false : true}">

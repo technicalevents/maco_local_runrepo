@@ -22,7 +22,6 @@
                   smartVariant="idMessageVariantManagement"
                   useToolbar="false"
                   enableBasicSearch="true"
-                  liveMode="false"
                   useDateRangeType="true"
                   initialized="onFilterBarInitialized"
                   showFilterConfiguration="false"
@@ -60,13 +59,11 @@
 					        tableType="ResponsiveTable"
 					        smartFilterId="idMessageSmartFilterBar"
 					        smartVariant="idMessageVariantManagement"
-					        enableAutoBinding="false" 
 					        requestAtLeastFields="TransferDocumentKey,ProcessDocumentKey,ProcessID"
 					        ignoredFields="ExtBusinessMessageID"
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="true"
 					        demandPopin="true"
-					        useExportToExcel="true"
                 			beforeExport="onBeforeExport"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
@@ -78,9 +75,8 @@
             <ToolbarSpacer/>
             <Button text="{i18n>DOWNLOAD_BTN_TXT}"
                     type="Transparent"
-                    press="onAction"
-                    enabled="{this>/tableActionEnabled/multiDownload}"
-                    c:action="multiDownload"/>
+                    press="onAction('multiDownload', $event)"
+                    enabled="{this>/tableActionEnabled/multiDownload}"/>
           </OverflowToolbar>
         </smartTable:customToolbar>
         <Table id="idMessageTable"
@@ -133,7 +129,7 @@
             </Column>
           </columns>
           <items>
-            <ColumnListItem type="Navigation" press="onAction" c:action="navToMessagePage">
+            <ColumnListItem type="Navigation" press="onAction('navToMessagePage', $event)">
               <cells>
               	<reuseTable:ObjectIdentifier title="{ExternalUUID}" text="{SenderId}"/>
                 <Text text="{TechnicalMsgID}"/>
@@ -142,7 +138,7 @@
                 <core:Icon src="{= ${Direction} === 'O' ? 'sap-icon://arrow-right' : 'sap-icon://arrow-left'}" 
                 		       tooltip="{= ${Direction} === 'O' ? 'Outbound' : 'Inbound'}"/>
                 <reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}"  text="{ExternalMarketPartner}"/>
-                <Link text="{ProcessDocumentNumber}" c:action="navListToProcessApp" press="onAction"/>
+                <Link text="{ProcessDocumentNumber}" press="onAction('navListToProcessApp', $event)"/>
               </cells>
             </ColumnListItem>
           </items>
@@ -150,8 +146,7 @@
       </smartTable:SmartTable>
     </semantic:content>
     <semantic:titleCustomTextActions>
-		<reuseButton:Share press="onAction" 
-                       c:action="share" />
+		<reuseButton:Share press="onAction('share', $event)"/>
     </semantic:titleCustomTextActions>
   </semantic:SemanticPage>
 </mvc:View>
