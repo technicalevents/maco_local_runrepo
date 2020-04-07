@@ -20,7 +20,7 @@ sap.ui.define([
         // call the base component's init function
         MonitorComponent.prototype.init.apply(this, arguments);
 
-        this.actions = {
+        this.mActions = {
           navToUploadProcessAction: new NavToProcessAction(this, "MassUploadProcessKey", "MassUploadProcessID"),
           navToAggrProcessAction: new NavToProcessAction(this, "AggregationProcessKey", "AggregationProcessID"),
           navToMessageAction: new NavToMessageAction(this, "MessageReferenceUUID"),
@@ -41,7 +41,7 @@ sap.ui.define([
         // sync hash
         var oHashSync = new HashSync({
           component: this,
-          message: this.oMessage,
+          message: this.mSingles.message,
           getRouteName: function(startupParams) {
             return "listReport";
           }
@@ -56,11 +56,6 @@ sap.ui.define([
        * Function is triggered on exit of Application 
        */
       destroy: function() {
-        //Destroy Actions
-        for (var sName in this.actions) {
-          this.actions[sName].destroy();
-        }
-        
         // generic destroy of component
         MonitorComponent.prototype.destroy.apply(this, arguments);
       }

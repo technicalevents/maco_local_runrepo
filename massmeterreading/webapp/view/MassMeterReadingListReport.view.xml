@@ -22,7 +22,6 @@
 	        <smartFilterBar:SmartFilterBar id="idMassMeterReadingSmartFilterBar"
 										   smartVariant="idMassMeterReadingVariantManagement"
 										   enableBasicSearch="true"
-										   liveMode="false"
 										   useDateRangeType="true"
 										   useToolbar="false"
 										   initialized="onFilterBarInitialized"
@@ -108,7 +107,6 @@
 								   tableType="ResponsiveTable"
 								   smartFilterId="idMassMeterReadingSmartFilterBar"
 								   smartVariant="idMassMeterReadingVariantManagement"
-								   enableAutoBinding="false" 
 								   demandPopin="true"
 								   header="{i18n>METER_READINGS_PLURAL_LBL}"
 								   c:p13nDialogSettings='{filter:{visible:false}}' 
@@ -211,9 +209,9 @@
 								<reuseTable:ObjectIdentifier title="{path:'PeriodToDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
 								<Text text="{path:'UploadDate', type:'sap.ui.model.type.Date', formatOptions:{style:'short'}}"/>
 								<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}" text="{ExternalMarketPartner}"/>
-								<Link text="{MassUploadProcessDoc}" tooltip="{MassUploadProcessDoc}" c:action="navToUploadProcessAction" press="onAction"/>
-								<Link text="{AggregationProcessDoc}" tooltip="{AggregationProcessDoc}" c:action="navToAggrProcessAction" press="onAction"/>
-								<Link text="{MessageReference}" tooltip="{MessageReference}" c:action="navToMessageAction" press="onAction"/>
+								<Link text="{MassUploadProcessDoc}" tooltip="{MassUploadProcessDoc}" press="onAction('navToUploadProcessAction', $event)"/>
+								<Link text="{AggregationProcessDoc}" tooltip="{AggregationProcessDoc}" press="onAction('navToAggrProcessAction', $event)"/>
+								<Link text="{MessageReference}" tooltip="{MessageReference}" press="onAction('navToMessageAction', $event)"/>
 								<reuseTable:ObjectIdentifier title="{OwnMarketPartnerText}" text="{OwnMarketPartner}"/>
 							</cells>
 						</ColumnListItem>
@@ -222,7 +220,7 @@
 			</smartTable:SmartTable>
 	    </semantic:content>
 	    <semantic:titleCustomTextActions>
-			<reuseButton:Share press="onAction" c:action="share" />
+			<reuseButton:Share press="onAction('share', $event)"/>
 	    </semantic:titleCustomTextActions>
 	</semantic:SemanticPage>
 </mvc:View>

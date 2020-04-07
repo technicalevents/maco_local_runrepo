@@ -29,17 +29,11 @@ sap.ui.define([
 		 * @public
          */
         onInit: function() {
-			var oComponentActions = this.getOwnerComponent().actions;
 			this.getOwnerComponent().getModel().setSizeLimit(1500);
 			
 			ListReportNoDraftController.prototype.onInit.call(this, {
 				entitySet: "xMP4GxC_MassProcMtrRead",
-				actions: {
-					navToUploadProcessAction: oComponentActions.navToUploadProcessAction,
-					navToAggrProcessAction: oComponentActions.navToAggrProcessAction,
-					navToMessageAction: oComponentActions.navToMessageAction,
-					share: oComponentActions.share
-				},
+				actions: this.getOwnerComponent().mActions,
 				routes: {
 					parent: null,
 					this: "listReport",
@@ -213,7 +207,7 @@ sap.ui.define([
 		 * @public
 		 */
 		onFilterBarInitialized: function() {      
-			this.oNav.parseNavigation().done(function(oAppState) {
+			this.mSingles.nav.parseNavigation().done(function(oAppState) {
 				if(!jQuery.isEmptyObject(oAppState)) {
 					this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
 					this.getSmartTable().rebindTable(true);
@@ -239,7 +233,7 @@ sap.ui.define([
 			var iCount = oEvent.getParameter("exportSettings").dataSource.count;
 			if (iCount > 500) {
 				oEvent.getParameter("exportSettings").dataSource.count = 500;
-				this.oMessage.info({
+				this.mSingles.message.info({
 					msgKey: "EXCEL_DOWNLOAD_INFO_MSG"
 				});
 			}
@@ -258,7 +252,7 @@ sap.ui.define([
 				valueTexts: oSmartFilterUiState.getValueTexts()
 			};
 			
-			this.oNav.storeInnerAppState(oCurrentAppState);
+			this.mSingles.nav.storeInnerAppState(oCurrentAppState);
         },
         
         /******************************************************************* */
