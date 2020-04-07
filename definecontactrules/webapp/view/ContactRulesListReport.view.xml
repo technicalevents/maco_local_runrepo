@@ -18,16 +18,17 @@
 		</semantic:titleHeading>
     <semantic:headerContent>
           <smartFilterBar:SmartFilterBar id="idContactRulesFilterBar"
-                  smartVariant="idContactRulesVariantManagement"
-                  useToolbar="false"
-                  enableBasicSearch="true"
-                  liveMode="false"
-                  useDateRangeType="true"
-                  initialized="onFilterBarInitialized"
-                  showFilterConfiguration="false"
-                  persistencyKey="com.sap.cd.maco.selfservice.ui.app.controller.definecontactrules.filterbar"
-                  entitySet="xMP4GxC_CTA_MP_UI"
-                  class="sapUiSmallMarginBottom">
+					                  smartVariant="idContactRulesVariantManagement"
+					                  useToolbar="false"
+					                  enableBasicSearch="true"
+					                  liveMode="false"
+					                  useDateRangeType="true"
+					                  initialized="onFilterBarInitialized"
+					                  showFilterConfiguration="false"
+					                  persistencyKey="com.sap.cd.maco.selfservice.ui.app.controller.definecontactrules.filterbar"
+					                  entitySet="xMP4GxC_CTA_MP_UI"
+					                  afterVariantLoad="onAfterVariantLoad"
+					                  class="sapUiSmallMarginBottom">
           	<smartFilterBar:controlConfiguration>
                 <smartFilterBar:ControlConfiguration key="OwnerUUID"
 													 label="{/xMP4GxC_CTA_MP_UI/OwnMarketPartner/#@sap:label}">
@@ -53,10 +54,15 @@
      </semantic:headerContent>
     <semantic:content>
     	<VBox>
+    		<ToggleButton visible="{app>/devMode/enabled}" 
+    					  text="{= ${ContactRuleApp>/messageStripHidden} ? ${i18nSHOW_MESSAGE_STRIP} : ${18n>1HIDE_MESSAGE_STRIP}}" 
+    					  pressed="{ContactRuleApp>/messageStripHidden}" />
     		<VBox id="idMessageStripVBox" 
 				 busy="false" 
-				 class="sapUiSmallMarginTop" height="auto">
-			</VBox>
+				 class="sapUiSmallMarginTop" 
+				 height="auto"
+				 visible="{= !!!${ContactRuleApp>/messageStripHidden}}"/>
+	      
       <smartTable:SmartTable id="idContactRulesSmartTable"
 					        entitySet="xMP4GxC_CTA_MP_UI"
 					        tableType="ResponsiveTable"

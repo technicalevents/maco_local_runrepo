@@ -100,8 +100,8 @@ sap.ui.define(
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
 										title: "Define Contact Determination Rules",
-										icon: "sap-icon://BusinessSuiteInAppSymbols/icon-business-partner",
-										targetURL: "#UtilsDataExchangeProcessing-defineContactRules"
+										icon: "sap-icon://activity-assigned-to-goal",
+										targetURL: "#UtilsDataExchangeProcessing-defineContactRule"
 									}
 								}]
 							}]
@@ -248,9 +248,9 @@ sap.ui.define(
 										)
 									}
 								},
-								"UtilsDataExchangeProcessing-defineContactRules": {
+								"UtilsDataExchangeProcessing-defineContactRule": {
 										semanticObject: "UtilsDataExchangeProcessing",
-										action: "defineContactRules",
+										action: "defineContactRule",
 										description: "Define Contact Determination Rules",
 										title: "Define Contact Determination Rules",
 										signature: {
