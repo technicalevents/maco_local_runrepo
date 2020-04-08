@@ -14,25 +14,38 @@ sap.ui.define(
       //~~~~ init ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
       onInit: function(config) {
-        // super
         BaseViewController.prototype.onInit.apply(this, arguments);
-
-        // check config
-        Assert.ok(config, 'cannot init ObjectPage. config missing');
-        Assert.ok(config.controls, 'cannot init ObjectPage. controls missing');
-        Assert.ok(config.routes, 'cannot init ObjectPage. routes missing');
-        Assert.ok(config.routes.this, 'cannot init ObjectPage. routes.this missing');
-        Assert.ok(config.entitySet, 'cannot init ObjectPage. entitySet missing');
-
-        //
+        this._checkConfig();
         this._oODataMetaModelExt = new ODataMetaModelExt(this.oComponent);
-
-        // set this model
         this.initViewModel();
+        this._registerRoutes();
+      },
 
-        // register for routing
-        var oRoute = this.oRouter.getRoute(config.routes.this);
-        Assert.ok(oRoute, 'ObjectPageController cannot init. the route ' + config.routes.this + ' cannot be found. check your manifest');
+      _checkConfig: function() {
+        Assert.ok(this.oConfig, 'cannot init ObjectPage. config missing');
+        Assert.ok(this.oConfig.controls, 'cannot init ObjectPage. controls missing');
+        Assert.ok(this.oConfig.routes, 'cannot init ObjectPage. routes missing');
+        Assert.ok(this.oConfig.routes.this, 'cannot init ObjectPage. routes.this missing');
+        Assert.ok(this.oConfig.entitySet, 'cannot init ObjectPage. entitySet missing');
+        if (this.oConfig.flpNavMenu) {
+          Assert.ok(this.oConfig.flpNavMenu.title, 'cannot init ObjectPage. missing config: flpNavMenu.title');
+          Assert.ok(this.oConfig.flpNavMenu.parentTitle, 'cannot init ObjectPage. missing config: flpNavMenu.parentTitle');
+          Assert.ok(this.oConfig.flpNavMenu.parentIntent, 'cannot init ObjectPage. missing config: flpNavMenu.parentIntent');
+          var oEntry = this.oComponent.getManifestEntry('sap.ui5');
+          Assert.ok(
+            !oEntry ||
+              !oEntry.services ||
+              !oEntry.services.ShellUIService ||
+              !oEntry.services.ShellUIService.settings ||
+              (oEntry.services.ShellUIService.settings.setHierarchy !== 'auto' && oEntry.services.ShellUIService.settings.setTitle !== 'auto'),
+            'cannot init ObjectPage. flpNavMenu conflicts with the ShellUIService which is set to auto in manifest. Change this to manual'
+          );
+        }
+      },
+
+      _registerRoutes: function() {
+        var oRoute = this.oRouter.getRoute(this.oConfig.routes.this);
+        Assert.ok(oRoute, 'ObjectPageController cannot init. the route ' + this.oConfig.routes.this + ' cannot be found. check your manifest');
         oRoute.attachPatternMatched(this._onRouteMatched, this);
       },
 
@@ -119,10 +132,9 @@ sap.ui.define(
       },
 
       _onRouteMatched: function(oEvent) {
-        // keep args
         this.oRouteArgs = oEvent.getParameters().arguments;
-        // bind
         this._fireOnBeforeBind();
+        this._setFlpNavMenu();
         this._bind();
       },
 
@@ -131,6 +143,29 @@ sap.ui.define(
         var oViewBinding = this.getView().getElementBinding();
         this._fireOnBeforeBind();
         oViewBinding.refresh(true);
+      },
+
+      _setFlpNavMenu: function() {
+        if (!this.oConfig.flpNavMenu) {
+          return;
+        }
+        this.oComponent.getService('ShellUIService').then(
+          function(oService) {
+            var sTitle = this.oBundle.getText(this.oConfig.flpNavMenu.title);
+            var sParentTitle = this.oBundle.getText(this.oConfig.flpNavMenu.parentTitle);
+            var sParentIntent = this.oConfig.flpNavMenu.parentIntent;
+            oService.setTitle(sTitle);
+            oService.setHierarchy([
+              {
+                title: sParentTitle,
+                intent: sParentIntent
+              }
+            ]);
+          }.bind(this),
+          function(oError) {
+            Assert.ok(false, 'Cannot set FLP nav menu. Cannot get ShellUIService.');
+          }
+        );
       },
 
       _fireOnBeforeBind: function() {

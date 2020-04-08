@@ -3,7 +3,7 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
 	"com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction"
-], function(BaseAction, Filter, FilterOperator, NavToMessageAction) {
+	], function(BaseAction, Filter, FilterOperator, NavToMessageAction) {
   "use strict";
 
   return BaseAction.extend(
@@ -17,8 +17,8 @@ sap.ui.define([
        * Constructor
        */
         constructor: function(oComponent, oConfig) {
-          BaseAction.call(this, oComponent, oConfig);
-          this.oConfig.minContexts = 1;
+          var sCardinality = "1..N";
+          BaseAction.call(this, oComponent, oConfig, sCardinality);
           
           this._oNavToMessageAction = new NavToMessageAction(oComponent, "LinkedDocumentKey");
         },
@@ -36,14 +36,18 @@ sap.ui.define([
           // check params to have a context
           this.assertContextParam(oParams);
           
-          return new Promise(function(resolve, reject) {
-			  // Store params for async usage
+          return new Promise(
+			      function(resolve, reject) {
+					
+			        // Store params for async usage
               this._oParams = oParams;
               
               // Create Multiple Document action sheet only once
               if (!this._oMultipeDocumentActionSheet) {
                 this._oMultipeDocumentActionSheet = sap.ui.xmlfragment(
-                  "com.sap.cd.maco.monitor.ui.app.displaymessages.actions.MultipleDocsActionSheet", this);
+                  "com.sap.cd.maco.monitor.ui.app.displaymessages.actions.MultipleDocsActionSheet",
+                  this
+                );
                 oParams.busyControl.addDependent(this._oMultipeDocumentActionSheet);
               }
               
@@ -54,7 +58,10 @@ sap.ui.define([
               this._oMultipeDocumentActionSheet.openBy(oParams.event.getSource());
 
               // done
-              resolve({params: oParams});
+              resolve({
+                params: oParams
+              });
+				
 		      }.bind(this));
         },
         
@@ -67,5 +74,6 @@ sap.ui.define([
         	this._oParams.contexts = [oEvent.getSource().getBindingContext("this")];
         	this._oNavToMessageAction.execute(this._oParams);
         }
-    });
+    }
+  );
 });

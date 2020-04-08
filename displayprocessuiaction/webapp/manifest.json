@@ -16,6 +16,7 @@
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
+          "localUri": "localService/metadata.xml",
           "annotations": [
             "_MP4G_PROC_ANNO_MDL"
           ]
@@ -23,7 +24,17 @@
       },
       "_MP4G_PROC_ANNO_MDL": {
         "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_PROCESSACTIONS_VAN',Version='0001')/$value/",
-        "type": "ODataAnnotation"
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/_MP4G_PROC_ANNO_MDL.xml"
+        }
+      },
+      "localAnnotations": {
+        "uri": "annotation/Process.xml",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "annotation/Process.xml"
+        }
       }
     },
     "resources": "resources.json",
@@ -108,8 +119,7 @@
         "factoryName": "sap.ushell.ui5service.ShellUIService",
         "lazy": false,
         "settings": {
-          "setTitle": "auto",
-          "setHierarchy": "auto"
+          "setTitle": "auto"
         }
       }
     },

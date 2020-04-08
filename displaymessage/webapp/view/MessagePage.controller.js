@@ -1,9 +1,11 @@
-sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
-	"com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
-	"sap/ui/model/Context"
-], function(ObjectPageNoDraftController, Constants, messageFormatter, Context) {
+sap.ui.define(
+	[
+	  "com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
+	  "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
+	  "com/sap/cd/maco/monitor/ui/app/displaymessages/util/Formatter",
+	  "sap/ui/model/Context"
+	],
+	function(ObjectPageNoDraftController, Constants, messageFormatter, Context) {
 	  "use strict";
   
 	  return ObjectPageNoDraftController.extend(
@@ -25,6 +27,8 @@ sap.ui.define([
 		   * @public
 		   */
 			onInit: function() {
+				var oComponentActions = this.getOwnerComponent().actions;
+
 				ObjectPageNoDraftController.prototype.onInit.call(this, {
 					routes: {
 						parent: "listReport",
@@ -37,7 +41,12 @@ sap.ui.define([
 					controls: {
 						objectPage: "objectPage"
 					},
-					actions: this.getOwnerComponent().mActions
+					actions: {
+						singleDownload: oComponentActions.singleDownload,
+						share: oComponentActions.share,
+						multipleDoc: oComponentActions.multipleDoc,
+						navObjectTableToProcessApp: oComponentActions.navObjectTableToProcessApp
+					}
 				});
 			},
 	
@@ -60,7 +69,7 @@ sap.ui.define([
 			 * @public
 			 */
 			onAfterBind: function(oRouteParams, oTransferDocument) {
-				var oModel = this.getViewModel();
+				var oModel = this.getThisModel();
 				oModel.setProperty("/LinkedDocuments", {});
 				oModel.setProperty("/LinkedTransferDocuments", []);
 				oModel.setProperty("/TransferDocument", oTransferDocument);
@@ -103,7 +112,7 @@ sap.ui.define([
 			 * @public
 			 */
         	onBeforeRebindTable: function() {
-        		var sTransferDocumentKey = this.getViewModel().getProperty("/TransferDocument").TransferDocumentKey;
+        		var sTransferDocumentKey = this.getThisModel().getProperty("/TransferDocument").TransferDocumentKey;
         		
         		if(sTransferDocumentKey) {
         			this.byId("idLinkedProcessSmartTable").setTableBindingPath("/xMP4GxC_GetLinkedPdocDetails(TransferDocumentKey=guid'"+ sTransferDocumentKey + "')/Set");
@@ -128,7 +137,7 @@ sap.ui.define([
 				}
 				
 				if(iProcessDocCount) {
-					this.getViewModel().setProperty("/LinkedDocuments/ProcessDocCount", iProcessDocCount);
+					this.getThisModel().setProperty("/LinkedDocuments/ProcessDocCount", iProcessDocCount);
 				}
 			},
 
@@ -141,18 +150,19 @@ sap.ui.define([
 				var oAction;
 				var sPath = oEvent.getSource().getBinding("text").getPath();
 				var sDocType = oEvent.getSource().data("docType");
+				var oComponentActions = this.getOwnerComponent().actions;
 				
 				if(sDocType === "Process") {
-					oAction = this.oComponent.mActions.navObjectToProcessApp;
+					oAction = oComponentActions.navObjectToProcessApp;
 				} else if(sDocType === "Message") {
-					oAction = this.oComponent.mActions.navObjectToMessageApp;
+					oAction = oComponentActions.navObjectToMessageApp;
 				} else {
 					throw new Error("undefined mapping for object type: " + sDocType);
 				}
 				
 				var oParams = {
 				    busyControl: this.getView(),
-				    contexts: [new Context(this.getViewModel(), sPath.substring(0, sPath.lastIndexOf("/")))]
+				    contexts: [new Context(this.getThisModel(), sPath.substring(0, sPath.lastIndexOf("/")))]
 				};
 				oAction.execute(oParams);
 			},
@@ -162,7 +172,7 @@ sap.ui.define([
 			 * @public
 			 */
 			onLoadCompleteMessage: function() {
-				var oModel = this.getViewModel();
+				var oModel = this.getThisModel();
 				var oExternalPayload = oModel.getProperty("/ExternalPayload");
 				var oUpdatedExternalPayload = {};
 				
@@ -223,14 +233,14 @@ sap.ui.define([
 					var sLinkedDocumentKey = this.getView().getModel().createKey("/xMP4GxC_LinkedDocuments_UI", 
 			    						{TransferDocumentKey: sTransferDocumentKey});
 			    						
-					this.mSingles.transaction.whenRead({
+					this.oTransaction.whenRead({
 						path: sLinkedDocumentKey + "/Set",
 						busyControl: this.getView()
 					}).then(this._onSucessLinkTransferDocumentsRead.bind(this));
 					
 					var sExternalPayloadKey = this.getView().getModel().createKey("/xMP4GxC_TransferDoc_UI", 
 			    						{TransferDocumentKey: sTransferDocumentKey});
-					this.mSingles.transaction.whenRead({
+					this.oTransaction.whenRead({
 						path: sExternalPayloadKey,
 						urlParameters: {
 							$select: "ExternalPayload"
@@ -239,7 +249,7 @@ sap.ui.define([
 					}).then(this._onSucessExternalPayloadRead.bind(this));
 				} else {
 					// show message
-                    this.mSingles.nav.navNotFound({
+                    this.oNav.navNotFound({
 						msg: this.notFoundMsg()
 					});
 				}
@@ -251,7 +261,7 @@ sap.ui.define([
 			 * @private
 			 */
 			_onSucessLinkTransferDocumentsRead: function(oResult){
-				var oModel = this.getViewModel();
+				var oModel = this.getThisModel();
 				var aLinkedTransferDocuments = oModel.getProperty("/LinkedTransferDocuments");
 				var sTechnicalMsgID = oModel.getProperty("/TransferDocument").TechnicalMsgID;
 				var oLinkedDocuments = oModel.getProperty("/LinkedDocuments");
@@ -296,7 +306,7 @@ sap.ui.define([
 			 * @private
 			 */
 			_onSucessExternalPayloadRead: function(oResponseData) {
-				var oModel = this.getViewModel();
+				var oModel = this.getThisModel();
 				var sCompExternalPayload = oResponseData.data.ExternalPayload;
 				var oExternalPayload = {};
 				var sFormattedExternalPayload = "";
@@ -317,5 +327,8 @@ sap.ui.define([
 		        oExternalPayload.InitialExternalPayload = sFormattedExternalPayload;
 				oModel.setProperty("/ExternalPayload", oExternalPayload);
 			}
-		});
-});
+		}
+	  );
+	}
+  );
+  

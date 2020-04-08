@@ -1,7 +1,8 @@
 sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
     "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter"
-  ],function(ObjectPageNoDraftController, Formatter) {
+  ],
+  function(ObjectPageNoDraftController, Formatter) {
     "use strict";
 
     return ObjectPageNoDraftController.extend(
@@ -13,6 +14,8 @@ sap.ui.define([
          * Lifecycle method - triggered on initialization of ProcessPage Controller
          */
         onInit: function() {
+          var oComponentActions = this.getOwnerComponent().actions;
+        	
           ObjectPageNoDraftController.prototype.onInit.call(this, {
             routes: {
               parent: "listReport",
@@ -26,7 +29,10 @@ sap.ui.define([
             controls: {
               objectPage: "idProcessObjectPage"
             },
-            actions: this.getOwnerComponent().mActions
+            actions: {
+              share: oComponentActions.share,
+              navToProcessAction: oComponentActions.navToProcessAction
+            }
           });
         },
 
@@ -40,17 +46,17 @@ sap.ui.define([
          * @param {object} oRouteParams Route parameters of Process Page
          */
         onBeforeBind: function(oRouteParams){  
-          // Set first tab 'FlowTab' as by default on click of process in process list app
-          this.byId("idProcessObjectPage").setSelectedSection(this.getView().getId() + "--idFlowTab");
+        	// Set first tab 'FlowTab' as by default on click of process in process list app
+        	this.byId("idProcessObjectPage").setSelectedSection(this.getView().getId() + "--idFlowTab");
         	
-          this.getViewModel().setProperty("/IsAssociatedTabVisible", false);
+          this.getThisModel().setProperty("/IsAssociatedTabVisible", false);
 
           var sBindingPath = this.getView().getModel().createKey("/xMP4GxC_Linked_Associated_Proc", 
                           {ProcessDocumentKey: oRouteParams.ProcessDocumentKey}) + "/Set";
           var oAssociatedSmartTable = this.byId("idAssociatedProcessSmartTable");
 
-          oAssociatedSmartTable.setTableBindingPath(sBindingPath);
-          oAssociatedSmartTable.rebindTable();
+        	oAssociatedSmartTable.setTableBindingPath(sBindingPath);
+        	oAssociatedSmartTable.rebindTable();
                   
           this._whenProcessDataRead(oRouteParams.ProcessDocumentKey)
             .then(this._onSucessProcessDataRead.bind(this));
@@ -101,7 +107,7 @@ sap.ui.define([
           }
           
           if(iAssociatedProcessCount) {
-            this.getViewModel().setProperty("/IsAssociatedTabVisible", iAssociatedProcessCount > 0);
+            this.getThisModel().setProperty("/IsAssociatedTabVisible", iAssociatedProcessCount > 0);
           }
         },
 
@@ -119,7 +125,7 @@ sap.ui.define([
           var sKey = this.getView().getModel().createKey("/xMP4GxC_ProcActivityHeader_UI", 
                                                     {ProcessDocumentKey: sProcessDocumentKey});
                                                     
-          return this.mSingles.transaction.whenRead({
+          return this.oTransaction.whenRead({
                 path: sKey + "/to_PrMkPartner",
                 busyControl: this.getView()
           });
@@ -157,8 +163,10 @@ sap.ui.define([
           }
 
           var sMarketPartner = aMarketPartner.join(", ");
-          var oModel = this.getViewModel();
+          var oModel = this.getThisModel();
           oModel.setProperty("/MarketPartner", sMarketPartner);
         }
-    });
-});
+      }
+    );
+  }
+);

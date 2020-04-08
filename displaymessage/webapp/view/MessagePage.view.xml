@@ -23,9 +23,9 @@
                        formatter: '.formatTechnicalBusinessMsgId'}" />
         </uxap:snappedContent>
         <uxap:actions>
-			<Button text="{i18n>DOWNLOAD_BTN_TXT}" type="Transparent" press="onAction('singleDownload', $event)"
-					enabled="{this>/tableActionEnabled/singleDownload}"/>
-			<reuseButton:Share icon="sap-icon://action" press="onAction('share', $event)"/>
+			<Button text="{i18n>DOWNLOAD_BTN_TXT}" type="Transparent" press="onAction"
+					enabled="{this>/tableActionEnabled/singleDownload}" c:action="singleDownload" />
+			<reuseButton:Share icon="sap-icon://action" press="onAction" c:action="share" />
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>

@@ -4,35 +4,35 @@
         xmlns:reuseObjectPageFacet="com.sap.cd.maco.mmt.ui.reuse.control.facet"
         xmlns:layout="sap.ui.layout">
 	<reuseObjectPageFacet:FormFacet>
-        <reuseObjectPageFacet:FormFacetText
+        <reuseObjectPageFacet:FormFacetField
             label="{/xMP4GxC_ProcActivityHeader_UI/ProcessDate/#@sap:label}"
             text="{
 				path: 'ProcessDate',
 				type: 'sap.ui.model.type.Date',
 				formatOptions: { style: 'medium' }
 			}" />
-		<reuseObjectPageFacet:FormFacetText
+		<reuseObjectPageFacet:FormFacetField
             label="{/xMP4GxC_ProcActivityHeader_UI/ProcessTimestamp/#@sap:label}"
             text="{
 				path: 'ProcessTimestamp',
 				type: 'sap.ui.model.type.Date',
 				formatOptions: { style: 'medium' }
 			}" />
-        <reuseObjectPageFacet:FormFacetText
+        <reuseObjectPageFacet:FormFacetField
             label="{/xMP4GxC_ProcActivityHeader_UI/BusinessObjectUUID/#@sap:label}"
             text="{BusinessObjectUUID}"/>
-        <reuseObjectPageFacet:FormFacetText
+        <reuseObjectPageFacet:FormFacetField
             label="{/xMP4GxC_ProcActivityHeader_UI/CommonAccessUUID/#@sap:label}"
             text="{CommonAccessUUID}"/>
     </reuseObjectPageFacet:FormFacet>
 	<reuseObjectPageFacet:FormFacet width="30%" class="comSapCdMacoMmtUiOwnMarketPartner">
-		<reuseObjectPageFacet:FormFacetText
+		<reuseObjectPageFacet:FormFacetField
             label="{/xMP4GxC_ProcActivityHeader_UI/OwnerUUID/#@sap:label}"
             text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_OBJ_LBL'},
                            {path: 'OwnerUUIDText'},
                            {path: 'OwnerUUID'}],
                    formatter: '.formatter.formatMessage'}"/>
-		<reuseObjectPageFacet:FormFacetText
+		<reuseObjectPageFacet:FormFacetField
             label="{/xMP4GxC_ProcessHeader_UI/MarketPartner/#@sap:label}"
             text="{this>/MarketPartner}"/>
     </reuseObjectPageFacet:FormFacet>

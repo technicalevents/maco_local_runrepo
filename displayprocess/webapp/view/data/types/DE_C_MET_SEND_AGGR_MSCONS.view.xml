@@ -5,6 +5,7 @@
 		controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.types.DataTable"
 		xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		xmlns:html="http://www.w3.org/1999/xhtml">
+	
 	<smartTable:SmartTable id="idTable"
 					        entitySet="xMP4GxC_Met_Send_Aggr_Mscons"
 					        tableType="ResponsiveTable"
@@ -16,15 +17,18 @@
 					        beforeRebindTable="onBeforeRebindTable"
 					        custom:entityName="xMP4GxC_Met_Send_Aggr_Mscons"
 					        dataReceived="onTableDataReceived">
+		
 	  <smartTable:customToolbar>
 	  	<Toolbar height="0rem"/>
 	  </smartTable:customToolbar>
+	  
 	  <Table id="idProcessTypeTable"
 	          growing="true"
 	          growingScrollToLoad="true" 
 	          growingThreshold="50" 
 	          mode="None"
 	          sticky="ColumnHeaders,HeaderToolbar" >
+	          
 	       <columns>
             <Column width="auto" visible="{this>/isDeviceVisible}">
               <Text text="{/xMP4GxC_Met_Send_Aggr_Mscons/Device/#@sap:label}"/>
@@ -44,5 +48,7 @@
             </ColumnListItem>
           </items>
        </Table>
+
 	</smartTable:SmartTable>
+	
 </mvc:View>
