@@ -30,7 +30,8 @@
 					                  afterVariantLoad="onAfterVariantLoad"
 					                  class="sapUiSmallMarginBottom">
           	<smartFilterBar:controlConfiguration>
-                <smartFilterBar:ControlConfiguration key="OwnerUUID"
+                <smartFilterBar:ControlConfiguration index="1" 
+                									 key="OwnerUUID"
 													 label="{/xMP4GxC_CTA_MP_UI/OwnMarketPartner/#@sap:label}">
                 <smartFilterBar:customControl>
                   <MultiComboBox showSecondaryValues= "true"
@@ -46,9 +47,18 @@
                   </MultiComboBox>
           			</smartFilterBar:customControl>
           		</smartFilterBar:ControlConfiguration>
-                <smartFilterBar:ControlConfiguration key="ExtBusinessMessageID"
-                									 preventInitialDataFetchInValueHelpDialog="false"
-													 label="{/xMP4GxC_CTA_MP_UI/ExtBusinessMessageID/#@sap:label}" />
+                <smartFilterBar:ControlConfiguration index="4"
+                										key="ExtBusinessMessageID"
+                									 preventInitialDataFetchInValueHelpDialog="false" />
+				<smartFilterBar:ControlConfiguration index="3"
+                										key="TechnicalMsgID"
+                									 preventInitialDataFetchInValueHelpDialog="false" />
+				<smartFilterBar:ControlConfiguration index="5"
+                										key="ContactID"
+                									 preventInitialDataFetchInValueHelpDialog="false" />
+				<smartFilterBar:ControlConfiguration index="2"
+                										key="ExternalMarketPartner"
+                									 preventInitialDataFetchInValueHelpDialog="false" />									 
           	</smartFilterBar:controlConfiguration>
           </smartFilterBar:SmartFilterBar>
      </semantic:headerContent>
