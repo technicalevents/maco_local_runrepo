@@ -19,7 +19,8 @@
 						<Label required="true"
 							   text="{/xMP4GxC_Mantain_Contact_Info/OwnMarketPartner/#@sap:label}"/>
 					</smartForm:label>
-					<ComboBox showSecondaryValues= "true"
+					<ComboBox enabled="{this>/isCreate}"
+							  showSecondaryValues= "true"
 							  items="{path:'/xMP4GxC_MarketPartner_VH',sorter:{path:'mp_name'}}"
 							  selectedKey="{OwnMarketPartner}">
 						<core:ListItem key="{market_partner}" 
