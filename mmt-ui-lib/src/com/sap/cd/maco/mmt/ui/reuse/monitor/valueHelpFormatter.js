@@ -1,4 +1,4 @@
-sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/mmt/valueHelpValues'], function(valueHelpValues) {
+sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/monitor/valueHelpValues'], function(valueHelpValues) {
   'use strict';
 
   var fnGetText = function(sKey, sId) {

@@ -2,8 +2,9 @@ sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportNoDraftController",
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
 	"sap/ui/generic/app/navigation/service/SelectionVariant",
-	"sap/base/strings/formatMessage"
-], function (ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, formatMessage) {
+	"sap/base/strings/formatMessage",
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/valueHelpFormatter"
+], function (ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, FormatMessage, ValueHelpFormatter) {
 	"use strict";
 	return ListReportNoDraftController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.ProcessListReport", {
 
@@ -11,7 +12,8 @@ sap.ui.define([
 		 * Formatter Attribute.
 		 * @public
 		 */
-		formatMessage: formatMessage,
+		formatMessage: FormatMessage,
+		valueHelpFormatter: ValueHelpFormatter,
 
 		/******************************************************************* */
 		/* LIFECYCLE METHODS */
