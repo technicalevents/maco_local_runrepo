@@ -21,7 +21,7 @@
 					                  smartVariant="idContactRulesVariantManagement"
 					                  useToolbar="false"
 					                  enableBasicSearch="true"
-					                  liveMode="false"
+					                  liveMode="true"
 					                  useDateRangeType="true"
 					                  initialized="onFilterBarInitialized"
 					                  showFilterConfiguration="false"
@@ -61,15 +61,16 @@
 				 busy="false" 
 				 class="sapUiSmallMarginTop" 
 				 height="auto"
-				 visible="{= !!!${ContactRuleApp>/messageStripHidden}}"/>
+				 visible="{= !!!${ContactRuleApp>/messageStripHidden}}"
+				 busyIndicatorDelay="0" />
 	      
       <smartTable:SmartTable id="idContactRulesSmartTable"
 					        entitySet="xMP4GxC_CTA_MP_UI"
 					        tableType="ResponsiveTable"
 					        smartFilterId="idContactRulesFilterBar"
 					        smartVariant="idContactRulesVariantManagement"
-					        enableAutoBinding="false" 
-					        requestAtLeastFields="ContactDeterminationKey, OwnMarketPartner, OwnMarketPartnerText"
+					        enableAutoBinding="true" 
+					        requestAtLeastFields="ContactDeterminationKey, OwnMarketPartner, OwnMarketPartnerText, DivisionText"
 					        ignoredFields=""
 					        header="{i18n>ContactDeterminationTitlePlural}"
 					        useTablePersonalisation="true"
@@ -122,6 +123,12 @@
                 <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"ExtBusinessMessageID", "leadingProperty":["ExtBusinessMessageID"], "sortProperty": "ExtBusinessMessageID" }'/>
               </customData>
             </Column>
+            <Column>
+              <Text text="{/xMP4GxC_CTA_MP_UI/ContactID/#@sap:label}"/>
+              <customData>
+                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"ContactID", "description":"ContactName", "displayBehaviour": "idAndDescription", "leadingProperty":["ContactID","ContactName"], "sortProperty": "ContactID"}'/>
+              </customData>
+            </Column>
           </columns>
           <items>
             <ColumnListItem type="Detail"
@@ -131,6 +138,7 @@
               	<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}"  text="{ExternalMarketPartner}" noDataText="{i18n>ANY_DATA_TXT}"/>
               	<reuseTable:ObjectIdentifier text="{TechnicalMsgID}" noDataText="{i18n>ANY_DATA_TXT}"/>
               	<reuseTable:ObjectIdentifier text="{ExtBusinessMessageID}" noDataText="{i18n>ANY_DATA_TXT}"/>
+              	<reuseTable:ObjectIdentifier title="{ContactID}" text="{ContactName}"/>
               </cells>
             </ColumnListItem>
           </items>

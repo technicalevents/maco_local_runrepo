@@ -73,10 +73,11 @@ sap.ui.define(
 					aSorters.push(new Sorter("OwnMarketPartner", true, function (oContext) {
 						var sKey = oContext.getProperty("OwnMarketPartner");
 						var sKeyText = oContext.getProperty("OwnMarketPartnerText");
+						var sDivisionText = oContext.getProperty("DivisionText");
 
 						return {
 							key: sKey,
-							text: this.oBundle.getText("OWN_MKT_PARTNER_GRP_TXT", [sKeyText, sKey])
+							text: this.oBundle.getText("OWN_MKT_PARTNER_GRP_TXT", [sKeyText, sKey, sDivisionText])
 						};
 					}.bind(this)));
 
@@ -92,7 +93,7 @@ sap.ui.define(
 				 * @param {object} oEvent Table loading event
 				 */
 				onDefaultRuleCreate: function (oEvent) {
-					var oAction = this.oComponent.actions.create;
+					var oAction = this.oComponent.mActions.create;
 					var oParams = {
 						busyControl: this.getView(),
 						contexts: [],

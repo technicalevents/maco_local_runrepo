@@ -1,0 +1,635 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='LOCAL')/$value">
+		<edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+	</edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="cds_xmp4gxprocessmonitor_sd" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="xAPExC_ProcStatus_VHType" sap:label="Process Status" sap:value-list="true" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Value"/>
+					<PropertyRef Name="Language"/>
+				</Key>
+				<Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="Description" sap:label="Process Status"/>
+				<Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Lang." sap:quickinfo="Language Key"/>
+				<Property Name="Description" Type="Edm.String" MaxLength="60" sap:label="Status Description" sap:quickinfo="Short Text for Fixed Values"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_CommonAccessRef_VHType" sap:label="Value Help for Common Access Reference" sap:value-list="true"
+				sap:content-version="1">
+				<Key>
+					<PropertyRef Name="com_acc_uuid"/>
+				</Key>
+				<Property Name="com_acc_uuid" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Common Access Ref."
+					sap:quickinfo="Common Access Reference"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_PDocNo_VHType" sap:label="Value Help for Market Process Document" sap:value-list="true" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessDocumentNumber"/>
+				</Key>
+				<Property Name="ProcessDocumentNumber" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase"
+					sap:label="Document Number"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_PointOfDelivery_VHType" sap:label="Value Help for business object UUID" sap:value-list="true"
+				sap:content-version="1">
+				<Key>
+					<PropertyRef Name="bo_uuid"/>
+				</Key>
+				<Property Name="bo_uuid" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="External Reference of BO"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_ProcessCluster_VHType" sap:label="Process Cluster" sap:value-list="true" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessClusterKey"/>
+				</Key>
+				<Property Name="ProcessCluster_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ProcessClusterKey" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="Database Key Field" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="ProcessCluster" Type="Edm.String" MaxLength="40" sap:field-control="ProcessCluster_fc" sap:label="Process Cluster"/>
+				<Property Name="ProcessClusterDescriptionISL" Type="Edm.String" MaxLength="120" sap:label="Description"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_ProcessHeader_UIType" sap:label="Process Document Header" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessDocumentKey"/>
+				</Key>
+				<Property Name="ProcessClusterKey_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ProcessID_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ProcessDocumentKey" Type="Edm.Guid" Nullable="false" sap:label="Appl DB Key" sap:quickinfo="Application Table DB Key"
+					sap:creatable="false" sap:updatable="false"/>
+				<Property Name="ProcessDocumentNumber" Type="Edm.String" MaxLength="20" sap:display-format="UpperCase" sap:text="ProcessIDDescription"
+					sap:label="Market Process Document" sap:quickinfo="Document Number" sap:value-list="standard"/>
+				<Property Name="ProcessID" Type="Edm.String" MaxLength="40" sap:field-control="ProcessID_fc" sap:text="ProcessIDDescription"
+					sap:label="Process ID"/>
+				<Property Name="ProcessIDDescription" Type="Edm.String" MaxLength="120" sap:label="Market Process" sap:quickinfo="Description"
+					sap:value-list="fixed-values"/>
+				<Property Name="ProcessStatus" Type="Edm.String" MaxLength="10" sap:label="Status" sap:quickinfo="Process Status"
+					sap:value-list="fixed-values"/>
+				<Property Name="ProcessStatusDescription" Type="Edm.String" MaxLength="60" sap:label="Status Description"
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte"/>
+				<Property Name="ProcessClusterKey" Type="Edm.String" MaxLength="32" sap:field-control="ProcessClusterKey_fc" sap:label="Database Key Field"/>
+				<Property Name="ProcessCluster" Type="Edm.String" MaxLength="40" sap:text="ProcessClusterDescriptionISL" sap:label="Process Cluster"/>
+				<Property Name="ProcessClusterDescriptionISL" Type="Edm.String" MaxLength="120" sap:label="Process Cluster" sap:quickinfo="Description"
+					sap:value-list="fixed-values"/>
+				<Property Name="MarketPartner" Type="Edm.String" MaxLength="100" sap:display-format="UpperCase" sap:label="External Market Partner"
+					sap:quickinfo="Character 100"/>
+				<Property Name="ProcessDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:filter-restriction="interval"
+					sap:label="Process Key Date"/>
+				<Property Name="ProcessTimestamp" Type="Edm.DateTimeOffset" Precision="7" sap:label="Time Stamp"
+					sap:quickinfo="UTC Time Stamp in Long Form (YYYYMMDDhhmmssmmmuuun)"/>
+				<Property Name="StatusDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:filter-restriction="interval"
+					sap:label="Process Status Date"/>
+				<Property Name="proc_id" Type="Edm.String" MaxLength="40" sap:label="Process ID"/>
+				<Property Name="BusinessObjectUUID" Type="Edm.String" MaxLength="70" sap:label="Point of Delivery" sap:quickinfo="External Reference of BO"
+					sap:value-list="standard"/>
+				<Property Name="OwnerUUID" Type="Edm.String" MaxLength="40" sap:label="Own Market Partner" sap:quickinfo="Business Object Owner UUID"/>
+				<Property Name="OwnerUUIDText" Type="Edm.String" MaxLength="500" sap:label="Partner Name" sap:quickinfo="Market Partner Name"/>
+				<Property Name="CommonAccessUUID" Type="Edm.String" MaxLength="70" sap:label="Common Access Reference" sap:value-list="standard"/>
+				<Property Name="client_name" Type="Edm.String" MaxLength="3" sap:label="Client"/>
+				<Property Name="client_uuid" Type="Edm.String" MaxLength="36" sap:label="Client UUID"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_ProcessType_VHType" sap:label="Process Status" sap:value-list="true" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessIDKey"/>
+				</Key>
+				<Property Name="ProcessID_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false"
+					sap:sortable="false" sap:filterable="false"/>
+				<Property Name="ProcessIDKey" Type="Edm.String" Nullable="false" MaxLength="32" sap:label="Database Key Field" sap:creatable="false"
+					sap:updatable="false"/>
+				<Property Name="ProcessID" Type="Edm.String" MaxLength="40" sap:field-control="ProcessID_fc" sap:label="Process ID"/>
+				<Property Name="ProcessIDDescription" Type="Edm.String" MaxLength="120" sap:label="Process Type Description" sap:quickinfo="Description"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_ProcLoadMoni_UIType" sap:label="Analytical Chart for Process Load Moni" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessStatus"/>
+					<PropertyRef Name="processstatusdescription"/>
+					<PropertyRef Name="ProcessDate"/>
+					<PropertyRef Name="ProcessIDDescription"/>
+					<PropertyRef Name="ProcessClusterDescriptionISL"/>
+					<PropertyRef Name="MarketPartner"/>
+					<PropertyRef Name="StatusDate"/>
+					<PropertyRef Name="BusinessObjectUUID"/>
+					<PropertyRef Name="OwnerUUID"/>
+					<PropertyRef Name="CommonAccessUUID"/>
+					<PropertyRef Name="StatusCriticality"/>
+				</Key>
+				<Property Name="ProcessStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="processstatusdescription"
+					sap:label="Process Status"/>
+				<Property Name="processstatusdescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="ProcessDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:label="Process Key Date"/>
+				<Property Name="ProcessIDDescription" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Description"/>
+				<Property Name="ProcessClusterDescriptionISL" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Description"/>
+				<Property Name="MarketPartner" Type="Edm.String" Nullable="false" MaxLength="100" sap:display-format="UpperCase" sap:label="Character 100"
+					sap:heading=""/>
+				<Property Name="StatusDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="BusinessObjectUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="External Reference of BO"/>
+				<Property Name="OwnerUUID" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="BO Owner UUID"
+					sap:quickinfo="Business Object Owner UUID"/>
+				<Property Name="CommonAccessUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Common Access Ref."
+					sap:quickinfo="Common Access Reference"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" Nullable="false"/>
+				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
+				<Property Name="LoadCount" Type="Edm.Int64"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_ProcOpenMoni_MaPart_UIType" sap:label="Analytical Chart for Market Partner" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="MarketPartner"/>
+					<PropertyRef Name="ProcessStatus"/>
+					<PropertyRef Name="processstatusdescription"/>
+					<PropertyRef Name="ProcessDate"/>
+					<PropertyRef Name="ProcessIDDescription"/>
+					<PropertyRef Name="ProcessClusterDescriptionISL"/>
+					<PropertyRef Name="StatusDate"/>
+					<PropertyRef Name="BusinessObjectUUID"/>
+					<PropertyRef Name="OwnerUUID"/>
+					<PropertyRef Name="CommonAccessUUID"/>
+					<PropertyRef Name="StatusCriticality"/>
+				</Key>
+				<Property Name="MarketPartner" Type="Edm.String" Nullable="false" MaxLength="100" sap:display-format="UpperCase" sap:label="Market Partner"
+					sap:quickinfo="Character 100"/>
+				<Property Name="ProcessStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="processstatusdescription"
+					sap:label="Process Status"/>
+				<Property Name="processstatusdescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="ProcessDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="ProcessIDDescription" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Description"/>
+				<Property Name="ProcessClusterDescriptionISL" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Description"/>
+				<Property Name="StatusDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="BusinessObjectUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="External Reference of BO"/>
+				<Property Name="OwnerUUID" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="BO Owner UUID"
+					sap:quickinfo="Business Object Owner UUID"/>
+				<Property Name="CommonAccessUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Common Access Ref."
+					sap:quickinfo="Common Access Reference"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" Nullable="false"/>
+				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
+				<Property Name="OpenCount" Type="Edm.Int64"/>
+				<Property Name="LoadCount" Type="Edm.Int64"/>
+				<Property Name="OpenCountRef" Type="Edm.Int64"/>
+				<Property Name="UpDifference" Type="Edm.Int64"/>
+				<Property Name="DownDifference" Type="Edm.Int64"/>
+				<Property Name="ToleranceRangeLowValue" Type="Edm.Int64"/>
+				<Property Name="DeviationRangeHighValue" Type="Edm.Int64"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_ProcOpenMoni_OMP_UIType" sap:label="Analytical Chart for Own Market partner" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="OwnerUUID"/>
+					<PropertyRef Name="ProcessStatus"/>
+					<PropertyRef Name="processstatusdescription"/>
+					<PropertyRef Name="ProcessDate"/>
+					<PropertyRef Name="ProcessIDDescription"/>
+					<PropertyRef Name="ProcessClusterDescriptionISL"/>
+					<PropertyRef Name="MarketPartner"/>
+					<PropertyRef Name="StatusDate"/>
+					<PropertyRef Name="BusinessObjectUUID"/>
+					<PropertyRef Name="CommonAccessUUID"/>
+					<PropertyRef Name="StatusCriticality"/>
+				</Key>
+				<Property Name="OwnerUUID" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="Own Market Partner"
+					sap:quickinfo="Business Object Owner UUID"/>
+				<Property Name="ProcessStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="processstatusdescription"
+					sap:label="Process Status"/>
+				<Property Name="processstatusdescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="ProcessDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="ProcessIDDescription" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Description"/>
+				<Property Name="ProcessClusterDescriptionISL" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Description"/>
+				<Property Name="MarketPartner" Type="Edm.String" Nullable="false" MaxLength="100" sap:display-format="UpperCase" sap:label="Character 100"
+					sap:heading=""/>
+				<Property Name="StatusDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="BusinessObjectUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="External Reference of BO"/>
+				<Property Name="CommonAccessUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Common Access Ref."
+					sap:quickinfo="Common Access Reference"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" Nullable="false"/>
+				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
+				<Property Name="OpenCount" Type="Edm.Int64"/>
+				<Property Name="LoadCount" Type="Edm.Int64"/>
+				<Property Name="OpenCountRef" Type="Edm.Int64"/>
+				<Property Name="UpDifference" Type="Edm.Int64"/>
+				<Property Name="DownDifference" Type="Edm.Int64"/>
+				<Property Name="ToleranceRangeLowValue" Type="Edm.Int64"/>
+				<Property Name="DeviationRangeHighValue" Type="Edm.Int64"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_ProcOpenMoni_PClust_UIType" sap:label="Analytical Chart for Process Cluster" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessClusterDescriptionISL"/>
+					<PropertyRef Name="ProcessStatus"/>
+					<PropertyRef Name="processstatusdescription"/>
+					<PropertyRef Name="ProcessDate"/>
+					<PropertyRef Name="ProcessIDDescription"/>
+					<PropertyRef Name="MarketPartner"/>
+					<PropertyRef Name="StatusDate"/>
+					<PropertyRef Name="BusinessObjectUUID"/>
+					<PropertyRef Name="OwnerUUID"/>
+					<PropertyRef Name="CommonAccessUUID"/>
+					<PropertyRef Name="StatusCriticality"/>
+				</Key>
+				<Property Name="ProcessClusterDescriptionISL" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Process Cluster"
+					sap:quickinfo="Description"/>
+				<Property Name="ProcessStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="processstatusdescription"
+					sap:label="Process Status"/>
+				<Property Name="processstatusdescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="ProcessDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="ProcessIDDescription" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Description"/>
+				<Property Name="MarketPartner" Type="Edm.String" Nullable="false" MaxLength="100" sap:display-format="UpperCase" sap:label="Character 100"
+					sap:heading=""/>
+				<Property Name="StatusDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="BusinessObjectUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="External Reference of BO"/>
+				<Property Name="OwnerUUID" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="BO Owner UUID"
+					sap:quickinfo="Business Object Owner UUID"/>
+				<Property Name="CommonAccessUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Common Access Ref."
+					sap:quickinfo="Common Access Reference"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" Nullable="false"/>
+				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
+				<Property Name="OpenCount" Type="Edm.Int64"/>
+				<Property Name="LoadCount" Type="Edm.Int64"/>
+				<Property Name="OpenCountRef" Type="Edm.Int64"/>
+				<Property Name="UpDifference" Type="Edm.Int64"/>
+				<Property Name="DownDifference" Type="Edm.Int64"/>
+				<Property Name="ToleranceRangeLowValue" Type="Edm.Int64"/>
+				<Property Name="DeviationRangeHighValue" Type="Edm.Int64"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_ProcOpenMoni_PType_UIType" sap:label="Analytical Chart for Process Type" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessIDDescription"/>
+					<PropertyRef Name="ProcessStatus"/>
+					<PropertyRef Name="processstatusdescription"/>
+					<PropertyRef Name="ProcessDate"/>
+					<PropertyRef Name="ProcessClusterDescriptionISL"/>
+					<PropertyRef Name="MarketPartner"/>
+					<PropertyRef Name="StatusDate"/>
+					<PropertyRef Name="BusinessObjectUUID"/>
+					<PropertyRef Name="OwnerUUID"/>
+					<PropertyRef Name="CommonAccessUUID"/>
+					<PropertyRef Name="StatusCriticality"/>
+				</Key>
+				<Property Name="ProcessIDDescription" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Process Type"
+					sap:quickinfo="Description"/>
+				<Property Name="ProcessStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="processstatusdescription"
+					sap:label="Process Status"/>
+				<Property Name="processstatusdescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="ProcessDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="ProcessClusterDescriptionISL" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Description"/>
+				<Property Name="MarketPartner" Type="Edm.String" Nullable="false" MaxLength="100" sap:display-format="UpperCase" sap:label="Character 100"
+					sap:heading=""/>
+				<Property Name="StatusDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="BusinessObjectUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="External Reference of BO"/>
+				<Property Name="OwnerUUID" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="BO Owner UUID"
+					sap:quickinfo="Business Object Owner UUID"/>
+				<Property Name="CommonAccessUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Common Access Ref."
+					sap:quickinfo="Common Access Reference"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" Nullable="false"/>
+				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
+				<Property Name="OpenCount" Type="Edm.Int64"/>
+				<Property Name="LoadCount" Type="Edm.Int64"/>
+				<Property Name="OpenCountRef" Type="Edm.Int64"/>
+				<Property Name="UpDifference" Type="Edm.Int64"/>
+				<Property Name="DownDifference" Type="Edm.Int64"/>
+				<Property Name="ToleranceRangeLowValue" Type="Edm.Int64"/>
+				<Property Name="DeviationRangeHighValue" Type="Edm.Int64"/>
+			</EntityType>
+			<EntityType Name="xMP4GxC_ProcStatMonitoring_UIType" sap:label="Process Status Monitoring" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessStatus"/>
+					<PropertyRef Name="processstatusdescription"/>
+					<PropertyRef Name="StatusCriticality"/>
+					<PropertyRef Name="ProcessDate"/>
+					<PropertyRef Name="ProcessIDDescription"/>
+					<PropertyRef Name="ProcessClusterDescriptionISL"/>
+					<PropertyRef Name="MarketPartner"/>
+					<PropertyRef Name="StatusDate"/>
+					<PropertyRef Name="BusinessObjectUUID"/>
+					<PropertyRef Name="OwnerUUID"/>
+					<PropertyRef Name="CommonAccessUUID"/>
+				</Key>
+				<Property Name="ProcessStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="processstatusdescription"
+					sap:label="Process Status"/>
+				<Property Name="processstatusdescription" Type="Edm.String" Nullable="false" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" Nullable="false"/>
+				<Property Name="ProcessDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="ProcessIDDescription" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Description"/>
+				<Property Name="ProcessClusterDescriptionISL" Type="Edm.String" Nullable="false" MaxLength="120" sap:label="Description"/>
+				<Property Name="MarketPartner" Type="Edm.String" Nullable="false" MaxLength="100" sap:display-format="UpperCase" sap:label="Character 100"
+					sap:heading=""/>
+				<Property Name="StatusDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="BusinessObjectUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="External Reference of BO"/>
+				<Property Name="OwnerUUID" Type="Edm.String" Nullable="false" MaxLength="40" sap:label="BO Owner UUID"
+					sap:quickinfo="Business Object Owner UUID"/>
+				<Property Name="CommonAccessUUID" Type="Edm.String" Nullable="false" MaxLength="70" sap:label="Common Access Ref."
+					sap:quickinfo="Common Access Reference"/>
+				<Property Name="SuccessRatio" Type="Edm.Int64"/>
+				<Property Name="ProcessStatusCount" Type="Edm.Int64" sap:label="Process Status Count"/>
+				<Property Name="SuccessRatioRef" Type="Edm.Int64"/>
+				<Property Name="UpDifference" Type="Edm.Int64"/>
+				<Property Name="DownDifference" Type="Edm.Int64"/>
+			</EntityType>
+			<EntityContainer Name="cds_xmp4gxprocessmonitor_sd_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx">
+				<EntitySet Name="xAPExC_ProcStatus_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xAPExC_ProcStatus_VHType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_CommonAccessRef_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_CommonAccessRef_VHType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_PDocNo_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_PDocNo_VHType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_PointOfDelivery_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_PointOfDelivery_VHType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_ProcessCluster_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessCluster_VHType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_ProcessHeader_UI" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_ProcessType_VH" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessType_VHType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_ProcLoadMoni_UI" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcLoadMoni_UIType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_ProcOpenMoni_MaPart_UI" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_MaPart_UIType"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_ProcOpenMoni_OMP_UI" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_OMP_UIType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_ProcOpenMoni_PClust_UI" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PClust_UIType"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_ProcOpenMoni_PType_UI" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PType_UIType"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xMP4GxC_ProcStatMonitoring_UI" EntityType="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcStatMonitoring_UIType"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/ProcessDocumentNumber">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Value Help for Market Process Document"/>
+						<PropertyValue Property="CollectionPath" String="xMP4GxC_PDocNo_VH"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="ProcessDocumentNumber"/>
+									<PropertyValue Property="ValueListProperty" String="ProcessDocumentNumber"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/ProcessIDDescription">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Process Status"/>
+						<PropertyValue Property="CollectionPath" String="xMP4GxC_ProcessType_VH"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="ProcessIDDescription"/>
+									<PropertyValue Property="ValueListProperty" String="ProcessIDDescription"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Common.ValueListWithFixedValues"/>
+				<Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/ProcessStatus">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Process Status"/>
+						<PropertyValue Property="CollectionPath" String="xAPExC_ProcStatus_VH"/>
+						<PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="ValueListProperty" String="Value"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Language"/>
+								</Record>
+								<Record Type="Common.ValueListParameterDisplayOnly">
+									<PropertyValue Property="ValueListProperty" String="Description"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Common.ValueListWithFixedValues"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/ProcessClusterDescriptionISL">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Process Cluster"/>
+						<PropertyValue Property="CollectionPath" String="xMP4GxC_ProcessCluster_VH"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="ProcessClusterDescriptionISL"/>
+									<PropertyValue Property="ValueListProperty" String="ProcessClusterDescriptionISL"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Common.ValueListWithFixedValues"/>
+				<Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/BusinessObjectUUID">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Value Help for business object UUID"/>
+						<PropertyValue Property="CollectionPath" String="xMP4GxC_PointOfDelivery_VH"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="BusinessObjectUUID"/>
+									<PropertyValue Property="ValueListProperty" String="bo_uuid"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessHeader_UIType/CommonAccessUUID">
+				<Annotation Term="Common.ValueList">
+					<Record>
+						<PropertyValue Property="Label" String="Value Help for Common Access Reference"/>
+						<PropertyValue Property="CollectionPath" String="xMP4GxC_CommonAccessRef_VH"/>
+						<PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut">
+									<PropertyValue Property="LocalDataProperty" PropertyPath="CommonAccessUUID"/>
+									<PropertyValue Property="ValueListProperty" String="com_acc_uuid"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_xmp4gxprocessmonitor_sd.cds_xmp4gxprocessmonitor_sd_Entities">
+				<Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Rollup" EnumMember="None"/>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessCluster_VHType/ProcessClusterDescriptionISL">
+				<Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcessType_VHType/ProcessIDDescription">
+				<Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.cds_xmp4gxprocessmonitor_sd_Entities/xMP4GxC_ProcessCluster_VH">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="NonFilterableProperties">
+							<Collection>
+								<PropertyPath>ProcessCluster_fc</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>ProcessCluster_fc</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.cds_xmp4gxprocessmonitor_sd_Entities/xMP4GxC_ProcessHeader_UI">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="NonFilterableProperties">
+							<Collection>
+								<PropertyPath>ProcessClusterKey_fc</PropertyPath>
+								<PropertyPath>ProcessID_fc</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record>
+									<PropertyValue Property="Property" PropertyPath="ProcessDate"/>
+									<PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+								</Record>
+								<Record>
+									<PropertyValue Property="Property" PropertyPath="StatusDate"/>
+									<PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>ProcessClusterKey_fc</PropertyPath>
+								<PropertyPath>ProcessID_fc</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.cds_xmp4gxprocessmonitor_sd_Entities/xMP4GxC_ProcessType_VH">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="NonFilterableProperties">
+							<Collection>
+								<PropertyPath>ProcessID_fc</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="Capabilities.SortRestrictions">
+					<Record>
+						<PropertyValue Property="NonSortableProperties">
+							<Collection>
+								<PropertyPath>ProcessID_fc</PropertyPath>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcLoadMoni_UIType/ProcessDate">
+				<Annotation Term="Common.SemanticObject" String="UtilsDataExchangeProcessing"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_MaPart_UIType/MarketPartner">
+				<Annotation Term="Common.SemanticObject" String="UtilsDataExchangeProcessing"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_OMP_UIType/OwnerUUID">
+				<Annotation Term="Common.SemanticObject" String="UtilsDataExchangeProcessing"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PClust_UIType/ProcessClusterDescriptionISL">
+				<Annotation Term="Common.SemanticObject" String="UtilsDataExchangeProcessing"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PType_UIType/ProcessIDDescription">
+				<Annotation Term="Common.SemanticObject" String="UtilsDataExchangeProcessing"/>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcStatMonitoring_UIType/ProcessStatus">
+				<Annotation Term="Common.SemanticObject" String="UtilsDataExchangeProcessing"/>
+			</Annotations>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/mp4g/PROCESSMONITOR_SB/$metadata"/>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/mp4g/PROCESSMONITOR_SB/$metadata"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

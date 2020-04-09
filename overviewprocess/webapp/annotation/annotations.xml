@@ -29,6 +29,12 @@
 				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcStatMonitoring_UIType">
+				<!--<Annotation Term="UI.DataPoint" Qualifier="StatusSuccessRatio">-->
+				<!--	<Record Type="UI.DataPointType">-->
+				<!--		<PropertyValue Property="Value" Path="StatusCriticality"/>-->
+				<!--		<PropertyValue Property="Criticality" Path="StatusCriticality"/>-->
+				<!--	</Record>-->
+				<!--</Annotation>-->
 				<Annotation Term="UI.DataPoint" Qualifier="StatusSuccessRatio">
 					<Record Type="UI.DataPointType">
 						<PropertyValue Property="Value" Path="SuccessRatio"/>
@@ -77,12 +83,19 @@
 						<PropertyValue Property="Dimensions">
 							<Collection>
 								<PropertyPath>ProcessStatus</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
@@ -179,23 +192,26 @@
 							<Collection>
 								<PropertyPath>ProcessDate</PropertyPath>
 								<PropertyPath>ProcessStatus</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
-								</Record>
-								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="ProcessDate"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
 								</Record>
 							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="ProcessDate"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
 						</PropertyValue>
@@ -378,9 +394,16 @@
 							<Collection>
 								<PropertyPath>ProcessIDDescription</PropertyPath>
 								<PropertyPath>ProcessStatus</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessIDDescription"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
@@ -389,8 +412,8 @@
 							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="ProcessIDDescription"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
 						</PropertyValue>
@@ -502,9 +525,16 @@
 							<Collection>
 								<PropertyPath>ProcessClusterDescriptionISL</PropertyPath>
 								<PropertyPath>ProcessStatus</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessClusterDescriptionISL"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
@@ -513,8 +543,8 @@
 							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="ProcessClusterDescriptionISL"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
 						</PropertyValue>
@@ -697,10 +727,17 @@
 							<Collection>
 								<PropertyPath>MarketPartner</PropertyPath>
 								<PropertyPath>ProcessStatus</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
 							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="MarketPartner"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+								<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
@@ -708,8 +745,8 @@
 							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="MarketPartner"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
 						</PropertyValue>
@@ -963,9 +1000,16 @@
 							<Collection>
 								<PropertyPath>OwnerUUID</PropertyPath>
 								<PropertyPath>ProcessStatus</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
@@ -974,8 +1018,8 @@
 							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
-									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
 						</PropertyValue>
