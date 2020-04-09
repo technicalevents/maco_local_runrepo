@@ -1,12 +1,15 @@
 sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
-	"sap/base/strings/formatMessage"
-],function (ObjectPageNoDraftController, FormatMessage) {
+	"sap/base/strings/formatMessage",
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/valueHelpFormatter"
+],function (ObjectPageNoDraftController, FormatMessage, ValueHelpFormatter) {
 	"use strict";
 
 	return ObjectPageNoDraftController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.PartnerPage", {
 			
 		formatMessage: FormatMessage,
+		valueHelpFormatter: ValueHelpFormatter,
+		
 		
 		/******************************************************************* */
 		/* LIFECYCLE METHODS */
@@ -17,6 +20,7 @@ sap.ui.define([
 		 * @public
 		 */
 		onInit: function () {
+			var oPartnerActions = this.getOwnerComponent().actions.partner;
 			ObjectPageNoDraftController.prototype.onInit.call(this, {
 				entitySet: "xMP4GxCE_PARTNERS",
 				i18n: {

@@ -2,8 +2,9 @@ sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportNoDraftController",
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
 	"sap/ui/generic/app/navigation/service/SelectionVariant",
-	"sap/base/strings/formatMessage"
-], function (ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, formatMessage) {
+	"sap/base/strings/formatMessage",
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/valueHelpFormatter"
+], function (ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, FormatMessage, ValueHelpFormatter) {
 	"use strict";
 	return ListReportNoDraftController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.ProcessListReport", {
 
@@ -11,7 +12,8 @@ sap.ui.define([
 		 * Formatter Attribute.
 		 * @public
 		 */
-		formatMessage: formatMessage,
+		formatMessage: FormatMessage,
+		valueHelpFormatter: ValueHelpFormatter,
 
 		/******************************************************************* */
 		/* LIFECYCLE METHODS */
@@ -21,11 +23,15 @@ sap.ui.define([
 		 * Lifecycle method - triggered on initialization of ProcessListReport Controller
 		 */
 		onInit: function () {
+			var oComponentActions = this.getOwnerComponent().actions;
 			this.getOwnerComponent().getModel().setSizeLimit(1200);
 
 			ListReportNoDraftController.prototype.onInit.call(this, {
 				entitySet: "xMP4GxCE_PARTNERS",
-				actions: this.getOwnerComponent().mActions,
+				actions: {
+					navToPartnerPage: oComponentActions.navToPartnerPage,
+					share: oComponentActions.share
+				},
 				routes: {
 					parent: null,
 					this: "listReport",
@@ -38,6 +44,8 @@ sap.ui.define([
 				},
 				tableAccessControl: {}
 			});
+
+			this.oRouter.getRoute("initial").attachPatternMatched(this._onRoutePatternMatched, this);
 		},
 
 		/******************************************************************* */
@@ -60,7 +68,7 @@ sap.ui.define([
 		 * @public
 		 */
 		onFilterBarInitialized: function () {
-			this.mSingles.nav.parseNavigation().done(function (oAppState) {
+			this.oNav.parseNavigation().done(function (oAppState) {
 				if (!jQuery.isEmptyObject(oAppState)) {
 					this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
 					this.getSmartTable().rebindTable(true);
@@ -90,7 +98,26 @@ sap.ui.define([
 				valueTexts: oSmartFilterUiState.getValueTexts()
 			};
 
-			this.mSingles.nav.storeInnerAppState(oCurrentAppState);
+			this.oNav.storeInnerAppState(oCurrentAppState);
+		},
+
+		/******************************************************************* */
+		/* PRIVATE METHODS */
+		/******************************************************************* */
+
+		/**
+		 * Method is called on Route to Message List Page
+		 * @private
+		 */
+		_onRoutePatternMatched: function () {
+			this.oComponent.getService("ShellUIService").then(
+				function (oService) {
+					oService.setHierarchy([]);
+				}.bind(this),
+				function (oError) {
+					jQuery.sap.log.error("Cannot get ShellUIService", oError);
+				}
+			);
 		}
 	});
 });

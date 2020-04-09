@@ -13,7 +13,6 @@ sap.ui.define([
 
 		/**
 		 * Lifecycle method - triggered on initialization of CertificateTable Controller
-		 * @public
 		 */
 		onInit: function () {
 			SmartTableController.prototype.onInit.call(this, {
@@ -33,7 +32,6 @@ sap.ui.define([
 		/**
 		 * Function triggered before binding of Object Page
 		 * @param {object} oRouteArgs Router Arguments
-		 * @public
 		 */
 		onBeforeBindObjectPage: function (oRouteArgs) {
 			this.oRouteArgs = oRouteArgs;
@@ -43,14 +41,13 @@ sap.ui.define([
 		/**
 		 * Function triggered before Rebind of Certficate Table
 		 * @param {sap.ui.base.Event} 
-		 * @public
 		 */
 		onBeforeRebindTable: function (oEvent) {
 			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
 			if (!this.oRouteArgs) {
 				oUpdate.prevent();
 			} else {
-				oUpdate.addFilter("PartnerId", FilterOperator.EQ, this.oRouteArgs.PartnerId);
+				oUpdate.addFilter('PartnerId', FilterOperator.EQ, this.oRouteArgs.PartnerId);
     			oUpdate.endFilterAnd();
 			}
 		}

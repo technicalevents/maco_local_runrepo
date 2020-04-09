@@ -13,7 +13,6 @@ sap.ui.define([
 
 		/**
 		 * Lifecycle method - triggered on initialization of EmailTable Controller
-		 * @public
 		 */
 		onInit: function () {
 			SmartTableController.prototype.onInit.call(this, {
@@ -25,7 +24,7 @@ sap.ui.define([
 				tableAccessControl: {}
 			});
 		},
-			
+				
 		/******************************************************************* */
 		/* PUBLIC METHODS 													*/
 		/******************************************************************* */
@@ -33,17 +32,15 @@ sap.ui.define([
 		/**
 		 * Function triggered before binding of Object Page
 		 * @param {object} oRouteArgs Router Arguments
-		 * @public
 		 */
 		onBeforeBindObjectPage: function (oRouteArgs) {
 			this.oRouteArgs = oRouteArgs;
 			this.rebindTable();
 		},
-			
+		
 		/**
 		 * Function triggered before Rebind of Email Table
 		 * @param {sap.ui.base.Event} 
-		 * @public
 		 */
 		onBeforeRebindTable: function (oEvent) {
 			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));

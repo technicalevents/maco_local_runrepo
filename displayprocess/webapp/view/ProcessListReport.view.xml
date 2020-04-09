@@ -6,9 +6,9 @@
 		  xmlns:mvc="sap.ui.core.mvc"
 		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		  controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.ProcessListReport"
-          xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
-          xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
-          xmlns:variants="sap.ui.comp.smartvariants">
+      xmlns:reuseTable="com.sap.cd.maco.mmt.ui.reuse.control.table"
+      xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
+      xmlns:variants="sap.ui.comp.smartvariants">
   <semantic:SemanticPage headerExpanded="true" toggleHeaderOnTitleClick="true">
   	<semantic:titleHeading>
 			 <variants:SmartVariantManagement id="idProcessVariantManagement" 
@@ -60,10 +60,18 @@
 					        beforeExport="onBeforeExport"
 					        header="{i18n>PROCESS_PLURAL_LBL}"
 					        useVariantManagement="false" 
-                			c:p13nDialogSettings='{filter:{visible:false}}' 
+                  c:p13nDialogSettings='{filter:{visible:false}}' 
 					        beforeRebindTable="onBeforeRebindTable"
 					        persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.displayprocesses.table"
 					        requestAtLeastFields="ProcessDocumentKey,StatusCriticality,ProcessID,OwnerUUID,OwnerUUIDText">
+        <smartTable:customToolbar>
+          <OverflowToolbar design="Transparent">
+            <ToolbarSpacer/>
+            <Button text="{i18n>PROCESS_LIST_REFRESH_TITLE}"
+                    type="Transparent"
+                    press="onRefresh"/>
+          </OverflowToolbar>
+        </smartTable:customToolbar>
         <Table id="idProcessTable"
 	          growing="true"
 	          growingScrollToLoad="true" 
@@ -96,7 +104,7 @@
             </Column>
           </columns>
           <items>
-            <ColumnListItem type="Navigation" press="onAction('navToProcessPage', $event)">
+            <ColumnListItem type="Navigation" press="onAction" c:action="navToProcessPage">
               <cells>
                   <reuseTable:ObjectIdentifier title="{ProcessDocumentNumber}" text="{ProcessIDDescription}"/>
                   <reuseTable:ObjectIdentifier title="{OwnerUUIDText}" text="{OwnerUUID}"/>
@@ -107,7 +115,7 @@
       </smartTable:SmartTable>
      </semantic:content>
     <semantic:titleCustomTextActions>
-        <reuseButton:Share press="onAction('share', $event)"/>
+        <reuseButton:Share press="onAction" c:action="share" />
     </semantic:titleCustomTextActions>
   </semantic:SemanticPage>
 </mvc:View>

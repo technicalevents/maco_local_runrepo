@@ -17,11 +17,11 @@
         "settings": {
           "odataVersion": "2.0",
           "annotations": [
-            "Message"
+            "DefineContactRuleAnnotation"
           ]
         }
       },
-      "Message": {
+      "DefineContactRuleAnnotation": {
         "type": "ODataAnnotation",
         "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_CONTACT_DETR_VAN',Version='0001')/$value/"
       }
@@ -35,7 +35,7 @@
             "additionalParameters": "allowed"
           },
           "semanticObject": "UtilsDataExchangeProcessing",
-          "action": "displayMessage",
+          "action": "defineContactRule",
           "title": "{{APP_TITLE}}",
           "icon": "sap-icon://email"
         }

@@ -4,7 +4,7 @@ sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"sap/ui/thirdparty/jszip",
 	"sap/ui/core/util/File"
-], function(BaseAction, Filter, FilterOperator, JSZip, File) {
+	], function(BaseAction, Filter, FilterOperator, JSZip, File) {
   "use strict";
 
   return BaseAction.extend(
@@ -18,8 +18,8 @@ sap.ui.define([
 		 * Constructor
 		 */
         constructor: function(oComponent, oConfig) {
-			BaseAction.call(this, oComponent, oConfig);
-			this.oConfig.minContexts = 1;
+			var sCardinality = "1..N";
+			BaseAction.call(this, oComponent, oConfig, sCardinality);
         },
         
         /******************************************************************* */
@@ -47,7 +47,7 @@ sap.ui.define([
 				
 				var oFinalFilter = new Filter(aExternalUUIDFilter, false);
 				
-				this.mSingles.transaction.whenRead({
+				this.oTransaction.whenRead({
 					path: "/xMP4GxC_TransferDoc_UI",
 					busyControl: oParams.busyControl,
 					filters: [oFinalFilter],
@@ -75,5 +75,6 @@ sap.ui.define([
 				
 		    }.bind(this));
         }
-    });
+    }
+  );
 });

@@ -1,5 +1,6 @@
-sap.ui.define([
-    "com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorComponent",
+sap.ui.define(
+  [
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/base/DraftComponent",
     "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/SingleDownloadAction",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/MultiDownloadAction",
@@ -8,24 +9,25 @@ sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
     "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction",
     "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/MultipleDocumentAction"
-],function(MonitorComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
+  ],
+  function(DraftComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
             NavToRouteAction, ShareAction, NavToProcessAction, NavToMessageAction,
             MultipleDocumentAction) {
     "use strict";
 
-    return MonitorComponent.extend("com.sap.cd.maco.monitor.ui.app.displaymessages.Component", {
+    return DraftComponent.extend("com.sap.cd.maco.monitor.ui.app.displaymessages.Component", {
       metadata: {
         manifest: "json"
       },
 
       /**
-       * Function is used to initialize MonitorComponent
+       * Function is used to initialize DraftComponent
        */
       init: function() {
         // call the base component's init function
-        MonitorComponent.prototype.init.apply(this, arguments);
+        DraftComponent.prototype.init.apply(this, arguments);
 
-        this.mActions = {
+        this.actions = {
           singleDownload: new SingleDownloadAction(this),
           multiDownload: new MultiDownloadAction(this),
           navToMessagePage: new NavToRouteAction(this),
@@ -51,7 +53,7 @@ sap.ui.define([
         // sync hash
         var oHashSync = new HashSync({
           component: this,
-          message: this.mSingles.message,
+          message: this.oMessage,
           getRouteName: function(startupParams) {
             return "messagePage";
           }
@@ -66,8 +68,14 @@ sap.ui.define([
        * Function is used to destroy component
        */
       destroy: function() {
+        //Destroy Actions
+        for (var sName in this.actions) {
+          this.actions[sName].destroy();
+        }
+        
         // generic destroy of component
-        MonitorComponent.prototype.destroy.apply(this, arguments);
+        DraftComponent.prototype.destroy.apply(this, arguments);
       }
     });
-});
+  }
+);

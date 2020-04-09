@@ -1,24 +1,26 @@
-sap.ui.define([
-    "com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorComponent",
+sap.ui.define(
+  [
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/base/DraftComponent",
     "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
     "com/sap/cd/maco/mmt/ui/reuse/action/nav/NavToRouteAction"
-],function(MonitorComponent, HashSync, NavToRouteAction) {
+  ],
+  function(DraftComponent, HashSync, NavToRouteAction) {
     "use strict";
 
-    return MonitorComponent.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.Component", {
+    return DraftComponent.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.Component", {
       metadata: {
         manifest: "json"
       },
 
       /**
-       * Function is used to initialize MonitorComponent
+       * Function is used to initialize DraftComponent
        * @public
        */
       init: function() {
         // call the base component"s init function
-        MonitorComponent.prototype.init.apply(this, arguments);
+        DraftComponent.prototype.init.apply(this, arguments);
 
-        this.mActions = {
+        this.actions = {
         	navToPartnerPage: new NavToRouteAction(this)
         };
 
@@ -33,7 +35,7 @@ sap.ui.define([
         // sync hash
         var oHashSync = new HashSync({
           component: this,
-          message: this.mSingles.message,
+          message: this.oMessage,
           getRouteName: function(startupParams) {
             return "partnerPage";
           }
@@ -49,8 +51,14 @@ sap.ui.define([
        * @public
        */
       destroy: function() {
+        //Destroy Actions
+        for (var sName in this.actions) {
+          this.actions[sName].destroy();
+        }
+
         // generic destroy of component
-        MonitorComponent.prototype.destroy.apply(this, arguments);
+        DraftComponent.prototype.destroy.apply(this, arguments);
       }
     });
-});
+  }
+);

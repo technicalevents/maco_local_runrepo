@@ -19,6 +19,7 @@
         <smartFilterBar:SmartFilterBar id="idProcessSmartFilterBar"
 									   smartVariant="idProcessVariantManagement"
 									   enableBasicSearch="true"
+									   liveMode="false"
 									   useDateRangeType="true"
 									   useToolbar="false"
 									   initialized="onFilterBarInitialized"
@@ -54,6 +55,7 @@
 							   smartFilterId="idProcessSmartFilterBar"
 							   smartVariant="idProcessVariantManagement"
 							   enableAutoBinding="true" 
+							   ignoredFields="" 
 							   demandPopin="true"
 							   useExportToExcel="false"
 							   header="{i18n>PROCESS_PLURAL_LBL}"
@@ -68,17 +70,20 @@
 					<Button text="{i18n>EXECUTE_MESSAGE_AGGREGATION_BTN_TXT}"
 							enabled="{this>/tableActionEnabled/executeMsgAggr}"
 							type="Transparent"
-							press="onAction('executeMsgAggr', $event)"/>
+							press="onAction"
+							c:action="executeMsgAggr"/>
 					<Button text="{i18n>CLOSE_LATEST_DEADLINE_BTN_TXT}"
 			                enabled="{this>/tableActionEnabled/reportExecution}"
 			                type="Transparent"
-			                c:reportAction="Deadline"
-			                press="onAction('reportExecution', $event)"/>
+			                c:reportAction="Deadline" 
+			                c:action="reportExecution" 
+			                press="onAction"/>
 			        <Button text="{i18n>EXECUTE_TRANSFER_DOCUMENT_BTN_TXT}"
 			                enabled="{this>/tableActionEnabled/reportExecution}"
 			                type="Transparent"
-			                c:reportAction="TriggerDoc"
-			                press="onAction('reportExecution', $event)"/>
+			                c:reportAction="TriggerDoc" 
+			                c:action="reportExecution" 
+			                press="onAction"/>
 				</OverflowToolbar>
 			</smartTable:customToolbar>
 			<Table id="idProcessTable"
@@ -123,7 +128,7 @@
 		</smartTable:SmartTable>
     </semantic:content>
     <semantic:titleCustomTextActions>
-        <reuseButton:Share press="onAction('share', $event)"/>
+        <reuseButton:Share press="onAction" c:action="share" />
     </semantic:titleCustomTextActions>
 	</semantic:SemanticPage>
 </mvc:View>

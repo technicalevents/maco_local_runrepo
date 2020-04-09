@@ -1,7 +1,7 @@
 sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction",
 	"sap/ui/core/util/File"
-], function(BaseAction, File) {
+	], function(BaseAction, File) {
   "use strict";
 
   return BaseAction.extend(
@@ -15,7 +15,8 @@ sap.ui.define([
 		 * Constructor
 		 */
 		constructor: function(oComponent, oConfig) {
-			BaseAction.call(this, oComponent, oConfig);
+			var sCardinality = "0";
+			BaseAction.call(this, oComponent, oConfig, sCardinality);
 		},
 		
 		/******************************************************************* */
@@ -42,8 +43,12 @@ sap.ui.define([
 				File.save(oData, sFileName, sFileExtension);
 				
 				// done
-				resolve({params: oParams});
+				resolve({
+					params: oParams
+				});
+				
 		    }.bind(this));
         }
-    });
+    }
+  );
 });

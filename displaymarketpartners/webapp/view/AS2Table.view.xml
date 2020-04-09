@@ -8,10 +8,13 @@
 					    tableType="ResponsiveTable" 
 					    enableAutoBinding="true" 
 					    beforeRebindTable="onBeforeRebindTable"
+					    ignoredFields="" 
 					    useExportToExcel="false" 
 					    useTablePersonalisation="false" 
 					    demandPopin="true" 
-					    useVariantManagement="false">
+					    useVariantManagement="false"
+					    showRowCount="true" 
+					    placeToolbarInTable="false">
   	<smartTable:customToolbar>
 	  	<Toolbar height="0rem"/>
 	  </smartTable:customToolbar>
