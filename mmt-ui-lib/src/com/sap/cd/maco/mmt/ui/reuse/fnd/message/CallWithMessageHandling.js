@@ -2,7 +2,7 @@ sap.ui.define(
   [
     'sap/ui/base/Object',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/message/_/MandatoryCheck',
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/message/MandatoryCheck',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',
     'com/sap/cd/maco/mmt/ui/reuse/component/single/getErrorManager'
   ],

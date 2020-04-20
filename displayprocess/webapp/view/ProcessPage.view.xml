@@ -26,8 +26,7 @@
         </uxap:snappedContent>
         <uxap:actions>
           <reuseButton:Share icon="sap-icon://action"
-			                  press="onAction" 
-			                  c:action="share" />
+			                  press="onAction('share', $event)"/>
         </uxap:actions>
         <uxap:breadcrumbs>
         </uxap:breadcrumbs>

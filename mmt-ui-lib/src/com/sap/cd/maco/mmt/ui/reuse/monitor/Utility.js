@@ -58,7 +58,7 @@ sap.ui.define(["sap/ui/model/FilterOperator"], function(FilterOperator) {
 			});
 
 			if (!bIsFilterDataChanged) {
-				oFilterData = {}
+				oFilterData = {};
 			}
 			return oFilterData;
 		}

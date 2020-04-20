@@ -4,7 +4,6 @@
 		controllerName="com.sap.cd.maco.monitor.ui.app.displayprocesses.view.data.types.DataTable"
 		xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		xmlns:html="http://www.w3.org/1999/xhtml">
-	
 	<smartTable:SmartTable id="idTable"
 					        entitySet="xMP4GxC_Met_Send_Aggr_Prof_Val"
 					        tableType="ResponsiveTable"
@@ -15,11 +14,9 @@
 					        requestAtLeastFields="Path,ProcessDocumentKey,ProcessDocumentType"
 					        beforeRebindTable="onBeforeRebindTable"
 					        custom:entityName="xMP4GxC_Met_Send_Aggr_Prof_Val">
-	 
 	  <smartTable:customToolbar>
 	  	<Toolbar height="0rem"/>
 	  </smartTable:customToolbar>
-	  
 	  <Table id="idProcessTypeTable"
 	          growing="true"
 	          growingScrollToLoad="true" 
@@ -27,5 +24,4 @@
 	          mode="None"
 	          sticky="ColumnHeaders,HeaderToolbar" />
 	</smartTable:SmartTable>
-	
 </mvc:View>
