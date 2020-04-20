@@ -60,7 +60,7 @@ sap.ui.define([
 		*/
         onBeforeRebindTable: function(oEvent) {
 			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
-			var aSorters = [new Sorter("PeriodFromDate", true), new Sorter("PeriodToDate", true)];
+			var aSorters = [new Sorter("UploadDate", true), new Sorter("PeriodFromDate", true), new Sorter("PeriodToDate", true)];
 			var sSelMassMeterReadType = this.byId("idMassMeterReadSegmentedButton").getSelectedKey();
 			
 			oUpdate.addSorters(aSorters);
