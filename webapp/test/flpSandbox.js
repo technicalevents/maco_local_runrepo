@@ -111,6 +111,17 @@ sap.ui.define(
 										targetURL: "#UtilsDataExchangeProcessing-userNotification"
 									}
 								}]
+							}, {
+								id: "defaultGroupId4",
+								title: "Operation Apps",
+								tiles: [{
+									tileType: "sap.ushell.ui.tile.StaticTile",
+									properties: {
+										title: "Operation Overview",
+										icon: "sap-icon://BusinessSuiteInAppSymbols/icon-business-partner",
+										targetURL: "#UtilsDataExchangeProcessing-operationsOverview"
+									}
+								}]
 							}]
 						}
 					}
@@ -269,6 +280,21 @@ sap.ui.define(
 										url: sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/definecontactrules")
 									}
 								},
+								"UtilsDataExchangeProcessing-operationsOverview": {
+									semanticObject: "UtilsDataExchangeProcessing",
+									action: "operationsOverview",
+									description: "Operation Overview",
+									title: "Operation Overview",
+									signature: {
+										additionalParameters: "allowed",
+										parameters: {}
+									},
+									resolutionResult: {
+										applicationType: "SAPUI5",
+										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.operation.ui.app.overviewoperations",
+										url: sap.ui.require.toUrl("com/sap/cd/maco/operation/ui/app/overviewoperations")
+									}
+								},
 								"UtilsDataExchangeProcessing-userNotification": {
 									semanticObject: "UtilsDataExchangeProcessing",
 									action: "userNotification",
@@ -283,6 +309,8 @@ sap.ui.define(
 										url: sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/usernotifications")
 									}
 								}
+=======
+>>>>>>> refs/heads/master
 							}
 						}
 					}

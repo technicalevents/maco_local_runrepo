@@ -8,6 +8,17 @@ sap.ui.define(
   function(FragmentAction, SaveAsTileAction, SendEmailAction) {
     'use strict';
 
+    /**
+     * config:
+     *  - objectTextProperty
+     *  - objectIdProperty
+     *  - appTitleMsgKey
+     *  - setServiceUrl (optional)
+     *
+     * params:
+     *  - controller
+     *  - byControl
+     */
     return FragmentAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.share.ShareAction', {
       constructor: function(oComponent, oConfig) {
         FragmentAction.call(this, oComponent, oConfig, undefined, 'ShareActionMenu', 'com.sap.cd.maco.mmt.ui.reuse.action.share.ShareActionMenu');
@@ -33,8 +44,9 @@ sap.ui.define(
             this._fnReject = reject;
 
             // open
-            var oSource = oParams.event.getSource();
-            this.getFragment().openBy(oSource);
+            // TODO remove else after actions are no longer executed via onAction
+            var oByControl = this._oParams.byControl ? this._oParams.byControl : this._oParams.event.getSource();
+            this.getFragment().openBy(oByControl);
           }.bind(this)
         );
       },
@@ -43,14 +55,7 @@ sap.ui.define(
         var oSource = oEvent.getSource();
         var sActionName = oSource.data('action');
         var oAction = this._mActions[sActionName];
-        var oCon = this._oParams.controller;
-        var oParams = {
-          busyControl: oCon.getView(),
-          contexts: [oCon.getView().getBindingContext()],
-          controller: oCon,
-          event: oEvent
-        };
-        oAction.execute(oParams).then(this._fnResolve, this._fnReject);
+        oAction.execute(this._oParams).then(this._fnResolve, this._fnReject);
       }
     });
   }

@@ -1,7 +1,6 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
-	xmlns:core="sap.ui.core"
-	xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	xmlns:core="sap.ui.core">
 	<ActionSheet placement="Bottom" 
 				 buttons="{path: 'this>/LinkedTransferDocuments', 
 						   sorter: {path : 'ExtUUID'}, 

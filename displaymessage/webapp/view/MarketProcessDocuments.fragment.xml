@@ -7,7 +7,6 @@
     <smartTable:SmartTable id="idLinkedProcessSmartTable"
 					       entitySet="xMP4GxC_GetLinkedPdocDetailsSet"
 					       tableType="ResponsiveTable"
-					       enableAutoBinding="false" 
 					       demandPopin="false"
 					       useExportToExcel="false"
 					       useTablePersonalisation="false"
@@ -32,7 +31,7 @@
 				</Column>
 			</columns>
 			<items>
-				<ColumnListItem type="Navigation" press="onAction" c:action="navObjectTableToProcessApp">
+				<ColumnListItem type="Navigation" press="onAction('navObjectTableToProcessApp', $event)">
 					<cells>
 						<reuseTable:ObjectIdentifier title="{ProcessDocumentNumber}" text="{ProcessIDDescription}"/>
 					</cells>

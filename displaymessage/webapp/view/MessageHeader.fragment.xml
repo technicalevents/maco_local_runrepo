@@ -2,19 +2,19 @@
         xmlns="com.sap.cd.maco.mmt.ui.reuse.control.facet"
         xmlns:core="sap.ui.core">
     <FormFacet>
-        <FormFacetField
+        <FormFacetText
             label="{i18n>OWN_MARKET_PARTNER_TITLE}"
             text="{parts: [{path: 'Direction'}, {path: 'SenderId'},
                            {path: 'SenderText'}, {path: 'ReceiverId'},
                            {path: 'ReceiverText'}, {value: 'Own'}],
                    formatter: '.formatMarketPartner'}"/>
-        <FormFacetField
+        <FormFacetText
             label="{i18n>EXTERNAL_MARKET_PARTNER_TITLE}"
             text="{parts: [{path: 'Direction'}, {path: 'SenderId'},
                            {path: 'SenderText'}, {path: 'ReceiverId'},
                            {path: 'ReceiverText'}, {value: 'External'}],
                    formatter: '.formatMarketPartner'}"/>
-        <FormFacetField
+        <FormFacetText
             label="{/xMP4GxC_TransferDoc_UI/TransferDate/#@sap:label}"
             text="{path: 'Timestamp', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' }}"/>
     </FormFacet>

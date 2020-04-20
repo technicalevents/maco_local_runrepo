@@ -8,6 +8,16 @@ sap.ui.define(
     'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'
   ],
 
+  /**
+   * config:
+   *  - objectTextProperty
+   *  - objectIdProperty
+   *  - appTitleMsgKey
+   *  - setServiceUrl (optional)
+   *
+   * params:
+   *  - controller
+   */
   function(BaseAction, bundle, UI5Metadata, AddBookmarkButton, Assert) {
     'use strict';
 
@@ -48,10 +58,10 @@ sap.ui.define(
 
       _getBookmarkObjectPage: function(oParams) {
         // check
-        this.assertContextParam(oParams);
-        var oObject = oParams.contexts[0].getObject();
+        var oContext = oParams.controller.getView().getBindingContext();
+        var oObject = oContext.getObject();
         Assert.ok(
-          oObject.hasOwnProperty(this.oConfig.objectTextProperty),
+          oObject && oObject.hasOwnProperty(this.oConfig.objectTextProperty),
           'cannot save as tile. the object has no text property: ' + this.oConfig.objectTextProperty
         );
 
@@ -73,7 +83,7 @@ sap.ui.define(
        */
       _getServiceUrl: function(oParams) {
         // skip?
-        if (oParams.hasOwnProperty('setServiceUrl') && !oParams.setServiceUrl) {
+        if (this.oConfig.hasOwnProperty('setServiceUrl') && !this.oConfig.setServiceUrl) {
           return null;
         }
 

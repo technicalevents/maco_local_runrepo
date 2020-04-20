@@ -1,7 +1,7 @@
 sap.ui.define(
   [
     'sap/ui/base/Object',
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/message/_/ODataResponseParser',
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/message/ODataResponseParser',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/js/startsWith',
     'com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage'

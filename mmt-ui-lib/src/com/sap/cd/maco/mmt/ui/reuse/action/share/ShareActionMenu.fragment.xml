@@ -1,10 +1,9 @@
 <core:FragmentDefinition
     xmlns="sap.m"
     xmlns:core="sap.ui.core"
-    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-    xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button">
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" >
     <ActionSheet placement="Bottom">
-        <reuseButton:SendEmail	press="_onAction" custom:action="sendEmail" />
-        <reuseButton:SaveAsTile	press="_onAction" custom:action="saveAsTile" />
+        <Button icon="sap-icon://email" text="{i18n-reuse>actionShareSendEmailButton}" press="_onAction" custom:action="sendEmail" />
+        <Button icon="sap-icon://add-favorite" text="{i18n-reuse>actionShareSaveAsTileButton}" press="_onAction" custom:action="saveAsTile" />
     </ActionSheet>
 </core:FragmentDefinition>

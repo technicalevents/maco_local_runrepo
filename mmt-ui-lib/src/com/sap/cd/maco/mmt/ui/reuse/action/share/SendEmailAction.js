@@ -9,6 +9,15 @@ sap.ui.define(
   function(BaseAction, bundle, UI5Metadata, Assert) {
     'use strict';
 
+    /**
+     * config:
+     *  - objectTextProperty
+     *  - objectIdProperty
+     *  - appTitleMsgKey
+     *
+     * params:
+     *  - controller
+     */
     return BaseAction.extend('com.sap.cd.maco.mmt.ui.reuse.action.share.SendEmailAction', {
       constructor: function(oComponent, oConfig) {
         BaseAction.call(this, oComponent, oConfig);
@@ -23,14 +32,14 @@ sap.ui.define(
               sTargetText = this.getConfigText('appTitleMsgKey', '?');
             } else if (UI5Metadata.isSubclass(oParams.controller, 'com.sap.cd.maco.mmt.ui.reuse.controller.objectPage.ObjectPageController')) {
               // check
-              this.assertContextParam(oParams);
-              var oObject = oParams.contexts[0].getObject();
+              var oContext = oParams.controller.getView().getBindingContext();
+              var oObject = oContext.getObject();
               Assert.ok(
-                oObject.hasOwnProperty(this.oConfig.objectTextProperty),
+                oObject && oObject.hasOwnProperty(this.oConfig.objectTextProperty),
                 'cannot save as tile. the object has no text property: ' + this.oConfig.objectTextProperty
               );
               Assert.ok(
-                oObject.hasOwnProperty(this.oConfig.objectIdProperty),
+                oObject && oObject.hasOwnProperty(this.oConfig.objectIdProperty),
                 'cannot save as tile. the object has no id property: ' + this.oConfig.objectIdProperty
               );
 
@@ -41,7 +50,7 @@ sap.ui.define(
             }
 
             // open email
-            var sSubject = bundle.getText('shareSendEmailSubject', [sTargetText]);
+            var sSubject = bundle.getText('actionShareSendEmailSubject', [sTargetText]);
             var sBody = window.location.href;
             sap.m.URLHelper.triggerEmail(null, sSubject, sBody, null, null);
           }.bind(this)

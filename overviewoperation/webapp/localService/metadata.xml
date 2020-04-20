@@ -1,0 +1,188 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value">
+		<edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value">
+		<edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value">
+		<edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value">
+		<edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+	</edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value">
+		<edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures"/>
+	</edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="cds_xapexui_operationoverview" xml:lang="en" sap:schema-version="1">
+			<EntityType Name="xAPExC_OperOverview_TDocType" sap:label="TDoc Overview App for Operations" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="TdocStatus"/>
+					<PropertyRef Name="KeyDate"/>
+				</Key>
+				<Property Name="TdocStatus" Type="Edm.String" Nullable="false" MaxLength="50" sap:text="TdocStatusDescription" sap:label="Message Status"/>
+				<Property Name="KeyDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" sap:label="Status Criticality" sap:quickinfo="1 Byte Unsigned Integer"/>
+				<Property Name="TdocStatusDescription" Type="Edm.String" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="ErrorPercent" Type="Edm.Int64"/>
+				<Property Name="TdocStatusCount" Type="Edm.Int64" sap:label="Message Status Count"/>
+			</EntityType>
+			<EntityType Name="xAPExOperOverview_ExcepType" sap:label="Exception Doc Overview App for Operation" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="Exceptionstatus"/>
+					<PropertyRef Name="KeyDate"/>
+				</Key>
+				<Property Name="Exceptionstatus" Type="Edm.String" Nullable="false" MaxLength="50" sap:text="ExceptionStatusDescription"
+					sap:label="Exception Status"/>
+				<Property Name="KeyDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" sap:label="Status Criticality" sap:quickinfo="1 Byte Unsigned Integer"/>
+				<Property Name="ExceptionStatusDescription" Type="Edm.String" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="ErrorPercent" Type="Edm.Int64"/>
+				<Property Name="ExceptionDocStatusCount" Type="Edm.Int64" sap:label="Exception Document Status Count"/>
+			</EntityType>
+			<EntityType Name="xAPExOperOverview_Pdoc_ErrType" sap:label="PDoc Error Overview App for Operations" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessStatus"/>
+					<PropertyRef Name="CreationDate"/>
+				</Key>
+				<Property Name="ProcessStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="ProcessStatusDescription"
+					sap:label="Process Status"/>
+				<Property Name="CreationDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:filter-restriction="interval"
+					sap:label="Process Creation Date"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" sap:label="Status Criticality" sap:quickinfo="1 Byte Unsigned Integer"/>
+				<Property Name="ProcessStatusDescription" Type="Edm.String" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="ProcessStatusCount" Type="Edm.Int64"/>
+				<Property Name="ErroneousCount" Type="Edm.Int64" sap:label="Erroneous Count"/>
+			</EntityType>
+			<EntityType Name="xAPExOperOverview_Pdoc_LoadType" sap:label="PDoc Load Overview App for Operations" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessStatus"/>
+					<PropertyRef Name="CreationDate"/>
+				</Key>
+				<Property Name="ProcessStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="ProcessStatusDescription"
+					sap:label="Process Status"/>
+				<Property Name="CreationDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:filter-restriction="interval"
+					sap:label="Process Creation Date"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" sap:label="Status Criticality" sap:quickinfo="1 Byte Unsigned Integer"/>
+				<Property Name="ProcessStatusDescription" Type="Edm.String" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="ProcessStatusCount" Type="Edm.Int64"/>
+				<Property Name="LoadCount" Type="Edm.Int64" sap:label="PDoc Load Count"/>
+			</EntityType>
+			<EntityType Name="xAPExOperOverview_Pdoc_SuccType" sap:label="PDoc Succ Ratio Overview for Operations" sap:content-version="1">
+				<Key>
+					<PropertyRef Name="ProcessStatus"/>
+					<PropertyRef Name="CreationDate"/>
+				</Key>
+				<Property Name="ProcessStatus" Type="Edm.String" Nullable="false" MaxLength="10" sap:text="ProcessStatusDescription"
+					sap:label="Process Status"/>
+				<Property Name="CreationDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:display-format="Date" sap:filter-restriction="interval"
+					sap:label="Process Creation Date"/>
+				<Property Name="StatusCriticality" Type="Edm.Byte" sap:label="Status Criticality" sap:quickinfo="1 Byte Unsigned Integer"/>
+				<Property Name="ProcessStatusDescription" Type="Edm.String" MaxLength="60" sap:label="Short Descript."
+					sap:quickinfo="Short Text for Fixed Values"/>
+				<Property Name="ProcessStatusCount" Type="Edm.Int64"/>
+				<Property Name="SuccessRatio" Type="Edm.Int64" sap:label="Success Ratio"/>
+			</EntityType>
+			<EntityContainer Name="cds_xapexui_operationoverview_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true"
+				sap:supported-formats="atom json xlsx">
+				<EntitySet Name="xAPExC_OperOverview_TDoc" EntityType="cds_xapexui_operationoverview.xAPExC_OperOverview_TDocType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xAPExOperOverview_Excep" EntityType="cds_xapexui_operationoverview.xAPExOperOverview_ExcepType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xAPExOperOverview_Pdoc_Err" EntityType="cds_xapexui_operationoverview.xAPExOperOverview_Pdoc_ErrType" sap:creatable="false"
+					sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xAPExOperOverview_Pdoc_Load" EntityType="cds_xapexui_operationoverview.xAPExOperOverview_Pdoc_LoadType"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+				<EntitySet Name="xAPExOperOverview_Pdoc_Succ" EntityType="cds_xapexui_operationoverview.xAPExOperOverview_Pdoc_SuccType"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="cds_xapexui_operationoverview.cds_xapexui_operationoverview_Entities">
+				<Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true"/>
+				<Annotation Term="Aggregation.ApplySupported">
+					<Record>
+						<PropertyValue Property="Transformations">
+							<Collection>
+								<String>aggregate</String>
+								<String>groupby</String>
+								<String>filter</String>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Rollup" EnumMember="None"/>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xapexui_operationoverview.cds_xapexui_operationoverview_Entities/xAPExOperOverview_Pdoc_Err">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record>
+									<PropertyValue Property="Property" PropertyPath="CreationDate"/>
+									<PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xapexui_operationoverview.cds_xapexui_operationoverview_Entities/xAPExOperOverview_Pdoc_Load">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record>
+									<PropertyValue Property="Property" PropertyPath="CreationDate"/>
+									<PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+				Target="cds_xapexui_operationoverview.cds_xapexui_operationoverview_Entities/xAPExOperOverview_Pdoc_Succ">
+				<Annotation Term="Capabilities.FilterRestrictions">
+					<Record>
+						<PropertyValue Property="FilterExpressionRestrictions">
+							<Collection>
+								<Record>
+									<PropertyValue Property="Property" PropertyPath="CreationDate"/>
+									<PropertyValue Property="AllowedExpressions" String="SingleRange"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self"
+				href="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/APE/UI_OPERATIONOVERVIEW/$metadata"/>
+			<atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version"
+				href="https://ldcimus.wdf.sap.corp:44300/sap/opu/odata/APE/UI_OPERATIONOVERVIEW/$metadata"/>
+		</Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

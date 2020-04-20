@@ -1,0 +1,11 @@
+.comSapCdMacoMmtUiMonitorMsgGraphTitle .sapMNCIndScale {
+	overflow: inherit;
+}
+
+.comSapCdMacoMmtUiMonitorMsgGraphTitle .ovpChartTitle {
+	visibility: hidden;
+}
+
+.comSapCdMacoMmtUiMonitorMsgGraphTitle .TargetDeviationFlexbox {
+	visibility: hidden;
+}
