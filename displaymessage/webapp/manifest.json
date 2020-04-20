@@ -152,7 +152,7 @@
         },
         {
           "name": "messagePage",
-          "pattern": "messagePage/{TransferDocumentKey}",
+          "pattern": "messagePage/{TransferDocumentKey},{ExtBusinessMessageIDDummy}",
           "target": [
             "messagePage"
           ]

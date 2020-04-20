@@ -20,10 +20,7 @@
   	 <smartTable:customToolbar>
 	  	<Toolbar height="0rem"/>
 	  </smartTable:customToolbar>
-    <Table id="idCertificateTable" 
-	      growing="false" 
-	      growingScrollToLoad="false" 
-	      growingThreshold="10" 
+    <Table id="idCertificateTable"
 	      sticky="ColumnHeaders,HeaderToolbar"
 	      mode="None" >
     	<columns>

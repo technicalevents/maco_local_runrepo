@@ -33,8 +33,7 @@ sap.ui.define([
       /******************************************************************* */
       /* PUBLIC METHODS */
       /******************************************************************* */
-
-      /**
+	 /**
        * Event Handler - Triggered before Binding is started on parent view (Process Page)
        * @public
        * @param {object} oRouteParams Route parameters of Process Page
@@ -43,7 +42,7 @@ sap.ui.define([
         // Set first tab 'FlowTab' as by default on click of process in process list app
         this.byId("idProcessObjectPage").setSelectedSection(this.getView().getId() + "--idFlowTab");
         
-        this.getViewModel().setProperty("/IsAssociatedTabVisible", false);
+       this.getViewModel().setProperty("/IsAssociatedTabVisible", false);
 
         var sBindingPath = this.getView().getModel().createKey("/xMP4GxC_Linked_Associated_Proc", 
                         {ProcessDocumentKey: oRouteParams.ProcessDocumentKey}) + "/Set";

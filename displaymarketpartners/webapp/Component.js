@@ -44,20 +44,6 @@ sap.ui.define(
 
         // create the views based on the url/hash
         this.getRouter().initialize();
-      },
-
-      /**
-       * Function is triggered on exit of Application 
-       * @public
-       */
-      destroy: function() {
-        //Destroy Actions
-        for (var sName in this.actions) {
-          this.actions[sName].destroy();
-        }
-
-        // generic destroy of component
-        DraftComponent.prototype.destroy.apply(this, arguments);
       }
     });
   }
