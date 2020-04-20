@@ -103,6 +103,13 @@ sap.ui.define(
 										icon: "sap-icon://activity-assigned-to-goal",
 										targetURL: "#UtilsDataExchangeProcessing-defineContactRule"
 									}
+								},{
+									tileType: "sap.ushell.ui.tile.StaticTile",
+									properties: {
+										title: "Manage User Notifications",
+										icon: "sap-icon://message-popup",
+										targetURL: "#UtilsDataExchangeProcessing-userNotification"
+									}
 								}]
 							}]
 						}
@@ -249,19 +256,33 @@ sap.ui.define(
 									}
 								},
 								"UtilsDataExchangeProcessing-defineContactRule": {
-										semanticObject: "UtilsDataExchangeProcessing",
-										action: "defineContactRule",
-										description: "Define Contact Determination Rules",
-										title: "Define Contact Determination Rules",
-										signature: {
-											parameters: {}
-										},
-										resolutionResult: {
-											applicationType: "SAPUI5",
-											additionalInformation: "SAPUI5.Component=com.sap.cd.maco.selfservice.ui.app.definecontactrules",
-											url: sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/definecontactrules")
-										}
+									semanticObject: "UtilsDataExchangeProcessing",
+									action: "defineContactRule",
+									description: "Define Contact Determination Rules",
+									title: "Define Contact Determination Rules",
+									signature: {
+										parameters: {}
+									},
+									resolutionResult: {
+										applicationType: "SAPUI5",
+										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.selfservice.ui.app.definecontactrules",
+										url: sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/definecontactrules")
 									}
+								},
+								"UtilsDataExchangeProcessing-userNotification": {
+									semanticObject: "UtilsDataExchangeProcessing",
+									action: "userNotification",
+									description: "Manage User Notifications",
+									title: "Manage User Notifications",
+									signature: {
+										parameters: {}
+									},
+									resolutionResult: {
+										applicationType: "SAPUI5",
+										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.selfservice.ui.app.usernotifications",
+										url: sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/usernotifications")
+									}
+								}
 							}
 						}
 					}
