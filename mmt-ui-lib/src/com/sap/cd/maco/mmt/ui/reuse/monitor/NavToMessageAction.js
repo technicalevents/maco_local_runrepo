@@ -11,12 +11,13 @@ sap.ui.define(["com/sap/cd/maco/mmt/ui/reuse/monitor/NavToExternalAction"], func
     /**
      * Constructor
      */
-    constructor: function(oComponent, sKeyField) {
+    constructor: function(oComponent, sKeyField, sKeyField1) {
       var oConfig = {
         semanticObject: "UtilsDataExchangeProcessing",
         action: "displayMessage",
         paramsMap: {
-          TransferDocumentKey: sKeyField
+          TransferDocumentKey: sKeyField,
+          ExtBusinessMessageIDDummy: sKeyField1
         },
         guidFields: sKeyField
       };
