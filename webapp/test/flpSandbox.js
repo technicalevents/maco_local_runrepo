@@ -280,6 +280,20 @@ sap.ui.define(
 										url: sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/definecontactrules")
 									}
 								},
+								"UtilsDataExchangeProcessing-userNotification": {
+									semanticObject: "UtilsDataExchangeProcessing",
+									action: "userNotification",
+									description: "Manage User Notifications",
+									title: "Manage User Notifications",
+									signature: {
+										parameters: {}
+									},
+									resolutionResult: {
+										applicationType: "SAPUI5",
+										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.selfservice.ui.app.usernotifications",
+										url: sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/usernotifications")
+									}
+								},
 								"UtilsDataExchangeProcessing-operationsOverview": {
 									semanticObject: "UtilsDataExchangeProcessing",
 									action: "operationsOverview",
@@ -294,23 +308,7 @@ sap.ui.define(
 										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.operation.ui.app.overviewoperations",
 										url: sap.ui.require.toUrl("com/sap/cd/maco/operation/ui/app/overviewoperations")
 									}
-								},
-								"UtilsDataExchangeProcessing-userNotification": {
-									semanticObject: "UtilsDataExchangeProcessing",
-									action: "userNotification",
-									description: "Manage User Notifications",
-									title: "Manage User Notifications",
-									signature: {
-										parameters: {}
-									},
-									resolutionResult: {
-										applicationType: "SAPUI5",
-										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.selfservice.ui.app.usernotifications",
-										url: sap.ui.require.toUrl("com/sap/cd/maco/selfservice/ui/app/usernotifications")
-									}
 								}
-=======
->>>>>>> refs/heads/master
 							}
 						}
 					}
