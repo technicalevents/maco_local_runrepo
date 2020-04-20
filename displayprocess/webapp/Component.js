@@ -23,7 +23,7 @@ sap.ui.define([
       this.mActions = {
         navToProcessPage: new NavToRouteAction(this),
         navToProcessAction: new NavToProcessAction(this, "ProcDocKey", "ProcessID"),
-        navToMessageAction: new NavToMessageAction(this, "BusinessObjectUUID"),
+        navToMessageAction: new NavToMessageAction(this, "BusinessObjectUUID", "ExtBusinessMessageID"),
         share: new ShareAction(this, {
           appTitleMsgKey: "APP_TITLE",
           objectIdProperty: "ProcessDocumentNumber",

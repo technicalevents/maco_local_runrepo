@@ -18,10 +18,7 @@
 		  <smartTable:customToolbar>
 		  	<Toolbar height="0rem"/>
 		  </smartTable:customToolbar>
-	    <Table id="idEmailTable" 
-		      growing="true" 
-		      growingScrollToLoad="false" 
-		      growingThreshold="10"
+	    <Table id="idEmailTable"
 		      mode="None" >
 	      <columns>
 			 <Column>

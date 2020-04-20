@@ -61,6 +61,7 @@ sap.ui.define([
 			 */
 			onAfterBind: function(oRouteParams, oTransferDocument) {
 				var oModel = this.getViewModel();
+				
 				oModel.setProperty("/LinkedDocuments", {});
 				oModel.setProperty("/LinkedTransferDocuments", []);
 				oModel.setProperty("/TransferDocument", oTransferDocument);
@@ -73,12 +74,16 @@ sap.ui.define([
 					oModel.setProperty("/LinkedDocuments/ProcessDocCount", 1);
 				}
 			},
+			onParentContextChange: function(oObject){
+				debugger;
+			},
 			
 			/**
 			 * Method will be triggered before object page binding is done with entitySet
 			 * @public
 			 */
-			 onBeforeBind: function() {
+			 onBeforeBind: function(oObject) {
+			 	debugger;
 				this.oComponent.getService("ShellUIService").then(
 					function(oService) {
 						oService.setTitle(this.oBundle.getText("SINGLE_MSG_TITLE"));
@@ -103,7 +108,7 @@ sap.ui.define([
 			 * @public
 			 */
         	onBeforeRebindTable: function() {
-        		var sTransferDocumentKey = this.getViewModel().getProperty("/TransferDocument").TransferDocumentKey;
+				var sTransferDocumentKey = this.getViewModel().getProperty("/TransferDocument").TransferDocumentKey;
         		
         		if(sTransferDocumentKey) {
         			this.byId("idLinkedProcessSmartTable").setTableBindingPath("/xMP4GxC_GetLinkedPdocDetails(TransferDocumentKey=guid'"+ sTransferDocumentKey + "')/Set");
@@ -222,6 +227,7 @@ sap.ui.define([
 				if(sTransferDocumentKey) {
 					var sLinkedDocumentKey = this.getView().getModel().createKey("/xMP4GxC_LinkedDocuments_UI", 
 			    						{TransferDocumentKey: sTransferDocumentKey});
+			    	var sExtBusinessMessageID = oRouteParams.ExtBusinessMessageIDDummy;
 			    						
 					this.mSingles.transaction.whenRead({
 						path: sLinkedDocumentKey + "/Set",
@@ -229,7 +235,9 @@ sap.ui.define([
 					}).then(this._onSucessLinkTransferDocumentsRead.bind(this));
 					
 					var sExternalPayloadKey = this.getView().getModel().createKey("/xMP4GxC_TransferDoc_UI", 
-			    						{TransferDocumentKey: sTransferDocumentKey});
+			    						{TransferDocumentKey: sTransferDocumentKey,
+			    						 ExtBusinessMessageIDDummy: sExtBusinessMessageID
+			    						});
 					this.mSingles.transaction.whenRead({
 						path: sExternalPayloadKey,
 						urlParameters: {

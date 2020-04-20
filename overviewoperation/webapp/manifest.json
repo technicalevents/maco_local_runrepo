@@ -190,6 +190,46 @@
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PDocErrorOverview",
 					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PDocErrorOverview"
 				}
+			},
+			"d_PDoStatCustOverview": {
+				"model": "UI_OPERATIONOVERVIEW",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{ACTIVE_PROCESS_CARD_TITLE}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"tabs": [{
+						"entitySet": "xAPExC_OperOverview_Pdoc_Stat",
+						"value": "{{BY_PROCESS_STATUS_LBL}}",
+						"colorPalette": {
+							"0": {
+								"color": "sapUiChartPaletteSemanticNeutral",
+								"legendText": "{{TERM_STATUS_TXT}}"
+							},
+							"1": {
+								"color": "sapUiChartPaletteSemanticBad",
+								"legendText": "{{ERR_STATUS_TXT}}"
+							},
+							"2": {
+								"color": "sapUiChartPaletteSemanticCritical",
+								"legendText": "{{ACTV_STATUS_TXT}}"
+							},
+							"3": {
+								"color": "sapUiChartPaletteSemanticGood",
+								"legendText": "{{CMPL_STATUS_TXT}}"
+							}
+						},
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PDocStatusOverview",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PDocStatusOverview"
+					}, {
+						"entitySet": "xAPExC_OperOverview_Pdoc_Cust",
+						"value": "{{BY_PROCESS_CUSTOMER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PDocCustOverview",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PDocCustOverview"
+					}]
+				}
 			}
 		},
 		"services": {
