@@ -1,7 +1,8 @@
 sap.ui.define([
   "com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
-  "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter"
-],function(ObjectPageNoDraftController, Formatter) {
+  "com/sap/cd/maco/monitor/ui/app/displayprocesses/util/formatter",
+  "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility"
+],function(ObjectPageNoDraftController, Formatter, Utility) {
   "use strict";
 
   return ObjectPageNoDraftController.extend(
@@ -83,6 +84,17 @@ sap.ui.define([
       },
       
       /**
+       * Function is triggered before executing action
+       * @param {object} oParam       Event parameters
+       * @public
+       */
+      onBeforeActionNavMarketPartner: function(oParam) {
+      	var sBindingPath = oParam.event.getSource().getBindingContext("this").getPath();
+      	var sExternalMarketPartner = this.getViewModel().getProperty(sBindingPath + "/ExternalMarketPartner");
+		this.oModel.setProperty(oParam.contexts[0].getPath() + "/ExternalMarketPartner", sExternalMarketPartner);
+      },
+      
+      /**
        * Method will be triggered once data has been recevied for associated process table
        * @param {object} oResponseData   Response Data
        * @public
@@ -135,9 +147,7 @@ sap.ui.define([
         }
 
         var aProcess, aMarketPartner = [];
-
-        var oBindingContext = this.getView().byId("idProcessObjectPage").getBindingContext();
-        var sOwnerUUID = oBindingContext.getObject("OwnerUUIDText") + " (" + oBindingContext.getObject("OwnerUUID") + ")";
+		var sOwnMarketPartner = this.getView().byId("idProcessObjectPage").getBindingContext().getObject("OwnerUUID");
 
         if (!oResult.data.results){
           aProcess = [oResult.data];
@@ -147,17 +157,19 @@ sap.ui.define([
         
         for(var intI = 0; intI < aProcess.length; intI++) {
           if(aProcess[intI].MarketPartner !== "") {
-            aMarketPartner.push(aProcess[intI].MarketPartnerText + " (" + aProcess[intI].MarketPartner + ")");
+          	aMarketPartner.push({ExternalMarketPartner: aProcess[intI].MarketPartner, ExternalMarketPartnerText: aProcess[intI].MarketPartnerText});
           }
         }
-
-        if(aMarketPartner.length > 1 && aMarketPartner.indexOf(sOwnerUUID) >= 0) {
-          aMarketPartner.splice(aMarketPartner.indexOf(sOwnerUUID), 1);
+        
+        var oCommonMarketPartner = Utility.getObjectWithAttr(aMarketPartner, "ExternalMarketPartner", sOwnMarketPartner);
+        
+        if(aMarketPartner.length > 1 && !jQuery.isEmptyObject(oCommonMarketPartner)) {
+          aMarketPartner = aMarketPartner.filter(function(oMarketPartner) {
+			return oMarketPartner.ExternalMarketPartner !== oCommonMarketPartner.ExternalMarketPartner;
+		  });
         }
 
-        var sMarketPartner = aMarketPartner.join(", ");
-        var oModel = this.getViewModel();
-        oModel.setProperty("/MarketPartner", sMarketPartner);
+        var oModel = this.getViewModel().setProperty("/MarketPartner", aMarketPartner);
       }
   });
 });

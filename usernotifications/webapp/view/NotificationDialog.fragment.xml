@@ -21,12 +21,12 @@
 					<smartForm:label>
 						<Label text="{/xMP4GxC_ManageNotification/Priority/#@sap:label}"/>
 					</smartForm:label>
-					<ComboBox showSecondaryValues= "true"
-							  items="{/xMP4GxC_Priority_VH}"
-							  selectedKey="{Priority}">
+					<Select items="{/xMP4GxC_Priority_VH}"
+							selectedKey="{Priority}"
+							forceSelection="false">
 						<core:ListItem key="{Value}" 
 									   text="{Description}"/>
-					</ComboBox>
+					</Select>
 				</smartForm:GroupElement>
 				<smartForm:GroupElement>
 					<smartForm:label>
