@@ -24,12 +24,11 @@
                           change="onOwnMarketPartnerChange"
                           selectedKey="{OwnMarketPartner}">
                     <core:ListItem key="{market_partner}" 
-                    			        text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
-                                    			       {path: 'mp_name'},
-                                                 {path: 'market_partner'},
-                                                 {path: 'division_text'}],
-                                         formatter: 'jQuery.sap.formatMessage'}"
-                                  additionalText="{market_role}"/>
+	            			        text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
+	                            			       {path: 'mp_name'},
+	                                        		{path: 'market_role', formatter: '.formatter.valueHelpFormatter.marketRole'},
+	                                        		{path: 'market_partner'}],
+	                            					formatter: 'jQuery.sap.formatMessage'}"/>
                   </ComboBox>
         </smartForm:GroupElement>
 
@@ -46,7 +45,19 @@
         </smartForm:GroupElement>
 
         <smartForm:GroupElement>
-          <smartField:SmartField mandatory="true" value="{ContactID}" />
+        	<smartForm:label>
+            <Label required="true"
+                   text="{/xMP4GxC_CTA_MP_UI/ContactID/#@sap:label}"/>
+          </smartForm:label>
+        	<ComboBox id="idContact" showSecondaryValues= "true"
+                          items="{path: '/xMP4GxC_ContactID_VH', sorter: { path: 'ContactId' } }"
+                          selectedKey="{ContactID}">
+                    <core:ListItem key="{ContactId}" 
+	            			        text="{parts: [{path: 'i18n>CONTACT_LBL'},
+	                            			       {path: 'ContactName'},
+	                                        		{path: 'ContactId'}],
+	                            					formatter: 'jQuery.sap.formatMessage'}"/>
+                  </ComboBox>
         </smartForm:GroupElement>
         
         <smartForm:GroupElement>

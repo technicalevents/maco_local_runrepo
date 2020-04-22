@@ -73,11 +73,11 @@ sap.ui.define(
 					aSorters.push(new Sorter("OwnMarketPartner", true, function (oContext) {
 						var sKey = oContext.getProperty("OwnMarketPartner");
 						var sKeyText = oContext.getProperty("OwnMarketPartnerText");
-						var sDivisionText = oContext.getProperty("DivisionText");
+						var sMarketRoleText = messageFormatter.valueHelpFormatter.marketRole(oContext.getProperty("MarketRole"));
 
 						return {
 							key: sKey,
-							text: this.oBundle.getText("OWN_MKT_PARTNER_GRP_TXT", [sKeyText, sKey, sDivisionText])
+							text: this.oBundle.getText("OWN_MKT_PARTNER_LBL", [sKeyText, sMarketRoleText, sKey])
 						};
 					}.bind(this)));
 

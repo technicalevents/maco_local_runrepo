@@ -34,16 +34,16 @@
                 									 key="OwnerUUID"
 													 label="{/xMP4GxC_CTA_MP_UI/OwnMarketPartner/#@sap:label}">
                 <smartFilterBar:customControl>
-                  <MultiComboBox showSecondaryValues= "true"
+                  <MultiComboBox id="idOwmMarketPartner" showSecondaryValues= "true"
                           items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
-                          selectionChange="onOwnMarketPartnerChange">
+                          change="onOwnMarketPartnerChange"
+                          selectedKey="{OwnMarketPartner}">
                     <core:ListItem key="{market_partner}" 
-                    			        text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
-                                    			       {path: 'mp_name'},
-                                                 {path: 'market_partner'},
-                                                 {path: 'division_text'}],
-                                         formatter: '.formatter.formatMessage'}"
-                                  additionalText="{market_role}"/>
+                			        text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
+	                    			       {path: 'mp_name'},
+	                                		{path: 'market_role', formatter: '.formatter.valueHelpFormatter.marketRole'},
+	                                		{path: 'market_partner'}],
+	                    					formatter: 'jQuery.sap.formatMessage'}"/>
                   </MultiComboBox>
           			</smartFilterBar:customControl>
           		</smartFilterBar:ControlConfiguration>
@@ -80,7 +80,7 @@
 					        smartFilterId="idContactRulesFilterBar"
 					        smartVariant="idContactRulesVariantManagement"
 					        enableAutoBinding="true" 
-					        requestAtLeastFields="ContactDeterminationKey, OwnMarketPartner, OwnMarketPartnerText, DivisionText"
+					        requestAtLeastFields="ContactDeterminationKey, OwnMarketPartner, OwnMarketPartnerText, MarketRole"
 					        ignoredFields=""
 					        header="{i18n>ContactDeterminationTitlePlural}"
 					        useTablePersonalisation="true"
@@ -148,7 +148,7 @@
               	<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}"  text="{ExternalMarketPartner}" noDataText="{i18n>ANY_DATA_TXT}"/>
               	<reuseTable:ObjectIdentifier text="{TechnicalMsgID}" noDataText="{i18n>ANY_DATA_TXT}"/>
               	<reuseTable:ObjectIdentifier text="{ExtBusinessMessageID}" noDataText="{i18n>ANY_DATA_TXT}"/>
-              	<reuseTable:ObjectIdentifier title="{ContactID}" text="{ContactName}"/>
+              	<reuseTable:ObjectIdentifier title="{ContactName}" text="{ContactID}"/>
               </cells>
             </ColumnListItem>
           </items>

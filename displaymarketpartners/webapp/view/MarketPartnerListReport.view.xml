@@ -109,14 +109,14 @@
 									path: 'Division',
 									formatter: '.valueHelpFormatter.division'
 								}"/>	
-							<ObjectStatus text="{= !!${EmailCertValidTo} ? ${path: 'EmailCertValidTo',
+								<ObjectStatus text="{= !!${EmailCertValidTo} ? ${path: 'EmailCertValidTo',
 																			type: 'sap.ui.model.type.DateTime', 
-																			formatOptions: { style: 'medium' }} : ${i18n>EXPIRED_TEXT}}"
+																			formatOptions: { style: 'medium' }} : ${i18n>NOT_MAINTAINED_TEXT}}"
 										 state="{= ${CertValidityCriticality} === 3 ? 'Indication04' : 
 																				${CertValidityCriticality} === 1 ? 'Indication01' : 
 																													${CertValidityCriticality} === 2 ? 'Indication03' :
-																																						'Indication02'}"
-									    inverted="{=!!!${EmailCertValidTo}}"/>
+																																						'None'}"
+									    inverted="{= ${CertValidityCriticality} === 1}"/>
 						</cells>
 					</ColumnListItem>
 				</items>
