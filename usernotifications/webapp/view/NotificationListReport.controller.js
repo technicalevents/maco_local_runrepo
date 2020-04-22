@@ -107,8 +107,9 @@ sap.ui.define([
 		 */
 		formatRoleCount: function(sRoles) {
 			var aRoles = sRoles.split(",");
-			if(aRoles.length > 1) {
-				return this.oBundle.getText("ROLE_LINK_PLURAL_LBL", [aRoles.length]);
+			if(!jQuery.isEmptyObject(sRoles) && aRoles.length > 0) {
+				var sI18nText = (aRoles.length > 1) ? "ROLE_LINK_PLURAL_LBL" : "ROLE_LINK_SINGLE_LBL";
+				return this.oBundle.getText(sI18nText, [aRoles.length]);
 			}
 			return sRoles;
 		},
@@ -120,7 +121,7 @@ sap.ui.define([
 		 * @returns                   Visiblity of Role text or Role link
 		 */
 		formatRoleLinkVisible: function(sRoles) {
-			return sRoles.split(",").length > 1 ? true : false;
+			return sRoles.split(",").length > 0 ? true : false;
 		},
 		
 		/**
@@ -129,7 +130,7 @@ sap.ui.define([
 		 * @public
 		 */
 		onRoleLinkPress: function(oEvent) {
-			var sRoleText = oEvent.getSource().getBindingContext().getObject("Roles");
+			var sRoleText = oEvent.getSource().getBindingContext().getObject("Roles").split(",").join(", ");
 			if (!this._oRolePopover) {
 				this._oRolePopover = sap.ui.xmlfragment(this.createId("RolePopover"),
 					"com.sap.cd.maco.selfservice.ui.app.usernotifications.view.RolePopover", this);
