@@ -99,7 +99,7 @@ sap.ui.define(
 								},{
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
-										title: "Define EDIFACT Contact Determination Rules",
+										title: "Define EDIFACT Contact Rules",
 										icon: "sap-icon://activity-assigned-to-goal",
 										targetURL: "#UtilsDataExchangeProcessing-defineContactRule"
 									}
@@ -269,8 +269,8 @@ sap.ui.define(
 								"UtilsDataExchangeProcessing-defineContactRule": {
 									semanticObject: "UtilsDataExchangeProcessing",
 									action: "defineContactRule",
-									description: "Define EDIFACT Contact Determination Rules",
-									title: "Define EDIFACT Contact Determination Rules",
+									description: "Define EDIFACT Contact Rules",
+									title: "Define EDIFACT Contact Rules",
 									signature: {
 										parameters: {}
 									},

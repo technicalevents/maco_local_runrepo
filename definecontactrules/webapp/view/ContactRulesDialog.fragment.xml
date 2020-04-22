@@ -52,12 +52,12 @@
         	<ComboBox id="idContact" showSecondaryValues= "true"
                           items="{path: '/xMP4GxC_ContactID_VH', sorter: { path: 'ContactId' } }"
                           selectedKey="{ContactID}">
-                    <core:ListItem key="{ContactId}" 
-	            			        text="{parts: [{path: 'i18n>CONTACT_LBL'},
-	                            			       {path: 'ContactName'},
-	                                        		{path: 'ContactId'}],
-	                            					formatter: 'jQuery.sap.formatMessage'}"/>
-                  </ComboBox>
+                <core:ListItem key="{ContactId}" 
+            			        text="{parts: [{path: 'i18n>CONTACT_LBL'},
+                            			       {path: 'ContactName'},
+                                        		{path: 'ContactId'}],
+                            					formatter: 'jQuery.sap.formatMessage'}"/>
+            </ComboBox>
         </smartForm:GroupElement>
         
         <smartForm:GroupElement>
