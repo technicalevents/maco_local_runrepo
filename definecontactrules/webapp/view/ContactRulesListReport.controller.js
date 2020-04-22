@@ -69,7 +69,6 @@ sap.ui.define(
 				onBeforeRebindTable: function (oEvent) {
 					var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
 					var aSorters = [];
-					var aFilters = oUpdate.filters;
 					
 					aSorters.push(new Sorter("OwnMarketPartner", true, function (oContext) {
 						var sKey = oContext.getProperty("OwnMarketPartner");
