@@ -92,14 +92,14 @@ sap.ui.define(
 								},{
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
-										title: "Maintain Message Contacts",
+										title: "Maintain EDIFACT Contacts",
 										icon: "sap-icon://contacts",
 										targetURL: "#UtilsDataExchangeProcessing-maintMsgContact"
 									}
 								},{
 									tileType: "sap.ushell.ui.tile.StaticTile",
 									properties: {
-										title: "Define Contact Determination Rules",
+										title: "Define EDIFACT Contact Rules",
 										icon: "sap-icon://activity-assigned-to-goal",
 										targetURL: "#UtilsDataExchangeProcessing-defineContactRule"
 									}
@@ -252,8 +252,8 @@ sap.ui.define(
 								"UtilsDataExchangeProcessing-maintMsgContact": {
 									semanticObject: "UtilsDataExchangeProcessing",
 									action: "maintMsgContact",
-									description: "Maintain Message Contacts",
-									title: "Maintain Message Contacts",
+									description: "Maintain EDIFACT Contacts",
+									title: "Maintain EDIFACT Contacts",
 									signature: {
 										additionalParameters: "allowed",
 										parameters: {}
@@ -269,8 +269,8 @@ sap.ui.define(
 								"UtilsDataExchangeProcessing-defineContactRule": {
 									semanticObject: "UtilsDataExchangeProcessing",
 									action: "defineContactRule",
-									description: "Define Contact Determination Rules",
-									title: "Define Contact Determination Rules",
+									description: "Define EDIFACT Contact Rules",
+									title: "Define EDIFACT Contact Rules",
 									signature: {
 										parameters: {}
 									},

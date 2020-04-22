@@ -20,7 +20,7 @@ sap.ui.define([
           BaseAction.call(this, oComponent, oConfig);
           this.oConfig.minContexts = 1;
           
-          this._oNavToMessageAction = new NavToMessageAction(oComponent, "LinkedDocumentKey");
+          this._oNavToMessageAction = new NavToMessageAction(oComponent, "LinkedDocumentKey", "ExtBusinessMessageID");
         },
         
       /******************************************************************* */

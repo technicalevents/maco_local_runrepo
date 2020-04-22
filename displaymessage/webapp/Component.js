@@ -33,7 +33,7 @@ sap.ui.define([
         navListToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey", "ProcessID"),
         navObjectTableToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey", "SemanticType"),
         navObjectToProcessApp: new NavToProcessAction(this, "LinkedDocumentKey", "SemanticType"),
-        navObjectToMessageApp: new NavToMessageAction(this, "LinkedDocumentKey"),
+        navObjectToMessageApp: new NavToMessageAction(this, "LinkedDocumentKey", "ExtBusinessMessageID"),
         navMarketPartnerAction: new NavToMarketPartnerAction(this, "ExternalMarketPartner"),
         multipleDoc: new MultipleDocumentAction(this),
         share: new ShareAction(this, {

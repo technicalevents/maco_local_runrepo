@@ -31,20 +31,19 @@
 					                  class="sapUiSmallMarginBottom">
           	<smartFilterBar:controlConfiguration>
                 <smartFilterBar:ControlConfiguration index="1" 
-                									 key="OwnerUUID"
+                									 key="OwnMarketPartner"
 													 label="{/xMP4GxC_CTA_MP_UI/OwnMarketPartner/#@sap:label}">
                 <smartFilterBar:customControl>
-                  <MultiComboBox showSecondaryValues= "true"
-                          items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
-                          selectionChange="onOwnMarketPartnerChange">
-                    <core:ListItem key="{market_partner}" 
-                    			        text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
-                                    			       {path: 'mp_name'},
-                                                 {path: 'market_partner'},
-                                                 {path: 'division_text'}],
-                                         formatter: '.formatter.formatMessage'}"
-                                  additionalText="{market_role}"/>
-                  </MultiComboBox>
+	                  <MultiComboBox id="idOwmMarketPartner"
+			                          items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
+			                          selectionChange="onCustomControlChange('OwnMarketPartner', $event)">
+	                    	<core:ListItem key="{market_partner}" 
+	                			        text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
+		                    			       {path: 'mp_name'},
+		                                		{path: 'market_role', formatter: '.formatter.valueHelpFormatter.marketRole'},
+		                                		{path: 'market_partner'}],
+		                    					formatter: 'jQuery.sap.formatMessage'}"/>
+	                  </MultiComboBox>
           			</smartFilterBar:customControl>
           		</smartFilterBar:ControlConfiguration>
                 <smartFilterBar:ControlConfiguration index="4"
@@ -55,10 +54,22 @@
                 									 preventInitialDataFetchInValueHelpDialog="false" />
 				<smartFilterBar:ControlConfiguration index="5"
                 										key="ContactID"
-                									 preventInitialDataFetchInValueHelpDialog="false" />
+                									 preventInitialDataFetchInValueHelpDialog="false" >
+					<smartFilterBar:customControl>
+						<MultiComboBox id="idContact" 
+	                        	  items="{path: '/xMP4GxC_ContactID_VH', sorter: { path: 'ContactId' } }"
+	                        	  selectionChange="onCustomControlChange('ContactID', $event)">
+	                			<core:ListItem key="{ContactId}" 
+	            			        			text="{parts: [{path: 'i18n>CONTACT_LBL'},
+	                            			    		{path: 'ContactName'},
+	                                        			{path: 'ContactId'}],
+	                            						formatter: 'jQuery.sap.formatMessage'}"/>
+	            		</MultiComboBox>
+            		</smartFilterBar:customControl>
+				</smartFilterBar:ControlConfiguration>
 				<smartFilterBar:ControlConfiguration index="2"
-                										key="ExternalMarketPartner"
-                									 preventInitialDataFetchInValueHelpDialog="false" />									 
+            										key="ExternalMarketPartner"
+                									preventInitialDataFetchInValueHelpDialog="false" />									 
           	</smartFilterBar:controlConfiguration>
           </smartFilterBar:SmartFilterBar>
      </semantic:headerContent>
@@ -80,7 +91,7 @@
 					        smartFilterId="idContactRulesFilterBar"
 					        smartVariant="idContactRulesVariantManagement"
 					        enableAutoBinding="true" 
-					        requestAtLeastFields="ContactDeterminationKey, OwnMarketPartner, OwnMarketPartnerText, DivisionText"
+					        requestAtLeastFields="ContactDeterminationKey, OwnMarketPartner, OwnMarketPartnerText, MarketRole"
 					        ignoredFields=""
 					        header="{i18n>ContactDeterminationTitlePlural}"
 					        useTablePersonalisation="true"
@@ -148,7 +159,7 @@
               	<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}"  text="{ExternalMarketPartner}" noDataText="{i18n>ANY_DATA_TXT}"/>
               	<reuseTable:ObjectIdentifier text="{TechnicalMsgID}" noDataText="{i18n>ANY_DATA_TXT}"/>
               	<reuseTable:ObjectIdentifier text="{ExtBusinessMessageID}" noDataText="{i18n>ANY_DATA_TXT}"/>
-              	<reuseTable:ObjectIdentifier title="{ContactID}" text="{ContactName}"/>
+              	<reuseTable:ObjectIdentifier title="{ContactName}" text="{ContactID}"/>
               </cells>
             </ColumnListItem>
           </items>

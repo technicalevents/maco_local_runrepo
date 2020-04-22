@@ -3,9 +3,10 @@ sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
     "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateWithDialogAction",
     "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/UpdateWithDialogAction",
-    "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/DeleteAction"
+    "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/DeleteAction",
+    "com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
   ],
-  function(MonitorComponent, HashSync, CreateWithDialogAction, UpdateWithDialogAction, DeleteAction) {
+  function(MonitorComponent, HashSync, CreateWithDialogAction, UpdateWithDialogAction, DeleteAction, ShareAction) {
     "use strict";
 
     return MonitorComponent.extend("com.sap.cd.maco.selfservice.ui.app.definecontactrules.Component", {
@@ -36,7 +37,13 @@ sap.ui.define([
           delete: new DeleteAction(this, {
             confirmMsg1: "CONTACTDETERMINATION_DELETE_CONFIRM_MSG",
             successMsg1: "CONTACTDETERMINATION_DELETE_SUCCESS_MSG"
-          })
+          }),
+          
+			share: new ShareAction(this, {
+				appTitleMsgKey: "APP_TITLE",
+				objectIdProperty: "ContactDeterminationKey",
+				objectTextProperty: ""
+			})
         };
 
         this.initRouting();

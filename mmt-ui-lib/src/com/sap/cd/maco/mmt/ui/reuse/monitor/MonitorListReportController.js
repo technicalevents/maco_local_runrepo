@@ -54,20 +54,20 @@ sap.ui.define(
 				 * Event is triggered when selection is changed in Own Market Partner MultiComboBox
 				 * @public
 				 */
-				onOwnMarketPartnerChange: function () {
-					var aOwnerUUIDKeys = this.getFilterBar().getControlByKey("OwnerUUID").getSelectedKeys();
+				onCustomControlChange: function (sControlKey) {
+					var aControlKeys = this.getFilterBar().getControlByKey(sControlKey).getSelectedKeys();
 					var oSmartFilterData = this.getFilterBar().getFilterData();
 
-					delete oSmartFilterData.OwnerUUID;
+					delete oSmartFilterData[sControlKey];
 
-					if (!jQuery.isEmptyObject(aOwnerUUIDKeys)) {
-						oSmartFilterData["OwnerUUID"] = {
+					if (!jQuery.isEmptyObject(aControlKeys)) {
+						oSmartFilterData[sControlKey] = {
 							"items": []
 						};
 
-						for (var intI = 0; intI < aOwnerUUIDKeys.length; intI++) {
-							oSmartFilterData["OwnerUUID"].items.push({
-								"key": aOwnerUUIDKeys[intI]
+						for (var intI = 0; intI < aControlKeys.length; intI++) {
+							oSmartFilterData[sControlKey].items.push({
+								"key": aControlKeys[intI]
 							});
 						}
 					}

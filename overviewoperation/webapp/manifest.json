@@ -122,7 +122,7 @@
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xAPExC_OperOverview_Pdoc_Succ",
-					"title": "{{STATUS_CARD_TITLE}}",
+					"title": "{{PROCESS_STATUS_CARD_TITLE}}",
 					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
 					"showFilterInHeader": true,
 					"defaultSpan": {
@@ -228,6 +228,135 @@
 						"value": "{{BY_PROCESS_CUSTOMER_LBL}}",
 						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PDocCustOverview",
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PDocCustOverview"
+					}]
+				}
+			},
+			"e_ExpDocStatusOverview": {
+				"model": "UI_OPERATIONOVERVIEW",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xAPExC_OperOverview_Excep_Succ",
+					"title": "{{EXP_STATUS_CARD_TITLE}}",
+					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
+					"showFilterInHeader": true,
+					"defaultSpan": {
+						"cols": 1
+					},
+					"colorPalette": {
+						"1": {
+							"color": "sapUiChartPaletteSemanticBad",
+							"legendText": "{{ERR_STATUS_TXT}}"
+						},
+						"3": {
+							"color": "sapUiChartPaletteSemanticGood",
+							"legendText": "{{NERR_STATUS_TXT}}"
+						}
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExpDocStatusOverview",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#ExpDocStatusOverview"
+				}
+			},
+			"f_ExpDocLoadLOverview": {
+				"model": "UI_OPERATIONOVERVIEW",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xAPExC_OperOverview_Exce_LoadL",
+					"title": "{{EXP_LOADL_CARD_TITLE}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"colorPalette": {
+						"0": {
+							"color": "sapUiChartPaletteSemanticNeutral",
+							"legendText": "{{TOTAL_COUNT_TXT}}"
+						},
+						"4": {
+							"color": "sapUiChartPaletteSemanticNeutral",
+							"legendText": "{{ACTV_STATUS_TXT}}"
+						}
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExpDocLoadLOverview",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExpDocLoadLOverview"
+				}
+			},
+			"g_ExpDocLoadROverview": {
+				"model": "UI_OPERATIONOVERVIEW",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xAPExC_OperOverview_Exce_LoadR",
+					"title": "{{EXP_LOADR_CARD_TITLE}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"colorPalette": {
+						"0": {
+							"color": "sapUiChartPaletteSemanticNeutral",
+							"legendText": "{{TOTAL_COUNT_TXT}}"
+						},
+						"4": {
+							"color": "sapUiChartPaletteSemanticNeutral",
+							"legendText": "{{ACTV_STATUS_TXT}}"
+						}
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExpDocLoadROverview",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExpDocLoadROverview"
+				}
+			},
+			"h_ExpDoErrorOverview": {
+				"model": "UI_OPERATIONOVERVIEW",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{ERRONEOUS_EXP_CARD_TITLE}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"entitySet": "xAPExC_OperOverview_Excep_Err",
+					"colorPalette": {
+						"1": {
+							"color": "sapUiChartPaletteSemanticBad",
+							"legendText": "{{ERR_STATUS_TXT}}"
+						},
+						"4": {
+							"color": "sapUiChartPaletteSemanticNeutral",
+							"legendText": "{{ACTV_STATUS_TXT}}"
+						}
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExpDoErrorOverview",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExpDoErrorOverview"
+				}
+			},
+			"i_ExpDocOthersOverview": {
+				"model": "UI_OPERATIONOVERVIEW",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{ACTIVE_EXP_CARD_TITLE}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"tabs": [{
+						"entitySet": "xAPExC_OperOverview_Excep_Stat",
+						"value": "{{BY_EXP_STATUS_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExpDocStatusOverview",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExpDocStatusOverview"
+					}, {
+						"entitySet": "xAPExC_OperOverview_Excep_Code",
+						"value": "{{BY_EXP_CODE_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExpCodeOverview",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExpCodeOverview"
+					}, {
+						"entitySet": "xAPExC_OperOverview_Excep_BOCh",
+						"value": "{{BY_BO_CHARACTERISTICS_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExpBOChOverview",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExpBOChOverview"
+					}, {
+						"entitySet": "xAPExC_OperOverview_Excep_BOTy",
+						"value": "{{BY_BO_TYPE_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExpBOTyOverview",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExpBOTyOverview"
 					}]
 				}
 			}
