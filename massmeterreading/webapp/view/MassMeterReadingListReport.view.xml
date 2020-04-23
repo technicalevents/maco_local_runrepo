@@ -54,21 +54,21 @@
 			<viz:Popover></viz:Popover>
 			<viz:VizFrame vizProperties="{
 											title:{visible:false},
-											plotArea:{dataLabel:{visible:true}},
-											interaction:{selectability:{mode:'single'}},
+											plotArea:{dataLabel:{showTotal:true,visible:true}},
+											interaction:{selectability:{mode:'exclusive'}},
 											categoryAxis:{title:{visible:true}},
 											valueAxis:{title:{visible:false}}
 										}" 
 						  uiConfig="{applicationSet:'fiori'}" 
 						  height="300px" 
 						  width="100%" 
-						  vizType="line" 
+						  vizType="stacked_column" 
 						  selectData="onMeterReadGraphDataPointSelection">
 				<viz:dataset>
 					<viz.data:FlattenedDataset 
 						data="{path:'/xMP4GxC_MassProcPerDayCountMR',
 							parameters:{
-									select:'UploadDate,ProcessAllCount,ProcessInterimCount,ProcessIntervalCount,ProcessEnergyValCount,ProcessPeriodicalCount'
+									select:'UploadDate,StatusAllCount,StatusUploadProcessingCount,StatusSendCount,StatusSentCount'
 								}
 							}"
 						dataRefresh="onMeterReadGraphDataRefresh">
@@ -78,26 +78,18 @@
 														  dataType="date"/>
 						</viz.data:dimensions>
 						<viz.data:measures>
-							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/ProcessAllCount/#@sap:label}" 
-														value="{ProcessAllCount}"/>
-							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/ProcessEnergyValCount/#@sap:label}" 
-														value="{ProcessEnergyValCount}"/>
-							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/ProcessInterimCount/#@sap:label}" 
-														value="{ProcessInterimCount}"/>
-							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/ProcessIntervalCount/#@sap:label}" 
-														value="{ProcessIntervalCount}"/>
-							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/ProcessPeriodicalCount/#@sap:label}" 
-														value="{ProcessPeriodicalCount}"/>
+							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/StatusUploadProcessingCount/#@sap:label}" 
+														value="{StatusUploadProcessingCount}"/>
+							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/StatusSendCount/#@sap:label}" 
+														value="{StatusSendCount}"/>
+							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/StatusSentCount/#@sap:label}" 
+														value="{StatusSentCount}"/>
 						</viz.data:measures>
 					</viz.data:FlattenedDataset>
 				</viz:dataset>
 				<viz:feeds>
-					<viz.feeds:FeedItem id="valueAxisFeed1" uid="valueAxis" type="Measure" values="Total"/>
-				    <viz.feeds:FeedItem id="valueAxisFeed2" uid="valueAxis" type="Measure" values="Energy Values"/>
-				    <viz.feeds:FeedItem id="valueAxisFeed3" uid="valueAxis" type="Measure" values="Interim"/>
-				    <viz.feeds:FeedItem id="valueAxisFeed4" uid="valueAxis" type="Measure" values="Interval"/>
-				    <viz.feeds:FeedItem id="valueAxisFeed5" uid="valueAxis" type="Measure" values="Periodical"/>
-					<viz.feeds:FeedItem id="categoryAxisFeed" uid="categoryAxis" type="Dimension" values="Uploads per Day"/>
+					<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Uploading,Sending,Finished" />
+                    <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Uploads per Day" />
 				</viz:feeds>
 			</viz:VizFrame>
 		</semantic:headerContent>

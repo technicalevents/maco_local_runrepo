@@ -142,19 +142,24 @@ sap.ui.define([
          * @public
 		 */
         onMeterReadGraphDataPointSelection: function(oEvent) {
-			var oSelectedDataPoint = oEvent.getParameter("data")[0].data;
-			var oBindingData = oEvent.getSource().getAggregation("dataset").getBindingInfo("data").binding;
-			var oBindingContext = JSON.parse(oBindingData.aLastContextData[oSelectedDataPoint._context_row_number]).UploadDate;
-			var oUploadDate = new Date(new Date(oBindingContext).toDateString());
+			var aSelectedDataPoint = oEvent.getParameter("data");
 			var oFilterData = jQuery.extend(true, {}, this.getFilterBar().getFilterData());
+			var oBindingData = oEvent.getSource().getAggregation("dataset").getBindingInfo("data").binding;
+			var sUploadDate = JSON.parse(oBindingData.aLastContextData[aSelectedDataPoint[0].data._context_row_number]).UploadDate;
+			var oUploadDate = new Date(new Date(sUploadDate).toDateString());
 			
-			oFilterData.UploadDate = jQuery.extend(true, {}, this._getFilterUploadDate(oUploadDate));
+			oFilterData.UploadDate = jQuery.extend(true, {}, this._getFilterSingleUploadDate(oUploadDate));
+			oFilterData.Status = {value: null, items: this._getStatusKey(aSelectedDataPoint[0].data.measureNames)};
+			
+			if(aSelectedDataPoint.length > 1) {
+				if(aSelectedDataPoint[0].data.measureNames === aSelectedDataPoint[1].data.measureNames) {
+					oFilterData.UploadDate = jQuery.extend(true, {}, this._getFilterRangeUploadDate(oUploadDate));
+				} else {
+					oFilterData.Status = {value: null, items: this._getStatusKey("All")};
+				}
+			}
+			
 			this.getFilterBar().setFilterData(oFilterData, true);
-			
-			var oSegmentedButtons = this.byId("idMassMeterReadSegmentedButton");
-			var sSelSegmentedKey = this._getMeterReadTypeKey(oSelectedDataPoint.measureNames);
-			
-			oSegmentedButtons.setSelectedKey(sSelSegmentedKey);
 			this.getSmartTable().rebindTable(true);
         },
 
@@ -275,12 +280,12 @@ sap.ui.define([
         },
         
         /**
-         * Function returns Upload date for filter bar as per selected data point in Mass meter read graph
+         * Function returns Single Upload date for filter bar as per selected data point in Mass meter read graph
          * @param   {object} oUploadDate       Upload date
          * @private
          * @returns {object}                   Upload date for filter bar
 		 */
-        _getFilterUploadDate: function(oUploadDate) {
+        _getFilterSingleUploadDate: function(oUploadDate) {
         	return {
 				conditionTypeInfo: {
 					name: "sap.ui.comp.config.condition.DateRangeType",
@@ -306,18 +311,44 @@ sap.ui.define([
         },
         
         /**
-         * Function returns Meter read type key as per selected Meter read type
-         * @param   {string} sMeterReadType       Meter read type
+         * Function returns Range Upload date for filter bar as per selected data point in Mass meter read graph
+         * @param   {object} oUploadDate       Upload date
          * @private
-         * @returns {string}                      Meter read type key
+         * @returns {object}                   Upload date for filter bar
 		 */
-        _getMeterReadTypeKey: function(sMeterReadType) {
-        	switch (sMeterReadType) {
-				case "Total": return "ALL";
-				case "Energy Values": return "ENERVAL";
-				case "Interim": return "INTERIM";
-				case "Interval": return "INTERVAL";
-				case "Periodical": return "PERIODICAL";
+        _getFilterRangeUploadDate: function(oUploadDate) {
+        	return {
+				conditionTypeInfo: {
+					name: "sap.ui.comp.config.condition.DateRangeType",
+					data: {
+						operation: "FROM",
+						value1: oUploadDate,
+						key: "UploadDate",
+						calendarType: CalendarType.Gregorian
+					}
+				},
+				ranges: [{
+					operation: FilterOperator.GE,
+					value1: oUploadDate,
+					exclude: false,
+					keyField: "UploadDate"
+				}],
+				items: []
+			};
+        },
+        
+        /**
+         * Function returns Status key as per selected Status text
+         * @param   {string} sStatusText       Status Text
+         * @private
+         * @returns {string}                   Status Key
+		 */
+        _getStatusKey: function(sStatusText) {
+        	switch (sStatusText) {
+				case "Uploading": return [{key: "UPLDPROC"}];
+				case "Sending": return [{key: "SEND"}];
+				case "Finished": return [{key: "SENT"}];
+				case "All": return [{key: "UPLDPROC"},{key: "SEND"},{key: "SENT"}];
 			}
         }
     });
