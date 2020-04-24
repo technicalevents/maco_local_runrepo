@@ -84,25 +84,21 @@
 				 height="auto"
 				 visible="{= !!!${ContactRuleApp>/messageStripHidden}}"
 				 busyIndicatorDelay="0" />
-	      
       <smartTable:SmartTable id="idContactRulesSmartTable"
 					        entitySet="xMP4GxC_CTA_MP_UI"
 					        tableType="ResponsiveTable"
 					        smartFilterId="idContactRulesFilterBar"
 					        smartVariant="idContactRulesVariantManagement"
 					        enableAutoBinding="true" 
-					        requestAtLeastFields="ContactDeterminationKey, OwnMarketPartner, OwnMarketPartnerText, MarketRole"
-					        ignoredFields=""
+					        requestAtLeastFields="ContactDeterminationKey,OwnMarketPartner,OwnMarketPartnerText,MarketRole"
 					        header="{i18n>ContactDeterminationTitlePlural}"
-					        useTablePersonalisation="true"
 					        demandPopin="true"
-					        useExportToExcel="true"
                 			beforeExport="onBeforeExport($event, 500)"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
-                			c:p13nDialogSettings='{filter:{visible:false}}' 
+                			c:p13nDialogSettings='{filter:{visible:false},group:{visible:false}}' 
 					        beforeRebindTable="onBeforeRebindTable"
-					        ignoreFromPersonalisation="OwnMarketPartner"
+					        ignoreFromPersonalisation="ContactDeterminationKey,CLIENT_UUID,OwnMarketPartner,OwnMarketPartnerText,ExternalMarketPartnerText,DivisionText,MarketRole,ContactName"
 					        persistencyKey="com.sap.cd.maco.selfservice.ui.app.controller.definecontactrules.table">
         <smartTable:customToolbar>
           <OverflowToolbar design="Transparent">
