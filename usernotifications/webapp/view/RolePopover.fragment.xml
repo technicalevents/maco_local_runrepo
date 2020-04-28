@@ -2,8 +2,10 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<Popover placement="Bottom"
-			 showHeader="false"
-			 contentWidth="15%">
-		<Text id="idRoleText"/>
+			 showHeader="false">
+		<List items="{this>/PopoverRoles}"
+			  showSeparators="None">
+			<StandardListItem title="{this>}"/>
+		</List>
 	</Popover>
 </core:FragmentDefinition>

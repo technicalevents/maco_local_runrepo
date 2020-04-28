@@ -1,7 +1,7 @@
 sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateUpdateDialogController",
-    "sap/m/MessageToast"
-],function(CreateUpdateDialogController, MessageToast) {
+    "sap/m/MessageBox"
+],function(CreateUpdateDialogController, MessageBox) {
     "use strict";
     return CreateUpdateDialogController.extend("com.sap.cd.maco.selfservice.ui.app.usernotifications.view.NotificationDialog",{
     	
@@ -22,7 +22,7 @@ sap.ui.define([
             var aRoles = [];
             
             if(jQuery.isEmptyObject(aSelectedRoles)) {
-				MessageToast.show(this.oBundle.getText("SELECT_ROLE_MSG"));
+				MessageBox.error(this.oBundle.getText("SELECT_ROLE_MSG"));
 				return;
 			}
             
