@@ -29,6 +29,9 @@
 					                  entitySet="xMP4GxC_CTA_MP_UI"
 					                  afterVariantLoad="onAfterVariantLoad"
 					                  class="sapUiSmallMarginBottom">
+          		<smartFilterBar:customData>
+                    	<core:CustomData  key="defaultDropDownDisplayBehaviour" value="descriptionAndId"/>
+				</smartFilterBar:customData>
           	<smartFilterBar:controlConfiguration>
                 <smartFilterBar:ControlConfiguration index="1" 
                 									 key="OwnMarketPartner"
@@ -55,17 +58,7 @@
 				<smartFilterBar:ControlConfiguration index="5"
                 										key="ContactID"
                 									 preventInitialDataFetchInValueHelpDialog="false" >
-					<smartFilterBar:customControl>
-						<MultiComboBox id="idContact" 
-	                        	  items="{path: '/xMP4GxC_ContactID_VH', sorter: { path: 'ContactId' } }"
-	                        	  selectionChange="onCustomControlChange('ContactID', $event)">
-	                			<core:ListItem key="{ContactId}" 
-	            			        			text="{parts: [{path: 'i18n>CONTACT_LBL'},
-	                            			    		{path: 'ContactName'},
-	                                        			{path: 'ContactId'}],
-	                            						formatter: 'jQuery.sap.formatMessage'}"/>
-	            		</MultiComboBox>
-            		</smartFilterBar:customControl>
+					
 				</smartFilterBar:ControlConfiguration>
 				<smartFilterBar:ControlConfiguration index="2"
             										key="ExternalMarketPartner"

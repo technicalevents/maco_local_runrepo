@@ -28,12 +28,25 @@
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Pdoc_SuccType/SuccessRatio">
 				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
 			</Annotations>
-			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Pdoc_SuccType">
+			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_FilterType">
 				<Annotation Term="UI.SelectionFields">
 					<Collection>
 						<PropertyPath>CreationDate</PropertyPath>
+						<PropertyPath>BusinessObjectCharacteristic</PropertyPath>
+						<PropertyPath>BusinessObjectType</PropertyPath>
+						<PropertyPath>ExceptionCode</PropertyPath>
 					</Collection>
 				</Annotation>
+		    </Annotations>
+			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Pdoc_SuccType">
+				<!--<Annotation Term="UI.SelectionFields">-->
+				<!--	<Collection>-->
+				<!--		<PropertyPath>CreationDate</PropertyPath>-->
+						<!--<PropertyPath>BusinessObjectCharacteristic</PropertyPath>-->
+						<!--<PropertyPath>BusinessObjectType</PropertyPath>-->
+						<!--<PropertyPath>ExceptionCode</PropertyPath>-->
+				<!--	</Collection>-->
+				<!--</Annotation>-->
 				<Annotation Term="UI.DataPoint" Qualifier="PDocStatusOverview">
 					<Record Type="UI.DataPointType">
 						<PropertyValue Property="Value" Path="SuccessRatio"/>

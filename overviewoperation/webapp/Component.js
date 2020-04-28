@@ -8,12 +8,18 @@ sap.ui.define([
 			manifest: "json"
 		},
 
+		 /**
+       	  * Function is used to initialize Component
+       	  */
 		init: function () {
 			// super
 			Component.prototype.init.apply(this, arguments);
 
 		},
-
+		
+		/**
+       	 * Function is triggered on exit of Application 
+       	 */
 		destroy: function () {
 			// super
 			Component.prototype.destroy.apply(this, arguments);

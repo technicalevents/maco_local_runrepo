@@ -79,9 +79,7 @@
 			"cozy": true
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": []
 		},
 		"models": {
 			"i18n": {
@@ -98,20 +96,11 @@
 					"defaultCountMode": "None"
 				}
 			}
-		},
-		"extends": {
-			"extensions": {
-				"sap.ui.controllerExtensions": {
-					"sap.ovp.app.Main": {
-						"controllerName": "com.sap.cd.maco.operation.ui.app.overviewoperations.ext.ExtController"
-					}
-				}
-			}
 		}
 	},
 	"sap.ovp": {
 		"globalFilterModel": "UI_OPERATIONOVERVIEW",
-		"globalFilterEntityType": "xAPExC_OperOverview_Pdoc_SuccType",
+		"globalFilterEntityType": "xAPExC_OperOverview_FilterType",
 		"enableLiveFilter": false,
 		"smartVariantRequired": true,
 		"useDateRangeType": true,
