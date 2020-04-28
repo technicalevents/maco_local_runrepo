@@ -4,16 +4,17 @@
     <FormFacet>
         <FormFacetText
             label="{i18n>OWN_MARKET_PARTNER_TITLE}"
-            text="{parts: [{path: 'Direction'}, {path: 'SenderId'},
-                           {path: 'SenderText'}, {path: 'ReceiverId'},
-                           {path: 'ReceiverText'}, {value: 'Own'}],
-                   formatter: '.formatMarketPartner'}"/>
-        <FormFacetText
+            text="{parts: [{path: 'i18n>SENDER_RECEIVER_TEXT'}, 
+            			   {path: 'OwnMarketPartnerText'},
+                           {path: 'OwnMarketPartner'}],
+                   formatter: '.formatter.formatMessage'}"/>
+        <FormFacetLink
             label="{i18n>EXTERNAL_MARKET_PARTNER_TITLE}"
-            text="{parts: [{path: 'Direction'}, {path: 'SenderId'},
-                           {path: 'SenderText'}, {path: 'ReceiverId'},
-                           {path: 'ReceiverText'}, {value: 'External'}],
-                   formatter: '.formatMarketPartner'}"/>
+            text="{parts: [{path: 'i18n>SENDER_RECEIVER_TEXT'}, 
+            			   {path: 'ExternalMarketPartnerText'},
+                           {path: 'ExternalMarketPartner'}],
+                   formatter: '.formatter.formatMessage'}"
+            press="onAction('navMarketPartnerAction', $event)"/>
         <FormFacetText
             label="{/xMP4GxC_TransferDoc_UI/TransferDate/#@sap:label}"
             text="{path: 'Timestamp', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' }}"/>

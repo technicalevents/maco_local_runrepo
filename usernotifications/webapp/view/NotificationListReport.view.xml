@@ -21,10 +21,12 @@
 									   enableBasicSearch="true"
 									   useDateRangeType="true"
 									   useToolbar="false"
+									   liveMode="true"
 									   initialized="onFilterBarInitialized"
 									   showFilterConfiguration="false"
 									   persistencyKey="com.sap.cd.maco.selfservice.ui.app.usernotifications.filterbar"
-									   entitySet="xMP4GxC_ManageNotification">
+									   entitySet="xMP4GxC_ManageNotification"
+									   class="sapUiSmallMarginBottom">
         </smartFilterBar:SmartFilterBar>
     </semantic:headerContent>
     <semantic:content>
@@ -39,7 +41,7 @@
 							   useVariantManagement="false" 
 							   c:p13nDialogSettings="{filter:{visible:false}}"
 							   beforeRebindTable="onBeforeRebindTable"
-							   beforeExport="onBeforeExport"
+							   beforeExport="onBeforeExport($event, 500)"
 							   persistencyKey="com.sap.cd.maco.selfservice.ui.app.usernotifications.table">
 			<smartTable:customToolbar>
 				<OverflowToolbar design="Transparent">

@@ -39,7 +39,7 @@ sap.ui.define([
 							"tiles": [{
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
-									"title": "Display Messages",
+									"title": "Define EDIFACT Contact Rules",
 									"targetURL": "#UtilsDataExchangeProcessing-defineContactRules"
 								}
 							}]
@@ -54,8 +54,8 @@ sap.ui.define([
 							"UtilsDataExchangeProcessing-defineContactRules": {
 								"semanticObject": "UtilsDataExchangeProcessing",
 								"action": "defineContactRules",
-								"description": "Define Contact Determination Rules",
-								"title": "Define Contact Determination Rules",
+								"description": "Define EDIFACT Contact Rules",
+								"title": "Define EDIFACT Contact Rules",
 								"signature": {
 									"parameters": {}
 								},

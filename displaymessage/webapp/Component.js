@@ -7,10 +7,11 @@ sap.ui.define([
   "com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction",
   "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
   "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction",
+  "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMarketPartnerAction",
   "com/sap/cd/maco/monitor/ui/app/displaymessages/actions/MultipleDocumentAction"
 ],function(MonitorComponent, HashSync, SingleDownloadAction, MultiDownloadAction, 
           NavToRouteAction, ShareAction, NavToProcessAction, NavToMessageAction,
-          MultipleDocumentAction) {
+          NavToMarketPartnerAction, MultipleDocumentAction) {
   "use strict";
 
   return MonitorComponent.extend("com.sap.cd.maco.monitor.ui.app.displaymessages.Component", {
@@ -33,6 +34,7 @@ sap.ui.define([
         navObjectTableToProcessApp: new NavToProcessAction(this, "ProcessDocumentKey", "SemanticType"),
         navObjectToProcessApp: new NavToProcessAction(this, "LinkedDocumentKey", "SemanticType"),
         navObjectToMessageApp: new NavToMessageAction(this, "LinkedDocumentKey", "ExtBusinessMessageID"),
+        navMarketPartnerAction: new NavToMarketPartnerAction(this, "ExternalMarketPartner"),
         multipleDoc: new MultipleDocumentAction(this),
         share: new ShareAction(this, {
           appTitleMsgKey: "APP_TITLE",

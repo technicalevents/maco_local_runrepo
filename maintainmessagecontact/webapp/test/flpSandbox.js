@@ -39,7 +39,7 @@ sap.ui.define([
 							"tiles": [{
 								"tileType": "sap.ushell.ui.tile.StaticTile",
 								"properties": {
-									"title": "Maintain Message Contacts",
+									"title": "Manage EDIFACT Contacts",
 									"icon": "sap-icon://contacts",
 									"targetURL": "#UtilsDataExchangeProcessing-maintMsgContact"
 								}
@@ -55,8 +55,8 @@ sap.ui.define([
 							"UtilsDataExchangeProcessing-maintMsgContact": {
 								"semanticObject": "UtilsDataExchangeProcessing",
 								"action": "maintMsgContact",
-								"description": "Maintain Message Contacts",
-								"title": "Maintain Message Contacts",
+								"description": "Manage EDIFACT Contacts",
+								"title": "Manage EDIFACT Contacts",
 								"signature": {
 									"parameters": {}
 								},

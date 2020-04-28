@@ -60,15 +60,6 @@ sap.ui.define([
 			
 			// create the views based on the url/hash
 			this.getRouter().initialize();
-		},
-		
-		/**
-		 * Function is triggered on exit of Application 
-		 * @public
-		 */
-		destroy: function() {
-			// Generic destroy of component
-			MonitorComponent.prototype.destroy.apply(this, arguments);
 		}
     });
 });

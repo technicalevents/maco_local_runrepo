@@ -4,13 +4,15 @@ sap.ui.define([
   "com/sap/cd/maco/mmt/ui/reuse/action/nav/NavToRouteAction",
   "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToProcessAction",
   "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMessageAction",
+  "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMarketPartnerAction",
   "com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
-], function(MonitorComponent, HashSync, NavToRouteAction, NavToProcessAction, NavToMessageAction, ShareAction) {
+], function(MonitorComponent, HashSync, NavToRouteAction, NavToProcessAction, 
+			NavToMessageAction, NavToMarketPartnerAction, ShareAction) {
   "use strict";
 
   return MonitorComponent.extend("com.sap.cd.maco.monitor.ui.app.displayprocesses.Component", {
     metadata: {
-      manifest: "json"
+		manifest: "json"
     },
 
     /**
@@ -24,6 +26,7 @@ sap.ui.define([
         navToProcessPage: new NavToRouteAction(this),
         navToProcessAction: new NavToProcessAction(this, "ProcDocKey", "ProcessID"),
         navToMessageAction: new NavToMessageAction(this, "BusinessObjectUUID", "ExtBusinessMessageID"),
+        navMarketPartner: new NavToMarketPartnerAction(this, "ExternalMarketPartner"),
         share: new ShareAction(this, {
           appTitleMsgKey: "APP_TITLE",
           objectIdProperty: "ProcessDocumentNumber",

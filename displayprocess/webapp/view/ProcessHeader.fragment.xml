@@ -32,9 +32,17 @@
                            {path: 'OwnerUUIDText'},
                            {path: 'OwnerUUID'}],
                    formatter: '.formatter.formatMessage'}"/>
-		<reuseObjectPageFacet:FormFacetText
-            label="{/xMP4GxC_ProcessHeader_UI/MarketPartner/#@sap:label}"
-            text="{this>/MarketPartner}"/>
+        <HBox>
+        	<reuseObjectPageFacet:FormFacetLink
+            label="{/xMP4GxC_ProcessHeader_UI/MarketPartner/#@sap:label}"/>
+            <VBox items="{this>/MarketPartner}">
+            	<Link text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_OBJ_LBL'},
+                                     {path: 'this>ExternalMarketPartnerText'},
+                                     {path: 'this>ExternalMarketPartner'}],
+                             formatter: '.formatter.formatMessage'}"
+                      press="onAction('navMarketPartner', $event)"/>
+            </VBox>
+        </HBox>
     </reuseObjectPageFacet:FormFacet>
     <reuseObjectPageFacet:StatusFacet label="{/xMP4GxC_ProcActivityHeader_UI/ProcessStatus/#@sap:label}" text="{ProcessStatusDescription}" state="{
 						  	path:'StatusCriticality',
