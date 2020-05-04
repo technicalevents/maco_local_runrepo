@@ -28,7 +28,7 @@
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Pdoc_SuccType/SuccessRatio">
 				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
 			</Annotations>
-			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_FilterType">
+			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_FiltersType">
 				<Annotation Term="UI.SelectionFields">
 					<Collection>
 						<PropertyPath>CreationDate</PropertyPath>

@@ -100,7 +100,7 @@
 	},
 	"sap.ovp": {
 		"globalFilterModel": "UI_OPERATIONOVERVIEW",
-		"globalFilterEntityType": "xAPExC_OperOverview_FilterType",
+		"globalFilterEntityType": "xAPExC_OperOverview_FiltersType",
 		"enableLiveFilter": false,
 		"smartVariantRequired": true,
 		"useDateRangeType": true,
