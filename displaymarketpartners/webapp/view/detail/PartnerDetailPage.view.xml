@@ -33,14 +33,14 @@
 			</reuseObjectPageFacet:FormFacet>
 			<reuseObjectPageFacet:FormFacet>
 				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/EmailContact/#@sap:label}" text="{ path: 'EmailContact' }"/>
-				<reuseObjectPageFacet:FormFacetStatus text="{= !!${EmailCertValidTo} ? ${path: 'EmailCertValidTo',
-																			type: 'sap.ui.model.type.DateTime', 
-																			formatOptions: { style: 'medium' }} : ${i18n>NOT_MAINTAINED_TEXT}}"
-										 state="{= ${CertValidityCriticality} === 3 ? 'Indication04' : 
-																				${CertValidityCriticality} === 1 ? 'Indication01' : 
-																													${CertValidityCriticality} === 2 ? 'Indication03' :
-																																						'None'}"
-									    inverted="{= ${CertValidityCriticality} === 1}"/>
+				<!--<reuseObjectPageFacet:FormFacetStatus label="{/xMP4GxCE_PARTNERS/EmailContact/#@sap:label}" text="{= !!${EmailCertValidTo} ? ${path: 'EmailCertValidTo',-->
+				<!--															type: 'sap.ui.model.type.DateTime', -->
+				<!--															formatOptions: { style: 'medium' }} : ${i18n>NOT_MAINTAINED_TEXT}}"-->
+				<!--						 state="{= ${CertValidityCriticality} === 3 ? 'Indication04' : -->
+				<!--																${CertValidityCriticality} === 1 ? 'Indication01' : -->
+				<!--																									${CertValidityCriticality} === 2 ? 'Indication03' :-->
+				<!--																																		'None'}"-->
+				<!--					    inverted="{= ${CertValidityCriticality} === 1}"/>-->
 			</reuseObjectPageFacet:FormFacet>
 		</uxap:headerContent>
 		<uxap:sections>

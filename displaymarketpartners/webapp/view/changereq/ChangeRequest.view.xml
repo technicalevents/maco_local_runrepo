@@ -13,17 +13,16 @@
 	<commons:Timeline id="idChangeRequestTimeline" 
 					  showHeaderBar="false" 
 					  enableDoubleSided="false" 
-					  growingThreshold="2"
+					  growingThreshold="100"
 					  noDataText="{i18n>CHANGE_REQUET_NODATA_TXT}"
 					  sortOldestFirst="false" 
 					  content="{this>/ChangeRequestData}"
-					  lazyLoading="true">
+					  lazyLoading="false">
 		<commons:content>
 			<commons:TimelineItem dateTime="{this>CreationDate}" 
 								 userName="{this>ChangeRequestTypeDescription}" 
 								 userNameClickable="false" 
-								 icon="sap-icon://email"
-								 lazyLoading="true">
+								 icon="sap-icon://email">
 				<commons:embeddedControl>
 					<f:Form editable="false">
 						<f:layout>

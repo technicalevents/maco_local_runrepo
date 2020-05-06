@@ -214,7 +214,7 @@
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PDocStatusOverview"
 					}, {
 						"entitySet": "xAPExC_OperOverview_Pdoc_Cust",
-						"value": "{{BY_PROCESS_CUSTOMER_LBL}}",
+						"value": "{{BY_CUSTOMER_LBL}}",
 						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PDocCustOverview",
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PDocCustOverview"
 					}]
@@ -346,6 +346,101 @@
 						"value": "{{BY_BO_TYPE_LBL}}",
 						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExpBOTyOverview",
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExpBOTyOverview"
+					}]
+				}
+			},
+			"j_TDocStatusOverview": {
+				"model": "UI_OPERATIONOVERVIEW",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xAPExC_OperOverview_TDoc_Succ",
+					"title": "{{TDOC_STATUS_CARD_TITLE}}",
+					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
+					"showFilterInHeader": true,
+					"defaultSpan": {
+						"cols": 1
+					},
+					"colorPalette": {
+						"1": {
+							"color": "sapUiChartPaletteSemanticBad",
+							"legendText": "{{ERR_STATUS_TXT}}"
+						},
+						"3": {
+							"color": "sapUiChartPaletteSemanticGood",
+							"legendText": "{{NERR_STATUS_TXT}}"
+						}
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TDocStatusOverview",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#TDocStatusOverview"
+				}
+			},
+			"k_TDocLoadOverview": {
+				"model": "UI_OPERATIONOVERVIEW",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xAPExC_OperOverview_TDoc_Load",
+					"title": "{{TDOC_LOAD_CARD_TITLE}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"colorPalette": {
+						"0": {
+							"color": "sapUiChartPaletteSemanticNeutral",
+							"legendText": "{{TOTAL_COUNT_TXT}}"
+						},
+						"4": {
+							"color": "sapUiChartPaletteSemanticNeutral",
+							"legendText": "{{ACTV_STATUS_TXT}}"
+						}
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TDocLoadOverview",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TDocLoadOverview"
+				}
+			},
+			"l_TDoErrorOverview": {
+				"model": "UI_OPERATIONOVERVIEW",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{ERRONEOUS_TDOC_CARD_TITLE}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"entitySet": "xAPExC_OperOverview_TDoc_Err",
+					"colorPalette": {
+						"1": {
+							"color": "sapUiChartPaletteSemanticBad",
+							"legendText": "{{ERR_STATUS_TXT}}"
+						},
+						"4": {
+							"color": "sapUiChartPaletteSemanticNeutral",
+							"legendText": "{{ACTV_STATUS_TXT}}"
+						}
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TDocErrorOverview",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TDocErrorOverview"
+				}
+			},
+			"m_TDocOthersOverview": {
+				"model": "UI_OPERATIONOVERVIEW",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{QUEUE_TDOC_CARD_TITLE}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 2
+					},
+					"tabs": [{
+						"entitySet": "xAPExC_OperOverview_TDoc_Stat",
+						"value": "{{BY_TDOC_STATUS_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TDocStatusOverview",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TDocStatusOverview"
+					}, {
+						"entitySet": "xAPExC_OperOverview_TDoc_Cust",
+						"value": "{{BY_CUSTOMER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TDocCustOverview",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TDocCustOverview"
 					}]
 				}
 			}
