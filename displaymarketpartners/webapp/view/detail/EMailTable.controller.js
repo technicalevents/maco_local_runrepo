@@ -5,30 +5,30 @@ sap.ui.define([
 ],function (FilterOperator, SmartTableController, SmartTableBindingUpdate) {
 	"use strict";
 
-	return SmartTableController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.CertificatesTable", {
+	return SmartTableController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.detail.EMailTable", {
 			
 		/******************************************************************* */
 		/* LIFECYCLE METHODS */
 		/******************************************************************* */
 
 		/**
-		 * Lifecycle method - triggered on initialization of CertificateTable Controller
+		 * Lifecycle method - triggered on initialization of EmailTable Controller
 		 */
 		onInit: function () {
 			SmartTableController.prototype.onInit.call(this, {
 				controls: {
-					table: "idCertificateSmartTable"
+					table: "idEmailSmartTable"
 				},
-				entitySet: "xMP4GxCE_PARTNERCERT",
+				entitySet: "xMP4GxCE_EMAILADAPTERS",
 				actions: {},
 				tableAccessControl: {}
 			});
 		},
-
+				
 		/******************************************************************* */
 		/* PUBLIC METHODS 													*/
 		/******************************************************************* */
-		
+
 		/**
 		 * Function triggered before binding of Object Page
 		 * @param {object} oRouteArgs Router Arguments
@@ -39,7 +39,7 @@ sap.ui.define([
 		},
 		
 		/**
-		 * Function triggered before Rebind of Certficate Table
+		 * Function triggered before Rebind of Email Table
 		 * @param {sap.ui.base.Event} 
 		 */
 		onBeforeRebindTable: function (oEvent) {

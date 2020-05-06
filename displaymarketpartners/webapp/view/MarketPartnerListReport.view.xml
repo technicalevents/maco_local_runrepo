@@ -39,20 +39,12 @@
 							   ignoredFields="" 
 							   demandPopin="true"
 							   useExportToExcel="true"
-							   header="{i18n>PROCESS_PLURAL_LBL}"
+							   header="{i18n>PARTNER_PLURAL_LBL}"
 							   useVariantManagement="true" 
 							   c:p13nDialogSettings='{filter:{visible:false}}' 
 							   beforeRebindTable="onBeforeRebindTable"
 							   requestAtLeastFields="PartnerId,Name,CertValidityCriticality"
 							   persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.table">
-			<smartTable:customToolbar>
-	          <OverflowToolbar design="Transparent">
-	            <ToolbarSpacer/>
-	            <Button text="{i18n>PROCESS_LIST_REFRESH_TITLE}"
-	                    type="Transparent"
-	                    press="onRefresh"/>
-	          </OverflowToolbar>
-    		 </smartTable:customToolbar>
 			<Table id="idMarketPartnersTable"
 				   growing="true"
 				   growingScrollToLoad="true" 

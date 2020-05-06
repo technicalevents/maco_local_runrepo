@@ -1,54 +1,70 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
-	"sap/base/strings/formatMessage",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/valueHelpFormatter"
-],function (ObjectPageNoDraftController, FormatMessage, ValueHelpFormatter) {
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseViewController",
+	"sap/ui/core/Core"
+], function (BaseViewController, Core) {
 	"use strict";
 
-	return ObjectPageNoDraftController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.PartnerPage", {
-			
-		formatMessage: FormatMessage,
-		valueHelpFormatter: ValueHelpFormatter,
-		
-		
+	return BaseViewController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.PartnerPage", {
+
 		/******************************************************************* */
 		/* LIFECYCLE METHODS */
 		/******************************************************************* */
-		
+
 		/**
 		 * Lifecycle method - triggered on initialization of PartnerPage Controller
 		 * @public
 		 */
 		onInit: function () {
-			var oPartnerActions = this.getOwnerComponent().actions.partner;
-			ObjectPageNoDraftController.prototype.onInit.call(this, {
-				entitySet: "xMP4GxCE_PARTNERS",
-				i18n: {
-					notFoundMsg: this.notFoundMsg.bind(this)
-				},
-				controls: {
-					objectPage: "objectPage"
-				},
-				routes: {
-					this: "partnerPage",
-					parent: "listReport"
-				},
-				actions: {}
-			});
+			BaseViewController.prototype.onInit.apply(this, arguments);
+
+			this.initViewModel();
+
+			this.oEventBus = Core.getEventBus();
+			this.oEventBus.subscribe("flexible", "showChangeRequestPage", this.showChangeRequestPage, this);
+			this.oEventBus.subscribe("flexible", "hideChangeRequestPage", this.hideChangeRequestPage, this);
+
+			this.oFlexibleColumnLayout = this.getView().byId("idPartnerPageLayout");
+
+			this.oRouter.attachRouteMatched(this.onRouteMatched.bind(this));
 		},
-		
+
 		/******************************************************************* */
 		/* Public Methods													*/
 		/******************************************************************* */
 
 		/**
-		 * Function returns no found message in case of some errors
+		 * Method triggered on pattern matched
 		 * @public
-		 * @param {object} 
-		 * @returns {string} No found message
 		 */
-		notFoundMsg: function (oRouteArgs) {
-			return this.oBundle.getText("partnerNotFound", [oRouteArgs.Pid, oRouteArgs.UUID]);
+		onRouteMatched: function () {
+			this.oFlexibleColumnLayout.setLayout(sap.f.LayoutType.OneColumn);
+			this.getView().byId("idPartnerDetailPage").getController().setChangeRequestVisible(true);
+		},
+
+		/**
+		 * Even triggered when user presses Change Request Button to show Change Request pane
+		 * @public
+		 * @param {string} sChannelId Event Channel Id
+		 * @param {string} sEventId Event method name
+		 * @param {string} sPartnerId Current Market PartnerId
+		 */
+		showChangeRequestPage: function (sChannelId, sEventId, sPartnerId) {
+			this.getView().byId("idChangeRequest").getController().bindView(sPartnerId);
+
+			this.oFlexibleColumnLayout.setLayout(sap.f.LayoutType.TwoColumnsBeginExpanded);
+
+			this.getView().byId("idPartnerDetailPage").getController().setChangeRequestVisible(false);
+		},
+
+		/**
+		 * Even triggered when user presses Close Change Request Panel button
+		 * @public
+		 */
+		hideChangeRequestPage: function () {
+			this.oFlexibleColumnLayout.setLayout(sap.f.LayoutType.OneColumn);
+
+			this.getView().byId("idPartnerDetailPage").getController().setChangeRequestVisible(true);
 		}
+
 	});
 });

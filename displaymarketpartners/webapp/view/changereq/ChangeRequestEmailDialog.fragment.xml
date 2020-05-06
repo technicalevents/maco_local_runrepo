@@ -1,0 +1,36 @@
+<core:FragmentDefinition 
+	xmlns="sap.m" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:core="sap.ui.core" 
+	xmlns:smartForm="sap.ui.comp.smartform" 
+	xmlns:smartField="sap.ui.comp.smartfield">
+	<Dialog title="{this>/title}" 
+			contentWidth="auto" 
+			afterClose="onAfterClose"
+			titleAlignment="Center">
+		<smartForm:SmartForm editable="true">
+			<smartForm:layout>
+				<core:Fragment type="XML" 
+							   fragmentName="com.sap.cd.maco.mmt.ui.reuse.fragment.form.SmartFormLayout"/>
+			</smartForm:layout>
+			<smartForm:Group>
+				<smartForm:GroupElement>
+					<smartField:SmartField value="{EmailAddress}"/>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement>
+					<smartField:SmartField value="{ValidFrom}"/>
+				</smartForm:GroupElement>
+				<smartForm:GroupElement>
+					<smartField:SmartField value="{ValidTo}"/>
+				</smartForm:GroupElement>
+			</smartForm:Group>
+		</smartForm:SmartForm>
+		<buttons>
+			<Button text="{i18n>CREATE_TXT}" 
+					press="onSubmit" 
+					type="Emphasized"/>
+			<Button text="{this>/cancelButtonText}" 
+					press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

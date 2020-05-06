@@ -2,25 +2,27 @@
 		  xmlns="sap.m" 
 		  xmlns:smartTable="sap.ui.comp.smarttable" 
 		  xmlns:mvc="sap.ui.core.mvc"
-		  controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.EMailTable">
-	  <smartTable:SmartTable id="idEmailSmartTable"
-						    entitySet="{this>/entitySet}"
-						    tableType="ResponsiveTable" 
-						    enableAutoBinding="true" 
-						    beforeRebindTable="onBeforeRebindTable"
-						    ignoredFields="" 
-						    useExportToExcel="false" 
-						    useTablePersonalisation="false" 
-						    demandPopin="true" 
-						    useVariantManagement="false"
-						    showRowCount="true" 
-						    placeToolbarInTable="false" >
-		  <smartTable:customToolbar>
-		  	<Toolbar height="0rem"/>
-		  </smartTable:customToolbar>
-	    <Table id="idEmailTable"
-		      mode="None" >
-	      <columns>
+		  controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.detail.CertificatesTable">
+  <smartTable:SmartTable id="idCertificateSmartTable" 
+					    entitySet="{this>/entitySet}"
+					    tableType="ResponsiveTable" 
+					    enableAutoBinding="true" 
+					    beforeRebindTable="onBeforeRebindTable"
+					    ignoredFields="" 
+					    beforeExport="beforeExport" 
+					    useExportToExcel="false" 
+					    useTablePersonalisation="false"
+					    showRowCount="true" 
+					    placeToolbarInTable="false"
+					    demandPopin="true" 
+					    useVariantManagement="false">
+  	 <smartTable:customToolbar>
+	  	<Toolbar height="0rem"/>
+	  </smartTable:customToolbar>
+    <Table id="idCertificateTable"
+	      sticky="ColumnHeaders,HeaderToolbar"
+	      mode="None" >
+    	<columns>
 			 <Column>
               <Text text="{i18n>VALIDITY_COLUMN_LABEL}"/>
               <customData>
@@ -39,6 +41,6 @@
 	          </cells>
 	        </ColumnListItem>
 	      </items>
-	    </Table>
-	  </smartTable:SmartTable>
+    </Table>
+  </smartTable:SmartTable>
 </mvc:View>

@@ -1,0 +1,71 @@
+<mvc:View controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.changereq.ChangeRequest" xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:commons="sap.suite.ui.commons"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:core="sap.ui.core" xmlns:uxap="sap.uxap"
+	xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+	<OverflowToolbar id="idToolbar" class="sapUiSmallMarginBottom">
+		<content>
+			<Label text="{i18n>CHANGE_REQUEST_TXT}"/>
+			<ToolbarSpacer/>
+			<Button id="idCreateChngReqButton" text="{i18n>CREATE_TXT}" press="onAction('createChangeRequestAction', $event)" type="Transparent"/>
+			<Button icon="sap-icon://decline" press="onCloseChangeRequetPane" type="Transparent"/>
+		</content>
+	</OverflowToolbar>
+	<commons:Timeline id="idChangeRequestTimeline" 
+					  showHeaderBar="false" 
+					  enableDoubleSided="false" 
+					  growingThreshold="2"
+					  noDataText="{i18n>CHANGE_REQUET_NODATA_TXT}"
+					  sortOldestFirst="false" 
+					  content="{this>/ChangeRequestData}"
+					  lazyLoading="true">
+		<commons:content>
+			<commons:TimelineItem dateTime="{this>CreationDate}" 
+								 userName="{this>ChangeRequestTypeDescription}" 
+								 userNameClickable="false" 
+								 icon="sap-icon://email"
+								 lazyLoading="true">
+				<commons:embeddedControl>
+					<f:Form editable="false">
+						<f:layout>
+							<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="3" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
+								emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+						</f:layout>
+						<f:formContainers>
+							<f:FormContainer>
+								<f:formElements>
+									<f:FormElement label="{/xMP4GxC_ChangeRequest/EmailAddress/#@sap:label}">
+										<f:fields>
+											<Text text="{this>EmailAddress}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{/xMP4GxC_ChangeRequest/ValidFrom/#@sap:label}">
+										<f:fields>
+											<Text text="{ path: 'this>ValidFrom', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' } }"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{/xMP4GxC_ChangeRequest/ValidTo/#@sap:label}">
+										<f:fields>
+											<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+												<items>
+													<Text text="{ path: 'this>ValidTo', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' } }"/>
+													<ObjectStatus class="sapUiSmallMarginBegin" text="{this>Status}" inverted="true" state="{= ${this>StatusCriticality} === 3 ? 'Success' : 
+																				${this>StatusCriticality} === 2 ? 'Indication03' : 
+																													${this>StatusCriticality} === 1 ? 'Indication01' :
+																																						'None'}">
+														<layoutData>
+															<FlexItemData shrinkFactor="0"/>
+														</layoutData>
+													</ObjectStatus>
+												</items>
+											</FlexBox>
+										</f:fields>
+									</f:FormElement>
+								</f:formElements>
+							</f:FormContainer>
+						</f:formContainers>
+					</f:Form>
+				</commons:embeddedControl>
+			</commons:TimelineItem>
+		</commons:content>
+	</commons:Timeline>
+</mvc:View>

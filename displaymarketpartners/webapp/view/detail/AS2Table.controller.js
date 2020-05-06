@@ -5,7 +5,7 @@ sap.ui.define([
 ],function (FilterOperator, SmartTableController, SmartTableBindingUpdate) {
 	"use strict";
 
-	return SmartTableController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.AS2Table", {
+	return SmartTableController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.detail.AS2Table", {
 
 		/******************************************************************* */
 		/* LIFECYCLE METHODS */

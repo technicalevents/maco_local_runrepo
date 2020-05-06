@@ -1,10 +1,10 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportNoDraftController",
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorListReportController",
 	"sap/base/strings/formatMessage",
 	"com/sap/cd/maco/mmt/ui/reuse/monitor/valueHelpFormatter"
-], function (ListReportNoDraftController, FormatMessage, ValueHelpFormatter) {
+], function (MonitorListReportController, FormatMessage, ValueHelpFormatter) {
 	"use strict";
-	return ListReportNoDraftController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.ProcessListReport", {
+	return MonitorListReportController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.ProcessListReport", {
 
 		/**
 		 * Formatter Attribute.
@@ -21,12 +21,10 @@ sap.ui.define([
 		 * Lifecycle method - triggered on initialization of ProcessListReport Controller
 		 */
 		onInit: function () {
-			var oComponentActions = this.getOwnerComponent().actions;
-			this.getOwnerComponent().getModel().setSizeLimit(1200);
 
-			ListReportNoDraftController.prototype.onInit.call(this, {
+			MonitorListReportController.prototype.onInit.call(this, {
 				entitySet: "xMP4GxCE_PARTNERS",
-				actions: oComponentActions,
+				actions: this.getOwnerComponent().mActions,
 				routes: {
 					parent: null,
 					this: "listReport",
@@ -38,23 +36,10 @@ sap.ui.define([
 					filterBar: "idMarketPartnersSmartFilterBar"
 				},
 				flpNavMenu: {
-            		title: 'APP_TITLE'
-        		},
+					title: 'APP_TITLE'
+				},
 				tableAccessControl: {}
 			});
-		},
-
-		/******************************************************************* */
-		/* PUBLIC METHODS 													*/
-		/******************************************************************* */
-
-		/**
-		 * Event is triggered when SmartTable refresh button is pressed 
-		 * This method will refresh SmartTable DAa
-		 * @public
-		 */
-		onRefresh: function () {
-			this.getSmartTable().rebindTable(true);
 		}
 	});
 });

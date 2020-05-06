@@ -1,0 +1,9 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<ActionSheet placement="Bottom" buttons="{path: '/xMP4GxC_ChangeRequest_VH'}">
+			<Button text="{ChangeRequestTypeDescription}" 
+					press="onChangeRequesTypeSelection" />
+	</ActionSheet>
+</core:FragmentDefinition>
