@@ -184,7 +184,8 @@
 				"model": "UI_OPERATIONOVERVIEW",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"title": "{{ACTIVE_PROCESS_CARD_TITLE}}",
+					"title": "{{OTHER_PROCESS_CARD_TITLE}}",
+					"valueSelectionInfo": "{{ACTIVE_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
 						"cols": 2
@@ -321,7 +322,8 @@
 				"model": "UI_OPERATIONOVERVIEW",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"title": "{{ACTIVE_EXP_CARD_TITLE}}",
+					"title": "{{OTHER_EXP_CARD_TITLE}}",
+					"valueSelectionInfo": "{{ACTIVE_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
 						"cols": 2
@@ -426,7 +428,8 @@
 				"model": "UI_OPERATIONOVERVIEW",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"title": "{{QUEUE_TDOC_CARD_TITLE}}",
+					"title": "{{OTHER_TDOC_CARD_TITLE}}",
+					"valueSelectionInfo": "{{QUEUE_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
 						"cols": 2

@@ -91,6 +91,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayPDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Pdoc_LoadType">
 				<Annotation Term="UI.KPI" Qualifier="PDocLoadOverview">
@@ -189,6 +198,15 @@
 							</Collection>
 						</PropertyValue>
 					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayPDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Pdoc_ErrType">
@@ -308,6 +326,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayPDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Pdoc_StatType">
 				<Annotation Term="UI.KPI" Qualifier="PDocStatusOverview">
@@ -414,6 +441,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayPDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Pdoc_CustType">
 				<Annotation Term="UI.KPI" Qualifier="PDocCustOverview">
@@ -513,6 +549,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayPDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Excep_SuccType/SuccessRatio">
 				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
@@ -569,6 +614,15 @@
 							</Collection>
 						</PropertyValue>
 					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayEDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Exce_LoadLType">
@@ -669,6 +723,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayEDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Exce_LoadRType">
 				<Annotation Term="UI.KPI" Qualifier="ExpDocLoadROverview">
@@ -767,6 +830,15 @@
 							</Collection>
 						</PropertyValue>
 					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayEDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Excep_ErrType">
@@ -886,6 +958,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayEDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Excep_StatType">
 				<Annotation Term="UI.KPI" Qualifier="ExpDocStatusOverview">
@@ -992,6 +1073,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayEDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Excep_CodeType">
 				<Annotation Term="UI.KPI" Qualifier="ExpCodeOverview">
@@ -1090,6 +1180,15 @@
 							</Collection>
 						</PropertyValue>
 					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayEDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Excep_BOChType">
@@ -1190,6 +1289,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayEDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_Excep_BOTyType">
 				<Annotation Term="UI.KPI" Qualifier="ExpBOTyOverview">
@@ -1289,6 +1397,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayEDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_TDoc_SuccType/SuccessRatio">
 				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
@@ -1345,6 +1462,15 @@
 							</Collection>
 						</PropertyValue>
 					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayTDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_TDoc_LoadType">
@@ -1444,6 +1570,15 @@
 							</Collection>
 						</PropertyValue>
 					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayTDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_TDoc_ErrType">
@@ -1563,6 +1698,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayTDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_TDoc_StatType">
 				<Annotation Term="UI.KPI" Qualifier="TDocStatusOverview">
@@ -1662,6 +1806,15 @@
 						</PropertyValue>
 					</Record>
 				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayTDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xapexui_operationoverview.xAPExC_OperOverview_TDoc_CustType">
 				<Annotation Term="UI.KPI" Qualifier="TDocCustOverview">
@@ -1760,6 +1913,15 @@
 							</Collection>
 						</PropertyValue>
 					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayTDoc"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
 				</Annotation>
 			</Annotations>
 		</Schema>
