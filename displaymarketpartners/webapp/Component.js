@@ -3,10 +3,10 @@ sap.ui.define(
 		"com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorComponent",
 		"com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
 		"com/sap/cd/maco/mmt/ui/reuse/action/nav/NavToRouteAction",
-		"sap/f/FlexibleColumnLayoutSemanticHelper",
-		"com/sap/cd/maco/selfservice/ui/app/displaymarketpartners/actions/CreateChangeRequestAction"
+		"com/sap/cd/maco/selfservice/ui/app/displaymarketpartners/actions/CreateChangeRequestAction",
+    	"com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
 	],
-	function (MonitorComponent, HashSync, NavToRouteAction, FlexibleColumnLayoutSemanticHelper, CreateChangeRequestAction) {
+	function (MonitorComponent, HashSync, NavToRouteAction, CreateChangeRequestAction, ShareAction) {
 		"use strict";
 
 		return MonitorComponent.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.Component", {
@@ -24,7 +24,12 @@ sap.ui.define(
 
 				this.mActions = {
 					navToPartnerPage: new NavToRouteAction(this),
-					createChangeRequestAction: new CreateChangeRequestAction(this)
+					createChangeRequestAction: new CreateChangeRequestAction(this),
+					share: new ShareAction(this, {
+						appTitleMsgKey: "APP_TITLE",
+						objectIdProperty: "PartnerId",
+						objectTextProperty: "Title"
+					})
 				};
 
 				this.initRouting();

@@ -1,15 +1,15 @@
 sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/controller/objectPage/ObjectPageNoDraftController",
 	"sap/base/strings/formatMessage",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/valueHelpFormatter",
-	"sap/ui/core/Core"
-], function (ObjectPageNoDraftController, FormatMessage, ValueHelpFormatter, Core) {
+	"sap/ui/core/Core",
+	"com/sap/cd/maco/mmt/ui/reuse/formatter/criticality",
+], function (ObjectPageNoDraftController, FormatMessage, Core, CriticalityFormatter) {
 	"use strict";
 
 	return ObjectPageNoDraftController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.detail.PartnerDetailPage", {
 
 		formatMessage: FormatMessage,
-		valueHelpFormatter: ValueHelpFormatter,
+		criticalityFormatter: CriticalityFormatter,
 
 		/******************************************************************* */
 		/* LIFECYCLE METHODS */

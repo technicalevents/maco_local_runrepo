@@ -26,7 +26,8 @@
 									   initialized="onFilterBarInitialized"
 									   showFilterConfiguration="false"
 									   persistencyKey="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.filterbar"
-									   entitySet="xMP4GxCE_PARTNERS">
+									   entitySet="xMP4GxCE_PARTNERS"
+									   class="sapUiSmallMarginBottom">
         </smartFilterBar:SmartFilterBar>
     </semantic:headerContent>
     <semantic:content>
@@ -48,7 +49,7 @@
 			<Table id="idMarketPartnersTable"
 				   growing="true"
 				   growingScrollToLoad="true" 
-				   growingThreshold="1000" 
+				   growingThreshold="100" 
 				   mode="None"
 				   sticky="ColumnHeaders,HeaderToolbar">
 				<columns>
@@ -64,20 +65,6 @@
 													  "sortProperty": "Name"}'/>
 						</customData>
 					</Column>
-		            <Column width="150px">
-		              <Text text="{/xMP4GxCE_PARTNERS/MarketRole/#@sap:label}"/>
-		              <customData>
-		                <core:CustomData key="p13nData" 
-		                  value='\{"columnIndex":"1", "columnKey":"MarketRole", "leadingProperty":["MarketRole"] }'/>
-		              </customData>
-		            </Column>
-		            <Column width="80px">
-		              <Text text="{/xMP4GxCE_PARTNERS/Division/#@sap:label}"/>
-		              <customData>
-		                <core:CustomData key="p13nData" 
-		                  value='\{"columnIndex":"2", "columnKey":"Division", "leadingProperty":["Division"] }'/>
-		              </customData>
-		            </Column>
 		            <Column>
 		              <Text text="{/xMP4GxCE_PARTNERS/EmailCertValidTo/#@sap:label}"/>
 		              <customData>
@@ -93,14 +80,6 @@
 						<cells>
 							<reuseTable:ObjectIdentifier title="{Name}" 
 														 text="{PartnerId}"/>
-                			<Text text="{
-									path: 'MarketRole',
-									formatter: '.valueHelpFormatter.marketRole'
-								}"/>
-                			<Text text="{
-									path: 'Division',
-									formatter: '.valueHelpFormatter.division'
-								}"/>	
 								<ObjectStatus text="{= !!${EmailCertValidTo} ? ${path: 'EmailCertValidTo',
 																			type: 'sap.ui.model.type.DateTime', 
 																			formatOptions: { style: 'medium' }} : ${i18n>NOT_MAINTAINED_TEXT}}"
@@ -115,5 +94,8 @@
 			</Table>
 		</smartTable:SmartTable>
     </semantic:content>
+    <semantic:titleCustomTextActions>
+        <reuseButton:Share press="onAction('share', $event)"/>
+    </semantic:titleCustomTextActions>
 	</semantic:SemanticPage>
 </mvc:View>

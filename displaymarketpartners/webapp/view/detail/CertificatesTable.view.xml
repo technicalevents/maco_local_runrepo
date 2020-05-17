@@ -8,7 +8,6 @@
 					    tableType="ResponsiveTable" 
 					    enableAutoBinding="true" 
 					    beforeRebindTable="onBeforeRebindTable"
-					    ignoredFields="" 
 					    beforeExport="beforeExport" 
 					    useExportToExcel="false" 
 					    useTablePersonalisation="false"

@@ -1,6 +1,6 @@
 <mvc:View controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.detail.PartnerDetailPage" xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc" xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:core="sap.ui.core"
-	xmlns:uxap="sap.uxap" xmlns:button="com.sap.cd.maco.mmt.ui.reuse.button" xmlns:layout="sap.ui.layout"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+	xmlns:uxap="sap.uxap"
 	xmlns:reuseObjectPageFacet="com.sap.cd.maco.mmt.ui.reuse.control.facet">
 	<uxap:ObjectPageLayout id="objectPage" upperCaseAnchorBar="false">
 		<uxap:headerTitle>
@@ -12,36 +12,32 @@
 					<Title text="{Name}" wrapping="true" class="sapUiTinyMarginTop"/>
 				</uxap:snappedHeading>
 				<uxap:expandedContent>
-					<Text
-						text="{PartnerId}"/>
+					<Text text="{PartnerId}"/>
 				</uxap:expandedContent>
 				<uxap:snappedContent>
-					<Text
-						text="{PartnerId}"/>
+					<Text text="{PartnerId}"/>
 				</uxap:snappedContent>
 				<uxap:actions>
-					<Button text="{i18n>CHANGE_REQUEST_TXT}" type="Transparent" press="onChangeRequestPress"
-							visible="{this>/ChangeReqVisible}"/>
-        		</uxap:actions>
+					<Button text="{i18n>CHANGE_REQUEST_TXT}" type="Transparent" press="onChangeRequestPress" visible="false"/> <!--visible="{this>/ChangeReqVisible}"/>-->
+				</uxap:actions>
 			</uxap:ObjectPageDynamicHeaderTitle>
 		</uxap:headerTitle>
 		<uxap:headerContent>
 			<reuseObjectPageFacet:FormFacet>
-				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/MarketRole/#@sap:label}" text="{ path: 'Division', formatter: '.valueHelpFormatter.marketRole' }"/>
-				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/Division/#@sap:label}" text="{ path: 'Division', formatter: '.valueHelpFormatter.division' }"/>
-				
+				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/MarketRole/#@sap:label}"
+					text="{ path: 'MarketRoleText' }"/>
+				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/Division/#@sap:label}"
+					text="{ path: 'DivisionText'}"/>
 			</reuseObjectPageFacet:FormFacet>
 			<reuseObjectPageFacet:FormFacet>
 				<reuseObjectPageFacet:FormFacetField label="{/xMP4GxCE_PARTNERS/EmailContact/#@sap:label}" text="{ path: 'EmailContact' }"/>
-				<!--<reuseObjectPageFacet:FormFacetStatus label="{/xMP4GxCE_PARTNERS/EmailContact/#@sap:label}" text="{= !!${EmailCertValidTo} ? ${path: 'EmailCertValidTo',-->
-				<!--															type: 'sap.ui.model.type.DateTime', -->
-				<!--															formatOptions: { style: 'medium' }} : ${i18n>NOT_MAINTAINED_TEXT}}"-->
-				<!--						 state="{= ${CertValidityCriticality} === 3 ? 'Indication04' : -->
-				<!--																${CertValidityCriticality} === 1 ? 'Indication01' : -->
-				<!--																									${CertValidityCriticality} === 2 ? 'Indication03' :-->
-				<!--																																		'None'}"-->
-				<!--					    inverted="{= ${CertValidityCriticality} === 1}"/>-->
 			</reuseObjectPageFacet:FormFacet>
+			<reuseObjectPageFacet:StatusFacet label="{/xMP4GxCE_PARTNERS/EmailCertValidTo/#@sap:label}" 
+											text="{= !!${EmailCertValidTo} ? ${path: 'EmailCertValidTo' , type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' }} : ${i18n>NOT_MAINTAINED_TEXT}}" 
+											state="{
+						  	path:'CertValidityCriticality',
+						  	formatter: '.criticalityFormatter'
+						  }"/>
 		</uxap:headerContent>
 		<uxap:sections>
 			<uxap:ObjectPageSection title="{i18n>EMAIL_ADDRESS_SECTION_LBL}" titleUppercase="false">

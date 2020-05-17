@@ -1,8 +1,7 @@
 sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorListReportController",
-	"sap/base/strings/formatMessage",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/valueHelpFormatter"
-], function (MonitorListReportController, FormatMessage, ValueHelpFormatter) {
+	"sap/base/strings/formatMessage"
+], function (MonitorListReportController, FormatMessage) {
 	"use strict";
 	return MonitorListReportController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.ProcessListReport", {
 
@@ -11,7 +10,6 @@ sap.ui.define([
 		 * @public
 		 */
 		formatMessage: FormatMessage,
-		valueHelpFormatter: ValueHelpFormatter,
 
 		/******************************************************************* */
 		/* LIFECYCLE METHODS */

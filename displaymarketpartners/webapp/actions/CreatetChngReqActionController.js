@@ -8,13 +8,12 @@ sap.ui.define([
 
 			/**
 			 * Function is triggered on successfull creation of Change request details
-			 * @public
+			 * @private
 			 */
 			_onSubmitCreateSuccess: function (oData) {
 				CreateUpdateDialogController.prototype._onSubmitCreateSuccess.apply(this, arguments);
 
 				this.oControllerRegistry.get("ChangeRequest").triggerChangeRequestDataRead();
-				debugger;
 			}
 		});
 });

@@ -47,7 +47,7 @@ sap.ui.define(
 						tableAccessControl: {
 							create: true
 						},
-						sizeLimit: 1200
+						sizeLimit: 1500
 					});
 					
 					this._bindMessage();
@@ -131,6 +131,10 @@ sap.ui.define(
 				 */
 				onAfterActionDelete: function (oResult, oParams) {
 					this._bindMessage();
+				},
+				
+				onOwnMarketPartnerChange: function(oEvent){
+					debugger;
 				},
 				
 
