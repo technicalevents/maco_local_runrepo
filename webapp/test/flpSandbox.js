@@ -121,6 +121,13 @@ sap.ui.define(
 										icon: "sap-icon://BusinessSuiteInAppSymbols/icon-business-partner",
 										targetURL: "#UtilsDataExchangeProcessing-operationsOverview"
 									}
+								}, {
+									tileType: "sap.ushell.ui.tile.StaticTile",
+									properties: {
+										title: "Change Request Inbox",
+										icon: "sap-icon://BusinessSuiteInAppSymbols/icon-change-request",
+										targetURL: "#UtilsDataExchangeProcessing-changeRequest"
+									}
 								}]
 							}]
 						}
@@ -307,6 +314,21 @@ sap.ui.define(
 										applicationType: "SAPUI5",
 										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.operation.ui.app.overviewoperations",
 										url: sap.ui.require.toUrl("com/sap/cd/maco/operation/ui/app/overviewoperations")
+									}
+								},
+								"UtilsDataExchangeProcessing-changeRequest": {
+									semanticObject: "UtilsDataExchangeProcessing",
+									action: "changeRequest",
+									description: "Change Request Inbox",
+									title: "Change Request Inbox",
+									signature: {
+										additionalParameters: "allowed",
+										parameters: {}
+									},
+									resolutionResult: {
+										applicationType: "SAPUI5",
+										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.operation.ui.app.changeRequestInbox",
+										url: sap.ui.require.toUrl("com/sap/cd/maco/operation/ui/app/changeRequestInbox")
 									}
 								}
 							}

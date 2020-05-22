@@ -1,0 +1,28 @@
+{
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(.*)$",
+      "target": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations$1",
+      "authenticationType": "xsuaa",
+      "service": "com.sap.cloud.abap",
+      "endpoint": "abap"
+    },
+    {
+      "source": "^/sap/opu/odata/MP4G/UI_CHANGEREQTINBOX/(.*)$",
+      "target": "/sap/opu/odata/MP4G/UI_CHANGEREQTINBOX/$1",
+      "authenticationType": "xsuaa",
+      "service": "com.sap.cloud.abap",
+      "endpoint": "abap"
+    },
+    {
+      "source": "^(.*)$",
+      "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    }
+  ]
+}
