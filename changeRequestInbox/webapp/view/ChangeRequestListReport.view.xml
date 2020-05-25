@@ -1,0 +1,143 @@
+<mvc:View xmlns:core="sap.ui.core" 
+		  xmlns="sap.m" 
+		  xmlns:semantic="sap.f.semantic" 
+		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+		  xmlns:smartTable="sap.ui.comp.smarttable"
+		  xmlns:mvc="sap.ui.core.mvc"
+		  xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+		  controllerName="com.sap.cd.maco.operation.ui.app.changeRequestInbox.view.ChangeRequestListReport"
+          xmlns:reuseButton="com.sap.cd.maco.mmt.ui.reuse.control.button"
+          xmlns:variants="sap.ui.comp.smartvariants">
+    <semantic:SemanticPage headerExpanded="true" 
+						   toggleHeaderOnTitleClick="true">
+  		<semantic:titleHeading>
+			 <variants:SmartVariantManagement id="idChangeRequestVariantManagement" 
+											  persistencyKey="com.sap.cd.maco.operation.ui.app.changeRequestInbox.filterbar"/>
+		</semantic:titleHeading>
+    <semantic:headerContent>
+        <smartFilterBar:SmartFilterBar id="idChangeRequestSmartFilterBar"
+									   smartVariant="idChangeRequestVariantManagement"
+									   enableBasicSearch="true"
+									   useDateRangeType="true"
+									   useToolbar="false"
+									   initialized="onFilterBarInitialized"
+									   showFilterConfiguration="false"
+									   persistencyKey="com.sap.cd.maco.operation.ui.app.changeRequestInbox.filterbar"
+									   entitySet="xMP4GxC_ChangeRequest"
+									   class="sapUiSmallMarginBottom"
+									   beforeVariantFetch="onBeforeChangeRequestVariantFetch"
+									   afterVariantLoad="onAfterChangeRequestVariantLoad">
+        </smartFilterBar:SmartFilterBar>
+    </semantic:headerContent>
+    <semantic:content>
+		<smartTable:SmartTable id="idChangeRequestSmartTable"
+							   entitySet="xMP4GxC_ChangeRequest"
+							   tableType="ResponsiveTable"
+							   smartFilterId="idChangeRequestSmartFilterBar"
+							   smartVariant="idChangeRequestVariantManagement"
+							   enableAutoBinding="true" 
+							   demandPopin="true"
+							   requestAtLeastFields="db_key,BODocNo,Action,EmailAddress,CertificateName,CertificateIssuer,CertificateSubject"
+							   ignoreFromPersonalisation="db_key,Action,CreationDate,ChangeRequestType,ChangeRequestTypeDescription,ChangeDate,StatusCriticality,Status"
+							   header="{i18n>CHANGE_REQUEST_PLURAL_LBL}"
+							   c:p13nDialogSettings='{filter:{visible:false}}' 
+							   beforeRebindTable="onBeforeRebindTable"
+							   persistencyKey="com.sap.cd.maco.operation.ui.app.changeRequestInbox.table">
+			<smartTable:customToolbar>
+				<OverflowToolbar design="Transparent">
+					<ToolbarSpacer/>
+					<SegmentedButton id="idChangeRequestSegmentedButton"
+									 selectionChange="onChangeReqTypeSelChange">
+						<items>
+							<SegmentedButtonItem text="{i18n>MARKETPART_EMAIL_SEGMENTED_LBL}" key="EMAIL"/>
+							<SegmentedButtonItem text="{i18n>MARKETPART_CERT_SEGMENTED_LBL}" key="CERTIFICATE"/>
+						</items>
+					</SegmentedButton>
+					<ToolbarSpacer/>
+				</OverflowToolbar>
+			</smartTable:customToolbar>
+			<Table id="idChangeRequestTable"
+				   growing="true"
+				   growingScrollToLoad="true" 
+				   growingThreshold="100" 
+				   mode="None"
+				   sticky="ColumnHeaders,HeaderToolbar">
+				<columns>
+					<Column width="25%" visible="{= ${this>/ChangeRequestType} === 'EMAIL'}">
+						<Text text="{/xMP4GxC_ChangeRequest/EmailAddress/#@sap:label}"/>
+						<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":3,"columnKey":"EmailAddress","leadingProperty":["EmailAddress"],"sortProperty":"EmailAddress"}'/>
+						</customData>
+					</Column>
+					<Column visible="{= ${this>/ChangeRequestType} === 'CERTIFICATE'}">
+						<Text text="{/xMP4GxC_ChangeRequest/CertificateName/#@sap:label}"/>
+						<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":4,"columnKey":"CertificateName","leadingProperty":["CertificateName"],"sortProperty":"CertificateName"}'/>
+						</customData>
+					</Column>
+					<Column visible="{= ${this>/ChangeRequestType} === 'CERTIFICATE'}">
+						<Text text="{/xMP4GxC_ChangeRequest/CertificateIssuer/#@sap:label}"/>
+						<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":5,"columnKey":"CertificateIssuer","leadingProperty":["CertificateIssuer"],"sortProperty":"CertificateIssuer"}'/>
+						</customData>
+					</Column>
+					<Column visible="{= ${this>/ChangeRequestType} === 'CERTIFICATE'}">
+						<Text text="{/xMP4GxC_ChangeRequest/CertificateSubject/#@sap:label}"/>
+						<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":6,"columnKey":"CertificateSubject","leadingProperty":["CertificateSubject"],"sortProperty":"CertificateSubject"}'/>
+						</customData>
+					</Column>
+					<Column>
+						<Text text="{/xMP4GxC_ChangeRequest/ValidFrom/#@sap:label}"/>
+						<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":7,"columnKey":"ValidFrom","leadingProperty":["ValidFrom"],"sortProperty":"ValidFrom"}'/>
+						</customData>
+					</Column>
+					<Column>
+						<Text text="{/xMP4GxC_ChangeRequest/ValidTo/#@sap:label}"/>
+						<customData>
+							<core:CustomData key="p13nData" 
+								value='\{"columnIndex":8,"columnKey":"ValidTo","leadingProperty":["ValidTo"],"sortProperty":"ValidTo"}'/>
+						</customData>
+					</Column>
+					<Column width="4rem">
+						<Text text="{i18n>ACCEPT_BTN_TXT}" visible="false"/>
+						<customData>
+							<core:CustomData key="p13nData" value='\{"columnIndex":10,"columnKey":"Accept"}'/>
+						</customData>
+					</Column>
+					<Column width="4rem">
+						<Text text="{i18n>REJECT_BTN_TXT}" visible="false"/>
+						<customData>
+							<core:CustomData key="p13nData" value='\{"columnIndex":11,"columnKey":"Reject"}'/>
+						</customData>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation" 
+									press="onAction('navMarketPartnerAction', $event)">
+						<cells>
+							<Text text="{EmailAddress}"/>
+							<Text text="{CertificateName}"/>
+							<Text text="{CertificateIssuer}"/>
+							<Text text="{CertificateSubject}"/>
+							<Text text="{path:'ValidFrom', type:'sap.ui.model.type.Date', formatOptions:{style:'medium'}}"/>
+							<Text text="{path:'ValidTo', type:'sap.ui.model.type.Date', formatOptions:{style:'medium'}}"/>
+							<Button text="{i18n>ACCEPT_BTN_TXT}" type="Accept" press="onAction('acceptChangeRequest', $event)"/>
+							<Button text="{i18n>REJECT_BTN_TXT}" type="Reject" press="onAction('rejectChangeRequest', $event)"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</smartTable:SmartTable>
+    </semantic:content>
+    <semantic:titleCustomTextActions>
+        <reuseButton:Share press="onAction('share', $event)"/>
+    </semantic:titleCustomTextActions>
+	</semantic:SemanticPage>
+</mvc:View>
