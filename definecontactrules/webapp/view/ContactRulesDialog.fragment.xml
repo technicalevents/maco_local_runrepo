@@ -15,21 +15,7 @@
       <smartForm:Group>
 
         <smartForm:GroupElement >
-         <smartForm:label>
-            <Label required="true"
-                   text="{/xMP4GxC_CTA_MP_UI/OwnMarketPartner/#@sap:label}"/>
-          </smartForm:label>
-        	<ComboBox id="idOwmMarketPartner" showSecondaryValues= "true"
-                          items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
-                          change="onOwnMarketPartnerChange"
-                          selectedKey="{OwnMarketPartner}">
-                    <core:ListItem key="{market_partner}" 
-	            			        text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
-	                            			       {path: 'mp_name'},
-	                                        		{path: 'market_role', formatter: '.formatter.valueHelpFormatter.marketRole'},
-	                                        		{path: 'market_partner'}],
-	                            					formatter: 'jQuery.sap.formatMessage'}"/>
-                  </ComboBox>
+         <smartField:SmartField enabled="{this>/isCreate}" mandatory="true" value="{OwnMarketPartner}"  change="onOwnMarketPartnerChange" />
         </smartForm:GroupElement>
 
         <smartForm:GroupElement >
@@ -41,10 +27,11 @@
         </smartForm:GroupElement>
 
         <smartForm:GroupElement>
-          <smartField:SmartField value="{ExtBusinessMessageID}" />
+          <smartField:SmartField  value="{ExtBusinessMessageID}" />
         </smartForm:GroupElement>
 
         <smartForm:GroupElement>
+        	 <!--<smartField:SmartField id="idContact" value="{ContactID}" />-->
         	<smartForm:label>
             <Label required="true"
                    text="{/xMP4GxC_CTA_MP_UI/ContactID/#@sap:label}"/>

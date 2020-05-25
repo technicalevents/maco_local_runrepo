@@ -4,9 +4,10 @@ sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateWithDialogAction",
     "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/UpdateWithDialogAction",
     "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/DeleteAction",
-    "com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
+    "com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction",
+    "com/sap/cd/maco/selfservice/ui/app/definecontactrules/view/ContactRulesDialogController"
   ],
-  function(MonitorComponent, HashSync, CreateWithDialogAction, UpdateWithDialogAction, DeleteAction, ShareAction) {
+  function(MonitorComponent, HashSync, CreateWithDialogAction, UpdateWithDialogAction, DeleteAction, ShareAction, ContactRulesDialogController) {
     "use strict";
 
     return MonitorComponent.extend("com.sap.cd.maco.selfservice.ui.app.definecontactrules.Component", {
@@ -24,6 +25,7 @@ sap.ui.define([
         this.mActions = {
           create : new CreateWithDialogAction(this, {
             fragmentName: "com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesDialog",
+            fragmentControllerClass: ContactRulesDialogController,
             title: "CONTACTDETERMINATION_CREATE_TITLE",
             successMsg: "CONTACTDETERMINATION_CREATE_SUCCESS_MSG"
           }),

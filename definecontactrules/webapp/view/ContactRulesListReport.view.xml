@@ -28,43 +28,7 @@
 					                  persistencyKey="com.sap.cd.maco.selfservice.ui.app.controller.definecontactrules.filterbar"
 					                  entitySet="xMP4GxC_CTA_MP_UI"
 					                  afterVariantLoad="onAfterVariantLoad"
-					                  class="sapUiSmallMarginBottom">
-          		<smartFilterBar:customData>
-                    	<core:CustomData  key="defaultDropDownDisplayBehaviour" value="descriptionAndId"/>
-				</smartFilterBar:customData>
-          	<smartFilterBar:controlConfiguration>
-                <smartFilterBar:ControlConfiguration index="1" 
-                									 key="OwnMarketPartner"
-													 label="{/xMP4GxC_CTA_MP_UI/OwnMarketPartner/#@sap:label}">
-                <smartFilterBar:customControl>
-	                  <MultiComboBox id="idOwmMarketPartner"
-			                          items="{path: '/xMP4GxC_MarketPartner_VH', sorter: { path: 'mp_name' } }" 
-			                          selectionChange="onCustomControlChange('OwnMarketPartner', $event)">
-	                    	<core:ListItem key="{market_partner}" 
-	                			        text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
-		                    			       {path: 'mp_name'},
-		                                		{path: 'market_role', formatter: '.formatter.valueHelpFormatter.marketRole'},
-		                                		{path: 'market_partner'}],
-		                    					formatter: 'jQuery.sap.formatMessage'}"/>
-	                  </MultiComboBox>
-          			</smartFilterBar:customControl>
-          		</smartFilterBar:ControlConfiguration>
-                <smartFilterBar:ControlConfiguration index="4"
-                										key="ExtBusinessMessageID"
-                									 preventInitialDataFetchInValueHelpDialog="false" />
-				<smartFilterBar:ControlConfiguration index="3"
-                										key="TechnicalMsgID"
-                									 preventInitialDataFetchInValueHelpDialog="false" />
-				<smartFilterBar:ControlConfiguration index="5"
-                										key="ContactID"
-                									 preventInitialDataFetchInValueHelpDialog="false" >
-					
-				</smartFilterBar:ControlConfiguration>
-				<smartFilterBar:ControlConfiguration index="2"
-            										key="ExternalMarketPartner"
-                									preventInitialDataFetchInValueHelpDialog="false" />									 
-          	</smartFilterBar:controlConfiguration>
-          </smartFilterBar:SmartFilterBar>
+					                  class="sapUiSmallMarginBottom" />
      </semantic:headerContent>
     <semantic:content>
     	<VBox>
@@ -91,7 +55,7 @@
 					        placeToolbarInTable="true" 
                 			c:p13nDialogSettings='{filter:{visible:false},group:{visible:false}}' 
 					        beforeRebindTable="onBeforeRebindTable"
-					        ignoreFromPersonalisation="ContactDeterminationKey,CLIENT_UUID,OwnMarketPartner,OwnMarketPartnerText,ExternalMarketPartnerText,DivisionText,MarketRole,ContactName"
+					        ignoreFromPersonalisation="OwnMarketPartner,OwnMarketPartnerText,ExternalMarketPartnerText,DivisionText,MarketRole,ContactName"
 					        persistencyKey="com.sap.cd.maco.selfservice.ui.app.controller.definecontactrules.table">
         <smartTable:customToolbar>
           <OverflowToolbar design="Transparent">
@@ -133,12 +97,6 @@
                 <core:CustomData key="p13nData" value='\{"columnIndex":"3", "columnKey":"ExtBusinessMessageID", "leadingProperty":["ExtBusinessMessageID"], "sortProperty": "ExtBusinessMessageID" }'/>
               </customData>
             </Column>
-            <Column>
-              <Text text="{/xMP4GxC_CTA_MP_UI/ContactID/#@sap:label}"/>
-              <customData>
-                <core:CustomData key="p13nData" value='\{"columnIndex":"4", "columnKey":"ContactID", "description":"ContactName", "displayBehaviour": "idAndDescription", "leadingProperty":["ContactID","ContactName"], "sortProperty": "ContactID"}'/>
-              </customData>
-            </Column>
           </columns>
           <items>
             <ColumnListItem type="Detail"
@@ -148,7 +106,6 @@
               	<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}"  text="{ExternalMarketPartner}" noDataText="{i18n>ANY_DATA_TXT}"/>
               	<reuseTable:ObjectIdentifier text="{TechnicalMsgID}" noDataText="{i18n>ANY_DATA_TXT}"/>
               	<reuseTable:ObjectIdentifier text="{ExtBusinessMessageID}" noDataText="{i18n>ANY_DATA_TXT}"/>
-              	<reuseTable:ObjectIdentifier title="{ContactName}" text="{ContactID}"/>
               </cells>
             </ColumnListItem>
           </items>
