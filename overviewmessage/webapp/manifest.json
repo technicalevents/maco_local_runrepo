@@ -133,7 +133,7 @@
 				"model": "MessageMonitor",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+					"entitySet": "xMP4GxC_MesStatMoni_UI",
 					"title": "{{STATUS_CARD_TITLE}}",
 					"customParams": "CardStatus",
 					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
@@ -149,86 +149,177 @@
 				"model": "MessageMonitor",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+					"entitySet": "xMP4GxC_MesLoadMoni_UI",
 					"title": "{{LOAD_CARD_INFO}}",
 					"customParams": "CardLoad",
-					"valueSelectionInfo": "{{PROCESSED_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
 						"cols": 2
 					},
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#StackedColumnChart",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#StackedColumnChart"
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#LoadMoni",
+					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#LoadMoni"
 				}
 			},
-			"c_todo": {
+			"c_Open": {
 				"model": "MessageMonitor",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"title": "{{FAILED_CARD_INFO}}",
-					"valueSelectionInfo": "{{FAILED_SELECTION_INFO}}",
+					"title": "{{OPEN_CARD_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
 						"cols": 3
 					},
 					"tabs": [{
-						"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+						"entitySet": "xMP4GxC_MesOpenMoni_TechMsg_UI",
 						"value": "{{BY_FORMAT_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#TechMsgID",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#TechMsgID"
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OpenTechMsgID",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OpenTechMsgID"
 					}, {
-						"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+						"entitySet": "xMP4GxC_MesOpenMoni_SendID_UI",
 						"value": "{{BY_FROM_PARTNER_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ReceiverId",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ReceiverId"
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OpenReceiverId",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OpenReceiverId"
 					}, {
-						"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+						"entitySet": "xMP4GxC_MesOpenMoni_RecID_UI",
 						"value": "{{BY_TO_PARTNER_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#SenderId",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#SenderId"
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OpenSenderId",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OpenSenderId"
 					}, {
-						"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+						"entitySet": "xMP4GxC_MesOpenMoni_BusMsg_UI",
 						"value": "{{BY_AMID_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ExtBuissMsgID",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ExtBuissMsgID"
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OpenExtBuissMsgID",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OpenExtBuissMsgID"
 					}, {
-						"entitySet": "xMP4GxC_MesStatMonitoring_UI",
+						"entitySet": "xMP4GxC_MesOpenMoni_Direc_UI",
 						"value": "{{BY_DIRECTION_LBL}}",
-						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#Direction",
-						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#Direction"
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OpenDirection",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OpenDirection"
 					}]
 				}
 			},
-			"d_MPload": {
+
+			"d_OverallOutboundDeliveryStatus": {
 				"model": "MessageMonitor",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"entitySet": "xMP4GxC_MesStatMonitoring_UI",
-					"title": "{{LOAD_CARD_INFO}}",
-					"customParams": "CardMPLoad",
-					"valueSelectionInfo": "{{OWN_MARKET_PARTNER_PROCESSED_SELECTION_INFO}}",
+					"entitySet": "xMP4GxC_OutMesStatMoni_UI",
+					"title": "{{OVER_OUTB_DELV_STATUS_CARD_TITLE}}",
+					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
-						"cols": 2
+						"cols": 1
 					},
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OMPStackedColumnChart",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OMPStackedColumnChart"
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OverallOutboundDeliveryStatus",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#OverallOutboundDeliveryStatus"
 				}
 			},
-			"e_MPload": {
+			"e_OverallInboundMessageProcessStatus": {
 				"model": "MessageMonitor",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
-					"entitySet": "xMP4GxC_MesStatMonitoring_UI",
-					"title": "{{LOAD_CARD_INFO}}",
-					"customParams": "CardMPLoad",
-					"valueSelectionInfo": "{{SENT_ACK_PROCESSED_SELECTION_INFO}}",
+					"entitySet": "xMP4GxC_InbMesStatMoni_UI",
+					"title": "{{OVER_INB_MES_PROC_STATUS_CARD_TITLE}}",
+					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
-						"cols": 2
+						"cols": 1
 					},
-					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#ACKStackedColumnChart",
-					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ACKStackedColumnChart"
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OverallInboundDeliveryStatus",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#OverallInboundDeliveryStatus"
+				}
+			},
+			"f_UnconfirmedOutboundMessage": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{UNCONFIRMED_OUT_MSG_CARD_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 3
+					},
+					"tabs": [{
+						"entitySet": "xMP4GxC_MesLoadMoni_OAckOMP_UI",
+						"value": "{{BY_FROM_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#UnconfirmedOutboundMessageByOmp",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#UnconfirmedOutboundMessageByOmp"
+					}, {
+						"entitySet": "xMP4GxC_MesLoadMoni_OAckEMP_UI",
+						"value": "{{BY_TO_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#UnconfirmedOutboundMessageByEmp",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#UnconfirmedOutboundMessageByEmp"
+					}, {
+						"entitySet": "xMP4GxC_MesLoadMoni_OAckTM_UI",
+						"value": "{{BY_FORMAT_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#UnconfirmedOutboundMessageByFormat",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#UnconfirmedOutboundMessageByFormat"
+					}, {
+						"entitySet": "xMP4GxC_MesLoadMoni_OAckBM_UI",
+						"value": "{{BY_AMID_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#UnconfirmedOutboundMessageByAMID",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#UnconfirmedOutboundMessageByAMID"
+					}]
+				}
+			},
+			"g_LoadOutboundMessage": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{LOAD_OUTB_MES_CARD_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 3
+					},
+					"tabs": [{
+						"entitySet": "xMP4GxC_MesLoadMoni_OutOMP_UI",
+						"value": "{{BY_FROM_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#LoadOutboundMessageByOmp",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#LoadOutboundMessageByOmp"
+					}, {
+						"entitySet": "xMP4GxC_MesLoadMoni_OutEMP_UI",
+						"value": "{{BY_TO_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#LoadOutboundMessageByEmp",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#LoadOutboundMessageByEmp"
+					}, {
+						"entitySet": "xMP4GxC_MesLoadMoni_OutTM_UI",
+						"value": "{{BY_FORMAT_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#LoadOutboundMessageByFormat",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#LoadOutboundMessageByFormat"
+					}, {
+						"entitySet": "xMP4GxC_MesLoadMoni_OutBM_UI",
+						"value": "{{BY_AMID_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#LoadOutboundMessageByAMID",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#LoadOutboundMessageByAMID"
+					}]
+				}
+			},
+			"h_InboundAperakMoni": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xMP4GxC_InbMesAperakMoni_UI",
+					"title": "{{INBOUND_APERAK_MONI_CARD_TITLE}}",
+					"valueSelectionInfo": "{{APERAK_RATE_SELECTION_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 1
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#InboundAperakMoni",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#InboundAperakMoni"
+				}
+			},
+			"i_OutboundAperakMoni": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"entitySet": "xMP4GxC_OutMesAperakMoni_UI",
+					"title": "{{OUTBOUND_APERAK_MONI_CARD_TITLE}}",
+					"valueSelectionInfo": "{{APERAK_RATE_SELECTION_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 1
+					},
+					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OutboundAperakMoni",
+					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#OutboundAperakMoni"
 				}
 			}
 		},
