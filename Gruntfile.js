@@ -6,51 +6,78 @@ const shell = require('shelljs');
 var sLocalGitHubName = "maco_local_runrepo";
 
 var aGithubMapping = [{
-  actualGit: "mmt-ui-app-dispprocess-b",
+  actualGit: "displayprocesses",
   localGit: "displayprocess",
   isReuseLib: false,
   resourceFolder: "webapp"
 }, {
-  actualGit: "mmt-ui-app-dispmsg-b",
+  actualGit: "displaymessages",
   localGit: "displaymessage",
   isReuseLib: false,
   resourceFolder: "webapp"
 }, {
-  actualGit: "mmt-ui-app-overviewprocess-b",
+  actualGit: "overviewprocesses",
   localGit: "overviewprocess",
   isReuseLib: false,
   resourceFolder: "webapp"
 }, {
-  actualGit: "mmt-ui-app-invoicedocument-b",
+  actualGit: "invoicedocument",
   localGit: "invoicedocument",
   isReuseLib: false,
   resourceFolder: "webapp"
 }, {
-  actualGit: "mmt-ui-app-massmetereading-b",
+  actualGit: "massmeterreadings",
   localGit: "massmeterreading",
   isReuseLib: false,
   resourceFolder: "webapp"
 }, {
-  actualGit: "mmt-ui-app-processuiaction-b",
+  actualGit: "processuiactions",
   localGit: "displayprocessuiaction",
   isReuseLib: false,
   resourceFolder: "webapp"
 }, {
-  actualGit: "mmt-ui-app-displaymarketpartners-b",
+  actualGit: "displaymarketpartners",
   localGit: "displaymarketpartners",
   isReuseLib: false,
   resourceFolder: "webapp"
 }, {
-  actualGit: "mmt-ui-app-definecontactrules-b",
+  actualGit: "definecontactrules",
   localGit: "definecontactrules",
   isReuseLib: false,
   resourceFolder: "webapp"
+},{
+  actualGit: "mmt-ui-app-overviewoperation-b",
+  localGit: "overviewoperation",
+  isReuseLib: false,
+  resourceFolder: "webapp"
 }, {
-  actualGit: "mmt-ui-lib-b",
+  actualGit: "reuse",
   localGit: "mmt-ui-lib",
   isReuseLib: true,
   resourceFolder: "src/com/sap/cd/maco/mmt/ui/reuse"
+}, {
+  actualGit: "usernotifications",
+  localGit: "usernotifications",
+  isReuseLib: false,
+  resourceFolder: "webapp"
+}, {
+  actualGit: "maintmsgcontacts",
+  localGit: "maintainmessagecontact",
+  isReuseLib: false,
+  resourceFolder: "webapp"
+}, {
+  actualGit: "overviewmessages",
+  localGit: "overviewmessages",
+  isReuseLib: false,
+  resourceFolder: "webapp"
+}, {
+  actualGit: "changeRequestInbox",
+  localGit: "changeRequestInbox",
+  isReuseLib: false,
+  resourceFolder: "webapp"
 }];
+
+var sGitUrl = "https://github.wdf.sap.corp/MaCo-UIMP4G/";
 
 
 
@@ -144,6 +171,27 @@ module.exports = function (grunt) {
         triggerSyncOperation(grunt, oGithubMapping, "syncLocal");
       }.bind(this));
     }
+
+    // shell.exec("git commit -m '" + sMessage + "'");
+    // shell.exec("git push origin");
+
+  }.bind(this));
+
+  grunt.registerTask('cloneall', 'Clone All Github Repos', function () {
+   var sFullGitUrl;
+   var sGitCloneCommand;
+   var sCommand;
+   
+    // First pull the latest code
+    // shell.exec("cd /Users/i310549/MMT-app/UIMP4G/");
+    // shell.exec("ls");
+
+    aGithubMapping.forEach(function(oGitHubmapping){
+      sFullGitUrl = sGitUrl + oGitHubmapping.actualGit + ".git";
+      sGitCloneCommand = "git clone " + sFullGitUrl;
+      sCommand = "cd /Users/i310549/MMT-app/UIMP4G/; " + sGitCloneCommand;
+      shell.exec(sCommand);
+    });
 
     // shell.exec("git commit -m '" + sMessage + "'");
     // shell.exec("git push origin");
