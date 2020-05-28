@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/model/FilterOperator",
 	"com/sap/cd/maco/mmt/ui/reuse/controller/table/SmartTableController",
-	"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate"
-],function (FilterOperator, SmartTableController, SmartTableBindingUpdate) {
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
+	"sap/ui/model/Sorter"
+],function (FilterOperator, SmartTableController, SmartTableBindingUpdate, Sorter) {
 	"use strict";
 
 	return SmartTableController.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.detail.AS2Table", {
@@ -49,6 +50,8 @@ sap.ui.define([
 			} else {
 				oUpdate.addFilter("PartnerId", FilterOperator.EQ, this.oRouteArgs.PartnerId);
     			oUpdate.endFilterAnd();
+    			
+    			oUpdate.addSorters([new Sorter("ValidFrom", true)]);
 			}
 		}
 	});
