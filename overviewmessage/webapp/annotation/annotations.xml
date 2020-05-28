@@ -14,7 +14,6 @@
 			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_TransferDoc_UIType">
 				<Annotation Term="UI.SelectionFields">
 					<Collection>
-						<PropertyPath>TDStatus</PropertyPath>
 						<PropertyPath>TransferDate</PropertyPath>
 						<PropertyPath>TechnicalMsgID</PropertyPath>
 						<PropertyPath>ExtBusinessMessageID</PropertyPath>
@@ -1767,6 +1766,9 @@
 				</Annotation>	
 			</Annotations>
 			
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_InbMesAperakMoni_UIType/InbAperakRatio">
+				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
+			</Annotations>
 			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_InbMesAperakMoni_UIType">
 				<Annotation Term="UI.DataPoint" Qualifier="InboundAperakMoni">
 					<Record Type="UI.DataPointType">
@@ -1785,13 +1787,13 @@
 						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
 						<PropertyValue Property="Measures">
 							<Collection>
-								<PropertyPath>MessageStatusCount</PropertyPath>
+								<PropertyPath>InbAperakRatio</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="MeasureAttributes">
 							<Collection>
 								<Record Type="UI.ChartMeasureAttributeType">
-									<PropertyValue Property="Measure" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Measure" PropertyPath="InbAperakRatio"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
 								</Record>
 							</Collection>
@@ -1822,6 +1824,9 @@
 				</Annotation>
 			</Annotations>
 			
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_OutMesAperakMoni_UIType/OutAperakRatio">
+				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
+			</Annotations>
 			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_OutMesAperakMoni_UIType">
 				<Annotation Term="UI.DataPoint" Qualifier="OutboundAperakMoni">
 					<Record Type="UI.DataPointType">
@@ -1840,13 +1845,13 @@
 						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
 						<PropertyValue Property="Measures">
 							<Collection>
-								<PropertyPath>MessageStatusCount</PropertyPath>
+								<PropertyPath>OutAperakRatio</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="MeasureAttributes">
 							<Collection>
 								<Record Type="UI.ChartMeasureAttributeType">
-									<PropertyValue Property="Measure" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Measure" PropertyPath="OutAperakRatio"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
 								</Record>
 							</Collection>

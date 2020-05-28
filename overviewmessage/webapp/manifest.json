@@ -271,12 +271,12 @@
 					},
 					"tabs": [{
 						"entitySet": "xMP4GxC_MesLoadMoni_OutOMP_UI",
-						"value": "{{BY_FROM_PARTNER_LBL}}",
+						"value": "{{BY_OWN_MARKET_PARTNER_LBL}}",
 						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#LoadOutboundMessageByOmp",
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#LoadOutboundMessageByOmp"
 					}, {
 						"entitySet": "xMP4GxC_MesLoadMoni_OutEMP_UI",
-						"value": "{{BY_TO_PARTNER_LBL}}",
+						"value": "{{BY_EXTERNAL_MARKET_PARTNER_LBL}}",
 						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#LoadOutboundMessageByEmp",
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#LoadOutboundMessageByEmp"
 					}, {
