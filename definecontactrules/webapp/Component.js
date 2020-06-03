@@ -32,6 +32,7 @@ sap.ui.define([
   
           update: new UpdateWithDialogAction(this, {
             fragmentName: "com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesDialog",
+            fragmentControllerClass: ContactRulesDialogController,
             title: "CONTACTDETERMINATION_EDIT_TITLE",
             successMsg: "CONTACTDETERMINATION_EDIT_SUCCESS_MSG"
           }),
