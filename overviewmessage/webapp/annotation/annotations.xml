@@ -19,8 +19,7 @@
 						<PropertyPath>ExtBusinessMessageID</PropertyPath>
 						<PropertyPath>ReceiverId</PropertyPath>
 						<PropertyPath>SenderId</PropertyPath>
-						<PropertyPath>Direction</PropertyPath>
-						<PropertyPath>OwnerUUID</PropertyPath>
+						<PropertyPath>OwnMarketPartner</PropertyPath>
 					</Collection>
 				</Annotation>
 			</Annotations>
@@ -1859,9 +1858,128 @@
 						<PropertyValue Property="Dimensions">
 							<Collection>
 								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>MessageStatusCount</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayMessage"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>
+			</Annotations>
+			
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_OMesDelRateMoni_BM_UIType">
+				<Annotation Term="UI.KPI" Qualifier="OutboundMessageDeliveryRateByAMID">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="OutboundMessageDeliveryRateByAMID"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="MessageStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="DeliveryRate"/>
+								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#OutboundMessageDeliveryRateByAMID</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="OwnerUUID"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayMessage"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="OutboundMessageDeliveryRateByAMID">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>MessageStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>OwnerUUID</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
@@ -1879,7 +1997,791 @@
 							<PropertyValue Property="RequiresContext" Bool="false"/>
 						</Record>
 					</Collection>
+				</Annotation>	
+			</Annotations>
+			
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_OMesDelRateMoni_EMP_UIType">
+				<Annotation Term="UI.KPI" Qualifier="OutboundMessageDeliveryRateByEMP">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="OutboundMessageDeliveryRateByEMP"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="MessageStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="DeliveryRate"/>
+								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#OutboundMessageDeliveryRateByEMP</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="ExternalMarketPartner"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayMessage"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
+							</Record>
+						</PropertyValue>
+					</Record>
 				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="OutboundMessageDeliveryRateByEMP">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>MessageStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>ExternalMarketPartner</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ExternalMarketPartner"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayMessage"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>	
+			</Annotations>
+			
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_OMesDelRateMoni_OMP_UIType">
+				<Annotation Term="UI.KPI" Qualifier="OutboundMessageDeliveryRateByOMP">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="OutboundMessageDeliveryRateByOMP"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="MessageStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="DeliveryRate"/>
+								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#OutboundMessageDeliveryRateByOMP</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="ExtBusinessMessageID"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayMessage"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="OutboundMessageDeliveryRateByOMP">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>MessageStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>ExtBusinessMessageID</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ExtBusinessMessageID"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayMessage"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>	
+			</Annotations>
+			
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_OMesDelRateMoni_TM_UIType">
+				<Annotation Term="UI.KPI" Qualifier="OutboundMessageDeliveryRateByTM">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="OutboundMessageDeliveryRateByTM"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="MessageStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="DeliveryRate"/>
+								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#LoadOutboundMessageByFormat</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="TechnicalMsgID"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayMessage"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="LoadOutboundMessageByFormat">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>MessageStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>TechnicalMsgID</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="TechnicalMsgID"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayMessage"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>	
+			</Annotations>
+			
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_IMesDelRateMoni_BM_UIType">
+				<Annotation Term="UI.KPI" Qualifier="InboundMessageDeliveryRateByAMID">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="InboundMessageDeliveryRateByAMID"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="MessageStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="DeliveryRate"/>
+								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#InboundMessageDeliveryRateByAMID</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="OwnerUUID"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayMessage"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="InboundMessageDeliveryRateByAMID">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>MessageStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>OwnerUUID</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayMessage"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>	
+			</Annotations>
+			
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_IMesDelRateMoni_EMP_UIType">
+				<Annotation Term="UI.KPI" Qualifier="InboundMessageDeliveryRateByEMP">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="InboundMessageDeliveryRateByEMP"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="MessageStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="DeliveryRate"/>
+								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#InboundMessageDeliveryRateByEMP</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="ExternalMarketPartner"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayMessage"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="InboundMessageDeliveryRateByEMP">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>MessageStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>ExternalMarketPartner</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ExternalMarketPartner"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayMessage"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>	
+			</Annotations>
+			
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_IMesDelRateMoni_OMP_UIType">
+				<Annotation Term="UI.KPI" Qualifier="InboundMessageDeliveryRateByOMP">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="InboundMessageDeliveryRateByOMP"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="MessageStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="DeliveryRate"/>
+								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#InboundMessageDeliveryRateByOMP</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="ExtBusinessMessageID"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayMessage"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="InboundMessageDeliveryRateByOMP">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>MessageStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>OwnerUUID</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayMessage"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>	
+			</Annotations>
+			
+			<Annotations Target="cds_xmp4gxmessagemonitor_sd.xMP4GxC_IMesDelRateMoni_TM_UIType">
+				<Annotation Term="UI.KPI" Qualifier="InboundMessageDeliveryRateByTM">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="InboundMessageDeliveryRateByTM"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="MessageStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<PropertyValue Property="Value" Path="DeliveryRate"/>
+								<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#InboundMessageDeliveryRateByTM</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+										<PropertyValue Property="MaxItems" Int="50"/>
+										<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="TechnicalMsgID"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+								<PropertyValue Property="Action" String="displayMessage"/>
+								<PropertyValue Property="RequiresContext" Bool="false"/>
+							</Record>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Chart" Qualifier="InboundMessageDeliveryRateByTM">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
+							<Collection>
+								<PropertyPath>MessageStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>TechnicalMsgID</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="TechnicalMsgID"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+				<Annotation Term="UI.Identification">
+					<Collection>
+						<Record Type="UI.DataFieldForIntentBasedNavigation">
+							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
+							<PropertyValue Property="Action" String="displayMessage"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
+						</Record>
+					</Collection>
+				</Annotation>	
 			</Annotations>
 		</Schema>
 	</edmx:DataServices>

@@ -326,6 +326,70 @@
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OutboundAperakMoni",
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#OutboundAperakMoni"
 				}
+			},
+			"j_OutboundMessageDeliveryRate": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{OUTB_MES_DELRATE_CARD_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 3
+					},
+					"tabs": [{
+						"entitySet": "xMP4GxC_OMesDelRateMoni_BM_UI",
+						"value": "{{BY_AMID_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OutboundMessageDeliveryRateByAMID",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OutboundMessageDeliveryRateByAMID"
+					}, {
+						"entitySet": "xMP4GxC_OMesDelRateMoni_EMP_UI",
+						"value": "{{BY_EXTERNAL_MARKET_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OutboundMessageDeliveryRateByEMP",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OutboundMessageDeliveryRateByEMP"
+					}, {
+						"entitySet": "xMP4GxC_OMesDelRateMoni_OMP_UI",
+						"value": "{{BY_OWN_MARKET_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OutboundMessageDeliveryRateByOMP",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OutboundMessageDeliveryRateByOMP"
+					}, {
+						"entitySet": "xMP4GxC_OMesDelRateMoni_TM_UI",
+						"value": "{{BY_FORMAT_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OutboundMessageDeliveryRateByTM",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#OutboundMessageDeliveryRateByTM"
+					}]
+				}
+			},
+			"k_InboundMessageDeliveryRate": {
+				"model": "MessageMonitor",
+				"template": "sap.ovp.cards.charts.analytical",
+				"settings": {
+					"title": "{{INB_MES_DELRATE_CARD_INFO}}",
+					"showFilterInHeader": false,
+					"defaultSpan": {
+						"cols": 3
+					},
+					"tabs": [{
+						"entitySet": "xMP4GxC_IMesDelRateMoni_BM_UI",
+						"value": "{{BY_AMID_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#InboundMessageDeliveryRateByAMID",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#InboundMessageDeliveryRateByAMID"
+					}, {
+						"entitySet": "xMP4GxC_IMesDelRateMoni_EMP_UI",
+						"value": "{{BY_EXTERNAL_MARKET_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#InboundMessageDeliveryRateByEMP",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#InboundMessageDeliveryRateByEMP"
+					}, {
+						"entitySet": "xMP4GxC_IMesDelRateMoni_OMP_UI",
+						"value": "{{BY_OWN_MARKET_PARTNER_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#InboundMessageDeliveryRateByOMP",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#InboundMessageDeliveryRateByOMP"
+					}, {
+						"entitySet": "xMP4GxC_IMesDelRateMoni_TM_UI",
+						"value": "{{BY_FORMAT_LBL}}",
+						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#InboundMessageDeliveryRateByTM",
+						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#InboundMessageDeliveryRateByTM"
+					}]
+				}
 			}
 		},
 		"services": {
