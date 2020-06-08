@@ -83,7 +83,10 @@
 				"sap.ui.comp": {},
 				"sap.ui.table": {},
 				"sap.ovp": {},
-				"sap.ui.suite": {}
+				"sap.ui.suite": {},
+				"com.sap.cd.maco.mmt.ui.reuse": {
+					"minVersion": "2.0.0"
+				}
 			}
 		},
 		"contentDensities": {
@@ -135,7 +138,6 @@
 				"settings": {
 					"entitySet": "xMP4GxC_MesStatMoni_UI",
 					"title": "{{STATUS_CARD_TITLE}}",
-					"customParams": "CardStatus",
 					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
@@ -151,7 +153,6 @@
 				"settings": {
 					"entitySet": "xMP4GxC_MesLoadMoni_UI",
 					"title": "{{LOAD_CARD_INFO}}",
-					"customParams": "CardLoad",
 					"showFilterInHeader": false,
 					"defaultSpan": {
 						"cols": 2
@@ -209,6 +210,7 @@
 					"defaultSpan": {
 						"cols": 1
 					},
+					"customParams": "OverallOutboundDeliveryStatus",
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OverallOutboundDeliveryStatus",
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#OverallOutboundDeliveryStatus"
 				}
@@ -221,6 +223,7 @@
 					"title": "{{OVER_INB_MES_PROC_STATUS_CARD_TITLE}}",
 					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
 					"showFilterInHeader": false,
+					"customParams": "OverallInboundMessageProcessStatus",
 					"defaultSpan": {
 						"cols": 1
 					},
@@ -303,6 +306,7 @@
 					"defaultSpan": {
 						"cols": 1
 					},
+					"customParams": "InboundAperakMoni",
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#InboundAperakMoni",
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#InboundAperakMoni"
 				}
@@ -318,6 +322,7 @@
 					"defaultSpan": {
 						"cols": 1
 					},
+					"customParams": "OutboundAperakMoni",
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OutboundAperakMoni",
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#OutboundAperakMoni"
 				}

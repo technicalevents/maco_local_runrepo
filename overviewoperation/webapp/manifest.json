@@ -96,6 +96,15 @@
 					"defaultCountMode": "None"
 				}
 			}
+		},
+		"extends": {
+			"extensions": {
+				"sap.ui.controllerExtensions": {
+					"sap.ovp.app.Main": {
+						"controllerName": "com.sap.cd.maco.operation.ui.app.overviewoperations.ext.ExtController"
+					}
+				}
+			}
 		}
 	},
 	"sap.ovp": {
@@ -114,6 +123,7 @@
 					"title": "{{PROCESS_STATUS_CARD_TITLE}}",
 					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
 					"showFilterInHeader": true,
+					"customParams": "getCustomParamPDocStatusOverview", 
 					"defaultSpan": {
 						"cols": 1
 					},

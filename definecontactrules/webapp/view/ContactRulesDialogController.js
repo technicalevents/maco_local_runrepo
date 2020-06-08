@@ -6,11 +6,7 @@ sap.ui.define([
 	"use strict";
 	return CreateUpdateDialogController.extend(
 		"com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesDialogController", {
-
-			onInit: function () {
-				CreateUpdateDialogController.prototype.onInit.apply(this, arguments);
-			},
-
+			
 			/**
 			 * Event is triggered on Change of Market Partner
 			 * @param {object} oEvent Market Partner Cnange event
@@ -58,7 +54,7 @@ sap.ui.define([
 				var oContactIDControl = sap.ui.core.Fragment.byId(this.getFragmentId(), "idContact");
 
 				if (sOwnMarketPartner) {
-					oFilter = new Filter("OwnMarketPartner", FilterOperator.EQ, sOwnMarketPartner)
+					oFilter = new Filter("OwnMarketPartner", FilterOperator.EQ, sOwnMarketPartner);
 				} else {
 					oFilter = [];
 				}
