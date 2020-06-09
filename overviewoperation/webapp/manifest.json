@@ -71,7 +71,10 @@
 				"sap.ovp": {},
 				"sap.ui.rta": {},
 				"sap.ui.dt": {},
-				"sap.viz": {}
+				"sap.viz": {},
+				"com.sap.cd.maco.mmt.ui.reuse": {
+					"minVersion": "2.0.0"
+				}
 			}
 		},
 		"contentDensities": {
@@ -127,6 +130,7 @@
 					"defaultSpan": {
 						"cols": 1
 					},
+					"customParams":"PDocStatusOverview",
 					"colorPalette": {
 						"1": {
 							"color": "sapUiChartPaletteSemanticBad",
@@ -239,6 +243,7 @@
 					"title": "{{EXP_STATUS_CARD_TITLE}}",
 					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
 					"showFilterInHeader": true,
+					"customParams":"ExpDocStatusOverview",
 					"defaultSpan": {
 						"cols": 1
 					},
@@ -372,6 +377,7 @@
 					"defaultSpan": {
 						"cols": 1
 					},
+					"customParams":"TDocStatusOverview",
 					"colorPalette": {
 						"1": {
 							"color": "sapUiChartPaletteSemanticBad",

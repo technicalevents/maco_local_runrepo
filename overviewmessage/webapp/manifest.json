@@ -210,6 +210,24 @@
 					"defaultSpan": {
 						"cols": 1
 					},
+					"colorPalette": {
+						"0": {
+							"color": "sapUiChartPaletteSemanticNeutral",
+							"legendText": "{{NEW_STATUS_LBL}}"
+						},
+						"1": {
+							"color": "sapUiChartPaletteSemanticBad",
+							"legendText": "{{NEGATIVE_CONTRL_RECEIVED_STATUS_LBL}}"
+						},
+						"2": {
+							"color": "sapUiChartPaletteSemanticCritical",
+							"legendText": "{{SENT_WAIT_ACK_STATUS_LBL}}"
+						},
+						"3": {
+							"color": "sapUiChartPaletteSemanticGood",
+							"legendText": "{{APERAK_POSITIVE_CONTRL_RECEIVED_LBL}}"
+						}
+					},
 					"customParams": "OverallOutboundDeliveryStatus",
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OverallOutboundDeliveryStatus",
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#OverallOutboundDeliveryStatus"
@@ -227,6 +245,16 @@
 					"defaultSpan": {
 						"cols": 1
 					},
+					"colorPalette": {
+						"1": {
+							"color": "sapUiChartPaletteSemanticBad",
+							"legendText": "{{NEGATIVE_CONTRL_RECEIVED_STATUS_LBL}}"
+						},
+						"3": {
+							"color": "sapUiChartPaletteSemanticGood",
+							"legendText": "{{APERAK_POSITIVE_CONTRL_SENT_LBL}}"
+						}
+					},
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OverallInboundDeliveryStatus",
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#OverallInboundDeliveryStatus"
 				}
@@ -242,12 +270,12 @@
 					},
 					"tabs": [{
 						"entitySet": "xMP4GxC_MesLoadMoni_OAckOMP_UI",
-						"value": "{{BY_FROM_PARTNER_LBL}}",
+						"value": "{{BY_OWN_MARKET_PARTNER_LBL}}",
 						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#UnconfirmedOutboundMessageByOmp",
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#UnconfirmedOutboundMessageByOmp"
 					}, {
 						"entitySet": "xMP4GxC_MesLoadMoni_OAckEMP_UI",
-						"value": "{{BY_TO_PARTNER_LBL}}",
+						"value": "{{BY_EXTERNAL_MARKET_PARTNER_LBL}}",
 						"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#UnconfirmedOutboundMessageByEmp",
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#UnconfirmedOutboundMessageByEmp"
 					}, {
@@ -306,6 +334,16 @@
 					"defaultSpan": {
 						"cols": 1
 					},
+					"colorPalette": {
+						"1": {
+							"color": "sapUiChartPaletteSemanticBad",
+							"legendText": "{{APERAK_SENT_CUSTOM_LBL}}"
+						},
+						"3": {
+							"color": "sapUiChartPaletteSemanticGood",
+							"legendText": "{{POSITIVE_MESSAGE_CUSTOM_LBL}}"
+						}
+					},
 					"customParams": "InboundAperakMoni",
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#InboundAperakMoni",
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#InboundAperakMoni"
@@ -322,6 +360,16 @@
 					"defaultSpan": {
 						"cols": 1
 					},
+					"colorPalette": {
+						"1": {
+							"color": "sapUiChartPaletteSemanticBad",
+							"legendText": "{{APERAK_RECEIVED_CUSTOM_LBL}}"
+						},
+						"3": {
+							"color": "sapUiChartPaletteSemanticGood",
+							"legendText": "{{POSITIVE_MESSAGE_CUSTOM_LBL}}"
+						}
+					},
 					"customParams": "OutboundAperakMoni",
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#OutboundAperakMoni",
 					"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#OutboundAperakMoni"
@@ -336,6 +384,7 @@
 					"defaultSpan": {
 						"cols": 3
 					},
+					"customParams": "OutboundMessageDeliveryRate",
 					"tabs": [{
 						"entitySet": "xMP4GxC_OMesDelRateMoni_BM_UI",
 						"value": "{{BY_AMID_LBL}}",
@@ -368,6 +417,7 @@
 					"defaultSpan": {
 						"cols": 3
 					},
+					"customParams": "InboundMessageDeliveryRate",
 					"tabs": [{
 						"entitySet": "xMP4GxC_IMesDelRateMoni_BM_UI",
 						"value": "{{BY_AMID_LBL}}",

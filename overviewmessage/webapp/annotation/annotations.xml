@@ -788,12 +788,19 @@
 						<PropertyValue Property="Dimensions">
 							<Collection>
 								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
@@ -846,12 +853,19 @@
 						<PropertyValue Property="Dimensions">
 							<Collection>
 								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
@@ -1772,7 +1786,7 @@
 				<Annotation Term="UI.DataPoint" Qualifier="InboundAperakMoni">
 					<Record Type="UI.DataPointType">
 						<PropertyValue Property="Value" Path="InbAperakRatio"/>
-						<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Positive"/>-->
+						<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Negative"/>
 						<PropertyValue Property="ValueFormat">
 							<Record Type="UI.NumberFormat">
 								<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -1800,12 +1814,19 @@
 						<PropertyValue Property="Dimensions">
 							<Collection>
 								<PropertyPath>TDStatus</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
 									<PropertyValue Property="Dimension" PropertyPath="TDStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
@@ -1830,7 +1851,7 @@
 				<Annotation Term="UI.DataPoint" Qualifier="OutboundAperakMoni">
 					<Record Type="UI.DataPointType">
 						<PropertyValue Property="Value" Path="OutAperakRatio"/>
-						<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Positive"/>-->
+						<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Negative"/>
 						<PropertyValue Property="ValueFormat">
 							<Record Type="UI.NumberFormat">
 								<PropertyValue Property="ScaleFactor" Decimal="1"/>
@@ -1858,7 +1879,7 @@
 						<PropertyValue Property="Dimensions">
 							<Collection>
 								<PropertyPath>TDStatus</PropertyPath>
-								<PropertyPath>MessageStatusCount</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
@@ -1870,7 +1891,7 @@
 							</Collection>
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="MessageStatusCount"/>
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
@@ -1970,13 +1991,13 @@
 						<PropertyValue Property="Dimensions">
 							<Collection>
 								<PropertyPath>TDStatus</PropertyPath>
-								<PropertyPath>OwnerUUID</PropertyPath>
+								<PropertyPath>ExtBusinessMessageID</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
+									<PropertyValue Property="Dimension" PropertyPath="ExtBusinessMessageID"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
 								</Record>
 							</Collection>
@@ -2194,13 +2215,13 @@
 						<PropertyValue Property="Dimensions">
 							<Collection>
 								<PropertyPath>TDStatus</PropertyPath>
-								<PropertyPath>ExtBusinessMessageID</PropertyPath>
+								<PropertyPath>OwnerUUID</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="ExtBusinessMessageID"/>
+									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
 								</Record>
 							</Collection>
@@ -2418,13 +2439,13 @@
 						<PropertyValue Property="Dimensions">
 							<Collection>
 								<PropertyPath>TDStatus</PropertyPath>
-								<PropertyPath>OwnerUUID</PropertyPath>
+								<PropertyPath>ExtBusinessMessageID</PropertyPath>
 							</Collection>
 						</PropertyValue>
 						<PropertyValue Property="DimensionAttributes">
 							<Collection>
 								<Record Type="UI.ChartDimensionAttributeType">
-									<PropertyValue Property="Dimension" PropertyPath="OwnerUUID"/>
+									<PropertyValue Property="Dimension" PropertyPath="ExtBusinessMessageID"/>
 									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
 								</Record>
 							</Collection>
