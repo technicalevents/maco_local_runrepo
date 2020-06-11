@@ -57,7 +57,8 @@ sap.ui.define([
 
 					var aAdditionalFilters = [{
 						property: "Direction",
-						value: "O"
+						operator: "EQ",
+						value1: "O"
 					}];
 					
 					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
@@ -81,7 +82,8 @@ sap.ui.define([
 
 					var aAdditionalFilters = [{
 						property: "Direction",
-						value: "I"
+						value1: "I",
+						operator: "EQ"
 					}];
 
 					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
@@ -108,7 +110,8 @@ sap.ui.define([
 
 					var aAdditionalFilters = [{
 						property: "Direction",
-						value: "I"
+						value1: "I",
+						operator: "EQ"
 					}];                       
 					
 					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
@@ -133,7 +136,8 @@ sap.ui.define([
 
 					var aAdditionalFilters = [{
 						property: "Direction",
-						value: "O"
+						value1: "O",
+						operator: "EQ",
 					}];
 					
 					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
@@ -157,7 +161,8 @@ sap.ui.define([
 
 					var aAdditionalFilters = [{
 						property: "Direction",
-						value: "O"
+						value1: "O",
+						operator: "EQ"
 					}];
 					
 					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
@@ -182,7 +187,8 @@ sap.ui.define([
 
 					var aAdditionalFilters = [{
 						property: "Direction",
-						value: "I"
+						value1: "I",
+						operator: "EQ"
 					}];
 					
 					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);

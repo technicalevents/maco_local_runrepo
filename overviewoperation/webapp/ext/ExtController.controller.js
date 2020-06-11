@@ -16,15 +16,19 @@ sap.ui.define([
 				 * @param {string} sCardName card name
 				 */
 				onCustomParams: function (sCardName) {
+					var fnCustomParam;
+					
 					if (sCardName === "PDocStatusOverview") {
-						return this._getCustomParamPDocStatusOverview.bind(this);
+						fnCustomParam = this._getCustomParamPDocStatusOverview.bind(this);
 					} else if (sCardName === "ExpDocStatusOverview") {
-						return this._getCustomParamExpDocStatusOverview.bind(this);
+						fnCustomParam = this._getCustomParamExpDocStatusOverview.bind(this);
 					} else if (sCardName === "TDocStatusOverview") {
-						return this._getCustomParamTDocStatusOverview.bind(this);
-					} else {
-						// do nothing
+						fnCustomParam = this._getCustomParamTDocStatusOverview.bind(this);
+					} else if (sCardName === "PDocLoadOverview") {
+						fnCustomParam = this._getCustomParamPDocLoadOverview.bind(this);
 					}
+					
+					return fnCustomParam;
 				},
 				
 				/**
@@ -43,7 +47,7 @@ sap.ui.define([
 					
 					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, []);
 
-					return ExtControllerUtility.generateCustomParams(oNavigateParams, aAdditionalFilters, aCustomStatusKeys, oCustomStatusMapping,
+					return ExtControllerUtility.generateCustomParams(oNavigateParams, [], aCustomStatusKeys, oCustomStatusMapping,
 						"ProcessStatus", oResourceBundle);
 				},
 
@@ -65,7 +69,7 @@ sap.ui.define([
 
 					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, []);
 
-					return ExtControllerUtility.generateCustomParams(oNavigateParams, aAdditionalFilters, aCustomStatusKeys, oCustomStatusMapping,
+					return ExtControllerUtility.generateCustomParams(oNavigateParams, [], aCustomStatusKeys, oCustomStatusMapping,
 						"Exceptionstatus", oResourceBundle);
 				},
 
@@ -78,7 +82,7 @@ sap.ui.define([
 				_getCustomParamTDocStatusOverview: function (oNavigateParams, oSelectionVariantParams) {
 					var aCustomStatusKeys = ["NERR_STATUS_TXT", "ERR_STATUS_TXT"];
 					var oCustomStatusMapping = {
-						"NERR_STATUS_TXT": ["COMPLETED_TDOC_STATUS_LBL","INFO_TDOC_STATUS_LBL", "QUEUED_TDOC_STATUS_LBL", "REVERSED_OBSOLUTE_STATUS_LBL"
+						"NERR_STATUS_TXT": ["COMPLETED_TDOC_STATUS_LBL","INFO_TDOC_STATUS_LBL", "QUEUED_TDOC_STATUS_LBL", "REVERSED_OBSOLUTE_STATUS_LBL",
 												"TRANSFER_SENT", "AGGREGATED_STATUS_LBL" ],
 						"ERR_STATUS_TXT": ["ERR_TDOC_STATUS_LBL"]
 					};
@@ -87,8 +91,24 @@ sap.ui.define([
 
 					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, []);
 
-					return ExtControllerUtility.generateCustomParams(oNavigateParams, aAdditionalFilters, aCustomStatusKeys, oCustomStatusMapping,
+					return ExtControllerUtility.generateCustomParams(oNavigateParams, [], aCustomStatusKeys, oCustomStatusMapping,
 						"TdocStatus", oResourceBundle);
+				},
+				
+				_getCustomParamPDocLoadOverview: function(oNavigateParams, oSelectionVariantParams){
+					var oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
+					
+					// var aAdditionalFilters = [{
+					// 	property: "CreateAt",
+					// 	operator:"BT"
+					// 	value1: oNavigateParams["CreateAt"]
+					// 	value2: new Date(new Date(oNavigateParams.CreateAt).getTime() + 60 * 60 * 24 * 1000);
+					// }];
+					
+					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, []);
+
+					return ExtControllerUtility.generateCustomParams(oNavigateParams, aAdditionalFilters, [], {},
+						"ProcessStatus", oResourceBundle);
 				}
 				
 			});

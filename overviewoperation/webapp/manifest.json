@@ -12,7 +12,7 @@
 		"ach": "MACO-MMT",
 		"dataSources": {
 			"Main": {
-				"uri": "/sap/opu/odata/APE/UI_OPERATIONOVERVIEW",
+				"uri": "/sap/opu/odata/APE/UI_OPEROVER",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
@@ -126,7 +126,7 @@
 					"title": "{{PROCESS_STATUS_CARD_TITLE}}",
 					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
 					"showFilterInHeader": true,
-					"customParams": "getCustomParamPDocStatusOverview", 
+					"customParams": "PDocStatusOverview", 
 					"defaultSpan": {
 						"cols": 1
 					},
@@ -155,6 +155,7 @@
 					"defaultSpan": {
 						"cols": 2
 					},
+					"customParams": "PDocLoadOverview",
 					"colorPalette": {
 						"0": {
 							"color": "sapUiChartPaletteSemanticNeutral",

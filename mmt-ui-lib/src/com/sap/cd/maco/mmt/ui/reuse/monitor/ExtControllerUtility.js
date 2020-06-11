@@ -38,7 +38,9 @@ sap.ui.define([],
 				aAdditionalFilters.forEach(function (oAdditionalFilters) {
 					this._generateCustomSelectionVariantFilter(aCustomSelectionVariant,
 						oAdditionalFilters.property,
-						oAdditionalFilters.value);
+						oAdditionalFilters.value1,
+						oAdditionalFilters.operator,
+						oAdditionalFilters.value2);
 				}.bind(this));
 
 				oCustomParams = {
@@ -115,12 +117,13 @@ sap.ui.define([],
 			 * @param {string} sProperty Filter Property Name
 			 * @param {string} sValue Filter Property value
 			 */
-			_generateCustomSelectionVariantFilter: function (aCustomSelectionVariant, sProperty, sValue) {
+			_generateCustomSelectionVariantFilter: function (aCustomSelectionVariant, sProperty, sValue1, sOperator, sValue2) {
 				var oFilter = {
 					path: sProperty,
-					operator: "EQ",
-					value1: sValue,
-					sign: "I"
+					operator: !!sOperator ? sOperator : "EQ",
+					value1: sValue1,
+					sign: "I",
+					value2: sValue2
 				};
 
 				aCustomSelectionVariant.push(oFilter);
