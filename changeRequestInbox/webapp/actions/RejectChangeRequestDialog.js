@@ -1,6 +1,7 @@
 sap.ui.define([
-    "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateUpdateDialogController"
-],function(CreateUpdateDialogController) {
+    "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateUpdateDialogController",
+    "com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage"
+],function(CreateUpdateDialogController, GetMessage) {
     "use strict";
     return CreateUpdateDialogController.extend("com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.RejectChangeRequestDialog",{
     	
@@ -9,9 +10,23 @@ sap.ui.define([
 		 * @public
 		 */
         onSubmit: function() {
-            var sPath = this.getFragment().getBindingContext().getPath();
-            this.oModel.setProperty(sPath + "/Action", "R");
-			CreateUpdateDialogController.prototype.onSubmit.apply(this, arguments);
+			var sPath = this.getFragment().getBindingContext().getPath();
+            var oData = jQuery.extend(true, {}, this.oModel.getProperty(sPath));
+            var oUpdateData = {
+            	Action: "R",
+            	BODocNo: oData.BODocNo,      
+            	RejectionReason: oData.RejectionReason,
+            	ChangeRequestType: oData.ChangeRequestType
+            };
+            
+			this.oTransaction.whenUpdated({
+				path: sPath,
+				data: oUpdateData,
+				busyControl: this.getFragment()
+			}).then(function(oResponse) {
+				this.getFragment().close();
+				GetMessage(this).success({msg: JSON.parse(oResponse.response.headers["sap-message"]).message});
+			}.bind(this));
         }
     });
 });

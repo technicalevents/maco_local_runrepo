@@ -12,7 +12,7 @@
     "ach": "MACO-MMT",
     "dataSources": {
       "maindatasource": {
-        "uri": "/sap/opu/odata/mp4g/UI_CHANGEREQTINBOX",
+        "uri": "/sap/opu/odata/mp4g/UI_CHNGREQST",
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
@@ -22,7 +22,7 @@
         }
       },
       "remoteAnnotation": {
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_CHANGEREQTINBOX_VAN',Version='0001')/$value/",
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_CHNGREQST_VAN',Version='0001')/$value/",
         "type": "ODataAnnotation"
       }
     },

@@ -1,9 +1,10 @@
 sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseViewController",
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/file/FileReader",
 	"sap/ui/core/Core",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
-], function (BaseViewController, Core, Filter, FilterOperator) {
+], function (BaseViewController, FileReader, Core, Filter, FilterOperator) {
 	"use strict";
 
 	return BaseViewController.extend(
@@ -17,14 +18,12 @@ sap.ui.define([
 			 * Lifecycle method - triggered on initialization of Process Step Controller
 			 */
 			onInit: function () {
-
 				BaseViewController.prototype.onInit.call(this, {
 					entitySet: "xMP4GxC_ChangeRequest",
 					actions: this.getOwnerComponent().mActions
 				});
 
 				this.initViewModel();
-
 				this.oEventBus = Core.getEventBus();
 			},
 
@@ -39,7 +38,7 @@ sap.ui.define([
 			onCloseChangeRequetPane: function () {
 				this.oEventBus.publish("flexible", "hideChangeRequestPage");
 			},
-
+			
 			/**
 			 * Method to bind startup application parameters to the View
 			 * @public
@@ -47,7 +46,6 @@ sap.ui.define([
 			 */
 			bindView: function (sPartnerId) {
 				this.getViewModel().setProperty("/PartnerId", sPartnerId);
-
 				this.triggerChangeRequestDataRead();
 			},
 

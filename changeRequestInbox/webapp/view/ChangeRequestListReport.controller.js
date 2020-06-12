@@ -46,7 +46,7 @@ sap.ui.define([
 		 */
 		onBeforeRebindTable: function(oEvent) {
 			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
-			var aSorters = [new Sorter("ChangeDateTemp", true), new Sorter("CreateDate", true)];
+			var aSorters = [new Sorter("Status", false), new Sorter("ChangeDate", true), new Sorter("CreationDate", true)];
 			var sSelChangeReqType = this.byId("idChangeRequestSegmentedButton").getSelectedKey();
 			this.getViewModel().setProperty("/ChangeRequestType", sSelChangeReqType);
 			

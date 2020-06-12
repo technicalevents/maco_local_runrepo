@@ -15,7 +15,7 @@
 			<smartForm:Group>
 				<smartForm:GroupElement>
 					<smartForm:label>
-						<Label text="Reason"/>
+						<Label text="{/xMP4GxC_ChangeRequest/RejectionReason/#@sap:label}"/>
 					</smartForm:label>
 					<TextArea growing="true" value="{RejectionReason}" rows="4"/>
 				</smartForm:GroupElement>

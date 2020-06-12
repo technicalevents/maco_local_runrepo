@@ -1,0 +1,18 @@
+<core:FragmentDefinition 
+	xmlns="sap.m" 
+	xmlns:core="sap.ui.core" >
+	<Dialog title="{this>/title}" 
+			contentWidth="35%" 
+			afterClose="onAfterClose"
+			titleAlignment="Center">
+		<Text class="sapUiSmallMarginTopBottom sapUiSmallMarginBegin" 
+			  text="{i18n>ACCEPT_CERT_CHANGE_REQ_TXT}"/>
+		<buttons>
+			<Button text="{i18n>ACCEPT_BTN_TXT}" 
+					press="onSubmit" 
+					type="Accept"/>
+			<Button text="{this>/cancelButtonText}" 
+					press="onCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

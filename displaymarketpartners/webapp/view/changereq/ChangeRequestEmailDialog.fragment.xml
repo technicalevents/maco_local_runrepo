@@ -5,7 +5,7 @@
 	xmlns:smartForm="sap.ui.comp.smartform" 
 	xmlns:smartField="sap.ui.comp.smartfield">
 	<Dialog title="{this>/title}" 
-			contentWidth="auto" 
+			contentWidth="25%" 
 			afterClose="onAfterClose"
 			titleAlignment="Center">
 		<smartForm:SmartForm editable="true">

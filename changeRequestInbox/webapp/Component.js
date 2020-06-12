@@ -3,11 +3,14 @@ sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
 	"com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMarketPartnerAction",
 	"com/sap/cd/maco/mmt/ui/reuse/action/nodraft/UpdateWithDialogAction",
+	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/DownloadCertificateAction",
 	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/AcceptChangeRequestDialog",
+	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/AcceptCertChangeRequestDialog",
 	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/RejectChangeRequestDialog",
 	"com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
 ],function (MonitorComponent, HashSync, NavToMarketPartnerAction, UpdateWithDialogAction, 
-			AcceptChangeRequestDialog, RejectChangeRequestDialog, ShareAction) {
+			DownloadCertificateAction, AcceptChangeRequestDialog, AcceptCertChangeRequestDialog, 
+			RejectChangeRequestDialog, ShareAction) {
 	"use strict";
 
 	return MonitorComponent.extend("com.sap.cd.maco.operation.ui.app.changeRequestInbox.Component", {
@@ -25,17 +28,21 @@ sap.ui.define([
 
 			this.mActions = {
 				navMarketPartnerAction: new NavToMarketPartnerAction(this, "BODocNo"),
+				downloadCertificateAction: new DownloadCertificateAction(this),
 				acceptChangeRequest: new UpdateWithDialogAction(this, {
 					fragmentName: "com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.AcceptChangeRequest",
 					fragmentControllerClass: AcceptChangeRequestDialog,
-					title: "ACCEPT_CHANGE_REQUEST",
-					successMsg: "ACCEPT_CHANGE_REQUEST_SUCCESS_MSG"
+					title: "ACCEPT_CHANGE_REQUEST"
+				}),
+				acceptCertChangeRequest: new UpdateWithDialogAction(this, {
+					fragmentName: "com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.AcceptCertChangeRequest",
+					fragmentControllerClass: AcceptCertChangeRequestDialog,
+					title: "ACCEPT_CHANGE_REQUEST"
 				}),
 				rejectChangeRequest: new UpdateWithDialogAction(this, {
 					fragmentName: "com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.RejectChangeRequest",
 					fragmentControllerClass: RejectChangeRequestDialog,
-					title: "REJECT_CHANGE_REQUEST",
-					successMsg: "REJECT_CHANGE_REQUEST_SUCCESS_MSG"
+					title: "REJECT_CHANGE_REQUEST"
 				}),
 				share: new ShareAction(this, {
 					appTitleMsgKey: "APP_TITLE",

@@ -12,8 +12,8 @@
       "endpoint": "abap"
     },
     {
-      "source": "^/sap/opu/odata/MP4G/UI_CHANGEREQTINBOX/(.*)$",
-      "target": "/sap/opu/odata/MP4G/UI_CHANGEREQTINBOX/$1",
+      "source": "^/sap/opu/odata/MP4G/UI_CHNGREQST/(.*)$",
+      "target": "/sap/opu/odata/MP4G/UI_CHNGREQST/$1",
       "authenticationType": "xsuaa",
       "service": "com.sap.cloud.abap",
       "endpoint": "abap"

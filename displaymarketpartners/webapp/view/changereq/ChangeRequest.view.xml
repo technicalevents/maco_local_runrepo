@@ -6,8 +6,13 @@
 		<content>
 			<Label text="{i18n>CHANGE_REQUEST_TXT}"/>
 			<ToolbarSpacer/>
-			<Button id="idCreateChngReqButton" text="{i18n>CREATE_TXT}" press="onAction('createChangeRequestAction', $event)" type="Transparent"/>
-			<Button icon="sap-icon://decline" press="onCloseChangeRequetPane" type="Transparent"/>
+			<Button id="idCreateChngReqButton" 
+					text="{i18n>CREATE_TXT}" 
+					press="onAction('createChangeRequestAction', $event)" 
+					type="Transparent"/>
+			<Button icon="sap-icon://decline" 
+					press="onCloseChangeRequetPane" 
+					type="Transparent"/>
 		</content>
 	</OverflowToolbar>
 	<commons:Timeline id="idChangeRequestTimeline" 
@@ -15,47 +20,71 @@
 					  enableDoubleSided="false" 
 					  growingThreshold="100"
 					  noDataText="{i18n>CHANGE_REQUET_NODATA_TXT}"
+					  showSort="false"
+					  sort="false"
+					   content="{path:'this>/ChangeRequestData',sorter:[{path:'Status', descending: false},{path:'CreationTimestamp', descending: true}]}"
 					  sortOldestFirst="false" 
-					  content="{this>/ChangeRequestData}"
 					  lazyLoading="false">
 		<commons:content>
 			<commons:TimelineItem dateTime="{this>CreationTimestamp}" 
 								 userName="{this>ChangeRequestTypeDescription}" 
-								 userNameClickable="false" 
-								 icon="sap-icon://email">
+								 userNameClickable="false"
+								 icon="{= ${this>ChangeRequestType} === 'EMAIL' ? 'sap-icon://email' : 'sap-icon://validate'}">
 				<commons:embeddedControl>
 					<f:Form editable="false">
 						<f:layout>
-							<f:ResponsiveGridLayout labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="3" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0"
-								emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1" singleContainerFullSize="false"/>
+							<f:ResponsiveGridLayout labelSpanXL="3" 
+													labelSpanL="3" 
+													labelSpanM="3" 
+													labelSpanS="3" 
+													adjustLabelSpan="false" 
+													emptySpanXL="0" 
+													emptySpanL="0"
+													emptySpanM="0" 
+													emptySpanS="0" 
+													columnsXL="2" 
+													columnsL="1" 
+													columnsM="1" 
+													singleContainerFullSize="false"/>
 						</f:layout>
 						<f:formContainers>
 							<f:FormContainer>
 								<f:formElements>
-									<f:FormElement label="{/xMP4GxC_ChangeRequest/EmailAddress/#@sap:label}">
+									<f:FormElement label="{/xMP4GxC_ChangeRequest/EmailAddress/#@sap:label}"
+												   visible="{= ${this>ChangeRequestType} === 'EMAIL'}">
 										<f:fields>
 											<Text text="{this>EmailAddress}"/>
 										</f:fields>
 									</f:FormElement>
-									<f:FormElement label="{/xMP4GxC_ChangeRequest/ValidFrom/#@sap:label}">
+									<f:FormElement label="{/xMP4GxC_ChangeRequest/CertificateName/#@sap:label}"
+												   visible="{= ${this>ChangeRequestType} === 'CERTIFICAT'}">
 										<f:fields>
-											<Text text="{ path: 'this>ValidFrom', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' } }"/>
+											<Text text="{this>CertificateName}"/>
 										</f:fields>
 									</f:FormElement>
-									<f:FormElement label="{/xMP4GxC_ChangeRequest/ValidTo/#@sap:label}">
+									<f:FormElement label="{/xMP4GxC_ChangeRequest/ValidFrom/#@sap:label}"
+												   visible="{= ${this>ChangeRequestType} === 'EMAIL'}">
 										<f:fields>
-										   <Text text="{ path: 'this>ValidTo', type: 'sap.ui.model.type.DateTime', formatOptions: { style: 'medium' } }"/>
+											<Text text="{path:'this>ValidFrom', type:'sap.ui.model.type.DateTime', formatOptions:{style:'medium'}}"/>
+										</f:fields>
+									</f:FormElement>
+									<f:FormElement label="{/xMP4GxC_ChangeRequest/ValidTo/#@sap:label}"
+												   visible="{= ${this>ChangeRequestType} === 'EMAIL'}">
+										<f:fields>
+										   <Text text="{path:'this>ValidTo', type:'sap.ui.model.type.DateTime', formatOptions:{style:'medium'}}"/>
 										</f:fields>
 									</f:FormElement>
 									<f:FormElement>
 										<f:fields>
 											<FlexBox alignItems="Start" justifyContent="SpaceBetween">
 												<items>
-													<Text text="{ path: 'this>RejectionReason'}"/>
-													<ObjectStatus class="sapUiSmallMarginBegin" text="{this>Status}" inverted="true" state="{= ${this>StatusCriticality} === 3 ? 'Success' : 
-																				${this>StatusCriticality} === 2 ? 'Indication03' : 
-																													${this>StatusCriticality} === 1 ? 'Indication01' :
-																																						'None'}">
+													<Text text="{path:'this>RejectionReason'}"/>
+													<ObjectStatus class="sapUiSmallMarginBegin" 
+																  text="{this>StatusDescription}" 
+																  inverted="true" 
+																  state="{= ${this>StatusCriticality} === 3 ? 'Success' : 
+																			${this>StatusCriticality} === 2 ? 'Indication03' : 
+																			${this>StatusCriticality} === 1 ? 'Indication01' : 'None'}">
 														<layoutData>
 															<FlexItemData shrinkFactor="0"/>
 														</layoutData>

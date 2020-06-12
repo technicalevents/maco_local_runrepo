@@ -3,7 +3,7 @@ sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage"
 ],function(CreateUpdateDialogController, GetMessage) {
     "use strict";
-    return CreateUpdateDialogController.extend("com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.AcceptChangeRequestDialog",{
+    return CreateUpdateDialogController.extend("com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.AcceptCertChangeRequestDialog",{
     	
     	/**
 		 * Event is triggered on press submit button in dialog box
@@ -14,11 +14,8 @@ sap.ui.define([
             var oData = jQuery.extend(true, {}, this.oModel.getProperty(sPath));
             var oUpdateData = {
             	Action: "A",
-            	BODocNo: oData.BODocNo,      
-            	EmailAddress: oData.EmailAddress,
-            	ChangeRequestType: oData.ChangeRequestType,
-            	ValidFrom: oData.ValidFrom,
-            	ValidTo: oData.ValidTo
+            	BODocNo: oData.BODocNo,
+            	ChangeRequestType: oData.ChangeRequestType
             };
             
 			this.oTransaction.whenUpdated({

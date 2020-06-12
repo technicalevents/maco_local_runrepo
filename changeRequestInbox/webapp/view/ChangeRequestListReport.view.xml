@@ -20,6 +20,7 @@
 									   enableBasicSearch="true"
 									   useDateRangeType="true"
 									   useToolbar="false"
+									   liveMode="true"
 									   initialized="onFilterBarInitialized"
 									   showFilterConfiguration="false"
 									   persistencyKey="com.sap.cd.maco.operation.ui.app.changeRequestInbox.filterbar"
@@ -37,8 +38,9 @@
 							   smartVariant="idChangeRequestVariantManagement"
 							   enableAutoBinding="true" 
 							   demandPopin="true"
-							   requestAtLeastFields="db_key,BODocNo,Action,EmailAddress,CertificateName,CertificateIssuer,CertificateSubject"
-							   ignoreFromPersonalisation="db_key,Action,CreationDate,ChangeRequestType,ChangeRequestTypeDescription,ChangeDate,StatusCriticality,Status"
+							   requestAtLeastFields="db_key,BODocNo,Action,EmailAddress,CertificateName,CertificateIssuer,CertificateSubject,Status"
+							   useTablePersonalisation="false"
+							   useExportToExcel="false"
 							   header="{i18n>CHANGE_REQUEST_PLURAL_LBL}"
 							   c:p13nDialogSettings='{filter:{visible:false}}' 
 							   beforeRebindTable="onBeforeRebindTable"
@@ -67,54 +69,46 @@
 						<Text text="{/xMP4GxC_ChangeRequest/EmailAddress/#@sap:label}"/>
 						<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":3,"columnKey":"EmailAddress","leadingProperty":["EmailAddress"],"sortProperty":"EmailAddress"}'/>
+								value='\{"columnIndex":4,"columnKey":"EmailAddress","leadingProperty":["EmailAddress"],"sortProperty":"EmailAddress"}'/>
 						</customData>
 					</Column>
-					<Column visible="{= ${this>/ChangeRequestType} === 'CERTIFICATE'}">
+					<Column width="35%" visible="{= ${this>/ChangeRequestType} === 'CERTIFICATE'}">
 						<Text text="{/xMP4GxC_ChangeRequest/CertificateName/#@sap:label}"/>
 						<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":4,"columnKey":"CertificateName","leadingProperty":["CertificateName"],"sortProperty":"CertificateName"}'/>
+								value='\{"columnIndex":5,"columnKey":"CertificateName","leadingProperty":["CertificateName"],"sortProperty":"CertificateName"}'/>
 						</customData>
 					</Column>
-					<Column visible="{= ${this>/ChangeRequestType} === 'CERTIFICATE'}">
-						<Text text="{/xMP4GxC_ChangeRequest/CertificateIssuer/#@sap:label}"/>
-						<customData>
-							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":5,"columnKey":"CertificateIssuer","leadingProperty":["CertificateIssuer"],"sortProperty":"CertificateIssuer"}'/>
-						</customData>
-					</Column>
-					<Column visible="{= ${this>/ChangeRequestType} === 'CERTIFICATE'}">
-						<Text text="{/xMP4GxC_ChangeRequest/CertificateSubject/#@sap:label}"/>
-						<customData>
-							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":6,"columnKey":"CertificateSubject","leadingProperty":["CertificateSubject"],"sortProperty":"CertificateSubject"}'/>
-						</customData>
-					</Column>
-					<Column>
+					<Column visible="{= ${this>/ChangeRequestType} !== 'CERTIFICATE'}">
 						<Text text="{/xMP4GxC_ChangeRequest/ValidFrom/#@sap:label}"/>
 						<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":7,"columnKey":"ValidFrom","leadingProperty":["ValidFrom"],"sortProperty":"ValidFrom"}'/>
+								value='\{"columnIndex":6,"columnKey":"ValidFrom","leadingProperty":["ValidFrom"],"sortProperty":"ValidFrom"}'/>
 						</customData>
 					</Column>
-					<Column>
+					<Column visible="{= ${this>/ChangeRequestType} !== 'CERTIFICATE'}">
 						<Text text="{/xMP4GxC_ChangeRequest/ValidTo/#@sap:label}"/>
 						<customData>
 							<core:CustomData key="p13nData" 
-								value='\{"columnIndex":8,"columnKey":"ValidTo","leadingProperty":["ValidTo"],"sortProperty":"ValidTo"}'/>
+								value='\{"columnIndex":7,"columnKey":"ValidTo","leadingProperty":["ValidTo"],"sortProperty":"ValidTo"}'/>
 						</customData>
 					</Column>
-					<Column width="4rem">
+					<Column width="4rem" visible="{= ${this>/ChangeRequestType} !== 'CERTIFICATE'}">
 						<Text text="{i18n>ACCEPT_BTN_TXT}" visible="false"/>
 						<customData>
-							<core:CustomData key="p13nData" value='\{"columnIndex":10,"columnKey":"Accept"}'/>
+							<core:CustomData key="p13nData" value='\{"columnIndex":11,"columnKey":"Accept"}'/>
+						</customData>
+					</Column>
+					<Column width="4rem" visible="{= ${this>/ChangeRequestType} === 'CERTIFICATE'}">
+						<Text text="{i18n>ACCEPT_BTN_TXT}" visible="false"/>
+						<customData>
+							<core:CustomData key="p13nData" value='\{"columnIndex":12,"columnKey":"AcceptCertificate"}'/>
 						</customData>
 					</Column>
 					<Column width="4rem">
 						<Text text="{i18n>REJECT_BTN_TXT}" visible="false"/>
 						<customData>
-							<core:CustomData key="p13nData" value='\{"columnIndex":11,"columnKey":"Reject"}'/>
+							<core:CustomData key="p13nData" value='\{"columnIndex":13,"columnKey":"Reject"}'/>
 						</customData>
 					</Column>
 				</columns>
@@ -123,13 +117,21 @@
 									press="onAction('navMarketPartnerAction', $event)">
 						<cells>
 							<Text text="{EmailAddress}"/>
-							<Text text="{CertificateName}"/>
-							<Text text="{CertificateIssuer}"/>
-							<Text text="{CertificateSubject}"/>
+							<Link text="{CertificateName}" press="onAction('downloadCertificateAction', $event)"/>
 							<Text text="{path:'ValidFrom', type:'sap.ui.model.type.Date', formatOptions:{style:'medium'}}"/>
 							<Text text="{path:'ValidTo', type:'sap.ui.model.type.Date', formatOptions:{style:'medium'}}"/>
-							<Button text="{i18n>ACCEPT_BTN_TXT}" type="Accept" press="onAction('acceptChangeRequest', $event)"/>
-							<Button text="{i18n>REJECT_BTN_TXT}" type="Reject" press="onAction('rejectChangeRequest', $event)"/>
+							<Button text="{i18n>ACCEPT_BTN_TXT}" 
+									type="Accept" 
+									visible="{= ${Status} === 'OPEN'}"
+									press="onAction('acceptChangeRequest', $event)"/>
+							<Button text="{i18n>ACCEPT_BTN_TXT}" 
+									type="Accept" 
+									visible="{= ${Status} === 'OPEN'}"
+									press="onAction('acceptCertChangeRequest', $event)"/>
+							<Button text="{i18n>REJECT_BTN_TXT}" 
+									type="Reject" 
+									visible="{= ${Status} === 'OPEN'}" 
+									press="onAction('rejectChangeRequest', $event)"/>
 						</cells>
 					</ColumnListItem>
 				</items>

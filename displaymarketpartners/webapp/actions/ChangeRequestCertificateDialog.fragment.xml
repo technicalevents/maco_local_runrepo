@@ -2,10 +2,11 @@
 	xmlns="sap.m" 
 	xmlns:mvc="sap.ui.core.mvc" 
 	xmlns:core="sap.ui.core" 
+	xmlns:unified="sap.ui.unified"
 	xmlns:smartForm="sap.ui.comp.smartform" 
 	xmlns:smartField="sap.ui.comp.smartfield">
 	<Dialog title="{this>/title}" 
-			contentWidth="auto" 
+			contentWidth="25%" 
 			afterClose="onAfterClose"
 			titleAlignment="Center">
 		<smartForm:SmartForm editable="true">
@@ -15,18 +16,17 @@
 			</smartForm:layout>
 			<smartForm:Group>
 				<smartForm:GroupElement>
-					<smartField:SmartField value="{EmailAddress}"/>
-				</smartForm:GroupElement>
-				<smartForm:GroupElement>
-					<smartField:SmartField value="{ValidFrom}"/>
-				</smartForm:GroupElement>
-				<smartForm:GroupElement>
-					<smartField:SmartField value="{ValidTo}"/>
+					<smartForm:label>
+						<Label text="{i18n>FILE_TXT}"/>
+					</smartForm:label>
+					<unified:FileUploader value="{CertificateName}"
+										  change="handleCertificateUpload"
+										  width="100%"/>
 				</smartForm:GroupElement>
 			</smartForm:Group>
 		</smartForm:SmartForm>
 		<buttons>
-			<Button text="{i18n>CREATE_BUTTON_TXT}" 
+			<Button text="{i18n>CREATE_TXT}" 
 					press="onSubmit" 
 					type="Emphasized"/>
 			<Button text="{this>/cancelButtonText}" 
