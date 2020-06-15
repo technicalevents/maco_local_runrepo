@@ -191,6 +191,7 @@
 							"legendText": "{{ACTV_STATUS_TXT}}"
 						}
 					},
+					"customParams": "PDoErrorOverview",
 					"chartAnnotationPath": "com.sap.vocabularies.UI.v1.Chart#PDocErrorOverview",
 					"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#PDocErrorOverview"
 				}
@@ -205,6 +206,7 @@
 					"defaultSpan": {
 						"cols": 2
 					},
+					"customParams": "PDoStatCustOverview",
 					"tabs": [{
 						"entitySet": "xAPExC_OperOverview_Pdoc_Stat",
 						"value": "{{BY_PROCESS_STATUS_LBL}}",
@@ -269,6 +271,7 @@
 					"entitySet": "xAPExC_OperOverview_Exce_LoadL",
 					"title": "{{EXP_LOADL_CARD_TITLE}}",
 					"showFilterInHeader": false,
+					"customParams":"ExpDocLoadLOverview",
 					"defaultSpan": {
 						"cols": 2
 					},
@@ -296,6 +299,7 @@
 					"defaultSpan": {
 						"cols": 2
 					},
+					"customParams":"ExpDocLoadROverview",
 					"colorPalette": {
 						"0": {
 							"color": "sapUiChartPaletteSemanticNeutral",
@@ -320,6 +324,7 @@
 						"cols": 2
 					},
 					"entitySet": "xAPExC_OperOverview_Excep_Err",
+					"customParams":"ExpDoErrorOverview",
 					"colorPalette": {
 						"1": {
 							"color": "sapUiChartPaletteSemanticBad",
@@ -344,6 +349,7 @@
 					"defaultSpan": {
 						"cols": 2
 					},
+					"customParams":"ExpDocOthersOverview",
 					"tabs": [{
 						"entitySet": "xAPExC_OperOverview_Excep_Stat",
 						"value": "{{BY_EXP_STATUS_LBL}}",
@@ -403,6 +409,7 @@
 					"defaultSpan": {
 						"cols": 2
 					},
+					"customParams":"TDocLoadOverview",
 					"colorPalette": {
 						"0": {
 							"color": "sapUiChartPaletteSemanticNeutral",
@@ -427,6 +434,7 @@
 						"cols": 2
 					},
 					"entitySet": "xAPExC_OperOverview_TDoc_Err",
+					"customParams":"TDoErrorOverview",
 					"colorPalette": {
 						"1": {
 							"color": "sapUiChartPaletteSemanticBad",
@@ -451,6 +459,7 @@
 					"defaultSpan": {
 						"cols": 2
 					},
+					"customParams":"TDocOthersOverview",
 					"tabs": [{
 						"entitySet": "xAPExC_OperOverview_TDoc_Stat",
 						"value": "{{BY_TDOC_STATUS_LBL}}",

@@ -31,8 +31,10 @@ sap.ui.define([],
 						this._generateCustomSelectionVariantFilter(aCustomSelectionVariant, sStatusProperty, sStatus);
 					}.bind(this));
 
-				} else {
+				} else if (oNavigateParams[sStatusProperty]) {
 					this._generateCustomSelectionVariantFilter(aCustomSelectionVariant, sStatusProperty, oNavigateParams[sStatusProperty]);
+				} else {
+					// do nothing
 				}
 
 				aAdditionalFilters.forEach(function (oAdditionalFilters) {
