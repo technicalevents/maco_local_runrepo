@@ -28,6 +28,18 @@ sap.ui.define([
 					  case "TDocStatusOverview":
 					  	fnCustomParam = this._getCustomParamTDocStatusOverview.bind(this);
 					  	break;
+					  case "ExpDocLoadLOverview":
+					  	fnCustomParam = this._getCustomParamExpDocLocalOverview.bind(this);
+					  	break;
+					  case "ExpDocLoadROverview":
+					  	fnCustomParam = this._getCustomParamExpDocRemoteOverview.bind(this);
+					  	break;
+					  case "ExpDoErrorOverview":
+					  	fnCustomParam = this._getCustomParamExpDocLocalOverview.bind(this);
+					  	break;
+					  case "ExpDocOthersOverview":
+					  	fnCustomParam = this._getCustomParamExpDocLocalOverview.bind(this);
+					  	break;
 					  default:
 					    // code block
 					}
@@ -47,7 +59,6 @@ sap.ui.define([
 						"NERR": ["ACTV","CMPL","HOLD","REV","TERM"]
 					};
 					
-					//ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, []);
 					var oNavigationParams = jQuery.extend(true, {}, oNavigateParams);
 					
 					delete oNavigationParams["ProcessStatusCount"];
@@ -102,6 +113,54 @@ sap.ui.define([
 					delete oNavigationParams["TdocStatusDescription"];
 					
 					var aNavigationFilers = ExtControllerUtility.getNavigationFilterDetails(oNavigateParams, [], aCustomStatusKeys, oCustomStatusMapping);
+					
+					return ExtControllerUtility.generateCustomParams(aNavigationFilers, oSelectionVariantParams);
+				},
+				
+				/**
+				 * Method called when user Click on Chart Section on ExpDocLocal Card
+				 * @private
+				 * @param {object} oNavigateParams Navigation Parameters
+				 * @param {object} oSelectionVariantParams Selection Variant Parameters
+				 */
+				_getCustomParamExpDocLocalOverview: function (oNavigateParams, oSelectionVariantParams) {
+					var oNavigationParams = jQuery.extend(true, {}, oNavigateParams);
+					
+					var aAdditionalFilters = [{
+						property: "Remote",
+						value1: "",
+						operator: "EQ"
+					}];
+					
+					delete oNavigationParams["ExceptionCodeCount"];
+					delete oNavigationParams["ExceptionCodeDescription"];
+					delete oNavigationParams["ExceptionstatusDescription"];
+					delete oNavigationParams["BusinessObjectTypeDescription"];
+
+					var aNavigationFilers = ExtControllerUtility.getNavigationFilterDetails(oNavigationParams, aAdditionalFilters, [], {});
+					
+					return ExtControllerUtility.generateCustomParams(aNavigationFilers, oSelectionVariantParams);
+				},
+				
+				/**
+				 * Method called when user Click on Chart Section on ExpDocLocal Card
+				 * @private
+				 * @param {object} oNavigateParams Navigation Parameters
+				 * @param {object} oSelectionVariantParams Selection Variant Parameters
+				 */
+				_getCustomParamExpDocRemoteOverview: function (oNavigateParams, oSelectionVariantParams) {
+					var oNavigationParams = jQuery.extend(true, {}, oNavigateParams);
+					
+					var aAdditionalFilters = [{
+						property: "Remote",
+						value1: "H",
+						operator: "EQ"
+					}];
+					
+					delete oNavigationParams["ExceptionDocStatusCount"];
+					delete oNavigationParams["StatusCriticality"];
+
+					var aNavigationFilers = ExtControllerUtility.getNavigationFilterDetails(oNavigationParams, aAdditionalFilters, [], {});
 					
 					return ExtControllerUtility.generateCustomParams(aNavigationFilers, oSelectionVariantParams);
 				}

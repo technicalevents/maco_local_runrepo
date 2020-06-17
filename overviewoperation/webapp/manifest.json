@@ -270,6 +270,7 @@
 					"defaultSpan": {
 						"cols": 2
 					},
+					"customParams": "ExpDocLoadLOverview",
 					"colorPalette": {
 						"0": {
 							"color": "sapUiChartPaletteSemanticNeutral",
@@ -294,6 +295,7 @@
 					"defaultSpan": {
 						"cols": 2
 					},
+					"customParams": "ExpDocLoadROverview",
 					"colorPalette": {
 						"0": {
 							"color": "sapUiChartPaletteSemanticNeutral",
@@ -318,6 +320,7 @@
 						"cols": 2
 					},
 					"entitySet": "xAPExC_OperOverview_Excep_Err",
+					"customParams": "ExpDoErrorOverview",
 					"colorPalette": {
 						"1": {
 							"color": "sapUiChartPaletteSemanticBad",
