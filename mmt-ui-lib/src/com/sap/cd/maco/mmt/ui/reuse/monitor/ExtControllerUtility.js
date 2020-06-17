@@ -14,36 +14,15 @@ sap.ui.define([],
 			 * @param {string} sStatusProperty Status Property
 			 * @param {object} oResourceBundle ResourceBundle Object
 			 */
-			generateCustomParams: function (oNavigateParams, aAdditionalFilters, aCustomStatusKeys, aCustomStatusMapping, sStatusProperty,
-				oResourceBundle) {
+			generateCustomParams: function (aNavigationFilters, oSelectionVariantParams) {
 				var aCustomSelectionVariant = [];
-				var aStatus = [];
 				var oCustomParams;
-				
-				var oCurrentStatusDetails = this._getCurrentStatusDetails(oNavigateParams, sStatusProperty, aCustomStatusKeys, aCustomStatusMapping, oResourceBundle);
-				var bIsCustomKey = oCurrentStatusDetails.IsCustomStatus;
-				var aIndividualStatusKey = oCurrentStatusDetails.IndividualStatusKeys; 
 
-				if (bIsCustomKey) {
-					aStatus = this._getIndividualStatuses(aIndividualStatusKey, oResourceBundle);
-
-					aStatus.forEach(function (sStatus) {
-						this._generateCustomSelectionVariantFilter(aCustomSelectionVariant, sStatusProperty, sStatus);
-					}.bind(this));
-
-				} else if (oNavigateParams[sStatusProperty]) {
-					this._generateCustomSelectionVariantFilter(aCustomSelectionVariant, sStatusProperty, oNavigateParams[sStatusProperty]);
-				} else {
-					// do nothing
-				}
-
-				aAdditionalFilters.forEach(function (oAdditionalFilters) {
-					this._generateCustomSelectionVariantFilter(aCustomSelectionVariant,
-						oAdditionalFilters.property,
-						oAdditionalFilters.value1,
-						oAdditionalFilters.operator,
-						oAdditionalFilters.value2);
+				aNavigationFilters.forEach(function (oNavigationFilters) {
+					this._generateCustomSelectionVariantFilter(aCustomSelectionVariant, oNavigationFilters);
 				}.bind(this));
+
+				this._addSelectionFilters(aCustomSelectionVariant, oSelectionVariantParams);
 
 				oCustomParams = {
 					selectionVariant: aCustomSelectionVariant,
@@ -52,18 +31,60 @@ sap.ui.define([],
 
 				return oCustomParams;
 			},
+			
+			/**
+			 * Utility Method used to Navigation Filter details
+			 * @public
+			 * @param {object} oNavigateParams Navigation Parameters
+			 * @param {array} aAdditionalFilters Additional Filter Array
+			 * @param {array} aCustomStatusKeys Combined Status Key
+			 * @param {array} aIndividualStatusKey Individual Status Key Array
+			 * @param {object} oResourceBundle ResourceBundle Object
+			 */
+			getNavigationFilterDetails: function (oNavigateParams, aAdditionalFilters, aCustomStatusKeys, aCustomStatusMapping, oResourceBundle) {
+				var aNavigationFilters = [];
+
+				Object.keys(oNavigateParams).forEach(function (sKey) {
+					if (oNavigateParams[sKey]) {
+						var oCurrentStatusDetails = this._getCurrentStatusDetails(oNavigateParams[sKey], aCustomStatusKeys, aCustomStatusMapping,
+							oResourceBundle);
+						var bIsCustomKey = oCurrentStatusDetails.IsCustomStatus;
+						var aIndividualStatusKey = oCurrentStatusDetails.IndividualStatusKeys;
+
+						if (bIsCustomKey) {
+							aNavigationFilters = this._getIndividualStatusesFilter(sKey, aIndividualStatusKey, oResourceBundle);
+						} else {
+							aNavigationFilters.push({
+								Property: sKey,
+								Value1: oNavigateParams[sKey]
+							});
+						}
+					}
+				}.bind(this));
+
+				aAdditionalFilters.forEach(function (oAdditionalFilters) {
+					aNavigationFilters.push({
+						Property: oAdditionalFilters.property,
+						Value1: oAdditionalFilters.value1,
+						Operator: oAdditionalFilters.operator,
+						Value2: oAdditionalFilters.value
+					});
+				}.bind(this));
+
+				return aNavigationFilters;
+			},
 
 			/**
 			 * Utility Method used to add Selection Filters in Additional Filters
-			 * @public
+			 * @private
 			 * @param {object} oSelectionVariantParams Selection Variant Parameters
 			 * @param {array} aAdditionalFilters Additional Filter Array
 			 */
-			addSelectionFilters: function (oSelectionVariantParams, aAdditionalFilters) {
+			_addSelectionFilters: function (aCustomSelectionVariant, oSelectionVariantParams) {
 				var aSelectOptionsPropertyNames = oSelectionVariantParams.getSelectOptionsPropertyNames();
 
 				aSelectOptionsPropertyNames.forEach(function (sSelectOptionsPropertyName) {
-					aAdditionalFilters.push({
+					aCustomSelectionVariant.push({
 						path: sSelectOptionsPropertyName,
 						operator: "EQ",
 						value1: "",
@@ -71,19 +92,27 @@ sap.ui.define([],
 					});
 				}.bind(this));
 			},
-
-			_getCurrentStatusDetails: function (oNavigateParams, sStatusProperty, aCustomStatusKeys, oCustomStatusMapping, oResourceBundle) {
+			
+			/**
+			 * Utility Method to get Current Status Details 
+			 * @public
+			 * @param {object} sStatusProperty Status Property
+			 * @param {array} aCustomStatusKeys Custom Status Keys
+			 * @param {object} oCustomStatusMapping Custom Status Mapping
+			 * @param {object} oResourceBundle Additional Filter Array
+			 */
+			_getCurrentStatusDetails: function (sStatusProperty, aCustomStatusKeys, oCustomStatusMapping, oResourceBundle) {
 				var sCustomKey;
 				var aIndividualStatusKey = [];
-				
+
 				sCustomKey = aCustomStatusKeys.find(function (sCustomStatusKey) {
-					return oNavigateParams[sStatusProperty] === this._getI18nText(sCustomStatusKey, oResourceBundle);
+					return sStatusProperty === (oResourceBundle ? this._getI18nText(sCustomStatusKey, oResourceBundle) : sCustomStatusKey);
 				}.bind(this));
 
 				if (sCustomKey) {
 					aIndividualStatusKey = oCustomStatusMapping[sCustomKey];
 				}
-				
+
 				return {
 					IsCustomStatus: !!sCustomKey,
 					IndividualStatusKeys: aIndividualStatusKey
@@ -96,9 +125,12 @@ sap.ui.define([],
 			 * @param {array} aIndividualStatusKey Individual Status Key Array
 			 * @param {object} oResourceBundle ResourceBundle Object
 			 */
-			_getIndividualStatuses: function (aIndividualStatusKey, oResourceBundle) {
+			_getIndividualStatusesFilter: function (sProperty, aIndividualStatusKey, oResourceBundle) {
 				return aIndividualStatusKey.map(function (sIndividualStatusKey) {
-					return this._getI18nText(sIndividualStatusKey, oResourceBundle);
+					return {
+						Property: sProperty,
+						Value1: oResourceBundle ? this._getI18nText(sIndividualStatusKey, oResourceBundle) : sIndividualStatusKey
+					};
 				}.bind(this));
 			},
 
@@ -119,13 +151,13 @@ sap.ui.define([],
 			 * @param {string} sProperty Filter Property Name
 			 * @param {string} sValue Filter Property value
 			 */
-			_generateCustomSelectionVariantFilter: function (aCustomSelectionVariant, sProperty, sValue1, sOperator, sValue2) {
+			_generateCustomSelectionVariantFilter: function (aCustomSelectionVariant, oNavigationFilters) {
 				var oFilter = {
-					path: sProperty,
-					operator: !!sOperator ? sOperator : "EQ",
-					value1: sValue1,
+					path: oNavigationFilters.Property,
+					operator: !!oNavigationFilters.Operator ? oNavigationFilters.Operator : "EQ",
+					value1: oNavigationFilters.Value1,
 					sign: "I",
-					value2: sValue2
+					value2: oNavigationFilters.Value2
 				};
 
 				aCustomSelectionVariant.push(oFilter);

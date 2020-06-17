@@ -60,11 +60,16 @@ sap.ui.define([
 						operator: "EQ",
 						value1: "O"
 					}];
-					
-					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
 
-					return ExtControllerUtility.generateCustomParams(oNavigateParams, aAdditionalFilters, aCustomStatusKeys, oCustomStatusMapping,
-						"TDStatus", oResourceBundle);
+					var oNavigationParams = jQuery.extend(true, {}, oNavigateParams);
+
+					delete oNavigationParams["MessageStatusCount"];
+					delete oNavigationParams["StatusCriticality"];
+
+					var aNavigationFilers = ExtControllerUtility.getNavigationFilterDetails(oNavigationParams, aAdditionalFilters, aCustomStatusKeys,
+						oCustomStatusMapping, oResourceBundle);
+
+					return ExtControllerUtility.generateCustomParams(aNavigationFilers, oSelectionVariantParams);
 				},
 
 				/**
@@ -86,10 +91,15 @@ sap.ui.define([
 						operator: "EQ"
 					}];
 
-					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
+					var oNavigationParams = jQuery.extend(true, {}, oNavigateParams);
 
-					return ExtControllerUtility.generateCustomParams(oNavigateParams, aAdditionalFilters, aCustomStatusKeys, oCustomStatusMapping,
-						"TDStatus", oResourceBundle);
+					delete oNavigationParams["StatusCriticality"];
+					delete oNavigationParams["MessageStatusCount"];
+
+					var aNavigationFilers = ExtControllerUtility.getNavigationFilterDetails(oNavigationParams, aAdditionalFilters, aCustomStatusKeys,
+						oCustomStatusMapping, oResourceBundle);
+
+					return ExtControllerUtility.generateCustomParams(aNavigationFilers, oSelectionVariantParams);
 				},
 
 				/**
@@ -112,12 +122,17 @@ sap.ui.define([
 						property: "Direction",
 						value1: "I",
 						operator: "EQ"
-					}];                       
-					
-					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
+					}];
 
-					return ExtControllerUtility.generateCustomParams(oNavigateParams, aAdditionalFilters, aCustomStatusKeys, oCustomStatusMapping,
-						"TDStatus", oResourceBundle);
+					var oNavigationParams = jQuery.extend(true, {}, oNavigateParams);
+
+					delete oNavigationParams["StatusCriticality"];
+					delete oNavigationParams["MessageStatusCount"];
+
+					var aNavigationFilers = ExtControllerUtility.getNavigationFilterDetails(oNavigationParams, aAdditionalFilters, aCustomStatusKeys,
+						oCustomStatusMapping, oResourceBundle);
+
+					return ExtControllerUtility.generateCustomParams(aNavigationFilers, oSelectionVariantParams);
 				},
 
 				/**
@@ -139,13 +154,18 @@ sap.ui.define([
 						value1: "O",
 						operator: "EQ",
 					}];
-					
-					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
 
-					return ExtControllerUtility.generateCustomParams(oNavigateParams, aAdditionalFilters, aCustomStatusKeys, oCustomStatusMapping,
-						"TDStatus", oResourceBundle);
+					var oNavigationParams = jQuery.extend(true, {}, oNavigateParams);
+
+					delete oNavigationParams["StatusCriticality"];
+					delete oNavigationParams["MessageStatusCount"];
+
+					var aNavigationFilers = ExtControllerUtility.getNavigationFilterDetails(oNavigationParams, aAdditionalFilters, aCustomStatusKeys,
+						oCustomStatusMapping, oResourceBundle);
+
+					return ExtControllerUtility.generateCustomParams(aNavigationFilers, oSelectionVariantParams);
 				},
-				
+
 				/**
 				 * Method called when user Click on Chart Section on OutboundAperakMoni Card
 				 * @private
@@ -164,13 +184,19 @@ sap.ui.define([
 						value1: "O",
 						operator: "EQ"
 					}];
-					
-					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
 
-					return ExtControllerUtility.generateCustomParams(oNavigateParams, aAdditionalFilters, aCustomStatusKeys, oCustomStatusMapping,
-						"TDStatus", oResourceBundle);
+					var oNavigationParams = jQuery.extend(true, {}, oNavigateParams);
+
+					delete oNavigationParams["OwnMarketPartnerText"];
+					delete oNavigationParams["StatusCriticality"];
+					delete oNavigationParams["MessageStatusCount"];
+
+					var aNavigationFilers = ExtControllerUtility.getNavigationFilterDetails(oNavigationParams, aAdditionalFilters, aCustomStatusKeys,
+						oCustomStatusMapping, oResourceBundle);
+
+					return ExtControllerUtility.generateCustomParams(aNavigationFilers, oSelectionVariantParams);
 				},
-				
+
 				/**
 				 * Method called when user Click on Chart Section on OutboundAperakMoni Card
 				 * @private
@@ -182,7 +208,7 @@ sap.ui.define([
 					var oCustomStatusMapping = {
 						"APERAK_POSITIVE_CONTRL_SENT_LBL": ["POSITIVE_CONTRL_SENT_STATUS_LBL", "APERAK_SENT_STATUS_LBL"]
 					};
-					
+
 					var oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle();
 
 					var aAdditionalFilters = [{
@@ -190,11 +216,17 @@ sap.ui.define([
 						value1: "I",
 						operator: "EQ"
 					}];
-					
-					ExtControllerUtility.addSelectionFilters(oSelectionVariantParams, aAdditionalFilters);
 
-					return ExtControllerUtility.generateCustomParams(oNavigateParams, aAdditionalFilters, aCustomStatusKeys, oCustomStatusMapping,
-						"TDStatus", oResourceBundle);
+					var oNavigationParams = jQuery.extend(true, {}, oNavigateParams);
+
+					delete oNavigationParams["OwnMarketPartnerText"];
+					delete oNavigationParams["StatusCriticality"];
+					delete oNavigationParams["MessageStatusCount"];
+
+					var aNavigationFilers = ExtControllerUtility.getNavigationFilterDetails(oNavigationParams, aAdditionalFilters, aCustomStatusKeys,
+						oCustomStatusMapping, oResourceBundle);
+
+					return ExtControllerUtility.generateCustomParams(aNavigationFilers, oSelectionVariantParams);
 				}
 			});
 	});
