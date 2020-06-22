@@ -6,7 +6,7 @@ sap.ui.define([
 	"use strict";
 	return CreateUpdateDialogController.extend(
 		"com.sap.cd.maco.selfservice.ui.app.definecontactrules.view.ContactRulesDialogController", {
-			
+
 			/**
 			 * Event is triggered on Change of Market Partner
 			 * @param {object} oEvent Market Partner Cnange event

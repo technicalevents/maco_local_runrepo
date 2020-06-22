@@ -1,6 +1,6 @@
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseViewController',
+    'com/sap/cd/maco/mmt/ui/reuse/controller/base/BaseViewController',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/odata/ODataMetaModelExt',
     'sap/ui/model/json/JSONModel',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',

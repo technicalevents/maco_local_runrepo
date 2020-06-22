@@ -1,10 +1,8 @@
 sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
-	"com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
 	"com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateWithDialogAction",
 	"com/sap/cd/maco/selfservice/ui/app/displaymarketpartners/actions/CreatetChngReqActionController"
-], function (BaseAction, Utility, Constants, CreateWithDialogAction, CreatetChngReqActionController) {
+], function (BaseAction, CreateWithDialogAction, CreatetChngReqActionController) {
 	"use strict";
 
 	return BaseAction.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.actions.CreateChangeRequestAction", {
@@ -77,7 +75,8 @@ sap.ui.define([
 			this._oParams.properties = {
 				ChangeRequestType: sChangeReqType,
 				Action: "C",
-				BODocNo: this._oView.getModel("this").getProperty("/PartnerId")
+				BODocNo: this._oView.getModel("this").getProperty("/PartnerId"),
+				ValidTo: new Date(253402214400000)
 			};
 			
 			if(sChangeReqType === "EMAIL") {

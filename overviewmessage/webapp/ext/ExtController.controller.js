@@ -12,7 +12,7 @@ sap.ui.define([
 				/******************************************************************* */
 
 				/**
-				 * LifeCycle Method which is tringered on Rendering ofx the Application
+				 * LifeCycle Method which is tringered on Rendering of the Application
 				 */
 				onAfterRendering: function () {
 					this.getView().byId("mainView--ovpMain").addStyleClass("comSapCdMacoMmtUiMonitorMsgGraphTitle");

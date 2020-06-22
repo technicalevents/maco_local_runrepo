@@ -2,8 +2,10 @@ sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorListReportController",
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
 	"sap/ui/model/Sorter",
-	"sap/base/strings/formatMessage"
-], function(MonitorListReportController, SmartTableBindingUpdate, Sorter, formatMessage) {
+	"sap/base/strings/formatMessage",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function(MonitorListReportController, SmartTableBindingUpdate, Sorter, formatMessage, Filter, FilterOperator) {
     "use strict";
     return MonitorListReportController.extend("com.sap.cd.maco.selfservice.ui.app.usernotifications.view.NotificationListReport",
       {
@@ -29,7 +31,7 @@ sap.ui.define([
 				routes: {
 					parent: null,
 					this: "listReport",
-					child: "null"
+					child: null
 				},
 				controls: {
 					table: "idNotificationSmartTable",
@@ -53,7 +55,12 @@ sap.ui.define([
 		*/
         onBeforeRebindTable: function(oEvent) {
 			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
+			var sRole = this.getFilterBar().getFilterData().Roles;
 			oUpdate.addSorters([new Sorter("CreationDate", true)]);
+			
+			if(sRole) {
+				oUpdate.updateFilter(new Filter("Roles", FilterOperator.Contains, sRole));
+			}
 			
 			// This method will add Current application state in URL
 			this.storeCurrentAppState();
@@ -66,7 +73,7 @@ sap.ui.define([
 		 */
 		onBeforeActionCreateNotification: function(oParams) {
 			oParams.properties = {
-				CreationDate: new Date()
+				Priority: "LOW"
 			};
 		},
 		

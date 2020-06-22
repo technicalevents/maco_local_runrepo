@@ -7,9 +7,10 @@ sap.ui.define([
 	"sap/base/strings/formatMessage",
 	"sap/base/security/encodeURL",
 	"sap/ui/core/CalendarType",
-	"sap/ui/core/format/DateFormat"
+	"sap/ui/core/format/DateFormat",
+	"sap/viz/ui5/controls/VizTooltip"
   ], function(ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, Sorter, 
-			FilterOperator, formatMessage, encodeURL, CalendarType, DateFormat) {
+			FilterOperator, formatMessage, encodeURL, CalendarType, DateFormat, VizTooltip) {
     "use strict";
     return ListReportNoDraftController.extend("com.sap.cd.maco.monitor.ui.app.massmeterreadings.view.MassMeterReadingListReport",
       {
@@ -46,6 +47,7 @@ sap.ui.define([
 				}
 			});
 			
+			new VizTooltip({}).connect(this.byId("idMassMeterReadingVizFrame").getVizUid());
 			this.oRouter.getRoute("initial").attachPatternMatched(this._onRoutePatternMatched, this);
 		},
         
@@ -243,6 +245,24 @@ sap.ui.define([
 				});
 			}
 		},
+
+		/**
+		 * Event is triggered when Message link is pressed 
+		 * @param {object} oEvent         Link press event
+		 * @public
+		 */
+        onNavToMessageAction: function(oEvent) {
+			var oCrossAppNavigator = sap.ushell.Container.getService("CrossApplicationNavigation");
+			oCrossAppNavigator.toExternal({
+				target: {
+					semanticObject: "UtilsDataExchangeProcessing",
+					action: "displayMessage"
+				},
+				params: {
+					ExternalUUID: oEvent.getSource().getText()
+				}
+			});
+        },
         
         /**
          * Function will store application's current state on change in message list
@@ -347,7 +367,7 @@ sap.ui.define([
         	switch (sStatusText) {
 				case "Uploading": return [{key: "UPLDPROC"}];
 				case "Sending": return [{key: "SEND"}];
-				case "Finished": return [{key: "SENT"}];
+				case "Sent": return [{key: "SENT"}];
 				case "All": return [{key: "UPLDPROC"},{key: "SEND"},{key: "SENT"}];
 			}
         }

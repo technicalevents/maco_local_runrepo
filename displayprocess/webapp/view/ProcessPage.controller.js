@@ -147,7 +147,7 @@ sap.ui.define([
         }
 
         var aProcess, aMarketPartner = [];
-		var sOwnMarketPartner = this.getView().byId("idProcessObjectPage").getBindingContext().getObject("OwnerUUID");
+		    var sOwnMarketPartner = this.getView().byId("idProcessObjectPage").getBindingContext().getObject("OwnerUUID");
 
         if (!oResult.data.results){
           aProcess = [oResult.data];
@@ -165,8 +165,8 @@ sap.ui.define([
         
         if(aMarketPartner.length > 1 && !jQuery.isEmptyObject(oCommonMarketPartner)) {
           aMarketPartner = aMarketPartner.filter(function(oMarketPartner) {
-			return oMarketPartner.ExternalMarketPartner !== oCommonMarketPartner.ExternalMarketPartner;
-		  });
+			      return oMarketPartner.ExternalMarketPartner !== oCommonMarketPartner.ExternalMarketPartner;
+		      });
         }
 
         var oModel = this.getViewModel().setProperty("/MarketPartner", aMarketPartner);

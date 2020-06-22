@@ -1,11 +1,11 @@
 sap.ui.define([
-    "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateUpdateDialogController",
-    "sap/m/MessageBox"
+	"com/sap/cd/maco/mmt/ui/reuse/action/nodraft/CreateUpdateDialogController",
+	"sap/m/MessageBox"
 ],function(CreateUpdateDialogController, MessageBox) {
     "use strict";
     return CreateUpdateDialogController.extend("com.sap.cd.maco.selfservice.ui.app.usernotifications.view.NotificationDialog",{
-    	
-    	/**
+
+		/**
 		 * Event is triggered on opening create notification dialog box
 		 * @public
 		 */
@@ -19,9 +19,9 @@ sap.ui.define([
 		 */
         onSubmit: function() {
             var aSelectedRoles = this.byId("idRoleTable").getSelectedContexts();
-            var aRoles = [];
-            
-            if(jQuery.isEmptyObject(aSelectedRoles)) {
+			var aRoles = [];
+			
+			if(jQuery.isEmptyObject(aSelectedRoles)) {
 				MessageBox.error(this.oBundle.getText("SELECT_ROLE_MSG"));
 				return;
 			}

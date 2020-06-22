@@ -1,4 +1,4 @@
-sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseViewController', 'com/sap/cd/maco/mmt/ui/reuse/fnd/ContentDensity'], function(
+sap.ui.define(['com/sap/cd/maco/mmt/ui/reuse/controller/base/BaseViewController', 'com/sap/cd/maco/mmt/ui/reuse/fnd/ContentDensity'], function(
   BaseViewController,
   ContentDensity
 ) {

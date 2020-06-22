@@ -1,9 +1,9 @@
 sap.ui.define([
-  "com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction",
-  "com/sap/cd/maco/mmt/ui/reuse/monitor/Utility",
-  "com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
-  "sap/m/MessageToast"
-], function(BaseAction, Utility, Constants, MessageToast) {
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction",
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/Guid",
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/Constants",
+	"sap/m/MessageToast"
+], function(BaseAction, Guid, Constants, MessageToast) {
   "use strict";
 
   return BaseAction.extend("com.sap.cd.maco.monitor.ui.app.processuiactions.actions.ExecuteMsgAggrAction",
@@ -16,8 +16,9 @@ sap.ui.define([
        * Constructor
        */
       constructor: function(oComponent, oConfig) {
-        var sCardinality = "1..35";
-        BaseAction.call(this, oComponent, oConfig, sCardinality);
+        BaseAction.call(this, oComponent, oConfig);
+        this.oConfig.minContexts = 1;
+		    this.oConfig.maxContexts = 35;
       },
 
       /******************************************************************* */
@@ -48,11 +49,11 @@ sap.ui.define([
 
       /**
        * Function is triggered on selection of item from Execute Message Aggregation action sheet
-       * @param {sap.ui.base.Event} oEvent   Buttion press event
+       * @param {sap.ui.base.Event} oEvent        Buttion press event
        * @public
        */
       onExecuteMsgAggrItemSelected: function(oEvent) {
-        var oProcessDocumentKey = Utility.generateGuid();
+        var oProcessDocumentKey = Guid.generateGuid();
         var aProcessDocumentNumber = [];
         
         for(var intI = 0; intI < this._oContext.length; intI++) {
@@ -63,12 +64,12 @@ sap.ui.define([
           ProcessDocumentKey: oProcessDocumentKey,
           MultipleKey: aProcessDocumentNumber.toString(),
           Action: Constants.PROCESS_LIST_HEADER_ACTION.EXECUTE_MESSAGE_AGGREGATION,
-          Action_Item: oEvent.getSource().data("processId")
+          Action_Item: oEvent.getSource().getText()
         };
 
         var sKey = this.oModel.createKey("/xMP4GxC_Proc_Detail_Action_UI", {ProcessDocumentKey: oProcessDocumentKey});
 
-        this.oTransaction.whenUpdated({
+        this.mSingles.transaction.whenUpdated({
           path: sKey,
           data: oData,
           busyControl: this._oView
@@ -76,7 +77,5 @@ sap.ui.define([
           MessageToast.show(JSON.parse(oResponse.response.headers["sap-message"]).message);
         }.bind(this));
       }
-    }
-  );
-}
-);
+    });
+});

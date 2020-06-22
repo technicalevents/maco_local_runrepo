@@ -1,7 +1,7 @@
 /*global location*/
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseFragmentController',
+    'com/sap/cd/maco/mmt/ui/reuse/controller/base/BaseFragmentController',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/message/CallWithMessageHandling',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert',

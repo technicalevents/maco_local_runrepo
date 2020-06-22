@@ -1,7 +1,9 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover placement="Bottom"
+	<Popover placement="HorizontalPreferedLeft"
+			 contentWidth="400px"
+			 horizontalScrolling="false"
 			 showHeader="false">
 		<List items="{this>/PopoverRoles}"
 			  showSeparators="None">

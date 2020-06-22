@@ -1,12 +1,10 @@
-sap.ui.define(
-	[
-		"com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorComponent",
-		"com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
-		"com/sap/cd/maco/mmt/ui/reuse/action/nav/NavToRouteAction",
-		"com/sap/cd/maco/selfservice/ui/app/displaymarketpartners/actions/CreateChangeRequestAction",
-    	"com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
-	],
-	function (MonitorComponent, HashSync, NavToRouteAction, CreateChangeRequestAction, ShareAction) {
+sap.ui.define([
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorComponent",
+	"com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
+	"com/sap/cd/maco/mmt/ui/reuse/action/nav/NavToRouteAction",
+	"com/sap/cd/maco/selfservice/ui/app/displaymarketpartners/actions/CreateChangeRequestAction",
+	"com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
+],function (MonitorComponent, HashSync, NavToRouteAction, CreateChangeRequestAction, ShareAction) {
 		"use strict";
 
 		return MonitorComponent.extend("com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.Component", {

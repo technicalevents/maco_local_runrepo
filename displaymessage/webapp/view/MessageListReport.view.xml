@@ -65,10 +65,11 @@
 					        header="{i18n>messageTitlePlural}"
 					        useTablePersonalisation="true"
 					        useExportToExcel="true"
-                			beforeExport="onBeforeExport"
+                  demandpopin="true"
+                	beforeExport="onBeforeExport"
 					        useVariantManagement="false"
 					        placeToolbarInTable="true" 
-                			c:p13nDialogSettings='{filter:{visible:false}}'
+                	c:p13nDialogSettings='{filter:{visible:false}}'
 					        beforeRebindTable="onBeforeRebindTable"
 					        persistencyKey="com.sap.cd.maco.monitor.ui.app.controller.displaymessages.table">
         <smartTable:customToolbar>

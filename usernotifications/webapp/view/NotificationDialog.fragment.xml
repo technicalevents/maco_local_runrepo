@@ -29,13 +29,8 @@
 				</smartForm:GroupElement>
 				<smartForm:GroupElement>
 					<smartForm:label>
-						<Label text="{/xMP4GxC_ManageNotification/CreationDate/#@sap:label}"/>
-					</smartForm:label>
-					<Text text="{path:'CreationDate',type:'sap.ui.model.type.DateTime',formatOptions:{style:'medium'}}"/>
-				</smartForm:GroupElement>
-				<smartForm:GroupElement>
-					<smartForm:label>
-						<Label text="{/xMP4GxC_ManageNotification/Title/#@sap:label}"/>
+						<Label text="{/xMP4GxC_ManageNotification/Title/#@sap:label}"
+							   required="true"/>
 					</smartForm:label>
 					<Input value="{Title}"/>
 				</smartForm:GroupElement>
@@ -56,6 +51,7 @@
 							   showVariantManagement="false"
 							   showTablePersonalisation="false"
 							   useExportToExcel="false" 
+							   requestAtLeastFields="Role"
 							   persistencyKey="com.sap.cd.maco.selfservice.ui.app.usernotifications.roletable">
 			<Table id="idRoleTable"
 				   mode="MultiSelect"

@@ -1,13 +1,12 @@
 sap.ui.define([
-	"com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportNoDraftController",
+	"com/sap/cd/maco/mmt/ui/reuse/monitor/MonitorListReportController",
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate",
-	"sap/ui/generic/app/navigation/service/SelectionVariant",
 	"sap/ui/model/Sorter",
 	"sap/ui/model/FilterOperator",
 	"sap/base/strings/formatMessage"
-  ], function(ListReportNoDraftController, SmartTableBindingUpdate, SelectionVariant, Sorter, FilterOperator, formatMessage) {
+  ], function(MonitorListReportController, SmartTableBindingUpdate, Sorter, FilterOperator, formatMessage) {
     "use strict";
-    return ListReportNoDraftController.extend("com.sap.cd.maco.monitor.ui.app.processuiactions.view.ProcessListReport",
+    return MonitorListReportController.extend("com.sap.cd.maco.monitor.ui.app.processuiactions.view.ProcessListReport",
       {
       	
       /**
@@ -22,22 +21,16 @@ sap.ui.define([
 
         /**
          * Lifecycle method - triggered on initialization of ProcessListReport Controller
+		 * @public
          */
         onInit: function() {
-			var oComponentActions = this.getOwnerComponent().actions;
-			this.getOwnerComponent().getModel().setSizeLimit(1200);
-			
-			ListReportNoDraftController.prototype.onInit.call(this, {
+			MonitorListReportController.prototype.onInit.call(this, {
 				entitySet: "xMP4GxC_ProcessHeader_UI",
-				actions: {
-					executeMsgAggr: oComponentActions.executeMsgAggr,
-					reportExecution: oComponentActions.reportExecution,
-					share: oComponentActions.share
-				},
+				actions: this.getOwnerComponent().mActions,
 				routes: {
 					parent: null,
 					this: "listReport",
-					child: "null"
+					child: null
 				},
 				controls: {
 					table: "idProcessSmartTable",
@@ -47,10 +40,9 @@ sap.ui.define([
 				tableAccessControl: {
 					executeMsgAggr: true,
 					reportExecution: true
-				}
+				},
+				sizeLimit: 1500
 			});
-			
-			this.oRouter.getRoute("initial").attachPatternMatched(this._onRoutePatternMatched, this);
         },
         
         /******************************************************************* */
@@ -63,7 +55,7 @@ sap.ui.define([
 	  	* @public
 		*/
         onBeforeRebindTable: function(oEvent) {
-			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter('bindingParams'));
+			var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
 			var aSorters = [];
 			aSorters.push(new Sorter("ProcessTimestamp", true));
 			aSorters.push(new Sorter("ProcessDocumentKey", true));
@@ -95,26 +87,6 @@ sap.ui.define([
 				}
 			}
       },
-
-       /**
-        * Event is triggered when selection is changed in Own Market Partner MultiComboBox
-        * @public
-        */
-        onOwnMarketPartnerChange: function() {
-			var aOwnerUUIDKeys = this.getFilterBar().getControlByKey("OwnerUUID").getSelectedKeys();
-			var oSmartFilterData = this.getFilterBar().getFilterData();
-			
-			delete oSmartFilterData.OwnerUUID;
-			
-			if(!jQuery.isEmptyObject(aOwnerUUIDKeys)) {
-				oSmartFilterData["OwnerUUID"] = {"items": []};
-				for (var intI = 0; intI < aOwnerUUIDKeys.length; intI++) {
-					oSmartFilterData["OwnerUUID"].items.push({"key": aOwnerUUIDKeys[intI]});
-				}
-			}
-			
-			this.getFilterBar().setFilterData(oSmartFilterData, true);
-        },
         
 		/**
 		 * Event is triggered when FilterBar is initialized. 
@@ -122,7 +94,7 @@ sap.ui.define([
 		 * @public
 		 */
 		onFilterBarInitialized: function() {
-			this.oNav.parseNavigation().done(function(oAppState) {
+			this.mSingles.nav.parseNavigation().done(function(oAppState) {
 				if(!jQuery.isEmptyObject(oAppState)) {
 					this.getFilterBar().setDataSuiteFormat(oAppState.selectionVariant, true);
 				} else {
@@ -131,43 +103,6 @@ sap.ui.define([
 					this.getFilterBar().setFilterData(oDefaultStatus, true);
 				}
 			}.bind(this));
-		},
-        
-        /**
-         * Function will store application's current state on change in message list
-         * @public
-         */
-        storeCurrentAppState: function() {
-			var oSmartFilterUiState = this.getFilterBar().getUiState();
-			var oSelectionVariant = new SelectionVariant(JSON.stringify(oSmartFilterUiState.getSelectionVariant()));
-			var oCurrentAppState = {
-				selectionVariant: oSelectionVariant.toJSONString(),
-				tableVariantId: this.getSmartTable().getCurrentVariantId(),
-				valueTexts: oSmartFilterUiState.getValueTexts()
-			};
-			
-			this.oNav.storeInnerAppState(oCurrentAppState);
-        },
-        
-        /******************************************************************* */
-        /* PRIVATE METHODS */
-        /******************************************************************* */
-	    
-	    /**
-         * Method is called on Route to Message List Page
-         * @private
-         */
-        _onRoutePatternMatched: function() {
-			this.oComponent.getService("ShellUIService").then(
-				function(oService) {
-					oService.setHierarchy([]);
-				}.bind(this),
-				function(oError) {
-					jQuery.sap.log.error("Cannot get ShellUIService", oError);
-				}
-			);
-        }
-      }
-    );
-  }
-);
+		}
+    });
+});

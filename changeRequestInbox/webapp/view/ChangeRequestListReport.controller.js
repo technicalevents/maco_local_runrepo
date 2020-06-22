@@ -5,7 +5,7 @@ sap.ui.define([
 	"sap/ui/model/Sorter"
 ], function (MonitorListReportController, SmartTableBindingUpdate, FilterOperator, Sorter) {
 	"use strict";
-	return MonitorListReportController.extend("com.sap.cd.maco.operation.ui.app.changeRequestInbox.view.ChangeRequestListReport", {
+	return MonitorListReportController.extend("com.sap.cd.maco.operation.ui.app.changerequestinbox.view.ChangeRequestListReport", {
 
 		/******************************************************************* */
 		/* LIFECYCLE METHODS */

@@ -25,28 +25,7 @@
 									   initialized="onFilterBarInitialized"
 									   showFilterConfiguration="false"
 									   persistencyKey="com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts.filterbar"
-									   entitySet="xMP4GxC_Mantain_Contact_Info"
-									   afterVariantLoad="onAfterVariantLoad">
-            <smartFilterBar:controlConfiguration>
-                <smartFilterBar:ControlConfiguration key="OwnMarketPartner" 
-													 label="{/xMP4GxC_Mantain_Contact_Info/OwnMarketPartner/#@sap:label}"
-													 preventInitialDataFetchInValueHelpDialog="false">
-					<smartFilterBar:customControl>
-						<MultiComboBox id="idOwnMarketPartner"
-									   showSecondaryValues= "true"
-									   items="{path:'/xMP4GxC_MarketPartner_VH',sorter:{path:'mp_name'}}" 
-									   selectionChange="onCustomControlChange('OwnMarketPartner', $event)">
-							<core:ListItem key="{market_partner}" 
-										   text="{parts: [{path: 'i18n>OWN_MKT_PARTNER_LBL'},
-														  {path: 'mp_name'},
-														  {path: 'market_partner'},
-														  {path: 'division_text'}],
-												 formatter: 'jQuery.sap.formatMessage'}"
-										   additionalText="{market_role}"/>
-						</MultiComboBox>
-					</smartFilterBar:customControl>
-				</smartFilterBar:ControlConfiguration>
-          	</smartFilterBar:controlConfiguration>
+									   entitySet="xMP4GxC_Mantain_Contact_Info">
         </smartFilterBar:SmartFilterBar>
     </semantic:headerContent>
     <semantic:content>

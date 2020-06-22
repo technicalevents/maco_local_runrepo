@@ -90,13 +90,24 @@ sap.ui.define(['sap/ui/base/Object', 'sap/ui/model/Filter'], function(Object, Fi
       }
     },
 
-    addFilter: function(propertyName, operator, propertyValue) {
-      if (propertyValue === undefined) {
+    addFilter: function(propertyName, operator, propertyValue1, propertyValue2) {
+      if (propertyValue1 === undefined) {
         this._bPrevent = true;
       } else {
         var bHasFilter = this._hasFilter(this._oParams.filters, propertyName);
         if (!bHasFilter) {
-          this._aFilters.push(new Filter(propertyName, operator, propertyValue));
+          this._aFilters.push(new Filter(propertyName, operator, propertyValue1, propertyValue2));
+        }
+      }
+    },
+    
+    updateFilter: function (oFilter){
+     if(oFilter.oValue1 === undefined){
+        this._bPrevent = true;
+      }else{
+	    // call of recursive function for each entry in filterArray
+        if(this._oParams.filters){
+          this._oParams.filters.forEach(this._updateFilterItem.bind(this, oFilter));
         }
       }
     },
@@ -132,6 +143,18 @@ sap.ui.define(['sap/ui/base/Object', 'sap/ui/model/Filter'], function(Object, Fi
 
       // reset
       this._aFilters = [];
+    },
+
+    _updateFilterItem: function(oFilter, item, index) {
+      if(item.aFilters){
+        item.aFilters.forEach(this._updateFilterItem.bind(this, oFilter));
+      }
+
+      if(item.sPath && item.sPath === oFilter.sPath){
+        item.sOperator = oFilter.sOperator;
+        item.oValue1 = oFilter.oValue1;
+        item.oValue2 = oFilter.oValue2;
+      }
     },
 
     /** This function recursively checks if the filterArray contains a filter object for a property

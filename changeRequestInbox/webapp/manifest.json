@@ -1,7 +1,7 @@
 {
   "_version": "1.4.0",
   "sap.app": {
-    "id": "com.sap.cd.maco.operation.ui.app.changeRequestInbox",
+    "id": "com.sap.cd.maco.operation.ui.app.changerequestinbox",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "title": "{{APP_TITLE}}",
@@ -90,7 +90,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "com.sap.cd.maco.operation.ui.app.changeRequestInbox.i18n.i18n"
+          "bundleName": "com.sap.cd.maco.operation.ui.app.changerequestinbox.i18n.i18n"
         }
       },
       "": {
@@ -151,7 +151,7 @@
       ],
       "targets": {
         "listReport": {
-          "viewPath": "com.sap.cd.maco.operation.ui.app.changeRequestInbox.view",
+          "viewPath": "com.sap.cd.maco.operation.ui.app.changerequestinbox.view",
           "viewName": "ChangeRequestListReport",
           "viewId": "listReport",
           "viewLevel": 1,
