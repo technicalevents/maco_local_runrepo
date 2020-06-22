@@ -4,7 +4,7 @@ sap.ui.define([
 	"sap/ui/model/Sorter"
 ],function(MonitorListReportController, SmartTableBindingUpdate, Sorter) {
     "use strict";
-    return MonitorListReportController.extend("com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts.view.ContactListReport",{
+    return MonitorListReportController.extend("com.sap.cd.maco.selfserv.ui.app.maintcontact.view.ContactListReport",{
     	
         /******************************************************************* */
         /* LIFECYCLE METHODS */
@@ -21,7 +21,7 @@ sap.ui.define([
 				routes: {
 					parent: null,
 					this: "listReport",
-					child: "null"
+					child: null
 				},
 				controls: {
 					table: "idContactSmartTable",
