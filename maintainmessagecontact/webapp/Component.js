@@ -5,10 +5,11 @@ sap.ui.define([
   "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/UpdateWithDialogAction",
   "com/sap/cd/maco/mmt/ui/reuse/action/nodraft/DeleteAction",
   "com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
-], function(MonitorComponent, HashSync, CreateWithDialogAction, UpdateWithDialogAction, DeleteAction, ShareAction) {
+],
+function(MonitorComponent, HashSync, CreateWithDialogAction, UpdateWithDialogAction, DeleteAction, ShareAction) {
   "use strict";
 
-  return MonitorComponent.extend("com.sap.cd.maco.selfserv.ui.app.maintcontact.Component", {
+  return MonitorComponent.extend("com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts.Component", {
   metadata: {
     manifest: "json"
   },
@@ -23,12 +24,12 @@ sap.ui.define([
     
     this.mActions = {
       createContact : new CreateWithDialogAction(this, {
-        fragmentName: "com.sap.cd.maco.selfserv.ui.app.maintcontact.view.ContactDialog",
+        fragmentName: "com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts.view.ContactDialog",
         title: "NEW_CONTACT_LBL",
         successMsg: "CONTACT_CREATE_SUCCESS_MSG"
       }),
       updateContact: new UpdateWithDialogAction(this, {
-        fragmentName: "com.sap.cd.maco.selfserv.ui.app.maintcontact.view.ContactDialog",
+        fragmentName: "com.sap.cd.maco.selfservice.ui.app.maintmsgcontacts.view.ContactDialog",
         title: "EDIT_CONTACT_LBL",
         successMsg: "CONTACT_UPDATE_SUCCESS_MSG"
       }),
