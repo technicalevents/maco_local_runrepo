@@ -29,6 +29,12 @@
 				<Annotation Term="Org.OData.Measures.V1.Unit" String="%"/>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcStatMonitoring_UIType">
+				<!--<Annotation Term="UI.DataPoint" Qualifier="StatusSuccessRatio">-->
+				<!--	<Record Type="UI.DataPointType">-->
+				<!--		<PropertyValue Property="Value" Path="StatusCriticality"/>-->
+				<!--		<PropertyValue Property="Criticality" Path="StatusCriticality"/>-->
+				<!--	</Record>-->
+				<!--</Annotation>-->
 				<Annotation Term="UI.DataPoint" Qualifier="StatusSuccessRatio">
 					<Record Type="UI.DataPointType">
 						<PropertyValue Property="Value" Path="SuccessRatio"/>
@@ -132,6 +138,7 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="Value" Path="LoadCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
@@ -221,144 +228,6 @@
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PType_UIType">
-				<Annotation Qualifier="TopProcessTypeOpenErrorProcess" Term="com.sap.vocabularies.UI.v1.LineItem">
-                    <Collection>
-                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
-                        	<PropertyValue Property="Label" String="ProcessIDDescription" />
-                            <PropertyValue Property="Value" Path="ProcessIDDescription"/>
-                        </Record>
-                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
-                        	<PropertyValue Property="Label" String="ProcessStatus" />
-                            <PropertyValue Property="Value" Path="ProcessStatus"/>
-                        </Record>
-						<Record Type="com.sap.vocabularies.UI.v1.DataFieldForAnnotation">
-							<PropertyValue Property="Label" String="Status" />
-							<PropertyValue Property="Target" AnnotationPath="@com.sap.vocabularies.UI.v1.DataPoint#ProcessTypeOpenErrorProcessCount"/>
-						</Record>
-                    </Collection>
-                </Annotation>
-                <Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="ProcessTypeOpenErrorProcessCount">
-					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
-						<PropertyValue Property="Title" String="ProcessStatusCount"/>
-						<PropertyValue Property="Value" Path="ProcessStatusCount"/>
-						<PropertyValue Property="Criticality" Path="StatusCriticality"/>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.PresentationVariant" Qualifier="PVProcessTypeOpenErrorProcess">
-					<Record>
-						<PropertyValue Property="MaxItems" Int="20"/>
-						<PropertyValue Property="SortOrder">
-							<Collection>
-								<Record Type="Common.SortOrderType">
-									<PropertyValue Property="Property" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Descending" Bool="true"/>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.SelectionVariant" Qualifier="SVProcessTypeOpenProcess">
-					<Record>
-						<PropertyValue Property="SelectOptions">
-							<Collection>
-								<Record Type="UI.SelectOptionType">
-									<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Ranges">
-										<Collection>
-											<Record Type="UI.SelectionRangeType">
-												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
-												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
-												<PropertyValue Property="Low" String="0"/>
-											</Record>
-										</Collection>
-									</PropertyValue>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.SelectionVariant" Qualifier="SVProcessTypeErrorProcess">
-					<Record>
-						<PropertyValue Property="SelectOptions">
-							<Collection>
-								<Record Type="UI.SelectOptionType">
-									<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Ranges">
-										<Collection>
-											<Record Type="UI.SelectionRangeType">
-												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
-												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
-												<PropertyValue Property="Low" String="0"/>
-											</Record>
-										</Collection>
-									</PropertyValue>
-								</Record>
-								<Record Type="UI.SelectOptionType">
-									<PropertyValue Property="PropertyName" PropertyPath="ProcessStatus"/>
-									<PropertyValue Property="Ranges">
-										<Collection>
-											<Record Type="UI.SelectionRangeType">
-												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
-												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
-												<PropertyValue Property="Low" String="ERR"/>
-											</Record>
-										</Collection>
-									</PropertyValue>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="DPProcessTypeOpenProcess">
-					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
-						<PropertyValue Property="Title" String="OpenCount"/>
-						<PropertyValue Property="Value" Path="OpenCount"/>
-						<PropertyValue Property="ValueFormat">
-							<Record Type="UI.NumberFormat">
-								<PropertyValue Property="ScaleFactor" Decimal="0"/>
-								<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
-							</Record>
-						</PropertyValue>
-						<PropertyValue Property="CriticalityCalculation">
-							<Record Type="UI.CriticalityCalculationType">
-								<PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Minimize"/>
-								<PropertyValue Property="DeviationRangeHighValue" Path="DeviationRangeHighValue"/>
-								<PropertyValue Property="ToleranceRangeHighValue" Path="ToleranceRangeLowValue"/>
-							</Record>
-						</PropertyValue>
-						<PropertyValue Property="TrendCalculation">
-							<Record Type="UI.TrendCalculationType">
-								<PropertyValue Property="ReferenceValue" Path="OpenCountRef"/>
-								<PropertyValue Property="UpDifference" Path="UpDifference"/>
-								<PropertyValue Property="StrongUpDifference" Path="UpDifference"/>
-								<PropertyValue Property="DownDifference" Path="DownDifference"/>
-								<PropertyValue Property="StrongDownDifference" Path="DownDifference"/>
-							</Record>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-                <Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="DPProcessTypeErrorProcess">
-					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
-						<PropertyValue Property="Title" String="LoadCount"/>
-						<PropertyValue Property="Value" Path="LoadCount"/>
-						<PropertyValue Property="ValueFormat">
-							<Record Type="UI.NumberFormat">
-								<PropertyValue Property="ScaleFactor" Decimal="0"/>
-								<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
-							</Record>
-						</PropertyValue>
-						<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Negative"/>
-					</Record>
-				</Annotation>
-                <Annotation Term="UI.Identification">
-					<Collection>
-						<Record Type="UI.DataFieldForIntentBasedNavigation">
-							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
-							<PropertyValue Property="Action" String="displayProcess"/>
-							<PropertyValue Property="RequiresContext" Bool="false"/>
-						</Record>
-					</Collection>
-				</Annotation>
 				<Annotation Term="UI.KPI" Qualifier="OpenPType">
 					<Record Type="UI.KPIType">
 						<PropertyValue Property="ID" String="OpenPType"/>
@@ -384,6 +253,7 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="Value" Path="OpenCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
@@ -413,6 +283,7 @@
 							<Record Type="UI.KPIDetailType">
 								<PropertyValue Property="DefaultPresentationVariant">
 									<Record Type="UI.PresentationVariantType">
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="Visualizations">
 											<Collection>
 												<AnnotationPath>@UI.Chart#OpenPType</AnnotationPath>
@@ -469,6 +340,7 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="Value" Path="LoadCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
@@ -558,144 +430,6 @@
 				</Annotation>
 			</Annotations>
 			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_PClust_UIType">
-				<Annotation Qualifier="TopProcessClusterOpenErrorProcess" Term="com.sap.vocabularies.UI.v1.LineItem">
-                    <Collection>
-                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
-                        	<PropertyValue Property="Label" String="ProcessClusterDescriptionISL" />
-                            <PropertyValue Property="Value" Path="ProcessClusterDescriptionISL"/>
-                        </Record>
-                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
-                        	<PropertyValue Property="Label" String="ProcessStatus" />
-                            <PropertyValue Property="Value" Path="ProcessStatus"/>
-                        </Record>
-						<Record Type="com.sap.vocabularies.UI.v1.DataFieldForAnnotation">
-							<PropertyValue Property="Label" String="Status" />
-							<PropertyValue Property="Target" AnnotationPath="@com.sap.vocabularies.UI.v1.DataPoint#ProcessClusterOpenErrorProcessCount"/>
-						</Record>
-                    </Collection>
-                </Annotation>
-				<Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="ProcessClusterOpenErrorProcessCount">
-					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
-						<PropertyValue Property="Title" String="ProcessStatusCount"/>
-						<PropertyValue Property="Value" Path="ProcessStatusCount"/>
-						<PropertyValue Property="Criticality" Path="StatusCriticality"/>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.PresentationVariant" Qualifier="PVProcessClusterOpenErrorProcess">
-					<Record>
-						<PropertyValue Property="MaxItems" Int="20"/>
-						<PropertyValue Property="SortOrder">
-							<Collection>
-								<Record Type="Common.SortOrderType">
-									<PropertyValue Property="Property" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Descending" Bool="true"/>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.SelectionVariant" Qualifier="SVProcessClusterOpenProcess">
-					<Record>
-						<PropertyValue Property="SelectOptions">
-							<Collection>
-								<Record Type="UI.SelectOptionType">
-									<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Ranges">
-										<Collection>
-											<Record Type="UI.SelectionRangeType">
-												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
-												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
-												<PropertyValue Property="Low" String="0"/>
-											</Record>
-										</Collection>
-									</PropertyValue>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.SelectionVariant" Qualifier="SVProcessClusterErrorProcess">
-					<Record>
-						<PropertyValue Property="SelectOptions">
-							<Collection>
-								<Record Type="UI.SelectOptionType">
-									<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Ranges">
-										<Collection>
-											<Record Type="UI.SelectionRangeType">
-												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
-												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
-												<PropertyValue Property="Low" String="0"/>
-											</Record>
-										</Collection>
-									</PropertyValue>
-								</Record>
-								<Record Type="UI.SelectOptionType">
-									<PropertyValue Property="PropertyName" PropertyPath="ProcessStatus"/>
-									<PropertyValue Property="Ranges">
-										<Collection>
-											<Record Type="UI.SelectionRangeType">
-												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
-												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
-												<PropertyValue Property="Low" String="ERR"/>
-											</Record>
-										</Collection>
-									</PropertyValue>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="DPProcessClusterOpenProcess">
-					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
-						<PropertyValue Property="Title" String="OpenCount"/>
-						<PropertyValue Property="Value" Path="OpenCount"/>
-						<PropertyValue Property="ValueFormat">
-							<Record Type="UI.NumberFormat">
-								<PropertyValue Property="ScaleFactor" Decimal="0"/>
-								<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
-							</Record>
-						</PropertyValue>
-						<PropertyValue Property="CriticalityCalculation">
-							<Record Type="UI.CriticalityCalculationType">
-								<PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Minimize"/>
-								<PropertyValue Property="DeviationRangeHighValue" Path="DeviationRangeHighValue"/>
-								<PropertyValue Property="ToleranceRangeHighValue" Path="ToleranceRangeLowValue"/>
-							</Record>
-						</PropertyValue>
-						<PropertyValue Property="TrendCalculation">
-							<Record Type="UI.TrendCalculationType">
-								<PropertyValue Property="ReferenceValue" Path="OpenCountRef"/>
-								<PropertyValue Property="UpDifference" Path="UpDifference"/>
-								<PropertyValue Property="StrongUpDifference" Path="UpDifference"/>
-								<PropertyValue Property="DownDifference" Path="DownDifference"/>
-								<PropertyValue Property="StrongDownDifference" Path="DownDifference"/>
-							</Record>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-                <Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="DPProcessClusterErrorProcess">
-					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
-						<PropertyValue Property="Title" String="LoadCount"/>
-						<PropertyValue Property="Value" Path="LoadCount"/>
-						<PropertyValue Property="ValueFormat">
-							<Record Type="UI.NumberFormat">
-								<PropertyValue Property="ScaleFactor" Decimal="0"/>
-								<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
-							</Record>
-						</PropertyValue>
-						<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Negative"/>
-					</Record>
-				</Annotation>
-                <Annotation Term="UI.Identification">
-					<Collection>
-						<Record Type="UI.DataFieldForIntentBasedNavigation">
-							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
-							<PropertyValue Property="Action" String="displayProcess"/>
-							<PropertyValue Property="RequiresContext" Bool="false"/>
-						</Record>
-					</Collection>
-				</Annotation>
 				<Annotation Term="UI.KPI" Qualifier="OpenPCluster">
 					<Record Type="UI.KPIType">
 						<PropertyValue Property="ID" String="OpenPCluster"/>
@@ -721,6 +455,7 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="Value" Path="OpenCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
@@ -750,6 +485,7 @@
 							<Record Type="UI.KPIDetailType">
 								<PropertyValue Property="DefaultPresentationVariant">
 									<Record Type="UI.PresentationVariantType">
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="Visualizations">
 											<Collection>
 												<AnnotationPath>@UI.Chart#OpenPCluster</AnnotationPath>
@@ -851,6 +587,7 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="Value" Path="LoadCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
@@ -864,6 +601,7 @@
 							<Record Type="UI.KPIDetailType">
 								<PropertyValue Property="DefaultPresentationVariant">
 									<Record Type="UI.PresentationVariantType">
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
 										<PropertyValue Property="Visualizations">
 											<Collection>
 												<AnnotationPath>@UI.Chart#OpenPCluster</AnnotationPath>
@@ -893,144 +631,209 @@
 					</Collection>
 				</Annotation>
 			</Annotations>
-			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_OMP_UIType">
-				<Annotation Qualifier="TopOMPOpenErrorProcess" Term="com.sap.vocabularies.UI.v1.LineItem">
-                    <Collection>
-                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
-                        	<PropertyValue Property="Label" String="OwnerUUID" />
-                            <PropertyValue Property="Value" Path="OwnerUUID"/>
-                        </Record>
-                        <Record Type="com.sap.vocabularies.UI.v1.DataField">
-                        	<PropertyValue Property="Label" String="ProcessStatus" />
-                            <PropertyValue Property="Value" Path="ProcessStatus"/>
-                        </Record>
-						<Record Type="com.sap.vocabularies.UI.v1.DataFieldForAnnotation">
-							<PropertyValue Property="Label" String="Status" />
-							<PropertyValue Property="Target" AnnotationPath="@com.sap.vocabularies.UI.v1.DataPoint#OMPOpenErrorProcessCount"/>
-						</Record>
-                    </Collection>
-                </Annotation>
-				<Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="OMPOpenErrorProcessCount">
-					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
-						<PropertyValue Property="Title" String="ProcessStatusCount"/>
-						<PropertyValue Property="Value" Path="ProcessStatusCount"/>
-						<PropertyValue Property="Criticality" Path="StatusCriticality"/>
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_MaPart_UIType">
+				<Annotation Term="UI.KPI" Qualifier="OpenMP">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="OpenMP"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="OpenCount"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="CriticalityCalculation">
+									<Record Type="UI.CriticalityCalculationType">
+										<PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Minimize"/>
+										<PropertyValue Property="DeviationRangeHighValue" Path="DeviationRangeHighValue"/>
+										<PropertyValue Property="ToleranceRangeHighValue" Path="ToleranceRangeLowValue"/>
+									</Record>
+								</PropertyValue>
+								<PropertyValue Property="TrendCalculation">
+									<Record Type="UI.TrendCalculationType">
+										<PropertyValue Property="ReferenceValue" Path="OpenCountRef"/>
+										<PropertyValue Property="UpDifference" Path="UpDifference"/>
+										<PropertyValue Property="StrongUpDifference" Path="UpDifference"/>
+										<PropertyValue Property="DownDifference" Path="DownDifference"/>
+										<PropertyValue Property="StrongDownDifference" Path="DownDifference"/>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
+										<!--<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="MarketPartner"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>-->
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#OpenMP</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
+							</Record>
+						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.PresentationVariant" Qualifier="PVOMPOpenErrorProcess">
-					<Record>
-						<PropertyValue Property="SortOrder">
+				<Annotation Term="UI.Chart" Qualifier="OpenMP">
+					<Record Type="UI.ChartDefinitionType">
+						<PropertyValue Property="ChartType" EnumMember="UI.ChartType/ColumnStacked"/>
+						<PropertyValue Property="Measures">
 							<Collection>
-								<Record Type="Common.SortOrderType">
-									<PropertyValue Property="Property" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Descending" Bool="true"/>
+								<PropertyPath>ProcessStatusCount</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="MeasureAttributes">
+							<Collection>
+								<Record Type="UI.ChartMeasureAttributeType">
+									<PropertyValue Property="Measure" PropertyPath="ProcessStatusCount"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+								</Record>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="Dimensions">
+							<Collection>
+								<PropertyPath>MarketPartner</PropertyPath>
+								<PropertyPath>ProcessStatus</PropertyPath>
+								<PropertyPath>StatusCriticality</PropertyPath>
+							</Collection>
+						</PropertyValue>
+						<PropertyValue Property="DimensionAttributes">
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="MarketPartner"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Category"/>
+								</Record>
+							</Collection>
+								<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="ProcessStatus"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
+								</Record>
+							</Collection>
+							<Collection>
+								<Record Type="UI.ChartDimensionAttributeType">
+									<PropertyValue Property="Dimension" PropertyPath="StatusCriticality"/>
+									<PropertyValue Property="Role" EnumMember="UI.ChartDimensionRoleType/Series"/>
 								</Record>
 							</Collection>
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="UI.SelectionVariant" Qualifier="SVOMPOpenProcess">
-					<Record>
-						<PropertyValue Property="SelectOptions">
-							<Collection>
-								<Record Type="UI.SelectOptionType">
-									<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Ranges">
-										<Collection>
-											<Record Type="UI.SelectionRangeType">
-												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
-												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
-												<PropertyValue Property="Low" String="0"/>
-											</Record>
-										</Collection>
-									</PropertyValue>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="UI.SelectionVariant" Qualifier="SVOMPErrorProcess">
-					<Record>
-						<PropertyValue Property="SelectOptions">
-							<Collection>
-								<Record Type="UI.SelectOptionType">
-									<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
-									<PropertyValue Property="Ranges">
-										<Collection>
-											<Record Type="UI.SelectionRangeType">
-												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
-												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
-												<PropertyValue Property="Low" String="0"/>
-											</Record>
-										</Collection>
-									</PropertyValue>
-								</Record>
-								<Record Type="UI.SelectOptionType">
-									<PropertyValue Property="PropertyName" PropertyPath="ProcessStatus"/>
-									<PropertyValue Property="Ranges">
-										<Collection>
-											<Record Type="UI.SelectionRangeType">
-												<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
-												<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
-												<PropertyValue Property="Low" String="ERR"/>
-											</Record>
-										</Collection>
-									</PropertyValue>
-								</Record>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-				<Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="DPOMPOpenProcess">
-					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
-						<PropertyValue Property="Title" String="OpenCount"/>
-						<PropertyValue Property="Value" Path="OpenCount"/>
-						<PropertyValue Property="ValueFormat">
-							<Record Type="UI.NumberFormat">
-								<PropertyValue Property="ScaleFactor" Decimal="0"/>
-								<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+				<Annotation Term="UI.KPI" Qualifier="ErrMP">
+					<Record Type="UI.KPIType">
+						<PropertyValue Property="ID" String="ErrMP"/>
+						<PropertyValue Property="SelectionVariant">
+							<Record Type="UI.SelectionVariantType">
+								<PropertyValue Property="SelectOptions">
+									<Collection>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="ProcessStatusCount"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/GT"/>
+														<PropertyValue Property="Low" String="0"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+										<Record Type="UI.SelectOptionType">
+											<PropertyValue Property="PropertyName" PropertyPath="ProcessStatus"/>
+											<PropertyValue Property="Ranges">
+												<Collection>
+													<Record Type="UI.SelectionRangeType">
+														<PropertyValue Property="Sign" EnumMember="UI.SelectionRangeSignType/I"/>
+														<PropertyValue Property="Option" EnumMember="UI.SelectionRangeOptionType/EQ"/>
+														<PropertyValue Property="Low" String="ERR"/>
+													</Record>
+												</Collection>
+											</PropertyValue>
+										</Record>
+									</Collection>
+								</PropertyValue>
 							</Record>
 						</PropertyValue>
-						<PropertyValue Property="CriticalityCalculation">
-							<Record Type="UI.CriticalityCalculationType">
-								<PropertyValue Property="ImprovementDirection" EnumMember="UI.ImprovementDirectionType/Minimize"/>
-								<PropertyValue Property="DeviationRangeHighValue" Path="DeviationRangeHighValue"/>
-								<PropertyValue Property="ToleranceRangeHighValue" Path="ToleranceRangeLowValue"/>
+						<PropertyValue Property="DataPoint">
+							<Record Type="UI.DataPointType">
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
+								<PropertyValue Property="Value" Path="LoadCount"/>
+								<PropertyValue Property="ValueFormat">
+									<Record Type="UI.NumberFormat">
+										<PropertyValue Property="ScaleFactor" Decimal="1"/>
+										<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
+									</Record>
+								</PropertyValue>
 							</Record>
 						</PropertyValue>
-						<PropertyValue Property="TrendCalculation">
-							<Record Type="UI.TrendCalculationType">
-								<PropertyValue Property="ReferenceValue" Path="OpenCountRef"/>
-								<PropertyValue Property="UpDifference" Path="UpDifference"/>
-								<PropertyValue Property="StrongUpDifference" Path="UpDifference"/>
-								<PropertyValue Property="DownDifference" Path="DownDifference"/>
-								<PropertyValue Property="StrongDownDifference" Path="DownDifference"/>
+						<PropertyValue Property="Detail">
+							<Record Type="UI.KPIDetailType">
+								<PropertyValue Property="DefaultPresentationVariant">
+									<Record Type="UI.PresentationVariantType">
+										<!--<PropertyValue Property="MaxItems" Int="50"/>-->
+										<!--<PropertyValue Property="SortOrder">
+											<Collection>
+												<Record Type="Common.SortOrderType">
+													<PropertyValue Property="Property" PropertyPath="MarketPartner"/>
+													<PropertyValue Property="Descending" Bool="false"/>
+												</Record>
+											</Collection>
+										</PropertyValue>-->
+										<PropertyValue Property="Visualizations">
+											<Collection>
+												<AnnotationPath>@UI.Chart#OpenMP</AnnotationPath>
+											</Collection>
+										</PropertyValue>
+									</Record>
+								</PropertyValue>
 							</Record>
 						</PropertyValue>
 					</Record>
 				</Annotation>
-				<Annotation Term="com.sap.vocabularies.UI.v1.DataPoint" Qualifier="DPOMPErrorProcess">
-					<Record Type="com.sap.vocabularies.UI.v1.DataPointType">
-						<PropertyValue Property="Title" String="LoadCount"/>
-						<PropertyValue Property="Value" Path="LoadCount"/>
-						<PropertyValue Property="ValueFormat">
-							<Record Type="UI.NumberFormat">
-								<PropertyValue Property="ScaleFactor" Decimal="0"/>
-								<PropertyValue Property="NumberOfFractionalDigits" Int="0"/>
-							</Record>
-						</PropertyValue>
-						<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Negative"/>
-					</Record>
-				</Annotation>
-                <Annotation Term="UI.Identification">
+				<Annotation Term="UI.Identification">
 					<Collection>
 						<Record Type="UI.DataFieldForIntentBasedNavigation">
 							<PropertyValue Property="SemanticObject" String="UtilsDataExchangeProcessing"/>
 							<PropertyValue Property="Action" String="displayProcess"/>
-							<PropertyValue Property="RequiresContext" Bool="true"/>
+							<PropertyValue Property="RequiresContext" Bool="false"/>
 						</Record>
 					</Collection>
 				</Annotation>
+			</Annotations>
+			<Annotations Target="cds_xmp4gxprocessmonitor_sd.xMP4GxC_ProcOpenMoni_OMP_UIType">
 				<Annotation Term="UI.KPI" Qualifier="OpenOMP">
 					<Record Type="UI.KPIType">
 						<PropertyValue Property="ID" String="OpenOMP"/>
@@ -1056,6 +859,7 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="Value" Path="OpenCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">
@@ -1142,6 +946,7 @@
 						</PropertyValue>
 						<PropertyValue Property="DataPoint">
 							<Record Type="UI.DataPointType">
+								<!--<PropertyValue Property="Criticality" EnumMember="UI.CriticalityType/Neutral"/>-->
 								<PropertyValue Property="Value" Path="LoadCount"/>
 								<PropertyValue Property="ValueFormat">
 									<Record Type="UI.NumberFormat">

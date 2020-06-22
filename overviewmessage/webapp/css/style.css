@@ -1,3 +1,7 @@
+/*.comSapCdMacoMmtUiMonitorMsgGraphTitle .sapMNCIndScale {*/
+/*	overflow: inherit;*/
+/*}*/
+
 .comSapCdMacoMmtUiActivityTitle .sapSuiteUiCommonsTimelineItemWrapperV .sapSuiteUiCommonsTimelineItemBubble .sapSuiteUiCommonsTimelineItemOutline .sapSuiteUiCommonsTimelineItemBox .sapSuiteUiCommonsTimelineItemShell .sapSuiteUiCommonsTimelineItemHeaderWrapper .sapSuiteUiCommonsTimelineItemHeader .sapSuiteUiCommonsTimelineItemShellUser{
 	font-weight: normal;
 }

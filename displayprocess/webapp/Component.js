@@ -7,12 +7,12 @@ sap.ui.define([
   "com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMarketPartnerAction",
   "com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
 ], function(MonitorComponent, HashSync, NavToRouteAction, NavToProcessAction, 
-            NavToMessageAction, NavToMarketPartnerAction, ShareAction) {
+			NavToMessageAction, NavToMarketPartnerAction, ShareAction) {
   "use strict";
 
   return MonitorComponent.extend("com.sap.cd.maco.monitor.ui.app.displayprocesses.Component", {
     metadata: {
-      manifest: "json"
+		manifest: "json"
     },
 
     /**

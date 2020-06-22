@@ -1,11 +1,12 @@
 sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseAction",
+	"sap/ui/core/util/File",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
-], function(BaseAction, Filter, FilterOperator) {
+], function(BaseAction, File, Filter, FilterOperator) {
 	"use strict";
 
-	return BaseAction.extend("com.sap.cd.maco.operation.ui.app.changerequestinbox.actions.DownloadCertificateAction",
+	return BaseAction.extend("com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.DownloadCertificateAction",
     {
 		/******************************************************************* */
 		/* CONSTRUCTOR */
@@ -53,14 +54,16 @@ sap.ui.define([
 					}
 					
 					var aByteArray = new Uint8Array(aByteNumbers);
-					var oBlob = new Blob([aByteArray], {type: oResult.data.MimeType});
+					// var oBlob = new Blob([aByteArray], {type: oResult.data.MimeType});
+					var oBlob = new Blob([aByteArray], {type: "application/x-x509-ca-cert"});
 					var sUrl = URL.createObjectURL(oBlob);
+					
+					// window.open(sUrl, "_self");
+					
 					var certificate = document.createElement("a");
-
 					document.body.appendChild(certificate);
 					certificate.href = sUrl;
 					certificate.download = oResult.data.CertificateName;
-					
 					certificate.click();
 					window.URL.revokeObjectURL(sUrl);
 					

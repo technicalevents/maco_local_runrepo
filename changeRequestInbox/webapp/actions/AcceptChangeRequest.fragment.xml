@@ -17,18 +17,10 @@
 					<smartField:SmartField value="{EmailAddress}"/>
 				</smartForm:GroupElement>
 				<smartForm:GroupElement>
-					<smartForm:label>
-						<Label text="{/xMP4GxC_ChangeRequest/ValidFrom/#@sap:label}"/>
-					</smartForm:label>
-					<DatePicker value="{path:'ValidFrom',type:'sap.ui.model.type.Date',formatOptions:{style:'medium'}}" 
-								maxDate="{ValidTo}"/>
+					<smartField:SmartField value="{ValidFrom}"/>
 				</smartForm:GroupElement>
 				<smartForm:GroupElement>
-					<smartForm:label>
-						<Label text="{/xMP4GxC_ChangeRequest/ValidTo/#@sap:label}"/>
-					</smartForm:label>
-					<DatePicker value="{path:'ValidTo',type:'sap.ui.model.type.Date',formatOptions:{style:'medium'}}" 
-								minDate="{ValidFrom}"/>
+					<smartField:SmartField value="{ValidTo}"/>
 				</smartForm:GroupElement>
 			</smartForm:Group>
 		</smartForm:SmartForm>

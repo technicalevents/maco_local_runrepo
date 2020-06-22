@@ -61,6 +61,7 @@ sap.ui.define([
 			 */
 			onAfterBind: function(oRouteParams, oTransferDocument) {
 				var oModel = this.getViewModel();
+				
 				oModel.setProperty("/LinkedDocuments", {});
 				oModel.setProperty("/LinkedTransferDocuments", []);
 				oModel.setProperty("/TransferDocument", oTransferDocument);
@@ -74,11 +75,15 @@ sap.ui.define([
 				}
 			},
 			
+			press: function(oEvent) {
+				
+			},
+			
 			/**
 			 * Method will be triggered before object page binding is done with entitySet
 			 * @public
 			 */
-			 onBeforeBind: function() {
+			 onBeforeBind: function(oObject) {
 				this.oComponent.getService("ShellUIService").then(
 					function(oService) {
 						oService.setTitle(this.oBundle.getText("SINGLE_MSG_TITLE"));

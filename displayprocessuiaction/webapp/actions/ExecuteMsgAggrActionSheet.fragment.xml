@@ -1,14 +1,19 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
-	xmlns:core="sap.ui.core">
+	xmlns:core="sap.ui.core"
+	xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
 	<ActionSheet placement="Bottom">
 			<Button text="{i18n>INVOICE_BTN_TXT}" 
+					c:processId="Invoice" 
 					press="onExecuteMsgAggrItemSelected" />
 			<Button text="{i18n>ENERGY_VALUES_BTN_TXT}" 
+					c:processId="Energy Values" 
 					press="onExecuteMsgAggrItemSelected" />
-			<Button text="{i18n>METER_READING_RESULTS_BTN_TXT}"  
+			<Button text="{i18n>METER_READING_RESULTS_BTN_TXT}" 
+					c:processId="Meter Reading Results"  
 					press="onExecuteMsgAggrItemSelected" />
 			<Button text="{i18n>TIME_SERIES_DATA_BTN_TXT}" 
+					c:processId="Time Series Data" 
 					press="onExecuteMsgAggrItemSelected" />
 	</ActionSheet>
 </core:FragmentDefinition>

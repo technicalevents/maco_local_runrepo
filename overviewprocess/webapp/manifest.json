@@ -126,9 +126,7 @@
 					"valueSelectionInfo": "{{STATUS_SELECTION_INFO}}",
 					"showFilterInHeader": true,
 					"defaultSpan": {
-						"rows": 5,
-						"cols": 1,
-						"showOnlyHeader": false
+						"cols": 1
 					},
 					"colorPalette": {
 						"0": {
@@ -161,9 +159,7 @@
 					"valueSelectionInfo": "{{LOAD_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
-						"rows": 5,
-						"cols": 2,
-						"showOnlyHeader": false
+						"cols": 2
 					},
 					"colorPalette": {
 						"0": {
@@ -195,9 +191,7 @@
 					"valueSelectionInfo": "{{OPEN_SELECTION_INFO}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
-						"rows": 5,
-						"cols": 2,
-						"showOnlyHeader": false
+						"cols": 2
 					},
 					"tabs": [{
 						"entitySet": "xMP4GxC_ProcOpenMoni_PType_UI",
@@ -254,9 +248,7 @@
 					"title": "{{ERRONEOUS_PROCESS_CARD_TITLE}}",
 					"showFilterInHeader": false,
 					"defaultSpan": {
-						"rows": 5,
-						"cols": 2,
-						"showOnlyHeader": false
+						"cols": 2
 					},
 					"tabs": [{
 						"entitySet": "xMP4GxC_ProcOpenMoni_PType_UI",
@@ -305,90 +297,15 @@
 						"kpiAnnotationPath": "com.sap.vocabularies.UI.v1.KPI#ErrOMP"
 					}]
 				}
-			},
-			"e_TodoCard": {
-				"model": "PROCESSMONITOR_SB",
-				"template": "sap.ovp.cards.list",
+			}
+		},
+		"services": {
+			"ShellUIService": {
+				"factoryName": "sap.ushell.ui5service.ShellUIService",
+				"lazy": false,
 				"settings": {
-					"title": "{{OPEN_CARD_TITLE}}",
-					"valueSelectionInfo": "{{OPEN_SELECTION_INFO}}",
-					"showLineItemDetail": false,
-					"showFilterInHeader": false,
-					"showSortingInHeader": false,
-					"listFlavor": "bar",
-					"addODataSelect": true,
-					"listType": "condensed",
-					"imageSupported": false,
-					"stopResizing": false,
-					"defaultSpan": {
-						"rows": 5,
-						"cols": 1,
-						"showOnlyHeader": false
-					},
-					"tabs": [{
-						"entitySet": "xMP4GxC_ProcOpenMoni_PType_UI",
-						"value": "{{BY_PROCESS_TYPE_LBL}}",
-						"annotationPath": "com.sap.vocabularies.UI.v1.LineItem#TopProcessTypeOpenErrorProcess",
-						"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PVProcessTypeOpenErrorProcess",
-						"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SVProcessTypeOpenProcess",
-						"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#DPProcessTypeOpenProcess"
-					},{
-						"entitySet": "xMP4GxC_ProcOpenMoni_PClust_UI",
-						"value": "{{BY_PROCESS_CLUSTER_LBL}}",
-						"annotationPath": "com.sap.vocabularies.UI.v1.LineItem#TopProcessClusterOpenErrorProcess",
-						"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PVProcessClusterOpenErrorProcess",
-						"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SVProcessClusterOpenProcess",
-						"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#DPProcessClusterOpenProcess"
-					},{
-						"entitySet": "xMP4GxC_ProcOpenMoni_OMP_UI",
-						"value": "{{BY_OMP_LBL}}",
-						"annotationPath": "com.sap.vocabularies.UI.v1.LineItem#TopOMPOpenErrorProcess",
-						"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PVOMPOpenErrorProcess",
-						"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SVOMPOpenProcess",
-						"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#DPOMPOpenProcess"
-					}]
-				}
-			},
-			"f_ErrorProcess": {
-				"model": "PROCESSMONITOR_SB",
-				"template": "sap.ovp.cards.list",
-				"settings": {
-					"title": "{{ERRONEOUS_PROCESS_CARD_TITLE}}",
-					"showLineItemDetail": false,
-					"showFilterInHeader": false,
-					"showSortingInHeader": false,
-					"listFlavor": "bar",
-					"addODataSelect": true,
-					"listType": "condensed",
-					"imageSupported": false,
-					"stopResizing": false,
-					"defaultSpan": {
-						"rows": 5,
-						"cols": 1,
-						"showOnlyHeader": false
-					},
-					"tabs": [{
-						"entitySet": "xMP4GxC_ProcOpenMoni_PType_UI",
-						"value": "{{BY_PROCESS_TYPE_LBL}}",
-						"annotationPath": "com.sap.vocabularies.UI.v1.LineItem#TopProcessTypeOpenErrorProcess",
-						"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PVProcessTypeOpenErrorProcess",
-						"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SVProcessTypeErrorProcess",
-						"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#DPProcessTypeErrorProcess"
-					},{
-						"entitySet": "xMP4GxC_ProcOpenMoni_PClust_UI",
-						"value": "{{BY_PROCESS_CLUSTER_LBL}}",
-						"annotationPath": "com.sap.vocabularies.UI.v1.LineItem#TopProcessClusterOpenErrorProcess",
-						"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PVProcessClusterOpenErrorProcess",
-						"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SVProcessClusterErrorProcess",
-						"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#DPProcessClusterErrorProcess"
-					},{
-						"entitySet": "xMP4GxC_ProcOpenMoni_OMP_UI",
-						"value": "{{BY_OMP_LBL}}",
-						"annotationPath": "com.sap.vocabularies.UI.v1.LineItem#TopOMPOpenErrorProcess",
-						"presentationAnnotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant#PVOMPOpenErrorProcess",
-						"selectionAnnotationPath": "com.sap.vocabularies.UI.v1.SelectionVariant#SVOMPErrorProcess",
-						"dataPointAnnotationPath": "com.sap.vocabularies.UI.v1.DataPoint#DPOMPErrorProcess"
-					}]
+					"setHierarchy": "auto",
+					"setTitle": "auto"
 				}
 			}
 		}

@@ -3,17 +3,17 @@ sap.ui.define([
 	"com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
 	"com/sap/cd/maco/mmt/ui/reuse/monitor/NavToMarketPartnerAction",
 	"com/sap/cd/maco/mmt/ui/reuse/action/nodraft/UpdateWithDialogAction",
-	"com/sap/cd/maco/operation/ui/app/changerequestinbox/actions/DownloadCertificateAction",
-	"com/sap/cd/maco/operation/ui/app/changerequestinbox/actions/AcceptChangeRequestDialog",
-	"com/sap/cd/maco/operation/ui/app/changerequestinbox/actions/AcceptCertChangeRequestDialog",
-	"com/sap/cd/maco/operation/ui/app/changerequestinbox/actions/RejectChangeRequestDialog",
+	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/DownloadCertificateAction",
+	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/AcceptChangeRequestDialog",
+	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/AcceptCertChangeRequestDialog",
+	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/RejectChangeRequestDialog",
 	"com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
 ],function (MonitorComponent, HashSync, NavToMarketPartnerAction, UpdateWithDialogAction, 
 			DownloadCertificateAction, AcceptChangeRequestDialog, AcceptCertChangeRequestDialog, 
 			RejectChangeRequestDialog, ShareAction) {
 	"use strict";
 
-	return MonitorComponent.extend("com.sap.cd.maco.operation.ui.app.changerequestinbox.Component", {
+	return MonitorComponent.extend("com.sap.cd.maco.operation.ui.app.changeRequestInbox.Component", {
 		metadata: {
 			manifest: "json"
 		},
@@ -30,17 +30,17 @@ sap.ui.define([
 				navMarketPartnerAction: new NavToMarketPartnerAction(this, "BODocNo"),
 				downloadCertificateAction: new DownloadCertificateAction(this),
 				acceptChangeRequest: new UpdateWithDialogAction(this, {
-					fragmentName: "com.sap.cd.maco.operation.ui.app.changerequestinbox.actions.AcceptChangeRequest",
+					fragmentName: "com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.AcceptChangeRequest",
 					fragmentControllerClass: AcceptChangeRequestDialog,
 					title: "ACCEPT_CHANGE_REQUEST"
 				}),
 				acceptCertChangeRequest: new UpdateWithDialogAction(this, {
-					fragmentName: "com.sap.cd.maco.operation.ui.app.changerequestinbox.actions.AcceptCertChangeRequest",
+					fragmentName: "com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.AcceptCertChangeRequest",
 					fragmentControllerClass: AcceptCertChangeRequestDialog,
 					title: "ACCEPT_CHANGE_REQUEST"
 				}),
 				rejectChangeRequest: new UpdateWithDialogAction(this, {
-					fragmentName: "com.sap.cd.maco.operation.ui.app.changerequestinbox.actions.RejectChangeRequest",
+					fragmentName: "com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.RejectChangeRequest",
 					fragmentControllerClass: RejectChangeRequestDialog,
 					title: "REJECT_CHANGE_REQUEST"
 				}),

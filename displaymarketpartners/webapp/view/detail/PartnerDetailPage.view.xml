@@ -18,8 +18,8 @@
 					<Text text="{PartnerId}"/>
 				</uxap:snappedContent>
 				<uxap:actions>
-					<Button text="{i18n>CHANGE_REQUEST_TXT}" type="Transparent" press="onChangeRequestPress" visible="false"/> 
-					<!-- visible="{this>/ChangeReqVisible}"/> -->				</uxap:actions>
+					<Button text="{i18n>CHANGE_REQUEST_TXT}" type="Transparent" press="onChangeRequestPress" visible="{this>/ChangeReqVisible}"/>
+				</uxap:actions>
 			</uxap:ObjectPageDynamicHeaderTitle>
 		</uxap:headerTitle>
 		<uxap:headerContent>

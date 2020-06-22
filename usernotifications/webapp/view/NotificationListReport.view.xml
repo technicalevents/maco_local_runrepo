@@ -41,7 +41,6 @@
 							   useVariantManagement="false" 
 							   c:p13nDialogSettings="{filter:{visible:false}}"
 							   beforeRebindTable="onBeforeRebindTable"
-							   ignoreFromPersonalisation="Priority,PriorityCriticality"
 							   beforeExport="onBeforeExport($event, 500)"
 							   persistencyKey="com.sap.cd.maco.selfservice.ui.app.usernotifications.table">
 			<smartTable:customToolbar>

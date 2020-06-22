@@ -132,6 +132,11 @@ sap.ui.define(
 				onAfterActionDelete: function (oResult, oParams) {
 					this._bindMessage();
 				},
+				
+				onOwnMarketPartnerChange: function(oEvent){
+					debugger;
+				},
+				
 
 				/******************************************************************* */
 				/* PRIVATE METHODS */

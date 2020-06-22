@@ -1,6 +1,6 @@
 sap.ui.define(
   [
-    'com/sap/cd/maco/mmt/ui/reuse/controller/base/BaseViewController',
+    'com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseViewController',
     'sap/m/InstanceManager',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle',
     'com/sap/cd/maco/mmt/ui/reuse/fnd/Assert'

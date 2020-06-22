@@ -1,18 +1,20 @@
-sap.ui.define([], function () {
-	'use strict';
+sap.ui.define([
+	],
+	function (Utility) {
+		'use strict';
 
-	sap.ui.controller("com.sap.cd.maco.monitor.ui.app.overviewprocesses.ext.ExtController", {
+		sap.ui.controller("com.sap.cd.maco.monitor.ui.app.overviewprocesses.ext.ExtController", {
 
-		/******************************************************************* */
-		/* LIFECYCLE METHODS */
-		/******************************************************************* */
+			/******************************************************************* */
+			/* LIFECYCLE METHODS */
+			/******************************************************************* */
 
-		/**
-		 * LifeCycle Method
-		 * @public
-		 */
-		onAfterRendering: function () {
-			this.getView().byId("mainView--ovpMain").addStyleClass("comSapCdMacoMmtUiMonitorMsgGraphTitle");
-		}
+			/**
+			 * LifeCycle Method
+			 */
+			onAfterRendering: function () {
+				this.getView().byId("mainView--ovpMain").addStyleClass("comSapCdMacoMmtUiMonitorMsgGraphTitle");
+				this.getView().byId("sapOvpShareButton").setVisible(false);
+			}
+		});
 	});
-});

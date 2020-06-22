@@ -51,8 +51,8 @@
 					</smartFilterBar:ControlConfiguration>
 				</smartFilterBar:controlConfiguration>
 			</smartFilterBar:SmartFilterBar>
-			<viz:VizFrame id="idMassMeterReadingVizFrame"
-						  vizProperties="{
+			<viz:Popover></viz:Popover>
+			<viz:VizFrame vizProperties="{
 											title:{visible:false},
 											plotArea:{dataLabel:{showTotal:true,visible:true}},
 											interaction:{selectability:{mode:'exclusive'}},
@@ -79,22 +79,16 @@
 						</viz.data:dimensions>
 						<viz.data:measures>
 							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/StatusUploadProcessingCount/#@sap:label}" 
-														value="{StatusUploadProcessingCount}">
-								<viz.data:tooltip text="{StatusUploadProcessingCount}"/>
-							</viz.data:MeasureDefinition>
+														value="{StatusUploadProcessingCount}"/>
 							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/StatusSendCount/#@sap:label}" 
-														value="{StatusSendCount}">
-								<viz.data:tooltip text="{StatusSendCount}"/>
-							</viz.data:MeasureDefinition>
+														value="{StatusSendCount}"/>
 							<viz.data:MeasureDefinition name="{/xMP4GxC_MassProcPerDayCountMR/StatusSentCount/#@sap:label}" 
-														value="{StatusSentCount}">
-								<viz.data:tooltip text="{StatusSentCount}"/>
-							</viz.data:MeasureDefinition>
+														value="{StatusSentCount}"/>
 						</viz.data:measures>
 					</viz.data:FlattenedDataset>
 				</viz:dataset>
 				<viz:feeds>
-					<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Uploading,Sending,Sent" />
+					<viz.feeds:FeedItem uid="valueAxis" type="Measure" values="Uploading,Sending,Finished" />
                     <viz.feeds:FeedItem uid="categoryAxis" type="Dimension" values="Uploads per Day" />
 				</viz:feeds>
 			</viz:VizFrame>
@@ -111,7 +105,6 @@
 								   beforeExport="onBeforeExport"
 								   beforeRebindTable="onBeforeRebindTable"
 								   persistencyKey="com.sap.cd.maco.mmt.ui.app.controller.massmeterreadings.table"
-								   ignoreFromPersonalisation="db_key,client_uuid,ExternalMarketPartnerText,OwnMarketPartnerText,MeterReadType,MessageReferenceUUID,MassUploadProcessKey,AggregationProcessKey,Status,StatusCriticality,ExternalUUID"
 								   requestAtLeastFields="Receiver,OwnMarketPartner,MeterReadType,ExternalUUID,CommonAccessReference,MessageReferenceUUID,AggregationProcessID,AggregationProcessKey,MassUploadProcessID,MassUploadProcessKey">
 				<smartTable:customToolbar>
 					<OverflowToolbar design="Transparent">
@@ -120,10 +113,10 @@
 										 selectionChange="onMeterTypeSelectionChange">
 							<items>
 								<SegmentedButtonItem text="{i18n>ALL_SEGMENTED_LBL}" key="ALL"/>
+								<SegmentedButtonItem text="{i18n>ENERGY_VALUES_SEGMENTED_LBL}" key="ENERVAL"/>
+								<SegmentedButtonItem text="{i18n>INTERIM_SEGMENTED_LBL}" key="INTERIM"/>
 								<SegmentedButtonItem text="{i18n>INTERVAL_SEGMENTED_LBL}" key="INTERVAL"/>
 								<SegmentedButtonItem text="{i18n>PERIODICAL_SEGMENTED_LBL}" key="PERIODICAL"/>
-								<SegmentedButtonItem text="{i18n>INTERIM_SEGMENTED_LBL}" key="INTERIM"/>
-								<SegmentedButtonItem text="{i18n>ENERGY_VALUES_SEGMENTED_LBL}" key="ENERVAL"/>
 							</items>
 						</SegmentedButton>
 						<ToolbarSpacer/>
@@ -210,7 +203,7 @@
 								<reuseTable:ObjectIdentifier title="{ExternalMarketPartnerText}" text="{ExternalMarketPartner}"/>
 								<Link text="{MassUploadProcessDoc}" tooltip="{MassUploadProcessDoc}" press="onAction('navToUploadProcessAction', $event)"/>
 								<Link text="{AggregationProcessDoc}" tooltip="{AggregationProcessDoc}" press="onAction('navToAggrProcessAction', $event)"/>
-								<Link text="{MessageReference}" tooltip="{MessageReference}" press="onNavToMessageAction"/>
+								<Link text="{MessageReference}" tooltip="{MessageReference}" press="onAction('navToMessageAction', $event)"/>
 								<reuseTable:ObjectIdentifier title="{OwnMarketPartnerText}" text="{OwnMarketPartner}"/>
 							</cells>
 						</ColumnListItem>

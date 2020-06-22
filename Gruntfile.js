@@ -67,7 +67,7 @@ var aGithubMapping = [{
   resourceFolder: "webapp"
 }, {
   actualGit: "overviewmessages",
-  localGit: "overviewmessage",
+  localGit: "overviewmessages",
   isReuseLib: false,
   resourceFolder: "webapp"
 }, {
@@ -86,11 +86,7 @@ function triggerSyncOperation(grunt, oGithubMapping, sOperation) {
   // Return unique array of all file paths which match globbing pattern
   var sSrcPath = getSrcPath(oGithubMapping, sOperation);
   var sDestinationPath = getDestinatiationPath(oGithubMapping, sOperation);
-
-  grunt.log.writeln(oGithubMapping);
   var sGitFolder = sOperation === "syncActual" ? "../" + oGithubMapping.actualGit : oGithubMapping.localGit;
-
-  
 
   grunt.log.writeln(sGitFolder + "=" + grunt.file.exists(sGitFolder));
 

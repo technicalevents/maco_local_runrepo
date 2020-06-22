@@ -3,11 +3,7 @@ sap.ui.define([
     "com/sap/cd/maco/mmt/ui/reuse/component/single/getMessage"
 ],function(CreateUpdateDialogController, GetMessage) {
     "use strict";
-    return CreateUpdateDialogController.extend("com.sap.cd.maco.operation.ui.app.changerequestinbox.actions.RejectChangeRequestDialog",{
-
-        /******************************************************************* */
-		/* PUBLIC METHODS */
-		/******************************************************************* */
+    return CreateUpdateDialogController.extend("com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.RejectChangeRequestDialog",{
     	
     	/**
 		 * Event is triggered on press submit button in dialog box

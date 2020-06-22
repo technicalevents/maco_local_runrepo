@@ -9,13 +9,3 @@
 .comSapCdMacoMmtUiMonitorMsgGraphTitle .TargetDeviationFlexbox {
 	visibility: hidden;
 }
-
-.comSapCdMacoMmtUiMonitorMsgGraphTitle .sapOvpOverflowEllipsisDataField {
-	white-space: pre-wrap;
-}
-
-.comSapCdMacoMmtUiMonitorMsgGraphTitle .sapOvpBarList.sapOvpBarCondensedList .sapOvpBarListTitle {
-	line-height: 1rem;
-    margin-bottom: 0rem;
-    font-size: 0.75rem;
-}

@@ -1,5 +1,5 @@
 sap.ui.define(
-  ['com/sap/cd/maco/mmt/ui/reuse/controller/base/BaseFragmentController', 'sap/ui/model/json/JSONModel', 'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle'],
+  ['com/sap/cd/maco/mmt/ui/reuse/fnd/base/BaseFragmentController', 'sap/ui/model/json/JSONModel', 'com/sap/cd/maco/mmt/ui/reuse/fnd/bundle'],
   function(BaseFragmentController, JSONModel, bundle) {
     'use strict';
 
