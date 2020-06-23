@@ -1,7 +1,12 @@
-<mvc:View controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.changereq.ChangeRequest" xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc" xmlns:commons="sap.suite.ui.commons"
-	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns:core="sap.ui.core"
-	xmlns:layout="sap.ui.layout" xmlns:f="sap.ui.layout.form">
+<mvc:View controllerName="com.sap.cd.maco.selfservice.ui.app.displaymarketpartners.view.changereq.ChangeRequest" 
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:commons="sap.suite.ui.commons"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" 
+	xmlns:core="sap.ui.core"
+	xmlns:layout="sap.ui.layout" 
+	xmlns:facet="com.sap.cd.maco.mmt.ui.reuse.control.facet"
+	xmlns:f="sap.ui.layout.form">
 	<OverflowToolbar id="idToolbar" class="sapUiSmallMarginBottom">
 		<content>
 			<Label text="{i18n>CHANGE_REQUEST_TXT}"/>
@@ -33,10 +38,10 @@
 				<commons:embeddedControl>
 					<f:Form editable="false">
 						<f:layout>
-							<f:ResponsiveGridLayout labelSpanXL="3" 
-													labelSpanL="3" 
-													labelSpanM="3" 
-													labelSpanS="3" 
+							<f:ResponsiveGridLayout labelSpanXL="4" 
+													labelSpanL="4" 
+													labelSpanM="4" 
+													labelSpanS="4" 
 													adjustLabelSpan="false" 
 													emptySpanXL="0" 
 													emptySpanL="0"
@@ -65,20 +70,25 @@
 									<f:FormElement label="{/xMP4GxC_ChangeRequest/ValidFrom/#@sap:label}"
 												   visible="{= ${this>ChangeRequestType} === 'EMAIL'}">
 										<f:fields>
-											<Text text="{path:'this>ValidFrom', type:'sap.ui.model.type.DateTime', formatOptions:{style:'medium'}}"/>
+											<Text text="{path:'this>ValidFrom', type:'sap.ui.model.type.Date', formatOptions:{style:'medium'}}"/>
 										</f:fields>
 									</f:FormElement>
 									<f:FormElement label="{/xMP4GxC_ChangeRequest/ValidTo/#@sap:label}"
 												   visible="{= ${this>ChangeRequestType} === 'EMAIL'}">
 										<f:fields>
-										   <Text text="{path:'this>ValidTo', type:'sap.ui.model.type.DateTime', formatOptions:{style:'medium'}}"/>
+											<Text text="{path:'this>ValidTo', type:'sap.ui.model.type.Date', formatOptions:{style:'medium'}}"/>
 										</f:fields>
 									</f:FormElement>
 									<f:FormElement>
 										<f:fields>
 											<FlexBox alignItems="Start" justifyContent="SpaceBetween">
 												<items>
-													<Text text="{path:'this>RejectionReason'}"/>
+													 <facet:FormFacet>
+												        <facet:FormFacetText class="sapUiSmallMarginBegin"
+												        	visible="{= ${this>Status} === '30'}"
+												            label="{/xMP4GxC_ChangeRequest/RejectionReason/#@sap:label}"
+												            text="{this>RejectionReason}"/>
+												    </facet:FormFacet>
 													<ObjectStatus class="sapUiSmallMarginBegin" 
 																  text="{this>StatusDescription}" 
 																  inverted="true" 

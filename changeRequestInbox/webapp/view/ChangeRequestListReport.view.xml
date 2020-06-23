@@ -122,15 +122,15 @@
 							<Text text="{path:'ValidTo', type:'sap.ui.model.type.Date', formatOptions:{style:'medium'}}"/>
 							<Button text="{i18n>ACCEPT_BTN_TXT}" 
 									type="Accept" 
-									visible="{= ${Status} === 'OPEN'}"
+									visible="{= ${Status} === '10'}"
 									press="onAction('acceptChangeRequest', $event)"/>
 							<Button text="{i18n>ACCEPT_BTN_TXT}" 
 									type="Accept" 
-									visible="{= ${Status} === 'OPEN'}"
+									visible="{= ${Status} === '10'}"
 									press="onAction('acceptCertChangeRequest', $event)"/>
 							<Button text="{i18n>REJECT_BTN_TXT}" 
 									type="Reject" 
-									visible="{= ${Status} === 'OPEN'}" 
+									visible="{= ${Status} === '10'}" 
 									press="onAction('rejectChangeRequest', $event)"/>
 						</cells>
 					</ColumnListItem>
@@ -138,8 +138,5 @@
 			</Table>
 		</smartTable:SmartTable>
     </semantic:content>
-    <semantic:titleCustomTextActions>
-        <reuseButton:Share press="onAction('share', $event)"/>
-    </semantic:titleCustomTextActions>
 	</semantic:SemanticPage>
 </mvc:View>
