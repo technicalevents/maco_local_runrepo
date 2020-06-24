@@ -12,7 +12,7 @@
 		"ach": "MACO-MMT",
 		"dataSources": {
 			"Main": {
-				"uri": "/sap/opu/odata/MP4G/PROCESSMONITOR_SB",
+				"uri": "/sap/opu/odata/MP4G/UI_PROCOV",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
@@ -90,7 +90,7 @@
 					"bundleName": "com.sap.cd.maco.monitor.ui.app.overviewprocesses.i18n.i18n"
 				}
 			},
-			"PROCESSMONITOR_SB": {
+			"UI_PROCOV": {
 				"dataSource": "Main",
 				"preload": true,
 				"settings": {
@@ -110,7 +110,7 @@
 		}
 	},
 	"sap.ovp": {
-		"globalFilterModel": "PROCESSMONITOR_SB",
+		"globalFilterModel": "UI_PROCOV",
 		"globalFilterEntityType": "xMP4GxC_ProcessHeader_UIType",
 		"enableLiveFilter": false,
 		"smartVariantRequired": true,
@@ -118,7 +118,7 @@
 		"containerLayout": "resizable",
 		"cards": {
 			"a_StatusCard": {
-				"model": "PROCESSMONITOR_SB",
+				"model": "UI_PROCOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_ProcStatMonitoring_UI",
@@ -151,7 +151,7 @@
 				}
 			},
 			"b_LoadCard": {
-				"model": "PROCESSMONITOR_SB",
+				"model": "UI_PROCOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_ProcLoadMoni_UI",
@@ -184,7 +184,7 @@
 				}
 			},
 			"c_TodoCard": {
-				"model": "PROCESSMONITOR_SB",
+				"model": "UI_PROCOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"title": "{{OPEN_CARD_TITLE}}",
@@ -242,7 +242,7 @@
 				}
 			},
 			"d_ErrorProcess": {
-				"model": "PROCESSMONITOR_SB",
+				"model": "UI_PROCOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"title": "{{ERRONEOUS_PROCESS_CARD_TITLE}}",

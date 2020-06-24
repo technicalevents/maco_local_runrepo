@@ -11,7 +11,7 @@ sap.ui.define([
     init: function() {
       Component.prototype.init.apply(this, arguments);
       
-      this.getModel("MessageMonitor").setSizeLimit(1500);
+      this.getModel("UI_MSGOV").setSizeLimit(1500);
     },
 
     destroy: function() {

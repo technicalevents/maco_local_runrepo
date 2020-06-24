@@ -12,7 +12,7 @@
     "ach": "MACO-MMT",
     "dataSources": {
       "maindatasource": {
-        "uri": "/sap/opu/odata/MP4G/UI_MAINT_MSG_CONTACT",
+        "uri": "/sap/opu/odata/MP4G/UI_MAINCONT",
         "type": "OData",
         "settings": {
           "odataVersion": "2.0",
@@ -22,7 +22,7 @@
         }
       },
       "_MP4G_CONTACT_ANNO_MDL": {
-        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MAINT_MSG_CONTACT_VAN',Version='0001')/$value/",
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MAINCONT_VAN',Version='0001')/$value/",
         "type": "ODataAnnotation"
       }
     },

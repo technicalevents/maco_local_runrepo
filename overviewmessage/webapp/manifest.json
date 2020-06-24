@@ -12,18 +12,18 @@
 		"ach": "MACO-MMT",
 		"dataSources": {
 			"Main": {
-				"uri": "/sap/opu/odata/MP4G/MESSAGEMONITOR_SB",
+				"uri": "/sap/opu/odata/MP4G/UI_MSGOV",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
 					"annotations": [
-						"MP4G_MESSAGEMONITOR_SB_VAN",
+						"MP4G_UI_MSGOV_VAN",
 						"annotations"
 					]
 				}
 			},
-			"MP4G_MESSAGEMONITOR_SB_VAN": {
-				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FMESSAGEMONITOR_SB_VAN',Version='0001')/$value/",
+			"MP4G_UI_MSGOV_VAN": {
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FMP4G%2FUI_MSGOV_VAN',Version='0001')/$value/",
 				"type": "ODataAnnotation"
 			},
 			"annotations": {
@@ -105,7 +105,7 @@
 					"bundleName": "com.sap.cd.maco.monitor.ui.app.overviewmessages.i18n.i18n"
 				}
 			},
-			"MessageMonitor": {
+			"UI_MSGOV": {
 				"dataSource": "Main",
 				"preload": true,
 				"settings": {
@@ -125,7 +125,7 @@
 		}
 	},
 	"sap.ovp": {
-		"globalFilterModel": "MessageMonitor",
+		"globalFilterModel": "UI_MSGOV",
 		"globalFilterEntityType": "xMP4GxC_TransferDoc_UIType",
 		"enableLiveFilter": true,
 		"smartVariantRequired": true,
@@ -133,7 +133,7 @@
 		"containerLayout": "resizable",
 		"cards": {
 			"a_status": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_MesStatMoni_UI",
@@ -148,7 +148,7 @@
 				}
 			},
 			"b_load": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_MesLoadMoni_UI",
@@ -162,7 +162,7 @@
 				}
 			},
 			"c_Open": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"title": "{{OPEN_CARD_INFO}}",
@@ -200,7 +200,7 @@
 			},
 
 			"d_OverallOutboundDeliveryStatus": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_OutMesStatMoni_UI",
@@ -234,7 +234,7 @@
 				}
 			},
 			"e_OverallInboundMessageProcessStatus": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_InbMesStatMoni_UI",
@@ -260,7 +260,7 @@
 				}
 			},
 			"f_UnconfirmedOutboundMessage": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"title": "{{UNCONFIRMED_OUT_MSG_CARD_INFO}}",
@@ -292,7 +292,7 @@
 				}
 			},
 			"g_LoadOutboundMessage": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"title": "{{LOAD_OUTB_MES_CARD_INFO}}",
@@ -324,7 +324,7 @@
 				}
 			},
 			"h_InboundAperakMoni": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_InbMesAperakMoni_UI",
@@ -350,7 +350,7 @@
 				}
 			},
 			"i_OutboundAperakMoni": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"entitySet": "xMP4GxC_OutMesAperakMoni_UI",
@@ -376,7 +376,7 @@
 				}
 			},
 			"j_OutboundMessageDeliveryRate": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"title": "{{OUTB_MES_DELRATE_CARD_INFO}}",
@@ -449,7 +449,7 @@
 				}
 			},
 			"k_InboundMessageDeliveryRate": {
-				"model": "MessageMonitor",
+				"model": "UI_MSGOV",
 				"template": "sap.ovp.cards.charts.analytical",
 				"settings": {
 					"title": "{{INB_MES_DELRATE_CARD_INFO}}",
