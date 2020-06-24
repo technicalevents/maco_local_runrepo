@@ -21,6 +21,7 @@
 					</smartForm:label>
 					<unified:FileUploader value="{CertificateName}"
 										  change="handleCertificateUpload"
+										  mimeType="application/zip,application/x-x509-ca-cert"
 										  width="100%"/>
 				</smartForm:GroupElement>
 			</smartForm:Group>

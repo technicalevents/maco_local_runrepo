@@ -46,8 +46,8 @@
 			<smartTable:customToolbar>
 				<OverflowToolbar design="Transparent">
 					<ToolbarSpacer/>
-					<Button icon="sap-icon://add"
-							tooltip="{i18n>ADD_BTN_TXT}"
+					<Button text="{i18n>NEW_NOTIF_BTN_TXT}"
+							tooltip="{i18n>NEW_NOTIF_BTN_TXT}"
 							type="Transparent"
 							press="onAction('createNotification', $event)"/>
 				</OverflowToolbar>

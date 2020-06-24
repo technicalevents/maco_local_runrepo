@@ -6,11 +6,10 @@ sap.ui.define([
 	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/DownloadCertificateAction",
 	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/AcceptChangeRequestDialog",
 	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/AcceptCertChangeRequestDialog",
-	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/RejectChangeRequestDialog",
-	"com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
+	"com/sap/cd/maco/operation/ui/app/changeRequestInbox/actions/RejectChangeRequestDialog"
 ],function (MonitorComponent, HashSync, NavToMarketPartnerAction, UpdateWithDialogAction, 
 			DownloadCertificateAction, AcceptChangeRequestDialog, AcceptCertChangeRequestDialog, 
-			RejectChangeRequestDialog, ShareAction) {
+			RejectChangeRequestDialog) {
 	"use strict";
 
 	return MonitorComponent.extend("com.sap.cd.maco.operation.ui.app.changeRequestInbox.Component", {
@@ -43,11 +42,6 @@ sap.ui.define([
 					fragmentName: "com.sap.cd.maco.operation.ui.app.changeRequestInbox.actions.RejectChangeRequest",
 					fragmentControllerClass: RejectChangeRequestDialog,
 					title: "REJECT_CHANGE_REQUEST"
-				}),
-				share: new ShareAction(this, {
-					appTitleMsgKey: "APP_TITLE",
-					objectIdProperty: "db_key",
-					objectTextProperty: "BODocNo"
 				})
 			};
 
