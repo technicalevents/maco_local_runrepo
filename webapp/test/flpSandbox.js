@@ -129,6 +129,18 @@ sap.ui.define(
 										targetURL: "#UtilsDataExchangeProcessing-changeRequest"
 									}
 								}]
+							},
+							{
+								id: "defaultGroupId5",
+								title: "EON Apps",
+								tiles: [{
+									tileType: "sap.ushell.ui.tile.StaticTile",
+									properties: {
+										title: "Display Instance",
+										icon: "",
+										targetURL: "#UtilsDataExchangeProcessing-displayInstance"
+									}
+								}]
 							}]
 						}
 					}
@@ -329,6 +341,21 @@ sap.ui.define(
 										applicationType: "SAPUI5",
 										additionalInformation: "SAPUI5.Component=com.sap.cd.maco.operation.ui.app.changeRequestInbox",
 										url: sap.ui.require.toUrl("com/sap/cd/maco/operation/ui/app/changeRequestInbox")
+									}
+								},
+								"UtilsDataExchangeProcessing-displayInstance": {
+									semanticObject: "UtilsDataExchangeProcessing",
+									action: "displayInstance",
+									description: "Display Instance",
+									title: "Display Instance",
+									signature: {
+										additionalParameters: "allowed",
+										parameters: {}
+									},
+									resolutionResult: {
+										applicationType: "SAPUI5",
+										additionalInformation: "SAPUI5.Component=com.sap.cd.us4g.DsiplayInstance",
+										url: sap.ui.require.toUrl("com/sap/cd/us4g/DsiplayInstance")
 									}
 								}
 							}
