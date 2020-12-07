@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core" >
+  <Dialog id="dialog" type="Message" state="Warning" title="{i18n-reuse>buttonDelete}" afterClose="_afterClose">
+    <Text id="text" text="?" />
+    <buttons>
+      <Button id="deleteButton" type="Emphasized" press="_delete" />
+      <Button id="cancelButton" text="{i18n-reuse>buttonCancel}" press="_cancel" />
+    </buttons>
+  </Dialog>
+</core:FragmentDefinition>
