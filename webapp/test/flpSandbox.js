@@ -354,8 +354,8 @@ sap.ui.define(
 									},
 									resolutionResult: {
 										applicationType: "SAPUI5",
-										additionalInformation: "SAPUI5.Component=com.sap.cd.us4g.DsiplayInstance",
-										url: sap.ui.require.toUrl("com/sap/cd/us4g/DsiplayInstance")
+										additionalInformation: "SAPUI5.Component=com.sap.cd.us4g.DisplayInstance",
+										url: sap.ui.require.toUrl("com/sap/cd/us4g/DisplayInstance")
 									}
 								}
 							}

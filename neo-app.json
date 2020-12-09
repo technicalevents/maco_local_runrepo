@@ -76,7 +76,7 @@
       "path": "/sap/opu/odata",
       "target": {
         "type": "destination",
-        "name": "MUS_380",
+        "name": "XE7",
         "entryPath": "/sap/opu/odata"
       },
       "description": "SAPUI5 Test Resources"

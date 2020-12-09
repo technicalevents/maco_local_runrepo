@@ -13,11 +13,92 @@
     "grunt-cli": "^1.2.0",
     "prettier": "^1.14.3"
   },
+  "sapui5": {
+    "version": "1.60.1",
+    "resources": "https://sapui5.hana.ondemand.com/1.60.1/resources",
+    "testResources": "https://sapui5.hana.ondemand.com/1.60.1/test-resources",
+    "libs": [
+      {
+        "name": "com.sap.cd.maco.reuse",
+        "namespace": "com.sap.cd.maco.reuse",
+        "resources": "/Reuse/src/com/sap/cd/maco/reuse",
+        "testResources": "/Reuse/src/com/sap/cd/maco/reuse"
+      }
+    ],
+    "apps": {
+      "managememidocument": {
+        "namespace": "com.sap.cd.us4g.DisplayInstance",
+        "resources": "webapp",
+        "testResources": "webapp/test",
+        "abapDeploy": {
+          "dev": {
+            "package": "/US4G/AP_CMCM_UX",
+            "bspContainer": "/US4G/DISP_INSTANCE",
+            "bspContainerText": "US4G: Display Instance",
+            "transportRequestNumber": "<%= env['REQUEST'] %>",
+            "calculateAppIndex": true
+          },
+          "Hotfix": {
+            "package": "/US4G/AP_CMCM_UXG",
+            "bspContainer": "/US4G/DISP_INSTANCE",
+            "bspContainerText": "US4G: Display Instance",
+            "createTransport": true,
+            "transportText": "US4G: UI Development - /US4G/DISP_INSTANCE",
+            "transportUseLocked": true,
+            "transportUseUserMatch": true,
+            "calculateAppIndex": true
+          }
+        }
+      }
+    },
+    "abapSystems": {
+      "dev": {
+        "server": "https://ldcixe7.wdf.sap.corp:44311/",
+        "useStrictSSL": false,
+        "client": "500",
+        "auth": {
+          "user": "<%=cli.option.user %>",
+          "pass": "<%=cli.option.pwd %>"
+        }
+      },
+      "Hotfix": {
+        "server": "https://ldcize7.wdf.sap.corp:44331/",
+        "useStrictSSL": false,
+        "client": "500",
+        "auth": {
+          "user": "<%=cli.option.user %>",
+          "pass": "<%=cli.option.pwd %>"
+        }
+      }
+    },
+    "proxies": [
+      {
+        "context": "^/sap/opu/(.*)$",
+        "uri": "https://ldcixe7.wdf.sap.corp:44311/sap/opu/$1"
+      }
+    ],
+    "browsers": [
+      "Chrome"
+    ],
+    "xmake": {
+      "browsers": [
+        "PhantomJS"
+      ],
+      "resources": "sdk/sapui5-sdk-dist-1.60.1-static/resources",
+      "testResources": "sdk/sapui5-sdk-dist-1.60.1-static/test-resources"
+    }
+  },
+  "scripts_comment": "some special setting in xmake_before_publish to exclude the reuse lib - which is in a different GIT organization - from the build",
+  
   "scripts": {
     "start": "node node_modules/@sap/approuter/approuter.js",
     "lint": "grunt lint:ci",
     "test": "grunt test:ci",
     "opa": "grunt test:ci",
-    "watch": "grunt watch"
+    "watch": "grunt watch",
+    "pretest": "grunt postinstall",
+    "posttest": "rm sdk -r -f",
+    "before_publish": "grunt build && rm module -r -f",
+    "xmake-before-publish": "grunt build:displayinstance && rm module -r -f"
   }
 }

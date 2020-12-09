@@ -1,12 +1,51 @@
-<mvc:View controllerName="com.sap.cd.us4g.DsiplayInstance.controller.InstanceListReport" xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
-	xmlns="sap.m">
-	<Shell id="shell">
-		<App id="app">
-			<pages>
-				<Page id="page" title="{i18n>title}">
-					<content></content>
-				</Page>
-			</pages>
-		</App>
-	</Shell>
+<mvc:View xmlns:core="sap.ui.core" 
+		  xmlns="sap.m" 
+		  xmlns:f="sap.f" 
+		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
+		  xmlns:smartTable="sap.ui.comp.smarttable" 
+		  xmlns:mvc="sap.ui.core.mvc"
+		  controllerName="com.sap.cd.us4g.DisplayInstance.view.InstanceListReport">
+	<f:DynamicPage preserveHeaderStateOnScroll="true">
+		<f:header >
+			<f:DynamicPageHeader >
+				<f:content >
+					<smartFilterBar:SmartFilterBar id="smartFilterBar" 
+													liveMode="false" 
+													useToolbar="true" 
+													showFilterConfiguration="true" 
+													enableBasicSearch="true"
+													persistencyKey="com.sap.cd.us4g.DisplayInstance.filterbar" 
+													entitySet="{this>/entitySet}">
+					</smartFilterBar:SmartFilterBar>
+				</f:content>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<smartTable:SmartTable id="smartTable" 
+									smartFilterId="smartFilterBar" 
+									entitySet="{this>/entitySet}" 
+									tableType="ResponsiveTable"
+									enableAutoBinding="true" 
+									requestAtLeastFields="InstanceId" 
+									ignoredFields=""
+									beforeRebindTable="onBeforeRebindTable" 
+									beforeExport="onBeforeExport" 
+									useTablePersonalisation="true" 
+									showRowCount="true" 
+									demandPopin="true"
+									useExportToExcel="true" 
+									header="{i18n>INSTANCE_PLURAL_LBL}" 
+									useVariantManagement="false" 
+									placeToolbarInTable="true"
+									persistencyKey="com.sap.cd.us4g.DisplayInstance.view.listReport.ListReport.table">
+				<Table id="table" 
+					   growing="true" 
+					   growingScrollToLoad="true" 
+					   growingThreshold="50" 
+					   mode="SingleSelect" 
+					   sticky="ColumnHeaders,HeaderToolbar">
+				</Table>
+			</smartTable:SmartTable>
+		</f:content>
+	</f:DynamicPage>
 </mvc:View>

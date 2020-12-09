@@ -1,30 +1,48 @@
-sap.ui.define([
-	"sap/ui/core/UIComponent",
-	"sap/ui/Device",
-	"com/sap/cd/us4g/DsiplayInstance/model/models"
-], function (UIComponent, Device, models) {
-	"use strict";
+sap.ui.define(
+  [
+    "com/sap/cd/maco/mmt/ui/reuse/mmt/MmtComponent",
+    "com/sap/cd/maco/mmt/ui/reuse/fnd/nav/HashSync",
+     "com/sap/cd/maco/mmt/ui/reuse/action/nav/NavToRouteAction",
+     "com/sap/cd/maco/mmt/ui/reuse/action/share/ShareAction"
+  ],
+  function(MmtComponent, HashSync, NavToRouteAction, ShareAction) {
+    "use strict";
 
-	return UIComponent.extend("com.sap.cd.us4g.DsiplayInstance.Component", {
+    return MmtComponent.extend("com.sap.cd.us4g.DisplayInstance.Component", {
+      metadata: {
+        manifest: "json"
+      },
 
-		metadata: {
-			manifest: "json"
-		},
+      init: function() {
+        // super
+        MmtComponent.prototype.init.apply(this, arguments);
 
-		/**
-		 * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
-		 * @public
-		 * @override
-		 */
-		init: function () {
-			// call the base component's init function
-			UIComponent.prototype.init.apply(this, arguments);
+        // create actions
+      this.mActions = {
+        navToInstancePage: new NavToRouteAction(this),
+        share: new ShareAction(this, {
+          appTitleMsgKey: "APP_TITLE",
+          objectIdProperty: "InstanceGuid",
+        })
+      };
 
-			// enable routing
-			this.getRouter().initialize();
+        var oHashSync = new HashSync({
+          component: this,
+          message: this.oMessage,
+          routeName: "InstanceDetailPage"
+        });
 
-			// set the device model
-			this.setModel(models.createDeviceModel(), "device");
-		}
-	});
-});
+        oHashSync.synch();
+
+        // create the views based on the url/hash
+        this.getRouter().initialize();
+      },
+
+      exit: function() {
+        // super
+        MmtComponent.prototype.exit.apply(this, arguments);
+        this.actions.destroy();
+      }
+    });
+  }
+);

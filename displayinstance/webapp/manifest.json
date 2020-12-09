@@ -1,24 +1,55 @@
 {
-	"_version": "1.12.0",
+	"_version": "1.4.0",
 	"sap.app": {
-		"id": "com.sap.cd.us4g.DsiplayInstance",
+		"id": "com.sap.cd.us4g.DisplayInstance",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
+		"title": "{{APP_TITLE}}",
+		"description": "{{APP_TITLE}}",
 		"applicationVersion": {
 			"version": "1.0.0"
 		},
-		"title": "{{appTitle}}",
-		"description": "{{appDescription}}",
-		"sourceTemplate": {
-			"id": "ui5template.basicSAPUI5ApplicationProject",
-			"version": "1.40.12"
+		"ach": "CA-GTF-US4G",
+		"dataSources": {
+			"Main": {
+				"uri": "/sap/opu/odata/US4G/CMCM_GATEWAY_SRV",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"annotations": [
+						"annotation"
+					]
+				}
+			},
+			"annotation": {
+				"type": "ODataAnnotation",
+				"uri": "annotation/annotation.xml",
+				"settings": {
+					"localUri": "annotation/annotation.xml"
+				}
+			}
+		},
+		"resources": "resources.json",
+		"crossNavigation": {
+			"inbounds": {
+				"intent1": {
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					},
+					"semanticObject": "UtilsDataExchangeProcessing",
+					"action": "displayInstance",
+					"title": "{{APP_TITLE}}",
+					"icon": "sap-icon://email"
+				}
+			}
 		}
 	},
-
 	"sap.ui": {
 		"technology": "UI5",
+		"fullWidth": true,
 		"icons": {
-			"icon": "",
+			"icon": "sap-icon://task",
 			"favIcon": "",
 			"phone": "",
 			"phone@2": "",
@@ -27,66 +58,111 @@
 		},
 		"deviceTypes": {
 			"desktop": true,
-			"tablet": true,
-			"phone": true
-		}
+			"tablet": false,
+			"phone": false
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
 	},
-
 	"sap.ui5": {
-		"flexEnabled": false,
 		"rootView": {
-			"viewName": "com.sap.cd.us4g.DsiplayInstance.view.InstanceListReport",
+			"viewName": "com.sap.cd.maco.mmt.ui.reuse.controller.app.App",
 			"type": "XML",
-			"async": true,
-			"id": "InstanceListReport"
+			"id": "app"
 		},
 		"dependencies": {
-			"minUI5Version": "1.65.6",
+			"minUI5Version": "1.56.1",
 			"libs": {
-				"sap.ui.layout": {},
+				"sap.m": {},
+				"sap.f": {},
 				"sap.ui.core": {},
-				"sap.m": {}
+				"sap.ui.layout": {},
+				"sap.uxap": {},
+				"sap.ui.comp": {},
+				"sap.ui.table": {},
+				"com.sap.cd.maco.mmt.ui.reuse": {
+					"minVersion": "2.0.0"
+				}
 			}
 		},
 		"contentDensities": {
 			"compact": true,
 			"cozy": true
 		},
+		"resources": {},
 		"models": {
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.sap.cd.us4g.DsiplayInstance.i18n.i18n"
+					"bundleName": "com.sap.cd.us4g.DisplayInstance.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "Main",
+				"preload": true,
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Inline",
+					"useBatch": true
 				}
 			}
 		},
-		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+		"services": {
+			"ShellUIService": {
+				"factoryName": "sap.ushell.ui5service.ShellUIService",
+				"lazy": false,
+				"settings": {
+					"setTitle": "auto",
+					"setHierarchy": "auto"
+				}
+			}
 		},
 		"routing": {
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
-				"async": true,
-				"viewPath": "com.sap.cd.us4g.DsiplayInstance.view",
-				"controlAggregation": "pages",
 				"controlId": "app",
-				"clearControlAggregation": false
+				"controlAggregation": "pages",
+				"bypassed": {
+					"target": [
+						"notFound"
+					]
+				},
+				"async": true
 			},
 			"routes": [{
-				"name": "RouteInstanceListReport",
-				"pattern": "RouteInstanceListReport",
-				"target": ["TargetInstanceListReport"]
+				"name": "initial",
+				"pattern": "",
+				"target": [
+					"listReport"
+				]
+			}, {
+				"name": "listReport",
+				"pattern": "listReport",
+				"target": [
+					"listReport"
+				]
+			}, {
+				"name": "localstate-new",
+				"pattern": "{?query}",
+				"target": [
+					"listReport"
+				]
 			}],
 			"targets": {
-				"TargetInstanceListReport": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
-					"viewId": "InstanceListReport",
-					"viewName": "InstanceListReport"
+				"listReport": {
+					"viewPath": "com.sap.cd.us4g.DisplayInstance.view",
+					"viewName": "InstanceListReport",
+					"viewId": "listReport",
+					"viewLevel": 1,
+					"title": "{i18n>APP_TITLE}"
+				},
+				"notFound": {
+					"viewPath": "com.sap.cd.maco.mmt.ui.reuse.controller.notFound",
+					"viewName": "NotFound",
+					"viewId": "notFound"
 				}
 			}
 		}

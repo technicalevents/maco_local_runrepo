@@ -22,14 +22,14 @@
 					]
 				}
 			},
-			"Main": {
-				"uri": "/sap/opu/odata/MP4G/PROCESSMONITOR_SB",
+			"DisplayInstance": {
+				"uri": "/sap/opu/odata/US4G/CMCM_GATEWAY_SRV",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
-					"localUri": "../overviewprocess/webapp/localService/metadata.xml",
+					"localUri": "../displayinstance/webapp/localService/metadata.xml",
 					"annotations": [
-						"annotations"
+						"annotation"
 					]
 				}
 			},
@@ -40,11 +40,11 @@
 					"localUri": "localService/_MP4G_PROC_ANNO_MDL.xml"
 				}
 			},
-			"annotations": {
-				"uri": "../overviewprocess/webapp/annotation/annotations.xml",
+			"annotation": {
 				"type": "ODataAnnotation",
+				"uri": "../displayinstance/webapp/annotation/annotation.xml",
 				"settings": {
-					"localUri": "../overviewprocess/webapp/annotation/annotations.xml"
+					"localUri": "../displayinstance/webapp/annotation/annotation.xml"
 				}
 			}
 		}
