@@ -1,46 +1,21 @@
 sap.ui.define(
 	[
-		'com/sap/cd/maco/mmt/ui/reuse/controller/listReport/ListReportNoDraftController',
-		'com/sap/cd/maco/mmt/ui/reuse/fnd/table/SmartTableBindingUpdate',
+		"sap/ui/core/mvc/Controller",
 		"sap/ui/model/Sorter"
 	],
 
-	function (ListReportNoDraftController, SmartTableBindingUpdate, Sorter) {
+	function (Controller, Sorter) {
 		'use strict';
 
-		return ListReportNoDraftController.extend(
+		return Controller.extend(
 			'com.sap.cd.us4g.DisplayInstance.view.InstanceListReport', {
-				/**
-				 * Lifecycle Event
-				 * @public
-				 */
-				onInit: function () {
-					ListReportNoDraftController.prototype.onInit.call(this, {
-						controls: {
-							table: 'smartTable'
-						},
-						routes: {
-							child: 'InstanceDetailPage'
-						},
-						entitySet: 'INST_DATASet',
-						actions: this.getOwnerComponent().mActions,
-						tableAccessControl: {
-							navToInstancePage: true
-						}
-					});
-				},
 				/**
 				 * Event is triggered before data loading of smart table
 				 * @param {object} oEvent Table loading event
 				 * @public
 				 */
 				onBeforeRebindTable: function (oEvent) {
-					var oUpdate = new SmartTableBindingUpdate(oEvent.getParameter("bindingParams"));
-					var aSorters = [];
-						aSorters.push(new Sorter("InstanceId", true, true));
-
-					oUpdate.addSorters(aSorters);
-
+					oEvent.getParameter("bindingParams").sorter.push(new Sorter("InstanceId", true, true));
 				},
 				
 				/**

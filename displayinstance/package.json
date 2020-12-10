@@ -1,17 +1,12 @@
 {
   "name": "maco-us4g-displayinstance",
-  "version": "1.1.0",
-  "license": "SAP",
+  "version": "2.0.0",
+  "private": true,
   "devDependencies": {
-    "@sap/approuter": "5.14.1",
-    "com-sap-cd-maco-mmt-ui-reuse": "git+https://git@github.wdf.sap.corp/MaCo-MMT/mmt-ui-lib.git#dev",
-    "@sap/grunt-sapui5-bestpractice-build": "1.4.1",
-    "eslint": "^5.0.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-prettier": "^2.6.1",
-    "grunt": "^1.0.1",
-    "grunt-cli": "^1.2.0",
-    "prettier": "^1.14.3"
+    "custdev-sapui5-infra-util": "3.1.1",
+    "grunt": "1.0.3",
+    "grunt-cli": "1.3.2",
+    "@sap/grunt-sapui5-bestpractice-build": "latest"
   },
   "sapui5": {
     "version": "1.60.1",
@@ -26,26 +21,25 @@
       }
     ],
     "apps": {
-      "managememidocument": {
-        "namespace": "com.sap.cd.us4g.DisplayInstance",
+      "displayinstance": {
+        "namespace": "com.sap.cd.us4g.displayinstance",
         "resources": "webapp",
         "testResources": "webapp/test",
         "abapDeploy": {
           "dev": {
             "package": "/US4G/AP_CMCM_UX",
-            "bspContainer": "/US4G/DISP_INSTANCE",
-            "bspContainerText": "US4G: Display Instance",
+            "bspContainer": "/US4G/INSTANCE_DISPLAY",
+            "bspContainerText": "US4G: Manage Metering Instance",
             "transportRequestNumber": "<%= env['REQUEST'] %>",
+            "transportUseLocked": true,
             "calculateAppIndex": true
           },
           "Hotfix": {
-            "package": "/US4G/AP_CMCM_UXG",
-            "bspContainer": "/US4G/DISP_INSTANCE",
-            "bspContainerText": "US4G: Display Instance",
-            "createTransport": true,
-            "transportText": "US4G: UI Development - /US4G/DISP_INSTANCE",
+            "package": "/US4G/AP_CMCM_UX",
+            "bspContainer": "/US4G/INSTANCE_DISPLAY",
+            "bspContainerText": "US4G: Manage Metering Instance",
+            "transportRequestNumber": "<%= env['REQUEST'] %>",
             "transportUseLocked": true,
-            "transportUseUserMatch": true,
             "calculateAppIndex": true
           }
         }
@@ -89,16 +83,11 @@
     }
   },
   "scripts_comment": "some special setting in xmake_before_publish to exclude the reuse lib - which is in a different GIT organization - from the build",
-  
   "scripts": {
-    "start": "node node_modules/@sap/approuter/approuter.js",
-    "lint": "grunt lint:ci",
-    "test": "grunt test:ci",
-    "opa": "grunt test:ci",
-    "watch": "grunt watch",
     "pretest": "grunt postinstall",
+    "test": "grunt eslint",
     "posttest": "rm sdk -r -f",
     "before_publish": "grunt build && rm module -r -f",
-    "xmake-before-publish": "grunt build:displayinstance && rm module -r -f"
+    "xmake_before_publish": "grunt build:displayinstance && rm module -r -f"
   }
 }

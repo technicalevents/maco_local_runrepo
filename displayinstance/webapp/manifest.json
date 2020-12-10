@@ -68,7 +68,7 @@
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "com.sap.cd.maco.mmt.ui.reuse.controller.app.App",
+			"viewName": "com.sap.cd.us4g.DisplayInstance.view.InstanceListReport",
 			"type": "XML",
 			"id": "app"
 		},
@@ -81,10 +81,7 @@
 				"sap.ui.layout": {},
 				"sap.uxap": {},
 				"sap.ui.comp": {},
-				"sap.ui.table": {},
-				"com.sap.cd.maco.mmt.ui.reuse": {
-					"minVersion": "2.0.0"
-				}
+				"sap.ui.table": {}
 			}
 		},
 		"contentDensities": {
@@ -127,7 +124,6 @@
 				"controlAggregation": "pages",
 				"bypassed": {
 					"target": [
-						"notFound"
 					]
 				},
 				"async": true
@@ -158,11 +154,6 @@
 					"viewId": "listReport",
 					"viewLevel": 1,
 					"title": "{i18n>APP_TITLE}"
-				},
-				"notFound": {
-					"viewPath": "com.sap.cd.maco.mmt.ui.reuse.controller.notFound",
-					"viewName": "NotFound",
-					"viewId": "notFound"
 				}
 			}
 		}

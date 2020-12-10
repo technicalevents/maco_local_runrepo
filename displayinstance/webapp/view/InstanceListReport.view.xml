@@ -15,7 +15,7 @@
 													showFilterConfiguration="true" 
 													enableBasicSearch="true"
 													persistencyKey="com.sap.cd.us4g.DisplayInstance.filterbar" 
-													entitySet="{this>/entitySet}">
+													entitySet="INST_DATASet">
 					</smartFilterBar:SmartFilterBar>
 				</f:content>
 			</f:DynamicPageHeader>
@@ -23,7 +23,7 @@
 		<f:content>
 			<smartTable:SmartTable id="smartTable" 
 									smartFilterId="smartFilterBar" 
-									entitySet="{this>/entitySet}" 
+									entitySet="INST_DATASet" 
 									tableType="ResponsiveTable"
 									enableAutoBinding="true" 
 									requestAtLeastFields="InstanceId" 
@@ -42,7 +42,7 @@
 					   growing="true" 
 					   growingScrollToLoad="true" 
 					   growingThreshold="50" 
-					   mode="SingleSelect" 
+					   mode="None" 
 					   sticky="ColumnHeaders,HeaderToolbar">
 				</Table>
 			</smartTable:SmartTable>
