@@ -17,8 +17,8 @@
 						<PropertyPath>ValidFrom</PropertyPath>
 						<PropertyPath>ValidTo</PropertyPath>
 						<PropertyPath>Status</PropertyPath>
-						<PropertyPath>Melo</PropertyPath>
-						<PropertyPath>Malo</PropertyPath>
+						<PropertyPath>MeLo</PropertyPath>
+						<PropertyPath>MaLo</PropertyPath>
 						<PropertyPath>ConnectionObject</PropertyPath>
 						<PropertyPath>Premise</PropertyPath>
 						<PropertyPath>Installation</PropertyPath>

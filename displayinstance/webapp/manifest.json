@@ -17,9 +17,14 @@
 				"settings": {
 					"odataVersion": "2.0",
 					"annotations": [
+						"displainstasnce",
 						"annotation"
 					]
 				}
+			},
+			"displainstasnce": {
+				"type": "ODataAnnotation",
+				"uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='%2FUS4G%2FCMCM_GATEWAY_ANNO_MDL',Version='0001')/$value/"
 			},
 			"annotation": {
 				"type": "ODataAnnotation",
@@ -123,8 +128,7 @@
 				"controlId": "app",
 				"controlAggregation": "pages",
 				"bypassed": {
-					"target": [
-					]
+					"target": []
 				},
 				"async": true
 			},
