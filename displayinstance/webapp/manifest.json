@@ -68,7 +68,7 @@
 	},
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "com.sap.cd.us4g.DisplayInstance.view.InstanceListReport",
+			"viewName": "com.sap.cd.us4g.DisplayInstance.view.App",
 			"type": "XML",
 			"id": "app"
 		},

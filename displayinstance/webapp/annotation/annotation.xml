@@ -17,6 +17,12 @@
 						<PropertyPath>ValidFrom</PropertyPath>
 						<PropertyPath>ValidTo</PropertyPath>
 						<PropertyPath>Status</PropertyPath>
+						<PropertyPath>Melo</PropertyPath>
+						<PropertyPath>Malo</PropertyPath>
+						<PropertyPath>ConnectionObject</PropertyPath>
+						<PropertyPath>Premise</PropertyPath>
+						<PropertyPath>Installation</PropertyPath>
+						<PropertyPath>DeviceLocation</PropertyPath>
 					</Collection>
 				</Annotation>
 				<Annotation Term="UI.LineItem">
