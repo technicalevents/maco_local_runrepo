@@ -25,7 +25,7 @@
 									smartFilterId="smartFilterBar" 
 									entitySet="INST_DATASet" 
 									tableType="ResponsiveTable"
-									enableAutoBinding="true" 
+									enableAutoBinding="false" 
 									requestAtLeastFields="InstanceId" 
 									ignoredFields=""
 									beforeRebindTable="onBeforeRebindTable" 

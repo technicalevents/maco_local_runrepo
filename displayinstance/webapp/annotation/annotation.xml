@@ -22,7 +22,6 @@
 						<PropertyPath>ConnectionObject</PropertyPath>
 						<PropertyPath>Premise</PropertyPath>
 						<PropertyPath>Installation</PropertyPath>
-						<PropertyPath>DeviceLocation</PropertyPath>
 					</Collection>
 				</Annotation>
 				<Annotation Term="UI.LineItem">
