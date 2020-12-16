@@ -19,7 +19,8 @@
 					"annotations": [
 						"displainstasnce",
 						"annotation"
-					]
+					],
+					"localUri": "localService/metadata.xml"
 				}
 			},
 			"displainstasnce": {

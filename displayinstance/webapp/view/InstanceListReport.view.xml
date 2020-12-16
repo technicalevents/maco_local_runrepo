@@ -9,20 +9,19 @@
 		<f:header >
 			<f:DynamicPageHeader >
 				<f:content >
-					<smartFilterBar:SmartFilterBar id="smartFilterBar" 
-													liveMode="false" 
+					<smartFilterBar:SmartFilterBar id="idSmartFilterBar"
 													useToolbar="true" 
-													showFilterConfiguration="true" 
 													enableBasicSearch="true"
 													persistencyKey="com.sap.cd.us4g.DisplayInstance.filterbar" 
-													entitySet="INST_DATASet">
+													entitySet="INST_DATASet"
+													useDateRangeType="true">
 					</smartFilterBar:SmartFilterBar>
 				</f:content>
 			</f:DynamicPageHeader>
 		</f:header>
 		<f:content>
-			<smartTable:SmartTable id="smartTable" 
-									smartFilterId="smartFilterBar" 
+			<smartTable:SmartTable id="idSmartTable" 
+									smartFilterId="idSmartFilterBar" 
 									entitySet="INST_DATASet" 
 									tableType="ResponsiveTable"
 									enableAutoBinding="false" 
@@ -30,15 +29,13 @@
 									ignoredFields=""
 									beforeRebindTable="onBeforeRebindTable" 
 									beforeExport="onBeforeExport" 
-									useTablePersonalisation="true" 
 									showRowCount="true" 
 									demandPopin="true"
-									useExportToExcel="true" 
 									header="{i18n>INSTANCE_PLURAL_LBL}" 
 									useVariantManagement="false" 
 									placeToolbarInTable="true"
 									persistencyKey="com.sap.cd.us4g.DisplayInstance.view.listReport.ListReport.table">
-				<Table id="table" 
+				<Table id="idTable" 
 					   growing="true" 
 					   growingScrollToLoad="true" 
 					   growingThreshold="50" 
