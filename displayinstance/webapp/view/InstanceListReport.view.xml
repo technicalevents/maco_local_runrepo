@@ -4,6 +4,7 @@
 		  xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
 		  xmlns:smartTable="sap.ui.comp.smarttable" 
 		  xmlns:mvc="sap.ui.core.mvc"
+		   xmlns:c="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 		  controllerName="com.sap.cd.us4g.DisplayInstance.view.InstanceListReport">
 	<f:DynamicPage preserveHeaderStateOnScroll="true">
 		<f:header >
@@ -34,6 +35,8 @@
 									header="{i18n>INSTANCE_PLURAL_LBL}" 
 									useVariantManagement="false" 
 									placeToolbarInTable="true"
+									c:p13nDialogSettings='{filter:{visible:false},group:{visible:false}}' 
+									ignoreFromPersonalisation="ConnectionObject,DeviceLocation,MeLo,MaLo,InstanceGuid,Installation,Premise,InstanceId"
 									persistencyKey="com.sap.cd.us4g.DisplayInstance.view.listReport.ListReport.table">
 				<Table id="idTable" 
 					   growing="true" 
